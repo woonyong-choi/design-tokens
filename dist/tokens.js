@@ -2191,7 +2191,7 @@ export const values = freeze({
         "column": 960
       },
       "chart": {
-        "width": 720,
+        "width": 680,
         "label": 140,
         "label-max": 240,
         "bar": 12,

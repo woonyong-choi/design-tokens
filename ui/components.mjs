@@ -77,13 +77,13 @@ function tabVariant({ platform = false, frame, position, selector }) {
   const [f, p, s] = [frame ?? 'none', position ?? 'bottom', selector ?? 'buttons'];
   return { frame: f, position: p, selector: s, classes: `${f === 'none' ? '' : ` is-frame-${f}`}${p === 'bottom' ? '' : ` is-position-${p}`}${s === 'buttons' ? '' : ` is-selector-${s}`}` };
 }
-/** 패널과 별도로 조립할 수 있는 선택 줄. controls는 같은 캔버스를 공유하는 장면에도 쓸 수 있다. */
-export function TabList({ id: group, label = '탭', labels, selector = 'buttons', selected = 0, controls, inlineCode = false, afterPanel = false }) {
+/** 패널과 별도로 조립할 수 있는 선택 줄. controls는 같은 캔버스를 공유하는 장면에도 쓸 수 있다. compact는 그림 아래처럼 주변 제목보다 조용해야 하는 자리의 작은 글자 변형이다(상태·조작·터치 높이는 같다). */
+export function TabList({ id: group, label = '탭', labels, selector = 'buttons', selected = 0, controls, inlineCode = false, afterPanel = false, compact = false }) {
   id(group);
   if (!TAB_SELECTORS.includes(selector)) throw new Error(`Unknown tabs selector: ${selector}`);
   const numbers = selector === 'numbers';
   const content = text => inlineCode ? String(text).split('`').map((part, at) => at % 2 ? `<code>${escape(part)}</code>` : escape(part)).join('') : escape(text);
-  return out(`<div class="app-tablist${afterPanel ? ' is-after-panel' : ''}${selector === 'buttons' ? '' : ` is-${selector}`}" role="tablist" aria-label="${escape(label)}">${labels.map((text, index) => `<button type="button" id="${group}-tab-${index}" role="tab" aria-selected="${index === selected}" aria-controls="${id(controls?.[index] ?? `${group}-panel-${index}`)}" tabindex="${index === selected ? '0' : '-1'}"${numbers ? ` aria-label="${escape(text ?? `탭 ${index + 1}`)}"` : ''}>${numbers ? index + 1 : content(text)}</button>`).join('')}</div>`);
+  return out(`<div class="app-tablist${afterPanel ? ' is-after-panel' : ''}${compact ? ' is-compact' : ''}${selector === 'buttons' ? '' : ` is-${selector}`}" role="tablist" aria-label="${escape(label)}">${labels.map((text, index) => `<button type="button" id="${group}-tab-${index}" role="tab" aria-selected="${index === selected}" aria-controls="${id(controls?.[index] ?? `${group}-panel-${index}`)}" tabindex="${index === selected ? '0' : '-1'}"${numbers ? ` aria-label="${escape(text ?? `탭 ${index + 1}`)}"` : ''}>${numbers ? index + 1 : content(text)}</button>`).join('')}</div>`);
 }
 /**
  * 탭 묶음. `tabs`는 `{ label, body }`이고 body는 슬롯이다.

@@ -5,7 +5,7 @@ import { buildDesign } from '../scripts/lib/design-build.mjs';
 import { buildTables, flattenTokens, resolveToken, readSource } from '../scripts/lib/tokens.mjs';
 import { themeTable, resolveValue } from '../scripts/lib/token-css.mjs';
 import { ROOT, tables } from './helpers.mjs';
-import { verifyDesign } from '../ui/build/verify.mjs';
+import { verifyDesign } from '../scripts/lib/verify-dist.mjs';
 
 test('one_source_owns_web_and_diagram_roles_without_theme_hierarchy', () => {
   assert.equal(existsSync(`${ROOT}themes`), false);

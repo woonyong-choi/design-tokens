@@ -1,3 +1,4 @@
+// dist가 manifest의 파일 목록·해시와 정확히 같은지 확인한다. 이 저장소의 생성물 검사에만 쓰며 배포하지 않는다.
 import { createHash } from 'node:crypto';
 import { lstatSync, readFileSync, readdirSync } from 'node:fs';
 import { join, relative, resolve, sep } from 'node:path';

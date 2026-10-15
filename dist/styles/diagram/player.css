@@ -106,6 +106,12 @@ html.embedded .fl-figure.full {
   min-width: 0;
 }
 
+/* 장면 탭은 그림의 제목보다 조용하다. 공통 탭의 상태·조작은 그대로 두고 글자 크기와 굵기만 그림 맥락에서 낮춘다. */
+.fl-foot > .app-tablist button {
+  font-size: var(--text-tiny-text);
+  font-weight: var(--font-weight-medium);
+}
+
 /* 전체 화면은 같은 틀을 창 전체로 키우는 것뿐이다. 문서 안에서는 자연 높이이고 전체 화면에서만 창 높이를 채운다. */
 .fl-figure.full {
   position: fixed;

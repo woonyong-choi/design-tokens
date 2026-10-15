@@ -5,7 +5,7 @@
       "$type": "color"
     },
     "line": {
-      "$value": "{primitive.figure-dark-line}",
+      "$value": "{primitive.figure-edge}",
       "$type": "color"
     },
     "state": {
@@ -60,66 +60,66 @@
         "$type": "color"
       },
       "compare-outline": {
-        "$value": "{color.category.yellow.dark-border}",
+        "$value": "{color.data.other-outline}",
         "$type": "color"
       },
       "category-outline": {
         "1": {
-          "$value": "{color.category.blue.dark-border}",
+          "$value": "{color.category.blue.dark-data}",
           "$type": "color"
         },
         "2": {
-          "$value": "{color.category.yellow.dark-border}",
+          "$value": "{color.category.yellow.dark-data}",
           "$type": "color"
         },
         "3": {
-          "$value": "{color.category.red.dark-border}",
+          "$value": "{color.category.red.dark-data}",
           "$type": "color"
         },
         "4": {
-          "$value": "{color.category.green.dark-border}",
+          "$value": "{color.category.green.dark-data}",
           "$type": "color"
         },
         "5": {
-          "$value": "{color.category.orange.dark-border}",
+          "$value": "{color.category.orange.dark-data}",
           "$type": "color"
         },
         "6": {
-          "$value": "{color.category.purple.dark-border}",
+          "$value": "{color.category.purple.dark-data}",
           "$type": "color"
         },
         "7": {
-          "$value": "{color.category.cyan.dark-border}",
+          "$value": "{color.category.cyan.dark-data}",
           "$type": "color"
         }
       },
       "category-ink": {
         "1": {
-          "$value": "{color.category.blue.dark-ink}",
+          "$value": "{color.category.blue.dark-data-ink}",
           "$type": "color"
         },
         "2": {
-          "$value": "{color.category.yellow.dark-ink}",
+          "$value": "{color.category.yellow.dark-data-ink}",
           "$type": "color"
         },
         "3": {
-          "$value": "{color.category.red.dark-ink}",
+          "$value": "{color.category.red.dark-data-ink}",
           "$type": "color"
         },
         "4": {
-          "$value": "{color.category.green.dark-ink}",
+          "$value": "{color.category.green.dark-data-ink}",
           "$type": "color"
         },
         "5": {
-          "$value": "{color.category.orange.dark-ink}",
+          "$value": "{color.category.orange.dark-data-ink}",
           "$type": "color"
         },
         "6": {
-          "$value": "{color.category.purple.dark-ink}",
+          "$value": "{color.category.purple.dark-data-ink}",
           "$type": "color"
         },
         "7": {
-          "$value": "{color.category.cyan.dark-ink}",
+          "$value": "{color.category.cyan.dark-data-ink}",
           "$type": "color"
         }
       },
@@ -182,6 +182,18 @@
           "$value": "{color.category.cyan.dark-tint-1}",
           "$type": "color"
         }
+      },
+      "other": {
+        "$type": "color",
+        "$value": "{primitive.figure-dark-other}"
+      },
+      "other-on": {
+        "$type": "color",
+        "$value": "{color.gray.0}"
+      },
+      "other-outline": {
+        "$type": "color",
+        "$value": "{primitive.figure-dark-other}"
       }
     },
     "accent": {
@@ -202,12 +214,12 @@
         "$type": "color"
       },
       "queue-empty": {
-        "$value": "{color.gray.910}",
+        "$value": "{color.figure.inner-surface}",
         "$type": "color"
       },
       "outline": {
         "$type": "color",
-        "$value": "{color.line}"
+        "$value": "{color.ui-line}"
       },
       "selection-fill": {
         "$type": "color",
@@ -224,6 +236,14 @@
       "active-surface": {
         "$type": "color",
         "$value": "{primitive.figure-dark-hover}"
+      },
+      "inner-surface": {
+        "$type": "color",
+        "$value": "{primitive.figure-dark-inner}"
+      },
+      "boundary": {
+        "$type": "color",
+        "$value": "{primitive.figure-dark-boundary}"
       }
     },
     "flow": {
@@ -637,6 +657,78 @@
     "landing-action-pressed": {
       "$type": "color",
       "$value": "{color.control-hover}"
+    },
+    "category": {
+      "blue": {
+        "solid": {
+          "$type": "color",
+          "$value": "{color.category.blue.dark-data}"
+        },
+        "on-solid": {
+          "$type": "color",
+          "$value": "{color.gray.1000}"
+        }
+      },
+      "yellow": {
+        "solid": {
+          "$type": "color",
+          "$value": "{color.category.yellow.dark-data}"
+        },
+        "on-solid": {
+          "$type": "color",
+          "$value": "{color.gray.1000}"
+        }
+      },
+      "red": {
+        "solid": {
+          "$type": "color",
+          "$value": "{color.category.red.dark-data}"
+        },
+        "on-solid": {
+          "$type": "color",
+          "$value": "{color.gray.1000}"
+        }
+      },
+      "green": {
+        "solid": {
+          "$type": "color",
+          "$value": "{color.category.green.dark-data}"
+        },
+        "on-solid": {
+          "$type": "color",
+          "$value": "{color.gray.1000}"
+        }
+      },
+      "orange": {
+        "solid": {
+          "$type": "color",
+          "$value": "{color.category.orange.dark-data}"
+        },
+        "on-solid": {
+          "$type": "color",
+          "$value": "{color.gray.1000}"
+        }
+      },
+      "purple": {
+        "solid": {
+          "$type": "color",
+          "$value": "{color.category.purple.dark-data}"
+        },
+        "on-solid": {
+          "$type": "color",
+          "$value": "{color.gray.1000}"
+        }
+      },
+      "cyan": {
+        "solid": {
+          "$type": "color",
+          "$value": "{color.category.cyan.dark-data}"
+        },
+        "on-solid": {
+          "$type": "color",
+          "$value": "{color.gray.1000}"
+        }
+      }
     }
   },
   "icon": {
@@ -657,6 +749,20 @@
     "device-case": {
       "$type": "color",
       "$value": "{primitive.icon-device-case-dark}"
+    }
+  },
+  "drop-shadow": {
+    "figure-ambient": {
+      "$type": "string",
+      "$value": "0 0 1px rgba(0, 0, 0, 0.6)"
+    },
+    "figure-card": {
+      "$type": "string",
+      "$value": "0 1px 3px rgba(0, 0, 0, 0.32)"
+    },
+    "figure-float": {
+      "$type": "string",
+      "$value": "0 1px 2px rgba(0, 0, 0, 0.45)"
     }
   }
 }

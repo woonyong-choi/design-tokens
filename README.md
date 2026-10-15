@@ -72,7 +72,7 @@ The [icon design criteria](docs/design/content-icons.md#설계-판정-기준) co
 
 The shared catalog maps eight article formats to one icon each. Consumers select the format icon before the category icon and fall back to `document`; the catalog does not change a consumer's existing composition by itself.
 
-Brand backgrounds and small-size symbols are normalized in the existing SVG files. NGINX and Redis retain opaque white marks in color and cutouts in monochrome. The catalog records each treatment; PostgreSQL blue has a dark-theme contrast adjustment.
+The catalog keeps only brand marks shared by more than one consumer: Git, PostgreSQL, Redis, and NGINX for ThinkFlow figures, and GitHub and LinkedIn for the shared social icons. A technology logo used by one consumer lives in that consumer, such as the homepage technology logos. Brand backgrounds and small-size symbols are normalized in the existing SVG files. NGINX and Redis retain opaque white marks in color and cutouts in monochrome. The catalog records each treatment; PostgreSQL blue has a dark-theme contrast adjustment.
 
 The project-original newsletter and testimonial PNGs keep their bytes and provenance in `assets/sources.json`. Every file under `assets/` has an origin and license record there, checked by `npm test`. Consume them through image `src` slots; the shared SVG loader remains SVG-only.
 

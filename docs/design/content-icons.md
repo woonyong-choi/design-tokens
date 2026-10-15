@@ -6,7 +6,7 @@
 
 기술 이름은 해당 프로젝트·재단·제작자가 배포한 로고로 표시한다. 공식 배포본 안에서 배경 없는 심벌과 평면형을 우선 선택하고 원래 색·도형·비례를 보존한다. 같은 표시 크기에서 실제 도형의 크기와 중심을 비례 변환으로 맞춘다. 독자 제작 콘텐츠 아이콘의 Things 조형 규칙을 기술 로고의 재디자인 지시로 적용하지 않는다.
 
-홈페이지 기술 줄 10종·별도 요청 C++와 GitHub·LinkedIn·NGINX·Redis는 원배포 출처와 선택한 변형·원본 해시를 `assets/icons/catalog.json`의 `brands`에 기록한다. C는 C 언어 홈페이지 배포본이며, JavaScript는 원제작자의 커뮤니티 로고다. 두 항목을 ISO·Ecma가 지정한 유일 공식 로고라고 부르지 않는다. TypeScript는 공식 기본 사각형, Python은 CPython의 평면형, C#은 .NET 언어 아이콘, Docker는 배경 없는 공식 심벌을 사용한다. Kubernetes의 칠각형처럼 로고 자체인 식별 면은 유지하고 별도 장식 배경을 더하지 않는다.
+이 카탈로그의 `brands`에는 ThinkFlow 그림이 내장 아이콘으로 쓰는 Git·PostgreSQL·Redis·NGINX와 공통 `SocialIcon`·`SiteFooter`가 쓰는 GitHub·LinkedIn만 둔다. 각 항목은 원배포 출처와 선택한 변형·원본 해시를 `assets/icons/catalog.json`의 `brands`에 기록한다. 한 소비자만 쓰는 기술 로고는 그 소비자가 소유한다. 홈페이지 기술 줄과 문서의 C·C#·Python·TypeScript·JavaScript·Kotlin·Kubernetes·Docker·Node.js·Spring·Linux 로고는 homepage 저장소의 `content/assets/brands/`와 `config/assets.json`이 출처와 고지를 가진다. 쓰는 곳이 없던 나머지 기술 로고와 그 출처만 기록하던 Simple Icons·Devicon 라이브러리 항목, Kafka 로고의 Apache-2.0 고지는 두지 않는다. Devicon 고지는 기술 키워드 수집본(`keyword-icons`)의 고지로 남는다. 새 기술 로고는 실제로 쓰는 소비자에 추가하고, 여러 소비자가 공유할 때만 이 카탈로그에 둔다. `test/asset-provenance.test.js`가 `brands`를 공통 소셜 역할과 ThinkFlow 내장 그림의 표식으로 제한하고, 카탈로그가 가리키지 않는 고지 파일을 거부한다.
 
 정본 SVG 이름·경로·viewBox를 유지한다. 임시·구형·레거시 SVG나 소비자별 복제본을 디자인토큰 저장소에 남기지 않는다. 원배포 다운로드·비교 캡처·실패 시안은 저장소 밖의 검수 영역에서만 다룬다. 기본형·상세형과 정본으로부터 build가 생성하는 dist는 기존 계약을 따른다.
 

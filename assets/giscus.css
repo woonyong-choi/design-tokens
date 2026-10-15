@@ -1,0 +1,113 @@
+/* iframe 내부에서도 개인 사이트와 같은 역할 토큰을 사용한다. */
+:root { color: var(--color-body); background: var(--color-ui-card); }
+main {
+  --color-fg-default: var(--color-ink);
+  --color-fg-muted: var(--color-ui-muted);
+  --color-fg-subtle: var(--color-ui-muted);
+  --color-canvas-default: var(--color-ui-card);
+  --color-canvas-overlay: var(--color-ui-card);
+  --color-canvas-inset: var(--color-soft);
+  --color-canvas-subtle: var(--color-soft);
+  --color-border-default: var(--color-ui-line);
+  --color-border-muted: var(--color-ui-line);
+  --color-neutral-muted: var(--color-ui-line);
+  --color-accent-fg: var(--color-action-link);
+  --color-accent-emphasis: var(--color-action-link);
+  --color-accent-muted: var(--color-help-hover-border);
+  --color-accent-subtle: var(--color-help-hover);
+  --color-btn-text: var(--color-ink);
+  --color-btn-bg: var(--color-soft);
+  --color-btn-border: var(--color-ui-line);
+  --color-btn-hover-bg: var(--color-help-hover);
+  --color-btn-hover-border: var(--color-help-hover-border);
+  --color-btn-active-bg: var(--color-help-active);
+  --color-btn-active-border: var(--color-help-hover-border);
+  --color-btn-selected-bg: var(--color-help-hover);
+  --color-btn-primary-text: var(--color-ui-card);
+  --color-btn-primary-bg: var(--color-action-link);
+  --color-btn-primary-border: var(--color-action-link);
+  --color-btn-primary-hover-bg: var(--color-action-link);
+  --color-btn-primary-hover-border: var(--color-action-link);
+  --color-btn-primary-selected-bg: var(--color-action-link);
+  --color-btn-primary-disabled-text: var(--color-ui-muted);
+  --color-btn-primary-disabled-bg: var(--color-soft);
+  --color-btn-primary-disabled-border: var(--color-ui-line);
+  --color-action-list-item-default-hover-bg: var(--color-help-hover);
+  --color-segmented-control-bg: var(--color-soft);
+  --color-segmented-control-button-bg: var(--color-ui-card);
+  --color-segmented-control-button-selected-border: var(--color-ui-line);
+  --color-prettylights-syntax-comment: var(--color-ui-muted);
+  --color-prettylights-syntax-constant: var(--color-syntax-number);
+  --color-prettylights-syntax-entity: var(--color-syntax-keyword);
+  --color-prettylights-syntax-keyword: var(--color-syntax-keyword);
+  --color-prettylights-syntax-string: var(--color-syntax-string);
+  --color-prettylights-syntax-storage-modifier-import: var(--color-ink);
+  --color-prettylights-syntax-variable: var(--color-ink);
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  font-size: var(--text-body-text);
+  line-height: var(--leading-line-body);
+}
+.gsc-main { font-family: var(--font-sans); color: var(--color-ink); }
+.gsc-main .gsc-comments, .gsc-main .gsc-timeline { gap: var(--spacing-gap); }
+.gsc-main .gsc-header { margin: 0; align-items: baseline; flex-wrap: wrap; gap: var(--spacing-gap-sm); }
+.gsc-main .gsc-left-header { flex-wrap: wrap; gap: var(--spacing-gap-xs); }
+.gsc-main .gsc-comments-count, .gsc-main .gsc-replies-count { font-size: var(--text-small-text); font-weight: var(--font-weight-semibold); }
+.gsc-main .gsc-right-header { background: transparent; border: 0; font-size: var(--text-small-text); }
+.gsc-main .gsc-right-header button { border: 0; box-shadow: none; border-radius: var(--radius-button-radius); padding: var(--spacing-gap-xs) var(--spacing-gap-sm); font: inherit; color: var(--color-ui-muted); background: transparent; }
+.gsc-main .gsc-right-header [aria-current=true] button { background: var(--color-help-hover); color: var(--color-ink); }
+.gsc-main .gsc-right-header > li { background: transparent; border: 0; box-shadow: none; }
+.gsc-main .gsc-comment-box { font-size: var(--text-small-text); border: 0; border-radius: 0; background: transparent; box-shadow: none; margin: 0; }
+.gsc-main .gsc-comment-box-tabs { background: transparent; border: 0; border-radius: 0; padding: 0; margin-bottom: var(--spacing-gap-sm); }
+.gsc-main .gsc-comment-box-tabs > div { margin: 0; }
+.gsc-main .gsc-comment-box-tabs button { border: 0; border-radius: var(--radius-button-radius); background: transparent; padding: var(--spacing-gap-xs) var(--spacing-gap-sm); color: var(--color-ui-muted); font: inherit; }
+.gsc-main .gsc-comment-box-tabs button.color-bg-canvas { color: var(--color-action-link); background: var(--color-help-hover); font-weight: var(--font-weight-semibold); }
+.gsc-main .gsc-comment-box-main { padding: 0; margin: 0; }
+.gsc-main .gsc-comment-box-write { border: 0; border-radius: 0; background: transparent; }
+.gsc-main .gsc-comment-box-write:focus-within { box-shadow: none; outline: 0; }
+.gsc-main .gsc-comment-box-preview { font-family: var(--font-sans); font-size: var(--text-body-text); line-height: var(--leading-line-body); color: var(--color-body); background: var(--color-help-bg); border: 0; border-radius: var(--radius-help-radius); padding: var(--spacing-card-inset); }
+.gsc-main .gsc-comment-box-textarea { font-family: var(--font-sans); font-size: var(--text-body-text); line-height: var(--leading-line-body); color: var(--color-body); background: var(--color-search-bg); border: var(--border-width-thin) solid transparent; border-radius: var(--radius-help-radius); padding: var(--spacing-card-inset); box-shadow: none; resize: none; }
+.gsc-main .gsc-comment-box-textarea:focus { outline: var(--spacing-outline) solid var(--color-action-link); outline-offset: calc(-1 * var(--spacing-outline)); border-color: transparent; box-shadow: none; }
+/* iframe의 important 유틸리티보다 요청한 표시 상태를 우선한다. */
+.gsc-main .gsc-comment-box-md-toolbar, .gsc-main .gsc-comment-box-markdown-hint { display: none !important; }
+.gsc-main .gsc-comment-box-textarea::placeholder { color: var(--color-ui-muted); opacity: 1; }
+.gsc-main .gsc-comment-box-textarea-extras { background: transparent; border: 0; padding: var(--spacing-gap-xs) 0; }
+.gsc-main .gsc-comment-box-bottom { margin: var(--spacing-gap-xs) 0 0; padding: 0; gap: var(--spacing-gap-sm); }
+.gsc-main .gsc-comment-box-buttons :is(button,a) { font-family: var(--font-sans); font-size: var(--text-small-text); font-weight: var(--font-weight-semibold); padding: var(--spacing-gap-xs) var(--spacing-gap-sm); border-radius: var(--radius-button-radius); box-shadow: none; }
+.gsc-main .gsc-comment-box-buttons a.btn-primary { background: transparent; border-color: transparent; color: var(--color-action-link); }
+.gsc-main .gsc-comment-box-buttons a.btn-primary:hover { background: var(--color-help-hover); text-decoration: none; }
+.gsc-main .gsc-comment { font-size: var(--text-body-text); margin: 0; }
+/* 댓글은 본문의 연속으로 두고 서비스의 카드 외곽선을 제거한다. */
+.gsc-main .gsc-comment > div { border: 0; border-radius: 0 !important; background: transparent; overflow: visible; }
+.gsc-main .gsc-comment + .gsc-comment { border-top: var(--border-width-thin) solid var(--color-help-border); padding-top: var(--spacing-gap-lg); }
+.gsc-main .gsc-comment-header { padding: var(--spacing-gap-sm) 0 0; color: var(--color-ui-muted); font-size: var(--text-small-text); gap: var(--spacing-gap-sm); }
+.gsc-main .gsc-comment-author { flex-wrap: wrap; gap: var(--spacing-gap-xs); }
+.gsc-main .gsc-comment-content, .gsc-main .gsc-reply-content { font-family: var(--font-sans); font-size: var(--text-body-text); line-height: var(--leading-line-body); color: var(--color-body); }
+.gsc-main .gsc-comment-content { padding: var(--spacing-gap-sm) 0; border-radius: 0; }
+.gsc-main :is(.gsc-comment-content,.gsc-reply-content) code { font-family: var(--font-mono); }
+.gsc-main .gsc-comment-footer { padding-inline: 0; padding-bottom: var(--spacing-gap-sm); font-size: var(--text-small-text); }
+.gsc-main .gsc-replies { margin: var(--spacing-gap-sm) 0 0 var(--spacing-gap-lg); padding: var(--spacing-gap-sm) 0; background: transparent; border-top: var(--border-width-thin) solid var(--color-help-border); border-radius: 0; }
+.gsc-main .gsc-reply { padding: var(--spacing-gap-sm) 0; font-size: var(--text-body-text); }
+.gsc-main .gsc-reply > .flex { align-items: flex-start; gap: var(--spacing-gap-sm); }
+.gsc-main .gsc-reply-author-avatar + div { margin-left: 0 !important; }
+.gsc-main .gsc-reply-header { padding: 0; margin-bottom: var(--spacing-gap-xs); font-size: var(--text-small-text); color: var(--color-ui-muted); }
+.gsc-main .gsc-reply-author { flex-wrap: wrap; gap: var(--spacing-gap-xs); }
+.gsc-main .gsc-reply-content { padding-block: var(--spacing-gap-xs); }
+.gsc-main .gsc-reply-footer { font-size: var(--text-small-text); }
+.gsc-main .gsc-reply-box { background: transparent; border: 0; padding: var(--spacing-gap-sm) 0 0 var(--spacing-gap-lg); }
+/* 답글 버튼의 rounded와 px/py 유틸리티를 입력 역할로 대체한다. */
+.gsc-main .gsc-reply-box > button { font-family: var(--font-sans); font-size: var(--text-body-text); line-height: var(--leading-line-body); color: var(--color-ui-muted); background: var(--color-search-bg); border: var(--border-width-thin) solid transparent; border-radius: var(--radius-help-radius) !important; padding: var(--spacing-gap-sm) var(--spacing-card-inset) !important; }
+.gsc-main .gsc-comment-box-is-reply { padding: var(--spacing-gap-sm) 0 0 var(--spacing-gap-lg); border: 0; }
+.gsc-main .gsc-tl-line { left: calc((var(--spacing-icon) - var(--spacing-outline)) / 2); top: calc(var(--spacing-gap-sm) + var(--spacing-icon) + var(--spacing-gap-xs)) !important; bottom: 0; height: auto !important; background: var(--color-help-border); }
+.gsc-main :is(.gsc-comment-author-avatar,.gsc-reply-author-avatar) img { width: var(--spacing-icon); height: var(--spacing-icon); }
+.gsc-main .gsc-reactions-popover { border-color: var(--color-help-border); border-radius: var(--radius-help-radius); }
+.gsc-main :is(.gsc-comment-reactions,.gsc-reply-reactions,.gsc-direct-reaction-buttons) { align-items: center; gap: var(--spacing-gap-xs); }
+.gsc-main .gsc-social-reaction-summary-item { display: inline-flex; align-items: center; justify-content: center; gap: calc(var(--spacing-gap-xs) / 2); min-width: calc(var(--spacing-icon) + var(--spacing-gap-xs)); height: calc(var(--spacing-icon) + var(--spacing-gap-xs)); margin: 0; padding: 0 var(--spacing-gap-xs); border: var(--border-width-thin) solid transparent; border-radius: var(--radius-button-radius); box-shadow: none; background: var(--color-soft); color: var(--color-ui-muted); font-family: var(--font-sans); font-size: var(--text-small-text); line-height: var(--leading-line-compact); }
+.gsc-main .gsc-social-reaction-summary-item.has-reacted { border-color: transparent; background: var(--color-help-hover); color: var(--color-action-link); }
+.gsc-main .gsc-social-reaction-summary-item:not(:disabled):hover, .gsc-main .gsc-reactions-menu[open] > summary { background: var(--color-help-hover); color: var(--color-action-link); border-color: var(--color-help-hover-border); }
+.gsc-main .gsc-social-reaction-summary-item > :is(svg,span) { margin: 0; }
+.gsc-main .gsc-emoji-button { border-radius: var(--radius-button-radius); }
+.gsc-main :is(.gsc-comment-box-tabs button,.gsc-right-header button):hover { background: var(--color-help-hover); color: var(--color-action-link); }
+.gsc-main :is(button,a,summary):focus-visible { outline: var(--spacing-outline) solid var(--color-action-link); outline-offset: var(--spacing-outline); }
+.gsc-main a { text-decoration: none; }
+.gsc-main a:hover { text-decoration: underline; }

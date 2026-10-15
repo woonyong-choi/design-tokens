@@ -1,0 +1,3 @@
+/* tokens-allow: 원본 글꼴 파일이 제공하는 실제 굵기 범위 */
+@font-face { font-family: Pretendard; src: url("assets/fonts/pretendard-variable.woff2") format("woff2"); font-style: normal; font-weight: 100 900; font-display: swap; } /* tokens-allow: 원본 글꼴의 이름과 제공되는 실제 굵기 범위 */
+@font-face { font-family: "JetBrains Mono"; src: url("assets/fonts/jetbrains-mono-regular.woff2") format("woff2"); font-style: normal; font-weight: 400; font-display: swap; } /* tokens-allow: 원본 글꼴의 이름과 제공되는 실제 굵기 범위 */

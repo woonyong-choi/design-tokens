@@ -1,0 +1,66 @@
+name: Sync shared design
+on:
+  push:
+    branches: [main]
+    paths: ['tokens/**', 'styles/**', 'assets/**', 'ui/**', 'scripts/**', 'package*.json', '.github/workflows/sync-consumers.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: design-consumer-export
+  cancel-in-progress: false
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: design-system
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate canonical design
+        working-directory: design-system
+        run: |
+          npm ci
+          npm test
+          npm run check
+      - uses: actions/checkout@v4
+        with:
+          repository: woonyong-choi/ThinkFlow
+          path: ThinkFlow
+          ref: main
+          fetch-depth: 0
+          ssh-key: ${{ secrets.DAPHNIS_DEPLOY_KEY }}
+      - name: Prepare the update branch
+        working-directory: ThinkFlow
+        run: |
+          git config user.name "$(git log origin/main -1 --format=%an)"
+          git config user.email "$(git log origin/main -1 --format=%ae)"
+          if git show-ref --verify --quiet refs/remotes/origin/build/repo-design-tokens; then
+            git switch --track origin/build/repo-design-tokens
+            git merge --no-edit -s ours origin/main
+            git read-tree -u --reset origin/main
+          else
+            git switch -c build/repo-design-tokens origin/main
+          fi
+      - name: Export verified design files
+        run: node design-system/scripts/export.mjs ThinkFlow/src/vendor/theme
+      - name: Regenerate figures and push the update
+        working-directory: ThinkFlow
+        run: |
+          git add src/vendor/theme
+          if git diff --cached --quiet origin/main -- src/vendor/theme; then
+            echo 'ThinkFlow already uses this design artifact.'
+            exit 0
+          fi
+          npm ci
+          npm run grammar
+          npm run figures
+          git add src/vendor/theme docs
+          if git diff --cached --quiet; then
+            echo 'The update branch already has this design artifact.'
+            exit 0
+          fi
+          git commit -m 'build(repo): 공통 디자인 업데이트 적용'
+          git push origin HEAD:build/repo-design-tokens

@@ -107,7 +107,7 @@ Landing technology links have square hover and focus surfaces. Media controls us
 
 ## Delivery
 
-A main-branch change validates and exports the common bundle to ThinkFlow. After renderer checks and a verified PR merge, ThinkFlow exports that exact bundle and its pinned renderer revision to homepage. Homepage checks both before merging its update PR. Each hop uses a repository-scoped deploy key. The two consumers must have identical design content hashes.
+Consumers move their pinned commit with `npm install --save-dev github:woonyong-choi/design-tokens#<commit>` and run their own tests, checks, and visual review in a PR. There is no copy export, cross-repository push, hash-manifest comparison, or deploy key.
 
 Tag-based package releases are separate. Website updates do not create tags or publish packages.
 

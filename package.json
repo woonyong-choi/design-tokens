@@ -33,7 +33,11 @@
     "./runtime/video": "./dist/ui/runtime/video.js",
     "./build/styles": "./dist/ui/build/styles.mjs",
     "./icons": "./dist/ui/build/icons.mjs",
-    "./svg": "./dist/ui/svg.mjs"
+    "./svg": "./dist/ui/svg.mjs",
+    "./*": "./dist/*"
+  },
+  "bin": {
+    "design-tokens-check": "dist/ui/build/check-tokens.mjs"
   },
   "files": [
     "dist",

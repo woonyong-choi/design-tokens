@@ -1,7 +1,7 @@
 name: release
 
 # A v* tag runs the tests, creates a GitHub Release, publishes to npm when NPM_TOKEN is set,
-# A missing npm secret skips publication. Consumer updates use sync-consumers.yml.
+# A missing npm secret skips publication. Consumers pin a Git commit and bump it in their own pull requests.
 on:
   push:
     tags: ['v*']

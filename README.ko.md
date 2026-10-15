@@ -15,25 +15,34 @@
 | `tokens/` | 공통 값과 다크 모드의 차이 |
 | `styles/`, `assets/` | 웹·도표의 공통 스타일과 아이콘 |
 | `ui/` | 조립형 HTML 구성 요소, 선택적 동작과 빌드 도구 |
-| `scripts/` | 검증, 빌드와 검증된 내보내기 |
-| `dist/` | 생성물과 파일 해시 |
+| `scripts/` | 검증과 빌드 |
+| `dist/` | 커밋하는 생성물. 패키지 진입점으로 읽음 |
 | `test/`, `examples/`, `docs/` | 계약, 실행 예제와 설계 문서 |
 
-소비 저장소는 콘텐츠, 경로와 도메인 로직을 소유합니다. 재사용할 표현은 여기서 관리합니다. 소비자에서 가져온 파일을 직접 수정하지 마세요.
+소비 저장소는 콘텐츠, 경로와 도메인 로직을 소유합니다. 재사용할 표현은 여기서 관리합니다. 소비자는 이 패키지를 설치해 쓰며 파일 사본을 두지 않습니다.
 
-## 빌드와 내보내기
+## 설치
 
-검사에는 Node.js 20 이상이 필요합니다. 비공개 저장소이므로 복제와 Git 패키지 설치에는 접근 권한이 필요합니다.
+고정 commit을 Git 의존성으로 설치합니다. commit은 소비하는 앱이 정하고 ThinkFlow와 document-engine은 앱이 설치한 같은 패키지를 peer 의존성으로 읽습니다.
+
+```sh
+npm install --save-dev github:woonyong-choi/design-tokens#<commit>
+```
+
+`dist/`를 커밋하므로 설치 때 빌드하지 않습니다. 이름 있는 진입점(`/css`, `/components`, `/icons`, `/svg`, `/build/styles`)이나 `dist/` 아래 파일 경로(`@woonyong-choi/design-tokens/ui/index.mjs`, `@woonyong-choi/design-tokens/styles/tabs.css` 등)로 가져옵니다. 하드코딩 검사는 `design-tokens-check` 명령입니다. 자세한 내용은 [공통 디자인 배포](docs/distribution.md)에 있습니다.
+
+## 빌드
+
+검사에는 Node.js 20 이상이 필요합니다.
 
 ```sh
 npm ci
 npm run build
 npm test
 npm run check
-node scripts/export.mjs /path/to/consumer/src/vendor/theme
 ```
 
-내보내기는 교체 전에 기존 manifest를 검사하고 새 경로를 쓰기 전에 더 이상 생성하지 않는 파일과 빈 폴더를 지우며 수동 수정한 사본은 덮어쓰지 않습니다. 같은 경로를 파일에서 폴더로 또는 폴더에서 파일로 바꿀 수 있습니다. 하나의 완성본에 해석된 토큰, CSS, 자산, 구성 요소와 파일별 SHA-256 manifest를 포함합니다.
+`dist/manifest.json`은 생성 파일 목록과 SHA-256입니다. `npm run check`와 시험이 새로 만든 결과와 비교합니다.
 
 CSS 축소 도구는 PurgeCSS의 선택자 파서를 보안 수정 버전인 7.1.6으로 고정합니다. override가 필요한 이유와 제거 조건은 [스타일 빌드 계약](docs/styles.md#모듈과-생성)에 기록합니다.
 
@@ -70,7 +79,7 @@ SVG는 파일 이름이나 로더 API를 바꾸지 않고 두 직계 그룹에 �
 ## 조립
 
 ```js
-import { Card, CardGroup, trusted } from './vendor/theme/ui/index.mjs';
+import { Card, CardGroup, trusted } from '@woonyong-choi/design-tokens/ui/index.mjs';
 
 const cards = [Card({ title: 'Memory', href: '/docs/memory/', description: 'Address translation' })];
 const html = CardGroup({ columns: 4, cards });
@@ -98,7 +107,7 @@ Markdown 렌더러는 `Details.open()`과 `Details.close()`로 접기 블록을 
 
 ## 전달
 
-정본 main 변경은 검증 후 ThinkFlow에 공통 완성본을 전달합니다. 렌더러 검사와 PR 병합이 끝나면 ThinkFlow가 같은 완성본과 고정된 렌더러 커밋을 홈페이지로 전달합니다. 홈페이지도 둘을 검사한 뒤 갱신 PR을 병합합니다. 연결마다 대상 저장소에 한정된 배포 키를 사용합니다. 두 소비자의 디자인 내용 해시는 같아야 합니다.
+소비자는 `npm install --save-dev github:woonyong-choi/design-tokens#<commit>`으로 고정 commit을 옮기고 자기 시험·검사·화면 검수를 PR에서 실행합니다. 사본 내보내기, 다른 저장소로 밀어 넣기, 해시 매니페스트 비교, 배포 키는 없습니다.
 
 태그 기반 패키지 릴리스는 별도입니다. 웹사이트 갱신으로 태그를 만들거나 패키지를 발행하지 않습니다.
 

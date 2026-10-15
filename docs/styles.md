@@ -14,7 +14,7 @@
 
 값 변경은 토큰에서, 재사용 구조 변경은 구성 요소에서 처리한다. 페이지마다 같은 조각을 복사해 고치지 않는다. 상세 속성과 신뢰 경계는 [공통 구성 요소](components.md)를 따른다.
 
-일반 글꼴은 `font.sans`, 코드 글꼴은 `font.mono`를 사용한다. 굵기는 Tailwind 이름인 `font-weight.normal`(400), `medium`(500), `semibold`(600), `bold`(700)로 고른다. 도표의 `figure-sans`·`figure-mono`는 내보내기에 포함하는 부분 글꼴의 등록 이름이며 웹 글꼴의 별칭이 아니다.
+일반 글꼴은 `font.sans`, 코드 글꼴은 `font.mono`를 사용한다. Pretendard는 공식 동적 부분 집합(`assets/fonts/pretendard-variable/`, pretendard 1.3.9의 `woff2-dynamic-subset` 92개)을 `unicode-range`로 등록해 페이지에 나온 글자가 든 조각만 내려받는다. 글자 모양·굵기 범위는 원본 가변 글꼴과 같다. 굵기는 Tailwind 이름인 `font-weight.normal`(400), `medium`(500), `semibold`(600), `bold`(700)로 고른다. 도표의 `figure-sans`·`figure-mono`는 내보내기에 포함하는 부분 글꼴의 등록 이름이며 웹 글꼴의 별칭이 아니다.
 
 본문 글자는 `color.ink`, 보조 글자는 `color.ui-muted`, 중립 카드 면은 `color.ui-card`, 코드 구문은 `color.syntax-*`를 웹과 도표가 함께 읽는다. 같은 역할을 제품별 이름으로 다시 정의하지 않는다. 값이 같더라도 글자 크기·아이콘 크기·곡률처럼 따로 바뀌어야 하는 역할은 서로 참조하지 않는다. 웹 조작과 인라인 카드의 작은 모서리는 `radius.md`, 묶음 도움말 카드는 `radius.help-grouped-radius`, 설명 팝오버는 `radius.tooltip-radius`를 사용한다. 곡률에서 간격 토큰을 참조하지 않는다. 기본 간격 단계와 공통 본문 위계를 사용하거나 각 역할의 기본값을 정의한다.
 

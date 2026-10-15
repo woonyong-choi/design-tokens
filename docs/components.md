@@ -56,9 +56,9 @@
 
 `EmailForm({ id, action, field, label, placeholder, button, note })`는 이메일 입력과 제출 버튼을 조립한다. `action`이 있으면 이메일 유효성을 검사하는 기본 POST 폼이고, 없으면 입력과 버튼을 비활성화한다. 주소를 대신 만들거나 전송 성공을 흉내 내지 않는다. 공급자 주소·동의 문구·응답 처리는 소비자가 정한다. `note`는 검증한 HTML 슬롯이고 안내 ID는 `${id}-state`로 연결한다. 홈 구독은 `Section({ variant: 'form', ... })` 안에서 같은 폼을 쓴다.
 
-## 자동 전달
+## 소비 방식
 
-전달 경로와 검증 경계는 [공통 디자인 배포](distribution.md)를 따른다.
+설치·진입점·갱신 절차는 [공통 디자인 배포](distribution.md)를 따른다.
 
 ## 탭과 도표
 

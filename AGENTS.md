@@ -21,9 +21,9 @@
 | `tokens/` | 공통 기본값과 다크 모드의 차이만 정의 |
 | `styles/` | 웹과 도표의 공통 스타일. 탭 선택 줄은 `tabs.css` 하나 |
 | `assets/` | 아이콘 원본, 글꼴과 출처·라이선스 |
-| `ui/` | 조립형 HTML, 브라우저 동작, 빌드·검사·내보내기 |
+| `ui/` | 조립형 HTML, 브라우저 동작, 빌드·검사 |
 | `scripts/` | 정본에서 배포본 생성 |
-| `dist/` | 해시 매니페스트가 있는 생성물. 직접 수정 금지 |
+| `dist/` | 커밋하는 생성물. 소비자가 Git 의존성으로 읽는 패키지 진입점. 직접 수정 금지 |
 | `test/`, `docs/`, `examples/` | 계약 검사, 현재 설계, 실행 예제 |
 
 ## 명령
@@ -33,7 +33,6 @@ npm ci
 npm run build
 npm test
 npm run check
-node scripts/export.mjs <소비자의-src/vendor/theme>
 ```
 
 ## 규칙
@@ -50,4 +49,4 @@ node scripts/export.mjs <소비자의-src/vendor/theme>
 - 사용자 요청에 따른 태그·검색·댓글·도표는 제품의 의도된 확장이다.
 - 일반 텍스트·URL·검증된 HTML 슬롯을 구분한다.
 - 동작·설정 변경은 설계 문서와 양쪽 README에 반영한다. 새 문서는 문서 목록에 연결한다.
-- 태그 생성과 npm publish는 이 작업에 포함하지 않는다. 자동 소비자 전달은 검증된 PR로만 한다.
+- 태그 생성과 npm publish는 이 작업에 포함하지 않는다. 소비자는 고정 commit의 Git 의존성으로 설치하며 다른 저장소로 사본을 전달하지 않는다.

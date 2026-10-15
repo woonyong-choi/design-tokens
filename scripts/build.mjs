@@ -1,9 +1,17 @@
 // 공통 정본을 검증한 다음 하나의 배포 세트를 생성한다.
-import { existsSync, mkdirSync, readdirSync, readFileSync, unlinkSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmdirSync, unlinkSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildDesign } from './lib/design-build.mjs';
-import { removeEmptyDirectories } from '../ui/build/export.mjs';
+
+function removeEmptyDirectories(folder) {
+  for (const entry of readdirSync(folder, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue;
+    const path = join(folder, entry.name);
+    removeEmptyDirectories(path);
+    if (!readdirSync(path).length) rmdirSync(path);
+  }
+}
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const outputs = new Map();

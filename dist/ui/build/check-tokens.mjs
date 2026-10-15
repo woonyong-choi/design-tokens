@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 // 토큰 대신 직접 적은 화면 값(하드코딩)을 찾는다.
 // 사용: node ui/build/check-tokens.mjs <폴더나 파일 ...> [--tokens tokens.json]
 // 출력: `{경로}:{줄}: {규칙}: {찾은 글자}` 줄들과 마지막 `total {개수}`. 개수가 0이 아니면 종료 코드 1.

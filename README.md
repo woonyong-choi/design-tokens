@@ -13,25 +13,34 @@ Document apps use `font.ui`, `text.tool`, `spacing.tool-icon`, `spacing.tool-tar
 | `tokens/` | Shared values and sparse dark-mode overrides |
 | `styles/`, `assets/` | Shared web/diagram styles and icons |
 | `ui/` | Composable HTML components, optional runtimes, and build helpers |
-| `scripts/` | Validation, build, and verified export |
-| `dist/` | Generated artifacts and file hashes |
+| `scripts/` | Validation and build |
+| `dist/` | Committed generated artifacts read through the package entry points |
 | `test/`, `examples/`, `docs/` | Contracts, working examples, and design documentation |
 
-Consumer repositories own content, routes, and domain logic. Reusable presentation belongs here. Do not edit exported files in a consumer.
+Consumer repositories own content, routes, and domain logic. Reusable presentation belongs here. Consumers install this package; they do not keep copies of its files.
 
-## Build and export
+## Install
 
-Node.js 20 or later are required for the checks. This is a private repository; cloning or installing its Git package requires access.
+Install a pinned commit as a Git dependency. The consuming app chooses the commit; ThinkFlow and document-engine read the same installed copy as a peer dependency.
+
+```sh
+npm install --save-dev github:woonyong-choi/design-tokens#<commit>
+```
+
+`dist/` is committed, so installing runs no build. Import named entry points (`/css`, `/components`, `/icons`, `/svg`, `/build/styles`) or any file under `dist/` by its path, for example `@woonyong-choi/design-tokens/ui/index.mjs` or `@woonyong-choi/design-tokens/styles/tabs.css`. The `design-tokens-check` command runs the hard-coded value audit. See [distribution](docs/distribution.md).
+
+## Build
+
+Node.js 20 or later are required for the checks.
 
 ```sh
 npm ci
 npm run build
 npm test
 npm run check
-node scripts/export.mjs /path/to/consumer/src/vendor/theme
 ```
 
-The exporter checks the previous manifest before replacing files, removes obsolete generated files and empty directories before writing the new paths, and refuses modified imports. A path can change between a file and a directory. The single bundle contains resolved tokens, CSS, assets, components, and a manifest of SHA-256 file hashes.
+`dist/manifest.json` lists the generated files with SHA-256 hashes; `npm run check` and the tests compare it with a fresh build.
 
 The CSS compiler pins PurgeCSS's selector parser to the patched 7.1.6 release. The [style build contract](docs/styles.md#모듈과-생성) records why this override is needed and when to remove it.
 
@@ -70,7 +79,7 @@ The project-original newsletter and testimonial PNGs keep their bytes and proven
 ## Compose
 
 ```js
-import { Card, CardGroup, trusted } from './vendor/theme/ui/index.mjs';
+import { Card, CardGroup, trusted } from '@woonyong-choi/design-tokens/ui/index.mjs';
 
 const cards = [Card({ title: 'Memory', href: '/docs/memory/', description: 'Address translation' })];
 const html = CardGroup({ columns: 4, cards });

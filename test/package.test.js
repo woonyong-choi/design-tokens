@@ -1,6 +1,6 @@
-// Evidence: the package is installed from a Git tag (github:woonyong-choi/design-tokens#v0.1.0), so what `exports` and `files` name must be committed.
+// Evidence: consumers install the package from a pinned Git commit (github:woonyong-choi/design-tokens#<commit>), so what `exports`, `bin` and `files` name must be committed.
 import assert from 'node:assert/strict';
-import { execFileSync } from 'node:child_process';
+import { execFileSync, spawnSync } from 'node:child_process';
 import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -11,8 +11,15 @@ const pkg = JSON.parse(readFileSync(`${ROOT}package.json`, 'utf8'));
 
 test('every_export_target_exists_in_the_repository_and_is_published', () => {
   for (const target of Object.values(pkg.exports).filter((path) => path !== './package.json')) {
-    assert.ok(existsSync(`${ROOT}${target}`), target);
+    assert.ok(existsSync(`${ROOT}${target.replace(/\*$/, '')}`), target);
     assert.ok(pkg.files.some((file) => target.startsWith(`./${file}`)), `${target} is not in files`);
+  }
+});
+
+test('the_token_checker_is_a_published_command', () => {
+  for (const target of Object.values(pkg.bin)) {
+    assert.ok(pkg.files.some((file) => target.startsWith(file)), `${target} is not in files`);
+    assert.match(readFileSync(`${ROOT}${target}`, 'utf8'), /^#!\/usr\/bin\/env node\n/);
   }
 });
 
@@ -33,5 +40,14 @@ test('installed_package_compiles_styles_without_consumer_dependencies', (t) => {
     const result = await compileStyles('.used { color: red } .unused { color: blue }', new Map([['/', '<p class="used">Text</p>']]), new Map());
     assert.match(result.css, /\\.used/);
     assert.doesNotMatch(result.css, /\\.unused/);
+    const { escape } = await import('@woonyong-choi/design-tokens/ui/index.mjs');
+    assert.equal(String(escape('<a>')), '&lt;a&gt;');
+    const { createRequire } = await import('node:module');
+    const require = createRequire(process.cwd() + '/');
+    assert.match(require.resolve('@woonyong-choi/design-tokens/styles/tabs.css'), /dist[\\/]styles[\\/]tabs\.css$/);
   `]);
+  writeFileSync(join(consumer, 'page.css'), '.page { color: #ff0000; }\n');
+  const checked = spawnSync(join(consumer, 'node_modules/.bin/design-tokens-check'), ['page.css', '--tokens', 'node_modules/@woonyong-choi/design-tokens/dist/tokens.json'], { cwd: consumer, encoding: 'utf8' });
+  assert.equal(checked.status, 1, checked.stderr);
+  assert.match(checked.stdout, /page\.css:1: .*#ff0000/);
 });

@@ -88,9 +88,9 @@
 현재 빌드는 `dist/assets/icons` SVG와 역할용 `dist/ui/icon-data.mjs`의 색 변수를 밝음 값으로 치환한다. 어두운 토큰으로 원본을 직접 렌더한 그림은 이 정적 배포 결과와 다를 수 있다. 검수는 실제 빌드 SVG도 밝고 어두운 소비 배경에 놓고 수행한다. 필수 외곽·연결에는 양 배경의 대비를 확보하는 고정 중성 역할 `icon.structure-edge`를, 밝은 물체 안의 필수 기호에는 인접색을 확인한 고정 잉크 역할을 사용한다. 기존 테마값 전체를 바꾸거나 소비자 CSS로 결함을 가리지 않는다.
 
 ```js
-import { getIconCatalog, iconFile, readIcon } from './vendor/theme/ui/build/icons.mjs';
-import { renderSvgIcon } from './vendor/theme/ui/svg.mjs';
-import { ContentIcon, trusted } from './vendor/theme/ui/index.mjs';
+import { getIconCatalog, iconFile, readIcon } from '@woonyong-choi/design-tokens/icons';
+import { renderSvgIcon } from '@woonyong-choi/design-tokens/svg';
+import { ContentIcon, trusted } from '@woonyong-choi/design-tokens/ui/index.mjs';
 
 const graphic = trusted(renderSvgIcon(readIcon('database')));
 const icon = ContentIcon({ graphic, size: 'small' });
@@ -243,7 +243,7 @@ node "$THINKFLOW_ROOT/src/cli.js" check examples/content-icons.thinkflow --stric
 node "$THINKFLOW_ROOT/src/cli.js" render examples/content-icons.thinkflow --strict --static
 ```
 
-재생성 전에 두 저장소 배포본의 `manifest.json`에 기록된 `contentHash`를 맞춘다. 소비자의 배포 사본을 직접 수정하지 않는다.
+재생성 전에 ThinkFlow의 `@woonyong-choi/design-tokens` 개발 의존성을 같은 commit으로 맞춘다. 설치된 패키지 파일을 직접 수정하지 않는다.
 
 ## 변경 후 확인
 

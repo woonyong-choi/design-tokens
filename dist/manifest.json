@@ -9928,8 +9928,8 @@
     "assets/icons/transport/zeppelin.svg": "b17e60261ec9a931a59484018fe58520eaf883cbe39e5bb3d2cd7e3a55446813",
     "assets/illustrations/project-placeholder.svg": "4453cd5c92033929e11a57d6f1cc112c9f9b013e0c6f34f6815d665e18b9c336",
     "assets/sources.json": "053f6fb72d3a4566a11771f370bfd0aa8d0be68dd017cce20efa234cf00a567d",
-    "styles.css": "d8f24e5a596ef430fc487f17a530c6f29f1128510aedd0fa19e41674522dfb48",
-    "styles.source.css": "455af57214db69964e4431941cbc89ce0060eaf39054a6bf95d93f5f9b7895d8",
+    "styles.css": "8384cf6a67ba1141999306c2a1a24f64e2d16dcd103f0c6d06054b9a3e71d21d",
+    "styles.source.css": "a86702f588194bb3365f7c05dab6d2511c2b5b715b110e1a23f2ab1baedb3edc",
     "styles/diagram-embed.css": "f8743b4bb0f2f8485338d2a2311a6bc37e8a10ef61eb8142e0b59b0a1b460ef0",
     "styles/diagram/chart.css": "5c7d1bf3f2fdff3f9b99f2a13960d767efcd1439ebbe399e275540d9b8ff3a7a",
     "styles/diagram/document.css": "ee8346db461b292627ccebf3b1e9ffbc9bf500d6644cac8969327440df5f40dd",
@@ -9961,7 +9961,7 @@
     "ui/index.mjs": "221c2c93308c18e52f632ec2f5191d035a7a0169bf23d69f178d93729a611dc3",
     "ui/layout.mjs": "4c9e3bd37556de9369724ace8176375c44d795302242b773cd82094ed5c7684d",
     "ui/manifest.mjs": "ee020db371976501d0c7802411755f07604d12988fa4a06d6337ae58a6cae0ff",
-    "ui/patterns.mjs": "745ebc7b7b3ba6144573435ec40c025a2b1a465744dc6ed3066d536a27aa4c37",
+    "ui/patterns.mjs": "2307a62481a3b16299ba81927211ab068c604e90aee66d5e7e7025f559182b02",
     "ui/runtime/diagram-host.js": "90c2fd536af0bbba19b891843f9ed05539145724ac9a0309b2d9b5b845a87997",
     "ui/runtime/diagram.js": "4f3d5a1660e6120025cc40edef18aa598fedfa909cbe6ba4b2b02c242ffe95fa",
     "ui/runtime/document-navigation.js": "b266955e34c994aa6748b9328ad34a8d45206dc6312a94b73c44239d3172ff1f",
@@ -9975,5 +9975,5 @@
     "ui/table.mjs": "d285303ed3e84599a512085e79dfd92db751a890ad4890b81930f1ccf2126ae0",
     "ui/toolbar.mjs": "3fab9dbcd66cbb7273e8ce39d7754e5783ea4e605418dc4faf2c91831067cdd2"
   },
-  "contentHash": "0b02b72f934a643695b14085349483b264d4adcf4a7fcca58e404414268a79ff"
+  "contentHash": "d3cadd3b869ae9c690beef0497edd784443cd2b22b682ec90e13819822d1c86f"
 }

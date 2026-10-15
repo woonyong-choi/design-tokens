@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" color="var(--icon-neutral)" role="img">
+<title>위상 정렬</title>
+<desc>의존 방향을 거스르지 않는 순서로 실행할 노드를 배치</desc>
+<g stroke-linecap="round" stroke-linejoin="round">
+<path d="M13 12L22 22" fill="none" stroke="var(--icon-outline)" stroke-width="2.6" /><path d="M18 21L22 22L22 18" fill="none" stroke="var(--icon-outline)" stroke-width="2.6" /><path d="M28 27L37 37" fill="none" stroke="var(--icon-outline)" stroke-width="2.6" /><path d="M33 36L37 37L37 33" fill="none" stroke="var(--icon-outline)" stroke-width="2.6" /><rect x="4" y="4" width="12" height="12" rx="3" fill="var(--icon-cloud)" stroke="none" stroke-width="2"/><rect x="18" y="18" width="12" height="12" rx="3" fill="var(--icon-detail)" stroke="none" stroke-width="2"/><rect x="32" y="32" width="12" height="12" rx="3" fill="var(--icon-positive)" stroke="none" stroke-width="2"/>
+</g>
+</svg>

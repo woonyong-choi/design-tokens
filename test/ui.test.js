@@ -1,0 +1,514 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import * as ui from '../dist/ui/index.mjs';
+import { DiagramFrame, chartMotionCss } from '../dist/ui/diagram.mjs';
+
+const { trusted } = ui;
+const read = (path) => readFileSync(fileURLToPath(new URL(path, import.meta.url)), 'utf8');
+const html = (value) => String(value);
+
+test('outline_levels_and_streamed_panel_indices_reject_attribute_injection', () => {
+  for (const level of ['2" onclick="alert(1)', '2', 0, 7, 1.5, undefined]) {
+    assert.throws(() => ui.DocumentOutline({ sections: [{ id: 'a', title: 'A', level }] }), /heading level/);
+  }
+  for (const index of ['0" onclick="alert(1)', '0', -1, 1.5, undefined]) {
+    assert.throws(() => ui.Tabs.panelOpen({ id: 'tabs', index }), /panel index/);
+  }
+  assert.match(html(ui.DocumentOutline({ sections: [{ id: 'a', title: 'A', level: 2 }] })), /data-heading-level="2"/);
+  assert.match(ui.Tabs.panelOpen({ id: 'tabs', index: 0 }), /id="tabs-panel-0"/);
+});
+
+test('tables_escape_names_preserve_semantic_rows_and_share_the_stream_wrapper', () => {
+  const body = trusted('<tbody><tr><th scope="row">A</th><td>7</td></tr></tbody>');
+  const props = { caption: '<원자료>', label: 'A & B' };
+  const rendered = html(ui.Table({ ...props, body }));
+  assert.equal(rendered, ui.Table.open(props) + body + ui.Table.close());
+  assert.match(rendered, /role="region" aria-label="A &amp; B"/);
+  assert.match(rendered, /class="app-table"><caption>&lt;원자료&gt;<\/caption>/);
+  assert.ok(rendered.includes(String(body)));
+  assert.throws(() => ui.Table({ body: '<tr>unchecked</tr>' }), /must be trusted/);
+});
+
+test('details_share_stream_wrappers_and_preserve_text_and_body_boundaries', () => {
+  const title = '<중요> & "확인"';
+  const body = trusted('<p>본문</p><pre><code>&lt;/details&gt;</code></pre>');
+  for (const open of [false, true]) {
+    const rendered = html(ui.Details({ title, open, body }));
+    const stream = ui.Details.open({ open }) + ui.Details.summaryOpen() + ui.escape(title)
+      + ui.Details.summaryClose() + body + ui.Details.close();
+    assert.equal(rendered, stream);
+    assert.match(rendered, /^<details class="app-details"(?: open)?><summary>&lt;중요&gt; &amp; &quot;확인&quot;<\/summary>/);
+    assert.equal(rendered.includes(' open>'), open);
+    assert.ok(rendered.includes(String(body)));
+  }
+  const nested = ui.Details({ title: '안쪽', body: trusted('<p>중첩 본문</p>') });
+  const summary = trusted('<strong>요약</strong> <code>details</code>');
+  assert.equal(ui.Details.open() + ui.Details.summaryOpen() + summary + ui.Details.summaryClose() + nested + ui.Details.close(),
+    '<details class="app-details"><summary><strong>요약</strong> <code>details</code></summary><details class="app-details"><summary>안쪽</summary><p>중첩 본문</p></details></details>');
+  assert.equal(ui.Details.open() + body + ui.Details.close(), '<details class="app-details"><p>본문</p><pre><code>&lt;/details&gt;</code></pre></details>');
+  assert.throws(() => ui.Details({ title, body: '<p>unchecked</p>' }), /must be trusted/);
+  assert.ok(ui.isTrusted(ui.Details({ title, body })));
+  assert.ok(ui.OWNED_CLASSES.includes('app-details'));
+});
+
+test('shared_components_are_exported_from_the_generated_package_and_match_the_source', () => {
+  assert.equal(read('../dist/ui/index.mjs'), read('../ui/index.mjs'));
+  assert.equal(JSON.parse(read('../package.json')).exports['./components'], './dist/ui/index.mjs');
+  assert.ok(Object.hasOwn(JSON.parse(read('../dist/manifest.json')).files, 'ui/index.mjs'));
+});
+
+test('slots_require_trusted_html_and_text_and_urls_are_handled_by_the_component', () => {
+  assert.throws(() => ui.Callout({ title: 't', body: '<b>raw</b>' }), /must be trusted/);
+  assert.throws(() => ui.Card({ href: 'javascript:alert(1)', title: 't' }), /Unsupported URL/);
+  assert.throws(() => ui.Card({ href: '//evil.example/', title: 't' }), /Unsupported URL/);
+  assert.throws(() => ui.Tabs({ id: 'a b', label: 'x', tabs: [{ label: 'l', body: trusted('') }] }), /Invalid id/);
+  const card = html(ui.Card({ href: '/a/?x=1&y="2"', title: '<i>제목</i>', description: 'a & b' }));
+  assert.match(card, /href="\/a\/\?x=1&amp;y=&quot;2&quot;"/);
+  assert.match(card, /<strong>&lt;i&gt;제목&lt;\/i&gt;<\/strong><p>a &amp; b<\/p>/);
+  assert.match(html(ui.Callout({ title: 'T', tone: 'warning', fineprint: true, body: trusted('<p>본문</p>') })), /^<aside class="app-callout is-warning is-fineprint"><strong>T<\/strong><p>본문<\/p><\/aside>$/);
+});
+
+test('tabs_link_ids_roles_and_selection_and_stream_form_equals_whole_form', () => {
+  const tabs = [{ label: 'Mac', body: trusted('<p>1</p>') }, { label: 'iPhone', body: trusted('<p>2</p>') }];
+  const props = { id: 'g1', label: '기기', platform: true, labels: ['Mac', 'iPhone'] };
+  const whole = html(ui.Tabs({ id: 'g1', label: '기기', platform: true, tabs }));
+  const stream = ui.Tabs.open(props) + tabs.map((tab, index) => ui.Tabs.panelOpen({ id: 'g1', index }) + tab.body + ui.Tabs.panelClose()).join('') + ui.Tabs.close(props);
+  assert.equal(whole, stream);
+  assert.match(whole, /^<section class="app-tabs is-platform" data-tabs data-platform>/);
+  for (const index of [0, 1]) {
+    assert.match(whole, new RegExp(`id="g1-tab-${index}" role="tab" aria-selected="${index === 0}" aria-controls="g1-panel-${index}" tabindex="${index ? '-1' : '0'}"`));
+    assert.match(whole, new RegExp(`id="g1-panel-${index}" role="tabpanel" aria-labelledby="g1-tab-${index}" tabindex="0"${index ? ' hidden' : ''}>`));
+  }
+  assert.equal((whole.match(/ hidden>/g) ?? []).length, 1);
+  assert.throws(() => ui.Tabs.close(), /same props/);
+});
+
+test('card_variants_group_wrappers_and_related_have_one_definition', () => {
+  const icon = trusted('<span class="app-content-icon"></span>');
+  const base = { href: '/x/', title: 'T', description: 'D', icon };
+  assert.match(html(ui.Card({ ...base, variant: 'centered' })), /^<a class="app-help-card is-centered" href="\/x\/"><span class="app-content-icon"><\/span><strong>T<\/strong><p>D<\/p><\/a>$/);
+  assert.match(html(ui.Card({ ...base, compact: true })), /app-help-card is-compact has-no-icon/);
+  assert.match(html(ui.Card({ ...base, horizontal: true })), /app-help-card is-horizontal"/);
+  // 이어서 읽을 글 카드: 작은 아이콘 + 제목 한 줄, 설명은 그리지 않는다.
+  assert.equal(html(ui.Card({ ...base, variant: 'related' })), '<a class="app-help-card app-related-link" href="/x/"><span class="app-content-icon"></span><strong>T</strong></a>');
+  assert.doesNotMatch(html(ui.Card({ ...base, description: '<긴 설명>', variant: 'related' })), /긴 설명|<p>|<span>/);
+  assert.match(html(ui.Card({ href: '/x/', title: 'T', variant: 'related' })), /app-related-link has-no-icon/);
+  assert.throws(() => ui.Card({ ...base, variant: 'huge' }), /Unknown card variant/);
+  assert.match(html(ui.Card({ ...base, variant: 'summary' })), /class="app-help-card is-summary"/);
+  assert.match(html(ui.Card({ ...base, variant: 'summary' })), /<p class="app-card-summary">D<\/p>/);
+  assert.match(html(ui.Card({ ...base, headingLevel: 3 })), /<strong role="heading" aria-level="3">T<\/strong>/);
+  const cards = [ui.Card({ ...base }), ui.Card({ ...base })];
+  assert.match(html(ui.CardGroup({ variant: 'related', cards })), /^<div class="app-related-grid">/);
+  assert.match(html(ui.CardGroup({ variant: 'inline', cards })), /^<div class="app-inline-links">.*<\/a> <a /);
+  assert.match(html(ui.CardGroup({ columns: 2, cards })), /^<div class="app-support-grid is-pair">/);
+  assert.match(html(ui.CardGroup({ columns: 4, cards })), /^<div class="app-support-grid is-four">/);
+  assert.match(html(ui.CardGroup({ columns: 5, cards })), /^<div class="app-support-grid is-five">/);
+  assert.match(html(ui.CardGroup({ split: true, cards })), /^<div class="app-support-split"><a .*<div class="app-support-links"><a /);
+  assert.equal(ui.CardGroup.open({ variant: 'related' }) + ui.CardGroup.close(), '<div class="app-related-grid"></div>');
+});
+
+test('card_display_options_preserve_names_without_forcing_media_or_multiple_columns', () => {
+  assert.match(html(ui.Card({ href: '/x/', title: '<제목>', showTitle: false, headingLevel: 3 })), /<strong class="app-sr" role="heading" aria-level="3">&lt;제목&gt;<\/strong>/);
+  const card = html(ui.BlogCard({ href: '/x/', title: '<제목>', showTitle: false }));
+  assert.match(card, /aria-label="&lt;제목&gt;"/);
+  assert.match(card, /class="app-blog-card-title app-sr">&lt;제목&gt;/);
+  assert.doesNotMatch(card, /app-blog-cover/);
+  assert.match(html(ui.BlogCard({ href: '/x/', title: '제목', cover: trusted('') })), /<div class="app-blog-cover"><\/div>/);
+  for (const columns of [1, '1']) assert.equal(ui.CardGroup.open({ columns }), '<div class="app-support-grid is-single">');
+  for (const columns of [0, 6, 1.5, {}, 'constructor']) assert.throws(() => ui.CardGroup.open({ columns }), /CardGroup columns/);
+});
+
+test('gallery_is_the_tabs_component_with_numbers_or_names_and_only_the_selected_slide_visible', () => {
+  const slides = [1, 2, 3].map((n) => ({ image: trusted(`<img alt="${n}">`), caption: n === 1 ? '첫째' : undefined }));
+  const gallery = html(ui.Gallery({ id: 'gal', title: '둘러보기', slides }));
+  assert.match(gallery, /^<section class="app-tabs is-selector-numbers" data-tabs><div class="app-tabpanel" id="gal-panel-0"/);
+  assert.equal(gallery, html(ui.Tabs({ id: 'gal', label: '둘러보기', selector: 'numbers', tabs: slides.map((slide, index) => ({ label: `슬라이드 ${index + 1}`, body: ui.Figure({ media: slide.image, caption: slide.caption }) })) })));
+  assert.match(gallery, /<div class="app-tablist is-after-panel is-numbers" role="tablist" aria-label="둘러보기">/);
+  assert.match(gallery, /aria-controls="gal-panel-1" tabindex="-1" aria-label="슬라이드 2">2<\/button>/);
+  assert.match(gallery, /id="gal-panel-0" role="tabpanel" aria-labelledby="gal-tab-0" tabindex="0"><figure class="app-figure"><img alt="1"><figcaption>첫째<\/figcaption><\/figure>/);
+  // 보이지 않는 장은 hidden이라 높이를 차지하지 않는다. 선택 줄은 마지막 패널 뒤에 있다.
+  assert.equal((gallery.match(/role="tabpanel"[^>]* hidden>/g) ?? []).length, 2);
+  assert.ok(gallery.indexOf('role="tablist"') > gallery.lastIndexOf('role="tabpanel"'));
+  // 선택한 장
+  const second = html(ui.Gallery({ id: 'g', selected: 1, slides }));
+  assert.match(second, /id="g-tab-1" role="tab" aria-selected="true"/);
+  assert.match(second, /id="g-panel-1" role="tabpanel" aria-labelledby="g-tab-1" tabindex="0"><figure/);
+  assert.match(second, /id="g-panel-0" role="tabpanel" aria-labelledby="g-tab-0" tabindex="0" hidden>/);
+  // 이름이 모두 있으면 분할 줄
+  assert.match(html(ui.Gallery({ id: 'g', slides: slides.map((s, i) => ({ ...s, label: `L${i}` })) })), /app-tabs is-selector-segmented/);
+  assert.throws(() => ui.Gallery({ id: 'g', selected: 3, slides }), /out of range/);
+  assert.throws(() => ui.Gallery({ id: 'g', slides: [] }), /requires slides/);
+});
+
+test('code_block_and_tooltip_keep_accessible_name_status_and_popover_links', () => {
+  const block = html(ui.CodeBlock({ code: trusted('<code>x</code>'), language: 'C<>', filename: 'a&b.c' }));
+  assert.match(block, /<span class="app-tool-label">C&lt;&gt; · a&amp;b.c<\/span>/);
+  assert.match(block, /data-tool="copy" aria-label="코드 복사" title="코드 복사" hidden/);
+  assert.match(block, /class="app-tool-status app-sr" data-tool-status role="status" aria-live="polite" aria-atomic="true"/);
+  assert.match(read('../dist/styles/toolbar.css'), /\.app-sr\s*\{/);
+  assert.match(block, /<pre><code>x<\/code><\/pre><\/div>$/);
+  assert.throws(() => ui.CodeBlock({ code: '<code>x</code>' }), /must be trusted/);
+  const inline = html(ui.Tooltip({ id: 't1', label: '<뜻>', text: 'a & "b"' }));
+  assert.match(inline, /popovertarget="t1" data-tooltip-trigger>&lt;뜻&gt;<\/button><span class="app-tooltip-bubble" id="t1" role="tooltip" popover>a &amp; &quot;b&quot;<\/span>/);
+  assert.match(html(ui.TooltipBlock({ id: 't2', label: 'L', body: trusted('<p>내용</p>') })), /^<p><button class="app-tooltip".*<\/button><\/p><div class="app-tooltip-bubble" id="t2" popover><p>내용<\/p><\/div>$/);
+});
+
+// 코드 구문 계약: 소비자는 원문과 역할만 전달하고 테마가 안전한 마크업을 만든다.
+test('syntax_tokens_share_one_role_contract_and_escape_code', () => {
+  assert.equal(html(ui.SyntaxToken({ text: '<script>&', role: 'function' })), '<span class="app-syntax-function">&lt;script&gt;&amp;</span>');
+  assert.equal(html(ui.SyntaxToken({ text: '<value>' })), '&lt;value&gt;');
+  assert.throws(() => ui.SyntaxToken({ text: 'x', role: 'invented' }), /Unknown syntax role/);
+  const css = read('../dist/styles.css');
+  for (const role of ui.SYNTAX_ROLES) assert.ok(css.includes(`.${ui.syntaxClass(role)} {`), role);
+});
+
+// 스타일 규칙 없이 상태·위치만 알리는 클래스. 목록을 고정해 새 클래스가 몰래 늘지 않게 한다.
+const HOOK_ONLY = new Set(['app-sr', 'app-project-showcase', 'is-detail', 'app-technologies', 'app-interviews', 'app-document-body', 'app-syntax-examples']);
+test('shared_components_only_emit_classes_the_stylesheet_defines', () => {
+  const css = read('../dist/styles.css');
+  const source = ['components', 'patterns', 'layout', 'document', 'icons'].map(name => read(`../ui/${name}.mjs`)).join('\n');
+  const classes = new Set([...source.matchAll(/class="([^"$]*)/g)].flatMap((match) => match[1].split(/\s+/)).concat([...source.matchAll(/ (is-[\w-]+|has-no-icon|app-breakout)/g)].map((match) => match[1])).filter(Boolean));
+  assert.ok(classes.size > 25);
+  const missing = [...classes].filter((name) => !css.includes(`.${name}`) && !HOOK_ONLY.has(name));
+  assert.deepEqual(missing, []);
+  for (const name of ui.OWNED_CLASSES) assert.ok(css.includes(`.${name}`) || HOOK_ONLY.has(name), name);
+});
+
+test('content_width_contract_is_shared_by_figure_gallery_video_and_code', () => {
+  assert.equal(ui.contentWidth(), 'content');
+  assert.equal(ui.contentWidth({}), 'content');
+  for (const width of ui.WIDTHS) assert.equal(ui.contentWidth({ width, title: '본문' }), width);
+  assert.throws(() => ui.contentWidth({ width: 'huge' }), /Unknown width/);
+  const media = trusted('<img alt="">');
+  const renderers = {
+    contentWidth: props => ui.contentWidth(props),
+    Figure: props => ui.Figure({ media, ...props }),
+    Gallery: props => ui.Gallery({ id: 'g', slides: [{ image: media }], ...props }),
+    Tabs: props => ui.Tabs({ id: 't', tabs: [{ label: '탭', body: media }], ...props }),
+    'Tabs.open': props => ui.Tabs.open({ id: 't', labels: ['탭'], ...props }),
+    Video: props => ui.Video({ id: 'v', src: '/a.mp4', poster: '/a.png', ...props }),
+  };
+  for (const [name, render] of Object.entries(renderers)) {
+    for (const [key, values] of [['wide', [true, false, undefined]], ['size', ['compact', 'big', undefined]]]) {
+      for (const value of values) assert.throws(() => render({ width: 'wide', [key]: value }), new RegExp(`Use width instead of ${key}`), `${name}.${key}: ${String(value)}`);
+    }
+  }
+  assert.match(html(ui.Figure({ media, width: 'narrow' })), /^<figure class="app-figure app-width-narrow">/);
+  assert.match(html(ui.Figure({ media, width: 'wide' })), /^<figure class="app-figure app-width-wide">/);
+  assert.match(html(ui.Figure({ media })), /^<figure class="app-figure"><img alt=""><\/figure>$/);
+  assert.match(html(ui.Gallery({ id: 'g', width: 'wide', slides: [{ image: media }] })), /^<section class="app-tabs is-selector-numbers app-width-wide"/);
+  assert.match(html(ui.CodeBlock({ code: trusted('<code>x</code>'), width: 'wide' })), /^<div class="app-code app-tool-surface app-width-wide">/);
+  assert.match(html(ui.Video({ id: 'v', src: '/a.mp4', poster: '/a.png', width: 'wide', remoteIcon: media })), /^<figure class="app-figure app-width-wide">/);
+  const video = html(ui.Video({ id: 'ratio', src: '/a.mp4', poster: '/a.png', width: 'narrow', playerWide: true, playerWidth: 960, playerHeight: 540 }));
+  assert.match(video, /^<figure class="app-figure app-width-narrow"><div class="app-player is-wide has-controls"/);
+  assert.match(video, /width="960" height="540"/);
+  assert.match(html(ui.Player({ id: 'p', src: '/a.mp4', poster: '/a.png', wide: true })), /^<div class="app-player is-wide"/);
+  assert.throws(() => ui.CodeBlock({ code: trusted(''), width: 'x' }), /Unknown width/);
+});
+
+test('figure_video_device_and_small_prose_shapes_have_one_definition', () => {
+  const media = trusted('<img alt="a">');
+  assert.equal(html(ui.Figure({ media, href: '/x/', caption: '<c>' })), '<figure class="app-figure"><a href="/x/"><img alt="a"></a><figcaption>&lt;c&gt;</figcaption></figure>');
+  assert.throws(() => ui.Figure({ media, href: 'javascript:1' }), /Unsupported URL/);
+  assert.match(html(ui.FigureGrid({ columns: 2, size: 'small', figures: [ui.Figure({ media })] })), /^<div class="app-figure-grid is-small has-two-columns"><div class="app-figure-grid-item"><figure/);
+  assert.throws(() => ui.FigureGrid({ columns: 'constructor', figures: [ui.Figure({ media })] }), /Invalid columns/);
+  const video = html(ui.Video({ id: 'v1', src: '/a.mp4', poster: '/a.png', title: '제목', caption: '설명', controls: true, frame: 'iphone', remoteIcon: trusted('<img>'), deviceOverlay: trusted('<i></i>') }));
+  assert.match(video, /<div class="app-device"><div class="app-device-screen"><div class="app-player has-controls" data-player id="v1">/);
+  assert.match(video, /<figcaption>설명<\/figcaption>/);
+  assert.equal(html(ui.Device({ screen: media })), '<div class="app-device"><div class="app-device-screen"><img alt="a"></div></div>');
+  assert.doesNotMatch(video, /data-remote|app-media-controls/);
+  const plainVideo = html(ui.Video({ id: 'v2', src: '/a.mp4', poster: '/a.png' }));
+  assert.match(plainVideo, /data-native-controls/);
+  assert.match(plainVideo, /data-player-play/);
+  assert.doesNotMatch(plainVideo, /figcaption|data-remote/);
+  assert.match(html(ui.Player({ id: 'p', src: '/a.mp4', poster: '/a.png' })), /playsinline muted preload="none"/);
+  assert.throws(() => ui.Player({ id: 'p', src: 'javascript:1', poster: '/a.png' }), /Unsupported URL/);
+  assert.equal(html(ui.Fineprint({ text: trusted('<b>x</b>') })), '<p class="app-fineprint"><b>x</b></p>');
+  assert.equal(html(ui.Steps({ body: trusted('<ol></ol>') })), '<div class="app-steps"><ol></ol></div>');
+  assert.equal(html(ui.Definitions({ items: [{ term: 'Q<', body: trusted('A') }] })), '<dl class="app-definitions"><dt>Q&lt;</dt><dd>A</dd></dl>');
+  assert.equal(html(ui.Kbd({ text: '⌘ <' })), '<kbd>⌘ &lt;</kbd>');
+  assert.equal(html(ui.Menu({ text: '파일' })), '<b class="app-menu-label">파일</b>');
+  assert.equal(html(ui.InlineIcon({ icon: trusted('<svg></svg>') })), '<span class="app-inline-icon"><svg></svg></span>');
+  assert.equal(html(ui.CancelledTask()), '<span class="app-cancelled-task" role="img" aria-label="취소된 작업"></span>');
+});
+
+test('code_blocks_wrap_instead_of_scrolling_and_widths_use_shared_tokens', () => {
+  const css = read('../styles/prose.css') + read('../styles/media.css');
+  const pre = /\.app-code pre \{([^}]*)\}/.exec(css)[1];
+  assert.match(pre, /white-space: pre-wrap/);
+  assert.match(pre, /overflow-wrap: anywhere/);
+  assert.doesNotMatch(pre, /overflow-x|overflow: (?:auto|scroll)|white-space: pre;/);
+  assert.match(css, /\.app-width-narrow \{[^}]*var\(--spacing-width-narrow\)/);
+  assert.match(css, /\.app-width-wide \{[^}]*var\(--component-width-wide\)[^}]*calc\(\(100% - var\(--component-width-wide\)\) \/ 2\)/);
+  assert.doesNotMatch(css, /app-breakout/);
+  for (const [, body] of css.matchAll(/\.app-width-\w+ \{([^}]*)\}/g)) assert.doesNotMatch(body, /transform|100vw/);
+});
+
+test('block_components_leave_inline_margins_to_the_shared_width_layer', () => {
+  const dir = 'styles/';
+  const roots = ['.app-figure', '.app-tabs', '.app-code'];
+  let checked = 0;
+  for (const file of ['media.css', 'prose.css', 'article.css', 'blog.css', 'cards.css', 'shell.css', 'controls.css']) {
+    for (const [, selector, body] of read(`../${dir}${file}`).matchAll(/(?:^|\n)([^\n{}]+)\{([^}\n]*)\}/g)) {
+      const targets = selector.split(',').map((part) => part.trim()).filter((part) => roots.some((root) => new RegExp(`^${root.replace('.', '\\.')}(?:[.:\\[]|$)`).test(part.split(/\s+/).at(-1)) && part.split(/\s+/).length === 1));
+      checked += targets.length;
+      if (targets.length) assert.doesNotMatch(body, /(?:^|[;\s])margin\s*:/, `${file}: ${selector.trim()} must use margin-block, margin-inline belongs to .app-width-*`);
+    }
+  }
+  assert.ok(checked >= 3, 'root rules were not found');
+  const css = read('../dist/styles.css');
+  assert.match(css, /\.app-width-wide \{[^}]*margin-inline: calc\(\(100% - var\(--component-width-wide\)\) \/ 2\)/);
+  assert.match(read('../dist/tokens.css'), /--component-width-wide: max\(100%, min\(var\(--primitive-reference-width\), calc\(100vw - 2 \* var\(--primitive-gutter\)\)\)\)/);
+});
+
+test('home_and_list_components_have_one_definition_with_escaped_text_and_checked_urls', () => {
+  const icon = trusted('<img alt="">');
+  const header = html(ui.SiteHeader({ label: '메뉴', homeLabel: '홈', title: 'A<B', icon, items: [] }));
+  assert.match(header, /<span class="app-logo-icon"><img alt=""><\/span>A&lt;B<\/a>/);
+  assert.throws(() => ui.SiteHeader({ label: '메뉴', homeLabel: '홈', icon: '<svg/>', items: [] }), /must be trusted/);
+  const logo = trusted('<svg viewBox="0 0 10 2" aria-hidden="true"><path fill="currentColor"/></svg>');
+  const branded = html(ui.SiteHeader({ label: '메뉴', homeLabel: '홈 <이동>', title: '텍스트 이름', icon, logo, items: [] }));
+  assert.match(branded, /aria-label="홈 &lt;이동&gt;"><span class="app-logo-brand"><svg/);
+  assert.doesNotMatch(branded, /텍스트 이름|app-logo-icon/);
+  assert.throws(() => ui.SiteHeader({ label: '메뉴', homeLabel: '홈', logo: '<svg/>', items: [] }), /logo must be trusted/);
+  const newsletter = { id: 'subscribe', field: 'email', label: '<이메일>', placeholder: 'me@example.com', button: '구독 & 신청', note: trusted('<p id="subscribe-state" class="app-newsletter-note">안내</p>') };
+  const disabledForm = html(ui.EmailForm(newsletter));
+  assert.match(disabledForm, /for="subscribe-email">&lt;이메일&gt;<\/label>/);
+  assert.match(disabledForm, /autocomplete="email" disabled aria-describedby="subscribe-state"/);
+  assert.match(disabledForm, /<button type="submit" disabled>구독 &amp; 신청<\/button>/);
+  assert.doesNotMatch(disabledForm, / action=| method=| required/);
+  const activeForm = html(ui.EmailForm({ ...newsletter, action: 'https://example.com/subscribe' }));
+  assert.match(activeForm, /method="post" action="https:\/\/example.com\/subscribe"/);
+  assert.match(activeForm, /autocomplete="email" required/);
+  assert.doesNotMatch(activeForm, /disabled/);
+  assert.throws(() => ui.EmailForm({ ...newsletter, action: 'javascript:1' }), /Unsupported URL/);
+  assert.throws(() => ui.EmailForm({ ...newsletter, id: 'a b' }), /Invalid id/);
+  assert.throws(() => ui.EmailForm({ ...newsletter, note: '<p>안내</p>' }), /note must be trusted/);
+  assert.match(html(ui.Section({ variant: 'form', content: ui.EmailForm(newsletter) })), /app-landing-section app-landing-newsletter/);
+  assert.ok(ui.OWNED_CLASSES.includes('app-newsletter'));
+  const intro = html(ui.SectionIntro({ id: 'a-title', icon, title: 'T<', description: trusted('<p>d</p>'), links: trusted('<a href="/x/">x</a>'), action: { href: '/more/', label: '더 보기' } }));
+  assert.equal(intro, '<div class="app-landing-heading"><h2 id="a-title"><span class="app-landing-icon"><img alt=""></span> T&lt;</h2><p>d</p><p class="app-landing-social"><a href="/x/">x</a></p><p><a class="app-landing-action" href="/more/">더 보기</a></p></div>');
+  assert.match(html(ui.SectionIntro({ level: 1, title: trusted('A<br>B') })), /^<div class="app-landing-heading"><h1>A<br>B<\/h1><\/div>$/);
+  assert.throws(() => ui.SectionIntro({ level: 7, title: 't' }), /Invalid heading level/);
+  assert.throws(() => ui.SectionIntro({ title: 't', action: { href: 'javascript:1', label: 'x' } }), /Unsupported URL/);
+  assert.match(html(ui.SocialLink({ label: 'GitHub', icon })), /^<span role="img" aria-label="GitHub · 주소 준비 중"><img alt=""><\/span>$/);
+  assert.equal(html(ui.SocialLink({ href: 'https://e.com/', label: 'E' })), '<a href="https://e.com/">E</a>');
+  assert.equal(html(ui.SocialLink({ href: 'https://e.com/', label: 'E', icon })), '<a href="https://e.com/" aria-label="E"><img alt=""></a>');
+
+  const rail = html(ui.FlowRail({ kind: 'interviews', direction: 'right', label: '인터뷰', ariaLabel: '카드', items: trusted('<li></li>') }));
+  assert.equal(rail, '<div class="app-interviews" data-flow-rail data-flow-direction="right" data-flow-label="인터뷰"><div class="app-flow-viewport" data-flow-viewport tabindex="0" role="region" aria-label="카드"><div class="app-flow-track" data-flow-track><ul class="app-flow-group" data-flow-group><li></li></ul></div></div></div>');
+  assert.throws(() => ui.FlowRail({ kind: 'x', label: 'a', ariaLabel: 'b', items: trusted('') }), /Unknown rail/);
+
+  const remote = html(ui.RemoteLink({ id: 'hero-player', href: '#hero-video', label: '영상', icon }));
+  assert.match(remote, /^<a class="app-remote" href="#hero-video" data-remote="hero-player" data-scroll="down" data-label="영상" aria-label="영상"><img alt=""><span>영상<\/span><\/a>$/);
+  const showcase = html(ui.ProjectShowcase({ id: 'hero', title: '제목"', src: '/v.mp4', poster: '/p.png' }));
+  assert.match(showcase, /<section id="hero-video" class="app-project-showcase" aria-label="제목&quot;">.*id="hero-player" data-player><video controls playsinline preload="none" data-native-controls aria-label="제목&quot;" poster="\/p.png"><source src="\/v.mp4">제목&quot; · <a href="\/v.mp4">영상 파일 열기<\/a><\/video><button class="app-player-button" type="button" data-player-play aria-label="제목&quot; 영상 재생" hidden><svg data-control-icon="play"[^>]*>.*<\/svg><\/button>/);
+  assert.throws(() => ui.ProjectShowcase({ id: 'hero', title: 't', src: 'javascript:1' }), /Unsupported URL/);
+
+  const blog = html(ui.BlogCard({ href: '/a/', title: 'A&', level: 2, cover: icon, tags: trusted('<div></div>') }));
+  assert.equal(blog, '<article class="app-blog-card"><a class="app-blog-card-link" href="/a/" aria-label="A&amp;"><div class="app-blog-cover"><img alt=""></div><div class="app-blog-card-body"><h2 class="app-blog-card-title">A&amp;</h2></div></a><div></div></article>');
+  assert.match(html(ui.BlogCard({ href: '/a/', title: 'A', cover: icon, tags: trusted('') })), /<h3 class="app-blog-card-title">/);
+
+  const metadataCard = html(ui.BlogCard({ href: '/a/', title: 'A', cover: icon, description: '<설명>', publishedAt: '2026-10-08', commentsHref: '/a/#comments', commentCount: 2, author: { name: '<저자>', href: '/author/', avatar: '/avatar.png' } }));
+  assert.match(metadataCard, /<p class="app-card-summary">&lt;설명&gt;<\/p><\/div><\/a><div class="app-blog-card-meta">.*<time class="app-blog-card-date" datetime="2026-10-08">2026-10-08<\/time>/);
+  assert.match(metadataCard, /<a class="app-blog-card-comments" href="\/a\/#comments">댓글 2개<\/a><\/div><\/article>$/);
+  assert.equal((metadataCard.match(/<a /g) ?? []).length, 2);
+  assert.doesNotMatch(metadataCard, /href="\/author\/"/);
+  assert.match(metadataCard, /<span>&lt;저자&gt;<\/span>/);
+  assert.match(html(ui.BlogCard({ href: '/a/', title: 'A', cover: icon, commentsHref: '/a/#comments' })), />댓글 보기<\/a>/);
+  // #77: 태그 링크는 글 링크 밖에 있고 이름과 주소를 검증한다.
+  const taggedCard = html(ui.BlogCard({ href: '/a/', title: 'A', cover: icon, description: '소개', tagItems: [{ href: '/tags/python/', label: 'Python' }, { href: '/tags/reference/', label: '<참조>' }], publishedAt: '2026-10-08' }));
+  assert.match(taggedCard, /app-card-summary[^>]*>소개<\/p><\/div><\/a><div class="app-blog-card-tags"[^>]*><a class="app-tag" href="\/tags\/python\/">Python<\/a> <a class="app-tag" href="\/tags\/reference\/">&lt;참조&gt;<\/a>/);
+  assert.equal((taggedCard.match(/<a /g) ?? []).length, 3);
+  assert.throws(() => ui.BlogCard({ href: '/a/', title: 'A', cover: icon, tagItems: [{ href: 'javascript:1', label: '태그' }] }), /Unsupported URL/);
+  // #75: 모든 목록의 제목 아래에 돌아가기를 둔다.
+  const collection = html(ui.CollectionHeader({title:'CS',backHref:'/docs/',backLabel:'돌아가기'}));
+  assert.match(collection, /<h1 class="app-page-heading">CS<\/h1><div class="app-collection-info"><a class="app-navigation-link is-back" href="\/docs\/">돌아가기<\/a>/);
+  const pages = html(ui.PageLinks({ label: '쪽', before: { href: '/p/', text: '이전' }, after: { href: '/p/3/', text: '다음' }, numbers: [{ page: 1, href: '/p/' }, { page: 2, href: '/p/2/', current: true }] }));
+  assert.equal(pages, '<nav class="app-page-links" aria-label="쪽"><a class="app-navigation-link is-back" rel="prev" href="/p/">이전</a><a href="/p/" aria-label="1페이지">1</a><span aria-current="page">2</span><a class="app-navigation-link" rel="next" href="/p/3/">다음</a></nav>');
+  assert.match(html(ui.PageLinks({ label: '쪽', summary: '2 / 3', numbers: [{ page: 1, href: '/' }] })), /<span>2 \/ 3<\/span>/);
+  assert.match(html(ui.PageLinks({ label: '검색', resultPages: true })), /^<nav class="app-page-links" data-result-pages aria-label="검색"><\/nav>$/);
+  assert.equal(html(ui.ListLink({ href: '/all/', text: '모두' })), '<p class="app-page-links"><a class="app-navigation-link" href="/all/">모두</a></p>');
+
+  const tags = [1, 2, 3, 4].map((n) => ({ href: `/tags/t${n}/`, label: `T${n}<` }));
+  assert.match(html(ui.TagList({ tags, limit: 3 })), /^<div class="app-tags" role="group" aria-label="태그"><a class="app-tag" href="\/tags\/t1\/">T1&lt;<\/a>.*<details class="app-tags-more"><summary>\+1<\/summary><div class="app-tags"><a class="app-tag" href="\/tags\/t4\/">T4&lt;<\/a><\/div><\/details><\/div>$/);
+  assert.doesNotMatch(html(ui.TagList({ tags })), /details/);
+
+  assert.equal(html(ui.Toc({ title: '목차', label: '이 글', sections: [{ id: 's-1', title: 'A&' }] })), '<nav class="app-toc" aria-label="이 글"><h2 class="app-toc-heading">목차</h2><ol class="app-toc-list"><li><a href="#s-1">A&amp;</a></li></ol></nav>');
+  const outline = html(ui.DocumentOutline({ sections: [{ id: 's-1', title: 'A&', level: 2 }] }));
+  assert.match(outline, /^<nav class="app-document-nav" aria-label="본문 목차"><ol>/);
+  assert.doesNotMatch(outline, /details|summary|data-document-panel|svg/);
+  assert.match(outline, /href="#s-1" data-heading-level="2">A&amp;<\/a>/);
+
+  const taggedPost = html(ui.PostArticle({ id: 'tagged', href: '/a/', title: 'T', date: '2026-10-01', lead: trusted('소개'), tags: ui.TagList({ tags: [{ href: '/tags/python/', label: 'Python' }] }), body: trusted('<p>본문</p>') }));
+  assert.match(taggedPost, /소개<\/p><div class="app-tags"[\s\S]*<\/div><p>본문<\/p>/);
+  const post = html(ui.PostArticle({ id: 'post-1', detail: false, href: '/a/', title: 'T', date: '2026-10-01', dateNote: ' · 예시 글', lead: trusted('도입'), body: trusted('<p>본문</p>'), author: '저자', footer: trusted('<i></i>'), after: trusted('<aside></aside>') }));
+  assert.equal(post, '<article class="app-blog-post" aria-labelledby="post-1"><header class="app-post-header"><time class="app-post-date" datetime="2026-10-01">2026-10-01 · 예시 글</time><h2 class="app-post-title" id="post-1"><a href="/a/">T</a></h2></header><div class="app-prose app-feed-body"><p class="app-article-lead">도입</p><p>본문</p></div><footer class="app-post-footer"><p class="app-post-author">저자</p><i></i></footer><aside></aside></article>');
+  assert.match(html(ui.PostArticle({ id: 'post-1', detail: true, title: 'T', date: 'd', lead: trusted(''), body: trusted('') })), /^<article class="app-blog-post is-detail" aria-labelledby="post-1">.*<h1 class="app-post-title" id="post-1">T<\/h1>/);
+  assert.match(html(ui.PostArticle({ id: 'post-1', detail: true, title: 'T', date: '2026-10-01', dateLabel: '2026년 10월 1일', lead: trusted(''), body: trusted('') })), /datetime="2026-10-01">2026년 10월 1일<\/time>/);
+
+  const result = html(ui.SearchResult({ href: '/a/', icon, title: 'T<', example: true, description: 'd&', tags: [{ href: '/tags/x/', label: 'X' }] }));
+  assert.equal(result, '<article class="app-search-entry"><a class="app-search-result-link" href="/a/"><img alt=""><strong>T&lt;</strong><span class="app-search-result-note"> 예시</span><p>d&amp;</p></a><div class="app-search-result-tags"><a class="app-tag" href="/tags/x/">X</a></div></article>');
+});
+
+test('search_result_parts_escape_every_field_and_highlight_only_with_mark', () => {
+  const marked = html(ui.Highlight({ text: 'a<b>검색어&c 검색어', query: ' 검색어 ' }));
+  assert.equal(marked, 'a&lt;b&gt;<mark>검색어</mark>&amp;c <mark>검색어</mark>');
+  assert.equal(html(ui.Highlight({ text: '<x>', query: '' })), '&lt;x&gt;');
+  assert.equal(html(ui.Highlight({ text: 'a.b', query: '.*' })), 'a.b');
+  assert.equal(html(ui.Highlight({ text: 'C++', query: 'c++' })), '<mark>C++</mark>');
+  const icon = ui.ContentIconImage({ src: '/theme/x.svg' });
+  assert.equal(html(icon), '<span class="app-content-icon is-small"><img src="/theme/x.svg" alt="" decoding="async"></span>');
+  assert.throws(() => ui.ContentIconImage({ src: 'javascript:1' }), /Unsupported URL/);
+  assert.throws(() => ui.ContentIconImage({ src: '/x.svg', size: 'huge' }), /Unknown icon size/);
+  const link = html(ui.SearchResultLink({ href: '/a/', icon, title: ui.Highlight({ text: '<T>', query: 't' }), description: '<d>' }));
+  assert.match(link, /<strong>&lt;<mark>T<\/mark>&gt;<\/strong><p>&lt;d&gt;<\/p><\/a>$/);
+  assert.throws(() => ui.SearchResultLink({ href: '//e.com/', icon, title: 't', description: 'd' }), /Unsupported URL/);
+  assert.equal(html(ui.Tag({ href: '/tags/x/', label: 'X ×' })), '<a class="app-tag" href="/tags/x/">X ×</a>');
+});
+
+test('tabs_default_to_frameless_bottom_buttons_and_only_deviations_become_classes', () => {
+  const tabs = [{ label: '전', body: trusted('<p>1</p>') }, { label: '후', body: trusted('<p>2</p>') }];
+  // 옵션이 없으면 클래스도 없고 선택 줄은 패널 뒤다.
+  const base = html(ui.Tabs({ id: 'g', label: '탭', tabs }));
+  assert.match(base, /^<section class="app-tabs" data-tabs><div class="app-tabpanel" id="g-panel-0"/);
+  assert.match(base, /<\/div><div class="app-tablist is-after-panel" role="tablist" aria-label="탭">.*aria-controls="g-panel-1" tabindex="-1">후<\/button><\/div><\/section>$/);
+  // 기본값을 적어도 쓰지 않은 것과 같다.
+  assert.equal(html(ui.Tabs({ id: 'g', label: '탭', tabs, frame: 'none', position: 'bottom', selector: 'buttons', width: 'content' })), base);
+  // 벗어난 값만 클래스가 된다.
+  const classOf = (props) => /class="([^"]*)" data-tabs/.exec(html(ui.Tabs({ id: 'g', tabs, ...props })))[1];
+  assert.equal(classOf({ frame: 'panel' }), 'app-tabs is-frame-panel');
+  assert.equal(classOf({ position: 'top' }), 'app-tabs is-position-top');
+  assert.equal(classOf({ selector: 'segmented' }), 'app-tabs is-selector-segmented');
+  assert.equal(classOf({ selector: 'numbers', width: 'wide' }), 'app-tabs is-selector-numbers app-width-wide');
+  assert.equal(classOf({ frame: 'panel', position: 'top', selector: 'segmented', width: 'wide' }), 'app-tabs is-frame-panel is-position-top is-selector-segmented app-width-wide');
+  assert.doesNotMatch(base + classOf({ position: 'top' }), /is-frame-none|is-position-bottom|is-selector-buttons|width-content/);
+  // 위쪽이면 선택 줄이 패널 앞에 온다.
+  assert.match(html(ui.Tabs({ id: 'g', label: '탭', tabs, position: 'top' })), /^<section class="app-tabs is-position-top" data-tabs><div class="app-tablist"/);
+  // 토큰 스트림 형태도 같은 문자열이다.
+  const props = { id: 'g', label: '탭', labels: ['전', '후'], selector: 'segmented', width: 'wide' };
+  const stream = ui.Tabs.open(props) + tabs.map((tab, index) => ui.Tabs.panelOpen({ id: 'g', index }) + tab.body + ui.Tabs.panelClose()).join('') + ui.Tabs.close(props);
+  assert.equal(stream, html(ui.Tabs({ id: 'g', label: '탭', tabs, selector: 'segmented', width: 'wide' })));
+  // 번호 모양은 라벨 없이 쓸 수 있고 버튼에는 번호, 접근성 이름에는 라벨이 나온다.
+  const numbers = html(ui.Tabs({ id: 'g', label: '탭', selector: 'numbers', tabs: [{ body: trusted('') }, { label: '둘', body: trusted('') }] }));
+  assert.match(numbers, /aria-label="탭 1">1<\/button><button[^>]*aria-label="둘">2<\/button>/);
+  // 처음 보이는 탭
+  assert.match(html(ui.Tabs({ id: 'g', tabs, selected: 1 })), /id="g-tab-1" role="tab" aria-selected="true" aria-controls="g-panel-1" tabindex="0"/);
+  // 잘못된 값과 platform 충돌은 거부한다.
+  assert.throws(() => ui.Tabs({ id: 'g', tabs, frame: 'box' }), /Unknown tabs frame/);
+  assert.throws(() => ui.Tabs({ id: 'g', tabs, position: 'left' }), /Unknown tabs position/);
+  assert.throws(() => ui.Tabs({ id: 'g', tabs, selector: 'tiles' }), /Unknown tabs selector/);
+  assert.throws(() => ui.Tabs({ id: 'g', tabs, width: 'huge' }), /Unknown width/);
+  assert.throws(() => ui.Tabs({ id: 'g', tabs, selected: 2 }), /out of range/);
+  assert.throws(() => ui.Tabs({ id: 'g', tabs, platform: true, selector: 'numbers' }), /Platform tabs always/);
+  assert.throws(() => ui.Tabs({ id: 'g', tabs, platform: true, position: 'bottom' }), /Platform tabs always/);
+});
+
+test('tabs_share_one_selection_style_across_documents_and_diagrams', () => {
+  const labels = ['첫 장면', '다음 `상태`'];
+  const document = html(ui.Tabs({ id: 'document', tabs: labels.map(label => ({ label, body: trusted('') })) }));
+  const diagram = DiagramFrame({ canvas: '', labels });
+  const tabListClass = markup => /class="([^"]+)" role="tablist"/.exec(markup)[1];
+  assert.equal(tabListClass(diagram), tabListClass(document));
+  assert.equal(tabListClass(diagram), 'app-tablist is-after-panel');
+  assert.match(diagram, /aria-selected="true" aria-controls="scene-panel" tabindex="0"/);
+  assert.match(diagram, /aria-selected="false" aria-controls="scene-panel" tabindex="-1">다음 <code>상태<\/code>/);
+  const css = read('../styles/tabs.css');
+  assert.match(css, /\.app-tablist \{[^}]*font-size: var\(--text-body-text\)/);
+  assert.match(css, /flex-wrap: wrap/);
+  assert.match(css, /overflow-wrap: anywhere/);
+  assert.match(css, /:focus-visible/);
+  assert.match(css, /prefers-reduced-motion: reduce/);
+  const reduced = /@media \(prefers-reduced-motion: reduce\) \{ ([^{}]+)\{ transition: none; \}/.exec(css)[1];
+  for (const selector of ['.app-tablist button', '.app-tablist.is-segmented button', '.app-tablist.is-numbers button']) assert.ok(reduced.includes(selector), selector);
+  assert.match(css, /var\(--color-feature-tab-selected\)/);
+  assert.match(css, /var\(--duration-platform-motion\)/);
+  assert.doesNotMatch(read('../styles/toolbar.css'), /tablist|fl-tabs|aria-selected/);
+  assert.doesNotMatch(read('../styles/features.css'), /feature-tab-width|feature-tab-height/);
+});
+
+test('tab_panels_never_reserve_height_so_the_selector_follows_the_visible_content', () => {
+  const css = read('../dist/styles.css');
+  // 숨은 패널은 hidden 속성으로 사라지고, 패널을 겹쳐 쌓거나 높이를 예약하는 규칙이 없다.
+  assert.match(css, /\[hidden\] \{[^}]*display: none/);
+  const panelRules = [...css.matchAll(/(?:^|\n)([^\n{}]*\.app-tabpanel[^\n{}]*)\{([^}]*)\}/g)];
+  assert.ok(panelRules.length >= 2);
+  for (const [, selector, body] of panelRules) {
+    if (selector.includes('.app-feature')) continue;
+    assert.doesNotMatch(body, /visibility|grid-area|min-height|[^-]height:|position: absolute/, selector);
+  }
+  assert.match(css, /\.app-tabs:not\(\.is-position-top\):not\(\.is-platform\):not\(\.is-frame-panel\) \.app-tabpanel > :last-child \{ margin-bottom: 0; \}/);
+});
+
+test('related_cards_are_single_row_compact_links_with_ellipsis_titles_and_no_description_styles', () => {
+  const css = read('../dist/styles.css');
+  const rule = (selector) => new RegExp(`${selector.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')} \\{([^}]*)\\}`).exec(css)[1];
+  const card = rule('.app-help-card.app-related-link');
+  assert.match(card, /display: flex; align-items: center/);
+  assert.match(card, /padding: var\(--spacing-compact-inset\)/);
+  assert.match(card, /font-size: var\(--text-compact-text\)/);
+  assert.doesNotMatch(rule('.app-related-link strong'), /line-clamp/);
+  assert.match(rule('.app-related-link strong'), /overflow: hidden; text-overflow: ellipsis; white-space: nowrap/);
+  assert.match(rule('.app-related-link .app-content-icon'), /position: static/);
+  // 열은 내용 줄 수와 무관하고 좁은 화면에서는 한 열이다. 관련 글의 요약 줄 수 제한과 자동 함께 읽기 섹션 스타일은 없다.
+  assert.match(css, /@media \(max-width: 600px\) \{ \.app-related-grid \{ grid-template-columns: minmax\(0, 1fr\); \} \}/);
+  assert.doesNotMatch(css, /related-summary-lines|\.app-related \{|\.app-related >/);
+});
+
+test('related_card_group_and_its_heading_use_compact_spacing_tokens', () => {
+  const css = read('../dist/styles.css');
+  const rule = (selector) => new RegExp(`${selector.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')} \\{([^}]*)\\}`).exec(css)[1];
+  assert.match(rule('.app-related-grid'), /gap: var\(--spacing-gap-xs\);/);
+  assert.match(rule('.app-prose .app-related-grid'), /margin-bottom: var\(--spacing-gap-sm\)/);
+  // 묶음 바로 앞의 제목만 좁은 위 여백을 갖고 시맨틱(제목 단계)과 다른 제목은 건드리지 않는다.
+  assert.match(rule('.app-prose :is(.app-heading-2, .app-heading-3, .app-heading-4):has(+ .app-related-grid)'), /margin-block: var\(--spacing-gap\) var\(--spacing-gap-sm\)/);
+  assert.doesNotMatch(css, /\.app-related-grid[^{]*\{[^}]*gap: var\(--spacing-gap\) /);
+});
+
+
+test('video_overlay_keeps_a_colored_inline_control_in_all_public_players', () => {
+  const props = { id: 'v', src: '/v.mp4', poster: '/p.png' };
+  const views = [ui.Player({ ...props, overlay: true }), ui.Video(props), ui.ProjectShowcase({ ...props, title: '영상 제목' })];
+  for (const view of views) {
+    const overlay = /<button class="app-player-button"[^>]*>(.*?)<\/button>/.exec(html(view));
+    assert.ok(overlay, 'the player has a playback button');
+    assert.match(overlay[0], /data-player-play aria-label="[^"]+"/);
+    assert.match(overlay[1], /^<svg data-control-icon="play"[^>]*aria-hidden="true"[^>]*focusable="false"/);
+    assert.match(overlay[1], /<circle[^>]*fill="currentColor"/);
+    assert.match(overlay[1], /<path[^>]*fill="#fff(?:fff)?"/);
+    assert.doesNotMatch(overlay[1], /<svg[^>]*\scolor=/);
+  }
+  const css = read('../dist/styles.source.css');
+  assert.match(css, /\.app-player-button \{[^}]*color: var\(--color-control-link\)/);
+  assert.doesNotMatch(css, /url\([^)]*assets\/icons\/media\/play\.svg/);
+});
+
+test('search_box_role_matches_suggestion_mode_before_runtime', () => {
+  const props = { action: '/search/', labels: { region: '검색', input: '검색어', placeholder: '입력', clear: '지우기' } };
+  const search = html(ui.SearchBox({ ...props, combobox: false }));
+  assert.match(search, /role="searchbox"/);
+  assert.doesNotMatch(search, /aria-(?:autocomplete|expanded|controls)=/);
+  const suggest = html(ui.SearchBox(props));
+  assert.match(suggest, /role="combobox"/);
+  assert.match(suggest, /aria-controls="search-suggestions"/);
+});
+
+
+test('chart_motion_keeps_arrival_timing_and_rejects_non_numeric_css_inputs', () => {
+  const css = chartMotionCss(1200, [0, 0.25, 1]);
+  for (const delay of [0, 300, 1200]) assert.ok(css.includes(`animation-delay: ${delay}ms`));
+  assert.match(css, /chart-grow 1200ms var\(--ease-reveal\) both/);
+  assert.match(css, /chart-dot var\(--duration-fast\)/);
+  assert.doesNotThrow(() => chartMotionCss(0));
+  for (const time of [Infinity, NaN, -1, '1; color:red']) assert.throws(() => chartMotionCss(time), RangeError);
+  for (const points of [[-0.1], [1.1], [NaN], ['0'], null]) assert.throws(() => chartMotionCss(1200, points), RangeError);
+});
+
+test('search results omit absent icons and messages keep separate escaped lines', () => {
+  const result = html(ui.SearchResult({ href: '/a/', title: 'T', description: 'D', tags: [] }));
+  assert.doesNotMatch(result, /app-content-icon|undefined/);
+  assert.match(result, /<strong>T<\/strong>/);
+  assert.equal(html(ui.SearchMessage({ lines: ['failed <', 'retry &'] })), '<div class="app-search-message"><p>failed &lt;<br>retry &amp;</p></div>');
+});

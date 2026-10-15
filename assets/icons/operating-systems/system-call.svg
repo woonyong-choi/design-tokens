@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" color="var(--icon-neutral)" role="img">
+<title>시스템 호출</title>
+<desc>사용자 프로그램이 커널 기능을 요청</desc>
+<g stroke-linecap="round" stroke-linejoin="round">
+<rect x="4" y="6" width="15" height="13" rx="3" fill="var(--icon-detail)"/><rect x="29" y="29" width="15" height="13" rx="3" fill="var(--icon-cloud)"/><path d="M4 24h40" fill="none" stroke="var(--icon-outline)" stroke-width="2.5"/><path d="M25 12h8Q36 12 36 16v9M32 21l4 4 4-4" fill="none" stroke="var(--icon-idea)" stroke-width="2.7"/>
+</g>
+</svg>

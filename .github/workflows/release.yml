@@ -1,0 +1,56 @@
+name: release
+
+# A v* tag runs the tests, creates a GitHub Release, publishes to npm when NPM_TOKEN is set,
+# A missing npm secret skips publication. Consumer updates use sync-consumers.yml.
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write # GitHub Release
+  id-token: write # npm provenance
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+      - name: Read the version
+        id: version
+        run: |
+          version="$(node -p "require('./package.json').version")"
+          if [ "$GITHUB_REF_NAME" != "v$version" ]; then
+            echo "::error::tag $GITHUB_REF_NAME does not match the package.json version v$version. Fix one of them and tag again."
+            exit 1
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+      - run: npm ci
+      - run: npm test
+      - name: Check that regenerating changes nothing
+        run: |
+          npm run check
+      - name: Create the GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          case "$GITHUB_REF_NAME" in
+            *-*) gh release create "$GITHUB_REF_NAME" --generate-notes --prerelease ;;
+            *) gh release create "$GITHUB_REF_NAME" --generate-notes ;;
+          esac
+      - name: Publish to npm
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ -z "$NPM_TOKEN" ]; then
+            echo "NPM_TOKEN is not set. Skipping npm publish."
+            exit 0
+          fi
+          case "$GITHUB_REF_NAME" in
+            *-*) npm publish --provenance --access public --tag next ;;
+            *) npm publish --provenance --access public ;;
+          esac

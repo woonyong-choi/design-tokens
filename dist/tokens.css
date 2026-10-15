@@ -593,7 +593,7 @@
   --spacing-figure-gallery-column: var(--spacing-figure-figure-canvas);
   --spacing-figure-gallery-frame: 820px;
   --spacing-figure-document-column: var(--spacing-figure-figure-canvas);
-  --spacing-figure-chart-width: 720px;
+  --spacing-figure-chart-width: var(--primitive-body-width);
   --spacing-figure-chart-label: 140px;
   --spacing-figure-chart-label-max: 240px;
   --spacing-figure-chart-bar: 12px;

@@ -126,7 +126,9 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 곡률 역할은 `radius.figure-outer`(도형·그룹·차트 카드), `radius.figure-inner`(카드 안 면), `radius.figure-cell`(큐 칸 같은 작은 칸)이다.
 
-글 위계는 그룹·보기·차트 제목(`text.small-text`, semibold) > 카드 제목(`text.small-text`, regular) > 문장·이름표·값(`text.tiny-text`, regular) > 작은 표시(`text.figure-meta`)다. 값은 굵게 하지 않고 고정폭 숫자(`tabular-nums`)로 정렬하며 바뀐 값은 갱신 면으로 알린다. 강조 계열(`ours`, `second`)의 차트 값만 semibold다. 재생기의 장면 탭은 공통 탭의 상태·조작을 그대로 쓰고 그림 맥락에서 글자만 `text.tiny-text`·medium으로 낮춰 그림 제목보다 조용하다.
+글 위계는 그룹·보기·차트 제목(`text.small-text`, semibold) > 카드 제목(`text.small-text`, regular) > 문장·이름표·값(`text.tiny-text`, regular) > 작은 표시(`text.figure-meta`)다. 값은 굵게 하지 않고 고정폭 숫자(`tabular-nums`)로 정렬하며 바뀐 값은 갱신 면으로 알린다. 강조 계열(`ours`, `second`)의 차트 값만 semibold다. 재생기의 장면 탭은 공통 탭의 작은 글자 변형(`TabList`의 `compact`, `is-compact`)이다. 상태·조작은 같고 글자만 `text.tiny-text`·medium으로 낮춰 그림 제목보다 조용하며, 누르는 높이는 `spacing.control`(36px) 이상이다.
+
+차트와 시간 축 그림의 기본 폭 `spacing.figure.chart.width`는 본문 단 폭(`container.body-width`, 680px)과 같다. 본문 단 안에서 줄이지 않고 원래 크기로 놓여 가장 작은 글자가 토큰 크기 그대로 보이고, 마지막 눈금 글과 단위가 단 밖으로 나가지 않는다.
 
 카드 이미지·제목·설명은 글 링크에, 태그는 독립 링크에 둔다. 글 링크의 가상 요소가 카드 전체를 덮고 태그는 그 위에서 동작한다. 검색 결과도 태그 행과 여백까지 하나의 호버 영역이다. 수정키 클릭과 키보드 탐색은 일반 링크 동작을 유지한다.
 

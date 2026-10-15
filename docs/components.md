@@ -62,7 +62,7 @@
 
 ## 탭과 도표
 
-문서와 장면 선택 줄은 `TabList`의 `afterPanel: true`로 패널 아래 간격을 공유한다. 선택 줄은 `text.body-text`를 글자 기준으로 사용하므로 부모 글자 크기가 달라도 버튼의 글자·여백·곡률이 같다. 이 간격과 버튼의 상자 크기·안쪽 여백·시스템 글꼴은 `styles/tabs.css` 하나가 정하고 재생기 푸터에서 여백을 더하지 않는다.
+문서와 장면 선택 줄은 `TabList`의 `afterPanel: true`로 패널 아래 간격을 공유한다. 그림 아래 장면 선택처럼 주변 제목보다 조용해야 하는 자리는 `compact: true`(`is-compact`)로 글자만 `text.tiny-text`·medium으로 낮추고, 누르는 높이는 `spacing.control` 이상을 지킨다. `DiagramFrame`의 장면 선택 줄이 이 변형을 쓴다. 선택 줄은 `text.body-text`를 글자 기준으로 사용하므로 부모 글자 크기가 달라도 버튼의 글자·여백·곡률이 같다. 이 간격과 버튼의 상자 크기·안쪽 여백·시스템 글꼴은 `styles/tabs.css` 하나가 정하고 재생기 푸터에서 여백을 더하지 않는다.
 
 `Tabs`는 패널과 `TabList`를 조립한다. `Tabs`와 `DiagramFrame`의 선택 줄은 기본 `selector: 'buttons'`를 공유하여 각각 둥근 버튼으로 표시한다. 다른 모양은 `Tabs`·`TabList`의 `selector`에 `segmented` 또는 `numbers`를 명시한다. `Gallery`도 같은 부품을 사용하며 라벨이 있으면 `segmented`, 없으면 `numbers`를 선택한다.
 

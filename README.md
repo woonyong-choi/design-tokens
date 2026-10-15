@@ -48,7 +48,7 @@ Run `node ui/build/check-tokens.mjs styles ui --tokens tokens/tokens.json` to au
 
 Body and code text inherit theme roles; text contrast is checked on the actual page and code surfaces in both themes.
 
-Diagram canvases keep a separate muted surface from the document. Neutral shape and group outlines use `color.figure.outline`, checked at 3:1 or higher against both card and canvas surfaces.
+Diagram canvases keep a separate muted surface from the document. Diagrams follow a Things-like hierarchy: edges (`color.line`) are the strongest neutral line at 3:1 or higher on card and canvas, dashed boundaries are lighter, and card, group and cell outlines are hairlines. Cards and edge-label pills have soft elevation (`drop-shadow.figure-*`); accent colors are reserved for state. Chart categories use a calm palette validated for color-vision deficiency, with a muted `color.data.other` for comparison and "other" series.
 
 The comment iframe uses the light color scheme and shared page surface regardless of OS appearance, matching its resolved light text roles.
 

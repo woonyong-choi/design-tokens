@@ -62,7 +62,7 @@
 
 ## 탭과 도표
 
-문서와 장면 선택 줄은 `TabList`의 `afterPanel: true`로 패널 아래 간격을 공유한다. 선택 줄은 `text.body-text`를 글자 기준으로 사용하므로 부모 글자 크기가 달라도 버튼의 글자·여백·곡률이 같다. 이 간격과 버튼의 상자 크기·안쪽 여백·시스템 글꼴은 `styles/tabs.css` 하나가 정하고 재생기 푸터에서 여백을 더하지 않는다.
+문서와 장면 선택 줄은 `TabList`의 `afterPanel: true`로 패널 아래 간격을 공유한다. 그림 아래 장면 선택처럼 주변 제목보다 조용해야 하는 자리는 `compact: true`(`is-compact`)로 글자만 `text.tiny-text`·medium으로 낮추고, 누르는 높이는 `spacing.control` 이상을 지킨다. `DiagramFrame`의 장면 선택 줄이 이 변형을 쓴다. 선택 줄은 `text.body-text`를 글자 기준으로 사용하므로 부모 글자 크기가 달라도 버튼의 글자·여백·곡률이 같다. 이 간격과 버튼의 상자 크기·안쪽 여백·시스템 글꼴은 `styles/tabs.css` 하나가 정하고 재생기 푸터에서 여백을 더하지 않는다.
 
 `Tabs`는 패널과 `TabList`를 조립한다. `Tabs`와 `DiagramFrame`의 선택 줄은 기본 `selector: 'buttons'`를 공유하여 각각 둥근 버튼으로 표시한다. 다른 모양은 `Tabs`·`TabList`의 `selector`에 `segmented` 또는 `numbers`를 명시한다. `Gallery`도 같은 부품을 사용하며 라벨이 있으면 `segmented`, 없으면 `numbers`를 선택한다.
 
@@ -84,7 +84,7 @@
 
 `Table({ body, caption, label })`은 검증된 행·열 HTML을 받아 공통 표로 감싼다. Markdown 어댑터는 같은 `Table.open()`·`Table.close()`를 쓴다. 열 정렬은 공통 `is-center`·`is-right` 변형을 사용한다. 단축키 표도 이 구성 요소를 사용한다. 표가 넓으면 이름 있는 표 영역만 가로로 이동하며 Tab으로 초점을 두고 방향키로 마지막 열까지 읽을 수 있다. 본문이나 도표에 고정 높이를 주지 않는다. 셀의 폭과 긴 내용의 줄바꿈은 [본문과 코드](styles.md#본문과-코드)의 계약을 따른다.
 
-도표의 범주 색은 `color.category` 한 벌이다. 막대·원형 조각·시간 구간·이동 점·범례는 같은 `fill`을 쓰고, 넓은 면 전용 팔레트는 두지 않는다. 상태 글자와 도형의 옅은 면·테두리는 같은 계열의 `ink`·`tint`·`border` 역할을 사용한다. 핵심 기준색의 출처는 [Things 공식 기능 페이지](https://culturedcode.com/things/features/)의 기능 아이콘이며, 차트와 다크 도표는 이 기준을 적용한 확장이다.
+도표의 범주 색은 `color.category` 한 벌이다. 막대·원형 조각·시간 구간·이동 점·범례는 같은 `fill`을 쓰고, 넓은 면 전용 팔레트는 두지 않는다. 상태 글자와 도형의 옅은 면·테두리는 같은 계열의 `ink`·`tint`·`border` 역할을 사용한다. 핵심 기준색의 출처는 [Things 공식 기능 페이지](https://culturedcode.com/things/features/)의 기능 아이콘이며, 차트와 다크 도표는 이 기준을 적용한 확장이다. 차트 면(`solid`)은 같은 계열 이름의 차분한 값(`light-data`, `dark-data`)이고 검증 수치는 [스타일 구조](styles.md#도표-위계)에 있다.
 
 빈 작업 큐의 면은 `color.figure.queue-empty`로 표시한다. 밝은 테마에서는 기존 `color.gray.59`를 참조해 채워진 항목보다 약하게 표시하며, 다크 테마는 같은 의미 토큰의 별도 참조를 사용한다.
 

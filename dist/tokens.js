@@ -45,7 +45,14 @@ export const tokens = freeze({
       "warning": "var(--color-state-warning)"
     },
     "flow": {
-      "gray": "var(--color-flow-gray)"
+      "gray": "var(--color-flow-gray)",
+      "blue": "var(--color-flow-blue)",
+      "yellow": "var(--color-flow-yellow)",
+      "red": "var(--color-flow-red)",
+      "green": "var(--color-flow-green)",
+      "orange": "var(--color-flow-orange)",
+      "purple": "var(--color-flow-purple)",
+      "cyan": "var(--color-flow-cyan)"
     },
     "ui": {
       "link": "var(--color-ui-link)",
@@ -466,7 +473,14 @@ export const tokens = freeze({
     },
     "figure-data-line": "var(--color-figure-data-line)",
     "flow-ink": {
-      "gray": "var(--color-flow-ink-gray)"
+      "gray": "var(--color-flow-ink-gray)",
+      "blue": "var(--color-flow-ink-blue)",
+      "yellow": "var(--color-flow-ink-yellow)",
+      "red": "var(--color-flow-ink-red)",
+      "green": "var(--color-flow-ink-green)",
+      "orange": "var(--color-flow-ink-orange)",
+      "purple": "var(--color-flow-ink-purple)",
+      "cyan": "var(--color-flow-ink-cyan)"
     },
     "newsletter-button-color": "var(--color-newsletter-button-color)",
     "primary-hover": "var(--color-primary-hover)",
@@ -1199,6 +1213,8 @@ export const tokens = freeze({
     "figure-dark-bg": "var(--primitive-figure-dark-bg)",
     "figure-dark-node": "var(--primitive-figure-dark-node)",
     "figure-dark-edge": "var(--primitive-figure-dark-edge)",
+    "figure-heat-low": "var(--primitive-figure-heat-low)",
+    "figure-dark-heat-low": "var(--primitive-figure-dark-heat-low)",
     "figure-dark-separator": "var(--primitive-figure-dark-separator)",
     "figure-dark-hover": "var(--primitive-figure-dark-hover)",
     "figure-dark-selection": "var(--primitive-figure-dark-selection)",
@@ -1539,7 +1555,14 @@ export const values = freeze({
       "warning": "#9d5100"
     },
     "flow": {
-      "gray": "#747474"
+      "gray": "#747474",
+      "blue": "#1161cb",
+      "yellow": "#805d00",
+      "red": "#cc0041",
+      "green": "#00744e",
+      "orange": "#9d5100",
+      "purple": "#7d40c8",
+      "cyan": "#00717b"
     },
     "ui": {
       "link": "#2576eb",
@@ -1548,7 +1571,7 @@ export const values = freeze({
     "data": {
       "main": "#1e6bd6",
       "compare": "#8b929c",
-      "heat-low": "#d5e4fa",
+      "heat-low": "#eaf3c0",
       "heat-high": "#1e6bd6",
       "heat-ink": "#000000",
       "heat-ink-on": "#ffffff",
@@ -1566,22 +1589,22 @@ export const values = freeze({
         "7": "cyan"
       },
       "category": {
-        "1": "#3371c1",
-        "2": "#d6ae57",
-        "3": "#ac454a",
-        "4": "#60ba8d",
-        "5": "#bd6b34",
-        "6": "#ab92d9",
-        "7": "#007e9c"
+        "1": "#296ecc",
+        "2": "#d6b23d",
+        "3": "#d33950",
+        "4": "#41a679",
+        "5": "#c8702b",
+        "6": "#8760c4",
+        "7": "#2294a9"
       },
       "category-outline": {
-        "1": "#3371c1",
+        "1": "#296ecc",
         "2": "#ac862b",
-        "3": "#ac454a",
+        "3": "#d33950",
         "4": "#349166",
-        "5": "#bd6b34",
+        "5": "#c8702b",
         "6": "#846baf",
-        "7": "#007e9c"
+        "7": "#2294a9"
       },
       "category-ink": {
         "1": "#3664a1",
@@ -1616,8 +1639,8 @@ export const values = freeze({
         "3": "#ffffff",
         "4": "#000000",
         "5": "#000000",
-        "6": "#000000",
-        "7": "#ffffff"
+        "6": "#ffffff",
+        "7": "#000000"
       },
       "category-pattern": {
         "1": "hatch",
@@ -1829,10 +1852,10 @@ export const values = freeze({
         "dark-tint-3": "#303d54",
         "light-effect": "#3984f2",
         "dark-effect": "#60a0ff",
-        "solid": "#3371c1",
+        "solid": "#296ecc",
         "on-solid": "#ffffff",
-        "light-data": "#3371c1",
-        "light-data-edge": "#3371c1",
+        "light-data": "#296ecc",
+        "light-data-edge": "#296ecc",
         "dark-data": "#518ad6",
         "light-data-ink": "#3664a1",
         "dark-data-ink": "#98c0f7"
@@ -1849,9 +1872,9 @@ export const values = freeze({
         "dark-tint-1": "#393938",
         "light-effect": "#f0d03b",
         "dark-effect": "#ffec9a",
-        "solid": "#d6ae57",
+        "solid": "#d6b23d",
         "on-solid": "#000000",
-        "light-data": "#d6ae57",
+        "light-data": "#d6b23d",
         "light-data-edge": "#ac862b",
         "dark-data": "#cead59",
         "light-data-ink": "#805d00",
@@ -1869,10 +1892,10 @@ export const values = freeze({
         "dark-tint-1": "#413439",
         "light-effect": "#ff697b",
         "dark-effect": "#ff7785",
-        "solid": "#ac454a",
+        "solid": "#d33950",
         "on-solid": "#ffffff",
-        "light-data": "#ac454a",
-        "light-data-edge": "#ac454a",
+        "light-data": "#d33950",
+        "light-data-edge": "#d33950",
         "dark-data": "#c25c5f",
         "light-data-ink": "#984649",
         "dark-data-ink": "#f2a7a6"
@@ -1889,9 +1912,9 @@ export const values = freeze({
         "dark-tint-1": "#323b3c",
         "light-effect": "#3aab7c",
         "dark-effect": "#46b586",
-        "solid": "#60ba8d",
+        "solid": "#41a679",
         "on-solid": "#000000",
-        "light-data": "#60ba8d",
+        "light-data": "#41a679",
         "light-data-edge": "#349166",
         "dark-data": "#61b68b",
         "light-data-ink": "#0b764d",
@@ -1909,10 +1932,10 @@ export const values = freeze({
         "dark-tint-1": "#3d3738",
         "light-effect": "#df812e",
         "dark-effect": "#ffb27a",
-        "solid": "#bd6b34",
+        "solid": "#c8702b",
         "on-solid": "#000000",
-        "light-data": "#bd6b34",
-        "light-data-edge": "#bd6b34",
+        "light-data": "#c8702b",
+        "light-data-edge": "#c8702b",
         "dark-data": "#bd7138",
         "light-data-ink": "#934e1e",
         "dark-data-ink": "#edae88"
@@ -1929,9 +1952,9 @@ export const values = freeze({
         "dark-tint-1": "#383547",
         "light-effect": "#945ae3",
         "dark-effect": "#b78aff",
-        "solid": "#ab92d9",
-        "on-solid": "#000000",
-        "light-data": "#ab92d9",
+        "solid": "#8760c4",
+        "on-solid": "#ffffff",
+        "light-data": "#8760c4",
         "light-data-edge": "#846baf",
         "dark-data": "#ab93d7",
         "light-data-ink": "#6d5398",
@@ -1949,10 +1972,10 @@ export const values = freeze({
         "dark-tint-1": "#333a3f",
         "light-effect": "#33a7b3",
         "dark-effect": "#4ddae9",
-        "solid": "#007e9c",
-        "on-solid": "#ffffff",
-        "light-data": "#007e9c",
-        "light-data-edge": "#007e9c",
+        "solid": "#2294a9",
+        "on-solid": "#000000",
+        "light-data": "#2294a9",
+        "light-data-edge": "#2294a9",
         "dark-data": "#1c87a5",
         "light-data-ink": "#00708e",
         "dark-data-ink": "#77cce6"
@@ -1960,7 +1983,14 @@ export const values = freeze({
     },
     "figure-data-line": "#2576eb",
     "flow-ink": {
-      "gray": "#ffffff"
+      "gray": "#ffffff",
+      "blue": "#ffffff",
+      "yellow": "#ffffff",
+      "red": "#ffffff",
+      "green": "#ffffff",
+      "orange": "#ffffff",
+      "purple": "#ffffff",
+      "cyan": "#ffffff"
     },
     "newsletter-button-color": "#4f91fb",
     "primary-hover": "#649fff",
@@ -2315,7 +2345,7 @@ export const values = freeze({
       "15": 15,
       "22": 22
     },
-    "figure-meta": 11,
+    "figure-meta": 12,
     "landing-newsletter-note": 15.2,
     "newsletter-button-font": 16.96,
     "5xl": 48,
@@ -2693,6 +2723,8 @@ export const values = freeze({
     "figure-dark-bg": "#26272b",
     "figure-dark-node": "#303136",
     "figure-dark-edge": "#50535b",
+    "figure-heat-low": "#eaf3c0",
+    "figure-dark-heat-low": "#1f3b3e",
     "figure-dark-separator": "#454850",
     "figure-dark-hover": "#343e50",
     "figure-dark-selection": "#274174",

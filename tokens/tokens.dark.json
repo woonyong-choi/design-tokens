@@ -512,6 +512,14 @@
       "$type": "color",
       "$value": "{primitive.callout-warning-dark}"
     },
+    "callout-background": {
+      "$type": "color",
+      "$value": "{primitive.callout-background-dark}"
+    },
+    "callout-border": {
+      "$type": "color",
+      "$value": "{primitive.callout-border-dark}"
+    },
     "prose-marker": {
       "$type": "color",
       "$value": "{color.ui-muted}"

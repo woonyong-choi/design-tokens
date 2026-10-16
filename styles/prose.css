@@ -70,7 +70,7 @@
 .app-prose .app-table-scroll { margin: 0 0 var(--spacing-prose-paragraph-gap); }
 .app-prose .is-center { text-align: center; }
 .app-prose .is-right { text-align: right; }
-.app-callout { padding: var(--component-callout-padding); background: var(--color-syntax-example-background); border: var(--border-width-thin) solid var(--color-syntax-example-border); border-radius: var(--radius-prose-pre-radius); margin: 0 0 var(--spacing-prose-paragraph-gap); }
+.app-callout { padding: var(--component-callout-padding); background: var(--color-callout-background); border: var(--border-width-thin) solid var(--color-callout-border); border-radius: var(--radius-prose-pre-radius); margin: 0 0 var(--spacing-prose-paragraph-gap); }
 .app-callout.is-warning { background: var(--color-callout-warning); }
 .app-details { margin-block: var(--spacing-gap); border-block: var(--border-width-thin) solid var(--color-ui-line); padding-block: var(--spacing-gap-sm); }
 .app-details summary { cursor: pointer; font-weight: var(--font-weight-semibold); }

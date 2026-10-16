@@ -239,6 +239,14 @@ test('warning_callout_list_marker_and_input_stay_readable_in_both_themes', () =>
       const warning = onSurface(value('color.callout-warning'), page);
       assert.ok(contrast(value('color.body'), warning) >= 4.5, `${mode} warning callout text on ${base}`);
       assert.ok(contrast(onSurface(value('color.prose-marker'), page), page) >= 3, `${mode} list marker on ${base}`);
+      const note = onSurface(value('color.callout-background'), page);
+      assert.ok(contrast(value('color.body'), note) >= 4.5, `${mode} callout text on ${base}`);
+      // Things처럼 다크 안내 상자는 페이지보다 밝은 면으로 구분한다. 라이트는 원래 옅은 면을 유지한다.
+      if (mode === 'dark') assert.ok(contrast(note, page) >= 1.2, `${mode} callout surface stands apart from ${base}`);
+      const mark = onSurface(value('color.prose-mark-background'), page);
+      assert.ok(contrast(value('color.body'), mark) >= 4.5, `${mode} marked text on ${base}`);
+      const toc = onSurface(value('color.toc-background'), page);
+      assert.ok(contrast(onSurface(value('color.toc-marker'), toc), toc) >= 3, `${mode} toc marker on ${base}`);
       const input = onSurface(value('color.input-background'), page);
       assert.ok(contrast(value('color.input-ink'), input) >= 4.5, `${mode} input text on ${base}`);
       assert.ok(contrast(value('color.input-placeholder'), input) >= 4.5, `${mode} input placeholder on ${base}`);
@@ -247,4 +255,6 @@ test('warning_callout_list_marker_and_input_stay_readable_in_both_themes', () =>
     assert.ok(contrast(value('color.feature-tab-ink'), value('color.feature-tab-selected')) >= (mode === 'dark' ? 7 : 4.5), `${mode} selected tab text stays clearly legible`);
   }
   assert.equal(resolveValue(tables.light, 'color.callout-warning'), resolveValue(tables.light, 'primitive.callout-warning'), 'light warning surface unchanged');
+  assert.equal(resolveValue(tables.dark, 'color.prose-mark-background'), resolveValue(tables.dark, 'color.callout-warning'), 'mark shares the warning surface');
+  assert.equal(resolveValue(tables.dark, 'color.toc-marker'), resolveValue(tables.dark, 'color.prose-marker'), 'toc marker shares the list marker');
 });

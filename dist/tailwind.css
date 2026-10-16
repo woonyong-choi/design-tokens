@@ -232,6 +232,8 @@
   --color-key-color: var(--primitive-key-color);
   --color-key-background: var(--primitive-key-background);
   --color-callout-warning: var(--primitive-callout-warning);
+  --color-callout-background: var(--color-syntax-example-background);
+  --color-callout-border: var(--color-syntax-example-border);
   --color-platform-color: var(--color-ink);
   --color-platform-hover: var(--primitive-platform-hover);
   --color-platform-active: var(--primitive-platform-active);
@@ -252,7 +254,7 @@
   --color-related-border: var(--primitive-navy-alpha-6);
   --color-toc-background: var(--primitive-syntax-example-background);
   --color-toc-border: var(--primitive-syntax-example-border);
-  --color-toc-marker: var(--primitive-landing-footer-ink);
+  --color-toc-marker: var(--color-prose-marker);
   --color-toc-underline: var(--primitive-toc-underline);
   --color-control-search-ink: var(--primitive-control-search-ink);
   --color-control-chevron-ink: var(--primitive-control-chevron-ink);
@@ -265,7 +267,7 @@
   --color-prose-rule-color: var(--primitive-prose-rule-color);
   --color-prose-caption-color: var(--color-ui-muted);
   --color-prose-link-active: var(--primitive-prose-link-active);
-  --color-prose-mark-background: var(--primitive-callout-warning);
+  --color-prose-mark-background: var(--color-callout-warning);
   --color-prose-marker: var(--primitive-landing-footer-ink);
   --color-action-link: var(--primitive-link);
   --color-category-blue-anchor: #1e6bd6;

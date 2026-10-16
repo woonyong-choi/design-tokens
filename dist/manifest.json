@@ -9850,8 +9850,8 @@
     "styles/tabs.css": "2293aae813588a94b1dceb1d417d9df6b161388e754fc9a34026fe4db2b29f7c",
     "styles/toolbar.css": "d684f208ad1092389604fa7904a3d4c8f5a87d5c38b46a467b254b273dfe12be",
     "tailwind.css": "3e31e2a23cc5e2e9099d53d6f2cec61e5be739ca60bdc5255e61283826b59589",
-    "tokens.css": "8f761340d6b0297cc38f0034c7400da179c6c76a9869bb11b531de439e743275",
-    "tokens.dark.json": "b184f96ea2bc3635225f760a53999f5ec96bf19fea86fd5e11a278424679a902",
+    "tokens.css": "29a761251c8d6ddd82cdb4bd80250f0167fe7cd7cae7ce0d989a181c3cc19b41",
+    "tokens.dark.json": "58c9a649fac5e3e6fde10c5fa0105f0d5ab5f9a8b399d85ac0af3c07dfd60aa9",
     "tokens.js": "a122145a7958933e65ee3e5d52cfaca0c5986b8c9fa84e64d17df4c16d80cca4",
     "tokens.json": "76755fe8787091389a84192524227acf5da5d24a08f0d6a38ce275e1bb232e23",
     "ui/build/check-tokens.mjs": "c3281b894a72ce7289fd489dcea5b36cdfea60a531ae7b12389ee949b7c107c1",
@@ -9884,5 +9884,5 @@
     "ui/table.mjs": "d285303ed3e84599a512085e79dfd92db751a890ad4890b81930f1ccf2126ae0",
     "ui/toolbar.mjs": "3fab9dbcd66cbb7273e8ce39d7754e5783ea4e605418dc4faf2c91831067cdd2"
   },
-  "contentHash": "fdc85379d957237ab52be1f944c4a16a3f0d04ab6f438df401dc3f284a059fae"
+  "contentHash": "055932b378fe5315ffb4965a4929038e37979f55c84e42ed4390a5c72624a50f"
 }

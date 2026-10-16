@@ -1406,6 +1406,7 @@
   --color-feature-hero-background: var(--color-ui-card);
   --color-feature-tab-background: rgba(255, 255, 255, 0.12);
   --color-input-placeholder: var(--color-gray-212);
+  --color-input-field-placeholder: var(--color-gray-212);
   --color-feature-tab-selected: var(--color-category-blue-dark-ink);
   --color-help-title-color: var(--color-ink);
   --color-help-copy-color: var(--color-body);
@@ -1567,6 +1568,7 @@
   --color-feature-hero-background: var(--color-ui-card);
   --color-feature-tab-background: rgba(255, 255, 255, 0.12);
   --color-input-placeholder: var(--color-gray-212);
+  --color-input-field-placeholder: var(--color-gray-212);
   --color-feature-tab-selected: var(--color-category-blue-dark-ink);
   --color-help-title-color: var(--color-ink);
   --color-help-copy-color: var(--color-body);
@@ -1727,6 +1729,7 @@
   --color-feature-hero-background: var(--primitive-feature-hero-background);
   --color-feature-tab-background: var(--primitive-feature-tab-background);
   --color-input-placeholder: var(--color-ui-muted);
+  --color-input-field-placeholder: var(--primitive-input-field-placeholder);
   --color-feature-tab-selected: var(--color-category-blue-anchor);
   --color-help-title-color: var(--primitive-help-title-color);
   --color-help-copy-color: var(--primitive-help-copy-color);

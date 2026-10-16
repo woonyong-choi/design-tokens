@@ -208,6 +208,7 @@
   --color-input-background: var(--color-feature-tab-background);
   --color-input-ink: var(--color-body);
   --color-input-placeholder: var(--color-ui-muted);
+  --color-input-field-placeholder: var(--primitive-input-field-placeholder);
   --color-feature-tab-selected: var(--color-category-blue-anchor);
   --color-help-title-color: var(--primitive-help-title-color);
   --color-help-copy-color: var(--primitive-help-copy-color);
@@ -1017,6 +1018,7 @@
   --primitive-help-inline-opacity: 0.3;
   --primitive-help-grouped-chevron: 12px 18px;
   --primitive-search-focus: 0 0 0 3px rgb(100,159,255);
+  --primitive-input-field-placeholder: #757575;
   --primitive-office-nav-background: rgba(255,255,255,.6);
   --primitive-layer-background: -1;
   --primitive-nav-hover-color: rgba(38,52,74,.7);
@@ -1323,7 +1325,6 @@
   --component-help-inline-margin: var(--primitive-help-inline-margin);
   --component-help-inline-chevron: var(--primitive-help-inline-chevron);
   --component-help-grouped-chevron: var(--primitive-help-grouped-chevron);
-  --component-search-focus: var(--primitive-search-focus);
   --component-input-focus: var(--primitive-search-focus);
   --component-search-suggestion-padding: var(--primitive-key-margin);
   --component-search-message-padding: var(--primitive-search-message-padding);

@@ -1,6 +1,6 @@
 /* 구독 입력과 제출 버튼. */
 .app-newsletter { width: var(--container-form); max-width: 100%; margin: 0 auto calc(var(--text-landing-review-font) * var(--leading-feature-body-line)); font-size: var(--text-landing-review-font); line-height: var(--leading-feature-line); text-align: center; }
-.app-newsletter-email { width: 100%; height: var(--spacing-control); margin-bottom: var(--spacing-underline); padding: var(--spacing-platform-button-y); background: var(--color-ui-card); border-radius: var(--radius-newsletter-input-radius); }
+.app-newsletter .app-input { margin-bottom: var(--spacing-underline); }
 .app-newsletter-note { margin: var(--spacing-landing-panel-gap) 0; font-size: var(--text-landing-newsletter-note); text-align: left; color: var(--color-control-muted); }
 .app-newsletter-note a { color: inherit; text-decoration: underline; }
 /* 구독 버튼은 한글 대체 글꼴의 normal 행간에도 높이를 유지한다. */
@@ -11,10 +11,22 @@
 .app-newsletter :disabled { opacity: 1; cursor: default; }
 .app-newsletter button:disabled, .app-newsletter button:disabled:hover { color: var(--color-body); background: var(--color-ui-line); box-shadow: none; }
 
-.app-newsletter-email { color: var(--color-body); }
-.app-newsletter-email::placeholder { color: var(--color-ui-muted); opacity: 1; }
 
-/* 일반 텍스트 입력. 분할 탭 묶음과 같은 면·곡률·높이를 쓴다. 검색 입력은 큰 글자와 아이콘 자리를 가진 별도 역할이다. */
+/* 텍스트 입력의 단일 구현. 일반 입력·검색·구독이 모두 .app-input을 쓰고 크기·면·앞 아이콘 칸만 변형한다.
+   기본은 분할 탭 묶음과 같은 면·곡률·높이다. 크기 is-medium·is-large는 검색의 본문·강조 크기, is-control은 구독 폼 크기다.
+   면 is-field는 검색의 불투명 면, is-card는 테두리가 있는 카드 면이다. */
 .app-input { box-sizing: border-box; width: 100%; height: var(--spacing-input-height); margin: 0; padding: 0 var(--spacing-gap-sm); border: 0; border-radius: var(--radius-input-radius); background: var(--color-input-background); color: var(--color-input-ink); font: inherit; font-size: var(--text-input-font); line-height: var(--leading-line-compact); }
 .app-input::placeholder { color: var(--color-input-placeholder); opacity: 1; }
 .app-input:focus { outline: 0; box-shadow: var(--component-input-focus); }
+.app-input.is-medium { height: auto; padding: var(--component-article-search-padding); border-radius: var(--radius-article-search-radius); font-size: var(--text-article-search-font); line-height: var(--leading-line-intro); }
+.app-input.is-large { height: auto; padding: var(--component-search-input-padding); border-radius: var(--radius-search-input-radius); font-size: var(--text-search-input-font); line-height: var(--leading-line-intro); }
+.app-input.is-control { height: var(--spacing-control); padding: var(--spacing-platform-button-y); border-radius: var(--radius-newsletter-input-radius); font-size: inherit; line-height: normal; }
+.app-input.is-field { background: var(--color-search-bg); }
+.app-input.is-field::placeholder { color: var(--color-input-field-placeholder); }
+.app-input.is-card { background: var(--color-ui-card); border: var(--border-width-thin) solid var(--color-ui-line); }
+.app-input.is-card::placeholder { color: var(--color-ui-muted); }
+/* 앞 아이콘 칸. 기본·본문 크기는 일반 아이콘, 강조 크기는 검색 아이콘 크기를 쓴다. 중간·큰 크기의 여백에는 아이콘 칸과 뒤 동작 칸이 들어 있다. */
+.app-input-field { position: relative; }
+.app-input-icon { position: absolute; top: 50%; left: var(--spacing-gap-xs); width: var(--spacing-icon); transform: translateY(-50%); }
+.app-input-field:has(> .app-input.is-large) > .app-input-icon { width: var(--spacing-search-icon-size); }
+.app-input-field > .app-input:not(.is-medium, .is-large) { padding-left: calc(var(--spacing-gap-xs) * 2 + var(--spacing-icon)); }

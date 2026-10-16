@@ -209,6 +209,7 @@
   --color-input-background: var(--color-feature-tab-background);
   --color-input-ink: var(--color-body);
   --color-input-placeholder: var(--color-ui-muted);
+  --color-input-field-placeholder: var(--primitive-input-field-placeholder);
   --color-feature-tab-selected: var(--color-category-blue-anchor);
   --color-help-title-color: var(--primitive-help-title-color);
   --color-help-copy-color: var(--primitive-help-copy-color);

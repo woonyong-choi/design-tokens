@@ -290,11 +290,19 @@ test('home_and_list_components_have_one_definition_with_escaped_text_and_checked
   assert.match(html(ui.Section({ variant: 'form', content: ui.EmailForm(newsletter) })), /app-landing-section app-landing-newsletter/);
   assert.ok(ui.OWNED_CLASSES.includes('app-newsletter'));
   const input = html(ui.TextInput({ id: 'title', label: '<제목>', placeholder: '이름 & 설명', describedBy: 'title-note' }));
-  assert.equal(input, '<label class="app-sr" for="title">&lt;제목&gt;</label><input class="app-input" type="text" id="title" name="title" value="" placeholder="이름 &amp; 설명" aria-describedby="title-note">');
+  assert.equal(input, '<label class="app-sr" for="title">&lt;제목&gt;</label><input class="app-input" type="text" id="title" name="title" placeholder="이름 &amp; 설명" aria-describedby="title-note">');
   assert.match(html(ui.TextInput({ id: 'mail', name: 'email', label: '메일', type: 'email', value: 'a"b', required: true, disabled: true })), /type="email" id="mail" name="email" value="a&quot;b" required disabled>$/);
   assert.throws(() => ui.TextInput({ id: 'a b', label: 'x' }), /Invalid id/);
   assert.throws(() => ui.TextInput({ id: 'x', label: 'x', type: 'search' }), /Unknown input type/);
   assert.ok(ui.OWNED_CLASSES.includes('app-input'));
+  const inputIcon = trusted('<svg class="app-input-icon"></svg>');
+  const field = html(ui.TextInput({ id: 'q', label: '검색어', size: 'large', surface: 'field', icon: inputIcon, action: trusted('<button type="button"></button>'), role: 'combobox', controls: 'list' }));
+  assert.equal(field, '<label class="app-sr" for="q">검색어</label><div class="app-input-field"><svg class="app-input-icon"></svg><input class="app-input is-large is-field" type="text" id="q" name="q" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="list"><button type="button"></button></div>');
+  assert.match(html(ui.TextInput({ id: 'm', label: 'x', size: 'control', surface: 'card' })), /class="app-input is-control is-card"/);
+  assert.throws(() => ui.TextInput({ id: 'x', label: 'x', size: 'huge' }), /Unknown input size/);
+  assert.throws(() => ui.TextInput({ id: 'x', label: 'x', surface: 'glass' }), /Unknown input surface/);
+  assert.throws(() => ui.TextInput({ id: 'x', label: 'x', role: 'combobox' }), /combobox requires controls/);
+  assert.throws(() => ui.TextInput({ id: 'x', label: 'x', icon: '<svg/>' }), /icon must be trusted/);
   const forms = read('../styles/forms.css');
   for (const token of ['--color-input-background', '--radius-input-radius', '--spacing-input-height', '--color-input-placeholder', '--component-input-focus']) assert.match(forms, new RegExp(`var\\(${token}\\)`), token);
   const intro = html(ui.SectionIntro({ id: 'a-title', icon, title: 'T<', description: trusted('<p>d</p>'), links: trusted('<a href="/x/">x</a>'), action: { href: '/more/', label: '더 보기' } }));
@@ -526,4 +534,27 @@ test('search results omit absent icons and messages keep separate escaped lines'
   assert.doesNotMatch(result, /app-content-icon|undefined/);
   assert.match(result, /<strong>T<\/strong>/);
   assert.equal(html(ui.SearchMessage({ lines: ['failed <', 'retry &'] })), '<div class="app-search-message"><p>failed &lt;<br>retry &amp;</p></div>');
+});
+
+// 텍스트 입력의 마크업·모양은 TextInput과 forms.css의 .app-input 한 곳만 소유한다.
+test('text_inputs_have_one_implementation', () => {
+  const sources = ['components', 'layout', 'patterns', 'document', 'table', 'toolbar', 'icons', 'diagram'].map(name => [name, read(`../ui/${name}.mjs`)]);
+  const emitters = sources.flatMap(([name, text]) => [...text.matchAll(/<input\b/g)].map(() => name));
+  assert.deepEqual(emitters, ['layout'], 'only TextInput writes an input element');
+  const layout = read('../ui/layout.mjs');
+  assert.ok(layout.indexOf('<input') > layout.indexOf('export function TextInput(') && layout.indexOf('<input') < layout.indexOf('export function EmailForm('), 'the input element belongs to TextInput');
+  const labels = { region: '검색', input: '검색어', placeholder: '입력', clear: '지우기' };
+  for (const output of [html(ui.SearchBox({ action: '/search/', labels })), html(ui.SearchBox({ action: '/search/', labels, large: true })), html(ui.EmailForm({ id: 's', field: 'email', label: '메일', placeholder: 'a', button: 'b' }))]) {
+    assert.deepEqual([...output.matchAll(/<input class="([^"]+)"/g)].map(match => match[1].split(' ')[0]), ['app-input']);
+  }
+  const modules = read('../styles/index.css').match(/[\w-]+\.css/g).filter(name => name !== 'index.css');
+  for (const name of modules) {
+    const css = read(`../styles/${name}`);
+    const inputClasses = [...css.matchAll(/\.(app-[\w-]*(?:input|email)[\w-]*)/g)].map(match => match[1]).filter(cls => !['app-input', 'app-input-field', 'app-input-icon'].includes(cls));
+    assert.deepEqual(inputClasses, [], `${name} defines no separate input class`);
+    if (name !== 'forms.css') {
+      assert.doesNotMatch(css, /::placeholder/, `${name} leaves placeholder color to .app-input`);
+      assert.doesNotMatch(css.replace(/button, input, textarea, select \{[^}]*\}/g, ''), /(?:^|[\s,>])input\b(?!-)/m, `${name} does not style input elements`);
+    }
+  }
 });

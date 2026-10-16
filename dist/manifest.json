@@ -9928,8 +9928,8 @@
     "assets/icons/transport/zeppelin.svg": "b17e60261ec9a931a59484018fe58520eaf883cbe39e5bb3d2cd7e3a55446813",
     "assets/illustrations/project-placeholder.svg": "4453cd5c92033929e11a57d6f1cc112c9f9b013e0c6f34f6815d665e18b9c336",
     "assets/sources.json": "053f6fb72d3a4566a11771f370bfd0aa8d0be68dd017cce20efa234cf00a567d",
-    "styles.css": "3a082e26fd99e1978a21adb2dfc6ec165fa651138ce32196c1ad9c7d7e6c17d3",
-    "styles.source.css": "340b908925c9713b6c626c13b216dd2010a1fbb45d6c57be36d5bb173f57de1a",
+    "styles.css": "ab3577f113d366e4ab5969e9a2130a98f9cdb8ab067edd9ef81984b8cd298520",
+    "styles.source.css": "b570e098cccaf45308fe74294416acba29921fda46709450b82e6fcd3fdf9e5b",
     "styles/diagram-embed.css": "f8743b4bb0f2f8485338d2a2311a6bc37e8a10ef61eb8142e0b59b0a1b460ef0",
     "styles/diagram/chart.css": "5c7d1bf3f2fdff3f9b99f2a13960d767efcd1439ebbe399e275540d9b8ff3a7a",
     "styles/diagram/document.css": "ee8346db461b292627ccebf3b1e9ffbc9bf500d6644cac8969327440df5f40dd",
@@ -9975,5 +9975,5 @@
     "ui/table.mjs": "d285303ed3e84599a512085e79dfd92db751a890ad4890b81930f1ccf2126ae0",
     "ui/toolbar.mjs": "3fab9dbcd66cbb7273e8ce39d7754e5783ea4e605418dc4faf2c91831067cdd2"
   },
-  "contentHash": "f6f58f342f7e6ef8dfa83dbe69a7b6fd11fbaed56881b2b59de92e71e35eb48b"
+  "contentHash": "459dc1560be3be1040a88b14ded2d1ec84b520ba98aff95e08b2741ca9d131ba"
 }

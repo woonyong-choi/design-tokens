@@ -2,6 +2,7 @@
 import { escape, safeUrl, isTrusted, slot, id, out } from './html.mjs';
 import { Card } from './components.mjs';
 import { ControlIcon } from './icons.mjs';
+import { TextInput } from './layout.mjs';
 
 export function ContentIcon({ graphic, badge, size = 'card' }) {
   if (!['small', 'medium', 'card', 'proof'].includes(size)) throw new Error(`Unknown icon size: ${size}`);
@@ -9,7 +10,7 @@ export function ContentIcon({ graphic, badge, size = 'card' }) {
 }
 
 export function SearchBox({ combobox = true, large = false, query = '', action, labels, suggestions = [], fallback }) {
-  return out(`<section class="app-search app-public-search${large ? ' is-prominent' : ''}" data-public-search aria-label="${escape(labels.region)}"><form action="${safeUrl(action)}" role="search"><label class="app-sr" for="site-query">${escape(labels.input)}</label><div class="app-search-field">${ControlIcon('search', 'app-search-icon')}<input class="app-search-input" id="site-query" name="q" type="text" value="${escape(query)}" placeholder="${escape(labels.placeholder)}" autocomplete="off" ${combobox ? 'role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="search-suggestions"' : 'role="searchbox"'}><button class="app-search-clear" type="button" data-clear-query aria-label="${escape(labels.clear)}" hidden>${ControlIcon('clear')}</button></div></form><div class="app-search-panel" id="search-suggestions" role="listbox" hidden></div><p class="app-sr" data-search-status role="status" aria-live="polite"></p>${suggestions.length ? `<p class="app-search-frequent">${escape(labels.suggestions)} ${suggestions.map(query => `<button type="button" data-query="${escape(query)}">${escape(query)}</button>`).join(' ')}</p>` : ''}${fallback ? `<noscript>${slot(fallback, 'fallback')}</noscript>` : ''}</section>`);
+  return out(`<section class="app-search app-public-search${large ? ' is-prominent' : ''}" data-public-search aria-label="${escape(labels.region)}"><form action="${safeUrl(action)}" role="search">${TextInput({ id: 'site-query', name: 'q', label: labels.input, value: query, placeholder: labels.placeholder, autocomplete: 'off', size: large ? 'large' : 'medium', surface: 'field', icon: ControlIcon('search', 'app-input-icon'), action: out(`<button class="app-search-clear" type="button" data-clear-query aria-label="${escape(labels.clear)}" hidden>${ControlIcon('clear')}</button>`), role: combobox ? 'combobox' : 'searchbox', controls: combobox ? 'search-suggestions' : undefined })}</form><div class="app-search-panel" id="search-suggestions" role="listbox" hidden></div><p class="app-sr" data-search-status role="status" aria-live="polite"></p>${suggestions.length ? `<p class="app-search-frequent">${escape(labels.suggestions)} ${suggestions.map(query => `<button type="button" data-query="${escape(query)}">${escape(query)}</button>`).join(' ')}</p>` : ''}${fallback ? `<noscript>${slot(fallback, 'fallback')}</noscript>` : ''}</section>`);
 }
 
 export function DocumentArticle({ title, icon, lead, metadata, body, after }) {

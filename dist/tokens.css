@@ -196,6 +196,10 @@
   --color-feature-box-background: var(--primitive-feature-box-background);
   --color-feature-hero-background: var(--primitive-feature-hero-background);
   --color-feature-tab-background: var(--primitive-feature-tab-background);
+  --color-input-background: var(--color-feature-tab-background);
+  --color-input-ink: var(--color-body);
+  --color-input-placeholder: var(--color-ui-muted);
+  --color-input-field-placeholder: var(--primitive-input-field-placeholder);
   --color-feature-tab-selected: var(--color-category-blue-anchor);
   --color-help-title-color: var(--primitive-help-title-color);
   --color-help-copy-color: var(--primitive-help-copy-color);
@@ -219,6 +223,8 @@
   --color-key-color: var(--primitive-key-color);
   --color-key-background: var(--primitive-key-background);
   --color-callout-warning: var(--primitive-callout-warning);
+  --color-callout-background: var(--color-syntax-example-background);
+  --color-callout-border: var(--color-syntax-example-border);
   --color-platform-color: var(--color-ink);
   --color-platform-hover: var(--primitive-platform-hover);
   --color-platform-active: var(--primitive-platform-active);
@@ -239,7 +245,7 @@
   --color-related-border: var(--primitive-navy-alpha-6);
   --color-toc-background: var(--primitive-syntax-example-background);
   --color-toc-border: var(--primitive-syntax-example-border);
-  --color-toc-marker: var(--primitive-landing-footer-ink);
+  --color-toc-marker: var(--color-prose-marker);
   --color-toc-underline: var(--primitive-toc-underline);
   --color-control-search-ink: var(--primitive-control-search-ink);
   --color-control-chevron-ink: var(--primitive-control-chevron-ink);
@@ -252,7 +258,7 @@
   --color-prose-rule-color: var(--primitive-prose-rule-color);
   --color-prose-caption-color: var(--color-ui-muted);
   --color-prose-link-active: var(--primitive-prose-link-active);
-  --color-prose-mark-background: var(--primitive-callout-warning);
+  --color-prose-mark-background: var(--color-callout-warning);
   --color-prose-marker: var(--primitive-landing-footer-ink);
   --color-action-link: var(--primitive-link);
   --color-category-blue-anchor: #1e6bd6;
@@ -464,6 +470,7 @@
   --spacing-feature-box-padding: var(--primitive-feature-box-padding);
   --spacing-feature-tab-height: var(--primitive-feature-tab-height);
   --spacing-feature-tab-inset: var(--primitive-feature-tab-inset);
+  --spacing-input-height: calc(var(--spacing-feature-tab-height) + var(--spacing-feature-tab-inset) * 2);
   --spacing-search-icon-size: var(--primitive-search-icon-size);
   --spacing-help-title-gap: var(--primitive-help-title-gap);
   --spacing-search-suggestion-width: var(--primitive-search-suggestion-width);
@@ -593,6 +600,7 @@
   --radius-landing-review-avatar-radius: var(--primitive-landing-review-avatar-radius);
   --radius-feature-box-radius: var(--primitive-feature-box-radius);
   --radius-feature-tab-radius: var(--primitive-feature-tab-radius);
+  --radius-input-radius: var(--radius-feature-tab-radius);
   --radius-feature-tab-button-radius: var(--primitive-feature-tab-button-radius);
   --radius-search-input-radius: var(--primitive-search-input-radius);
   --radius-article-search-radius: var(--primitive-article-search-radius);
@@ -638,6 +646,7 @@
   --text-landing-review-meta: var(--text-tiny-text);
   --text-nav-text: var(--primitive-nav-text);
   --text-feature-tab-font: var(--primitive-feature-tab-font);
+  --text-input-font: var(--text-feature-tab-font);
   --text-nav-desktop-text: var(--text-small-text);
   --text-search-input-font: var(--primitive-search-input-font);
   --text-post-date-size: var(--primitive-post-date-size);
@@ -940,6 +949,9 @@
   --primitive-callout-padding: .5em .75em;
   --primitive-callout-title-gap: .7em;
   --primitive-callout-warning: #fcf9cf;
+  --primitive-callout-warning-dark: rgba(255,214,3,.32);
+  --primitive-callout-background-dark: rgba(240,246,255,.09);
+  --primitive-callout-border-dark: rgba(236,244,255,.07);
   --primitive-task-size: 1.667cap;
   --primitive-task-align: -.3335cap;
   --primitive-platform-nav-margin: .5em 0 1em;
@@ -959,6 +971,7 @@
   --primitive-help-inline-opacity: 0.3;
   --primitive-help-grouped-chevron: 12px 18px;
   --primitive-search-focus: 0 0 0 3px rgb(100,159,255);
+  --primitive-input-field-placeholder: #757575;
   --primitive-office-nav-background: rgba(255,255,255,.6);
   --primitive-layer-background: -1;
   --primitive-nav-hover-color: rgba(38,52,74,.7);
@@ -1257,7 +1270,7 @@
   --component-help-inline-margin: var(--primitive-help-inline-margin);
   --component-help-inline-chevron: var(--primitive-help-inline-chevron);
   --component-help-grouped-chevron: var(--primitive-help-grouped-chevron);
-  --component-search-focus: var(--primitive-search-focus);
+  --component-input-focus: var(--primitive-search-focus);
   --component-search-suggestion-padding: var(--primitive-key-margin);
   --component-search-message-padding: var(--primitive-search-message-padding);
   --component-control-task-stroke: var(--primitive-control-task-stroke);
@@ -1392,6 +1405,7 @@
   --color-feature-box-background: var(--color-ui-card);
   --color-feature-hero-background: var(--color-ui-card);
   --color-feature-tab-background: rgba(255, 255, 255, 0.12);
+  --color-input-placeholder: var(--color-gray-212);
   --color-feature-tab-selected: var(--color-category-blue-dark-ink);
   --color-help-title-color: var(--color-ink);
   --color-help-copy-color: var(--color-body);
@@ -1404,6 +1418,9 @@
   --color-gallery-selected: var(--color-ink);
   --color-prose-code-color: var(--color-ink);
   --color-prose-pre-background: var(--primitive-figure-dark-bg);
+  --color-callout-warning: var(--primitive-callout-warning-dark);
+  --color-callout-background: var(--primitive-callout-background-dark);
+  --color-callout-border: var(--primitive-callout-border-dark);
   --color-platform-hover: var(--color-control-hover);
   --color-platform-active: var(--color-feature-tab-background);
   --color-nav-hover-color: var(--color-ink);
@@ -1412,9 +1429,10 @@
   --color-description-color: var(--color-body);
   --color-search-message-color: var(--color-ui-muted);
   --color-related-background: var(--color-ui-card);
+  --color-prose-marker: var(--color-ui-muted);
   --color-flow-ink-gray: var(--color-gray-933);
   --color-landing-newsletter-note-ink: var(--color-ui-muted);
-  --color-feature-tab-ink: var(--primitive-ink);
+  --color-feature-tab-ink: var(--color-gray-933);
   --color-gallery-selected-ink: var(--primitive-ink);
   --color-tag-background: var(--color-prose-pre-background);
   --color-help-grouped-bg: var(--color-ui-card);
@@ -1548,6 +1566,7 @@
   --color-feature-box-background: var(--color-ui-card);
   --color-feature-hero-background: var(--color-ui-card);
   --color-feature-tab-background: rgba(255, 255, 255, 0.12);
+  --color-input-placeholder: var(--color-gray-212);
   --color-feature-tab-selected: var(--color-category-blue-dark-ink);
   --color-help-title-color: var(--color-ink);
   --color-help-copy-color: var(--color-body);
@@ -1560,6 +1579,9 @@
   --color-gallery-selected: var(--color-ink);
   --color-prose-code-color: var(--color-ink);
   --color-prose-pre-background: var(--primitive-figure-dark-bg);
+  --color-callout-warning: var(--primitive-callout-warning-dark);
+  --color-callout-background: var(--primitive-callout-background-dark);
+  --color-callout-border: var(--primitive-callout-border-dark);
   --color-platform-hover: var(--color-control-hover);
   --color-platform-active: var(--color-feature-tab-background);
   --color-nav-hover-color: var(--color-ink);
@@ -1568,9 +1590,10 @@
   --color-description-color: var(--color-body);
   --color-search-message-color: var(--color-ui-muted);
   --color-related-background: var(--color-ui-card);
+  --color-prose-marker: var(--color-ui-muted);
   --color-flow-ink-gray: var(--color-gray-933);
   --color-landing-newsletter-note-ink: var(--color-ui-muted);
-  --color-feature-tab-ink: var(--primitive-ink);
+  --color-feature-tab-ink: var(--color-gray-933);
   --color-gallery-selected-ink: var(--primitive-ink);
   --color-tag-background: var(--color-prose-pre-background);
   --color-help-grouped-bg: var(--color-ui-card);
@@ -1703,6 +1726,7 @@
   --color-feature-box-background: var(--primitive-feature-box-background);
   --color-feature-hero-background: var(--primitive-feature-hero-background);
   --color-feature-tab-background: var(--primitive-feature-tab-background);
+  --color-input-placeholder: var(--color-ui-muted);
   --color-feature-tab-selected: var(--color-category-blue-anchor);
   --color-help-title-color: var(--primitive-help-title-color);
   --color-help-copy-color: var(--primitive-help-copy-color);
@@ -1715,6 +1739,9 @@
   --color-gallery-selected: var(--primitive-gallery-selected);
   --color-prose-code-color: var(--primitive-prose-code-color);
   --color-prose-pre-background: var(--primitive-help-bg);
+  --color-callout-warning: var(--primitive-callout-warning);
+  --color-callout-background: var(--color-syntax-example-background);
+  --color-callout-border: var(--color-syntax-example-border);
   --color-platform-hover: var(--primitive-platform-hover);
   --color-platform-active: var(--primitive-platform-active);
   --color-nav-hover-color: var(--primitive-nav-hover-color);
@@ -1723,6 +1750,7 @@
   --color-description-color: var(--primitive-body);
   --color-search-message-color: var(--primitive-search-message-color);
   --color-related-background: var(--primitive-blue-alpha-4);
+  --color-prose-marker: var(--primitive-landing-footer-ink);
   --color-flow-ink-gray: var(--color-gray-0);
   --color-landing-newsletter-note-ink: var(--primitive-landing-newsletter-note-ink);
   --color-feature-tab-ink: var(--color-control-paper);

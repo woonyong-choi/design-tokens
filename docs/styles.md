@@ -27,6 +27,7 @@
 `color.workspace.sidebar`, `document`, `toolbar`는 탐색·문서·도구 표면이다. `hover`와 `selected`는 중립 상태 면이고 글자는 `color.ink`를 사용한다. 모두 기존 회색 단계를 참조하며 라이트·다크에서 본문과 탐색 영역을 구분한다. 소비자는 제품명으로 별도 팔레트를 만들지 않는다. 이 토큰은 기존 웹 구성 요소의 모양을 자동으로 바꾸지 않는다.
 
 다크 카드의 면은 `color.ui-card`, 제목은 `color.ink`, 설명은 `color.body`를 읽는다. 선택과 눌림의 배경에서도 글자 대비를 유지한다. grouped와 related 카드는 다크 모드에서 자체 중립 면을 가져 밝은 페이지 안에서도 글자가 사라지지 않는다. 페이지 배경과 일반 링크색은 바꾸지 않는다. 카드 배경을 공유하는 문서 목차의 호버·선택 글자는 `color.document-nav-active-ink`로 분리해 같은 배경에서 읽히게 한다.
+텍스트 입력은 `TextInput`과 `.app-input` 하나로 구현한다. 일반 입력·검색·구독이 모두 이 구성 요소를 조립하며 다른 모듈은 입력의 모양을 정의하지 않는다. 기본은 분할 탭 묶음과 같은 면(`color.input-background`)·곡률(`radius.input-radius`)·높이(`spacing.input-height`, 탭 높이와 안쪽 여백 두 배의 합)다. 글자는 `color.input-ink`, 안내 문구는 `color.input-placeholder`이며 다크의 안내 문구는 `color.gray.212`로 반투명 면 위 4.5:1 이상을 유지한다. 초점은 `component.input-focus` 링이다. 변형은 크기와 면, 앞 아이콘 칸뿐이다. 크기 `medium`·`large`는 검색의 본문·강조 크기(`article-search-*`, `search-input-*`)이고 여백에 앞 아이콘 칸과 뒤 지우기 칸이 들어 있다. `control`은 구독 폼 크기다. 면 `field`는 검색의 불투명 면(`color.search-bg`)과 기존 검색 안내 문구 색 `color.input-field-placeholder`(`#757575`, Chrome 기본값과 같은 값)를 쓰고, `card`는 `color.ui-card` 면과 `color.ui-line` 테두리를 쓴다. 앞 아이콘은 `.app-input-field` 안의 `.app-input-icon`이며 강조 크기에서만 검색 아이콘 크기를 쓴다.
 검색 입력 글자는 웹 본문과 같은 `color.body`를 사용한다. 브라우저 기본 입력 색에 의존하지 않아 라이트·다크 모두 본문 위계를 유지한다.
 
 ## 모듈과 생성
@@ -44,12 +45,13 @@
 | 구성 요소 | 스타일 계약 |
 |---|---|
 | SiteHeader, SiteFooter | `.app-shell`, `.app-header`, `.app-nav`, `.app-logo`, `.app-logo-brand`, `.app-footer` |
-| EmailForm | `.app-newsletter`, `.app-newsletter-email`, `.app-newsletter-note` |
+| EmailForm | `.app-newsletter`, `.app-newsletter-note` |
+| TextInput | `.app-input`, `.app-input-field`, `.app-input-icon` |
 | Hero, Section, SectionIntro, QuoteCard | `.app-hero-copy`, `.app-hero-logo`, `.app-hero-wordmark`, `.app-landing-section`, `.app-landing-heading`, `.app-landing-icon`, `.app-interview-summary` |
 | Card, CardGroup | `.app-help-card`, `.app-card-summary`, `.app-support-grid` |
 | BlogCard | `.app-blog-card`, `.app-blog-card-link`, `.app-blog-card-body` |
 | Tag, TagList | `.app-tag`, `.app-tags` |
-| SearchBox, SearchResult | `.app-search-input`, `.app-search-entry`, `.app-search-result-link` |
+| SearchBox, SearchResult | `.app-search-clear`, `.app-search-entry`, `.app-search-result-link` |
 | DocumentArticle, PostArticle | `.app-prose`, `.app-blog-post`, `.app-article-lead` |
 | CodeBlock, CopyButton | `.app-code`, `.app-tool-header`, `.app-tool-label` |
 | Table | `.app-table-scroll`, `.app-table` |
@@ -112,7 +114,7 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 태그는 카드·본문·검색에서 같은 13px 크기와 배경을 사용한다. 외곽선이 없으며 hover와 focus는 `color.tag-hover`와 `color.on-action`을 사용한다. 카드 태그는 한 줄을 넘으면 말줄임하며 키보드 초점이 이동하면 해당 링크를 볼 수 있다. 날짜·작성자·댓글의 노출 여부는 소비자 데이터가 정한다.
 
-태그의 hover·focus와 탭 글자는 실제 합성 배경에서 4.5:1 이상, 탭 선택 면은 비선택 면과 3:1 이상의 대비를 유지한다. 일반·분할 탭은 `color.feature-tab-selected`와 `color.feature-tab-ink`를 함께 사용한다. 숫자 탭은 두 테마 모두 무채색의 `color.gallery-selected`와 `color.gallery-selected-ink`를 사용하며, 다크 모드에서 밝은 면과 어두운 숫자로 명암을 뒤집는다.
+태그의 hover·focus와 탭 글자는 실제 합성 배경에서 4.5:1 이상, 탭 선택 면은 비선택 면과 3:1 이상의 대비를 유지한다. 일반·분할 탭은 `color.feature-tab-selected`와 `color.feature-tab-ink`를 함께 사용한다. 다크의 선택 면은 비선택 면과의 대비를 위해 밝은 파랑이므로 글자는 `color.gray.933`으로 두어 7:1 이상을 유지한다. 재생기의 장면 탭도 같은 규칙을 읽는다. 숫자 탭은 두 테마 모두 무채색의 `color.gallery-selected`와 `color.gallery-selected-ink`를 사용하며, 다크 모드에서 밝은 면과 어두운 숫자로 명암을 뒤집는다.
 
 `CollectionHeader`는 제목 아래 돌아가기와 선택 보조 동작을 배치한다. 전체 보기·돌아가기·본문 이어 읽기는 `NavigationLink`의 글꼴·크기·색과 꺾쇠를 공유한다. 카드 열 개수는 묶음의 속성이고 바깥 컨테이너 폭과 분리한다. 홈페이지의 넓은 CS 4열·Tech 5열은 소비자의 구성이다.
 
@@ -124,7 +126,7 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 표는 내용의 고유 폭을 확보해 코드 옆의 짧은 설명이 한두 글자씩 세로로 눌리지 않게 한다. 긴 셀은 기존 본문 읽기 폭인 `container.body-width` 안에서 줄바꿈한다. 코드도 긴 식은 줄바꿈하되 공백·줄바꿈과 원문을 보존한다. 좁은 화면에서는 표 영역 안에서 가로로 이동하고 페이지 전체 폭은 늘리지 않는다.
 
-본문은 `app-prose` 위계를 사용한다. `color.body`는 `color.ink`를 참조하므로 테마가 잉크 역할을 바꾸면 본문도 같은 글자색을 상속한다. 밝은 테마와 어두운 테마 모두 페이지 면 위 본문 대비를 검사한다. 코드의 기본 글자와 구문 역할도 다크 팔레트를 상속하며 인라인 코드와 코드 블록의 실제 면 위에서 대비를 검사한다. 본문 링크, 코드, 표, 인용문, 수식, 그림과 캡션이 공통 역할을 참조한다. 캡션·`small`·작은 안내 글자의 `color.prose-caption-color`는 `color.ui-muted`를 참조해 두 테마의 페이지 면 위에서 4.5:1 이상을 유지한다. Things의 캡션 색(`rgba(4,15,26,.5)`, 다크 `rgba(239,246,255,.49)`)은 페이지 면 위에서 약 3.6:1·4.1:1이라 이 기준에 못 미치므로 더 진한 보조 글자색을 쓰는 것은 의도된 차이다. 본문보다 작은 `text.post-date-size`와 낮은 대비로 본문보다 낮은 위계는 유지한다. 제목의 원래 단계는 `app-heading-N`으로 유지한다. 코드 구문 역할은 `SYNTAX_ROLES`와 `SyntaxToken`으로 연결하며 분석기는 소비자가 선택한다.
+본문은 `app-prose` 위계를 사용한다. `color.body`는 `color.ink`를 참조하므로 테마가 잉크 역할을 바꾸면 본문도 같은 글자색을 상속한다. 밝은 테마와 어두운 테마 모두 페이지 면 위 본문 대비를 검사한다. 코드의 기본 글자와 구문 역할도 다크 팔레트를 상속하며 인라인 코드와 코드 블록의 실제 면 위에서 대비를 검사한다. 본문 링크, 코드, 표, 인용문, 수식, 그림과 캡션이 공통 역할을 참조한다. 캡션·`small`·작은 안내 글자의 `color.prose-caption-color`는 `color.ui-muted`를 참조해 두 테마의 페이지 면 위에서 4.5:1 이상을 유지한다. Things의 캡션 색(`rgba(4,15,26,.5)`, 다크 `rgba(239,246,255,.49)`)은 페이지 면 위에서 약 3.6:1·4.1:1이라 이 기준에 못 미치므로 더 진한 보조 글자색을 쓰는 것은 의도된 차이다. 본문보다 작은 `text.post-date-size`와 낮은 대비로 본문보다 낮은 위계는 유지한다. 제목의 원래 단계는 `app-heading-N`으로 유지한다. 목록 기호 `color.prose-marker`는 라이트에서 Things 값을 쓰고 다크에서 `color.ui-muted`를 참조해 두 테마의 페이지 면 위에서 3:1 이상을 유지한다. Things 다크 기호(`rgba(219,234,255,.51)`)보다 약간 진한 것은 기존 보조 글자 역할을 재사용한 결과다. 주의 안내 `.app-callout.is-warning`의 면 `color.callout-warning`은 라이트에서 기존 노랑 면을 유지하고, 다크에서 Things의 다크 노랑 안내 면과 같은 반투명 노랑(`primitive.callout-warning-dark`)을 써서 본문색의 대비 4.5:1 이상을 지킨다. 일반 안내 상자는 `color.callout-background`·`color.callout-border`를 읽고, 다크에서 Things 다크 안내 상자 값(`rgba(240,246,255,.09)`, 테두리 `rgba(236,244,255,.07)`)으로 페이지보다 밝은 면을 둔다. 라이트는 기존 코드 예시 면을 참조한다. 본문 `mark` 배경 `color.prose-mark-background`는 `color.callout-warning`을 참조해 다크에서 같은 반투명 노랑을 쓴다. 목차 기호 `color.toc-marker`는 `color.prose-marker`를 참조해 본문 글머리와 같은 기준을 따른다. 그림 격자 칸 안의 `.app-figure`는 바깥 여백이 없어 이미지가 칸 폭을 채우며 칸 사이는 격자의 `spacing.gap`만 둔다. 코드 구문 역할은 `SYNTAX_ROLES`와 `SyntaxToken`으로 연결하며 분석기는 소비자가 선택한다.
 
 코드 블록과 도표는 `ToolHeader`, `Toolbar`, `ToolButton`을 조립한다. 코드·그림의 면 안쪽 오른쪽에 도구 막대를 두고 머리글이 버튼 높이를 차지하므로 콘텐츠와 겹치지 않는다. 아이콘은 공통 조작 자산, 44px 버튼·호버·초점은 `styles/toolbar.css` 하나가 정한다. 도구 막대와 확대 버튼 묶음은 별도 배경·테두리·그림자를 두지 않는다. 호버와 키보드 초점의 아이콘은 `color.accent`, 배경은 `color.control-hover`를 사용하고 누르는 동안만 `color.control-active` 배경을 적용한다. 초점 테두리를 유지하며 성공·실패의 상태색은 조작 중에도 덮지 않는다. 마우스에서는 블록 호버·키보드 초점·결과 알림 동안 보이고 터치에서는 항상 보인다. 복사와 다운로드의 대기·성공·실패·재시도·알림 초기화는 `bindToolbar`가 맡고 소비자는 원본과 다운로드 작업만 제공한다. 알림 시간은 `duration.notice`이다. 결과 문구는 `.app-sr`로 시각적으로 숨겨 도구 막대와 버튼의 크기·위치를 유지한다. 문구가 화면에 보이지 않아도 알림 동안 도구 막대를 계속 노출한다. `.app-sr`의 한 정의도 도구 막대 CSS에 포함되어 독립 도표와 전체 문서가 함께 사용한다.
 

@@ -32,7 +32,31 @@ export function LogoItem({ href, label, src }) {
   return out(`<li class="app-technology"><a href="${safeUrl(href)}" aria-label="${escape(label)}"><img src="${safeUrl(src)}" alt="" decoding="async"><span class="app-sr">${escape(label)}</span></a></li>`);
 }
 
+const INPUT_TYPES = ['text', 'email', 'url', 'tel'];
+const INPUT_SIZES = ['small', 'medium', 'large', 'control'];
+const INPUT_SURFACES = ['track', 'field', 'card'];
+const INPUT_ROLES = ['searchbox', 'combobox'];
+/**
+ * 모든 텍스트 입력의 단일 구성 요소. 보이지 않는 이름표와 `app-input` 입력을 조립한다.
+ * `size`는 small(분할 탭 높이)·medium·large(검색)·control(구독 폼), `surface`는 track·field·card다.
+ * `icon`이 있으면 앞 아이콘 칸, `action`이 있으면 입력 뒤 동작(지우기 단추 등)을 같은 `app-input-field` 안에 둔다.
+ * `role`은 searchbox 또는 combobox이며 combobox는 `controls`로 추천 목록 ID를 받는다.
+ */
+export function TextInput({ id: name, name: field = name, label, type = 'text', value = '', placeholder = '', autocomplete, describedBy, required = false, disabled = false, size = 'small', surface = 'track', icon, action, role, controls }) {
+  if (!INPUT_TYPES.includes(type)) throw new Error(`Unknown input type: ${type}`);
+  if (!INPUT_SIZES.includes(size)) throw new Error(`Unknown input size: ${size}`);
+  if (!INPUT_SURFACES.includes(surface)) throw new Error(`Unknown input surface: ${surface}`);
+  if (role !== undefined && !INPUT_ROLES.includes(role)) throw new Error(`Unknown input role: ${role}`);
+  if ((role === 'combobox') !== (controls !== undefined)) throw new Error('combobox requires controls');
+  const classes = `app-input${size === 'small' ? '' : ` is-${size}`}${surface === 'track' ? '' : ` is-${surface}`}`;
+  const aria = role === 'combobox' ? ` role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="${id(controls)}"` : role ? ` role="${role}"` : '';
+  const input = `<input class="${classes}" type="${type}" id="${name}" name="${escape(field)}"${value ? ` value="${escape(value)}"` : ''}${placeholder ? ` placeholder="${escape(placeholder)}"` : ''}${autocomplete ? ` autocomplete="${escape(autocomplete)}"` : ''}${required ? ' required' : ''}${disabled ? ' disabled' : ''}${describedBy ? ` aria-describedby="${id(describedBy)}"` : ''}${aria}>`;
+  const control = icon === undefined && action === undefined ? input : `<div class="app-input-field">${icon === undefined ? '' : slot(icon, 'icon')}${input}${action === undefined ? '' : slot(action, 'action')}</div>`;
+  return out(`<label class="app-sr" for="${id(name)}">${escape(label)}</label>${control}`);
+}
+
 export function EmailForm({ id: name, action, field, label, placeholder, button, note }) {
   const disabled = action ? '' : ' disabled';
-  return out(`<form class="app-newsletter"${action ? ` method="post" action="${safeUrl(action)}"` : ''}><label class="app-sr" for="${id(name)}-email">${escape(label)}</label><input class="app-newsletter-email" type="email" id="${name}-email" name="${escape(field)}" placeholder="${escape(placeholder)}" autocomplete="email"${action ? ' required' : ''}${disabled}${note ? ` aria-describedby="${name}-state"` : ''}>${note ? slot(note, 'note') : ''}<button type="submit"${disabled}>${escape(button)}</button></form>`);
+  const input = TextInput({ id: `${id(name)}-email`, name: field, label, type: 'email', placeholder, autocomplete: 'email', required: Boolean(action), disabled: !action, describedBy: note ? `${name}-state` : undefined, size: 'control', surface: 'card' });
+  return out(`<form class="app-newsletter"${action ? ` method="post" action="${safeUrl(action)}"` : ''}>${input}${note ? slot(note, 'note') : ''}<button type="submit"${disabled}>${escape(button)}</button></form>`);
 }

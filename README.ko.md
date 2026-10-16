@@ -99,7 +99,7 @@ Markdown 렌더러는 `Details.open()`과 `Details.close()`로 접기 블록을 
 
 공통 토큰은 `color`, `text`, `spacing`, `radius`, `font`, `font-weight`, `leading`, `duration` 등 Tailwind 이름을 사용합니다. 간격 단위는 4px입니다. `tailwind.css`는 같은 정본에서 Tailwind 4의 `@theme inline` 어댑터를 제공합니다. 소비자는 공통 기본값을 상속하고 달라지는 부분만 재정의합니다.
 
-일반 글자는 `font.sans`, 코드는 `font.mono`를 사용합니다. 글꼴 굵기는 `normal`, `medium`, `semibold`, `bold`로 고릅니다. 웹과 도표는 `color.ink`, `color.ui-muted`, `color.ui-card`, `color.syntax-*`를 공유하며 같은 역할의 제품별 별칭을 두지 않습니다. 값이 같아도 용도가 다른 항목은 독립적으로 유지합니다. 참조와 삭제 규칙은 [스타일 구조](docs/styles.md)를 확인하세요.
+일반 글자는 `font.sans`, 코드는 `font.mono`를 사용합니다. Pretendard는 공식 동적 부분 집합 92개를 `unicode-range`로 등록해 브라우저가 페이지에 나온 글자가 든 조각만 내려받습니다. 글꼴 굵기는 `normal`, `medium`, `semibold`, `bold`로 고릅니다. 웹과 도표는 `color.ink`, `color.ui-muted`, `color.ui-card`, `color.syntax-*`를 공유하며 같은 역할의 제품별 별칭을 두지 않습니다. 값이 같아도 용도가 다른 항목은 독립적으로 유지합니다. 참조와 삭제 규칙은 [스타일 구조](docs/styles.md)를 확인하세요.
 
 랜딩 기술 링크의 호버·초점 표면은 정사각형입니다. 영상 제어는 채운 원 안에 흰색 재생·일시정지 기호를 표시합니다.
 

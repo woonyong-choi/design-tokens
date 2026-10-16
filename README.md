@@ -103,6 +103,8 @@ Use `font.sans` for text and `font.mono` for code. Pretendard ships as the offic
 
 Landing technology links have square hover and focus surfaces. Media controls use a filled circle with a white play or pause symbol.
 
+`TextInput` is the single text input component. It renders the input with a visually hidden label and, by default, shares the surface, radius, and height of the segmented tab group. `SearchBox` and `EmailForm` assemble the same component through size, surface, and leading icon variants. The placeholder color and focus ring use shared tokens in both themes.
+
 `SearchBox({ combobox: false })` renders a search field without suggestion-popup ARIA from the initial HTML. `ContentGroup({ collection: true })` reuses collection spacing for grouped content.
 
 ## Delivery

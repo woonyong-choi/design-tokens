@@ -34,7 +34,7 @@
 .app-landing-newsletter { background: var(--color-canvas); }
 .app-landing-newsletter .app-caption { text-align: center; }
 .app-landing-newsletter .app-newsletter { margin-bottom: var(--spacing-landing-nav-gap); }
-.app-landing-newsletter .app-newsletter-email { height: auto; line-height: normal; }
+.app-landing-newsletter .app-input { height: auto; }
 .app-landing-newsletter .app-newsletter-note { color: var(--color-landing-newsletter-note-ink); }
 .app-landing-social { display: flex; align-items: center; justify-content: center; gap: var(--spacing-gap-sm); margin: var(--spacing-landing-panel-gap) auto var(--spacing-landing-heading-space); }
 .app-landing-social img { width: var(--spacing-icon); height: var(--spacing-icon); opacity: var(--opacity-landing-logo-opacity); }

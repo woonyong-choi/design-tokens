@@ -488,9 +488,29 @@
       "$type": "color",
       "$value": "{color.category.blue.dark-ink}"
     },
+    "callout-warning": {
+      "$type": "color",
+      "$value": "{primitive.callout-warning-dark}"
+    },
+    "callout-background": {
+      "$type": "color",
+      "$value": "{primitive.callout-background-dark}"
+    },
+    "callout-border": {
+      "$type": "color",
+      "$value": "{primitive.callout-border-dark}"
+    },
+    "prose-marker": {
+      "$type": "color",
+      "$value": "{color.ui-muted}"
+    },
     "feature-tab-ink": {
       "$type": "color",
-      "$value": "{primitive.ink}"
+      "$value": "{color.gray.933}"
+    },
+    "input-placeholder": {
+      "$type": "color",
+      "$value": "{color.gray.212}"
     },
     "gallery-selected-ink": {
       "$type": "color",

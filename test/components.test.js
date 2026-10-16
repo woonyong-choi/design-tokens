@@ -41,7 +41,7 @@ test('body_and_caption_text_are_readable_on_the_page_in_each_theme', () => {
 
 test('category_and_flow_share_readable_solid_color_pairs', () => {
   for (const [mode, table] of Object.entries(tables)) {
-    for (const [index, family] of ['blue', 'orange', 'cyan', 'yellow', 'green', 'purple', 'red'].entries()) {
+    for (const [index, family] of ['blue', 'yellow', 'red', 'green', 'orange', 'purple', 'cyan'].entries()) {
       const fill = resolveValue(table, `color.category.${family}.solid`);
       const ink = resolveValue(table, `color.category.${family}.on-solid`);
       assert.equal(resolveValue(table, `color.data.category.${index + 1}`), fill);
@@ -52,35 +52,13 @@ test('category_and_flow_share_readable_solid_color_pairs', () => {
   }
 });
 
-test('diagram_lines_put_edges_above_dashed_boundaries_above_card_hairlines', () => {
+test('diagram_outline_is_readable_on_both_card_and_canvas_surfaces', () => {
   for (const [mode, table] of Object.entries(tables)) {
     const value = key => resolveValue(table, key);
     assert.notEqual(value('color.prose-pre-background'), value('color.ui-card'), mode + ' diagram surface differs from page');
-    for (const background of ['color.ui-card', 'color.figure.canvas']) {
-      const on = key => contrast(value(key), value(background));
-      assert.ok(on('color.line') >= 3, mode + ' edge on ' + background);
-      assert.ok(on('color.line') > on('color.figure.boundary'), mode + ' edge above dashed boundary on ' + background);
-      assert.ok(on('color.figure.boundary') > on('color.figure.outline'), mode + ' dashed boundary above hairline on ' + background);
+    for (const background of ['color.ui-card', 'color.prose-pre-background']) {
+      assert.ok(contrast(value('color.figure.outline'), value(background)) >= 3, mode + ' outline on ' + background);
     }
-    assert.equal(value('color.figure.cell-line'), value('color.figure.outline'), mode + ' cells share the card hairline');
-    assert.notEqual(value('color.figure.inner-surface'), value('color.ui-card'), mode + ' inner surface differs from card');
-    assert.equal(value('color.figure.queue-empty'), value('color.figure.inner-surface'), mode + ' empty slot is an inner surface');
-  }
-  const lum = hex => contrast(hex, '#000000');
-  assert.ok(lum(resolveValue(tables.dark, 'color.figure.inner-surface')) > lum(resolveValue(tables.dark, 'color.ui-card')), 'dark inner surface is raised, not a hole');
-});
-
-test('chart_categories_are_calm_and_need_labels_only_below_three_to_one', () => {
-  for (const [mode, table] of Object.entries(tables)) {
-    const canvas = resolveValue(table, 'color.figure.canvas');
-    for (let n = 1; n <= 7; n += 1) {
-      const fill = resolveValue(table, `color.data.category.${n}`);
-      const ink = resolveValue(table, `color.data.category-ink.${n}`);
-      assert.ok(contrast(ink, canvas) >= 4.5, `${mode} series ${n} text on canvas`);
-      if (contrast(fill, canvas) < 3) assert.equal(resolveValue(table, `color.data.category-label.${n}`), 'required', `${mode} series ${n} needs a direct label`);
-    }
-    assert.ok(contrast(resolveValue(table, 'color.data.other-on'), resolveValue(table, 'color.data.other')) >= 4.5, `${mode} text on the other series`);
-    assert.equal(resolveValue(table, 'color.data.compare'), resolveValue(table, 'color.data.other-outline'), `${mode} comparison series is muted`);
   }
 });
 

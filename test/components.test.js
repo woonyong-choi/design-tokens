@@ -231,6 +231,8 @@ test('warning_callout_list_marker_and_input_stay_readable_in_both_themes', () =>
     }
     // 검색 입력(불투명 면)의 안내 문구. 라이트는 기존 화면 유지 조건(#9)이라 다크만 본문 수준 대비를 요구한다.
     if (mode === 'dark') assert.ok(contrast(value('color.input-field-placeholder'), value('color.search-bg')) >= 4.5, `${mode} search placeholder`);
+    // 그림 문서·목록의 작은 링크(13px)는 본문 대비 기준.
+    for (const base of ['color.ui-card', 'color.prose-pre-background']) assert.ok(contrast(value('color.ui.link'), value(base)) >= 4.5, `${mode} link on ${base}`);
     // 다크는 밝은 선택 면 위의 어두운 글자이므로 본문 수준 이상의 대비를 둔다.
     assert.ok(contrast(value('color.feature-tab-ink'), value('color.feature-tab-selected')) >= (mode === 'dark' ? 7 : 4.5), `${mode} selected tab text stays clearly legible`);
   }

@@ -508,9 +508,17 @@
       "$type": "color",
       "$value": "{color.category.blue.dark-ink}"
     },
+    "callout-warning": {
+      "$type": "color",
+      "$value": "{primitive.callout-warning-dark}"
+    },
+    "prose-marker": {
+      "$type": "color",
+      "$value": "{color.ui-muted}"
+    },
     "feature-tab-ink": {
       "$type": "color",
-      "$value": "{primitive.ink}"
+      "$value": "{color.gray.933}"
     },
     "gallery-selected-ink": {
       "$type": "color",

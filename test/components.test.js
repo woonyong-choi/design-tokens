@@ -229,3 +229,19 @@ test('workspace_roles_keep_neutral_surfaces_readable_in_both_themes', () => {
     assert.doesNotMatch(resolveValue(table, 'font.ui'), /Pretendard/);
   }
 });
+
+// 다크 미리보기에서 주의 상자·글머리 점·선택 탭 글자가 사라지지 않아야 한다.
+test('warning_callout_list_marker_and_selected_tab_stay_readable_in_both_themes', () => {
+  for (const [mode, table] of Object.entries(tables)) {
+    const value = name => resolveValue(table, name);
+    for (const base of ['color.ui-card', 'color.prose-pre-background']) {
+      const page = value(base);
+      const warning = onSurface(value('color.callout-warning'), page);
+      assert.ok(contrast(value('color.body'), warning) >= 4.5, `${mode} warning callout text on ${base}`);
+      assert.ok(contrast(onSurface(value('color.prose-marker'), page), page) >= 3, `${mode} list marker on ${base}`);
+    }
+    // 다크는 밝은 선택 면 위의 어두운 글자이므로 본문 수준 이상의 대비를 둔다.
+    assert.ok(contrast(value('color.feature-tab-ink'), value('color.feature-tab-selected')) >= (mode === 'dark' ? 7 : 4.5), `${mode} selected tab text stays clearly legible`);
+  }
+  assert.equal(resolveValue(tables.light, 'color.callout-warning'), resolveValue(tables.light, 'primitive.callout-warning'), 'light warning surface unchanged');
+});

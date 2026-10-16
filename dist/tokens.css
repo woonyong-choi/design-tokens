@@ -987,6 +987,7 @@
   --primitive-callout-padding: .5em .75em;
   --primitive-callout-title-gap: .7em;
   --primitive-callout-warning: #fcf9cf;
+  --primitive-callout-warning-dark: rgba(255,214,3,.32);
   --primitive-task-size: 1.667cap;
   --primitive-task-align: -.3335cap;
   --primitive-platform-nav-margin: .5em 0 1em;
@@ -1463,6 +1464,7 @@
   --color-gallery-selected: var(--color-ink);
   --color-prose-code-color: var(--color-ink);
   --color-prose-pre-background: var(--primitive-figure-dark-bg);
+  --color-callout-warning: var(--primitive-callout-warning-dark);
   --color-platform-hover: var(--color-control-hover);
   --color-platform-active: var(--color-feature-tab-background);
   --color-nav-hover-color: var(--color-ink);
@@ -1471,6 +1473,7 @@
   --color-description-color: var(--color-body);
   --color-search-message-color: var(--color-ui-muted);
   --color-related-background: var(--color-ui-card);
+  --color-prose-marker: var(--color-ui-muted);
   --color-category-blue-solid: var(--color-category-blue-dark-data);
   --color-category-blue-on-solid: var(--color-gray-1000);
   --color-category-yellow-solid: var(--color-category-yellow-dark-data);
@@ -1483,7 +1486,7 @@
   --color-category-cyan-on-solid: var(--color-gray-1000);
   --color-flow-ink-gray: var(--color-gray-933);
   --color-landing-newsletter-note-ink: var(--color-ui-muted);
-  --color-feature-tab-ink: var(--primitive-ink);
+  --color-feature-tab-ink: var(--color-gray-933);
   --color-gallery-selected-ink: var(--primitive-ink);
   --color-tag-background: var(--color-prose-pre-background);
   --color-help-grouped-bg: var(--color-ui-card);
@@ -1633,6 +1636,7 @@
   --color-gallery-selected: var(--color-ink);
   --color-prose-code-color: var(--color-ink);
   --color-prose-pre-background: var(--primitive-figure-dark-bg);
+  --color-callout-warning: var(--primitive-callout-warning-dark);
   --color-platform-hover: var(--color-control-hover);
   --color-platform-active: var(--color-feature-tab-background);
   --color-nav-hover-color: var(--color-ink);
@@ -1641,6 +1645,7 @@
   --color-description-color: var(--color-body);
   --color-search-message-color: var(--color-ui-muted);
   --color-related-background: var(--color-ui-card);
+  --color-prose-marker: var(--color-ui-muted);
   --color-category-blue-solid: var(--color-category-blue-dark-data);
   --color-category-blue-on-solid: var(--color-gray-1000);
   --color-category-yellow-solid: var(--color-category-yellow-dark-data);
@@ -1653,7 +1658,7 @@
   --color-category-cyan-on-solid: var(--color-gray-1000);
   --color-flow-ink-gray: var(--color-gray-933);
   --color-landing-newsletter-note-ink: var(--color-ui-muted);
-  --color-feature-tab-ink: var(--primitive-ink);
+  --color-feature-tab-ink: var(--color-gray-933);
   --color-gallery-selected-ink: var(--primitive-ink);
   --color-tag-background: var(--color-prose-pre-background);
   --color-help-grouped-bg: var(--color-ui-card);
@@ -1802,6 +1807,7 @@
   --color-gallery-selected: var(--primitive-gallery-selected);
   --color-prose-code-color: var(--primitive-prose-code-color);
   --color-prose-pre-background: var(--primitive-help-bg);
+  --color-callout-warning: var(--primitive-callout-warning);
   --color-platform-hover: var(--primitive-platform-hover);
   --color-platform-active: var(--primitive-platform-active);
   --color-nav-hover-color: var(--primitive-nav-hover-color);
@@ -1810,6 +1816,7 @@
   --color-description-color: var(--primitive-body);
   --color-search-message-color: var(--primitive-search-message-color);
   --color-related-background: var(--primitive-blue-alpha-4);
+  --color-prose-marker: var(--primitive-landing-footer-ink);
   --color-category-blue-solid: var(--color-category-blue-light-data);
   --color-category-blue-on-solid: var(--color-gray-0);
   --color-category-yellow-solid: var(--color-category-yellow-light-data);

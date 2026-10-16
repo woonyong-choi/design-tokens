@@ -213,6 +213,7 @@ test('figure_video_device_and_small_prose_shapes_have_one_definition', () => {
   assert.equal(html(ui.Figure({ media, href: '/x/', caption: '<c>' })), '<figure class="app-figure"><a href="/x/"><img alt="a"></a><figcaption>&lt;c&gt;</figcaption></figure>');
   assert.throws(() => ui.Figure({ media, href: 'javascript:1' }), /Unsupported URL/);
   assert.match(html(ui.FigureGrid({ columns: 2, size: 'small', figures: [ui.Figure({ media })] })), /^<div class="app-figure-grid is-small has-two-columns"><div class="app-figure-grid-item"><figure/);
+  assert.match(read('../styles/prose.css'), /\.app-figure-grid-item > \.app-figure \{ margin: 0; \}/, 'grid cells drop the default figure margins');
   assert.throws(() => ui.FigureGrid({ columns: 'constructor', figures: [ui.Figure({ media })] }), /Invalid columns/);
   const video = html(ui.Video({ id: 'v1', src: '/a.mp4', poster: '/a.png', title: '제목', caption: '설명', controls: true, frame: 'iphone', remoteIcon: trusted('<img>'), deviceOverlay: trusted('<i></i>') }));
   assert.match(video, /<div class="app-device"><div class="app-device-screen"><div class="app-player has-controls" data-player id="v1">/);

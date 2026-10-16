@@ -106,33 +106,7 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 ## 카드·태그·검색
 
-도표 캔버스는 `color.figure.canvas`와 공통 카드 곡률을 사용해 본문과 구분한다. 도형의 기본 면과 외부 도형·그룹·관계선의 점선은 공통 CSS가 소유한다. 외부 도형의 도착 후광도 같은 점선을 유지하며, 생명선과 메모·격자 구분선의 별도 점선 역할은 보존한다.
-
-### 도표 위계
-
-도표는 Things처럼 여백과 면으로 나누고 회색 선은 역할마다 하나만 쓴다. 강조 색은 상태(켜짐·선택은 파랑, 오류·손실은 빨강, 주의는 노랑)에만 쓴다.
-
-| 역할 | 토큰 | 라이트 / 다크 | 기준 |
-|---|---|---|---|
-| 관계선·생명선·상자 수염 | `color.line` | `#7f8793` / 같음 | 캔버스·카드 면 위 3:1 이상, 아래 모든 선보다 진함 |
-| 점선 경계(외부 도형, 점선 그룹) | `color.figure.boundary` | `#b3b9c2` / `#5f636c` | 관계선보다 옅고 머리카락 윤곽보다 진함 |
-| 카드·그룹 윤곽, 칸·열 구분선 | `color.figure.outline`, `color.figure.cell-line` | `color.ui-line` | 머리카락 선. 카드는 그림자와 함께 읽힌다 |
-| 카드 안쪽 면(표 머리, 큐 빈 칸, 배지) | `color.figure.inner-surface` | `#f1f3f6` / `#3a3b41` | 다크에서 카드보다 밝아 구멍처럼 보이지 않는다 |
-| 차트 격자 | `color.data.grid` | `#c8cdd4` / `figure-dark-edge` | 자료 표식보다 옅은 안내선 |
-| 차트 축선 | `color.line` | 관계선과 같음 | 값을 재는 기준이라 차트 면 위 3:1 이상 |
-| 라이트 차트 계열 면 | `color.category.*.light-data` | Things 기준색과 이전 차분한 값의 OKLab 중간 | 다크는 그대로. 칸 안 글자는 흰색·검정 중 4.5:1 이상인 쪽이고, 주황·청록은 밝혀 검정, 보라는 어둡게 해 흰색을 쓴다 |
-| 이동 글 상자 면 | `color.flow.<색>`, 글자 `color.flow-ink.<색>` | 각 색의 진한 글자색 / 같음 | 흰 글자와 모든 색에서 4.5:1 이상. 차트 면색에 흰·검정 글자가 섞여 보이지 않게 이동 글 상자는 늘 흰 글자다 |
-| 열지도 칸 끝 색 | `color.data.heat-low`, `color.data.heat-high` | `#eaf3c0` → `#1e6bd6` / `#1f3b3e` → `#1e6bd6`(`color.category.blue.anchor`) | OKLCH 보간이라 라이트는 연노랑·민트·청록·파랑을 지나는 두 색 그라데이션이다. 다크는 칸 글자가 흰색 하나라 모든 칸이 흰 글자와 5:1 이상이다 |
-
-도형·격자 카드와 차트·시간 보기의 판 카드(`.fl-panel`)는 종이 카드다. `drop-shadow.figure-ambient`와 `drop-shadow.figure-card`를 CSS `filter: drop-shadow()`로 겹쳐 캔버스에서 살짝 떠 있다. 판 카드는 도형 카드와 같은 면·윤곽·그림자 규칙을 같은 선택자로 읽고 켜짐·초점 상태만 없다. 차트 글자 뒤 바탕(`--chart-ground`)은 판 카드의 면이다. 막대·점·선 같은 자료 표식에는 그림자를 두지 않는다. 그림자가 값의 길이와 위치를 흐리기 때문이다. 선 라벨과 캔버스 위 그룹 배지는 테두리 없는 카드 면 알약에 `drop-shadow.figure-float`를 써 선 위에서도 읽히며, 켜질 때만 강조 색 테두리가 생긴다. 카드 안 배지는 안쪽 면의 옅은 알약이고 그림자가 없다. 그룹은 그림자와 면 없이 굵은 제목과 머리카락 경계로 묶는다. 면이 없는 윤곽, 외부 도형, 상태 시작·끝 점에는 그림자를 두지 않는다. 이전의 "도형은 그림자 없는 평면" 규칙은 이 깊이 규칙으로 바뀌었다.
-
-작성자가 고른 `appearance=outline` 색은 고른 윤곽색과 기본 윤곽을 `color-mix(in oklab)`로 반씩 섞어 켜진 상태(강조 파랑 전체 윤곽과 옅은 강조 면)와 구분한다. 그룹 제목은 고른 색과 상관없이 `color.group-title`이다. 상태 시작 점에서 나가는 선도 다른 관계선과 같은 `color.line`이다.
-
-곡률 역할은 `radius.figure-outer`(도형·그룹·차트 카드), `radius.figure-inner`(카드 안 면), `radius.figure-cell`(큐 칸 같은 작은 칸)이다.
-
-글 위계는 그룹·보기·차트 제목(`text.small-text`, semibold) > 카드 제목(`text.small-text`, regular) > 문장·이름표·값(`text.tiny-text`, regular) > 작은 표시(`text.figure-meta`, 12px)다. 작은 표시는 차트 눈금·범례·값과 카드 배지가 함께 쓰는 하한이다. Vega-Lite(10~11px)와 Mermaid(16px), Things의 작은 표시(11~12pt) 사이에서 16px 본문 옆에서도 읽히는 12px로 정했다(이전 11px). 값은 굵게 하지 않고 고정폭 숫자(`tabular-nums`)로 정렬하며 바뀐 값은 갱신 면으로 알린다. 강조 계열(`ours`, `second`)의 차트 값만 semibold다. 재생기의 장면 탭은 공통 탭의 작은 글자 변형(`TabList`의 `compact`, `is-compact`)이다. 상태·조작은 같고 글자만 `text.tiny-text`·medium으로 낮춰 그림 제목보다 조용하며, 누르는 높이는 `spacing.control`(36px) 이상이다.
-
-차트와 시간 축 그림의 기본 폭 `spacing.figure.chart.width`는 본문 단 폭(`container.body-width`, 680px)과 같다. 본문 단 안에서 줄이지 않고 원래 크기로 놓여 가장 작은 글자가 토큰 크기 그대로 보이고, 마지막 눈금 글과 단위가 단 밖으로 나가지 않는다.
+도표 캔버스는 `color.figure.canvas`와 공통 카드 곡률을 사용해 본문과 구분한다. 도형의 기본 면과 외부 도형·그룹·관계선의 점선은 공통 CSS가 소유한다. 외부 도형의 도착 후광도 같은 점선을 유지하며, 생명선과 메모·격자 구분선의 별도 점선 역할은 보존한다. 도형은 `color.ui-card` 면을 유지하고 기본 윤곽·그룹 경계는 `color.figure.outline`을 사용한다. 두 테마에서 윤곽과 캔버스·카드 면의 대비를 3:1 이상으로 검사한다. 색을 지정한 윤곽과 재생 중 강조 역할은 유지한다.
 
 카드 이미지·제목·설명은 글 링크에, 태그는 독립 링크에 둔다. 글 링크의 가상 요소가 카드 전체를 덮고 태그는 그 위에서 동작한다. 검색 결과도 태그 행과 여백까지 하나의 호버 영역이다. 수정키 클릭과 키보드 탐색은 일반 링크 동작을 유지한다.
 
@@ -174,25 +148,15 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 도표 캔버스는 옅은 중립 면이고 카드는 별도의 면이다. 스키마와 격자의 경계는 상시 표시하며, 표 머리는 옅은 면으로 구분한다. 이름–값 카드 내부는 평소 여백과 정렬로 구분하고 값 갱신 때만 강조 면을 표시한다.
 
-기본 강조는 파랑이며 다른 색은 작성자가 의미를 구분할 때 사용한다. 차트 면과 이동 라벨은 `color.category.*.solid/on-solid`에서 같은 색 쌍을 읽는다. 별도 흐름 팔레트는 두지 않는다. 실제 계열의 점은 원이며 범례와 이름으로 구분한다. 목표는 `color.data.reference`의 중립색, 선형 차트에서는 점 표식 없는 점선이다. 스키마 내부 선과 목표는 축과 같은 `color.data.grid`의 옅은 회색이고, 상자 수염·중앙값·신뢰구간은 자료 표식이라 `color.line`이다. 히스토그램은 구간 폭과 기준선을 유지하고 위쪽 모서리에만 공통 작은 곡률을 적용한다.
-
-범주 색은 한 벌이다. 계열 순서는 blue, orange, cyan, yellow, green, purple, red다(이전 blue, yellow, red, green, orange, purple, cyan). 첫 두 색은 색각 이상에서도 가장 잘 갈리는 파랑·주황 쌍이고(Tableau 10, Vega category10과 같은 출발), 빨강은 오류·손실·마감 경고의 뜻이 강해(Things도 마감 경고에 쓴다) 맨 뒤에 둔다. 가운데 순서는 앞 네 색의 모든 쌍, 이웃 쌍, 같은 점 모양을 쓰는 쌍(번호 차이 4)의 OKLab 거리를 정상·제2색각(deuteranopia)·제1색각(protanopia) 모의(Machado 2009)에서 재어 가장 가까운 쌍이 가장 먼 순서로 골랐다(최소 11.5, 이전 순서 7.1). 라이트 면색은 Things 기준색과 이전 차분한 값의 OKLab 중간이고 다크 면색은 이전 값 그대로다.
-
-| 검사(이웃 쌍, OKLab ΔE×100) | 라이트(캔버스 `#f6f7fa`) | 다크(캔버스 `#26272b`) |
-|---|---|---|
-| 색각 이상 최소 | 12.4 | 9.7 |
-| 정상 시각 최소 | 20.5 | 18.1 |
-| 캔버스 대비 3:1 미만 | yellow·green·purple (직접 라벨 필수) | 없음 |
-
-라이트의 `light-data`, 다크의 `dark-data`가 면이고 글자는 4.5:1 이상인 `on-solid`(라이트는 흰색 또는 검정, 다크는 검정)다. 캔버스 대비가 3:1 미만인 계열은 `category-label`이 `required`이고 선·범례 윤곽은 같은 색상의 진한 `light-data-edge`다. 계열 이름을 글자로 쓰는 끝 라벨은 캔버스 위 4.5:1 이상인 `light-data-ink`·`dark-data-ink`를 읽는다. 상태 색(`color.state.*`)과 Things 기준색(`color.category.*.fill`)은 바뀌지 않아 범주 색보다 강하다.
-
-강조할 계열은 `color.data.main`(강한 파랑), 비교·기타 계열은 `color.data.other`(차분한 회색, 글자 `other-on`, 윤곽 `other-outline`)다. `color.data.compare`와 폭포 차트의 감소(`compare-fill`, `compare-outline`)도 이 회색을 읽는다. 뜻이 있는 변화는 `color.data.positive`·`negative`·`attention`이 상태 색을 참조한다. 무늬는 계열이 일곱을 넘을 때의 마지막 수단이며, 작은 조각은 소비자가 "기타"로 묶어 `color.data.other`로 칠한다.
+기본 강조는 파랑이며 다른 색은 작성자가 의미를 구분할 때 사용한다. 차트 면과 이동 라벨은 `color.category.*.solid/on-solid`에서 같은 색 쌍을 읽는다. 진한 면은 흰 글자, 밝은 노랑은 어두운 글자다. 별도 흐름 팔레트는 두지 않는다. 실제 계열의 점은 원이며 범례와 이름으로 구분한다. 목표는 `color.data.reference`의 중립색, 선형 차트에서는 점 표식 없는 점선이다. 스키마 내부 선·목표·신뢰구간은 축과 같은 `color.data.grid`의 옅은 회색이다. 히스토그램은 구간 폭과 기준선을 유지하고 위쪽 모서리에만 공통 작은 곡률을 적용한다.
 
 검색 결과 페이지의 `SearchBox({ combobox: false })`는 처음 HTML부터 `searchbox` 역할을 사용하며 추천 목록 ARIA를 붙이지 않는다. 기본 추천 검색은 `combobox` 계약을 유지한다. `ContentGroup`의 `collection` 변형은 글 목록 절의 바깥 간격을 함께 소유한다.
 
 기초 초기화와 초점 링은 `base.css`가 소유합니다. 일반 초점 링은 `outline-width.focus`와 `color.ui.focus`를 사용하며, 잘리는 내부 링크는 해당 구성 요소가 안쪽 오프셋만 지정합니다. 페이지 전체 스크롤바와 내부 도표 스크롤바는 각각 `spacing.scrollbar`, `spacing.figure-scrollbar` 역할을 사용합니다.
 
 카드 변형 목록은 `CARD_VARIANTS`, 탭 변형 목록은 `TAB_FRAMES`·`TAB_POSITIONS`·`TAB_SELECTORS`를 가져와 입력 검사에 사용합니다. 페이지 이전·다음 링크는 공통 탐색 꺾쇠를 사용하므로 소비자가 라벨에 화살표 글자를 붙이지 않습니다.
+
+차트 그림 폭(`spacing.figure.chart.width`)은 본문 단 폭(`primitive.body-width`, 680)을 참조한다. 본문 단에서 차트가 줄지 않고 시간축 끝 글자가 그림 밖으로 나가지 않는다. 다크 열지도의 진한 끝(`color.data.heat-high`)은 `color.category.blue.anchor`다. 다크 칸 글자는 흰색 하나라 가장 진한 칸도 흰 글자와 4.5:1 이상이어야 한다(이전 `category.blue.dark-border`는 3.6:1).
 
 도표의 바탕과 빈 화살촉·소멸 표식은 `color.figure.canvas`를 사용합니다. SVG 정지/움직임 층의 미디어 규칙도 `diagram/figure.css`가 소유합니다.
 

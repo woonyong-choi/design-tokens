@@ -78,7 +78,7 @@
 
 `SectionIntro`의 아이콘 자리는 `spacing.landing-icon`의 64px이다. 카탈로그 SVG는 그 안에서 기존 `ContentIcon` 카드 역할인 48px로 가운데 정렬하고, 원본 PNG는 64px 이미지 표시를 유지한다. 아이콘 도형과 원본 여백을 고치거나 이름별 CSS 배율을 만들지 않는다.
 
-`Card`·`DocumentArticle`·`PostArticle` 제목은 `word-break: keep-all`로 한국어 어절을 지키고 가용 폭보다 긴 단어는 `overflow-wrap: anywhere`로 넘침을 막는다. 관련 글 제목은 기존 한 줄 말줄임을 유지한다. 문서 제목은 인라인 흐름에서 첫 줄에 아이콘을 놓고 `ContentIcon`의 기존 수직 정렬을 사용한다. 블로그 글 제목은 좌우 폭을 별도로 줄이지 않아 본문 폭을 모두 사용한다.
+`Card`·`DocumentArticle`·`PostArticle` 제목과 목록·안내 쪽 제목(`.app-page-heading`)은 `word-break: keep-all`로 한국어 어절을 지키고 가용 폭보다 긴 단어는 `overflow-wrap: anywhere`로 넘침을 막는다. 관련 글 제목은 기존 한 줄 말줄임을 유지한다. 문서 제목은 인라인 흐름에서 첫 줄에 아이콘을 놓고 `ContentIcon`의 기존 수직 정렬을 사용한다. 블로그 글 제목은 좌우 폭을 별도로 줄이지 않아 본문 폭을 모두 사용한다.
 
 ### 강제하는 것
 

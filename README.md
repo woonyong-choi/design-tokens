@@ -48,13 +48,13 @@ Run `node ui/build/check-tokens.mjs styles ui --tokens tokens/tokens.json` to au
 
 Body and code text inherit theme roles; text contrast is checked on the actual page and code surfaces in both themes.
 
-Diagram canvases keep a separate muted surface from the document. Diagrams follow a Things-like hierarchy: edges (`color.line`) are the strongest neutral line at 3:1 or higher on card and canvas, dashed boundaries are lighter, and card, group and cell outlines are hairlines. Cards and edge-label pills have soft elevation (`drop-shadow.figure-*`); accent colors are reserved for state. Chart categories use a calm palette validated for color-vision deficiency, with a muted `color.data.other` for comparison and "other" series.
+Diagram canvases keep a separate muted surface from the document. Neutral shape and group outlines use `color.figure.outline`, checked at 3:1 or higher against both card and canvas surfaces.
 
 The comment iframe uses the light color scheme and shared page surface regardless of OS appearance, matching its resolved light text roles.
 
 Code blocks and diagrams share the same toolbar inside the block. The buttons sit directly on the block surface without a separate toolbar background, border, or shadow. Hover and keyboard focus use the shared accent and control background; pressing a button is a temporary active state. Success and failure keep their own colors during interaction. Feedback keeps the controls in place and uses the button icon and title with a screen-reader announcement.
 
-Document tabs and diagram scene tabs share the `buttons` default with separate rounded buttons and the same states. Diagram scene tabs use the `TabList` `compact` variant (`is-compact`): smaller `text.tiny-text` medium labels that stay quieter than figure titles, with a touch height of at least `spacing.control`. `Tabs` and `TabList` keep explicit `segmented` and `numbers` options. Charts and time axes default to the body column width (`spacing.figure.chart.width` = `container.body-width`, 680px). Empty queue cells use the shared `color.figure.queue-empty` role, which references the lighter `color.gray.59` in the light theme.
+Document tabs and diagram scene tabs share the `buttons` default with separate rounded buttons and the `text.body-text` size basis. `Tabs` and `TabList` keep explicit `segmented` and `numbers` options. Empty queue cells use the shared `color.figure.queue-empty` role, which references the lighter `color.gray.59` in the light theme.
 
 Chart update overlays use shared `.fl-mark-pulse` styles. Consumers supply geometry, the series effect color, and the original stroke width; the shared roles own fill, stroke, and opacity. Horizontal growth uses shared start/end modifiers; consumers pass the direction determined by their geometry. Bright-series point outlines also use a shared color input instead of inline stroke overrides.
 

@@ -430,9 +430,8 @@ test('tabs_share_one_selection_style_across_documents_and_diagrams', () => {
   const document = html(ui.Tabs({ id: 'document', tabs: labels.map(label => ({ label, body: trusted('') })) }));
   const diagram = DiagramFrame({ canvas: '', labels });
   const tabListClass = markup => /class="([^"]+)" role="tablist"/.exec(markup)[1];
-  // 그림 아래 장면 선택은 같은 선택 줄의 작은 글자 변형이다. 변형은 글자와 누르는 높이만 정하고 상태·색·전환은 공통 규칙을 그대로 쓴다.
-  assert.equal(tabListClass(diagram), `${tabListClass(document)} is-compact`);
-  assert.equal(tabListClass(diagram), 'app-tablist is-after-panel is-compact');
+  assert.equal(tabListClass(diagram), tabListClass(document));
+  assert.equal(tabListClass(diagram), 'app-tablist is-after-panel');
   assert.match(diagram, /aria-selected="true" aria-controls="scene-panel" tabindex="0"/);
   assert.match(diagram, /aria-selected="false" aria-controls="scene-panel" tabindex="-1">다음 <code>상태<\/code>/);
   const css = read('../styles/tabs.css');
@@ -441,9 +440,6 @@ test('tabs_share_one_selection_style_across_documents_and_diagrams', () => {
   assert.match(css, /overflow-wrap: anywhere/);
   assert.match(css, /:focus-visible/);
   assert.match(css, /prefers-reduced-motion: reduce/);
-  const compact = /\.app-tablist\.is-compact button \{([^}]*)\}/.exec(css)[1];
-  assert.deepEqual(compact.split(';').map(d => d.split(':')[0].trim()).filter(Boolean), ['min-height', 'font-size', 'font-weight']);
-  assert.match(compact, /min-height: var\(--spacing-control\)/);
   const reduced = /@media \(prefers-reduced-motion: reduce\) \{ ([^{}]+)\{ transition: none; \}/.exec(css)[1];
   for (const selector of ['.app-tablist button', '.app-tablist.is-segmented button', '.app-tablist.is-numbers button']) assert.ok(reduced.includes(selector), selector);
   assert.match(css, /var\(--color-feature-tab-selected\)/);

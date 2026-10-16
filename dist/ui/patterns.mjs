@@ -110,7 +110,8 @@ export function DocumentOutline({ sections }) {
   for (const section of sections) {
     if (!Number.isInteger(section.level) || section.level < 1 || section.level > 6) throw new TypeError('invalid outline heading level');
   }
-  return out(`<nav class="app-document-nav" aria-label="본문 목차"><ol>${sections.map(section => `<li${section.level === 3 ? ' class="is-subsection"' : ''}><a href="#${escape(section.id)}" data-heading-level="${section.level}">${escape(section.title)}</a></li>`).join('')}</ol></nav>`);
+  // 문서 탐색과 같은 접기 패널이다. 세 열 배치에서는 펼친 채 고정하고, 본문 위에 쌓이는 좁은 화면에서는 접는다.
+  return out(`<details class="app-document-nav" data-document-panel open><summary aria-label="본문 목차"><span>목차</span></summary><nav aria-label="본문 목차"><ol>${sections.map(section => `<li${section.level === 3 ? ' class="is-subsection"' : ''}><a href="#${escape(section.id)}" data-heading-level="${section.level}">${escape(section.title)}</a></li>`).join('')}</ol></nav></details>`);
 }
 
 /** 같은 주제에서 이어 읽을 문서. 없는 방향은 빈 링크를 만들지 않는다. */

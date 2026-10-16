@@ -14,7 +14,7 @@
 
 값 변경은 토큰에서, 재사용 구조 변경은 구성 요소에서 처리한다. 페이지마다 같은 조각을 복사해 고치지 않는다. 상세 속성과 신뢰 경계는 [공통 구성 요소](components.md)를 따른다.
 
-일반 글꼴은 `font.sans`, 코드 글꼴은 `font.mono`를 사용한다. 굵기는 Tailwind 이름인 `font-weight.normal`(400), `medium`(500), `semibold`(600), `bold`(700)로 고른다. 도표의 `figure-sans`·`figure-mono`는 내보내기에 포함하는 부분 글꼴의 등록 이름이며 웹 글꼴의 별칭이 아니다.
+일반 글꼴은 `font.sans`, 코드 글꼴은 `font.mono`를 사용한다. Pretendard는 공식 동적 부분 집합(`assets/fonts/pretendard-variable/`, pretendard 1.3.9의 `woff2-dynamic-subset` 92개)을 `unicode-range`로 등록해 페이지에 나온 글자가 든 조각만 내려받는다. 글자 모양·굵기 범위는 원본 가변 글꼴과 같다. 굵기는 Tailwind 이름인 `font-weight.normal`(400), `medium`(500), `semibold`(600), `bold`(700)로 고른다. 도표의 `figure-sans`·`figure-mono`는 내보내기에 포함하는 부분 글꼴의 등록 이름이며 웹 글꼴의 별칭이 아니다.
 
 본문 글자는 `color.ink`, 보조 글자는 `color.ui-muted`, 중립 카드 면은 `color.ui-card`, 코드 구문은 `color.syntax-*`를 웹과 도표가 함께 읽는다. 같은 역할을 제품별 이름으로 다시 정의하지 않는다. 값이 같더라도 글자 크기·아이콘 크기·곡률처럼 따로 바뀌어야 하는 역할은 서로 참조하지 않는다. 웹 조작과 인라인 카드의 작은 모서리는 `radius.md`, 묶음 도움말 카드는 `radius.help-grouped-radius`, 설명 팝오버는 `radius.tooltip-radius`를 사용한다. 곡률에서 간격 토큰을 참조하지 않는다. 기본 간격 단계와 공통 본문 위계를 사용하거나 각 역할의 기본값을 정의한다.
 
@@ -155,7 +155,7 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 도표 재생기의 `.dp-panels`는 측정한 보기 폭을 유지하고 각 SVG는 판의 자연 폭으로 그린다. 가용 폭보다 넓은 도표는 `.fl-canvas` 안에서 가로로 스크롤하며 글자까지 화면 폭에 맞춰 축소하지 않는다. 문서의 세로 흐름과 장면·움직임은 유지한다. 전체화면에서는 기존 fit·확대 비율을 적용한다.
 
-문서 계층과 목차의 폭·접힘·현재 항목은 공통 문서 구성 요소가 맡고, 계층·이전·다음·heading ID는 소비자가 전달한다. 댓글 iframe의 디자인은 공통 `assets/giscus.css`에 있고 공급자 URL·허용 도메인·연결 실패 처리는 홈페이지가 맡는다.
+문서 계층과 목차의 폭·접힘·현재 항목은 공통 문서 구성 요소가 맡고(목차도 문서 계층과 같은 `data-document-panel` 접기 패널이라 세 열 배치에서는 펼친 채 고정하고 본문 위에 쌓이는 좁은 화면에서는 접는다), 계층·이전·다음·heading ID는 소비자가 전달한다. 댓글 iframe의 디자인은 공통 `assets/giscus.css`에 있고 공급자 URL·허용 도메인·연결 실패 처리는 홈페이지가 맡는다.
 
 댓글 스타일은 light 토큰으로 생성한다. iframe 문서 루트에 `color-scheme: light`, `color.ui-card` 배경과 `color.body` 글자색을 함께 적용해 OS가 어둡게 설정되어도 light 토큰의 글자와 캔버스의 대비를 유지한다. 공급자의 `light dark` 메타 설정이 바탕만 어둡게 바꾸지 않도록 한다.
 

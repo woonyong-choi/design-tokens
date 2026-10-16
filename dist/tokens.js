@@ -1495,7 +1495,7 @@ export const values = freeze({
       "gray": "#747474"
     },
     "ui": {
-      "link": "#2576eb",
+      "link": "#1161cb",
       "focus": "#2576eb"
     },
     "data": {

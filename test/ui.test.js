@@ -289,6 +289,14 @@ test('home_and_list_components_have_one_definition_with_escaped_text_and_checked
   assert.throws(() => ui.EmailForm({ ...newsletter, note: '<p>안내</p>' }), /note must be trusted/);
   assert.match(html(ui.Section({ variant: 'form', content: ui.EmailForm(newsletter) })), /app-landing-section app-landing-newsletter/);
   assert.ok(ui.OWNED_CLASSES.includes('app-newsletter'));
+  const input = html(ui.TextInput({ id: 'title', label: '<제목>', placeholder: '이름 & 설명', describedBy: 'title-note' }));
+  assert.equal(input, '<label class="app-sr" for="title">&lt;제목&gt;</label><input class="app-input" type="text" id="title" name="title" value="" placeholder="이름 &amp; 설명" aria-describedby="title-note">');
+  assert.match(html(ui.TextInput({ id: 'mail', name: 'email', label: '메일', type: 'email', value: 'a"b', required: true, disabled: true })), /type="email" id="mail" name="email" value="a&quot;b" required disabled>$/);
+  assert.throws(() => ui.TextInput({ id: 'a b', label: 'x' }), /Invalid id/);
+  assert.throws(() => ui.TextInput({ id: 'x', label: 'x', type: 'search' }), /Unknown input type/);
+  assert.ok(ui.OWNED_CLASSES.includes('app-input'));
+  const forms = read('../styles/forms.css');
+  for (const token of ['--color-input-background', '--radius-input-radius', '--spacing-input-height', '--color-input-placeholder', '--component-input-focus']) assert.match(forms, new RegExp(`var\\(${token}\\)`), token);
   const intro = html(ui.SectionIntro({ id: 'a-title', icon, title: 'T<', description: trusted('<p>d</p>'), links: trusted('<a href="/x/">x</a>'), action: { href: '/more/', label: '더 보기' } }));
   assert.equal(intro, '<div class="app-landing-heading"><h2 id="a-title"><span class="app-landing-icon"><img alt=""></span> T&lt;</h2><p>d</p><p class="app-landing-social"><a href="/x/">x</a></p><p><a class="app-landing-action" href="/more/">더 보기</a></p></div>');
   assert.match(html(ui.SectionIntro({ level: 1, title: trusted('A<br>B') })), /^<div class="app-landing-heading"><h1>A<br>B<\/h1><\/div>$/);

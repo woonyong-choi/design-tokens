@@ -520,6 +520,10 @@
       "$type": "color",
       "$value": "{color.gray.933}"
     },
+    "input-placeholder": {
+      "$type": "color",
+      "$value": "{color.gray.212}"
+    },
     "gallery-selected-ink": {
       "$type": "color",
       "$value": "{primitive.ink}"

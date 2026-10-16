@@ -27,6 +27,7 @@
 `color.workspace.sidebar`, `document`, `toolbar`는 탐색·문서·도구 표면이다. `hover`와 `selected`는 중립 상태 면이고 글자는 `color.ink`를 사용한다. 모두 기존 회색 단계를 참조하며 라이트·다크에서 본문과 탐색 영역을 구분한다. 소비자는 제품명으로 별도 팔레트를 만들지 않는다. 이 토큰은 기존 웹 구성 요소의 모양을 자동으로 바꾸지 않는다.
 
 다크 카드의 면은 `color.ui-card`, 제목은 `color.ink`, 설명은 `color.body`를 읽는다. 선택과 눌림의 배경에서도 글자 대비를 유지한다. grouped와 related 카드는 다크 모드에서 자체 중립 면을 가져 밝은 페이지 안에서도 글자가 사라지지 않는다. 페이지 배경과 일반 링크색은 바꾸지 않는다. 카드 배경을 공유하는 문서 목차의 호버·선택 글자는 `color.document-nav-active-ink`로 분리해 같은 배경에서 읽히게 한다.
+일반 텍스트 입력 `.app-input`은 분할 탭 묶음과 같은 면(`color.input-background`)·곡률(`radius.input-radius`)·높이(`spacing.input-height`, 탭 높이와 안쪽 여백 두 배의 합)를 쓴다. 글자는 `color.input-ink`, 안내 문구는 `color.input-placeholder`이며 다크의 안내 문구는 `color.gray.212`로 반투명 면 위 4.5:1 이상을 유지한다. 초점은 검색 입력과 같은 링(`component.input-focus`)이다. 검색 입력은 큰 글자·아이콘 자리·불투명 면을 가진 별도 역할이라 이 구성 요소로 바꾸지 않는다.
 검색 입력 글자는 웹 본문과 같은 `color.body`를 사용한다. 브라우저 기본 입력 색에 의존하지 않아 라이트·다크 모두 본문 위계를 유지한다.
 
 ## 모듈과 생성
@@ -45,6 +46,7 @@
 |---|---|
 | SiteHeader, SiteFooter | `.app-shell`, `.app-header`, `.app-nav`, `.app-logo`, `.app-logo-brand`, `.app-footer` |
 | EmailForm | `.app-newsletter`, `.app-newsletter-email`, `.app-newsletter-note` |
+| TextInput | `.app-input` |
 | Hero, Section, SectionIntro, QuoteCard | `.app-hero-copy`, `.app-hero-logo`, `.app-hero-wordmark`, `.app-landing-section`, `.app-landing-heading`, `.app-landing-icon`, `.app-interview-summary` |
 | Card, CardGroup | `.app-help-card`, `.app-card-summary`, `.app-support-grid` |
 | BlogCard | `.app-blog-card`, `.app-blog-card-link`, `.app-blog-card-body` |

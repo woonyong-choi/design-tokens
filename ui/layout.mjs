@@ -32,6 +32,13 @@ export function LogoItem({ href, label, src }) {
   return out(`<li class="app-technology"><a href="${safeUrl(href)}" aria-label="${escape(label)}"><img src="${safeUrl(src)}" alt="" decoding="async"><span class="app-sr">${escape(label)}</span></a></li>`);
 }
 
+const INPUT_TYPES = ['text', 'email', 'url', 'tel'];
+/** 일반 텍스트 입력 칸. 보이지 않는 이름표와 `app-input` 입력을 조립한다. `describedBy`는 같은 쪽 안내 요소의 ID다. */
+export function TextInput({ id: name, name: field = name, label, type = 'text', value = '', placeholder = '', autocomplete, describedBy, required = false, disabled = false }) {
+  if (!INPUT_TYPES.includes(type)) throw new Error(`Unknown input type: ${type}`);
+  return out(`<label class="app-sr" for="${id(name)}">${escape(label)}</label><input class="app-input" type="${type}" id="${name}" name="${escape(field)}" value="${escape(value)}"${placeholder ? ` placeholder="${escape(placeholder)}"` : ''}${autocomplete ? ` autocomplete="${escape(autocomplete)}"` : ''}${describedBy ? ` aria-describedby="${id(describedBy)}"` : ''}${required ? ' required' : ''}${disabled ? ' disabled' : ''}>`);
+}
+
 export function EmailForm({ id: name, action, field, label, placeholder, button, note }) {
   const disabled = action ? '' : ' disabled';
   return out(`<form class="app-newsletter"${action ? ` method="post" action="${safeUrl(action)}"` : ''}><label class="app-sr" for="${id(name)}-email">${escape(label)}</label><input class="app-newsletter-email" type="email" id="${name}-email" name="${escape(field)}" placeholder="${escape(placeholder)}" autocomplete="email"${action ? ' required' : ''}${disabled}${note ? ` aria-describedby="${name}-state"` : ''}>${note ? slot(note, 'note') : ''}<button type="submit"${disabled}>${escape(button)}</button></form>`);

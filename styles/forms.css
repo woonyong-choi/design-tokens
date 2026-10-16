@@ -13,3 +13,8 @@
 
 .app-newsletter-email { color: var(--color-body); }
 .app-newsletter-email::placeholder { color: var(--color-ui-muted); opacity: 1; }
+
+/* 일반 텍스트 입력. 분할 탭 묶음과 같은 면·곡률·높이를 쓴다. 검색 입력은 큰 글자와 아이콘 자리를 가진 별도 역할이다. */
+.app-input { box-sizing: border-box; width: 100%; height: var(--spacing-input-height); margin: 0; padding: 0 var(--spacing-gap-sm); border: 0; border-radius: var(--radius-input-radius); background: var(--color-input-background); color: var(--color-input-ink); font: inherit; font-size: var(--text-input-font); line-height: var(--leading-line-compact); }
+.app-input::placeholder { color: var(--color-input-placeholder); opacity: 1; }
+.app-input:focus { outline: 0; box-shadow: var(--component-input-focus); }

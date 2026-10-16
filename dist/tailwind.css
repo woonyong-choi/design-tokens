@@ -206,6 +206,9 @@
   --color-feature-box-background: var(--primitive-feature-box-background);
   --color-feature-hero-background: var(--primitive-feature-hero-background);
   --color-feature-tab-background: var(--primitive-feature-tab-background);
+  --color-input-background: var(--color-feature-tab-background);
+  --color-input-ink: var(--color-body);
+  --color-input-placeholder: var(--color-ui-muted);
   --color-feature-tab-selected: var(--color-category-blue-anchor);
   --color-help-title-color: var(--primitive-help-title-color);
   --color-help-copy-color: var(--primitive-help-copy-color);
@@ -499,6 +502,7 @@
   --spacing-feature-box-padding: var(--primitive-feature-box-padding);
   --spacing-feature-tab-height: var(--primitive-feature-tab-height);
   --spacing-feature-tab-inset: var(--primitive-feature-tab-inset);
+  --spacing-input-height: calc(var(--spacing-feature-tab-height) + var(--spacing-feature-tab-inset) * 2);
   --spacing-search-icon-size: var(--primitive-search-icon-size);
   --spacing-help-title-gap: var(--primitive-help-title-gap);
   --spacing-search-suggestion-width: var(--primitive-search-suggestion-width);
@@ -619,6 +623,7 @@
   --radius-landing-review-avatar-radius: var(--primitive-landing-review-avatar-radius);
   --radius-feature-box-radius: var(--primitive-feature-box-radius);
   --radius-feature-tab-radius: var(--primitive-feature-tab-radius);
+  --radius-input-radius: var(--radius-feature-tab-radius);
   --radius-feature-tab-button-radius: var(--primitive-feature-tab-button-radius);
   --radius-search-input-radius: var(--primitive-search-input-radius);
   --radius-article-search-radius: var(--primitive-article-search-radius);
@@ -667,6 +672,7 @@
   --text-landing-review-meta: var(--text-tiny-text);
   --text-nav-text: var(--primitive-nav-text);
   --text-feature-tab-font: var(--primitive-feature-tab-font);
+  --text-input-font: var(--text-feature-tab-font);
   --text-nav-desktop-text: var(--text-small-text);
   --text-search-input-font: var(--primitive-search-input-font);
   --text-post-date-size: var(--primitive-post-date-size);

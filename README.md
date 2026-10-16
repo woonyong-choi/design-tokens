@@ -103,6 +103,8 @@ Use `font.sans` for text and `font.mono` for code. Pretendard ships as the offic
 
 Landing technology links have square hover and focus surfaces. Media controls use a filled circle with a white play or pause symbol.
 
+`TextInput` renders a plain text input with a visually hidden label. It shares the surface, radius, and height of the segmented tab group, and its placeholder color and focus ring use shared tokens in both themes.
+
 `SearchBox({ combobox: false })` renders a search field without suggestion-popup ARIA from the initial HTML. `ContentGroup({ collection: true })` reuses collection spacing for grouped content.
 
 ## Delivery

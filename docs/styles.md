@@ -160,6 +160,8 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 차트 그림 폭(`spacing.figure.chart.width`)은 본문 단 폭(`primitive.body-width`, 680)을 참조한다. 본문 단에서 차트가 줄지 않고 시간축 끝 글자가 그림 밖으로 나가지 않는다. 다크 열지도의 진한 끝(`color.data.heat-high`)은 `color.category.blue.anchor`다. 다크 칸 글자는 흰색 하나라 가장 진한 칸도 흰 글자와 4.5:1 이상이어야 한다(이전 `category.blue.dark-border`는 3.6:1).
 
+열지도 칸 색은 옅은 끝(`color.data.heat-low`)에서 진한 끝(`heat-high`)까지 OKLCH로 보간한다. 옅은 끝은 연노랑(`primitive.figure-heat-low`, 다크 `figure-dark-heat-low`)이고 진한 끝은 파랑이라, 색상이 노랑 → 민트 → 청록 → 파랑으로 돌아 값 차이가 밝기와 색상 두 갈래로 읽힌다. 이 두 값은 열지도 칸에만 쓰고 카드·판·선·계열 색은 바꾸지 않는다.
+
 도표의 바탕과 빈 화살촉·소멸 표식은 `color.figure.canvas`를 사용합니다. SVG 정지/움직임 층의 미디어 규칙도 `diagram/figure.css`가 소유합니다.
 
 도표의 순간 강조는 `color.figure.flash`, 켜진 카드 면은 `color.figure.active-surface`를 읽는다. 검색·도움말의 hover 역할과 독립적으로 조정하며 라이트·다크 값은 토큰 정본에서 정의한다.

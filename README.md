@@ -99,7 +99,7 @@ Block width uses `width: 'content' | 'narrow' | 'wide'`, with `content` as the d
 
 The common tokens use `color`, `text`, `spacing`, `radius`, `font`, `font-weight`, `leading`, `duration`, and related Tailwind namespaces. Its spacing unit is 4px. `tailwind.css` provides a Tailwind 4 `@theme inline` adapter from the same source. Consumers inherit the defaults and override only differences.
 
-Use `font.sans` for text and `font.mono` for code. Font weights use `normal`, `medium`, `semibold`, and `bold`. Web content and diagrams share `color.ink`, `color.ui-muted`, `color.ui-card`, and `color.syntax-*`; there are no product aliases for those roles. Equal values with different purposes remain independent. See [style ownership](docs/styles.md) for the reference and removal rules.
+Use `font.sans` for text and `font.mono` for code. Pretendard ships as the official 92-file dynamic subset with `unicode-range`, so browsers download only the pieces that contain the characters on a page. Font weights use `normal`, `medium`, `semibold`, and `bold`. Web content and diagrams share `color.ink`, `color.ui-muted`, `color.ui-card`, and `color.syntax-*`; there are no product aliases for those roles. Equal values with different purposes remain independent. See [style ownership](docs/styles.md) for the reference and removal rules.
 
 Landing technology links have square hover and focus surfaces. Media controls use a filled circle with a white play or pause symbol.
 

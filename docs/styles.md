@@ -99,6 +99,7 @@
 | `--pulse-effect` | ThinkFlow `chart/pulse-overlay.js`가 전달하는 표식 계열의 효과색 | 갱신 겹침에서 필수 |
 | `--pulse-width` | 같은 표식의 원래 선 굵기 | 면은 tag, 선은 edge 두께 사용; 글자 후광은 casing 사용 |
 | `--chart-boundary` | ThinkFlow `chart/metrics.js`가 전달하는 밝은 계열의 점 윤곽색 | 차트가 놓인 면의 currentColor 사용 |
+| `--chart-area` | ThinkFlow `chart/line.js`가 전달하는 면적 차트 계열 면색 | 면적 차트 면에서 필수 |
 
 HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불투명도 등 표현 속성을 검사한다. 일반 글자·주소·도형 좌표·viewBox·미디어 원본 크기는 제외한다. 예외는 같은 줄의 실제 주석에 사유를 적은 `tokens-allow:`만 인정한다. 문자열 속 표기와 빈 사유는 검사를 끄지 않는다.
 

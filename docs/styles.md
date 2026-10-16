@@ -119,6 +119,7 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 | 카드·그룹 윤곽, 칸·열 구분선 | `color.figure.outline`, `color.figure.cell-line` | `color.ui-line` | 머리카락 선. 카드는 그림자와 함께 읽힌다 |
 | 카드 안쪽 면(표 머리, 큐 빈 칸, 배지) | `color.figure.inner-surface` | `#f1f3f6` / `#3a3b41` | 다크에서 카드보다 밝아 구멍처럼 보이지 않는다 |
 | 차트 격자·축 | `color.data.grid` | `#c8cdd4` / `figure-dark-edge` | 자료 표식보다 옅다 |
+| 열지도 칸 끝 색 | `color.data.heat-low`, `color.data.heat-high` | 옅은 파랑 → `#1e6bd6` / 낮은 채도 남청 → `#1e6bd6`(`color.category.blue.anchor`) | 다크는 칸 글자가 흰색 하나라 가장 진한 칸도 흰 글자와 4.5:1 이상이다. 예전 다크 끝 색(`category.blue.dark-border`)은 흰 글자와 3.6:1이었다 |
 
 도형·격자 카드와 차트·시간 보기의 판 카드(`.fl-panel`)는 종이 카드다. `drop-shadow.figure-ambient`와 `drop-shadow.figure-card`를 CSS `filter: drop-shadow()`로 겹쳐 캔버스에서 살짝 떠 있다. 판 카드는 도형 카드와 같은 면·윤곽·그림자 규칙을 같은 선택자로 읽고 켜짐·초점 상태만 없다. 차트 글자 뒤 바탕(`--chart-ground`)은 판 카드의 면이다. 막대·점·선 같은 자료 표식에는 그림자를 두지 않는다. 그림자가 값의 길이와 위치를 흐리기 때문이다. 선 라벨과 캔버스 위 그룹 배지는 테두리 없는 카드 면 알약에 `drop-shadow.figure-float`를 써 선 위에서도 읽히며, 켜질 때만 강조 색 테두리가 생긴다. 카드 안 배지는 안쪽 면의 옅은 알약이고 그림자가 없다. 그룹은 그림자와 면 없이 굵은 제목과 머리카락 경계로 묶는다. 면이 없는 윤곽, 외부 도형, 상태 시작·끝 점에는 그림자를 두지 않는다. 이전의 "도형은 그림자 없는 평면" 규칙은 이 깊이 규칙으로 바뀌었다.
 

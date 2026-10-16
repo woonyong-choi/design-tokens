@@ -1350,7 +1350,7 @@
   --color-flow-gray: var(--color-gray-220);
   --color-data-main: var(--color-category-blue-dark-border);
   --color-data-heat-low: var(--color-category-blue-dark-tint-3);
-  --color-data-heat-high: var(--color-category-blue-dark-border);
+  --color-data-heat-high: var(--color-category-blue-anchor);
   --color-data-heat-ink: var(--color-gray-0);
   --color-data-grid: var(--primitive-figure-dark-edge);
   --color-data-category-outline-1: var(--color-category-blue-dark-data);
@@ -1520,7 +1520,7 @@
   --color-flow-gray: var(--color-gray-220);
   --color-data-main: var(--color-category-blue-dark-border);
   --color-data-heat-low: var(--color-category-blue-dark-tint-3);
-  --color-data-heat-high: var(--color-category-blue-dark-border);
+  --color-data-heat-high: var(--color-category-blue-anchor);
   --color-data-heat-ink: var(--color-gray-0);
   --color-data-grid: var(--primitive-figure-dark-edge);
   --color-data-category-outline-1: var(--color-category-blue-dark-data);

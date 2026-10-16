@@ -48,7 +48,7 @@
         "$type": "color"
       },
       "heat-high": {
-        "$value": "{color.category.blue.dark-border}",
+        "$value": "{color.category.blue.anchor}",
         "$type": "color"
       },
       "heat-ink": {

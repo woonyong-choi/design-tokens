@@ -176,7 +176,7 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 기본 강조는 파랑이며 다른 색은 작성자가 의미를 구분할 때 사용한다. 차트 면과 이동 라벨은 `color.category.*.solid/on-solid`에서 같은 색 쌍을 읽는다. 별도 흐름 팔레트는 두지 않는다. 실제 계열의 점은 원이며 범례와 이름으로 구분한다. 목표는 `color.data.reference`의 중립색, 선형 차트에서는 점 표식 없는 점선이다. 스키마 내부 선과 목표는 축과 같은 `color.data.grid`의 옅은 회색이고, 상자 수염·중앙값·신뢰구간은 자료 표식이라 `color.line`이다. 히스토그램은 구간 폭과 기준선을 유지하고 위쪽 모서리에만 공통 작은 곡률을 적용한다.
 
-범주 색은 차분한 한 벌이다. 계열 이름과 순서(blue, yellow, red, green, orange, purple, cyan)는 그대로 두고 값만 OKLCH 채도 0.10~0.14로 낮췄다. 이웃한 계열의 밝기를 번갈아 두어 색각 이상 모의(Machado 2009)에서도 이웃 쌍이 구분된다.
+범주 색은 한 벌이다. 계열 순서는 blue, orange, cyan, yellow, green, purple, red다(이전 blue, yellow, red, green, orange, purple, cyan). 첫 두 색은 색각 이상에서도 가장 잘 갈리는 파랑·주황 쌍이고(Tableau 10, Vega category10과 같은 출발), 빨강은 오류·손실·마감 경고의 뜻이 강해(Things도 마감 경고에 쓴다) 맨 뒤에 둔다. 가운데 순서는 앞 네 색의 모든 쌍, 이웃 쌍, 같은 점 모양을 쓰는 쌍(번호 차이 4)의 OKLab 거리를 정상·제2색각(deuteranopia)·제1색각(protanopia) 모의(Machado 2009)에서 재어 가장 가까운 쌍이 가장 먼 순서로 골랐다(최소 11.5, 이전 순서 7.1). 라이트 면색은 Things 기준색과 이전 차분한 값의 OKLab 중간이고 다크 면색은 이전 값 그대로다.
 
 | 검사(이웃 쌍, OKLab ΔE×100) | 라이트(캔버스 `#f6f7fa`) | 다크(캔버스 `#26272b`) |
 |---|---|---|

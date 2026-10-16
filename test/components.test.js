@@ -41,7 +41,7 @@ test('body_and_caption_text_are_readable_on_the_page_in_each_theme', () => {
 
 test('category_and_flow_share_readable_solid_color_pairs', () => {
   for (const [mode, table] of Object.entries(tables)) {
-    for (const [index, family] of ['blue', 'yellow', 'red', 'green', 'orange', 'purple', 'cyan'].entries()) {
+    for (const [index, family] of ['blue', 'orange', 'cyan', 'yellow', 'green', 'purple', 'red'].entries()) {
       const fill = resolveValue(table, `color.category.${family}.solid`);
       const ink = resolveValue(table, `color.category.${family}.on-solid`);
       assert.equal(resolveValue(table, `color.data.category.${index + 1}`), fill);

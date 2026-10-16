@@ -9940,11 +9940,11 @@
     "styles/table.css": "d67831d6d1dd5b8d8de69101b4cb423b610b18757ec386cdc0754bab59ef1e43",
     "styles/tabs.css": "2293aae813588a94b1dceb1d417d9df6b161388e754fc9a34026fe4db2b29f7c",
     "styles/toolbar.css": "d684f208ad1092389604fa7904a3d4c8f5a87d5c38b46a467b254b273dfe12be",
-    "tailwind.css": "d8930db472f4cce40dac29a8860f64e8a8595d6261fd85446e4ced942d044f3b",
-    "tokens.css": "ee9c8866c41f208583aef63b2084a3bb4581512b3ab1eefcef3d199acc409c51",
-    "tokens.dark.json": "abc306549ebbf229fbfb50ae8ad23eeab9093aee2007c1e1956af537b0f57752",
-    "tokens.js": "e4363ae30146bf7a1f58acef23e36cad5407a06dfdeb498598d17b4a63247c24",
-    "tokens.json": "c4e96a36d9cfcb4c410b8dca5b663bf0007e3e01d1af12c54cc4653f2e628c21",
+    "tailwind.css": "b615d69b0f062e2bbaeea4299ab0c0339fb41b0ff8a1953d1fd8fdd25cbfa23d",
+    "tokens.css": "d00192bd76ec1a35fd6a008ec0446e9e5ab0ed6a8d051708b10b41182285b418",
+    "tokens.dark.json": "0974fd63d004165136787c3f9c678e067bcafb3ec393037450e2fc9af764a92a",
+    "tokens.js": "5a7f85b9c454ff64a2089af0b8fe4e786cc6e314857a8de542941953ea7de3b3",
+    "tokens.json": "a1f772e2a5ceef04059483455c1c5ab0fa5724ca530367c3844e301053cb5492",
     "ui/build/check-tokens.mjs": "c3281b894a72ce7289fd489dcea5b36cdfea60a531ae7b12389ee949b7c107c1",
     "ui/build/icons.mjs": "151587c8ae4d959154f76cd029307b4b345d2331ce91c161ef895050b4c3a34b",
     "ui/build/lib/find-hardcoded.mjs": "6ff3e5c3b249b36260a7c2ae2b46c22fdb2de0180f239f1bab09ba4cf401086e",
@@ -9975,5 +9975,5 @@
     "ui/table.mjs": "d285303ed3e84599a512085e79dfd92db751a890ad4890b81930f1ccf2126ae0",
     "ui/toolbar.mjs": "3fab9dbcd66cbb7273e8ce39d7754e5783ea4e605418dc4faf2c91831067cdd2"
   },
-  "contentHash": "8f7120e9685a17179e94741c7609825f9bd61e00c94a06ab5966b026cb2b336c"
+  "contentHash": "f0028bfef07f0b5532a7d8701129d18b9a8372ca854c7f064b40272bfc2d0ddc"
 }

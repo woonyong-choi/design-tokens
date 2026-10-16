@@ -44,7 +44,7 @@
   --color-ui-focus: var(--color-action-link);
   --color-data-main: var(--color-category-blue-light-border);
   --color-data-compare: var(--color-category-orange-light-border);
-  --color-data-heat-low: var(--color-category-blue-light-tint-3);
+  --color-data-heat-low: var(--primitive-figure-heat-low);
   --color-data-heat-high: var(--color-category-blue-light-border);
   --color-data-heat-ink: var(--color-gray-1000);
   --color-data-heat-ink-on: var(--color-gray-0);

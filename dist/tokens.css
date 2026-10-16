@@ -43,7 +43,7 @@
   --color-ui-focus: var(--color-action-link);
   --color-data-main: var(--color-category-blue-light-border);
   --color-data-compare: var(--color-category-orange-light-border);
-  --color-data-heat-low: var(--color-category-blue-light-tint-3);
+  --color-data-heat-low: var(--primitive-figure-heat-low);
   --color-data-heat-high: var(--color-category-blue-light-border);
   --color-data-heat-ink: var(--color-gray-1000);
   --color-data-heat-ink-on: var(--color-gray-0);
@@ -1024,6 +1024,8 @@
   --primitive-figure-dark-bg: #26272b;
   --primitive-figure-dark-node: #303136;
   --primitive-figure-dark-edge: #50535b;
+  --primitive-figure-heat-low: #eaf3c0;
+  --primitive-figure-dark-heat-low: #1f3b3e;
   --primitive-figure-dark-separator: #454850;
   --primitive-figure-dark-hover: #343e50;
   --primitive-figure-dark-selection: #274174;
@@ -1292,7 +1294,7 @@
   --color-state-warning: var(--color-category-orange-dark-ink);
   --color-flow-gray: var(--color-gray-220);
   --color-data-main: var(--color-category-blue-dark-border);
-  --color-data-heat-low: var(--color-category-blue-dark-tint-3);
+  --color-data-heat-low: var(--primitive-figure-dark-heat-low);
   --color-data-heat-high: var(--color-category-blue-anchor);
   --color-data-heat-ink: var(--color-gray-0);
   --color-data-grid: var(--primitive-figure-dark-edge);
@@ -1448,7 +1450,7 @@
   --color-state-warning: var(--color-category-orange-dark-ink);
   --color-flow-gray: var(--color-gray-220);
   --color-data-main: var(--color-category-blue-dark-border);
-  --color-data-heat-low: var(--color-category-blue-dark-tint-3);
+  --color-data-heat-low: var(--primitive-figure-dark-heat-low);
   --color-data-heat-high: var(--color-category-blue-anchor);
   --color-data-heat-ink: var(--color-gray-0);
   --color-data-grid: var(--primitive-figure-dark-edge);
@@ -1603,7 +1605,7 @@
   --color-state-warning: var(--color-category-orange-light-ink);
   --color-flow-gray: var(--color-gray-545);
   --color-data-main: var(--color-category-blue-light-border);
-  --color-data-heat-low: var(--color-category-blue-light-tint-3);
+  --color-data-heat-low: var(--primitive-figure-heat-low);
   --color-data-heat-high: var(--color-category-blue-light-border);
   --color-data-heat-ink: var(--color-gray-1000);
   --color-data-grid: var(--color-gray-212);

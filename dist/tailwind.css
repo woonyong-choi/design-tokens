@@ -40,7 +40,7 @@
   --color-state-success: var(--color-category-green-light-ink);
   --color-state-warning: var(--color-category-orange-light-ink);
   --color-flow-gray: var(--color-gray-545);
-  --color-ui-link: var(--color-action-link);
+  --color-ui-link: var(--color-category-blue-light-ink);
   --color-ui-focus: var(--color-action-link);
   --color-data-main: var(--color-category-blue-light-border);
   --color-data-compare: var(--color-category-orange-light-border);

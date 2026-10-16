@@ -661,6 +661,12 @@
     "landing-action-pressed": {
       "$type": "color",
       "$value": "{color.control-hover}"
+    },
+    "ui": {
+      "link": {
+        "$type": "color",
+        "$value": "{color.category.blue.dark-ink}"
+      }
     }
   },
   "icon": {

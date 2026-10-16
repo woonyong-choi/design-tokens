@@ -9940,11 +9940,11 @@
     "styles/table.css": "d67831d6d1dd5b8d8de69101b4cb423b610b18757ec386cdc0754bab59ef1e43",
     "styles/tabs.css": "e7762ad9522cde4e59d71fd446d414c467b7a1155ed6d07338f3da349b8a7567",
     "styles/toolbar.css": "d684f208ad1092389604fa7904a3d4c8f5a87d5c38b46a467b254b273dfe12be",
-    "tailwind.css": "b0ac6ab279097df5dafa3174439e3a51a2809d991e2253c0c146c006ef92882d",
-    "tokens.css": "626ddc4a69e03556eed102a59af4760b27f9daad4ed3179bc4775b12747942ec",
-    "tokens.dark.json": "8c49e1350d3504021833271234362737ce33b958d8b64b003ab72a8f372a3f1d",
-    "tokens.js": "2263d6f2d877e335ba66f8a080f33ed0eaecef98ffd5b7ec72bf728818676e18",
-    "tokens.json": "7430d488b06a73e3bce43a060072d9cbb9cdc1ca0401ced5f23b3f0785af9344",
+    "tailwind.css": "520465553449acf7fce7eaf9ad5326fab31107158facd08635c66e1e9cfae157",
+    "tokens.css": "bd343a2e913188d72c6df47b1f4a3f6dd17daffd2ea6ccfe93e1b8929f3c70b8",
+    "tokens.dark.json": "a90e9fbb2be11b940f4c77bbdd130f7f3c62c1f32c16a11e03cf8022030897d1",
+    "tokens.js": "2f2f3c60ee8978c7215b19da669f125bf11941b116b4b98ae2d2cc7e614e8805",
+    "tokens.json": "4fb02155019b8e02837a04209954f28dc6b77b71eebb663228d1745356aef613",
     "ui/build/check-tokens.mjs": "c3281b894a72ce7289fd489dcea5b36cdfea60a531ae7b12389ee949b7c107c1",
     "ui/build/icons.mjs": "151587c8ae4d959154f76cd029307b4b345d2331ce91c161ef895050b4c3a34b",
     "ui/build/lib/find-hardcoded.mjs": "6ff3e5c3b249b36260a7c2ae2b46c22fdb2de0180f239f1bab09ba4cf401086e",
@@ -9975,5 +9975,5 @@
     "ui/table.mjs": "d285303ed3e84599a512085e79dfd92db751a890ad4890b81930f1ccf2126ae0",
     "ui/toolbar.mjs": "3fab9dbcd66cbb7273e8ce39d7754e5783ea4e605418dc4faf2c91831067cdd2"
   },
-  "contentHash": "da006067a111d5fc71169b5eb590c28ff9660b9d7ce281149e14d124eba240c0"
+  "contentHash": "1ff2ae4ca7053f7c9a7b28c6276dfb05a5fc66dcbe51c986e5be98f202b7ebfc"
 }

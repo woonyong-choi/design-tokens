@@ -120,8 +120,11 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 | 점선 경계(외부 도형, 점선 그룹) | `color.figure.boundary` | `#b3b9c2` / `#5f636c` | 관계선보다 옅고 머리카락 윤곽보다 진함 |
 | 카드·그룹 윤곽, 칸·열 구분선 | `color.figure.outline`, `color.figure.cell-line` | `color.ui-line` | 머리카락 선. 카드는 그림자와 함께 읽힌다 |
 | 카드 안쪽 면(표 머리, 큐 빈 칸, 배지) | `color.figure.inner-surface` | `#f1f3f6` / `#3a3b41` | 다크에서 카드보다 밝아 구멍처럼 보이지 않는다 |
-| 차트 격자·축 | `color.data.grid` | `#c8cdd4` / `figure-dark-edge` | 자료 표식보다 옅다 |
-| 열지도 칸 끝 색 | `color.data.heat-low`, `color.data.heat-high` | 옅은 파랑 → `#1e6bd6` / 낮은 채도 남청 → `#1e6bd6`(`color.category.blue.anchor`) | 다크는 칸 글자가 흰색 하나라 가장 진한 칸도 흰 글자와 4.5:1 이상이다. 예전 다크 끝 색(`category.blue.dark-border`)은 흰 글자와 3.6:1이었다 |
+| 차트 격자 | `color.data.grid` | `#c8cdd4` / `figure-dark-edge` | 자료 표식보다 옅은 안내선 |
+| 차트 축선 | `color.line` | 관계선과 같음 | 값을 재는 기준이라 차트 면 위 3:1 이상 |
+| 라이트 차트 계열 면 | `color.category.*.light-data` | Things 기준색과 이전 차분한 값의 OKLab 중간 | 다크는 그대로. 칸 안 글자는 흰색·검정 중 4.5:1 이상인 쪽이고, 주황·청록은 밝혀 검정, 보라는 어둡게 해 흰색을 쓴다 |
+| 이동 글 상자 면 | `color.flow.<색>`, 글자 `color.flow-ink.<색>` | 각 색의 진한 글자색 / 같음 | 흰 글자와 모든 색에서 4.5:1 이상. 차트 면색에 흰·검정 글자가 섞여 보이지 않게 이동 글 상자는 늘 흰 글자다 |
+| 열지도 칸 끝 색 | `color.data.heat-low`, `color.data.heat-high` | `#eaf3c0` → `#1e6bd6` / `#1f3b3e` → `#1e6bd6`(`color.category.blue.anchor`) | OKLCH 보간이라 라이트는 연노랑·민트·청록·파랑을 지나는 두 색 그라데이션이다. 다크는 칸 글자가 흰색 하나라 모든 칸이 흰 글자와 5:1 이상이다 |
 
 도형·격자 카드와 차트·시간 보기의 판 카드(`.fl-panel`)는 종이 카드다. `drop-shadow.figure-ambient`와 `drop-shadow.figure-card`를 CSS `filter: drop-shadow()`로 겹쳐 캔버스에서 살짝 떠 있다. 판 카드는 도형 카드와 같은 면·윤곽·그림자 규칙을 같은 선택자로 읽고 켜짐·초점 상태만 없다. 차트 글자 뒤 바탕(`--chart-ground`)은 판 카드의 면이다. 막대·점·선 같은 자료 표식에는 그림자를 두지 않는다. 그림자가 값의 길이와 위치를 흐리기 때문이다. 선 라벨과 캔버스 위 그룹 배지는 테두리 없는 카드 면 알약에 `drop-shadow.figure-float`를 써 선 위에서도 읽히며, 켜질 때만 강조 색 테두리가 생긴다. 카드 안 배지는 안쪽 면의 옅은 알약이고 그림자가 없다. 그룹은 그림자와 면 없이 굵은 제목과 머리카락 경계로 묶는다. 면이 없는 윤곽, 외부 도형, 상태 시작·끝 점에는 그림자를 두지 않는다. 이전의 "도형은 그림자 없는 평면" 규칙은 이 깊이 규칙으로 바뀌었다.
 
@@ -129,7 +132,7 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 곡률 역할은 `radius.figure-outer`(도형·그룹·차트 카드), `radius.figure-inner`(카드 안 면), `radius.figure-cell`(큐 칸 같은 작은 칸)이다.
 
-글 위계는 그룹·보기·차트 제목(`text.small-text`, semibold) > 카드 제목(`text.small-text`, regular) > 문장·이름표·값(`text.tiny-text`, regular) > 작은 표시(`text.figure-meta`)다. 값은 굵게 하지 않고 고정폭 숫자(`tabular-nums`)로 정렬하며 바뀐 값은 갱신 면으로 알린다. 강조 계열(`ours`, `second`)의 차트 값만 semibold다. 재생기의 장면 탭은 공통 탭의 작은 글자 변형(`TabList`의 `compact`, `is-compact`)이다. 상태·조작은 같고 글자만 `text.tiny-text`·medium으로 낮춰 그림 제목보다 조용하며, 누르는 높이는 `spacing.control`(36px) 이상이다.
+글 위계는 그룹·보기·차트 제목(`text.small-text`, semibold) > 카드 제목(`text.small-text`, regular) > 문장·이름표·값(`text.tiny-text`, regular) > 작은 표시(`text.figure-meta`, 12px)다. 작은 표시는 차트 눈금·범례·값과 카드 배지가 함께 쓰는 하한이다. Vega-Lite(10~11px)와 Mermaid(16px), Things의 작은 표시(11~12pt) 사이에서 16px 본문 옆에서도 읽히는 12px로 정했다(이전 11px). 값은 굵게 하지 않고 고정폭 숫자(`tabular-nums`)로 정렬하며 바뀐 값은 갱신 면으로 알린다. 강조 계열(`ours`, `second`)의 차트 값만 semibold다. 재생기의 장면 탭은 공통 탭의 작은 글자 변형(`TabList`의 `compact`, `is-compact`)이다. 상태·조작은 같고 글자만 `text.tiny-text`·medium으로 낮춰 그림 제목보다 조용하며, 누르는 높이는 `spacing.control`(36px) 이상이다.
 
 차트와 시간 축 그림의 기본 폭 `spacing.figure.chart.width`는 본문 단 폭(`container.body-width`, 680px)과 같다. 본문 단 안에서 줄이지 않고 원래 크기로 놓여 가장 작은 글자가 토큰 크기 그대로 보이고, 마지막 눈금 글과 단위가 단 밖으로 나가지 않는다.
 
@@ -175,7 +178,7 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 기본 강조는 파랑이며 다른 색은 작성자가 의미를 구분할 때 사용한다. 차트 면과 이동 라벨은 `color.category.*.solid/on-solid`에서 같은 색 쌍을 읽는다. 별도 흐름 팔레트는 두지 않는다. 실제 계열의 점은 원이며 범례와 이름으로 구분한다. 목표는 `color.data.reference`의 중립색, 선형 차트에서는 점 표식 없는 점선이다. 스키마 내부 선과 목표는 축과 같은 `color.data.grid`의 옅은 회색이고, 상자 수염·중앙값·신뢰구간은 자료 표식이라 `color.line`이다. 히스토그램은 구간 폭과 기준선을 유지하고 위쪽 모서리에만 공통 작은 곡률을 적용한다.
 
-범주 색은 차분한 한 벌이다. 계열 이름과 순서(blue, yellow, red, green, orange, purple, cyan)는 그대로 두고 값만 OKLCH 채도 0.10~0.14로 낮췄다. 이웃한 계열의 밝기를 번갈아 두어 색각 이상 모의(Machado 2009)에서도 이웃 쌍이 구분된다.
+범주 색은 한 벌이다. 계열 순서는 blue, orange, cyan, yellow, green, purple, red다(이전 blue, yellow, red, green, orange, purple, cyan). 첫 두 색은 색각 이상에서도 가장 잘 갈리는 파랑·주황 쌍이고(Tableau 10, Vega category10과 같은 출발), 빨강은 오류·손실·마감 경고의 뜻이 강해(Things도 마감 경고에 쓴다) 맨 뒤에 둔다. 가운데 순서는 앞 네 색의 모든 쌍, 이웃 쌍, 같은 점 모양을 쓰는 쌍(번호 차이 4)의 OKLab 거리를 정상·제2색각(deuteranopia)·제1색각(protanopia) 모의(Machado 2009)에서 재어 가장 가까운 쌍이 가장 먼 순서로 골랐다(최소 11.5, 이전 순서 7.1). 라이트 면색은 Things 기준색과 이전 차분한 값의 OKLab 중간이고 다크 면색은 이전 값 그대로다.
 
 | 검사(이웃 쌍, OKLab ΔE×100) | 라이트(캔버스 `#f6f7fa`) | 다크(캔버스 `#26272b`) |
 |---|---|---|

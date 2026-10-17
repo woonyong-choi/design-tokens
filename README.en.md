@@ -12,18 +12,6 @@ The package provides design values such as colors, spacing, and typography along
 > [!NOTE]
 > In development. There are no releases; build from source.
 
-## Contents
-
-- [Quick start](#quick-start)
-  - [Run from the repository](#run-from-the-repository)
-  - [Install in another project](#install-in-another-project)
-- [Why](#why)
-- [How it works](#how-it-works)
-- [Status](#status)
-- [Documentation](#documentation)
-- [Development](#development)
-- [License](#license)
-
 ## Quick start
 
 Node.js 20 or later and npm are required.
@@ -96,8 +84,10 @@ The package version is `0.1.1`. Inputs and components may change before 1.0. Run
 
 The design documents are written in Korean.
 
-- [아키텍처](docs/architecture.md): 코드 구조, 생성 흐름과 소유 경계
-- [All documentation](docs/README.md)
+- Start
+  - [Architecture](docs/architecture.md)
+
+[All documentation](docs/README.md)
 
 ## Development
 
@@ -111,6 +101,8 @@ npm run check
 
 CI runs installation, tests, and artifact checks on Node.js 20 and 22. `npm run check` compares committed artifacts with a fresh build. See the [contribution guide](.github/CONTRIBUTING.md) for the change process and [style structure](docs/styles.md#강제하는-것) for checks on visual values and CSS variables.
 
+Fonts and third-party assets follow the terms in [sources and licenses](assets/sources.json).
+
 ## License
 
-[MIT](LICENSE). Fonts and third-party assets follow the terms in [sources and licenses](assets/sources.json).
+[MIT](LICENSE)

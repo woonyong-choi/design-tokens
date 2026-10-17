@@ -21,7 +21,7 @@ Consumer repositories own content, routes, and domain logic. Reusable presentati
 
 ## Install
 
-Install a pinned commit as a Git dependency. The consuming app chooses the commit; ThinkFlow and document-engine read the same installed copy as a peer dependency.
+Install a pinned commit as a Git dependency. The consuming app chooses the commit; Torso and document-engine read the same installed copy as a peer dependency.
 
 ```sh
 npm install --save-dev github:woonyong-choi/design-tokens#<commit>
@@ -72,7 +72,7 @@ The [icon design criteria](docs/design/content-icons.md#설계-판정-기준) co
 
 The shared catalog maps eight article formats to one icon each. Consumers select the format icon before the category icon and fall back to `document`; the catalog does not change a consumer's existing composition by itself.
 
-The catalog keeps only brand marks shared by more than one consumer: Git, PostgreSQL, Redis, and NGINX for ThinkFlow figures, and GitHub and LinkedIn for the shared social icons. A technology logo used by one consumer lives in that consumer, such as the homepage technology logos. Brand backgrounds and small-size symbols are normalized in the existing SVG files. NGINX and Redis retain opaque white marks in color and cutouts in monochrome. The catalog records each treatment; PostgreSQL blue has a dark-theme contrast adjustment.
+The catalog keeps only brand marks shared by more than one consumer: Git, PostgreSQL, Redis, and NGINX for Torso figures, and GitHub and LinkedIn for the shared social icons. A technology logo used by one consumer lives in that consumer, such as the homepage technology logos. Brand backgrounds and small-size symbols are normalized in the existing SVG files. NGINX and Redis retain opaque white marks in color and cutouts in monochrome. The catalog records each treatment; PostgreSQL blue has a dark-theme contrast adjustment.
 
 The project-original newsletter and testimonial PNGs keep their bytes and provenance in `assets/sources.json`. Every file under `assets/` has an origin and license record there, checked by `npm test`. Consume them through image `src` slots; the shared SVG loader remains SVG-only.
 
@@ -117,7 +117,7 @@ Tag-based package releases are separate. Website updates do not create tags or p
 
 Design documentation is in Korean. Start with [architecture](docs/architecture.md), [shared components](docs/components.md), or the [document index](docs/README.md).
 
-The [shared icon example](docs/design/content-icons.md#다이어그램) uses built-in names with the current ThinkFlow syntax and includes SVG regeneration commands.
+The [shared icon example](docs/design/content-icons.md#다이어그램) uses built-in names with the current Torso syntax and includes SVG regeneration commands.
 
 ## License
 
@@ -136,7 +136,7 @@ Diagram flashes and active card surfaces use `color.figure.flash` and `color.fig
 
 Dark cards share the page surface and readable title and description roles; hover and active states preserve text contrast.
 
-Chart growth shapes and HTML playback styles are shared by the design source; ThinkFlow owns scene timing for SVG output.
+Chart growth shapes and HTML playback styles are shared by the design source; Torso owns scene timing for SVG output.
 
 Project videos stay collapsed before JavaScript initializes. Without JavaScript, the explicit video link opens native controls through its fragment target.
 

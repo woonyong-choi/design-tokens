@@ -44,6 +44,11 @@ test('installed_package_compiles_styles_without_consumer_dependencies', (t) => {
     assert.equal(String(escape('<a>')), '&lt;a&gt;');
     const { createRequire } = await import('node:module');
     const require = createRequire(process.cwd() + '/');
+    const packageRequire = createRequire(require.resolve('@woonyong-choi/design-tokens/package.json'));
+    const purgecssRequire = createRequire(packageRequire.resolve('purgecss'));
+    const parser = purgecssRequire('postcss-selector-parser/package.json');
+    const [major, minor, patch] = parser.version.split('.').map(Number);
+    assert.ok(major > 7 || (major === 7 && (minor > 1 || (minor === 1 && patch >= 6))), 'installed PurgeCSS requires postcss-selector-parser >=7.1.6, got ' + parser.version);
     assert.match(require.resolve('@woonyong-choi/design-tokens/styles/tabs.css'), /dist[\\/]styles[\\/]tabs\.css$/);
   `]);
   writeFileSync(join(consumer, 'page.css'), '.page { color: #ff0000; }\n');

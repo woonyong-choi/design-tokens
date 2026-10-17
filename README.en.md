@@ -52,7 +52,7 @@ console.log(String(CardGroup({ columns: 4, cards })));
 JS
 ```
 
-The output is an `app-support-grid is-four` group containing a link to `/docs/memory/`. To display it in a browser, include the HTML with the package's `tokens.css` and `styles.css`. Preserve the relative paths to fonts and icons referenced by the CSS. [Shared design distribution](docs/distribution.md#패키지) covers resolving file paths and connecting them to a page.
+The output is an `app-support-grid is-four` group containing a link to `/docs/memory/`. To display it in a browser, include the HTML with the package's `tokens.css` and `styles.css`. Preserve the relative paths to fonts and icons referenced by the CSS. Follow the complete [card preview example](docs/distribution.md#카드-미리보기) to open the styled card in a browser.
 
 ### Install in another project
 
@@ -113,4 +113,4 @@ CI runs installation, tests, and artifact checks on Node.js 20 and 22. `npm run 
 
 ## License
 
-[MIT](LICENSE)
+[MIT](LICENSE). Fonts and third-party assets follow the terms in [sources and licenses](assets/sources.json).

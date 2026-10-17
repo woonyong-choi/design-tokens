@@ -43,6 +43,43 @@ const tokensPath = require.resolve('@woonyong-choi/design-tokens/css');
 
 파일을 읽는 소비자는 경로를 직접 조립하지 않고 `createRequire(import.meta.url).resolve('@woonyong-choi/design-tokens/<경로>')`로 찾는다. 하드코딩 검사는 `design-tokens-check <대상> --tokens node_modules/@woonyong-choi/design-tokens/dist/tokens.json`으로 실행한다.
 
+## 카드 미리보기
+
+저장소에서 빌드했거나 다른 프로젝트에 패키지를 설치한 뒤 아래 명령을 실행한다. 카드 HTML과 두 CSS를 연결한 로컬 HTML 파일을 만든다. CSS의 원래 위치를 사용하므로 글꼴의 상대 경로도 유지된다.
+
+```sh
+node --input-type=module <<'JS'
+import { mkdirSync, writeFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
+import { resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
+import { Card, CardGroup } from '@woonyong-choi/design-tokens/components';
+
+const require = createRequire(import.meta.url);
+const css = ['css', 'styles.css'].map(entry => {
+  const path = require.resolve(`@woonyong-choi/design-tokens/${entry}`);
+  return `<link rel="stylesheet" href="${pathToFileURL(path).href}">`;
+}).join('\n');
+const cards = [Card({
+  title: 'Memory',
+  href: 'https://example.com/docs/memory/',
+  description: 'Address translation',
+})];
+const html = `<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Card preview</title>${css}</head>
+<body>${CardGroup({ columns: 4, cards })}</body>
+</html>`;
+mkdirSync('.local', { recursive: true });
+const output = resolve('.local/design-tokens-card.html');
+writeFileSync(output, html);
+console.log(pathToFileURL(output).href);
+JS
+```
+
+출력된 `file:` 주소를 브라우저에서 열면 카드 한 개가 표시된다. 이 파일은 설치 확인용이다. 웹사이트에 배포할 때는 소비 앱의 정적 자산 경로에 CSS와 참조 자산을 함께 제공하고 `<link>`의 주소를 해당 공개 URL로 바꾼다.
+
 ## 소비자 구성
 
 | 소비자 | 선언 | 이유 |

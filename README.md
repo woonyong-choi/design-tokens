@@ -55,7 +55,7 @@ console.log(String(CardGroup({ columns: 4, cards })));
 JS
 ```
 
-결과는 `app-support-grid is-four` 카드 묶음 안에 `/docs/memory/` 링크를 가진 HTML입니다. 브라우저에서 표시할 때는 이 HTML과 패키지의 `tokens.css`, `styles.css`를 함께 연결하세요. CSS가 참조하는 글꼴·아이콘의 상대 경로도 유지해야 합니다. 파일 경로를 찾고 페이지에 연결하는 방법은 [공통 디자인 배포](docs/distribution.md#패키지)에 있습니다.
+결과는 `app-support-grid is-four` 카드 묶음 안에 `/docs/memory/` 링크를 가진 HTML입니다. 브라우저에서 표시할 때는 이 HTML과 패키지의 `tokens.css`, `styles.css`를 함께 연결하세요. CSS가 참조하는 글꼴·아이콘의 상대 경로도 유지해야 합니다. 브라우저에서 카드가 표시되는 전체 예제는 [카드 미리보기](docs/distribution.md#카드-미리보기)를 따르세요.
 
 ### 다른 프로젝트에 설치
 
@@ -124,4 +124,4 @@ CI는 Node.js 20과 22에서 설치·시험·생성물 검사를 실행합니다
 
 ## 라이선스
 
-[MIT](LICENSE)
+[MIT](LICENSE). 글꼴·외부 자산의 조건은 [출처와 라이선스](assets/sources.json)를 따릅니다.

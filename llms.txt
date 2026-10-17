@@ -2,7 +2,7 @@
 
 > Shared design tokens, CSS, icons, and HTML components for static sites and diagram tools
 
-This repository defines token values, shared styles, and browser behavior. Consumer apps provide content and routes, then include the HTML and CSS from this package in their pages.
+The package provides design values such as colors, spacing, and typography alongside HTML components such as cards and tabs. Tokens, CSS, icons, and browser behavior live in one place so static sites and diagram tools can share a design.
 
 ## Docs
 

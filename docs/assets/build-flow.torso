@@ -1,0 +1,15 @@
+torso
+width wide
+title "Shared sources become a package that apps consume"
+
+box source "Source" {
+  text "`tokens/` · `styles/`"
+  text "`assets/` · `ui/`"
+}
+box build "Build" "`npm run build`" tone=blue appearance=filled
+box package "Package" "`dist/`"
+box apps "Apps" "Pinned Git commit"
+
+source -> build no=1
+build -> package no=2
+package -> apps no=3

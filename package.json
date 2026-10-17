@@ -53,7 +53,9 @@
   },
   "dependencies": {
     "esbuild": "0.28.2",
-    "postcss": "8.5.29",
+    "postcss": "8.5.29"
+  },
+  "devDependencies": {
     "purgecss": "7.0.2"
   },
   "overrides": {

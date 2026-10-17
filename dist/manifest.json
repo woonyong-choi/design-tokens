@@ -9951,7 +9951,7 @@
     "ui/build/lib/tokens-patterns.mjs": "6dd8358ac6d78644df61de3ce4dbefd4e2270b6ebc82e122cd12fed1d6eb842a",
     "ui/build/lib/walk-files.mjs": "96c2a98ba1ceed4c22cd471578a4429bd09162adcec1d5ca48b5b160f63527d7",
     "ui/build/prune-tokens.mjs": "2c543e3e4eb30f20136765d20c06142acb43059fe9f6022b91db8634ecb44a2f",
-    "ui/build/styles.mjs": "a36d7059965326f222fca5b8256c31fe3d075aebc20088b6e667bb558d639664",
+    "ui/build/styles.mjs": "079f62598d52a49167b001c7bd4257bc70ca6f9f2e9c571f230b42a52ecf789c",
     "ui/components.mjs": "3e08f7a212f6eb9737831b0e4b71318d2dc2ac69614bad09e55e5134479dd0f0",
     "ui/diagram.mjs": "d582cd18e78cb703c5eec35f4ef68bf4496c814850efae1033c8e82807794fc7",
     "ui/document.mjs": "0b466b99dabad1ff5d7aea7003af2abf2a697d6465c0263085021d2d0cd8de20",
@@ -9975,5 +9975,5 @@
     "ui/table.mjs": "d285303ed3e84599a512085e79dfd92db751a890ad4890b81930f1ccf2126ae0",
     "ui/toolbar.mjs": "3fab9dbcd66cbb7273e8ce39d7754e5783ea4e605418dc4faf2c91831067cdd2"
   },
-  "contentHash": "2202b7882e226af9a133bed8678300ccf5944a0f377482e259741f8edce71b1e"
+  "contentHash": "18595048c17ac315081a6f3a306c33d4765c348bd0c7885699b482b75346fb95"
 }

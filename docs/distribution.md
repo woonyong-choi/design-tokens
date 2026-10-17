@@ -18,7 +18,11 @@ npm install --save-dev 'github:woonyong-choi/design-tokens#<commit>'
 }
 ```
 
-`dist/`를 Git에 커밋하므로 설치 때 빌드하지 않는다. `install`·`prepare` 같은 설치 스크립트를 두지 않고 `files`는 `dist`와 `LICENSE`만 담는다. `test/package.test.js`가 `npm pack`한 결과를 빈 소비자 폴더에 설치해 진입점, CSS 경로 해석과 검사 명령을 확인한다.
+`dist/`를 Git에 커밋하므로 설치 때 빌드하지 않는다. `install`·`prepare` 같은 설치 스크립트를 두지 않고 `files`는 `dist`와 `LICENSE`만 담는다.
+
+`/build/styles`는 저장소에서 빌드한 PurgeCSS와 선택자 parser를 포함한다. 소비자에게 설치되는 런타임 의존성은 `esbuild`와 `postcss`다. 루트 override는 이 저장소의 빌드 입력만 고정하며 소비자에게 override 설정을 요구하지 않는다. 포함한 패키지의 이름·버전과 LICENSE 전문은 `dist/ui/build/styles.mjs`의 법적 주석에 남긴다.
+
+`test/package.test.js`는 `npm pack` 결과를 override 없는 빈 소비자에 설치한다. 공개 `compileStyles`의 전체 CSS·토큰 축소 결과를 정본 함수와 비교하고, 진입점·CSS 경로·검사 명령·`npm ls --all`·`npm audit`를 확인한다. 이 검사는 로컬 패키지 설치 범위다. 소비자는 고정 Git commit 설치 뒤 자기 입력과 검사로 다시 확인한다. `npm audit`는 번들 내부를 검사하지 않으므로 `test/source.test.js`가 실제 번들 입력의 parser 수정 버전, lock 일치, LICENSE 전문과 생성물 해시를 별도로 확인한다.
 
 | 진입점 | 내용 |
 |---|---|

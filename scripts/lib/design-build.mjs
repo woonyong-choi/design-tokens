@@ -5,6 +5,7 @@ import { createHash } from 'node:crypto';
 import { buildTables, readSource } from './tokens.mjs';
 import { themeTable, resolveValue, themeCss, tailwindCss } from './token-css.mjs';
 import { flattenStyle } from './style-source.mjs';
+import { bundleStyles } from './styles-bundle.mjs';
 import { parseIconSvg } from '../../ui/svg.mjs';
 
 const serialize = value => JSON.stringify(value, null, 2) + '\n';
@@ -92,6 +93,7 @@ export function buildDesign(root) {
   const names = [...new Set(Object.values(roles).flatMap(group => Object.values(group)).map(iconName))];
   const graphics = Object.fromEntries(names.map(name => [name, files[`assets/icons/${catalog.icons[name].file}`].toString()]));
   files['ui/icon-data.mjs'] = `// assets/icons: 생성물, 손으로 고치지 않음\nexport const ICON_ROLES = Object.freeze(${serialize(roles).trim()});\nexport const ICON_DATA = Object.freeze(${serialize(graphics).trim()});\n`;
+  files['ui/build/styles.mjs'] = bundleStyles(root).code;
   const hashes = Object.fromEntries(Object.entries(files).sort(([a], [b]) => a.localeCompare(b)).map(([name, content]) => [name, digest(content)]));
   files['manifest.json'] = serialize({ schemaVersion: 1, source: { repository: 'https://github.com/woonyong-choi/design-tokens', version: JSON.parse(readFileSync(join(root, 'package.json'))).version }, files: hashes, contentHash: digest(serialize(hashes)) });
   return files;

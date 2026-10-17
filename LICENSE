@@ -26,4 +26,5 @@ Third-party material: icon library notices and available brand provenance are re
 in assets/icons/catalog.json, with full notices in assets/icons/licenses/.
 The packaged copies are in dist/assets/icons/catalog.json and dist/assets/icons/licenses/.
 Font notices are included beside their files in assets/fonts/ and dist/assets/fonts/.
+Bundled CSS compiler dependencies retain their full license notices in dist/ui/build/styles.mjs.
 These materials retain the terms and restrictions stated in their individual notices.

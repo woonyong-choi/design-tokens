@@ -84,8 +84,11 @@ The package version is `0.1.1`. Inputs and components may change before 1.0. Run
 
 The design documents are written in Korean.
 
-- Start
-  - [Architecture](docs/architecture.md)
+- [Architecture](docs/architecture.md)
+  - [Shared design distribution](docs/distribution.md)
+  - [Style structure](docs/styles.md)
+- [Shared components](docs/components.md)
+  - [Shared icons](docs/design/content-icons.md)
 
 [All documentation](docs/README.md)
 

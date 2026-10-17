@@ -7,7 +7,7 @@ The package provides design values such as colors, spacing, and typography along
 ## Docs
 
 - [아키텍처](https://raw.githubusercontent.com/woonyong-choi/design-tokens/main/docs/architecture.md)
-- [공통 아이콘](https://raw.githubusercontent.com/woonyong-choi/design-tokens/main/docs/design/content-icons.md)
-- [공통 구성 요소](https://raw.githubusercontent.com/woonyong-choi/design-tokens/main/docs/components.md)
 - [공통 디자인 배포](https://raw.githubusercontent.com/woonyong-choi/design-tokens/main/docs/distribution.md)
 - [스타일 구조](https://raw.githubusercontent.com/woonyong-choi/design-tokens/main/docs/styles.md)
+- [공통 구성 요소](https://raw.githubusercontent.com/woonyong-choi/design-tokens/main/docs/components.md)
+- [공통 아이콘](https://raw.githubusercontent.com/woonyong-choi/design-tokens/main/docs/design/content-icons.md)

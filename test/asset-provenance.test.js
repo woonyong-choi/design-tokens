@@ -82,13 +82,13 @@ test('icon_catalog_sources_have_notices_and_never_point_to_blocked_hosts', () =>
   }
 });
 
-// 한 소비자만 쓰는 기술 로고는 그 소비자가 소유한다. 여기에는 공통 소셜 역할과 ThinkFlow 내장 그림이 함께 쓰는 표식만 둔다.
-const THINKFLOW_BRANDS = ['git', 'nginx', 'postgresql', 'redis'];
+// 한 소비자만 쓰는 기술 로고는 그 소비자가 소유한다. 여기에는 공통 소셜 역할과 Torso 내장 그림이 함께 쓰는 표식만 둔다.
+const TORSO_BRANDS = ['git', 'nginx', 'postgresql', 'redis'];
 
 test('brand_marks_are_only_the_shared_ones_and_every_notice_belongs_to_a_catalog_entry', () => {
-  const shared = new Set([...Object.values(catalog.social), ...THINKFLOW_BRANDS]);
+  const shared = new Set([...Object.values(catalog.social), ...TORSO_BRANDS]);
   for (const name of Object.keys(catalog.brands)) assert.ok(shared.has(name), `${name}: 공통으로 쓰지 않는 기술 로고는 소비자 저장소가 소유한다`);
-  for (const name of THINKFLOW_BRANDS) assert.ok(Object.hasOwn(catalog.brands, name), name);
+  for (const name of TORSO_BRANDS) assert.ok(Object.hasOwn(catalog.brands, name), name);
   const notices = new Set([...catalog.libraries, ...Object.values(catalog.brands)].map(item => item.notice).filter(Boolean));
   for (const name of filesUnder('assets/icons/licenses')) assert.ok(notices.has(`licenses/${name}`), `${name}: 카탈로그가 가리키지 않는 고지`);
 });

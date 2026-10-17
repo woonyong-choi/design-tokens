@@ -23,7 +23,7 @@
 
 ## 설치
 
-고정 commit을 Git 의존성으로 설치합니다. commit은 소비하는 앱이 정하고 ThinkFlow와 document-engine은 앱이 설치한 같은 패키지를 peer 의존성으로 읽습니다.
+고정 commit을 Git 의존성으로 설치합니다. commit은 소비하는 앱이 정하고 Torso와 document-engine은 앱이 설치한 같은 패키지를 peer 의존성으로 읽습니다.
 
 ```sh
 npm install --save-dev github:woonyong-choi/design-tokens#<commit>
@@ -72,7 +72,7 @@ SVG는 파일 이름이나 로더 API를 바꾸지 않고 두 직계 그룹에 �
 
 공통 카탈로그는 글 형식 8개를 각각 아이콘 하나에 연결합니다. 소비자는 형식, 카테고리, `document` 순서로 하나를 선택하며, 카탈로그 변경만으로 소비자의 기존 조합이 바뀌지는 않습니다.
 
-카탈로그에는 여러 소비자가 함께 쓰는 브랜드 표식만 둡니다. ThinkFlow 그림의 Git·PostgreSQL·Redis·NGINX와 공통 소셜 아이콘의 GitHub·LinkedIn입니다. 홈페이지 기술 로고처럼 한 소비자만 쓰는 기술 로고는 그 소비자가 소유합니다. 브랜드 배경과 작은 크기의 심벌은 기존 SVG에서 정리하고 변경 방식을 카탈로그에 기록합니다. NGINX와 Redis의 흰 표식은 컬러에서 불투명하게, 단색에서 음각으로 유지합니다. PostgreSQL 파랑은 다크 모드에서 대비를 보정합니다.
+카탈로그에는 여러 소비자가 함께 쓰는 브랜드 표식만 둡니다. Torso 그림의 Git·PostgreSQL·Redis·NGINX와 공통 소셜 아이콘의 GitHub·LinkedIn입니다. 홈페이지 기술 로고처럼 한 소비자만 쓰는 기술 로고는 그 소비자가 소유합니다. 브랜드 배경과 작은 크기의 심벌은 기존 SVG에서 정리하고 변경 방식을 카탈로그에 기록합니다. NGINX와 Redis의 흰 표식은 컬러에서 불투명하게, 단색에서 음각으로 유지합니다. PostgreSQL 파랑은 다크 모드에서 대비를 보정합니다.
 
 독자 제작 구독·후기 PNG는 바이트와 출처를 `assets/sources.json`에 보존합니다. `assets/`의 모든 파일은 이 파일에 출처·라이선스 기록을 가지며 `npm test`가 검사합니다. 이미지 `src` 슬롯으로 소비하며 공통 SVG 로더에는 넣지 않습니다.
 
@@ -117,7 +117,7 @@ Markdown 렌더러는 `Details.open()`과 `Details.close()`로 접기 블록을 
 
 설계 문서는 한국어입니다. [아키텍처](docs/architecture.md), [공통 구성 요소](docs/components.md), [전체 문서](docs/README.md)에서 시작하세요.
 
-[공유 아이콘 예제](docs/design/content-icons.md#다이어그램)는 현재 ThinkFlow 문법과 내장 이름을 사용하며 SVG 재생성 명령을 포함합니다.
+[공유 아이콘 예제](docs/design/content-icons.md#다이어그램)는 현재 Torso 문법과 내장 이름을 사용하며 SVG 재생성 명령을 포함합니다.
 
 ## 라이선스
 
@@ -136,7 +136,7 @@ Markdown 렌더러는 `Details.open()`과 `Details.close()`로 접기 블록을 
 
 다크 카드와 페이지는 공통 면·제목·설명 역할을 사용하며, 호버·눌림 상태에서도 글자 대비를 유지합니다.
 
-차트 성장 모양과 HTML 재생 스타일은 디자인 정본에서 공유하고, SVG의 장면별 시각 계산은 ThinkFlow가 담당합니다.
+차트 성장 모양과 HTML 재생 스타일은 디자인 정본에서 공유하고, SVG의 장면별 시각 계산은 Torso가 담당합니다.
 
 프로젝트 영상은 JavaScript 초기화 전부터 접혀 있습니다. JavaScript가 없어도 영상 링크의 조각 주소로 이동하면 기본 재생 컨트롤을 사용할 수 있습니다.
 

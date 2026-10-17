@@ -6,13 +6,13 @@
 
 기술 이름은 해당 프로젝트·재단·제작자가 배포한 로고로 표시한다. 공식 배포본 안에서 배경 없는 심벌과 평면형을 우선 선택하고 원래 색·도형·비례를 보존한다. 같은 표시 크기에서 실제 도형의 크기와 중심을 비례 변환으로 맞춘다. 독자 제작 콘텐츠 아이콘의 Things 조형 규칙을 기술 로고의 재디자인 지시로 적용하지 않는다.
 
-이 카탈로그의 `brands`에는 ThinkFlow 그림이 내장 아이콘으로 쓰는 Git·PostgreSQL·Redis·NGINX와 공통 `SocialIcon`·`SiteFooter`가 쓰는 GitHub·LinkedIn만 둔다. 각 항목은 원배포 출처와 선택한 변형·원본 해시를 `assets/icons/catalog.json`의 `brands`에 기록한다. 한 소비자만 쓰는 기술 로고는 그 소비자가 소유한다. 홈페이지 기술 줄과 문서의 C·C#·Python·TypeScript·JavaScript·Kotlin·Kubernetes·Docker·Node.js·Spring·Linux 로고는 homepage 저장소의 `content/assets/brands/`와 `config/assets.json`이 출처와 고지를 가진다. 쓰는 곳이 없던 나머지 기술 로고와 그 출처만 기록하던 Simple Icons·Devicon 라이브러리 항목, Kafka 로고의 Apache-2.0 고지는 두지 않는다. Devicon 고지는 기술 키워드 수집본(`keyword-icons`)의 고지로 남는다. 새 기술 로고는 실제로 쓰는 소비자에 추가하고, 여러 소비자가 공유할 때만 이 카탈로그에 둔다. `test/asset-provenance.test.js`가 `brands`를 공통 소셜 역할과 ThinkFlow 내장 그림의 표식으로 제한하고, 카탈로그가 가리키지 않는 고지 파일을 거부한다.
+이 카탈로그의 `brands`에는 Torso 그림이 내장 아이콘으로 쓰는 Git·PostgreSQL·Redis·NGINX와 공통 `SocialIcon`·`SiteFooter`가 쓰는 GitHub·LinkedIn만 둔다. 각 항목은 원배포 출처와 선택한 변형·원본 해시를 `assets/icons/catalog.json`의 `brands`에 기록한다. 한 소비자만 쓰는 기술 로고는 그 소비자가 소유한다. 홈페이지 기술 줄과 문서의 C·C#·Python·TypeScript·JavaScript·Kotlin·Kubernetes·Docker·Node.js·Spring·Linux 로고는 homepage 저장소의 `content/assets/brands/`와 `config/assets.json`이 출처와 고지를 가진다. 쓰는 곳이 없던 나머지 기술 로고와 그 출처만 기록하던 Simple Icons·Devicon 라이브러리 항목, Kafka 로고의 Apache-2.0 고지는 두지 않는다. Devicon 고지는 기술 키워드 수집본(`keyword-icons`)의 고지로 남는다. 새 기술 로고는 실제로 쓰는 소비자에 추가하고, 여러 소비자가 공유할 때만 이 카탈로그에 둔다. `test/asset-provenance.test.js`가 `brands`를 공통 소셜 역할과 Torso 내장 그림의 표식으로 제한하고, 카탈로그가 가리키지 않는 고지 파일을 거부한다.
 
 정본 SVG 이름·경로·viewBox를 유지한다. 임시·구형·레거시 SVG나 소비자별 복제본을 디자인토큰 저장소에 남기지 않는다. 원배포 다운로드·비교 캡처·실패 시안은 저장소 밖의 검수 영역에서만 다룬다. 기본형·상세형과 정본으로부터 build가 생성하는 dist는 기존 계약을 따른다.
 
 원본 도형을 다시 그리지 않는다. 기존 렌더러가 지원하지 않는 색 표현을 정적 벡터로 변환했다면 원래 도형·팔레트·그라디언트 함수와 변환 사실을 기록하고, 같은 크기의 원배포 렌더와 픽셀·시각 대조한다. 이 호환 변환을 원본 파일의 바이트 그대로라고 설명하지 않는다. 출처·권리 고지는 `assets/icons/licenses/project-logos.txt`를 따른다.
 
-아이콘 원본은 `assets/icons/<의미>/<이름>.svg` 한 곳에서 편집한다. 홈페이지와 ThinkFlow는 같은 배포본과 렌더러를 사용한다. `icons` 안의 깊이는 의미 폴더와 파일까지 2단계다. 이 제한은 홈페이지 원고에는 적용하지 않는다.
+아이콘 원본은 `assets/icons/<의미>/<이름>.svg` 한 곳에서 편집한다. 홈페이지와 Torso는 같은 배포본과 렌더러를 사용한다. `icons` 안의 깊이는 의미 폴더와 파일까지 2단계다. 이 제한은 홈페이지 원고에는 적용하지 않는다.
 
 ## 고치는 곳
 
@@ -221,7 +221,7 @@ Things는 색면·실루엣·묘사 밀도를 비교하는 시각 레퍼런스�
 | 실제 크기 | 콘텐츠 아이콘을 24·32·48px, 조작부를 추가로 16·20px에서 렌더 | 구멍·간격·화살촉이 뭉치거나 세부 묘사가 주체보다 먼저 눈에 들어오는 경우 |
 | 색상·단색 일치 | 두 표현에서 주체·방향·관계·상태를 대조 | 한 표현에만 처리 화살표나 데이터 계열을 추가해 핵심 의미가 바뀌는 경우 |
 | 상세형의 추가 정보 | 추가한 요소가 설명하는 정보와 사용 크기를 명시 | 기본형에 점·줄·광택만 늘리고 새 정보가 없거나 축소 시 잡음이 되는 경우 |
-| 실제 소비 장면 | 홈페이지 카테고리·글 목록과 ThinkFlow 노드·라벨·연결선·조작부에서 확인 | 독립 미리보기에서는 읽히지만 주변 글자·도형·상태와 겹치거나 위계가 무너지는 경우 |
+| 실제 소비 장면 | 홈페이지 카테고리·글 목록과 Torso 노드·라벨·연결선·조작부에서 확인 | 독립 미리보기에서는 읽히지만 주변 글자·도형·상태와 겹치거나 위계가 무너지는 경우 |
 
 색상·단색의 도형은 가독성을 위해 달라질 수 있지만 핵심 의미를 바꾸지 않는다. 상세형도 주체의 정체성을 유지하며 추가 정보를 전달한다. 기본형과 상세형의 차이가 사라지는 크기에서는 기본형을 사용한다. 이 선택을 위해 소비자별 SVG 사본을 만들지 않는다.
 
@@ -231,23 +231,23 @@ Things는 색면·실루엣·묘사 밀도를 비교하는 시각 레퍼런스�
 
 ## 다이어그램
 
-ThinkFlow는 `icon=user`처럼 카탈로그 이름과 별칭을 직접 쓴다. 사용자 SVG가 필요한 경우만 `icons content "폴더"`와 `icon=content:user`를 쓴다. 도형의 측정·연결점·배치·경로 계산은 ThinkFlow가 맡는다.
+Torso는 `icon=user`처럼 카탈로그 이름과 별칭을 직접 쓴다. 사용자 SVG가 필요한 경우만 `icons content "폴더"`와 `icon=content:user`를 쓴다. 도형의 측정·연결점·배치·경로 계산은 Torso가 맡는다.
 
-[실행 예제](../../examples/content-icons.thinkflow)는 `thinkflow` 문법으로 `user`, `apigw`, `server`, `db`를 연결한다.
+[실행 예제](../../examples/content-icons.torso)는 `torso` 문법으로 `user`, `apigw`, `server`, `db`를 연결한다.
 
 ![공통 아이콘으로 표현한 요청 경로](../../examples/content-icons.svg)
 
 ```sh
-THINKFLOW_ROOT=/path/to/ThinkFlow
-node "$THINKFLOW_ROOT/src/cli.js" check examples/content-icons.thinkflow --strict
-node "$THINKFLOW_ROOT/src/cli.js" render examples/content-icons.thinkflow --strict --static
+TORSO_ROOT=/path/to/Torso
+node "$TORSO_ROOT/src/cli.js" check examples/content-icons.torso --strict
+node "$TORSO_ROOT/src/cli.js" render examples/content-icons.torso --strict --static
 ```
 
-재생성 전에 ThinkFlow의 `@woonyong-choi/design-tokens` 개발 의존성을 같은 commit으로 맞춘다. 설치된 패키지 파일을 직접 수정하지 않는다.
+재생성 전에 Torso의 `@woonyong-choi/design-tokens` 개발 의존성을 같은 commit으로 맞춘다. 설치된 패키지 파일을 직접 수정하지 않는다.
 
 ## 변경 후 확인
 
-`npm run build`, `npm test`, `npm run check`로 파일 목록, 원본·출력 연결, 역할·별칭, 외부 고지, 안전한 SVG 삽입을 확인한다. 실제 소비 화면에서는 설계 판정 기준에 따라 밝고 어두운 배경, 색상·단색, 기본형·상세형과 사용 크기를 대조한다. 호버·초점·복사 결과·배지 가독성과 ThinkFlow의 연결·애니메이션도 확인한다.
+`npm run build`, `npm test`, `npm run check`로 파일 목록, 원본·출력 연결, 역할·별칭, 외부 고지, 안전한 SVG 삽입을 확인한다. 실제 소비 화면에서는 설계 판정 기준에 따라 밝고 어두운 배경, 색상·단색, 기본형·상세형과 사용 크기를 대조한다. 호버·초점·복사 결과·배지 가독성과 Torso의 연결·애니메이션도 확인한다.
 
 검수 기록에는 아이콘 이름, 소스 버전, 비교 근거, 크기·테마·표현, 사용 장면, 발견한 문제와 남은 한계를 적는다. 기준별 판단을 남기고 임의의 완성도 백분율이나 일괄 통과로 대체하지 않는다. 파일 검사·시각 검토·사용자 승인·병합·소비자 반영은 각각 구분한다. 일회성 검수 이미지와 기록은 제품 저장소에 쌓지 않는다.
 

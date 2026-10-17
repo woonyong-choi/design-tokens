@@ -1,147 +1,117 @@
-# design-tokens
+<h1 align="center">design-tokens</h1>
 
-English | [한국어](README.ko.md)
+<p align="center">
+  정적 사이트와 도표 도구가 공유하는 디자인 토큰, CSS, 아이콘과 HTML 구성 요소<br>
+  한국어 | <a href="README.en.md">English</a>
+</p>
 
-Shared design tokens, CSS, icons, HTML components, and browser behavior for static sites and diagram tools.
+토큰 값, 공통 스타일과 브라우저 동작을 한 저장소에서 관리합니다. 소비하는 앱은 콘텐츠와 경로를 제공하고, 이 패키지가 반환한 HTML과 CSS를 페이지에 연결합니다.
 
-Document apps use `font.ui`, `text.tool`, `spacing.tool-icon`, `spacing.tool-target`, `spacing.toolbar`, and `color.workspace.*` for system controls and neutral surfaces. These roles leave the document font unchanged. Dark cards share readable title, copy, and interaction colors.
+> [!NOTE]
+> 개발 중입니다. 공개 릴리스는 없으며 커밋에 포함한 생성물을 Git 의존성으로 설치해 사용합니다.
 
-## Structure
+## 목차
 
-| Path | Responsibility |
-|---|---|
-| `tokens/` | Shared values and sparse dark-mode overrides |
-| `styles/`, `assets/` | Shared web/diagram styles and icons |
-| `ui/` | Composable HTML components, optional runtimes, and build helpers |
-| `scripts/` | Validation and build |
-| `dist/` | Committed generated artifacts read through the package entry points |
-| `test/`, `examples/`, `docs/` | Contracts, working examples, and design documentation |
+- [빠른 시작](#빠른-시작)
+- [해결하는 문제](#해결하는-문제)
+- [작동 방식](#작동-방식)
+- [상태](#상태)
+- [문서](#문서)
+- [개발](#개발)
+- [라이선스](#라이선스)
 
-Consumer repositories own content, routes, and domain logic. Reusable presentation belongs here. Consumers install this package; they do not keep copies of its files.
+<a id="install"></a>
 
-## Install
+<a id="compose"></a>
 
-Install a pinned commit as a Git dependency. The consuming app chooses the commit; Torso and document-engine read the same installed copy as a peer dependency.
+## 빠른 시작
 
-```sh
-npm install --save-dev github:woonyong-choi/design-tokens#<commit>
-```
-
-`dist/` is committed, so installing runs no build. Import named entry points (`/css`, `/components`, `/icons`, `/svg`, `/build/styles`) or any file under `dist/` by its path, for example `@woonyong-choi/design-tokens/ui/index.mjs` or `@woonyong-choi/design-tokens/styles/tabs.css`. The `design-tokens-check` command runs the hard-coded value audit. See [distribution](docs/distribution.md).
-
-## Build
-
-Node.js 20 or later are required for the checks.
+Node.js 20 이상과 npm이 필요합니다. 저장소 루트에서 의존성을 설치하고 카드 HTML을 출력하세요.
 
 ```sh
 npm ci
+node --input-type=module <<'JS'
+import { Card, CardGroup } from '@woonyong-choi/design-tokens/components';
+
+const cards = [Card({
+	title: 'Memory',
+	href: '/docs/memory/',
+	description: 'Address translation',
+})];
+console.log(String(CardGroup({ columns: 4, cards })));
+JS
+```
+
+출력에는 `app-support-grid is-four` 카드 묶음과 `/docs/memory/` 링크가 있습니다. 이 예제는 정적 HTML을 만들며 React나 브라우저 초기화가 필요하지 않습니다. 화면에 표시하려면 생성한 HTML에 패키지의 `styles.css`와 `tokens.css`를 연결하세요.
+
+다른 앱에서는 검증한 commit을 Git 의존성으로 고정합니다. `dist/`를 함께 커밋하므로 설치 과정에서 디자인 파일을 다시 빌드하지 않습니다. [공통 디자인 배포](docs/distribution.md)에 설치 명령, CSS 경로와 갱신 절차가 있습니다.
+
+## 해결하는 문제
+
+사이트의 카드와 문서, 도표의 조작부를 각각 구현하면 같은 색·간격·탭 동작을 여러 곳에서 고쳐야 합니다. 이 저장소는 토큰과 HTML 구성 요소, 공통 브라우저 동작을 함께 제공합니다. 소비자는 공통 기본값을 상속하고 제품에 필요한 차이만 속성과 의미별 토큰으로 지정합니다.
+
+콘텐츠, URL, 검색 색인과 서비스 정책은 소비자가 소유합니다. 공통 디자인을 공유하지 않는 독립 제품에는 그 제품의 구성 요소 체계가 더 적합합니다.
+
+<a id="structure"></a>
+
+## 작동 방식
+
+1. `tokens/`에 공통 값과 다크 모드의 차이를, `styles/`에 공통 CSS를 정의합니다.
+2. `ui/`의 구성 요소가 일반 텍스트와 URL을 검사하고 정적 HTML을 만듭니다. HTML 슬롯에는 구성 요소 출력이나 검증한 마크업만 전달합니다.
+3. `npm run build`가 토큰, CSS, 아이콘과 UI 모듈을 `dist/`로 내보냅니다. `dist/manifest.json`에는 파일별 SHA-256을 기록합니다.
+4. 소비자는 고정한 패키지에서 구성 요소와 자산을 읽습니다. `compileStyles`로 사용한 CSS를 남기고, `runtimeEntrypoints`로 페이지에 필요한 동작을 고릅니다.
+
+`trusted()`는 HTML을 정화하지 않습니다. 안전한 렌더러가 만든 마크업에만 사용하세요. 입력 형식은 [공통 구성 요소](docs/components.md), 모듈별 책임은 [아키텍처](docs/architecture.md)에 있습니다.
+
+<a id="delivery"></a>
+
+## 상태
+
+| 구분 | 현재 상태 |
+|---|---|
+| 사용 가능 | 라이트·다크 토큰, CSS, 아이콘 카탈로그, 정적 HTML 구성 요소와 선택적 브라우저 동작 |
+| 배포 방식 | 앱이 고정 commit의 Git 의존성으로 설치. 이 저장소의 병합과 소비자 갱신·배포는 별도 |
+| 지원 범위 밖 | 앱의 콘텐츠·라우팅·검색 색인·댓글 공급자와 Torso의 도형 배치·장면 시각 계산 |
+| 남은 검증 | [검색 안내 문구의 라이트 화면 비교와 캡처 #11](https://github.com/woonyong-choi/design-tokens/issues/11) |
+| 확인 범위 | 자동 검사는 입력·토큰 참조·대비·생성물 계약을 확인. 소비 화면의 시각 검토와 사용자 시험은 별도 |
+
+패키지 버전은 `0.1.1`입니다. 1.0 전에는 입력 형식과 구성 요소가 바뀔 수 있으므로 소비자는 고정 commit 갱신 때 자체 검사와 화면 검수를 수행하세요. GitHub 릴리스와 공개 npm 패키지는 2026-10-17 조회에서 확인하지 못했습니다.
+
+프로젝트 코드에는 MIT를 적용합니다. 글꼴과 외부 자산은 별도 라이선스와 고지를 따릅니다. 파일별 출처는 [자산 출처](assets/sources.json), 아이콘의 출처와 소비 계약은 [공통 아이콘](docs/design/content-icons.md)에 있습니다.
+
+<a id="documentation"></a>
+
+## 문서
+
+- [아키텍처](docs/architecture.md): 코드 구조, 생성 흐름과 소유 경계
+- [전체 문서](docs/README.md)
+
+<a id="build"></a>
+
+## 개발
+
+정본을 변경하면 생성물도 함께 갱신하세요.
+
+```sh
 npm run build
 npm test
 npm run check
 ```
 
-`dist/manifest.json` lists the generated files with SHA-256 hashes; `npm run check` and the tests compare it with a fresh build.
+`npm run check`는 현재 생성물을 새 빌드 결과와 비교합니다. CI는 Node.js 20과 22에서 `npm ci`, `npm test`, `npm run check`를 실행합니다. 브라우저 검수 명령은 [스타일 구조](docs/styles.md#확인), 변경 절차는 [기여 안내](.github/CONTRIBUTING.md)에 있습니다.
 
-The CSS compiler pins PurgeCSS's selector parser to the patched 7.1.6 release. The [style build contract](docs/styles.md#모듈과-생성) records why this override is needed and when to remove it.
+직접 쓴 표현 값과 정의하지 않은 CSS 변수를 검사하려면 저장소 루트에서 실행하세요.
 
-Run `node ui/build/check-tokens.mjs styles ui --tokens tokens/tokens.json` to audit presentation values. CSS, scripts, and markup styles and presentation attributes are checked. Missing inputs or token sources fail with exit code 2; violations fail with 1. Only an actual comment with a reason after `tokens-allow:` exempts its own line.
-
-Body and code text inherit theme roles; text contrast is checked on the actual page and code surfaces in both themes.
-
-Diagram canvases keep a separate muted surface from the document. Neutral shape and group outlines use `color.figure.outline`, checked at 3:1 or higher against both card and canvas surfaces.
-
-The comment iframe uses the light color scheme and shared page surface regardless of OS appearance, matching its resolved light text roles.
-
-Code blocks and diagrams share the same toolbar inside the block. The buttons sit directly on the block surface without a separate toolbar background, border, or shadow. Hover and keyboard focus use the shared accent and control background; pressing a button is a temporary active state. Success and failure keep their own colors during interaction. Feedback keeps the controls in place and uses the button icon and title with a screen-reader announcement.
-
-Document tabs and diagram scene tabs share the `buttons` default with separate rounded buttons and the `text.body-text` size basis. `Tabs` and `TabList` keep explicit `segmented` and `numbers` options. Empty queue cells use the shared `color.figure.queue-empty` role, which references the lighter `color.gray.59` in the light theme.
-
-Chart update overlays use shared `.fl-mark-pulse` styles. Consumers supply geometry, the series effect color, and the original stroke width; the shared roles own fill, stroke, and opacity. Horizontal growth uses shared start/end modifiers; consumers pass the direction determined by their geometry. Bright-series point outlines also use a shared color input instead of inline stroke overrides.
-
-Inline diagrams retain their natural text size and scroll horizontally inside the figure when wider than the available space. Fullscreen keeps its fit and zoom controls. See the [diagram embed contract](docs/components.md).
-
-Tab and tag interaction text keeps at least 4.5:1 contrast; selected tabs keep at least 3:1 against their track. Number tabs use neutral selected surfaces in both themes, with a separate foreground role.
-
-Edit icons at `assets/icons/<meaning>/<name>.svg`, at most two levels below `icons`. Keep detailed variants beside the default file with a `-detail` suffix. The [icon contract](docs/design/content-icons.md) lists categories, sources, and the shared loader. Earlier sprites, separate control artwork, and size-specific copies are no longer shipped.
-
-Neutral icon strokes follow the theme foreground. Color surfaces and opaque marks use their own tokens.
-
-An SVG can keep color and monochrome presentations in two root groups without changing its file name or loader API. The shared renderer validates both groups and selects one complete presentation; unmarked SVGs retain the existing conversion. The [presentation contract](docs/design/content-icons.md#색상과-단색-표현) defines the format and reference boundaries.
-
-The [icon design criteria](docs/design/content-icons.md#설계-판정-기준) cover meaning, optical balance, detail, and review in consuming interfaces. Visual review and user testing remain separate.
-
-The shared catalog maps eight article formats to one icon each. Consumers select the format icon before the category icon and fall back to `document`; the catalog does not change a consumer's existing composition by itself.
-
-The catalog keeps only brand marks shared by more than one consumer: Git, PostgreSQL, Redis, and NGINX for Torso figures, and GitHub and LinkedIn for the shared social icons. A technology logo used by one consumer lives in that consumer, such as the homepage technology logos. Brand backgrounds and small-size symbols are normalized in the existing SVG files. NGINX and Redis retain opaque white marks in color and cutouts in monochrome. The catalog records each treatment; PostgreSQL blue has a dark-theme contrast adjustment.
-
-The project-original newsletter and testimonial PNGs keep their bytes and provenance in `assets/sources.json`. Every file under `assets/` has an origin and license record there, checked by `npm test`. Consume them through image `src` slots; the shared SVG loader remains SVG-only.
-
-## Compose
-
-```js
-import { Card, CardGroup, trusted } from '@woonyong-choi/design-tokens/ui/index.mjs';
-
-const cards = [Card({ title: 'Memory', href: '/docs/memory/', description: 'Address translation' })];
-const html = CardGroup({ columns: 4, cards });
+```sh
+node ui/build/check-tokens.mjs styles ui --tokens tokens/tokens.json
 ```
 
-Plain text and URLs are validated by components. HTML slots accept only output from components or explicitly trusted markup from a safe renderer. The components return static HTML and do not require React or hydration. Include runtimes only when the page uses their feature.
+위반은 종료 코드 1, 없는 입력이나 읽을 수 없는 토큰 정본은 종료 코드 2입니다. 예외는 같은 줄의 실제 주석에 사유를 적은 `tokens-allow:`만 인정합니다. [검사 범위](docs/styles.md#강제하는-것)에 허용 값과 런타임 입력이 있습니다.
 
-`EmailForm` provides the newsletter input and native POST submission inside `Section` with `variant: 'form'`. Without an action, its input and button stay disabled. `SiteHeader.logo` accepts trusted image or inline SVG markup in place of the text title and icon while preserving the accessible home label. It adds horizontal space inside the home link with an existing spacing token. `Hero.icon` uses the existing image slot. Choose `app-hero-wordmark` for text artwork and `app-hero-logo` for other logo images; both share spacing and color. The official Inter Display Black file and OFL notice are included as artwork source inputs without adding a runtime webfont.
+[문서 색인](llms.txt)은 README의 소개와 문서 목록을 따릅니다. 원본의 제목, 소개나 문서 링크를 바꾸면 색인도 함께 갱신하세요.
 
-In the light theme, the homepage header, `Hero` and testimonials use the existing white surface role. The newsletter and footer retain the canvas background. Home heading icon slots align to the text baseline and center their SVG or PNG independently.
+<a id="license"></a>
 
-`SectionIntro` keeps an icon slot at the shared heading size. Compose catalog SVGs with `ContentIconImage` or `ContentIcon` at `size: 'card'`; original PNGs keep their image size. Card, document and blog post titles wrap at word boundaries, with overflow handling for a word wider than the available space. Document title icons stay on the first line; blog post titles use the full body width.
+## 라이선스
 
-Markdown renderers compose collapsible blocks with `Details.open()` and `Details.close()`, plus `Details.summaryOpen()` and `Details.summaryClose()` when a summary exists. These are the same wrappers used by `Details`; consumers render their parsed inline content and nested blocks between them.
-
-Block width uses `width: 'content' | 'narrow' | 'wide'`, with `content` as the default. `contentWidth` rejects the removed `wide` and `size` properties. The [component input contract](docs/components.md#입력-경계) distinguishes block width from player aspect ratio and figure grid size.
-
-The common tokens use `color`, `text`, `spacing`, `radius`, `font`, `font-weight`, `leading`, `duration`, and related Tailwind namespaces. Its spacing unit is 4px. `tailwind.css` provides a Tailwind 4 `@theme inline` adapter from the same source. Consumers inherit the defaults and override only differences.
-
-Use `font.sans` for text and `font.mono` for code. Pretendard ships as the official 92-file dynamic subset with `unicode-range`, so browsers download only the pieces that contain the characters on a page. Font weights use `normal`, `medium`, `semibold`, and `bold`. Web content and diagrams share `color.ink`, `color.ui-muted`, `color.ui-card`, and `color.syntax-*`; there are no product aliases for those roles. Equal values with different purposes remain independent. See [style ownership](docs/styles.md) for the reference and removal rules.
-
-Landing technology links have square hover and focus surfaces. Media controls use a filled circle with a white play or pause symbol.
-
-`TextInput` is the single text input component. It renders the input with a visually hidden label and, by default, shares the surface, radius, and height of the segmented tab group. `SearchBox` and `EmailForm` assemble the same component through size, surface, and leading icon variants. The placeholder color and focus ring use shared tokens in both themes.
-
-`SearchBox({ combobox: false })` renders a search field without suggestion-popup ARIA from the initial HTML. `ContentGroup({ collection: true })` reuses collection spacing for grouped content.
-
-## Delivery
-
-Consumers move their pinned commit with `npm install --save-dev github:woonyong-choi/design-tokens#<commit>` and run their own tests, checks, and visual review in a PR. There is no copy export, cross-repository push, hash-manifest comparison, or deploy key.
-
-Tag-based package releases are separate. Website updates do not create tags or publish packages.
-
-## Documentation
-
-Design documentation is in Korean. Start with [architecture](docs/architecture.md), [shared components](docs/components.md), or the [document index](docs/README.md).
-
-The [shared icon example](docs/design/content-icons.md#다이어그램) uses built-in names with the current Torso syntax and includes SVG regeneration commands.
-
-## License
-
-Project code uses [MIT](LICENSE). Fonts and external artwork retain their own notices and source metadata.
-
-Document and keyboard shortcut tables share one component. Tables keep short explanations readable, wrap long cells and scroll horizontally with keyboard access. Colored areas, markers and legends use the same category colors.
-
-Diagram messaging supports opaque sandbox previews without `allow-same-origin`: only registered diagram windows with matching source URLs exchange theme and height messages.
-Diagram canvases share the `color.figure.canvas` role in SVG and HTML. Card and tab option lists are exported for consumer validation.
-
-`ProjectList({ title, projects })` groups each project card with its related links. Supply content, validated URLs and optional trusted icon slots; see the [component contract](docs/components.md#프로젝트-목록).
-
-`BlogCard.commentsHref` creates a separate comments link outside the article link.
-
-Diagram flashes and active card surfaces use `color.figure.flash` and `color.figure.active-surface`, independently of search and help hover roles.
-
-Dark cards share the page surface and readable title and description roles; hover and active states preserve text contrast.
-
-Chart growth shapes and HTML playback styles are shared by the design source; Torso owns scene timing for SVG output.
-
-Project videos stay collapsed before JavaScript initializes. Without JavaScript, the explicit video link opens native controls through its fragment target.
-
-Search results may omit the `icon` slot. `SearchMessage({ lines })` centers escaped message lines in a paragraph; a consumer may append its retry button to the wrapper. Canvas and footer text follow the dark semantic theme.
-
-Landing headings, descriptions and section surfaces follow the dark semantic theme. Disabled newsletter controls retain readable text while using neutral colors and native disabled behavior.
-
-In dark mode, the canvas behind newsletter and footer sections uses the existing deeper surface to preserve their distinction from the main content.
+[MIT](LICENSE)

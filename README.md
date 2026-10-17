@@ -12,18 +12,6 @@
 > [!NOTE]
 > 개발 중입니다. 배포판은 없고 소스에서 빌드해 실행합니다.
 
-## 목차
-
-- [빠른 시작](#빠른-시작)
-  - [저장소에서 확인](#저장소에서-확인)
-  - [다른 프로젝트에 설치](#다른-프로젝트에-설치)
-- [해결하는 문제](#해결하는-문제)
-- [작동 방식](#작동-방식)
-- [상태](#상태)
-- [문서](#문서)
-- [개발](#개발)
-- [라이선스](#라이선스)
-
 <a id="install"></a>
 <a id="compose"></a>
 
@@ -103,8 +91,10 @@ npm install --save-dev 'github:woonyong-choi/design-tokens#1441d59721cea72a69a1e
 
 ## 문서
 
-- [아키텍처](docs/architecture.md): 코드 구조, 생성 흐름과 소유 경계
-- [전체 문서](docs/README.md)
+- 시작
+  - [아키텍처](docs/architecture.md)
+
+[전체 문서](docs/README.md)
 
 <a id="build"></a>
 
@@ -120,8 +110,10 @@ npm run check
 
 CI는 Node.js 20과 22에서 설치·시험·생성물 검사를 실행합니다. `npm run check`는 커밋한 생성물을 새 빌드 결과와 비교합니다. 변경 절차는 [기여 안내](.github/CONTRIBUTING.md), 표현 값과 CSS 변수 검사는 [스타일 구조](docs/styles.md#강제하는-것)를 따릅니다.
 
+글꼴·외부 자산의 조건은 [출처와 라이선스](assets/sources.json)를 따릅니다.
+
 <a id="license"></a>
 
 ## 라이선스
 
-[MIT](LICENSE). 글꼴·외부 자산의 조건은 [출처와 라이선스](assets/sources.json)를 따릅니다.
+[MIT](LICENSE)

@@ -14,9 +14,13 @@
 
 값 변경은 토큰에서, 재사용 구조 변경은 구성 요소에서 처리한다. 페이지마다 같은 조각을 복사해 고치지 않는다. 상세 속성과 신뢰 경계는 [공통 구성 요소](components.md)를 따른다.
 
-일반 글꼴은 `font.sans`, 코드 글꼴은 `font.mono`를 사용한다. Pretendard는 공식 동적 부분 집합(`assets/fonts/pretendard-variable/`, pretendard 1.3.9의 `woff2-dynamic-subset` 92개)을 `unicode-range`로 등록해 페이지에 나온 글자가 든 조각만 내려받는다. 글자 모양·굵기 범위는 원본 가변 글꼴과 같다. 굵기는 Tailwind 이름인 `font-weight.normal`(400), `medium`(500), `semibold`(600), `bold`(700)로 고른다. 도표의 `figure-sans`·`figure-mono`는 내보내기에 포함하는 부분 글꼴의 등록 이름이며 웹 글꼴의 별칭이 아니다.
+일반 글꼴은 `font.sans`, 코드 글꼴은 `font.mono`를 사용한다. Pretendard는 공식 동적 부분 집합(`assets/fonts/pretendard-variable/`, pretendard 1.3.9의 `woff2-dynamic-subset` 92개)을 `unicode-range`로 등록해 페이지에 나온 글자가 든 조각만 내려받는다. 글자 모양·굵기 범위는 원본 가변 글꼴과 같다.
 
-본문 글자는 `color.ink`, 보조 글자는 `color.ui-muted`, 중립 카드 면은 `color.ui-card`, 코드 구문은 `color.syntax-*`를 웹과 도표가 함께 읽는다. 같은 역할을 제품별 이름으로 다시 정의하지 않는다. 값이 같더라도 글자 크기·아이콘 크기·곡률처럼 따로 바뀌어야 하는 역할은 서로 참조하지 않는다. 웹 조작과 인라인 카드의 작은 모서리는 `radius.md`, 묶음 도움말 카드는 `radius.help-grouped-radius`, 설명 팝오버는 `radius.tooltip-radius`를 사용한다. 곡률에서 간격 토큰을 참조하지 않는다. 기본 간격 단계와 공통 본문 위계를 사용하거나 각 역할의 기본값을 정의한다.
+굵기는 Tailwind 이름인 `font-weight.normal`(400), `medium`(500), `semibold`(600), `bold`(700)로 고른다. 도표의 `figure-sans`·`figure-mono`는 내보내기에 포함하는 부분 글꼴의 등록 이름이며 웹 글꼴의 별칭이 아니다.
+
+본문 글자는 `color.ink`, 보조 글자는 `color.ui-muted`, 중립 카드 면은 `color.ui-card`, 코드 구문은 `color.syntax-*`를 웹과 도표가 함께 읽는다. 같은 역할을 제품별 이름으로 다시 정의하지 않는다. 값이 같더라도 글자 크기·아이콘 크기·곡률처럼 따로 바뀌어야 하는 역할은 서로 참조하지 않는다.
+
+웹 조작과 인라인 카드의 작은 모서리는 `radius.md`, 묶음 도움말 카드는 `radius.help-grouped-radius`, 설명 팝오버는 `radius.tooltip-radius`를 사용한다. 곡률에서 간격 토큰을 참조하지 않는다. 기본 간격 단계와 공통 본문 위계를 사용하거나 각 역할의 기본값을 정의한다.
 
 미사용 판단에는 두 소비자의 JavaScript 참조, CSS 변수, 템플릿으로 조합하는 이름과 라이트·다크의 참조 경로를 포함한다. `color.paint`처럼 문법의 색 이름에서 변수를 만드는 역할을 단순 문자열 검색 결과로 삭제하지 않는다. 정의를 삭제하거나 이름을 바꾸면 생성물과 소비자 참조를 함께 갱신하고, 이전 이름을 호환용 별칭으로 남기지 않는다.
 
@@ -27,10 +31,18 @@
 `color.workspace.sidebar`, `document`, `toolbar`는 탐색·문서·도구 표면이다. `hover`와 `selected`는 중립 상태 면이고 글자는 `color.ink`를 사용한다. 모두 기존 회색 단계를 참조하며 라이트·다크에서 본문과 탐색 영역을 구분한다. 소비자는 제품명으로 별도 팔레트를 만들지 않는다. 이 토큰은 기존 웹 구성 요소의 모양을 자동으로 바꾸지 않는다.
 
 다크 카드의 면은 `color.ui-card`, 제목은 `color.ink`, 설명은 `color.body`를 읽는다. 선택과 눌림의 배경에서도 글자 대비를 유지한다. grouped와 related 카드는 다크 모드에서 자체 중립 면을 가져 밝은 페이지 안에서도 글자가 사라지지 않는다. 페이지 배경과 일반 링크색은 바꾸지 않는다. 카드 배경을 공유하는 문서 목차의 호버·선택 글자는 `color.document-nav-active-ink`로 분리해 같은 배경에서 읽히게 한다.
-텍스트 입력은 `TextInput`과 `.app-input` 하나로 구현한다. 일반 입력·검색·구독이 모두 이 구성 요소를 조립하며 다른 모듈은 입력의 모양을 정의하지 않는다. 기본은 분할 탭 묶음과 같은 면(`color.input-background`)·곡률(`radius.input-radius`)·높이(`spacing.input-height`, 탭 높이와 안쪽 여백 두 배의 합)다. 글자는 `color.input-ink`, 안내 문구는 `color.input-placeholder`이며 다크의 안내 문구는 `color.gray.212`로 반투명 면 위 4.5:1 이상을 유지한다. 초점은 `component.input-focus` 링이다. 변형은 크기와 면, 앞 아이콘 칸뿐이다. 크기 `medium`·`large`는 검색의 본문·강조 크기(`article-search-*`, `search-input-*`)이고 여백에 앞 아이콘 칸과 뒤 지우기 칸이 들어 있다. `control`은 구독 폼 크기다. 면 `field`는 검색의 불투명 면(`color.search-bg`)과 기존 검색 안내 문구 색 `color.input-field-placeholder`(`#757575`, Chrome 기본값과 같은 값)를 쓰고, `card`는 `color.ui-card` 면과 `color.ui-line` 테두리를 쓴다. 앞 아이콘은 `.app-input-field` 안의 `.app-input-icon`이며 강조 크기에서만 검색 아이콘 크기를 쓴다.
+
+텍스트 입력은 `TextInput`과 `.app-input` 하나로 구현한다. 일반 입력·검색·구독이 모두 이 구성 요소를 조립하며 다른 모듈은 입력의 모양을 정의하지 않는다. 기본은 분할 탭 묶음과 같은 면(`color.input-background`)·곡률(`radius.input-radius`)·높이(`spacing.input-height`, 탭 높이와 안쪽 여백 두 배의 합)다. 글자는 `color.input-ink`, 안내 문구는 `color.input-placeholder`이며 다크의 안내 문구는 `color.gray.212`로 반투명 면 위 4.5:1 이상을 유지한다. 초점은 `component.input-focus` 링이다.
+
+변형은 크기와 면, 앞 아이콘 칸뿐이다. 크기 `medium`·`large`는 검색의 본문·강조 크기(`article-search-*`, `search-input-*`)이고 여백에 앞 아이콘 칸과 뒤 지우기 칸이 들어 있다. `control`은 구독 폼 크기다.
+
+면 `field`는 검색의 불투명 면(`color.search-bg`)과 기존 검색 안내 문구 색 `color.input-field-placeholder`(`#757575`)를 쓰고, `card`는 `color.ui-card` 면과 `color.ui-line` 테두리를 쓴다. 앞 아이콘은 `.app-input-field` 안의 `.app-input-icon`이며 강조 크기에서만 검색 아이콘 크기를 쓴다.
+
 검색 입력 글자는 웹 본문과 같은 `color.body`를 사용한다. 브라우저 기본 입력 색에 의존하지 않아 라이트·다크 모두 본문 위계를 유지한다.
 
 ## 모듈과 생성
+
+기초 초기화와 초점 링은 `base.css`가 소유한다. 일반 초점 링은 `outline-width.focus`와 `color.ui.focus`를 사용하며, 잘리는 내부 링크는 해당 구성 요소가 안쪽 오프셋만 지정한다. 페이지 전체 스크롤바와 내부 도표 스크롤바는 각각 `spacing.scrollbar`, `spacing.figure-scrollbar` 역할을 사용한다.
 
 `styles/index.css`는 `styles/*.css`를 순서대로 가져온다. 기본 요소는 base·shell·tabs·toolbar·table·controls·forms·icons·search·cards·prose·media, 맥락 배치는 article·support·blog·landing·features·pages가 소유한다. 한 클래스의 정본은 한 모듈에 두고 다른 모듈은 부모 맥락에서만 재정의한다.
 
@@ -38,7 +50,7 @@
 
 소비자의 `compileStyles`는 전체 HTML·스크립트의 사용처, 동적 상태와 변수 참조를 보존한 뒤 축소한다. `:focus-visible`, 숨김 상태와 움직임 줄이기 규칙을 빠뜨리지 않는다. 배포물의 축소 결과를 정본 CSS에 역반영하지 않는다.
 
-정본의 빌드 의존성은 PurgeCSS 7.0.2의 선택자 파서에만 `7.1.6` override를 적용한다. 기존 6.x 파서의 보안 결함을 수정하되, 다른 취약 전이 의존성을 추가하는 PurgeCSS 8.0.0은 사용하지 않는다. 상위 도구를 갱신할 때 `npm audit`, 전체 계약 시험과 실제 소비자 입력의 CSS·토큰 축소 결과를 확인하고, 보안 수정된 의존성 조합이 확인되면 override를 제거한다.
+`package.json`과 `package-lock.json`은 PurgeCSS 7.0.2의 `postcss-selector-parser`를 보안 수정이 포함된 7.1.6으로 고정한다. 현재 설치 결과의 보안 상태는 `npm audit`로 확인한다. 이 버전 고정을 이후 릴리스의 안전성 판단으로 일반화하지 않는다. 상위 도구를 갱신할 때 `npm audit`, 전체 계약 시험과 실제 소비자 입력의 CSS·토큰 축소 결과를 확인하고, 보안 수정된 의존성 조합이 확인되면 override를 제거한다.
 
 ## 구성 요소 계약
 
@@ -105,7 +117,7 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 표현 속성의 이름 색, 색 혼합·라이트/다크 함수 안의 이름 색, 전환·애니메이션의 직접 이징, `font-weight` 키워드와 `%`·`deg`·`ch`를 포함한 크기 단위를 검사한다. 단위의 대소문자는 구분하지 않는다. 전체 크기·가운데 정렬·출발점에 쓰는 100%·50%·0%와 반대 방향 이동의 -100%·-50%는 허용한다. 일반 글자와 문법 안내의 색 이름·백분율은 표현 값으로 보지 않는다. JavaScript에서 이름을 조립하는 `var()`는 완성된 이름을 이 정적 검사만으로 검증할 수 없으므로 생성 결과 검사가 필요하다.
 
-시험은 위 표의 클래스가 스타일 정본에 존재하는지, 텍스트·주소·HTML 슬롯의 신뢰 경계, 탭 ID와 역할 연결, 코드 구문 역할 및 대비, 생성물 일치와 CSS 축소를 확인한다. 홈페이지는 라이트를 선택하며 도표는 라이트·다크를 지원한다.
+시험은 위 표의 클래스가 스타일 정본에 존재하는지, 텍스트·주소·HTML 슬롯의 신뢰 경계, 탭 ID와 역할 연결, 코드 구문 역할 및 대비, 생성물 일치와 CSS 축소를 확인한다. 도표는 라이트·다크 토큰을 지원하며 실제 페이지의 테마 선택은 소비자가 맡는다.
 
 ## 카드·태그·검색
 
@@ -121,15 +133,53 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 영상 재생·일시정지 제어는 버튼 색을 따르는 채운 원과 흰색 기호를 사용한다. `ControlIcon`은 두 제어의 배색을 보존하고 다른 제어의 단색 변환을 유지한다.
 
+검색 결과 페이지의 `SearchBox({ combobox: false })`는 처음 HTML부터 `searchbox` 역할을 사용하며 추천 목록 ARIA를 붙이지 않는다. 기본 추천 검색은 `combobox` 계약을 유지한다. `ContentGroup`의 `collection` 변형은 글 목록 절의 바깥 간격을 함께 소유한다.
+
+카드 변형 목록은 `CARD_VARIANTS`, 탭 변형 목록은 `TAB_FRAMES`·`TAB_POSITIONS`·`TAB_SELECTORS`를 가져와 입력 검사에 사용한다. 페이지 이전·다음 링크는 공통 탐색 꺾쇠를 사용하므로 소비자가 라벨에 화살표 글자를 붙이지 않는다.
+
+## 페이지와 영상
+
+프로젝트 영상의 초기 접힘은 CSS가 소유한다. 초기화 클래스 없이 숨기고, 재생 후에는 기존 `has-played` 상태로 연다. 스크립트가 실행되지 않으면 명시적 영상 링크의 `:target`에서만 기본 컨트롤을 표시한다.
+
+랜딩의 제목·설명·후기 보조 글자·구독 안내와 구역 표면은 다크 의미 토큰을 사용한다. 구독 입력의 안내 문구는 `color.ui-muted`, 활성 버튼 글자는 `color.control-paper`를 사용한다. 비활성 입력·버튼은 전체 투명도로 글자까지 흐리지 않으며 버튼을 `color.ui-line` 표면과 `color.body` 글자로 구분한다.
+
+다크 `color.canvas`는 `color.prose-pre-background`를 참조한다. 본문의 `color.ui-card`와 구독·푸터의 구역 차이를 유지하며 새 색을 만들지 않는다.
+
 ## 본문과 코드
 
 본문의 Markdown 표와 단축키 표는 `Table`과 `styles/table.css`를 공유한다. 면·글자·구분선은 카드와 같은 의미 토큰을 읽으며 문서가 지정한 열 정렬은 유지한다. 도표의 상태·범주·도형 색은 `color.category`의 같은 계열에서 역할별로 파생한다. 넓은 데이터 면에만 적용하는 별도 팔레트는 두지 않는다.
 
 표는 내용의 고유 폭을 확보해 코드 옆의 짧은 설명이 한두 글자씩 세로로 눌리지 않게 한다. 긴 셀은 기존 본문 읽기 폭인 `container.body-width` 안에서 줄바꿈한다. 코드도 긴 식은 줄바꿈하되 공백·줄바꿈과 원문을 보존한다. 좁은 화면에서는 표 영역 안에서 가로로 이동하고 페이지 전체 폭은 늘리지 않는다.
 
-본문은 `app-prose` 위계를 사용한다. `color.body`는 `color.ink`를 참조하므로 테마가 잉크 역할을 바꾸면 본문도 같은 글자색을 상속한다. 밝은 테마와 어두운 테마 모두 페이지 면 위 본문 대비를 검사한다. 코드의 기본 글자와 구문 역할도 다크 팔레트를 상속하며 인라인 코드와 코드 블록의 실제 면 위에서 대비를 검사한다. 본문 링크, 코드, 표, 인용문, 수식, 그림과 캡션이 공통 역할을 참조한다. 캡션·`small`·작은 안내 글자의 `color.prose-caption-color`는 `color.ui-muted`를 참조해 두 테마의 페이지 면 위에서 4.5:1 이상을 유지한다. Things의 캡션 색(`rgba(4,15,26,.5)`, 다크 `rgba(239,246,255,.49)`)은 페이지 면 위에서 약 3.6:1·4.1:1이라 이 기준에 못 미치므로 더 진한 보조 글자색을 쓰는 것은 의도된 차이다. 본문보다 작은 `text.post-date-size`와 낮은 대비로 본문보다 낮은 위계는 유지한다. 제목의 원래 단계는 `app-heading-N`으로 유지한다. 목록 기호 `color.prose-marker`는 라이트에서 Things 값을 쓰고 다크에서 `color.ui-muted`를 참조해 두 테마의 페이지 면 위에서 3:1 이상을 유지한다. Things 다크 기호(`rgba(219,234,255,.51)`)보다 약간 진한 것은 기존 보조 글자 역할을 재사용한 결과다. 주의 안내 `.app-callout.is-warning`의 면 `color.callout-warning`은 라이트에서 기존 노랑 면을 유지하고, 다크에서 Things의 다크 노랑 안내 면과 같은 반투명 노랑(`primitive.callout-warning-dark`)을 써서 본문색의 대비 4.5:1 이상을 지킨다. 일반 안내 상자는 `color.callout-background`·`color.callout-border`를 읽고, 다크에서 Things 다크 안내 상자 값(`rgba(240,246,255,.09)`, 테두리 `rgba(236,244,255,.07)`)으로 페이지보다 밝은 면을 둔다. 라이트는 기존 코드 예시 면을 참조한다. 본문 `mark` 배경 `color.prose-mark-background`는 `color.callout-warning`을 참조해 다크에서 같은 반투명 노랑을 쓴다. 목차 기호 `color.toc-marker`는 `color.prose-marker`를 참조해 본문 글머리와 같은 기준을 따른다. 그림 격자 칸 안의 `.app-figure`는 바깥 여백이 없어 이미지가 칸 폭을 채우며 칸 사이는 격자의 `spacing.gap`만 둔다. 코드 구문 역할은 `SYNTAX_ROLES`와 `SyntaxToken`으로 연결하며 분석기는 소비자가 선택한다.
+본문은 `app-prose` 위계를 사용한다. `color.body`는 `color.ink`를 참조하므로 테마가 잉크 역할을 바꾸면 본문도 같은 글자색을 상속한다. 밝은 테마와 어두운 테마 모두 페이지 면 위 본문 대비를 검사한다. 코드의 기본 글자와 구문 역할도 다크 팔레트를 상속하며 인라인 코드와 코드 블록의 실제 면 위에서 대비를 검사한다.
 
-코드 블록과 도표는 `ToolHeader`, `Toolbar`, `ToolButton`을 조립한다. 코드·그림의 면 안쪽 오른쪽에 도구 막대를 둔다. 이름표(`.app-tool-label`)가 있는 머리글은 버튼 높이를 차지해 콘텐츠와 겹치지 않는다. 이름표 없는 머리글(그림)은 자리를 차지하지 않고 면 오른쪽 위에 겹쳐 놓여, 숨은 도구 막대가 콘텐츠 위에 빈 띠를 만들지 않는다. 터치 환경은 도구 막대가 항상 보이므로 이름표 없는 머리글도 자리를 차지한다. 아이콘은 공통 조작 자산, 44px 버튼·호버·초점은 `styles/toolbar.css` 하나가 정한다. 도구 막대와 확대 버튼 묶음은 별도 배경·테두리·그림자를 두지 않는다. 호버와 키보드 초점의 아이콘은 `color.accent`, 배경은 `color.control-hover`를 사용하고 누르는 동안만 `color.control-active` 배경을 적용한다. 초점 테두리를 유지하며 성공·실패의 상태색은 조작 중에도 덮지 않는다. 마우스에서는 블록 호버·키보드 초점·결과 알림 동안 보이고 터치에서는 항상 보인다. 복사와 다운로드의 대기·성공·실패·재시도·알림 초기화는 `bindToolbar`가 맡고 소비자는 원본과 다운로드 작업만 제공한다. 알림 시간은 `duration.notice`이다. 결과 문구는 `.app-sr`로 시각적으로 숨겨 도구 막대와 버튼의 크기·위치를 유지한다. 문구가 화면에 보이지 않아도 알림 동안 도구 막대를 계속 노출한다. `.app-sr`의 한 정의도 도구 막대 CSS에 포함되어 독립 도표와 전체 문서가 함께 사용한다.
+본문 링크, 코드, 표, 인용문, 수식, 그림과 캡션이 공통 역할을 참조한다.
+
+캡션·`small`·작은 안내 글자의 `color.prose-caption-color`는 `color.ui-muted`를 참조해 두 테마의 페이지 면 위에서 4.5:1 이상을 유지한다. Things의 캡션 색(`rgba(4,15,26,.5)`, 다크 `rgba(239,246,255,.49)`)은 페이지 면 위에서 약 3.6:1·4.1:1이라 이 기준에 못 미치므로 더 진한 보조 글자색을 쓰는 것은 의도된 차이다. 본문보다 작은 `text.post-date-size`와 낮은 대비로 본문보다 낮은 위계는 유지한다.
+
+제목의 원래 단계는 `app-heading-N`으로 유지한다. 목록 기호 `color.prose-marker`는 라이트에서 Things 값을 쓰고 다크에서 `color.ui-muted`를 참조해 두 테마의 페이지 면 위에서 3:1 이상을 유지한다. Things 다크 기호(`rgba(219,234,255,.51)`)보다 약간 진한 것은 기존 보조 글자 역할을 재사용한 결과다.
+
+주의 안내 `.app-callout.is-warning`의 면 `color.callout-warning`은 라이트에서 기존 노랑 면을 유지하고, 다크에서 Things의 다크 노랑 안내 면과 같은 반투명 노랑(`primitive.callout-warning-dark`)을 써서 본문색의 대비 4.5:1 이상을 지킨다.
+
+일반 안내 상자는 `color.callout-background`·`color.callout-border`를 읽고, 다크에서 Things 다크 안내 상자 값(`rgba(240,246,255,.09)`, 테두리 `rgba(236,244,255,.07)`)으로 페이지보다 밝은 면을 둔다. 라이트는 기존 코드 예시 면을 참조한다.
+
+본문 `mark` 배경 `color.prose-mark-background`는 `color.callout-warning`을 참조해 다크에서 같은 반투명 노랑을 쓴다. 목차 기호 `color.toc-marker`는 `color.prose-marker`를 참조해 본문 글머리와 같은 기준을 따른다.
+
+그림 격자 칸 안의 `.app-figure`는 바깥 여백이 없어 이미지가 칸 폭을 채우며 칸 사이는 격자의 `spacing.gap`만 둔다.
+
+코드 구문 역할은 `SYNTAX_ROLES`와 `SyntaxToken`으로 연결하며 분석기는 소비자가 선택한다.
+
+코드 블록과 도표는 `ToolHeader`, `Toolbar`, `ToolButton`을 조립한다. 코드·그림의 면 안쪽 오른쪽에 도구 막대를 둔다. 이름표(`.app-tool-label`)가 있는 머리글은 버튼 높이를 차지해 콘텐츠와 겹치지 않는다. 이름표 없는 머리글(그림)은 자리를 차지하지 않고 면 오른쪽 위에 겹쳐 놓여, 숨은 도구 막대가 콘텐츠 위에 빈 띠를 만들지 않는다.
+
+터치 환경은 도구 막대가 항상 보이므로 이름표 없는 머리글도 자리를 차지한다.
+
+아이콘은 공통 조작 자산, 44px 버튼·호버·초점은 `styles/toolbar.css` 하나가 정한다. 도구 막대와 확대 버튼 묶음은 별도 배경·테두리·그림자를 두지 않는다. 호버와 키보드 초점의 아이콘은 `color.accent`, 배경은 `color.control-hover`를 사용하고 누르는 동안만 `color.control-active` 배경을 적용한다. 초점 테두리를 유지하며 성공·실패의 상태색은 조작 중에도 덮지 않는다. 마우스에서는 블록 호버·키보드 초점·결과 알림 동안 보이고 터치에서는 항상 보인다.
+
+복사와 다운로드의 대기·성공·실패·재시도·알림 초기화는 `bindToolbar`가 맡고 소비자는 원본과 다운로드 작업만 제공한다.
+
+알림 시간은 `duration.notice`이다. 결과 문구는 `.app-sr`로 시각적으로 숨겨 도구 막대와 버튼의 크기·위치를 유지한다.
+
+문구가 화면에 보이지 않아도 알림 동안 도구 막대를 계속 노출한다. `.app-sr`의 한 정의도 도구 막대 CSS에 포함되어 독립 도표와 전체 문서가 함께 사용한다.
 
 삽입 도표의 높이·테마·대체 전체화면은 `bindDiagramHost`가 맡는다. 등록된 iframe의 출처와 메시지 송신자를 확인하고 전체화면 중에는 자연 높이 알림을 적용하지 않는다. Escape는 해당 재생기에 종료 요청을 보내고 종료 뒤 자연 높이로 돌아온다. 홈페이지와 갤러리는 같은 삽입 계약을 사용한다.
 
@@ -139,13 +189,7 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 댓글 스타일은 light 토큰으로 생성한다. iframe 문서 루트에 `color-scheme: light`, `color.ui-card` 배경과 `color.body` 글자색을 함께 적용해 OS가 어둡게 설정되어도 light 토큰의 글자와 캔버스의 대비를 유지한다. 공급자의 `light dark` 메타 설정이 바탕만 어둡게 바꾸지 않도록 한다.
 
-## 확인
-
-`npm test`, `npm run build`, `npm run check`로 계약과 생성물을 검사한다. 구조·스타일을 바꾼 경우 소비자의 실제 검색·태그·복사·문서 탐색을 넓은 화면과 모바일에서 확인한다. 제공된 Things 기준에서 의도적으로 확장한 기능을 제거해 외형만 맞추지 않는다.
-
-표의 렌더링 회귀 검사는 설치된 Chrome과 별도 `playwright-core` 모듈을 사용한다. `node test/table-browser.mjs <playwright-core의 index.mjs 경로>`로 모바일·데스크톱, 라이트·다크에서 설명 열·긴 코드·긴 문장·다열 표와 키보드 가로 이동을 확인한다. 선택적인 마지막 인수에 기록 파일의 경로 접두사를 주면 측정 JSON과 화면을 저장한다.
-
-`node test/giscus-browser.mjs <playwright-core의 index.mjs 경로>`는 공급자와 같은 `light dark` 메타 설정의 독립 iframe에서 OS light/dark와 두 화면 폭의 댓글·답글·입력란 대비 및 키보드 초점을 확인한다. 선택적인 마지막 인수에 기록 경로 접두사를 주면 JSON과 화면을 저장한다. 공급자의 실제 댓글 연결·펼침은 소비자 화면에서 따로 확인한다.
+공통 도구 막대의 바탕은 사용하는 면이 소유한다. 코드 블록은 `color.prose-pre-background`, 도표 전체 면은 `color.figure.canvas`를 사용한다. 일반 카드·탭·탐색의 전환은 `ease.reveal`을 사용하며 아이콘 전용 역할을 빌리지 않는다.
 
 ## 도표 정보 역할
 
@@ -153,32 +197,24 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 기본 강조는 파랑이며 다른 색은 작성자가 의미를 구분할 때 사용한다. 차트 면과 이동 라벨은 `color.category.*.solid/on-solid`에서 같은 색 쌍을 읽는다. 진한 면은 흰 글자, 밝은 노랑은 어두운 글자다. 별도 흐름 팔레트는 두지 않는다. 실제 계열의 점은 원이며 범례와 이름으로 구분한다. 목표는 `color.data.reference`의 중립색, 선형 차트에서는 점 표식 없는 점선이다. 스키마 내부 선·목표·신뢰구간은 축과 같은 `color.data.grid`의 옅은 회색이다. 히스토그램은 구간 폭과 기준선을 유지하고 위쪽 모서리에만 공통 작은 곡률을 적용한다.
 
-검색 결과 페이지의 `SearchBox({ combobox: false })`는 처음 HTML부터 `searchbox` 역할을 사용하며 추천 목록 ARIA를 붙이지 않는다. 기본 추천 검색은 `combobox` 계약을 유지한다. `ContentGroup`의 `collection` 변형은 글 목록 절의 바깥 간격을 함께 소유한다.
-
-기초 초기화와 초점 링은 `base.css`가 소유합니다. 일반 초점 링은 `outline-width.focus`와 `color.ui.focus`를 사용하며, 잘리는 내부 링크는 해당 구성 요소가 안쪽 오프셋만 지정합니다. 페이지 전체 스크롤바와 내부 도표 스크롤바는 각각 `spacing.scrollbar`, `spacing.figure-scrollbar` 역할을 사용합니다.
-
-카드 변형 목록은 `CARD_VARIANTS`, 탭 변형 목록은 `TAB_FRAMES`·`TAB_POSITIONS`·`TAB_SELECTORS`를 가져와 입력 검사에 사용합니다. 페이지 이전·다음 링크는 공통 탐색 꺾쇠를 사용하므로 소비자가 라벨에 화살표 글자를 붙이지 않습니다.
-
 차트 그림 폭(`spacing.figure.chart.width`)은 본문 단 폭(`primitive.body-width`, 680)을 참조한다. 본문 단에서 차트가 줄지 않고 시간축 끝 글자가 그림 밖으로 나가지 않는다. 다크 열지도의 진한 끝(`color.data.heat-high`)은 `color.category.blue.anchor`다. 다크 칸 글자는 흰색 하나라 가장 진한 칸도 흰 글자와 4.5:1 이상이어야 한다(이전 `category.blue.dark-border`는 3.6:1).
 
 열지도 칸 색은 옅은 끝(`color.data.heat-low`)에서 진한 끝(`heat-high`)까지 OKLCH로 보간한다. 옅은 끝은 연노랑(`primitive.figure-heat-low`, 다크 `figure-dark-heat-low`)이고 진한 끝은 파랑이라, 색상이 노랑 → 민트 → 청록 → 파랑으로 돌아 값 차이가 밝기와 색상 두 갈래로 읽힌다. 이 두 값은 열지도 칸에만 쓰고 카드·판·선·계열 색은 바꾸지 않는다.
 
-도표의 바탕과 빈 화살촉·소멸 표식은 `color.figure.canvas`를 사용합니다. SVG 정지/움직임 층의 미디어 규칙도 `diagram/figure.css`가 소유합니다.
+도표의 바탕과 빈 화살촉·소멸 표식은 `color.figure.canvas`를 사용한다. SVG 정지·움직임 층의 미디어 규칙도 `diagram/figure.css`가 소유한다.
 
 도표의 순간 강조는 `color.figure.flash`, 켜진 카드 면은 `color.figure.active-surface`를 읽는다. 검색·도움말의 hover 역할과 독립적으로 조정하며 라이트·다크 값은 토큰 정본에서 정의한다.
-
-다크 도움말 카드의 기본 면은 `color.ui-card`, 제목은 `color.ink`, 설명은 `color.body`를 따른다. 그룹·관련 카드도 자체 다크 면을 갖는다. 목차의 호버·현재 항목 글자는 `color.document-nav-active-ink`를 읽고 일반 페이지의 `color.canvas`와 `color.action-link`는 바꾸지 않는다.
 
 차트 갱신 겹침은 `fl-mark-pulse`와 `is-line`·`is-text`·`has-ring` 역할을 사용한다. 소비자는 원래 기하와 `--pulse-effect` 계열색, 필요할 때 `--pulse-width` 표식 두께만 전달한다. 면 투명도와 글자 후광 두께는 정본 CSS가 정한다.
 
 가로 성장의 기준점은 `.grow`가 왼쪽, `.grow.from-end`가 오른쪽이다. 소비자는 계산된 진행 방향만 변형으로 넘긴다. 히스토그램의 실제 축 기준점처럼 배치가 계산한 좌표는 소비자가 전달한다.
 
-공통 도구 막대의 바탕은 사용하는 면이 소유한다. 코드 블록은 `color.prose.pre-background`, 도표 전체 면은 `color.figure.canvas`를 사용한다. 일반 카드·탭·탐색의 전환은 `ease.reveal`을 사용하며 아이콘 전용 역할을 빌리지 않는다.
-
 큐의 빈 칸·찬 칸과 카드 내용 면도 `figure.css`가 칠을 소유한다. 소비자는 같은 칸 윤곽을 재사용하고 값에 따른 칸 수와 표시 시각만 정한다.
 
-프로젝트 영상의 초기 접힘은 CSS가 소유한다. 초기화 클래스 없이 숨기고, 재생 후에는 기존 has-played 상태로 연다. 스크립트가 실행되지 않으면 명시적 영상 링크의 :target에서만 기본 컨트롤을 표시한다.
+## 확인
 
-랜딩의 제목·설명·후기 보조 글자·구독 안내와 구역 표면은 다크 의미 토큰을 사용한다. 구독 입력의 placeholder는 ui-muted, 활성 버튼 글자는 control-paper를 사용한다. 비활성 입력·버튼은 전체 투명도로 글자까지 흐리지 않으며 버튼을 ui-line 표면과 body 글자로 구분한다.
+`npm test`, `npm run build`, `npm run check`로 계약과 생성물을 검사한다. 구조·스타일을 바꾼 경우 소비자의 실제 검색·태그·복사·문서 탐색을 넓은 화면과 모바일에서 확인한다. 제공된 Things 기준에서 의도적으로 확장한 기능을 제거해 외형만 맞추지 않는다.
 
-다크 canvas는 prose-pre-background를 참조한다. 본문의 ui-card와 구독·푸터의 구역 차이를 유지하며 새 색을 만들지 않는다.
+표의 렌더링 회귀 검사는 설치된 Chrome과 별도 `playwright-core` 모듈을 사용한다. `node test/table-browser.mjs <playwright-core의 index.mjs 경로>`로 모바일·데스크톱, 라이트·다크에서 설명 열·긴 코드·긴 문장·다열 표와 키보드 가로 이동을 확인한다. 선택적인 마지막 인수에 기록 파일의 경로 접두사를 주면 측정 JSON과 화면을 저장한다.
+
+`node test/giscus-browser.mjs <playwright-core의 index.mjs 경로>`는 공급자와 같은 `light dark` 메타 설정의 독립 iframe에서 OS light/dark와 두 화면 폭의 댓글·답글·입력란 대비 및 키보드 초점을 확인한다. 선택적인 마지막 인수에 기록 경로 접두사를 주면 JSON과 화면을 저장한다. 공급자의 실제 댓글 연결·펼침은 소비자 화면에서 따로 확인한다.

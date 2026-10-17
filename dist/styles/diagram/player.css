@@ -1,5 +1,5 @@
 /* 재생기 틀, 도구 막대, 장면 탭. iframe 안(html.embedded)에서는 테두리와 바깥 여백을 뺀다. */
-/* 컨테이너는 가용 폭을 따르고 도표는 자연 크기를 유지하며, 넘치는 부분은 그림 영역 안에서 가로로 스크롤한다. */
+/* 컨테이너는 가용 폭을 따르고 도표는 그 폭을 꽉 채운다. 문서 안에서는 가로로 스크롤하지 않고, 전체화면 확대에서만 끌어 옮긴다. */
 
 body {
   margin: 0;
@@ -53,11 +53,11 @@ html.embedded .fl-figure.full {
   background: var(--color-figure-canvas);
 }
 
-/* 문서 안에서는 자연 높이와 가로 스크롤을 쓰고, 전체 화면에서는 양쪽 축으로 이동한다. */
+/* 문서 안에서는 자연 높이를 쓰고 가로로 넘치지 않는다(판 묶음이 폭을 채운다). 전체 화면에서는 양쪽 축으로 이동한다. */
 .fl-canvas {
   min-height: 0;
   padding: var(--spacing-3) 0;
-  overflow-x: auto;
+  overflow-x: clip;
   background: var(--color-figure-canvas);
   border-radius: var(--radius-card-radius);
 }
@@ -67,9 +67,9 @@ html.embedded .fl-figure.full {
   outline-offset: calc(-1 * var(--border-width-tag));
 }
 
-/* 판 묶음의 자연 폭을 유지해야 좁은 화면에서도 노드와 연결 라벨이 함께 축소되지 않는다. */
+/* 판 묶음은 그림 면의 폭을 꽉 채운다. 넓은 그림은 줄고 좁은 그림은 커지며, 문서 안에서 가로로 스크롤하지 않는다. 판끼리의 폭 비율은 아래 판 SVG의 --panel-w / --view-w가 지킨다. */
 .dp-panels {
-  width: calc(var(--view-w) * 1px); /* tokens-allow: 화면 상수가 아니라 데이터에서 나온 SVG 좌표 폭(단위 없는 수)을 CSS 길이로 바꾸는 좌표 단위 변환의 1px */
+  width: 100%;
   margin: 0 auto;
 }
 

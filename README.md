@@ -91,8 +91,11 @@ npm install --save-dev 'github:woonyong-choi/design-tokens#1441d59721cea72a69a1e
 
 ## 문서
 
-- 시작
-  - [아키텍처](docs/architecture.md)
+- [아키텍처](docs/architecture.md)
+  - [공통 디자인 배포](docs/distribution.md)
+  - [스타일 구조](docs/styles.md)
+- [공통 구성 요소](docs/components.md)
+  - [공통 아이콘](docs/design/content-icons.md)
 
 [전체 문서](docs/README.md)
 

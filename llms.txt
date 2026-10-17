@@ -1,13 +1,13 @@
 # design-tokens
 
-> Shared design tokens, CSS, icons, HTML components, and browser behavior for static sites and diagram tools.
+> Shared design tokens, CSS, icons, and HTML components for static sites and diagram tools
 
-## Structure
+This repository defines token values, shared styles, and browser behavior. Consumer apps provide content and routes, then include the HTML and CSS from this package in their pages.
 
 ## Docs
 
-- [아키텍처](https://raw.githubusercontent.com/woonyong-choi/design-tokens/main/docs/architecture.md): 코드 지도, 토큰 범위, 실행 흐름, 불변 조건
-- [공통 구성 요소](https://raw.githubusercontent.com/woonyong-choi/design-tokens/main/docs/components.md): HTML 조립·Tailwind 이름·선택적 동작·자동 전달
-- [공통 디자인 배포](https://raw.githubusercontent.com/woonyong-choi/design-tokens/main/docs/distribution.md): 단일 완성본, 차이만 상속, 소비자 검증과 전달
-- [스타일 구조](https://raw.githubusercontent.com/woonyong-choi/design-tokens/main/docs/styles.md): 공통 CSS 모듈 소유, 덮어쓰기 계약, 평탄화 규칙, 고치는 곳
-- [콘텐츠 아이콘](https://raw.githubusercontent.com/woonyong-choi/design-tokens/main/docs/design/content-icons.md): 제작 규격, 블로그 조합, Torso 소비자 계약
+- [아키텍처](https://raw.githubusercontent.com/woonyong-choi/design-tokens/main/docs/architecture.md): 코드 구조, 생성 흐름과 소유 경계
+- [공통 아이콘](https://raw.githubusercontent.com/woonyong-choi/design-tokens/main/docs/design/content-icons.md): 아이콘 출처, 표현과 소비 계약
+- [공통 구성 요소](https://raw.githubusercontent.com/woonyong-choi/design-tokens/main/docs/components.md): HTML 입력, 조립과 브라우저 동작
+- [공통 디자인 배포](https://raw.githubusercontent.com/woonyong-choi/design-tokens/main/docs/distribution.md): Git 설치, 패키지 진입점과 갱신
+- [스타일 구조](https://raw.githubusercontent.com/woonyong-choi/design-tokens/main/docs/styles.md): CSS 소유, 토큰 참조와 검사 범위

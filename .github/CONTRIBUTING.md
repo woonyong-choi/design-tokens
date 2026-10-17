@@ -1,37 +1,48 @@
-# Contributing
+# 기여 안내
 
-This guide explains how to contribute to design-tokens.
+이슈에 변경 목적과 완료 조건을 적고, 작업 브랜치의 PR로 변경을 제안한다.
 
-## Before you start
+## 시작 전에
 
-Open an issue before you start work.
+코드나 동작을 바꾸기 전에 같은 작업의 이슈와 열린 PR을 확인한다. 기존 과업이면 그 이슈를 이어서 쓰고, 독립된 결과면 새 이슈를 만든다. 이슈에는 이유, 고칠 범위와 근거로 확인할 완료 조건을 적는다.
 
-## Development environment
+## 개발 환경
 
-Requirements: Node.js 20 or later. Install the locked build dependencies with `npm ci`.
+Node.js 20 이상과 npm이 필요하다. 저장소를 받은 뒤 잠금 파일의 의존성을 설치하고 생성물을 만든다.
 
 ```sh
 git clone https://github.com/woonyong-choi/design-tokens.git
 cd design-tokens
+npm ci
+npm run build
 ```
 
-## Checks
+## 검사
 
-All of the following commands must pass before a pull request. Regenerating must leave no diff.
+PR을 열기 전에 아래 검사가 모두 통과해야 한다. 정본을 바꾼 경우 생성물도 같은 PR에 담고, `npm run check`에서 새로 만든 결과와 일치하는지 확인한다.
 
 ```sh
-node scripts/build.mjs
 npm test
+npm run check
 ```
 
-## Commits and pull requests
+UI를 바꾸면 소비자의 실제 화면과 조작을 확인한다. 자동 검사 통과와 화면 검수를 구분하고 실행하지 않은 검증을 완료로 기록하지 않는다.
 
-| Item | Format | Example |
+## 커밋과 PR
+
+| 대상 | 형식 | 예 |
 |---|---|---|
-| Branch | `{type}/{issue number}-{description}` | `feat/1-token-source` |
-| Commit | `{type}({scope}): {description in Korean}` | `feat(tokens): 의미 토큰 추가` |
-| Pull request | One pull request per issue, with `Closes: #{number}` in the body | Not applicable |
+| 브랜치 | `type/이슈번호-scope-설명` | `docs/21-readme-writing-rules` |
+| 커밋과 PR 제목 | `type(scope): 한글 설명` | `docs(readme): 설치 안내 갱신` |
 
-## Documentation
+이 저장소는 npm 패키지 하나다. 코드와 공통 구조에는 `repo`, README에는 `readme`, 그 밖의 문서에는 `docs`, 의존성에는 `deps` scope를 쓴다. 설명은 대상과 결과를 밝히고 `추가`, `수정`, `변경`, `제거`, `갱신`처럼 결과를 나타내는 말로 끝낸다.
 
-When you change a rule, a token name or a package export, update the [design documents](../docs/README.md) and both README files in the same pull request. The design documents are written in Korean.
+커밋 본문에는 바꾼 이유와 확인 결과를 개조식으로 쓴다. 확인하지 않은 실행 결과나 과거 판단을 만들지 않는다. 작성자는 기존 Git 설정을 사용한다.
+
+PR 하나에 독립적으로 검증하고 되돌릴 결과 하나를 담는다. 본문은 `왜 필요한가`, `무엇이 달라지나`, `검증` 순서로 쓰고 결과를 전후로 설명한다. 완료 조건을 모두 채우면 첫 줄에 `Closes #번호`, 일부만 반영하면 `Refs #번호`를 쓴다.
+
+검사와 검토를 마친 PR은 squash로 병합한다. 소비자가 PR 브랜치의 commit을 고정했다면 병합 뒤 main의 commit으로 다시 고정하고 소비자 검사를 실행한다. 이력의 메시지를 바꿀 때도 기존 고정 commit의 접근성을 먼저 확인한다.
+
+## 문서
+
+동작, 토큰 이름, 설정이나 패키지 진입점을 바꾸면 [설계 문서](../docs/README.md)와 [한국어 README](../README.md), [영어 README](../README.en.md)를 같은 PR에서 갱신한다. README나 문서 목록을 바꾸면 `llms.txt`도 원본에서 다시 만든다. 새 문서는 필요성과 공개 범위를 확인한 뒤 문서 목록에 연결한다.

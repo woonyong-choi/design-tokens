@@ -6,9 +6,15 @@
 
 기술 이름은 해당 프로젝트·재단·제작자가 배포한 로고로 표시한다. 공식 배포본 안에서 배경 없는 심벌과 평면형을 우선 선택하고 원래 색·도형·비례를 보존한다. 같은 표시 크기에서 실제 도형의 크기와 중심을 비례 변환으로 맞춘다. 독자 제작 콘텐츠 아이콘의 Things 조형 규칙을 기술 로고의 재디자인 지시로 적용하지 않는다.
 
-이 카탈로그의 `brands`에는 Torso 그림이 내장 아이콘으로 쓰는 Git·PostgreSQL·Redis·NGINX와 공통 `SocialIcon`·`SiteFooter`가 쓰는 GitHub·LinkedIn만 둔다. 각 항목은 원배포 출처와 선택한 변형·원본 해시를 `assets/icons/catalog.json`의 `brands`에 기록한다. 한 소비자만 쓰는 기술 로고는 그 소비자가 소유한다. 홈페이지 기술 줄과 문서의 C·C#·Python·TypeScript·JavaScript·Kotlin·Kubernetes·Docker·Node.js·Spring·Linux 로고는 homepage 저장소의 `content/assets/brands/`와 `config/assets.json`이 출처와 고지를 가진다. 쓰는 곳이 없던 나머지 기술 로고와 그 출처만 기록하던 Simple Icons·Devicon 라이브러리 항목, Kafka 로고의 Apache-2.0 고지는 두지 않는다. Devicon 고지는 기술 키워드 수집본(`keyword-icons`)의 고지로 남는다. 새 기술 로고는 실제로 쓰는 소비자에 추가하고, 여러 소비자가 공유할 때만 이 카탈로그에 둔다. `test/asset-provenance.test.js`가 `brands`를 공통 소셜 역할과 Torso 내장 그림의 표식으로 제한하고, 카탈로그가 가리키지 않는 고지 파일을 거부한다.
+이 카탈로그의 `brands`에는 Torso 그림이 내장 아이콘으로 쓰는 Git·PostgreSQL·Redis·NGINX와 공통 `SocialIcon`·`SiteFooter`가 쓰는 GitHub·LinkedIn만 둔다. 각 항목은 원배포 출처와 선택한 변형·원본 해시를 `assets/icons/catalog.json`의 `brands`에 기록한다.
 
-정본 SVG 이름·경로·viewBox를 유지한다. 임시·구형·레거시 SVG나 소비자별 복제본을 디자인토큰 저장소에 남기지 않는다. 원배포 다운로드·비교 캡처·실패 시안은 저장소 밖의 검수 영역에서만 다룬다. 기본형·상세형과 정본으로부터 build가 생성하는 dist는 기존 계약을 따른다.
+한 소비자만 쓰는 기술 로고는 그 소비자가 소유한다. 홈페이지 기술 줄과 문서의 C·C#·Python·TypeScript·JavaScript·Kotlin·Kubernetes·Docker·Node.js·Spring·Linux 로고는 homepage 저장소의 `content/assets/brands/`와 `config/assets.json`이 출처와 고지를 가진다.
+
+쓰는 곳이 없던 나머지 기술 로고와 그 출처만 기록하던 Simple Icons·Devicon 라이브러리 항목, Kafka 로고의 Apache-2.0 고지는 두지 않는다. Devicon 고지는 기술 키워드 수집본(`keyword-icons`)의 고지로 남는다.
+
+새 기술 로고는 실제로 쓰는 소비자에 추가하고, 여러 소비자가 공유할 때만 이 카탈로그에 둔다. `test/asset-provenance.test.js`가 `brands`를 공통 소셜 역할과 Torso 내장 그림의 표식으로 제한하고, 카탈로그가 가리키지 않는 고지 파일을 거부한다.
+
+정본 SVG 이름·경로·viewBox를 유지한다. 임시·구형·레거시 SVG나 소비자별 복제본을 design-tokens 저장소에 남기지 않는다. 원배포 다운로드·비교 캡처·실패 시안은 저장소 밖의 검수 영역에서만 다룬다. 기본형·상세형과 `npm run build`가 생성하는 `dist/`는 기존 계약을 따른다.
 
 원본 도형을 다시 그리지 않는다. 기존 렌더러가 지원하지 않는 색 표현을 정적 벡터로 변환했다면 원래 도형·팔레트·그라디언트 함수와 변환 사실을 기록하고, 같은 크기의 원배포 렌더와 픽셀·시각 대조한다. 이 호환 변환을 원본 파일의 바이트 그대로라고 설명하지 않는다. 출처·권리 고지는 `assets/icons/licenses/project-logos.txt`를 따른다.
 
@@ -79,18 +85,24 @@
 | `science/` | 수학·화학·물리·실험·과학 측정 |
 | `religion/` | 종교 상징·성전·의례·신앙 |
 
-브랜드 로고는 이름으로 특정 제품·서비스를 가리킬 때만 선택한다. 일반 글의 주제를 나타낼 때는 해당 의미 폴더를 쓴다. 원배포 고지와 색·도형을 보존하고 공식 변형 선택·비례 확대·호환 변환은 카탈로그의 `treatment`에 기록한다. PostgreSQL은 공식 3색형을 사용하며 배경에 따라 임의로 명도를 바꾸지 않는다. GitHub 원본은 공식 Invertocat 도형과 검정·흰색 변형을 `icon.brand.github`에 연결한다. 정적 배포 SVG는 아래 빌드 계약에 따라 검정으로 고정되므로 원본의 다크 토큰만으로 어두운 배경 적합성을 보장하지 않는다. 기존 단색 API는 호출자의 `currentColor`를 따른다. LinkedIn과 NGINX는 공식 SVG에서 독립 심벌 그룹을 선택하고 워드마크·별도 등록 기호를 아이콘 칸에 넣지 않는다. 제공된 수집본 전체의 고지는 `licenses/collected-icons.txt`에 있고, 파일별 원 제공자가 확인되지 않은 항목을 특정 라이브러리나 자체 제작물로 단정하지 않는다.
+브랜드 로고는 이름으로 특정 제품·서비스를 가리킬 때만 선택한다. 일반 글의 주제를 나타낼 때는 해당 의미 폴더를 쓴다. 원배포 고지와 색·도형을 보존하고 공식 변형 선택·비례 확대·호환 변환은 카탈로그의 `treatment`에 기록한다. PostgreSQL은 공식 3색형을 사용하며 배경에 따라 임의로 명도를 바꾸지 않는다.
+
+GitHub 원본은 공식 Invertocat 도형과 검정·흰색 변형을 `icon.brand.github`에 연결한다. 정적 배포 SVG는 아래 빌드 계약에 따라 검정으로 고정되므로 원본의 다크 토큰만으로 어두운 배경 적합성을 보장하지 않는다. 기존 단색 API는 호출자의 `currentColor`를 따른다.
+
+LinkedIn과 NGINX는 공식 SVG에서 독립 심벌 그룹을 선택하고 워드마크·별도 등록 기호를 아이콘 칸에 넣지 않는다.
+
+제공된 수집본 전체의 고지는 `licenses/collected-icons.txt`에 있고, 파일별 원 제공자가 확인되지 않은 항목을 특정 라이브러리나 자체 제작물로 단정하지 않는다.
 
 ## 빌드와 사용
 
-`npm run build`가 의미 폴더를 읽어 배포 카탈로그의 `icons` 목록을 생성한다. 소스 JSON에는 9천 개 이상의 파일 목록을 다시 적지 않는다. 빌드는 잘못된 깊이, 중복 이름, 없는 별칭·역할·고지, 미해결 토큰과 허용하지 않은 SVG를 거부한다. 좌표와 도형 내부 획은 원본 기하이고 화면의 표시 크기와 일반 아이콘 색은 공통 토큰을 따른다. 브랜드 컬러는 원배포 자산의 식별 색을 유지한다.
+`npm run build`가 의미 폴더를 읽어 배포 카탈로그의 `icons` 목록을 생성한다. 소스 JSON에는 개별 SVG 파일 목록을 다시 적지 않는다. `getIconCatalog().icons`에서 빌드한 목록을 읽는다. 빌드는 잘못된 깊이, 중복 이름, 없는 별칭·역할·고지, 미해결 토큰과 허용하지 않은 SVG를 거부한다. 좌표와 도형 내부 획은 원본 기하이고 화면의 표시 크기와 일반 아이콘 색은 공통 토큰을 따른다. 브랜드 컬러는 원배포 자산의 식별 색을 유지한다.
 
 현재 빌드는 `dist/assets/icons` SVG와 역할용 `dist/ui/icon-data.mjs`의 색 변수를 밝음 값으로 치환한다. 어두운 토큰으로 원본을 직접 렌더한 그림은 이 정적 배포 결과와 다를 수 있다. 검수는 실제 빌드 SVG도 밝고 어두운 소비 배경에 놓고 수행한다. 필수 외곽·연결에는 양 배경의 대비를 확보하는 고정 중성 역할 `icon.structure-edge`를, 밝은 물체 안의 필수 기호에는 인접색을 확인한 고정 잉크 역할을 사용한다. 기존 테마값 전체를 바꾸거나 소비자 CSS로 결함을 가리지 않는다.
 
 ```js
 import { getIconCatalog, iconFile, readIcon } from '@woonyong-choi/design-tokens/icons';
 import { renderSvgIcon } from '@woonyong-choi/design-tokens/svg';
-import { ContentIcon, trusted } from '@woonyong-choi/design-tokens/ui/index.mjs';
+import { ContentIcon, trusted } from '@woonyong-choi/design-tokens/components';
 
 const graphic = trusted(renderSvgIcon(readIcon('database')));
 const icon = ContentIcon({ graphic, size: 'small' });
@@ -98,7 +110,7 @@ const path = iconFile('database', { variant: 'detail' });
 const kinds = getIconCatalog().kinds;
 ```
 
-패키지에서는 `@woonyong-choi/design-tokens/icons`와 `/svg`로 같은 함수를 가져온다. 파일을 읽는 `icons`는 Node 진입점이고 SVG 함수는 브라우저에서도 동작한다. `variant`는 `default` 또는 `detail`이며 상세 파일이 없으면 기본 도형을 쓴다. 모르는 이름·경로·변형은 오류다.
+패키지에서는 `@woonyong-choi/design-tokens/icons`와 `/svg`로 같은 함수를 가져온다. 파일을 읽는 `icons`는 Node 진입점이고 SVG 함수는 브라우저에서도 동작한다. `iconFile`은 `databases/database-detail.svg`처럼 카탈로그 루트 기준 상대 경로를, `readIcon`은 해당 파일의 SVG 문자열을 반환한다. `variant`는 `default` 또는 `detail`이며 상세 파일이 없으면 기본 도형을 쓴다. 모르는 이름·경로·변형은 오류다.
 
 `ContentIcon`은 작은 문서 아이콘부터 카드까지 같은 배치를 쓴다. `kinds`는 글 형식에 대응하는 그래픽 이름을 제공한다. `ControlIcon`, `ArticleIcon`, `SocialIcon`, `ToolIcon`도 같은 카탈로그 역할을 조립한다. 브라우저용 모듈에는 공통 조작에 실제 필요한 도형만 넣으며 전체 라이브러리를 스크립트에 포함하지 않는다.
 
@@ -117,7 +129,13 @@ const kinds = getIconCatalog().kinds;
 
 SVG 안의 mask ID는 삽입마다 분리한다. 결정적 출력이 필요한 빌드는 서로 다른 `prefix`를 전달한다. 스크립트·이벤트·외부 이미지·외부 URL은 허용하지 않는다. 원본을 직접 바꾸는 대신 화면별 도형이나 CSS 보정을 만드는 것은 금지다.
 
-토큰을 직접 해석하는 원본의 중성 glyph는 `icon.neutral`을 따르고 다크 모드에서 밝은 값으로 바뀐다. 단색 렌더러가 내보내는 `currentColor`는 소비자의 전경색을 상속한다. 종이나 밝은 색면 안의 숫자처럼 어두운 잉크를 유지해야 하는 표식은 `icon.neutral-edge`를 사용한다. NGINX는 공식 로고의 독립 N 심벌 도형과 고유 녹색을 보존한다. NGINX의 N과 Redis의 내부 흰 표식은 색상 표현에서 불투명하게 유지하며, 단색 표현에서만 음각으로 바꾼다. 흰 배경에서 같아 보여도 두 표현을 합치지 않는다. 공통 대비 검사는 테마별 중성 전경·브랜드 색 토큰의 페이지 대비 3:1, 어두운 잉크와 종이 사이 4.5:1 이상을 확인한다. 이 토큰 검사는 고정 원색을 쓰는 공식 PostgreSQL 로고의 실제 대비를 보증하지 않는다. 공식 자산은 실제 배경에서 별도로 시각 검수한다.
+토큰을 직접 해석하는 원본의 중성 glyph는 `icon.neutral`을 따르고 다크 모드에서 밝은 값으로 바뀐다. 단색 렌더러가 내보내는 `currentColor`는 소비자의 전경색을 상속한다. 종이나 밝은 색면 안의 숫자처럼 어두운 잉크를 유지해야 하는 표식은 `icon.neutral-edge`를 사용한다.
+
+NGINX는 공식 로고의 독립 N 심벌 도형과 고유 녹색을 보존한다. NGINX의 N과 Redis의 내부 흰 표식은 색상 표현에서 불투명하게 유지하며, 단색 표현에서만 음각으로 바꾼다. 흰 배경에서 같아 보여도 두 표현을 합치지 않는다.
+
+공통 대비 검사는 테마별 중성 전경·브랜드 색 토큰의 페이지 대비 3:1, 어두운 잉크와 종이 사이 4.5:1 이상을 확인한다.
+
+이 토큰 검사는 고정 원색을 쓰는 공식 PostgreSQL 로고의 실제 대비를 보증하지 않는다. 공식 자산은 실제 배경에서 별도로 시각 검수한다.
 
 문서·편집기의 불투명한 밝은 표면은 `icon.sheet`, 흰 기호는 `icon.paper`를 사용한다. 두 역할을 분리해 표면색 보정이 흰 기호색을 바꾸지 않게 한다. 색 값의 정본은 [토큰 원본](../../tokens/tokens.json)이다.
 

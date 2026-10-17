@@ -26,6 +26,17 @@
 
 ## 입력 경계
 
+```js
+import { Card, CardGroup } from '@woonyong-choi/design-tokens/components';
+
+const cards = [Card({
+	title: 'Memory',
+	href: '/docs/memory/',
+	description: 'Address translation',
+})];
+const html = CardGroup({ columns: 4, cards });
+```
+
 일반 텍스트는 이스케이프한다. URL은 허용 프로토콜과 문자 범위를 검사한다. HTML 슬롯은 `trusted()` 표시가 없는 문자열을 거절한다. 이 표시는 sanitizer가 아니므로 소비자는 검증된 Markdown 출력과 구성 요소의 결과에만 사용한다.
 
 `Details({ title, open, body })`는 제목을 이스케이프하고 검증된 본문을 접기 요소로 감싼다. Markdown 어댑터는 같은 `Details.open({ open })`·`Details.close()`와 `Details.summaryOpen()`·`Details.summaryClose()`로 태그를 조립한다. `open`은 생략하면 `false`다. 요약의 인라인 Markdown, 중첩 접기와 코드 블록은 소비자가 이미 분석한 토큰을 렌더하고 요약이 없으면 요약 태그를 생략한다. 공통 태그나 `app-details` 클래스를 소비자에서 다시 정의하지 않는다.
@@ -34,7 +45,7 @@
 
 영상 재생기의 비율은 `Player.wide`와 `Video.playerWide`, 원본 크기는 `Video.playerWidth`·`playerHeight`로 지정한다. 그림 격자의 `FigureGrid.size`와 카드의 `Card.compact`도 각 구성 요소의 별도 역할이다.
 
-`CardGroup.columns`는 1~5 정수로 넓은 화면의 열 수를 정한다. 생략하면 3열이며 좁은 화면에서는 공통 분기점에 따라 줄어든다. 1열은 좁은 화면에서도 유지한다. `Card`와 `BlogCard`의 `showTitle: false`는 제목을 화면에서 숨기되 접근 가능한 이름과 제목 구조를 보존한다. `BlogCard.cover`를 생략하면 표지 자리도 생략하고, 빈 슬롯을 주면 기존의 빈 표지를 유지한다.
+`CardGroup.columns`는 1~5 정수나 정수 문자열로 넓은 화면의 열 수를 정한다. 생략하면 3열이며 좁은 화면에서는 공통 분기점에 따라 줄어든다. 1열은 좁은 화면에서도 유지한다. `Card`와 `BlogCard`의 `showTitle: false`는 제목을 화면에서 숨기되 접근 가능한 이름과 제목 구조를 보존한다. `BlogCard.cover`를 생략하면 표지 자리도 생략하고, 빈 슬롯을 주면 기존의 빈 표지를 유지한다.
 
 `Video`와 `ProjectShowcase`는 첫 재생 시도부터 브라우저 기본 영상 조작부를 표시한다. 재생에 실패해도 같은 조작부로 다시 시도할 수 있으며, 기본 조작부나 외부 재생 버튼으로 재생에 성공하면 오류 안내를 지운다.
 
@@ -50,13 +61,23 @@
 
 코드 복사의 성공·실패 표시 시간은 `duration.notice`에서 읽는다. 복사 버튼의 hover·focus·active와 태그 hover는 공통 조작 색을 사용한다. 콘텐츠 아이콘의 도형 좌표, 미디어 원본 크기, 배치 계산의 숫자는 화면 토큰과 다른 데이터다.
 
+## 헤더와 구독 폼
+
 `SiteHeader({ title, homeLabel, icon, logo, items, label })`는 보이는 사이트 이름과 접근성 이름을 구분한다. `title`을 생략하면 `homeLabel`을 표시하고, `icon`은 선택적인 검증 HTML 슬롯이다. `logo`를 전달하면 검증한 이미지나 SVG가 `icon`과 `title`을 대신하며 `homeLabel`은 홈 링크의 접근성 이름으로 유지한다. SVG 글자 이미지는 기존 SVG 렌더러로 검증하고 `currentColor`로 제목색을 상속한다. `Hero.icon`도 같은 검증 슬롯이다. 소비자는 일반 로고에는 `app-hero-logo`, 글자 이미지에는 `app-hero-wordmark` 클래스를 선택하고 원본 비율을 유지한다. 글자 이미지의 높이·반응형 범위는 [스타일 계약](styles.md#구성-요소-계약)을 따른다.
 
 `SectionIntro`의 `icon` 슬롯은 공통 제목 자리 안에 놓인다. 카탈로그 SVG 파일은 `ContentIconImage({ src, size: 'card' })`로 조립하며, 인라인 SVG는 `ContentIcon({ graphic, size: 'card' })`을 쓴다. 원본 PNG는 기존 이미지 슬롯으로 전달한다. 제목 자리는 두 표현을 가운데 놓고 소비자가 크기나 위치를 따로 보정하지 않는다.
 
 `EmailForm({ id, action, field, label, placeholder, button, note })`는 이메일 입력과 제출 버튼을 조립한다. `action`이 있으면 이메일 유효성을 검사하는 기본 POST 폼이고, 없으면 입력과 버튼을 비활성화한다. 주소를 대신 만들거나 전송 성공을 흉내 내지 않는다. 공급자 주소·동의 문구·응답 처리는 소비자가 정한다. `note`는 검증한 HTML 슬롯이고 안내 ID는 `${id}-state`로 연결한다. 홈 구독은 `Section({ variant: 'form', ... })` 안에서 같은 폼을 쓴다.
 
-`TextInput({ id, name, label, type, value, placeholder, autocomplete, describedBy, required, disabled, size, surface, icon, action, role, controls })`는 모든 텍스트 입력의 단일 구성 요소다. 보이지 않는 이름표와 `.app-input` 입력을 조립한다. `type`은 `text`·`email`·`url`·`tel`, `size`는 `small`·`medium`·`large`·`control`, `surface`는 `track`·`field`·`card`만 받는다. `name`의 기본값은 `id`다. `icon`과 `action`은 검증한 HTML 슬롯이며, 있으면 입력과 함께 `.app-input-field` 안에 앞 아이콘과 뒤 동작으로 놓인다. `role`은 `searchbox` 또는 `combobox`이고 `combobox`는 추천 목록 ID `controls`가 필요하다. `describedBy`와 `controls`는 ID로 검증하고 값과 안내 문구는 일반 텍스트로 이스케이프한다. `SearchBox`는 `size: 'medium' | 'large'`, `surface: 'field'`로, `EmailForm`은 `size: 'control'`, `surface: 'card'`로 이 구성 요소를 조립한다.
+## 텍스트 입력과 검색
+
+`TextInput({ id, name, label, type, value, placeholder, autocomplete, describedBy, required, disabled, size, surface, icon, action, role, controls })`는 모든 텍스트 입력의 단일 구성 요소다. 보이지 않는 이름표와 `.app-input` 입력을 조립한다. `type`은 `text`·`email`·`url`·`tel`, `size`는 `small`·`medium`·`large`·`control`, `surface`는 `track`·`field`·`card`만 받는다. `name`의 기본값은 `id`다. `icon`과 `action`은 검증한 HTML 슬롯이며, 있으면 입력과 함께 `.app-input-field` 안에 앞 아이콘과 뒤 동작으로 놓인다. `role`은 `searchbox` 또는 `combobox`이고 `combobox`는 추천 목록 ID `controls`가 필요하다. `describedBy`와 `controls`는 ID로 검증하고 값과 안내 문구는 일반 텍스트로 이스케이프한다. `SearchBox`는 `large`가 참이면 `size: 'large'`, 아니면 `size: 'medium'`을 선택하고 `surface: 'field'`로, `EmailForm`은 `size: 'control'`, `surface: 'card'`로 이 구성 요소를 조립한다.
+
+`SearchResultLink`와 `SearchResult`의 `icon`을 생략하면 빈 아이콘 슬롯과 들여쓰기도 생략한다. `SearchMessage({ lines })`은 문자열 배열을 안전하게 줄바꿈하고 같은 중앙 정렬 영역에 소비자의 재시도 버튼을 추가할 수 있다. 소비자는 재시도 동작과 검색 색인을 소유한다. 공통 구성 요소는 검색 결과의 HTML만 만든다.
+
+`SearchBox({ combobox: false, ... })`는 입력에 `searchbox` 역할을 사용하고 추천 팝업 ARIA를 붙이지 않는다. 기본값은 `combobox: true`다. `ContentGroup({ collection: true, ... })`는 글 목록 영역의 바깥 간격을 적용한다.
+
+검색 결과의 유형 표시는 짧은 한 덩어리로 유지한다. 긴 제목은 줄바꿈할 수 있지만 제목 뒤의 유형 표시는 중간에서 갈라지지 않는다.
 
 ## 소비 방식
 
@@ -72,9 +93,9 @@
 
 `DiagramEmbed({ src, title, dimensions: { width, height }, width })`는 빌드한 같은 출처 HTML을 iframe에 넣는다. 표시 폭 `width`는 코드·그림과 같은 `content`·`narrow`·`wide`이고 생략하면 본문 폭이다. `dimensions`는 도표의 측정값으로 초기 iframe 크기에만 쓰며 내용 높이를 받으면 갱신한다. 도표는 가용 폭을 꽉 채우고 가로로 스크롤하지 않는다. 본문에 삽입된 재생기와 일반 캔버스에는 별도 세로 스크롤을 만들지 않고 전체화면 확대 때 양쪽 축으로 이동한다. `runtime/diagram.js`는 출처·프레임을 확인한 높이 메시지와 부모 테마를 연결한다. 도표가 없는 페이지에는 이 동작을 싣지 않는다.
 
-## 확장
+샌드박스의 실제 출처가 `null`이면 등록된 같은 URL 출처의 도표 창에만 `*`로 테마를 보내고, 그 창에서 온 `null` 출처의 높이 요청만 받는다. 일반 페이지는 실제 출처 일치를 요구한다. `allow-same-origin` 권한을 추가하지 않는다.
 
-새 소비자의 프레임워크 래퍼는 실제 사용처가 생길 때 추가한다. 같은 정본을 상속하고 실제로 다른 속성만 재정의한다.
+`chartMotionCss(growMs, dotAts)`는 HTML 차트의 성장·점·값 표시 스타일을 만든다. `CHART_GROWTH`는 SVG도 읽는 성장 모양의 정본이며 장면별 시작·끝 시각 계산은 소비자가 맡는다.
 
 ## 블록 조작부
 
@@ -92,15 +113,12 @@
 
 `ContentIcon({ graphic, badge, size })`은 검증한 SVG 슬롯을 공통 크기와 배치로 감싼다. 선택적인 `badge`도 검증한 슬롯만 받으며 오른쪽 아래에 주 도형 절반 크기로 놓는다. 글 유형을 붙일지는 소비자의 콘텐츠 규칙으로 결정한다.
 
-검색 결과의 유형 표시는 짧은 한 덩어리로 유지한다. 긴 제목은 줄바꿈할 수 있지만 제목 뒤의 유형 표시는 중간에서 갈라지지 않는다.
-
-샌드박스의 실제 출처가 `null`이면 등록된 같은 URL 출처의 도표 창에만 `*`로 테마를 보내고, 그 창에서 온 `null` 출처의 높이 요청만 받는다. 일반 페이지는 실제 출처 일치를 요구한다. `allow-same-origin` 권한을 추가하지 않는다.
 ## 프로젝트 목록
 
 `ProjectList({ title, projects })`는 대표 카드와 관련 문서 링크를 항목별로 묶는다. 각 프로젝트는 `href`, `title`, `description`, 선택적인 `icon` 슬롯과 `links: [{ href, title }]`를 받는다. 아이콘은 신뢰된 HTML 슬롯이며, 제목과 설명은 일반 텍스트다. 카드와 관련 링크의 URL은 모두 검사한다. 소비자는 프로젝트 콘텐츠와 경로만 전달한다.
 
 `BlogCard.commentsHref`는 카드의 글 링크와 분리된 댓글 링크다. 댓글 수를 생략하면 “댓글 보기”로 표시하며 태그와 같은 독립 클릭 영역을 사용한다.
 
-`chartMotionCss(growMs, dotAts)`는 HTML 차트의 성장·점·값 표시 스타일을 만든다. `CHART_GROWTH`는 SVG도 읽는 성장 모양의 정본이며 장면별 시작·끝 시각 계산은 소비자가 맡는다.
+## 확장
 
-`SearchResultLink`와 `SearchResult`의 `icon`을 생략하면 빈 아이콘 슬롯과 들여쓰기도 생략한다. `SearchMessage({ lines })`은 문자열 배열을 안전하게 줄바꿈하고 같은 중앙 정렬 영역에 소비자의 재시도 버튼을 추가할 수 있다. 소비자는 재시도 동작을 제공하며 검색 색인은 소유하지 않는다.
+새 소비자의 프레임워크 래퍼는 실제 사용처가 생길 때 추가한다. 같은 정본을 상속하고 실제로 다른 속성만 재정의한다.

@@ -70,7 +70,7 @@
 
 `DiagramFrame`은 같은 `TabList`로 장면을 선택하고 `runtime/tabs.js`의 `bindTabs`로 aria-selected, Tab 정지점, 방향키·Home·End를 연결한다. 다이어그램의 시간표와 장면 선택 후 재생은 소비자가 맡는다. 선택 색·호버·전환 시간·움직임 줄이기는 `styles/tabs.css` 한 곳에서 정한다.
 
-`DiagramEmbed({ src, title, dimensions: { width, height }, width })`는 빌드한 같은 출처 HTML을 iframe에 넣는다. 표시 폭 `width`는 코드·그림과 같은 `content`·`narrow`·`wide`이고 생략하면 본문 폭이다. `dimensions`는 도표의 측정값으로 초기 iframe 크기에만 쓰며 내용 높이를 받으면 갱신한다. 도표는 자연 크기를 유지하며 가용 폭을 넘으면 그림 영역 안에서 가로로 스크롤한다. 본문에 삽입된 재생기와 일반 캔버스에는 별도 세로 스크롤을 만들지 않고 전체화면 확대 때 양쪽 축으로 이동한다. `runtime/diagram.js`는 출처·프레임을 확인한 높이 메시지와 부모 테마를 연결한다. 도표가 없는 페이지에는 이 동작을 싣지 않는다.
+`DiagramEmbed({ src, title, dimensions: { width, height }, width })`는 빌드한 같은 출처 HTML을 iframe에 넣는다. 표시 폭 `width`는 코드·그림과 같은 `content`·`narrow`·`wide`이고 생략하면 본문 폭이다. `dimensions`는 도표의 측정값으로 초기 iframe 크기에만 쓰며 내용 높이를 받으면 갱신한다. 도표는 가용 폭을 꽉 채우고 가로로 스크롤하지 않는다. 본문에 삽입된 재생기와 일반 캔버스에는 별도 세로 스크롤을 만들지 않고 전체화면 확대 때 양쪽 축으로 이동한다. `runtime/diagram.js`는 출처·프레임을 확인한 높이 메시지와 부모 테마를 연결한다. 도표가 없는 페이지에는 이 동작을 싣지 않는다.
 
 ## 확장
 

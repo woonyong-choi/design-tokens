@@ -1,11 +1,13 @@
 import assert from 'node:assert/strict';
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, readdirSync, existsSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { test } from 'node:test';
 import { buildDesign } from '../scripts/lib/design-build.mjs';
 import { buildTables, flattenTokens, resolveToken, readSource } from '../scripts/lib/tokens.mjs';
 import { themeTable, resolveValue } from '../scripts/lib/token-css.mjs';
 import { ROOT, tables } from './helpers.mjs';
 import { verifyDesign } from '../scripts/lib/verify-dist.mjs';
+import { bundleStyles } from '../scripts/lib/styles-bundle.mjs';
 
 test('one_source_owns_web_and_diagram_roles_without_theme_hierarchy', () => {
   assert.equal(existsSync(`${ROOT}themes`), false);
@@ -34,6 +36,33 @@ test('all_generated_files_match_the_single_source_and_manifest', () => {
   const generated = buildDesign(ROOT);
   for (const [name, value] of Object.entries(generated)) assert.ok(readFileSync(`${ROOT}dist/${name}`).equals(Buffer.from(value)), name);
   assert.equal(verifyDesign(`${ROOT}dist`).contentHash, JSON.parse(generated['manifest.json']).contentHash);
+});
+
+test('bundled_style_compiler_contains_locked_patched_inputs_and_complete_licenses', () => {
+  const { code, metafile } = bundleStyles(ROOT);
+  const lock = JSON.parse(readFileSync(`${ROOT}package-lock.json`, 'utf8'));
+  const packages = [...new Set(Object.keys(metafile.inputs)
+    .filter(path => path.includes('node_modules/'))
+    .map(path => path.match(/^(.*node_modules\/(?:@[^/]+\/)?[^/]+)\//)[1]))];
+  assert.ok(packages.includes('node_modules/purgecss'));
+  assert.ok(packages.includes('node_modules/postcss-selector-parser'));
+  for (const path of packages) {
+    const { name, version } = JSON.parse(readFileSync(`${ROOT}${path}/package.json`, 'utf8'));
+    assert.equal(version, lock.packages[path].version, path);
+    if (name === 'postcss-selector-parser') {
+      const [major, minor, patch] = version.split('.').map(Number);
+      assert.ok(major > 7 || (major === 7 && minor > 1) || (major === 7 && minor === 1 && patch >= 6), `${path}@${version}`);
+    }
+    const licenses = readdirSync(`${ROOT}${path}`).filter(name => /^licen[sc]e(?:[.-].*)?$/i.test(name));
+    assert.ok(licenses.length > 0, name);
+    for (const license of licenses) {
+      assert.ok(code.includes(`/*! ${name}@${version} (${license})\n`), name);
+      assert.ok(code.includes(readFileSync(`${ROOT}${path}/${license}`, 'utf8')), `${name}/${license}`);
+    }
+  }
+  assert.equal(readFileSync(`${ROOT}dist/ui/build/styles.mjs`, 'utf8'), code);
+  const manifest = JSON.parse(readFileSync(`${ROOT}dist/manifest.json`, 'utf8'));
+  assert.equal(manifest.files['ui/build/styles.mjs'], createHash('sha256').update(code).digest('hex'));
 });
 
 test('both_modes_keep_references_and_generated_token_modules_are_identified', () => {

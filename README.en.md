@@ -42,6 +42,8 @@ The output contains an `app-support-grid is-four` group and a link to `/docs/mem
 
 Other apps install a verified commit as a pinned Git dependency. The repository includes `dist/`, so installation does not rebuild the design files. [Shared design distribution](docs/distribution.md) covers installation, CSS paths, and updates.
 
+The CSS compiler bundles PurgeCSS and its selector parser at build time. Consumer installations require `esbuild` and `postcss`, with no additional overrides. The repository's root override applies to build inputs. The package test checks CSS output, the dependency tree, and audit results in an installation without overrides. Separate checks cover bundled inputs and licenses.
+
 ## Why
 
 Separate implementations of site cards, documents, and diagram controls require the same color, spacing, or tab behavior to change in several places. This repository provides tokens, HTML components, and shared browser behavior together. Consumers inherit the defaults and express product differences through component properties and semantic tokens.

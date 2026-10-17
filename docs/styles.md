@@ -50,7 +50,9 @@
 
 소비자의 `compileStyles`는 전체 HTML·스크립트의 사용처, 동적 상태와 변수 참조를 보존한 뒤 축소한다. `:focus-visible`, 숨김 상태와 움직임 줄이기 규칙을 빠뜨리지 않는다. 배포물의 축소 결과를 정본 CSS에 역반영하지 않는다.
 
-`package.json`과 `package-lock.json`은 PurgeCSS 7.0.2의 `postcss-selector-parser`를 보안 수정이 포함된 7.1.6으로 고정한다. 현재 설치 결과의 보안 상태는 `npm audit`로 확인한다. 이 버전 고정을 이후 릴리스의 안전성 판단으로 일반화하지 않는다. 상위 도구를 갱신할 때 `npm audit`, 전체 계약 시험과 실제 소비자 입력의 CSS·토큰 축소 결과를 확인하고, 보안 수정된 의존성 조합이 확인되면 override를 제거한다.
+`package.json`의 개발 의존성 PurgeCSS 7.0.2와 루트 override가 선택한 `postcss-selector-parser` 7.1.6을 `npm run build`가 배포 모듈에 포함한다. `pruneTokens`는 기존 모듈을 공유하며 `compileStyles`의 입력과 반환값은 유지한다. 루트 override는 소비자 설치에 전파되지 않으므로 배포 모듈에서 이 조합을 고정한다. 설치 경계와 라이선스 고지, 번들 입력·소비자 설치 검사는 [공통 디자인 배포](distribution.md#패키지)를 따른다.
+
+상위 도구를 갱신할 때 루트와 소비자 설치의 `npm audit`, 실제 번들 입력, 전체 계약 시험과 소비자 입력의 CSS·토큰 축소 결과를 확인한다. 이후 릴리스의 안전성은 다시 판단하고, 보안 수정된 의존성 조합이 확인되면 override를 제거한다.
 
 ## 구성 요소 계약
 

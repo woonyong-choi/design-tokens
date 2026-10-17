@@ -42,3 +42,16 @@ design-tokens는 여러 소비자가 공유하는 토큰, 아이콘, CSS, 정적
 ## 배포 경로
 
 소비하는 앱이 고정 commit을 고르고 Torso·document-engine은 앱이 설치한 같은 패키지를 peer 의존성으로 읽는다. [공통 디자인 배포](distribution.md)에 진입점과 갱신 절차를 기록한다. 태그 릴리스는 별도이며 main 병합이 npm 발행을 뜻하지 않는다.
+
+## README 흐름 그림
+
+[그림 원본](assets/build-flow.torso)은 디자인 원본, 빌드, 패키지, 소비 앱을 네 단계로 보여 준다. 생성한 SVG를 직접 고치지 않고 원본과 함께 갱신한다.
+
+생성 도구는 Torso의 `14e57b7b274ac791f46d6c7827acf17686a983ed` 커밋이다. 해당 소스와 의존성을 준비한 뒤 이 저장소 루트에서 실행한다. `TORSO_PATH`는 준비한 Torso 저장소 경로다.
+
+```sh
+node "$TORSO_PATH/src/cli.js" check docs/assets/build-flow.torso --strict
+node "$TORSO_PATH/src/cli.js" render docs/assets/build-flow.torso --static --strict
+```
+
+같은 버전으로 다시 생성했을 때 `docs/assets/build-flow.svg`의 바이트가 같아야 한다. README에서는 정지 그림으로 표시하며 단계별 책임은 위 코드 지도와 생성 절차를 따른다.

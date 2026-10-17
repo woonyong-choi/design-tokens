@@ -2,17 +2,21 @@
 
 <p align="center">
   정적 사이트와 도표 도구가 공유하는 디자인 토큰, CSS, 아이콘과 HTML 구성 요소<br>
+  <a href="https://github.com/woonyong-choi/design-tokens/actions/workflows/ci.yml"><img src="https://github.com/woonyong-choi/design-tokens/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT license"></a><br>
   한국어 | <a href="README.en.md">English</a>
 </p>
 
-토큰 값, 공통 스타일과 브라우저 동작을 한 저장소에서 관리합니다. 소비하는 앱은 콘텐츠와 경로를 제공하고, 이 패키지가 반환한 HTML과 CSS를 페이지에 연결합니다.
+색·간격·서체 같은 디자인 값과 카드·탭 같은 HTML 구성 요소를 함께 제공합니다. 정적 사이트와 도표 도구가 같은 디자인을 쓰도록 토큰, CSS, 아이콘과 브라우저 동작을 한곳에서 관리합니다.
 
 > [!NOTE]
-> 개발 중입니다. 공개 릴리스는 없으며 커밋에 포함한 생성물을 Git 의존성으로 설치해 사용합니다.
+> 개발 중입니다. 배포판은 없고 소스에서 빌드해 실행합니다.
 
 ## 목차
 
 - [빠른 시작](#빠른-시작)
+  - [저장소에서 확인](#저장소에서-확인)
+  - [다른 프로젝트에 설치](#다른-프로젝트에-설치)
 - [해결하는 문제](#해결하는-문제)
 - [작동 방식](#작동-방식)
 - [상태](#상태)
@@ -21,49 +25,66 @@
 - [라이선스](#라이선스)
 
 <a id="install"></a>
-
 <a id="compose"></a>
 
 ## 빠른 시작
 
-Node.js 20 이상과 npm이 필요합니다. 저장소 루트에서 의존성을 설치하고 카드 HTML을 출력하세요.
+Node.js 20 이상과 npm이 필요합니다.
+
+### 저장소에서 확인
+
+저장소를 내려받은 뒤 루트에서 의존성을 설치하고 배포 파일을 만드세요.
 
 ```sh
 npm ci
+npm run build
+```
+
+카드 묶음을 HTML로 출력하세요.
+
+```sh
 node --input-type=module <<'JS'
 import { Card, CardGroup } from '@woonyong-choi/design-tokens/components';
 
 const cards = [Card({
-	title: 'Memory',
-	href: '/docs/memory/',
-	description: 'Address translation',
+  title: 'Memory',
+  href: '/docs/memory/',
+  description: 'Address translation',
 })];
 console.log(String(CardGroup({ columns: 4, cards })));
 JS
 ```
 
-출력에는 `app-support-grid is-four` 카드 묶음과 `/docs/memory/` 링크가 있습니다. 이 예제는 정적 HTML을 만들며 React나 브라우저 초기화가 필요하지 않습니다. 화면에 표시하려면 생성한 HTML에 패키지의 `styles.css`와 `tokens.css`를 연결하세요.
+결과는 `app-support-grid is-four` 카드 묶음 안에 `/docs/memory/` 링크를 가진 HTML입니다. 브라우저에서 표시할 때는 이 HTML과 패키지의 `tokens.css`, `styles.css`를 함께 연결하세요. CSS가 참조하는 글꼴·아이콘의 상대 경로도 유지해야 합니다. 파일 경로를 찾고 페이지에 연결하는 방법은 [공통 디자인 배포](docs/distribution.md#패키지)에 있습니다.
 
-다른 앱에서는 검증한 commit을 Git 의존성으로 고정합니다. `dist/`를 함께 커밋하므로 설치 과정에서 디자인 파일을 다시 빌드하지 않습니다. [공통 디자인 배포](docs/distribution.md)에 설치 명령, CSS 경로와 갱신 절차가 있습니다.
+### 다른 프로젝트에 설치
 
-CSS 축소 도구는 빌드에서 고정한 PurgeCSS와 선택자 parser를 포함합니다. 소비자 설치에는 `esbuild`와 `postcss`가 필요하며 별도 override 설정은 필요하지 않습니다. 저장소 루트 override는 빌드 입력에 적용됩니다. 패키지 시험은 override 없는 설치에서 CSS 축소 결과와 의존성 트리·audit을 확인하고, 번들 입력과 라이선스는 별도로 검사합니다.
+아래 명령은 검증한 커밋을 Git 의존성으로 설치합니다.
+
+```sh
+npm install --save-dev 'github:woonyong-choi/design-tokens#1441d59721cea72a69a1e72b0ca3a3572b309ac3'
+```
+
+설치한 프로젝트에서도 위 HTML 예제를 실행할 수 있습니다. 커밋에 생성한 `dist/`가 포함돼 있어 소비자가 디자인 파일을 다시 빌드할 필요는 없습니다. 새 커밋으로 옮길 때는 [갱신 절차](docs/distribution.md#갱신)를 따르세요.
 
 ## 해결하는 문제
 
-사이트의 카드와 문서, 도표의 조작부를 각각 구현하면 같은 색·간격·탭 동작을 여러 곳에서 고쳐야 합니다. 이 저장소는 토큰과 HTML 구성 요소, 공통 브라우저 동작을 함께 제공합니다. 소비자는 공통 기본값을 상속하고 제품에 필요한 차이만 속성과 의미별 토큰으로 지정합니다.
+사이트의 카드와 도표의 조작부를 따로 만들면 같은 색·간격·탭 동작을 여러 곳에서 고쳐야 합니다. 이 패키지는 디자인 값과 HTML 구조, 공통 동작을 함께 공유합니다. 콘텐츠·URL·검색 색인·서비스 정책은 각 앱이 소유합니다.
 
-콘텐츠, URL, 검색 색인과 서비스 정책은 소비자가 소유합니다. 공통 디자인을 공유하지 않는 독립 제품에는 그 제품의 구성 요소 체계가 더 적합합니다.
+공통 디자인을 쓰지 않는 독립 제품에는 그 제품의 구성 요소 체계가 더 적합합니다.
 
 <a id="structure"></a>
 
 ## 작동 방식
 
-1. `tokens/`에 공통 값과 다크 모드의 차이를, `styles/`에 공통 CSS를 정의합니다.
-2. `ui/`의 구성 요소가 일반 텍스트와 URL을 검사하고 정적 HTML을 만듭니다. HTML 슬롯에는 구성 요소 출력이나 검증한 마크업만 전달합니다.
-3. `npm run build`가 토큰, CSS, 아이콘과 UI 모듈을 `dist/`로 내보냅니다. `dist/manifest.json`에는 파일별 SHA-256을 기록합니다.
-4. 소비자는 고정한 패키지에서 구성 요소와 자산을 읽습니다. `compileStyles`로 사용한 CSS를 남기고, `runtimeEntrypoints`로 페이지에 필요한 동작을 고릅니다.
+1. `tokens/`, `styles/`, `assets/`, `ui/`에서 공통 디자인과 구성 요소를 정의합니다.
+2. `npm run build`가 토큰·CSS·아이콘·HTML 모듈을 `dist/`로 생성합니다.
+3. 소비하는 앱이 생성물을 포함한 커밋을 Git 의존성으로 고정합니다.
+4. 앱이 패키지에서 HTML과 자산을 읽고 페이지에 연결합니다. 필요한 CSS와 브라우저 동작만 골라 빌드할 수 있습니다.
 
-`trusted()`는 HTML을 정화하지 않습니다. 안전한 렌더러가 만든 마크업에만 사용하세요. 입력 형식은 [공통 구성 요소](docs/components.md), 모듈별 책임은 [아키텍처](docs/architecture.md)에 있습니다.
+![디자인 원본을 빌드한 패키지를 각 앱이 고정 커밋으로 설치해 사용합니다](docs/assets/build-flow.svg)
+
+입력부터 소비까지의 책임과 그림 재생성 방법은 [아키텍처](docs/architecture.md)에 있습니다. HTML 슬롯은 검증한 마크업만 받습니다. `trusted()`는 HTML을 정화하지 않으므로 입력 조건은 [공통 구성 요소](docs/components.md)를 확인하세요.
 
 <a id="delivery"></a>
 
@@ -71,15 +92,12 @@ CSS 축소 도구는 빌드에서 고정한 PurgeCSS와 선택자 parser를 포�
 
 | 구분 | 현재 상태 |
 |---|---|
-| 사용 가능 | 라이트·다크 토큰, CSS, 아이콘 카탈로그, 정적 HTML 구성 요소와 선택적 브라우저 동작 |
-| 배포 방식 | 앱이 고정 commit의 Git 의존성으로 설치. 이 저장소의 병합과 소비자 갱신·배포는 별도 |
-| 지원 범위 밖 | 앱의 콘텐츠·라우팅·검색 색인·댓글 공급자와 Torso의 도형 배치·장면 시각 계산 |
-| 남은 검증 | [검색 안내 문구의 라이트 화면 비교와 캡처 #11](https://github.com/woonyong-choi/design-tokens/issues/11) |
-| 확인 범위 | 자동 검사는 입력·토큰 참조·대비·생성물 계약을 확인. 소비 화면의 시각 검토와 사용자 시험은 별도 |
+| 사용 가능 | 라이트·다크 토큰, CSS, 아이콘, 정적 HTML 구성 요소와 선택적 브라우저 동작 |
+| 배포 | 생성물을 포함한 고정 커밋의 Git 의존성 설치 |
+| 아직 없는 것 | GitHub 릴리스와 공개 npm 배포 |
+| 남은 확인 | [검색 안내 문구의 라이트 화면 비교와 캡처 #11](https://github.com/woonyong-choi/design-tokens/issues/11) |
 
-패키지 버전은 `0.1.1`입니다. 1.0 전에는 입력 형식과 구성 요소가 바뀔 수 있으므로 소비자는 고정 commit 갱신 때 자체 검사와 화면 검수를 수행하세요. GitHub 릴리스와 공개 npm 패키지는 2026-10-17 조회에서 확인하지 못했습니다.
-
-프로젝트 코드에는 MIT를 적용합니다. 글꼴과 외부 자산은 별도 라이선스와 고지를 따릅니다. 파일별 출처는 [자산 출처](assets/sources.json), 아이콘의 출처와 소비 계약은 [공통 아이콘](docs/design/content-icons.md)에 있습니다.
+패키지 버전은 `0.1.1`입니다. 1.0 전에는 입력 형식과 구성 요소가 바뀔 수 있습니다. 소비자는 커밋을 갱신할 때 자체 검사와 화면 검수를 수행하세요. 이 저장소의 병합이 소비자 갱신이나 배포를 뜻하지는 않습니다.
 
 <a id="documentation"></a>
 
@@ -100,17 +118,7 @@ npm test
 npm run check
 ```
 
-`npm run check`는 현재 생성물을 새 빌드 결과와 비교합니다. CI는 Node.js 20과 22에서 `npm ci`, `npm test`, `npm run check`를 실행합니다. 브라우저 검수 명령은 [스타일 구조](docs/styles.md#확인), 변경 절차는 [기여 안내](.github/CONTRIBUTING.md)에 있습니다.
-
-직접 쓴 표현 값과 정의하지 않은 CSS 변수를 검사하려면 저장소 루트에서 실행하세요.
-
-```sh
-node ui/build/check-tokens.mjs styles ui --tokens tokens/tokens.json
-```
-
-위반은 종료 코드 1, 없는 입력이나 읽을 수 없는 토큰 정본은 종료 코드 2입니다. 예외는 같은 줄의 실제 주석에 사유를 적은 `tokens-allow:`만 인정합니다. [검사 범위](docs/styles.md#강제하는-것)에 허용 값과 런타임 입력이 있습니다.
-
-[문서 색인](llms.txt)은 README의 소개와 문서 목록을 따릅니다. 원본의 제목, 소개나 문서 링크를 바꾸면 색인도 함께 갱신하세요.
+CI는 Node.js 20과 22에서 설치·시험·생성물 검사를 실행합니다. `npm run check`는 커밋한 생성물을 새 빌드 결과와 비교합니다. 변경 절차는 [기여 안내](.github/CONTRIBUTING.md), 표현 값과 CSS 변수 검사는 [스타일 구조](docs/styles.md#강제하는-것)를 따릅니다.
 
 <a id="license"></a>
 

@@ -9,7 +9,7 @@ export const TOKEN_FILES = new Set(['tokens.json', 'tokens.dark.json']);
 export const GENERATED_MARK = '생성물, 손으로 고치지 않음';
 export const ALLOW_MARK = 'tokens-allow:';
 // docs/styles.md의 공통 런타임 입력 계약. 소비자 임의 변수는 허용하지 않는다.
-export const RUNTIME_PROPERTIES = ['--anchor-x', '--anchor-y', '--s', '--figure-canvas', '--view-w', '--panel-w', '--fit-w', '--zoom', '--bundle-w', '--pill-tint', '--pulse-effect', '--pulse-width', '--chart-boundary'];
+export const RUNTIME_PROPERTIES = ['--anchor-x', '--anchor-y', '--s', '--figure-canvas', '--view-w', '--panel-w', '--fit-w', '--zoom', '--bundle-w', '--pill-tint', '--pulse-effect', '--pulse-width', '--chart-boundary', '--chart-area'];
 // 토큰 없이 써도 되는 값
 export const FREE_LENGTHS = new Set(['0', '0%', '100%', '-100%', '50%', '-50%', '100vh', '100vw']);
 export const FREE_NUMBERS = new Set(['0', '1']);

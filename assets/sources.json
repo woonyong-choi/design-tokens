@@ -1,8 +1,8 @@
 [
   {
     "file": "icons/communication/newsletter.png",
-    "bytes": 3794,
-    "sha256": "3c488b65546742aac634e977e89187f733493d367fe025230984b801554105ef",
+    "bytes": 13054,
+    "sha256": "4e1689a4ef32bc68b10553475d8ae9ed5728ef0ba2c43f4a0d18c6e2985b76c5",
     "origin": "project-original",
     "license": "MIT",
     "width": 128,
@@ -30,6 +30,16 @@
       "bytes": 824,
       "use": "comparison-only"
     }
+  },
+  {
+    "file": "icons/communication/technology-thought.png",
+    "origin": "project-original",
+    "license": "MIT",
+    "width": 128,
+    "height": 128,
+    "format": "PNG RGBA",
+    "bytes": 14185,
+    "sha256": "c4ced0b40cbba15f025898d284ab535c4b8286da1919de4deb6a9713f8d26810"
   },
   {
     "file": "illustrations/project-placeholder.svg",

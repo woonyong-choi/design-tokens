@@ -24,7 +24,7 @@
 |---|---|
 | 기본 도형 | `assets/icons/<의미>/<이름>.svg` |
 | 상세 도형 | 같은 폴더의 `<이름>-detail.svg` |
-| 원본 비트맵 | `assets/icons/communication/newsletter.png`, `testimonials.png` |
+| 원본 비트맵 | `assets/icons/communication/newsletter.png`, `testimonials.png`, `technology-thought.png` |
 | 자산 출처·라이선스·해시 | `assets/sources.json` |
 | 분류 설명·별칭·역할·브랜드 출처 | `assets/icons/catalog.json` |
 | 외부 원본 고지 | `assets/icons/licenses/*.txt` |
@@ -37,7 +37,7 @@
 
 별칭 10개는 `admin`·`administrator` → `user-settings`, `apigw` → `gateway`, `architecture` → `hierarchy`, `deploy` → `box-up`, `incident` → `warning`, `model` → `brain-circuit`, `notify` → `event`, `person` → `user`, `processor` → `cpu`다. 역할은 조작부 19개·소셜 3개·도움말 `question`과 빈 `kinds`를 유지한다.
 
-구독·후기 PNG는 독자 제작물이며 기존 경로와 128×128 RGBA 형식을 유지한다. 빌드는 현재 바이트를 그대로 내보내며 소비자는 기존 이미지 `src` 슬롯을 사용한다. SVG 카탈로그·`readIcon`에는 넣지 않는다. 현재 제작 출처·크기·SHA-256과 교체 전 Things URL·해시는 `assets/sources.json`에서 분리한다. 교체 전 원본 파일은 저장소와 배포본 어디에도 두지 않고 URL·해시만 `comparison-only` 기록으로 남긴다. 현재 독자 제작물에는 저장소의 MIT 라이선스를 적용한다.
+기술과 생각·구독·후기 PNG는 독자 제작물이며 128×128 RGBA 형식을 사용한다. 기술과 생각은 새 경로를 쓰고 구독·후기는 기존 경로를 유지한다. 빌드는 현재 바이트를 그대로 내보내며 소비자는 기존 이미지 `src` 슬롯을 사용한다. SVG 카탈로그·`readIcon`에는 넣지 않는다. 현재 제작 출처·크기·SHA-256은 출처 기록에 둔다. 구독·후기에서 교체 전 Things URL·해시는 `assets/sources.json`에서 분리한다. 교체 전 원본 파일은 저장소와 배포본 어디에도 두지 않고 URL·해시만 `comparison-only` 기록으로 남긴다. 현재 독자 제작물에는 저장소의 MIT 라이선스를 적용한다.
 
 ## 자산 출처 기록
 

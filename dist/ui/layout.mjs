@@ -29,7 +29,9 @@ export function Section({ id: name, variant = 'content', labelledBy, heading, co
 }
 
 export function LogoItem({ href, label, src }) {
-  return out(`<li class="app-technology"><a href="${safeUrl(href)}" aria-label="${escape(label)}"><img src="${safeUrl(src)}" alt="" decoding="async"><span class="app-sr">${escape(label)}</span></a></li>`);
+  const content = `<img src="${safeUrl(src)}" alt="" decoding="async"><span class="app-sr">${escape(label)}</span>`;
+  const item = href ? `<a href="${safeUrl(href)}" aria-label="${escape(label)}">${content}</a>` : `<span role="link" aria-disabled="true" aria-label="${escape(label)}">${content}</span>`;
+  return out(`<li class="app-technology">${item}</li>`);
 }
 
 const INPUT_TYPES = ['text', 'email', 'url', 'tel'];

@@ -29,6 +29,8 @@
 .app-navigation-link.is-back { flex-direction: row-reverse; }
 .app-navigation-link.is-back::after { transform: scaleX(-1); }
 .app-page-heading { margin: var(--spacing-gap-lg) 0 var(--spacing-gap-sm); font-size: var(--text-section-title); line-height: var(--leading-line-title); word-break: keep-all; overflow-wrap: anywhere; }
+.app-page-heading.has-icon { display: flex; align-items: center; gap: var(--spacing-gap-sm); }
+.app-page-heading-icon { display: inline-flex; flex: none; }
 .app-collection-header { margin-bottom: var(--spacing-gap); }
 .app-publication .app-collection-header > .app-page-heading { margin: 0; }
 .app-collection-info { display: flex; flex-wrap: wrap; gap: var(--spacing-gap-xs); align-items: baseline; justify-content: space-between; margin-top: var(--spacing-4); font-size: var(--text-small-text); color: var(--color-ui-muted); }

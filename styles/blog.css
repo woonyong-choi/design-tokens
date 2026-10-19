@@ -16,21 +16,26 @@
 .app-blog-card:has(.app-blog-card-link:focus-visible) { outline: var(--outline-width-focus) solid var(--color-ui-focus); outline-offset: var(--spacing-focus-offset); }
 .app-blog-cover { display: flex; align-items: center; justify-content: center; aspect-ratio: var(--aspect-blog-cover-ratio); overflow: hidden; background: var(--color-soft); }
 .app-blog-cover > img { width: 100%; height: 100%; object-fit: cover; }
-.app-blog-card-body { flex: 1; padding: var(--spacing-card-inset); text-align: left; }
+.app-title-cover { display: flex; align-items: center; justify-content: center; align-self: stretch; flex: 1; min-width: 0; padding: var(--spacing-card-inset); background: var(--color-help-hover); color: var(--color-help-title-color); text-align: center; font-size: var(--text-intro-text); font-weight: var(--font-weight-semibold); line-height: var(--leading-line-card); }
+.app-title-cover.is-long { font-size: var(--text-body-text); }
+.app-title-cover-title { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: calc(var(--component-card-summary-lines) + 1); overflow: hidden; word-break: keep-all; overflow-wrap: anywhere; }
+.app-blog-card-body { flex: 1; min-width: 0; padding: var(--spacing-card-inset); text-align: left; }
 .app-blog-card .app-tags { justify-content: flex-start; margin: 0 var(--spacing-card-inset) var(--spacing-card-inset); text-align: left; }
 .app-blog-card:has(.app-blog-card-tags) .app-blog-card-body { padding-bottom: var(--spacing-gap-sm); }
 .app-blog-card-tags { margin: 0 var(--spacing-card-inset) var(--spacing-card-inset); overflow: hidden; font-size: var(--text-tiny-text); line-height: var(--leading-line-body); text-overflow: ellipsis; white-space: nowrap; color: var(--color-ui-muted); }
-.app-blog-card :is(.app-tag, .app-blog-card-comments) { position: relative; z-index: var(--z-index-raised); }
+.app-blog-card :is(.app-tag, a.app-blog-card-comments) { position: relative; z-index: var(--z-index-raised); }
 .app-blog-card .app-tag:focus-visible { outline-offset: calc(-1 * var(--spacing-outline)); }
 .app-blog-post .app-tags { margin-block: var(--spacing-gap) var(--spacing-gap-lg); }
 .app-blog-post .app-tags a { text-decoration: none; }
 .app-blog-card-title { margin: 0 0 var(--spacing-gap-sm); overflow: hidden; font-size: var(--text-body-text); line-height: var(--leading-line-card); text-overflow: ellipsis; white-space: nowrap; color: var(--color-help-title-color); }
 .app-blog-card-meta { display: flex; align-items: center; gap: calc(var(--spacing-gap-xs) / 2); padding: 0 var(--spacing-card-inset) var(--spacing-card-inset); font-size: var(--text-tiny-text); white-space: nowrap; color: var(--color-ui-muted); }
 .app-blog-card-date, .app-blog-card-comments { flex: none; }
+.app-blog-card-comments { display: inline-flex; align-items: center; justify-content: center; gap: calc(var(--spacing-gap-xs) / 2); min-width: var(--spacing-icon); min-height: var(--spacing-icon); margin-inline-start: auto; }
+.app-blog-card-comment-icon { flex: none; width: var(--text-small-text); height: var(--text-small-text); }
 .app-blog-card-author { display: flex; align-items: center; gap: calc(var(--spacing-gap-xs) / 2); min-width: 0; color: inherit; }
 .app-blog-card-author > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .app-blog-card-avatar { flex: none; width: calc(var(--spacing-icon) - var(--spacing-gap-xs)); height: calc(var(--spacing-icon) - var(--spacing-gap-xs)); object-fit: cover; border-radius: var(--radius-pill); }
-.app-blog-card-body > p { margin: 0; color: var(--color-help-copy-color); line-height: var(--leading-line-card); }
+.app-blog-card-body > p { margin: 0; font-size: var(--text-tiny-text); line-height: var(--leading-line-card); word-break: normal; color: var(--color-ui-muted); }
 .app-list-toolbar { display: flex; flex-wrap: wrap; gap: var(--spacing-gap); justify-content: space-between; margin-block: var(--spacing-gap-lg); font-size: var(--text-small-text); }
 .app-page-links { display: flex; flex-wrap: wrap; gap: var(--spacing-gap-sm); align-items: center; justify-content: center; margin-block: var(--spacing-support-gap); }
 .app-page-links a, .app-page-links [aria-current=page] { padding: var(--spacing-gap-xs) var(--spacing-gap-sm); border-radius: var(--radius-button-radius); }

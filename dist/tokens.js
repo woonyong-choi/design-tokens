@@ -333,7 +333,11 @@ export const tokens = freeze({
         "light-effect": "var(--color-category-blue-light-effect)",
         "dark-effect": "var(--color-category-blue-dark-effect)",
         "solid": "var(--color-category-blue-solid)",
-        "on-solid": "var(--color-category-blue-on-solid)"
+        "on-solid": "var(--color-category-blue-on-solid)",
+        "light-tint-4": "var(--color-category-blue-light-tint-4)",
+        "light-ink-strong": "var(--color-category-blue-light-ink-strong)",
+        "dark-tint-4": "var(--color-category-blue-dark-tint-4)",
+        "dark-ink-strong": "var(--color-category-blue-dark-ink-strong)"
       },
       "yellow": {
         "anchor": "var(--color-category-yellow-anchor)",
@@ -444,7 +448,10 @@ export const tokens = freeze({
       "toolbar": "var(--color-workspace-toolbar)",
       "hover": "var(--color-workspace-hover)",
       "selected": "var(--color-workspace-selected)"
-    }
+    },
+    "tag-ink": "var(--color-tag-ink)",
+    "tag-preview": "var(--color-tag-preview)",
+    "tag-preview-ink": "var(--color-tag-preview-ink)"
   },
   "font": {
     "sans": "var(--font-sans)",
@@ -1613,7 +1620,7 @@ export const values = freeze({
       "number-ink": "#ffffff",
       "outline": "#888888",
       "selection-fill": "#d5e4fa",
-      "canvas": "#f6f7fa",
+      "canvas": "#e9edf2",
       "flash": "#d9e6ff",
       "active-surface": "#ebf1ff"
     },
@@ -1784,7 +1791,11 @@ export const values = freeze({
         "light-effect": "#3984f2",
         "dark-effect": "#60a0ff",
         "solid": "#1e6bd6",
-        "on-solid": "#ffffff"
+        "on-solid": "#ffffff",
+        "light-tint-4": "#c3d9f8",
+        "light-ink-strong": "#0d54b3",
+        "dark-tint-4": "#354665",
+        "dark-ink-strong": "#9ac3ff"
       },
       "yellow": {
         "anchor": "#f2d024",
@@ -1886,7 +1897,7 @@ export const values = freeze({
     "landing-newsletter-note-ink": "#9299a4",
     "feature-tab-ink": "#ffffff",
     "gallery-selected-ink": "#ffffff",
-    "tag-background": "#e9edf2",
+    "tag-background": "#d5e4fa",
     "help-grouped-bg": "rgba(0,0,0,0)",
     "document-nav-active-ink": "#2576eb",
     "workspace": {
@@ -1895,7 +1906,10 @@ export const values = freeze({
       "toolbar": "#f0f0f0",
       "hover": "#e7e7e7",
       "selected": "#c9c9c9"
-    }
+    },
+    "tag-ink": "#1161cb",
+    "tag-preview": "#c3d9f8",
+    "tag-preview-ink": "#0d54b3"
   },
   "font": {
     "sans": "Pretendard, \"Pretendard Variable\", -apple-system, BlinkMacSystemFont, \"Apple SD Gothic Neo\", sans-serif",
@@ -2841,7 +2855,7 @@ export const values = freeze({
   "aspect": {
     "ratio-video": "16 / 9",
     "device-ratio": "500 / 889",
-    "blog-cover-ratio": "5 / 2"
+    "blog-cover-ratio": "16 / 9"
   },
   "component": {
     "device-pad": "4.5%",

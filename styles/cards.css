@@ -57,9 +57,10 @@
 .app-related-link[rel=prev] { padding-inline: var(--spacing-card-right) var(--spacing-compact-inset); }
 .app-related-link[rel=prev]::after { right: auto; left: var(--spacing-gap-xs); transform: scaleX(-1); }
 .app-tags { display: flex; flex-wrap: wrap; gap: var(--spacing-gap-xs); align-items: baseline; }
-.app-tag, .app-tags-more > summary { display: inline-block; padding: calc(var(--spacing-gap-xs) / 2) var(--spacing-gap-xs); border: 0; border-radius: var(--radius-button-radius); color: var(--color-ui-muted); background: var(--color-tag-background); font-size: var(--text-tiny-text); line-height: var(--leading-line-body); text-decoration: none; }
-.app-tag:hover, .app-tag:focus-visible { color: var(--color-on-action); background: var(--color-tag-hover); text-decoration: none; }
-.app-tags-more > summary { cursor: pointer; }
+.app-tag, .app-tags-more > summary { display: inline-block; padding: calc(var(--spacing-gap-xs) / 2) var(--spacing-gap-xs); border: 0; border-radius: var(--radius-pill); color: var(--color-tag-ink); background: var(--color-tag-background); font-size: var(--text-tiny-text); line-height: var(--leading-line-body); text-decoration: none; }
+.app-tag.is-medium, .app-tags-more > summary.is-medium { padding-inline: var(--spacing-gap-sm); border-radius: var(--radius-pill); font-size: var(--text-small-text); }
+.app-tag[aria-pressed=true], .app-tag:hover, .app-tag:focus-visible, .app-tags-more > summary:hover, .app-tags-more > summary:focus-visible { color: var(--color-on-action); background: var(--color-tag-hover); text-decoration: none; }
+.app-tag[aria-pressed], .app-tags-more > summary { cursor: pointer; }
 .app-tags-more > .app-tags { margin-top: var(--spacing-gap-xs); }
 @media (prefers-reduced-motion: reduce) {
   .app-knowledge-card { transition: none; }

@@ -40,3 +40,11 @@
 .app-suggestion-label { margin: var(--spacing-gap-sm) var(--spacing-search-results-padding) 0; color: var(--color-ui-muted); font-size: var(--text-small-text); }
 
 .app-search-result-link:not(:has(> .app-content-icon)), .app-search-entry:not(:has(.app-content-icon)) > .app-search-result-tags { padding-left: var(--spacing-search-results-padding); }
+
+.app-tag-filter { justify-content: center; align-items: center; gap: var(--spacing-gap-sm); margin-top: var(--spacing-gap-lg); }
+.app-tag-filter .app-tag { max-width: 100%; padding-inline: var(--spacing-gap-sm); overflow-wrap: anywhere; }
+
+.app-tag-filter .app-tag:hover, .app-tag-filter .app-tag:focus-visible { color: var(--color-tag-preview-ink); background: var(--color-tag-preview); }
+.app-tag-filter .app-tag[aria-pressed=true] { color: var(--color-on-action); background: var(--color-tag-hover); }
+
+.app-tag-reset { padding: calc(var(--spacing-gap-xs) / 2) var(--spacing-gap-xs); font-size: var(--text-tiny-text); line-height: var(--leading-line-body); color: var(--color-tag-ink); text-decoration: underline; }

@@ -90,7 +90,8 @@
 }
 .app-player-button.is-compact { width: calc(var(--spacing-flow-control-size) * 2); height: calc(var(--spacing-flow-control-size) * 2); min-width: 0; min-height: 0; }
 .app-technology { display: flex; flex-direction: column; align-items: center; flex: none; width: calc(var(--icon-size-card) + var(--spacing-gap)); gap: var(--spacing-gap-sm); color: var(--color-ui-muted); font-size: var(--text-small-text); }
-.app-technology > a { display: flex; align-items: center; justify-content: center; width: calc(var(--icon-size-medium) + 2 * var(--spacing-gap-xs)); aspect-ratio: 1; border-radius: var(--radius-help-radius); }
+.app-technology > :is(a, span) { display: flex; align-items: center; justify-content: center; width: calc(var(--icon-size-medium) + 2 * var(--spacing-gap-xs)); aspect-ratio: 1; border-radius: var(--radius-help-radius); }
+.app-technology > [aria-disabled="true"] { opacity: var(--opacity-dim); }
 .app-technology img { display: block; width: var(--icon-size-medium); height: var(--icon-size-medium); object-fit: contain; }
 .app-technology > a, .app-interview-card { position: relative; transition: background-color var(--duration-help-motion) var(--ease-reveal), box-shadow var(--duration-help-motion) var(--ease-reveal), transform var(--duration-help-motion) var(--ease-reveal); }
 .app-technology > a:focus-visible, .app-interview-card:focus-within { background: var(--color-help-hover); box-shadow: var(--shadow-help-hover-shadow); }

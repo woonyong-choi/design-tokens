@@ -45,7 +45,7 @@ const html = CardGroup({ columns: 4, cards });
 
 영상 재생기의 비율은 `Player.wide`와 `Video.playerWide`, 원본 크기는 `Video.playerWidth`·`playerHeight`로 지정한다. 그림 격자의 `FigureGrid.size`와 카드의 `Card.compact`도 각 구성 요소의 별도 역할이다.
 
-`CardGroup.columns`는 1~5 정수나 정수 문자열로 넓은 화면의 열 수를 정한다. 생략하면 3열이며 좁은 화면에서는 공통 분기점에 따라 줄어든다. 1열은 좁은 화면에서도 유지한다. `Card`와 `BlogCard`의 `showTitle: false`는 제목을 화면에서 숨기되 접근 가능한 이름과 제목 구조를 보존한다. `BlogCard.cover`를 생략하면 표지 자리도 생략하고, 빈 슬롯을 주면 기존의 빈 표지를 유지한다.
+`CardGroup.columns`는 1~5 정수나 정수 문자열로 넓은 화면의 열 수를 정한다. 생략하면 3열이며 좁은 화면에서는 공통 분기점에 따라 줄어든다. 1열은 좁은 화면에서도 유지한다. `Card`와 `BlogCard`의 `showTitle: false`는 제목을 화면에서 숨기되 접근 가능한 이름과 제목 구조를 보존한다. `BlogCard.cover`를 생략하면 표지 자리도 생략한다. `automaticCover: true`이면 제목으로 표지를 만들며 명시한 `cover`는 빈 슬롯도 자동 표지보다 우선한다. `TitleCover({ title })`는 같은 제목 표지를 별도로 조립한다. 표지는 장식이고 카드 링크의 전체 제목은 접근 가능한 이름으로 유지한다.
 
 `Video`와 `ProjectShowcase`는 첫 재생 시도부터 브라우저 기본 영상 조작부를 표시한다. 재생에 실패해도 같은 조작부로 다시 시도할 수 있으며, 기본 조작부나 외부 재생 버튼으로 재생에 성공하면 오류 안내를 지운다.
 
@@ -119,10 +119,18 @@ const html = CardGroup({ columns: 4, cards });
 
 `ProjectList({ title, projects })`는 대표 카드와 관련 문서 링크를 항목별로 묶는다. 각 프로젝트는 `href`, `title`, `description`, 선택적인 `icon` 슬롯과 `links: [{ href, title }]`를 받는다. 아이콘은 신뢰된 HTML 슬롯이며, 제목과 설명은 일반 텍스트다. 카드와 관련 링크의 URL은 모두 검사한다. 소비자는 프로젝트 콘텐츠와 경로만 전달한다.
 
-`BlogCard.commentsHref`는 카드의 글 링크와 분리된 댓글 링크다. 댓글 수를 생략하면 “댓글 보기”로 표시하며 태그와 같은 독립 클릭 영역을 사용한다.
+`BlogCard.commentsHref`는 카드의 글 링크와 분리된 댓글 링크다. 댓글 수가 있으면 말풍선과 숫자를 표시하고, 모르면 숫자를 만들지 않고 말풍선만 표시한다. 보조 기술에는 댓글 수 또는 댓글 보기 이름을 전달한다.
 
 ## 확장
 
 새 소비자의 프레임워크 래퍼는 실제 사용처가 생길 때 추가한다. 같은 정본을 상속하고 실제로 다른 속성만 재정의한다.
 
 서비스 브랜드 아이콘 크기는 `spacing.figure.icon.brand`를 사용한다. 이 역할은 기본 node 아이콘 크기를 참조하며 도표 node·tile·store·group에서 같은 서비스 로고에 적용한다. 일반 tile 아이콘과 사람 아이콘의 별도 크기는 유지한다. 이 역할을 요구하는 소비자는 패키지 `0.2.0` 이상과 해당 Git commit을 사용한다. 이전 패키지의 누락 역할을 임의 크기로 채우지 않는다.
+
+`TagFilter({ tags, reset })`는 `id`, `label`, `selected` 항목을 중앙 정렬한 태그 토글로 만든다. 토글은 실제 단추이며 `aria-pressed`로 선택 상태를 표시한다. 호스트는 `data-tag-toggle`의 태그 ID를 검색 상태에 반영한다. `SearchBox`의 선택 `filters` 슬롯으로 추천 검색어 아래에 배치한다. 후보 태그와 교집합 계산은 호스트 검색 모델이 맡는다.
+
+`PageHeading({ title, icon })`는 선택적 장식 아이콘을 포함한 페이지 제목이다. `icon`은 검증된 슬롯이며 접근 가능한 제목은 일반 텍스트로 유지한다. `BlogCard`의 댓글 표시는 공통 말풍선 아이콘의 하늘색 면·파란 윤곽과 숫자를 사용하고 보조 기술에는 댓글 수를 문장으로 전달한다. `commentCount`가 유효하고 `commentsHref`가 없으면 비대화형 숫자를 표시한다. 댓글 주소만 있으면 숫자를 추측하지 않고 댓글 보기 이름을 가진 아이콘 링크를 표시한다.
+
+`LogoItem({ href, label, src })`은 목적지가 있으면 기술 로고 링크를 만든다. 목적지가 없으면 같은 크기의 비대화형 `span`에 비활성 상태를 표시하고 공통 `opacity.dim`을 적용한다. 소비자는 `label`에 관련 글이 없는 상태를 설명한다. 비활성 항목은 탭 이동과 호버 동작을 갖지 않는다.
+
+`Tag({ href, label, size })`와 `TagList({ tags, limit, size })`의 크기는 `small` 또는 `medium`이며 기본값은 `small`이다. 목록은 넘침 항목에도 같은 크기를 사용한다. `TagFilter`는 기본 하늘색, 진한 하늘색 호버, 파란색·흰 글자 선택 상태를 구분하며 선택된 태그가 있으면 끝에 파란 밑줄 초기화 링크를 표시한다.

@@ -191,7 +191,7 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 댓글 스타일은 light 토큰으로 생성한다. iframe 문서 루트에 `color-scheme: light`, `color.ui-card` 배경과 `color.body` 글자색을 함께 적용해 OS가 어둡게 설정되어도 light 토큰의 글자와 캔버스의 대비를 유지한다. 공급자의 `light dark` 메타 설정이 바탕만 어둡게 바꾸지 않도록 한다.
 
-공통 도구 막대의 바탕은 사용하는 면이 소유한다. 코드 블록은 `color.prose-pre-background`, 도표 전체 면은 `color.figure.canvas`를 사용한다. 일반 카드·탭·탐색의 전환은 `ease.reveal`을 사용하며 아이콘 전용 역할을 빌리지 않는다.
+공통 도구 막대의 바탕은 사용하는 면이 소유한다. 코드 블록과 도표 전체 면은 `color.figure.canvas`를 사용한다. 일반 카드·탭·탐색의 전환은 `ease.reveal`을 사용하며 아이콘 전용 역할을 빌리지 않는다.
 
 ## 도표 정보 역할
 

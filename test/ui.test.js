@@ -120,6 +120,51 @@ test('card_display_options_preserve_names_without_forcing_media_or_multiple_colu
   for (const columns of [0, 6, 1.5, {}, 'constructor']) assert.throws(() => ui.CardGroup.open({ columns }), /CardGroup columns/);
 });
 
+test('automatic_card_covers_escape_titles_and_preserve_explicit_cover_slots', () => {
+  const title = '읽은 내용을 바로 이해하지 못해도 괜찮다는 생각과 한글 👨‍👩‍👧‍👦 제목 <script>&';
+  const card = html(ui.BlogCard({ href: '/x/', title, automaticCover: true }));
+  assert.match(card, /class="app-title-cover is-long" aria-hidden="true"/);
+  assert.match(card, /aria-label="읽은 내용을 바로 이해하지 못해도 괜찮다는 생각과 한글 👨‍👩‍👧‍👦 제목 &lt;script&gt;&amp;"/);
+  assert.doesNotMatch(card, /<script>/);
+  assert.match(html(ui.TitleCover({ title: '<짧은 제목>' })), /class="app-title-cover" aria-hidden="true".*&lt;짧은 제목&gt;/);
+  const manual = html(ui.BlogCard({ href: '/x/', title, automaticCover: true, cover: trusted('<img src="/photo.jpg" alt="">') }));
+  assert.match(manual, /src="\/photo.jpg"/);
+  assert.doesNotMatch(manual, /app-title-cover/);
+  const empty = html(ui.BlogCard({ href: '/x/', title, automaticCover: true, cover: trusted('') }));
+  assert.match(empty, /<div class="app-blog-cover"><\/div>/);
+  assert.doesNotMatch(empty, /app-title-cover/);
+});
+
+test('tag_sizes_preserve_default_markup_and_apply_to_overflow', () => {
+  assert.equal(html(ui.Tag({ href: '/search/', label: '산책' })), '<a class="app-tag" href="/search/">산책</a>');
+  const tags = [{ href: '/search/?tag=a', label: '산책', size: 'small' }, { href: '/search/?tag=b', label: '독서' }];
+  const medium = html(ui.TagList({ tags, size: 'medium', limit: 1 }));
+  assert.equal((medium.match(/class="app-tag is-medium"/g) ?? []).length, 2);
+  assert.match(medium, /<summary class="is-medium">\+1<\/summary>/);
+  assert.throws(() => ui.TagList({ tags: [], size: 'large' }), /Unknown tag size/);
+  assert.throws(() => ui.Tag({ href: '/search/', label: '산책', size: 'large' }), /Unknown tag size/);
+});
+
+test('card_comment_counts_without_a_thread_are_text_and_unknown_counts_are_not_zero', () => {
+  const base = { href: '/x/', title: '제목', publishedAt: '2026-10-19' };
+  const zero = html(ui.BlogCard({ ...base, commentCount: 0 }));
+  assert.match(zero, /<span class="app-blog-card-comments"><svg data-control-icon="comment"[^>]*aria-hidden="true"/);
+  assert.match(zero, /<span class="app-sr">댓글 <\/span>0<span class="app-sr">개<\/span>/);
+  assert.doesNotMatch(zero, /<a class="app-blog-card-comments"/);
+  const unknown = html(ui.BlogCard({ ...base, commentsHref: '/x/#comments' }));
+  assert.match(unknown, /href="\/x\/#comments"><svg data-control-icon="comment"/);
+  assert.match(unknown, /<span class="app-sr">댓글 보기<\/span>/);
+  assert.doesNotMatch(unknown, /<span class="app-sr">개/);
+  assert.doesNotMatch(unknown, /댓글 0개/);
+  assert.doesNotMatch(html(ui.BlogCard(base)), /app-blog-card-comments/);
+});
+
+test('page_heading_uses_a_trusted_decorative_icon_and_escapes_the_title', () => {
+  assert.equal(html(ui.PageHeading({ title: '<Search>' })), '<h1 class="app-page-heading">&lt;Search&gt;</h1>');
+  assert.match(html(ui.PageHeading({ title: 'Search', icon: ui.ArticleIcon('question') })), /class="app-page-heading has-icon"><span class="app-page-heading-icon" aria-hidden="true"><svg/);
+  assert.throws(() => ui.PageHeading({ title: 'Search', icon: '<svg/>' }), /trusted/);
+});
+
 test('gallery_is_the_tabs_component_with_numbers_or_names_and_only_the_selected_slide_visible', () => {
   const slides = [1, 2, 3].map((n) => ({ image: trusted(`<img alt="${n}">`), caption: n === 1 ? '첫째' : undefined }));
   const gallery = html(ui.Gallery({ id: 'gal', title: '둘러보기', slides }));
@@ -330,11 +375,12 @@ test('home_and_list_components_have_one_definition_with_escaped_text_and_checked
 
   const metadataCard = html(ui.BlogCard({ href: '/a/', title: 'A', cover: icon, description: '<설명>', publishedAt: '2026-10-08', commentsHref: '/a/#comments', commentCount: 2, author: { name: '<저자>', href: '/author/', avatar: '/avatar.png' } }));
   assert.match(metadataCard, /<p class="app-card-summary">&lt;설명&gt;<\/p><\/div><\/a><div class="app-blog-card-meta">.*<time class="app-blog-card-date" datetime="2026-10-08">2026-10-08<\/time>/);
-  assert.match(metadataCard, /<a class="app-blog-card-comments" href="\/a\/#comments">댓글 2개<\/a><\/div><\/article>$/);
+  assert.match(metadataCard, /<a class="app-blog-card-comments" href="\/a\/#comments"><svg data-control-icon="comment"/);
+  assert.match(metadataCard, /<span class="app-sr">댓글 <\/span>2<span class="app-sr">개<\/span>/);
   assert.equal((metadataCard.match(/<a /g) ?? []).length, 2);
   assert.doesNotMatch(metadataCard, /href="\/author\/"/);
   assert.match(metadataCard, /<span>&lt;저자&gt;<\/span>/);
-  assert.match(html(ui.BlogCard({ href: '/a/', title: 'A', cover: icon, commentsHref: '/a/#comments' })), />댓글 보기<\/a>/);
+  assert.match(html(ui.BlogCard({ href: '/a/', title: 'A', cover: icon, commentsHref: '/a/#comments' })), /<span class="app-sr">댓글 보기<\/span><\/a>/);
   // #77: 태그 링크는 글 링크 밖에 있고 이름과 주소를 검증한다.
   const taggedCard = html(ui.BlogCard({ href: '/a/', title: 'A', cover: icon, description: '소개', tagItems: [{ href: '/tags/python/', label: 'Python' }, { href: '/tags/reference/', label: '<참조>' }], publishedAt: '2026-10-08' }));
   assert.match(taggedCard, /app-card-summary[^>]*>소개<\/p><\/div><\/a><div class="app-blog-card-tags"[^>]*><a class="app-tag" href="\/tags\/python\/">Python<\/a> <a class="app-tag" href="\/tags\/reference\/">&lt;참조&gt;<\/a>/);
@@ -553,4 +599,29 @@ test('text_inputs_have_one_implementation', () => {
       assert.doesNotMatch(css.replace(/button, input, textarea, select \{[^}]*\}/g, ''), /(?:^|[\s,>])input\b(?!-)/m, `${name} does not style input elements`);
     }
   }
+});
+
+
+test('tag_filters_use_pressed_buttons_and_a_trusted_search_slot', () => {
+  const filter = ui.TagFilter({ tags: [{ id: '설계<', label: '설계<&', selected: true }, { id: 'python', label: 'Python', selected: false }], reset: { href: '/search/', label: '초기화<&' } });
+  assert.match(html(filter), /data-tag-toggle="설계&lt;" aria-pressed="true">설계&lt;&amp;<\/button>/);
+  assert.match(html(filter), /data-tag-toggle="python" aria-pressed="false">Python<\/button>/);
+  assert.match(html(filter), /href="\/search\/" data-tag-reset>초기화&lt;&amp;<\/a><\/div>$/);
+  assert.doesNotMatch(html(ui.TagFilter({ tags: [] })), /data-tag-reset/);
+  assert.throws(() => ui.TagFilter({ tags: [], reset: { href: 'javascript:alert(1)', label: '초기화' } }), /Unsupported URL/);
+  const props = { action: '/search/', labels: { region: '검색', input: '검색어', placeholder: '입력', clear: '지우기', suggestions: '추천' }, suggestions: ['설계'] };
+  const output = html(ui.SearchBox({ ...props, filters: filter }));
+  assert.ok(output.indexOf('app-search-frequent') < output.indexOf('data-tag-filter'));
+  assert.ok(output.indexOf('data-tag-filter') < output.lastIndexOf('</section>'));
+  assert.throws(() => ui.SearchBox({ ...props, filters: '<button>bad</button>' }), /must be trusted/);
+});
+
+
+test('logo_items_without_a_destination_are_disabled_and_not_keyboard_targets', () => {
+  const props = { label: 'Python · 관련 글 없음', src: '/python.svg' };
+  const disabled = html(ui.LogoItem(props));
+  assert.match(disabled, /<span role="link" aria-disabled="true" aria-label="Python · 관련 글 없음">/);
+  assert.doesNotMatch(disabled, /<a\b|href=|tabindex=|onclick=/);
+  assert.match(html(ui.LogoItem({ ...props, href: '/search/?tag=Python' })), /<a href="\/search\/\?tag=Python"/);
+  assert.match(read('../styles/landing.css'), /\.app-technology > \[aria-disabled="true"\] \{ opacity: var\(--opacity-dim\); \}/);
 });

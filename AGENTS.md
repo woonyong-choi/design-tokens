@@ -31,8 +31,10 @@
 ```sh
 npm ci
 npm run build
+npm run build:diagram
 npm test
 npm run check
+npm run check:diagram
 ```
 
 ## 규칙

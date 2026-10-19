@@ -617,6 +617,7 @@ export const tokens = freeze({
       },
       "icon": {
         "node": "var(--spacing-figure-icon-node)",
+        "brand": "var(--spacing-figure-icon-brand)",
         "tile": "var(--spacing-figure-icon-tile)",
         "tile-gap": "var(--spacing-figure-icon-tile-gap)"
       },
@@ -2066,6 +2067,7 @@ export const values = freeze({
       },
       "icon": {
         "node": 20,
+        "brand": 20,
         "tile": 32,
         "tile-gap": 6
       },

@@ -14,6 +14,8 @@ The package provides design values such as colors, spacing, and typography along
 
 ## Quick start
 
+The full Git package provides 49 general SVGs and 34 technology and service brand SVGs. Use `getIconCatalog().brands` and `readIcon` from `/icons` to read all brands. The sources include the Devicon Linux variant and the JavaScript community logo.
+
 Node.js 20 or later and npm are required. Diagram consumers can use the [diagram tarball installation](docs/distribution.md#도표-전용-tarball), containing 18 SVGs for people, service brands, UI controls, and states.
 
 ### Run from the repository
@@ -47,7 +49,7 @@ The output is an `app-support-grid is-four` group containing a link to `/docs/me
 This command installs a verified commit as a Git dependency.
 
 ```sh
-npm install --save-dev 'github:woonyong-choi/design-tokens#1441d59721cea72a69a1e72b0ca3a3572b309ac3'
+npm install --save-dev 'github:woonyong-choi/design-tokens#5c274d680d3f0c65b76fc6ac6c756138772474f5'
 ```
 
 Run the same HTML example in the consuming project. The commit includes generated `dist/` files, so consumers do not need to rebuild the design files. Follow the [update procedure](docs/distribution.md#갱신) when moving to a new commit.
@@ -78,7 +80,7 @@ An independent product that does not share this design is better served by its o
 | Not available | GitHub releases and a public npm distribution |
 | Remaining check | [Light search field comparison and screenshots #11](https://github.com/woonyong-choi/design-tokens/issues/11) |
 
-The package version is `0.1.1`. Inputs and components may change before 1.0. Run consumer checks and visual review when updating a commit. A merge in this repository does not update or deploy consumers.
+The package version is `0.2.0`. Inputs and components may change before 1.0. Run consumer checks and visual review when updating a commit. A merge in this repository does not update or deploy consumers.
 
 ## Documentation
 
@@ -90,7 +92,7 @@ The design documents are written in Korean.
 - [Shared components](docs/components.md)
   - [Shared icons](docs/design/content-icons.md)
 
-The package includes icons and roles used by the public blog, document engine, Torso, and registered private previews. It retains 49 general SVGs, 6 brands, and 10 aliases. Private metadata keeps its detail selection. Seven names collected from body tokens retain their default shapes pending token validation. The default help role is `question`, and `kinds` is empty. Removed icon names and aliases fail lookup.
+The package includes icons and roles used by the public blog, document engine, Torso, and registered private previews. It retains 49 general SVGs, 34 technology and service brands, and 10 aliases. Private metadata keeps its detail selection. Seven names collected from body tokens retain their default shapes pending token validation. The default help role is `question`, and `kinds` is empty. Removed icon names and aliases fail lookup.
 
 [All documentation](docs/README.md)
 
@@ -100,8 +102,10 @@ Update generated artifacts when changing their sources.
 
 ```sh
 npm run build
+npm run build:diagram
 npm test
 npm run check
+npm run check:diagram
 ```
 
 CI runs installation, tests, and artifact checks on Node.js 20 and 22. `npm run check` compares committed artifacts with a fresh build. See the [contribution guide](.github/CONTRIBUTING.md) for the change process and [style structure](docs/styles.md#강제하는-것) for checks on visual values and CSS variables.

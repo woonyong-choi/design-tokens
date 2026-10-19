@@ -95,3 +95,13 @@ test('dark_landing_text_contrasts_with_its_section_surfaces', async () => {
 test('dark_canvas_keeps_secondary_sections_distinct_from_cards', () => {
   assert.notEqual(resolveValue(tables.dark, 'color.canvas'), resolveValue(tables.dark, 'color.ui-card'));
 });
+
+test('service_brand_icon_size_has_one_shared_role_in_both_modes', () => {
+  const source = JSON.parse(readFileSync(ROOT + 'tokens/tokens.json', 'utf8'));
+  assert.equal(source.spacing.figure.icon.brand.$value, '{spacing.figure.icon.node}');
+  for (const table of Object.values(tables)) {
+    assert.equal(resolveValue(table, 'spacing.figure.icon.brand'), resolveValue(table, 'spacing.figure.icon.node'));
+    assert.equal(resolveValue(table, 'spacing.figure.icon.node'), '20px');
+    assert.equal(resolveValue(table, 'spacing.figure.icon.tile'), '32px');
+  }
+});

@@ -17,6 +17,8 @@
 
 ## 빠른 시작
 
+전체 Git 패키지는 일반 SVG 49개와 기술·서비스 브랜드 SVG 34개를 제공합니다. `/icons`의 `getIconCatalog().brands`와 `readIcon`으로 브랜드 전체를 읽을 수 있습니다. 브랜드 출처에는 Linux의 Devicon 변형과 JavaScript 커뮤니티 로고도 포함됩니다.
+
 Node.js 20 이상과 npm이 필요합니다. 도표만 쓰는 앱은 사람·서비스 브랜드와 기본 UI·상태 SVG 18개를 담은 [도표 전용 tarball 설치](docs/distribution.md#도표-전용-tarball)를 사용할 수 있습니다.
 
 ### 저장소에서 확인
@@ -50,7 +52,7 @@ JS
 아래 명령은 검증한 커밋을 Git 의존성으로 설치합니다.
 
 ```sh
-npm install --save-dev 'github:woonyong-choi/design-tokens#1441d59721cea72a69a1e72b0ca3a3572b309ac3'
+npm install --save-dev 'github:woonyong-choi/design-tokens#5c274d680d3f0c65b76fc6ac6c756138772474f5'
 ```
 
 설치한 프로젝트에서도 위 HTML 예제를 실행할 수 있습니다. 커밋에 생성한 `dist/`가 포함돼 있어 소비자가 디자인 파일을 다시 빌드할 필요는 없습니다. 새 커밋으로 옮길 때는 [갱신 절차](docs/distribution.md#갱신)를 따르세요.
@@ -85,7 +87,7 @@ npm install --save-dev 'github:woonyong-choi/design-tokens#1441d59721cea72a69a1e
 | 아직 없는 것 | GitHub 릴리스와 공개 npm 배포 |
 | 남은 확인 | [검색 안내 문구의 라이트 화면 비교와 캡처 #11](https://github.com/woonyong-choi/design-tokens/issues/11) |
 
-패키지 버전은 `0.1.1`입니다. 1.0 전에는 입력 형식과 구성 요소가 바뀔 수 있습니다. 소비자는 커밋을 갱신할 때 자체 검사와 화면 검수를 수행하세요. 이 저장소의 병합이 소비자 갱신이나 배포를 뜻하지는 않습니다.
+패키지 버전은 `0.2.0`입니다. 1.0 전에는 입력 형식과 구성 요소가 바뀔 수 있습니다. 소비자는 커밋을 갱신할 때 자체 검사와 화면 검수를 수행하세요. 이 저장소의 병합이 소비자 갱신이나 배포를 뜻하지는 않습니다.
 
 <a id="documentation"></a>
 
@@ -97,7 +99,7 @@ npm install --save-dev 'github:woonyong-choi/design-tokens#1441d59721cea72a69a1e
 - [공통 구성 요소](docs/components.md)
   - [공통 아이콘](docs/design/content-icons.md)
 
-아이콘은 공개 블로그·문서 엔진·Torso와 등록된 비공개 미리보기에서 사용하는 도형과 역할을 배포합니다. 현재 일반 SVG 49개와 브랜드 6개, 별칭 10개를 유지합니다. 비공개 메타데이터의 상세형 선택을 보존하며, 본문에서 수집한 7개 이름은 토큰 검증 전까지 해당 기본 도형을 보존합니다. 도움말 기본 역할은 `question`이며 글 형식 매핑 `kinds`는 비어 있습니다. 미사용 아이콘 이름과 별칭은 조회 오류가 됩니다.
+아이콘은 공개 블로그·문서 엔진·Torso와 등록된 비공개 미리보기에서 사용하는 도형과 역할을 배포합니다. 현재 일반 SVG 49개와 기술·서비스 브랜드 34개, 별칭 10개를 유지합니다. 비공개 메타데이터의 상세형 선택을 보존하며, 본문에서 수집한 7개 이름은 토큰 검증 전까지 해당 기본 도형을 보존합니다. 도움말 기본 역할은 `question`이며 글 형식 매핑 `kinds`는 비어 있습니다. 미사용 아이콘 이름과 별칭은 조회 오류가 됩니다.
 
 [전체 문서](docs/README.md)
 
@@ -109,8 +111,10 @@ npm install --save-dev 'github:woonyong-choi/design-tokens#1441d59721cea72a69a1e
 
 ```sh
 npm run build
+npm run build:diagram
 npm test
 npm run check
+npm run check:diagram
 ```
 
 CI는 Node.js 20과 22에서 설치·시험·생성물 검사를 실행합니다. `npm run check`는 커밋한 생성물을 새 빌드 결과와 비교합니다. 변경 절차는 [기여 안내](.github/CONTRIBUTING.md), 표현 값과 CSS 변수 검사는 [스타일 구조](docs/styles.md#강제하는-것)를 따릅니다.

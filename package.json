@@ -1,6 +1,6 @@
 {
   "name": "@woonyong-choi/design-tokens",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Design token source of truth in DTCG format, with generated CSS, JavaScript and JSON",
   "license": "MIT",
   "author": "choi woo-nyong",

@@ -119,11 +119,17 @@ function onSurface(color, surface) {
   return '#' + [r, g, b].map((channel, index) => Math.round(channel * alpha + ((base >> (16 - 8 * index)) & 255) * (1 - alpha)).toString(16).padStart(2, '0')).join('');
 }
 
+test('automatic_title_cover_text_is_readable_on_its_surface_in_both_themes', () => {
+  for (const [mode, table] of Object.entries(tables)) {
+    assert.ok(contrast(resolveValue(table, 'color.help-title-color'), resolveValue(table, 'color.help-hover')) >= 4.5, mode);
+  }
+});
+
 test('syntax_and_comment_colors_keep_text_contrast_on_the_code_surface', () => {
   for (const [mode, table] of Object.entries(tables)) {
     const hex = name => resolveValue(table, name);
     const inline = onSurface(hex('color.prose-code-background'), hex('color.ui-card'));
-    const code = hex('color.prose-pre-background');
+    const code = hex('color.figure.canvas');
     assert.ok(contrast(onSurface(hex('color.prose-code-color'), inline), inline) >= 4.5, `${mode} inline code`);
     for (const role of ['color.prose-code-color', ...SYNTAX_ROLES.map(role => `color.syntax-${role}`)]) {
       assert.ok(contrast(onSurface(hex(role), code), code) >= 4.5, `${mode}.${role} on code surface ${code}`);
@@ -137,8 +143,12 @@ test('syntax_and_comment_colors_keep_text_contrast_on_the_code_surface', () => {
 test('tab_and_tag_states_keep_text_and_selection_contrast_in_both_themes', () => {
   for (const [mode, table] of Object.entries(tables)) {
     const value = name => resolveValue(table, name);
-    assert.ok(contrast(value('color.ui-muted'), value('color.tag-background')) >= 4.5, mode + ' default tag text');
+    assert.ok(contrast(value('color.tag-ink'), value('color.tag-background')) >= 4.5, mode + ' default tag text');
     assert.ok(contrast(value('color.on-action'), value('color.tag-hover')) >= 4.5, mode + ' tag text and clear symbol');
+    assert.ok(contrast(value('color.tag-preview-ink'), value('color.tag-preview')) >= 4.5, mode + ' tag preview text');
+    assert.ok(contrast(value('color.tag-preview'), value('color.ui-card')) > contrast(value('color.tag-background'), value('color.ui-card')), mode + ' hovered tags remain more visible than default tags');
+    assert.ok(contrast(value('color.tag-ink'), value('color.ui-card')) >= 4.5, mode + ' reset link text');
+    assert.notEqual(value('color.tag-preview'), value('color.tag-hover'), mode + ' preview differs from selection');
     const selected = value('color.feature-tab-selected');
     const ink = value('color.feature-tab-ink');
     assert.ok(contrast(ink, selected) >= 4.5, mode + ' selected tab text');
@@ -243,4 +253,15 @@ test('warning_callout_list_marker_and_input_stay_readable_in_both_themes', () =>
   assert.equal(resolveValue(tables.light, 'color.callout-warning'), resolveValue(tables.light, 'primitive.callout-warning'), 'light warning surface unchanged');
   assert.equal(resolveValue(tables.dark, 'color.prose-mark-background'), resolveValue(tables.dark, 'color.callout-warning'), 'mark shares the warning surface');
   assert.equal(resolveValue(tables.dark, 'color.toc-marker'), resolveValue(tables.dark, 'color.prose-marker'), 'toc marker shares the list marker');
+});
+
+
+test('code_and_diagram_canvas_share_a_visible_gray_surface_in_light_mode', () => {
+  const canvas = resolveValue(tables.light, 'color.figure.canvas');
+  assert.equal(canvas, resolveValue(tables.light, 'color.soft'));
+  assert.ok(contrast(canvas, resolveValue(tables.light, 'color.ui-card')) >= 1.15);
+  const prose = readFileSync(root + 'styles/prose.css', 'utf8');
+  const diagram = readFileSync(root + 'styles/diagram/player.css', 'utf8');
+  assert.match(prose, /background: var\(--color-figure-canvas\)/);
+  assert.match(diagram, /background: var\(--color-figure-canvas\)/);
 });

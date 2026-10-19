@@ -522,7 +522,7 @@
     },
     "tag-background": {
       "$type": "color",
-      "$value": "{color.prose-pre-background}"
+      "$value": "{color.category.blue.dark-tint-3}"
     },
     "help-bg": {
       "$type": "color",
@@ -667,6 +667,18 @@
         "$type": "color",
         "$value": "{color.category.blue.dark-ink}"
       }
+    },
+    "tag-ink": {
+      "$type": "color",
+      "$value": "{color.category.blue.dark-ink}"
+    },
+    "tag-preview": {
+      "$type": "color",
+      "$value": "{color.category.blue.dark-tint-4}"
+    },
+    "tag-preview-ink": {
+      "$type": "color",
+      "$value": "{color.category.blue.dark-ink-strong}"
     }
   },
   "icon": {

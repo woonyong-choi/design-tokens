@@ -47,12 +47,14 @@ JS
 
 결과는 `app-support-grid is-four` 카드 묶음 안에 `/docs/memory/` 링크를 가진 HTML입니다. 브라우저에서 표시할 때는 이 HTML과 패키지의 `tokens.css`, `styles.css`를 함께 연결하세요. CSS가 참조하는 글꼴·아이콘의 상대 경로도 유지해야 합니다. 브라우저에서 카드가 표시되는 전체 예제는 [카드 미리보기](docs/distribution.md#카드-미리보기)를 따르세요.
 
+`BlogCard`는 제목 기반 자동 표지와 `댓글 · N` 텍스트를 제공하고, `TagFilter`는 검색 태그의 호버·선택·초기화 표현을 공유합니다. `LogoItem`은 목적지가 없을 때 비활성 상태를 표시합니다. 발행 태그와 검색 조건은 소비자가 계산합니다. `FlowRail`은 목록이 가용 폭을 넘을 때만 자동으로 이동합니다.
+
 ### 다른 프로젝트에 설치
 
 아래 명령은 검증한 커밋을 Git 의존성으로 설치합니다.
 
 ```sh
-npm install --save-dev 'github:woonyong-choi/design-tokens#686d28724798533b963c29386cfd468cca31574f'
+npm install --save-dev 'github:woonyong-choi/design-tokens#d7e73d07809b5c72a50c7e7295fb0b76fcddc0ac'
 ```
 
 설치한 프로젝트에서도 위 HTML 예제를 실행할 수 있습니다. 커밋에 생성한 `dist/`가 포함돼 있어 소비자가 디자인 파일을 다시 빌드할 필요는 없습니다. 새 커밋으로 옮길 때는 [갱신 절차](docs/distribution.md#갱신)를 따르세요.

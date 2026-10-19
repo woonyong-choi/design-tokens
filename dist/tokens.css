@@ -125,7 +125,7 @@
   --color-figure-number-ink: var(--primitive-figure-number-ink);
   --color-figure-outline: var(--color-gray-467);
   --color-figure-selection-fill: var(--color-category-blue-light-tint-3);
-  --color-figure-canvas: var(--primitive-help-bg);
+  --color-figure-canvas: var(--color-soft);
   --color-figure-flash: var(--primitive-search-hover);
   --color-figure-active-surface: var(--primitive-help-hover);
   --color-paint-red-fill: var(--color-category-red-light-tint-1);
@@ -276,6 +276,10 @@
   --color-category-blue-dark-effect: #60a0ff;
   --color-category-blue-solid: var(--color-category-blue-fill);
   --color-category-blue-on-solid: var(--color-gray-0);
+  --color-category-blue-light-tint-4: #c3d9f8;
+  --color-category-blue-light-ink-strong: #0d54b3;
+  --color-category-blue-dark-tint-4: #354665;
+  --color-category-blue-dark-ink-strong: #9ac3ff;
   --color-category-yellow-anchor: #f2d024;
   --color-category-yellow-fill: var(--color-category-yellow-anchor);
   --color-category-yellow-on: var(--color-gray-1000);
@@ -361,7 +365,7 @@
   --color-landing-newsletter-note-ink: var(--primitive-landing-newsletter-note-ink);
   --color-feature-tab-ink: var(--color-control-paper);
   --color-gallery-selected-ink: var(--color-control-paper);
-  --color-tag-background: var(--color-soft);
+  --color-tag-background: var(--color-category-blue-light-tint-3);
   --color-help-grouped-bg: var(--primitive-transparent);
   --color-document-nav-active-ink: var(--color-action-link);
   --color-workspace-sidebar: var(--color-gray-43);
@@ -369,6 +373,9 @@
   --color-workspace-toolbar: var(--color-gray-59);
   --color-workspace-hover: var(--color-gray-94);
   --color-workspace-selected: var(--color-gray-212);
+  --color-tag-ink: var(--color-category-blue-light-ink);
+  --color-tag-preview: var(--color-category-blue-light-tint-4);
+  --color-tag-preview-ink: var(--color-category-blue-light-ink-strong);
   --font-sans: Pretendard, "Pretendard Variable", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   --font-figure-sans: FigSans, FigSansSym, FigSansMath, ui-sans-serif, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
@@ -1236,7 +1243,7 @@
   --blur-blur: var(--primitive-blur);
   --aspect-ratio-video: var(--primitive-ratio-video);
   --aspect-device-ratio: var(--primitive-device-ratio);
-  --aspect-blog-cover-ratio: var(--primitive-ratio-banner);
+  --aspect-blog-cover-ratio: var(--primitive-ratio-video);
   --component-device-pad: var(--primitive-device-pad);
   --component-scroll-speed: var(--primitive-scroll-speed);
   --component-icon-scale: var(--primitive-icon-scale);
@@ -1440,7 +1447,7 @@
   --color-landing-newsletter-note-ink: var(--color-ui-muted);
   --color-feature-tab-ink: var(--color-gray-933);
   --color-gallery-selected-ink: var(--primitive-ink);
-  --color-tag-background: var(--color-prose-pre-background);
+  --color-tag-background: var(--color-category-blue-dark-tint-3);
   --color-help-grouped-bg: var(--color-ui-card);
   --color-document-nav-active-ink: var(--color-category-blue-light-tint-3);
   --color-workspace-sidebar: var(--color-gray-878);
@@ -1448,6 +1455,9 @@
   --color-workspace-toolbar: var(--color-gray-878);
   --color-workspace-hover: var(--color-gray-788);
   --color-workspace-selected: var(--color-gray-635);
+  --color-tag-ink: var(--color-category-blue-dark-ink);
+  --color-tag-preview: var(--color-category-blue-dark-tint-4);
+  --color-tag-preview-ink: var(--color-category-blue-dark-ink-strong);
   --icon-neutral: var(--color-ink);
   --icon-accent-outline: var(--color-category-blue-dark-ink);
   --icon-brand-github: var(--color-gray-0);
@@ -1604,7 +1614,7 @@
   --color-landing-newsletter-note-ink: var(--color-ui-muted);
   --color-feature-tab-ink: var(--color-gray-933);
   --color-gallery-selected-ink: var(--primitive-ink);
-  --color-tag-background: var(--color-prose-pre-background);
+  --color-tag-background: var(--color-category-blue-dark-tint-3);
   --color-help-grouped-bg: var(--color-ui-card);
   --color-document-nav-active-ink: var(--color-category-blue-light-tint-3);
   --color-workspace-sidebar: var(--color-gray-878);
@@ -1612,6 +1622,9 @@
   --color-workspace-toolbar: var(--color-gray-878);
   --color-workspace-hover: var(--color-gray-788);
   --color-workspace-selected: var(--color-gray-635);
+  --color-tag-ink: var(--color-category-blue-dark-ink);
+  --color-tag-preview: var(--color-category-blue-dark-tint-4);
+  --color-tag-preview-ink: var(--color-category-blue-dark-ink-strong);
   --icon-neutral: var(--color-ink);
   --icon-accent-outline: var(--color-category-blue-dark-ink);
   --icon-brand-github: var(--color-gray-0);
@@ -1676,7 +1689,7 @@
   --color-figure-number-ink: var(--primitive-figure-number-ink);
   --color-figure-outline: var(--color-gray-467);
   --color-figure-selection-fill: var(--color-category-blue-light-tint-3);
-  --color-figure-canvas: var(--primitive-help-bg);
+  --color-figure-canvas: var(--color-soft);
   --color-figure-flash: var(--primitive-search-hover);
   --color-figure-active-surface: var(--primitive-help-hover);
   --color-paint-red-fill: var(--color-category-red-light-tint-1);
@@ -1767,7 +1780,7 @@
   --color-landing-newsletter-note-ink: var(--primitive-landing-newsletter-note-ink);
   --color-feature-tab-ink: var(--color-control-paper);
   --color-gallery-selected-ink: var(--color-control-paper);
-  --color-tag-background: var(--color-soft);
+  --color-tag-background: var(--color-category-blue-light-tint-3);
   --color-help-grouped-bg: var(--primitive-transparent);
   --color-document-nav-active-ink: var(--color-action-link);
   --color-workspace-sidebar: var(--color-gray-43);
@@ -1775,6 +1788,9 @@
   --color-workspace-toolbar: var(--color-gray-59);
   --color-workspace-hover: var(--color-gray-94);
   --color-workspace-selected: var(--color-gray-212);
+  --color-tag-ink: var(--color-category-blue-light-ink);
+  --color-tag-preview: var(--color-category-blue-light-tint-4);
+  --color-tag-preview-ink: var(--color-category-blue-light-ink-strong);
   --icon-neutral: var(--primitive-help-title-color);
   --icon-accent-outline: var(--icon-cloud-edge);
   --icon-brand-github: var(--color-gray-1000);

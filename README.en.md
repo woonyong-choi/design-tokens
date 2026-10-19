@@ -14,7 +14,7 @@ The package provides design values such as colors, spacing, and typography along
 
 ## Quick start
 
-The full Git package provides 49 general SVGs and 34 technology and service brand SVGs. Use `getIconCatalog().brands` and `readIcon` from `/icons` to read all brands. The sources include the Devicon Linux variant and the JavaScript community logo.
+The full Git package provides 50 general SVGs and 34 technology and service brand SVGs. Use `getIconCatalog().brands` and `readIcon` from `/icons` to read all brands. The sources include the Devicon Linux variant and the JavaScript community logo.
 
 Node.js 20 or later and npm are required. Diagram consumers can use the [diagram tarball installation](docs/distribution.md#도표-전용-tarball), containing 18 SVGs for people, service brands, UI controls, and states.
 
@@ -92,7 +92,7 @@ The design documents are written in Korean.
 - [Shared components](docs/components.md)
   - [Shared icons](docs/design/content-icons.md)
 
-The package includes icons and roles used by the public blog, document engine, DiagramPlay, and registered private previews. It retains 49 general SVGs, 34 technology and service brands, and 10 aliases. Private metadata keeps its detail selection. Seven names collected from body tokens retain their default shapes pending token validation. The default help role is `question`, and `kinds` is empty. Removed icon names and aliases fail lookup.
+The package includes icons and roles used by the public blog, document engine, DiagramPlay, and registered private previews. It retains 50 general SVGs, 34 technology and service brands, and 10 aliases. Private metadata keeps its detail selection. Seven names collected from body tokens retain their default shapes pending token validation. The default help role is `question`, and `kinds` is empty. Removed icon names and aliases fail lookup.
 
 [All documentation](docs/README.md)
 

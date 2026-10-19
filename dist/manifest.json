@@ -153,7 +153,8 @@
     "assets/icons/brands/redis.svg": "72d4a0cf62a3460ddd8b9e837527b0d600cfcf74a1031ad21922207d2cec36b5",
     "assets/icons/brands/spring.svg": "70d139406413db03ed528965410e99e410cd785769008e2e178366b844ee0ba2",
     "assets/icons/brands/typescript.svg": "19d36a72518a2cf175efd101295a473ccda5cc78adc924b08ccd075a1d1a5dba",
-    "assets/icons/catalog.json": "8e8d4d77ff3a6bc9087605223b715e9d234da10a3813f5578a49435215386639",
+    "assets/icons/catalog.json": "9dec12c30da7e84f9fead23167fdba46cea7fb1761dffd243919b828adf40a55",
+    "assets/icons/communication/chat.svg": "82d25afa6ae336b82bdc10294c063afceca3818edd20d7f5e4b8477b7ab2fc29",
     "assets/icons/communication/newsletter.png": "4e1689a4ef32bc68b10553475d8ae9ed5728ef0ba2c43f4a0d18c6e2985b76c5",
     "assets/icons/communication/rss.svg": "ed8661841828a03d3f96db9b830587aad77ffe2799e846cfeaf7eff3a02c251a",
     "assets/icons/communication/technology-thought.png": "c4ced0b40cbba15f025898d284ab535c4b8286da1919de4deb6a9713f8d26810",
@@ -227,7 +228,7 @@
     "ui/diagram.mjs": "d582cd18e78cb703c5eec35f4ef68bf4496c814850efae1033c8e82807794fc7",
     "ui/document.mjs": "0b466b99dabad1ff5d7aea7003af2abf2a697d6465c0263085021d2d0cd8de20",
     "ui/html.mjs": "4bb51a5267c8d7d7e917b7434681695606408ddc887c40d1d37f6be6d193d044",
-    "ui/icon-data.mjs": "a747e562633b506dbff844decfd6b762aae2841556ed3254635288865395f758",
+    "ui/icon-data.mjs": "c20551d0facf2993562f2342c58e302d62bbb8a60d6d6c7546eeac69886f94a6",
     "ui/icons.mjs": "e60715751bf6549efec2911460c69b6b9f4c91f27a051265b0744ab5e8977c46",
     "ui/index.mjs": "b665f2608fccea0460b05c35e19073f1869c39059e0b6ce238c5c4db92e6d9d5",
     "ui/layout.mjs": "02ba5f668f286156730595d5e926004f102b143b862b2a2306daf69ba2ec004c",
@@ -246,5 +247,5 @@
     "ui/table.mjs": "d285303ed3e84599a512085e79dfd92db751a890ad4890b81930f1ccf2126ae0",
     "ui/toolbar.mjs": "3fab9dbcd66cbb7273e8ce39d7754e5783ea4e605418dc4faf2c91831067cdd2"
   },
-  "contentHash": "71dd5275c8b5e3c14e268fffb88f13508dfb9fdb0b7259581a4b67e23f21e389"
+  "contentHash": "d12a4db67b2e061a5a32fb50c5d0a3df3dddf47790f74523d2ae3a6e56d88201"
 }

@@ -16,7 +16,7 @@
 
 아이콘 원본은 `assets/icons/<의미>/<이름>.svg` 한 곳에서 편집한다. 홈페이지와 DiagramPlay는 같은 배포본과 렌더러를 사용한다. `icons` 안의 깊이는 의미 폴더와 파일까지 2단계다. 이 제한은 홈페이지 원고에는 적용하지 않는다.
 
-도표 전용 tarball은 사람 `user`·`admin`, 서비스 브랜드 5개와 기존 UI·상태만 선택한다. 전체 패키지는 일반 SVG 49개와 중앙 브랜드 SVG 34개를 제공한다. 일반 도형·역할·별칭은 실제 사용 범위만 유지한다. 선택 범위와 설치 계약은 [도표 전용 tarball](../distribution.md#도표-전용-tarball)을 따른다. `admin`과 `administrator`는 `user-settings`를 가리킨다. 두 표현의 사람 머리·몸통은 `user`와 같고 중앙 톱니는 관리자 구별 표식이다.
+도표 전용 tarball은 사람 `user`·`admin`, 서비스 브랜드 5개와 기존 UI·상태만 선택한다. 전체 패키지는 일반 SVG 50개와 중앙 브랜드 SVG 34개를 제공한다. 일반 도형·역할·별칭은 실제 사용 범위만 유지한다. 선택 범위와 설치 계약은 [도표 전용 tarball](../distribution.md#도표-전용-tarball)을 따른다. `admin`과 `administrator`는 `user-settings`를 가리킨다. 두 표현의 사람 머리·몸통은 `user`와 같고 중앙 톱니는 관리자 구별 표식이다.
 
 ## 고치는 곳
 
@@ -33,9 +33,9 @@
 
 파일 이름은 소문자 kebab-case이고 카탈로그 전체에서 고유해야 한다. 기존 `-mono` 이름은 참조 호환성을 위해 유지하고, 상세 대안은 `-detail`을 사용한다. 색상과 단색을 따로 그려야 할 때는 같은 SVG 안의 두 표현 그룹을 사용한다. 크기별 폴더나 SVG를 변환한 PNG 사본은 만들지 않는다. 별칭은 검색어와 이름 해석을 연결하며 기존 직접 이미지 경로를 대체하지 않는다. 현재 소비자가 참조하지 않는 일반 도형·별칭·역할은 함께 제거한다. 중앙 브랜드 원본은 이 일반 도형 정리 조건과 별도로 관리한다.
 
-현재 일반 SVG는 기본형·상세형을 합쳐 49개이며, 기술·서비스 브랜드 34개와 함께 총 83개를 배포한다. 사용 범위에는 공개 블로그·문서 엔진·DiagramPlay와 현재 등록된 비공개 미리보기의 메타데이터·이동 목록이 포함된다. 메타데이터는 기존 별칭과 `detail` 선택을 유지한다. 본문에서 수집한 7개 이름은 도표·인라인 토큰 검증이 끝나지 않아 해당 이름의 기본 도형만 보존한다. 이 보존을 본문 사용 검증 완료로 보지 않는다.
+현재 일반 SVG는 기본형·상세형을 합쳐 50개이며, 기술·서비스 브랜드 34개와 함께 총 84개를 배포한다. 사용 범위에는 공개 블로그·문서 엔진·DiagramPlay와 현재 등록된 비공개 미리보기의 메타데이터·이동 목록이 포함된다. 메타데이터는 기존 별칭과 `detail` 선택을 유지한다. 본문에서 수집한 7개 이름은 도표·인라인 토큰 검증이 끝나지 않아 해당 이름의 기본 도형만 보존한다. 이 보존을 본문 사용 검증 완료로 보지 않는다.
 
-별칭 10개는 `admin`·`administrator` → `user-settings`, `apigw` → `gateway`, `architecture` → `hierarchy`, `deploy` → `box-up`, `incident` → `warning`, `model` → `brain-circuit`, `notify` → `event`, `person` → `user`, `processor` → `cpu`다. 역할은 조작부 19개·소셜 3개·도움말 `question`과 빈 `kinds`를 유지한다.
+별칭 10개는 `admin`·`administrator` → `user-settings`, `apigw` → `gateway`, `architecture` → `hierarchy`, `deploy` → `box-up`, `incident` → `warning`, `model` → `brain-circuit`, `notify` → `event`, `person` → `user`, `processor` → `cpu`다. 역할은 조작부 20개·소셜 3개·도움말 `question`과 빈 `kinds`를 유지한다.
 
 기술과 생각·구독·후기 PNG는 독자 제작물이며 128×128 RGBA 형식을 사용한다. 기술과 생각은 새 경로를 쓰고 구독·후기는 기존 경로를 유지한다. 빌드는 현재 바이트를 그대로 내보내며 소비자는 기존 이미지 `src` 슬롯을 사용한다. SVG 카탈로그·`readIcon`에는 넣지 않는다. 현재 제작 출처·크기·SHA-256은 출처 기록에 둔다. 구독·후기에서 교체 전 Things URL·해시는 `assets/sources.json`에서 분리한다. 교체 전 원본 파일은 저장소와 배포본 어디에도 두지 않고 URL·해시만 `comparison-only` 기록으로 남긴다. 현재 독자 제작물에는 저장소의 MIT 라이선스를 적용한다.
 
@@ -97,7 +97,7 @@ const roles = getIconCatalog().controls;
 
 패키지에서는 `@woonyong-choi/design-tokens/icons`와 `/svg`로 같은 함수를 가져온다. 파일을 읽는 `icons`는 Node 진입점이고 SVG 함수는 브라우저에서도 동작한다. `iconFile`은 `documents/document.svg`처럼 카탈로그 루트 기준 상대 경로를, `readIcon`은 해당 파일의 SVG 문자열을 반환한다. `variant`는 `default` 또는 `detail`이며 상세 파일이 없으면 기본 도형을 쓴다. 모르는 이름·경로·변형은 오류다.
 
-`ContentIcon`은 작은 문서 아이콘부터 카드까지 같은 배치를 쓴다. `ControlIcon`, `ArticleIcon`, `SocialIcon`, `ToolIcon`도 같은 카탈로그 역할을 조립한다. `controls`는 공통 조작 역할, `social`은 GitHub·RSS·LinkedIn, `articles`는 기본 도움말 `question`만 유지한다. 실제 소비자가 쓰지 않는 글 형식 매핑 `kinds`는 빈 객체다. 브라우저용 모듈에는 이 역할들이 사용하는 도형만 넣는다.
+`ContentIcon`은 작은 문서 아이콘부터 카드까지 같은 배치를 쓴다. `ControlIcon`, `ArticleIcon`, `SocialIcon`, `ToolIcon`도 같은 카탈로그 역할을 조립한다. `controls`는 댓글 `comment` → `chat`을 포함한 공통 조작 역할, `social`은 GitHub·RSS·LinkedIn, `articles`는 기본 도움말 `question`만 유지한다. 실제 소비자가 쓰지 않는 글 형식 매핑 `kinds`는 빈 객체다. 브라우저용 모듈에는 이 역할들이 사용하는 도형만 넣는다.
 
 SVG 안의 mask ID는 삽입마다 분리한다. 결정적 출력이 필요한 빌드는 서로 다른 `prefix`를 전달한다. 스크립트·이벤트·외부 이미지·외부 URL은 허용하지 않는다. 원본을 직접 바꾸는 대신 화면별 도형이나 CSS 보정을 만드는 것은 금지다.
 

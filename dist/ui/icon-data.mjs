@@ -1,6 +1,7 @@
 // assets/icons: 생성물, 손으로 고치지 않음
 export const ICON_ROLES = Object.freeze({
   "controls": {
+    "comment": "chat",
     "copy": "file-copy",
     "download": "download-bottom",
     "maximize-2": "maximize",
@@ -31,6 +32,7 @@ export const ICON_ROLES = Object.freeze({
   }
 });
 export const ICON_DATA = Object.freeze({
+  "chat": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\" width=\"32\" height=\"32\" color=\"#3d4856\"><path fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.38\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.7816,21.4066 C4.9647,21.8685 5.0055,22.3746 4.8987,22.8599 L3.5723,26.9573 C3.4854,27.3797 3.6233,27.8171 3.9368,28.1133 C4.2503,28.4096 4.6947,28.5225 5.1116,28.4119 L9.3621,27.169 C9.8201,27.0782 10.2943,27.1179 10.7308,27.2836 C16.2211,29.8475 22.7601,28.0877 26.2219,23.1145 C29.6837,18.1412 29.0636,11.3981 24.7528,7.1396 C20.442,2.8811 13.6918,2.3434 8.7612,5.8657 C3.8306,9.388 2.1507,15.948 4.7816,21.4066\"/></svg>\n",
   "file-copy": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\" width=\"32\" height=\"32\" color=\"#7d8794\" role=\"img\">\n<title>file-copy</title>\n<desc>겹친 두 장의 둥근 사각형으로 표현한 복사</desc>\n<g transform=\"scale(1.3333333333333333)\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"8.5\" y=\"8.5\" width=\"12\" height=\"12\" rx=\"2.5\"/><path d=\"M15.5 5.2V5.5Q15.5 3.5 13.5 3.5H5.5Q3.5 3.5 3.5 5.5V13.5Q3.5 15.5 5.5 15.5H5.8\"/></g>\n</svg>\n",
   "download-bottom": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\" width=\"32\" height=\"32\" color=\"#7d8794\" role=\"img\">\n<title>download-bottom</title>\n<desc>아래 화살표와 받침선으로 표현한 내려받기</desc>\n<g transform=\"scale(1.3333333333333333)\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3.5V15M7 10.5L12 15.5L17 10.5M4.5 20.5H19.5\"/></g>\n</svg>\n",
   "maximize": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\" width=\"32\" height=\"32\" color=\"#7d8794\" role=\"img\">\n<title>maximize</title>\n<desc>두 대각 화살표가 바깥을 향하는 전체 화면</desc>\n<g transform=\"scale(1.3333333333333333)\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14.5 3.5H20.5V9.5M20.5 3.5L13.5 10.5M9.5 20.5H3.5V14.5M3.5 20.5L10.5 13.5\"/></g>\n</svg>\n",

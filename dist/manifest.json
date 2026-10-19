@@ -233,7 +233,7 @@
     "ui/index.mjs": "4ac475d06bf17a23e623055fbc0780e78d2e67eaeac24b89bb179abbd18da1fa",
     "ui/layout.mjs": "37967a20ca33ff95f57d66b2483dc348d58a183af8d362b1dcbe93bca8e729e1",
     "ui/manifest.mjs": "ee020db371976501d0c7802411755f07604d12988fa4a06d6337ae58a6cae0ff",
-    "ui/patterns.mjs": "84faccb32b8a5a61cd3ea6180fca456c211a536c8150713d2845d3cbd74f78d7",
+    "ui/patterns.mjs": "59da29a99e7f616cb808238883cd6c317f2559f485ada871a053295453b219b1",
     "ui/runtime/diagram-host.js": "90c2fd536af0bbba19b891843f9ed05539145724ac9a0309b2d9b5b845a87997",
     "ui/runtime/diagram.js": "4f3d5a1660e6120025cc40edef18aa598fedfa909cbe6ba4b2b02c242ffe95fa",
     "ui/runtime/document-navigation.js": "b266955e34c994aa6748b9328ad34a8d45206dc6312a94b73c44239d3172ff1f",
@@ -247,5 +247,5 @@
     "ui/table.mjs": "d285303ed3e84599a512085e79dfd92db751a890ad4890b81930f1ccf2126ae0",
     "ui/toolbar.mjs": "3fab9dbcd66cbb7273e8ce39d7754e5783ea4e605418dc4faf2c91831067cdd2"
   },
-  "contentHash": "336bd26952248a711153397452c17912f75ada1b64de03bf786c5c603ea5f88d"
+  "contentHash": "787306e478456e54e526f637fb32188fd9ffaf1e45d06c1e7a33fd2066d6e37b"
 }

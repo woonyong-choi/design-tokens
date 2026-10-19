@@ -10,9 +10,10 @@ if (!modulePath) throw new Error('usage: node test/writing-preview-browser.mjs <
 const { chromium } = await import(pathToFileURL(resolve(modulePath)).href);
 const root = fileURLToPath(new URL('../dist/', import.meta.url));
 const title = `합성 데이터: 긴 제목 ${'아주긴단어'.repeat(30)}`;
+const titleId = '한글-제목-앵커';
 const code = CodeBlock({ code: trusted(`<code>long_identifier_${'x'.repeat(120)}</code>`) });
 const body = trusted(`<p>본문 <a href="#note">각주</a></p>${code}<math display="block"><mi>x</mi><mo>=</mo><mn>1</mn></math><figure class="app-figure app-width-wide"><svg viewBox="0 0 680 100" role="img" aria-label="합성 데이터: 그림"><rect width="680" height="100" fill="currentColor"/></svg><figcaption>합성 데이터: 그림</figcaption></figure><ol class="footnotes"><li id="note">각주 내용</li></ol>`);
-const writing = WritingPreview({ title, titleId: 'original-heading_1', intro: trusted('<p>소개 <em>강조</em></p>'), body: trusted(`<p><a href="#original-heading_1">제목으로 이동</a></p>${body}`), statusLabel: '초안', tags: [{ label: '긴 태그 이름', href: '/tags/example/' }] });
+const writing = WritingPreview({ title, titleId, intro: trusted('<p>소개 <em>강조</em></p>'), body: trusted(`<p><a data-title-anchor href="#${encodeURIComponent(titleId)}">제목으로 이동</a> <a data-title-anchor href="#${titleId}">한글 주소로 이동</a></p>${body}`), statusLabel: '초안', tags: [{ label: '긴 태그 이름', href: '/tags/example/' }] });
 const publication = DocumentArticle({ title, lead: trusted('소개'), metadata: trusted(''), body });
 const server = createServer(async (request, response) => {
   try {
@@ -56,8 +57,18 @@ try {
     for (const [actual, expected] of result.assets) assert.deepEqual(actual, expected, 'body asset styles remain shared');
     await page.locator('.app-writing-preview .app-tag').focus();
     assert.equal(await page.locator('.app-writing-preview .app-tag').evaluate(element => element.matches(':focus-visible')), true);
-    await page.locator('a[href="#original-heading_1"]').click();
-    assert.equal(await page.locator('.app-writing-preview h1').evaluate(element => element.matches(':target')), true, 'the original anchor resolves to the moved title');
+    for (const anchor of await page.locator('[data-title-anchor]').all()) {
+      await anchor.click();
+      assert.equal(decodeURIComponent(new URL(page.url()).hash.slice(1)), titleId);
+      assert.equal(await page.locator('.app-writing-preview h1').evaluate(element => element.matches(':target')), true, 'encoded and decoded Unicode anchors resolve to the moved title');
+    }
+    const unsafeId = '한글"onmouseover="alert(1)\'&<앵커>';
+    const attributes = await page.evaluate(html => {
+      const heading = new DOMParser().parseFromString(html, 'text/html').querySelector('h1');
+      return { id: heading.id, names: [...heading.attributes].map(attribute => attribute.name) };
+    }, String(WritingPreview({ title, titleId: unsafeId, intro: trusted(''), body: trusted('') })));
+    assert.equal(attributes.id, unsafeId, 'escaped attribute content round-trips without rewriting the ID');
+    assert.deepEqual(attributes.names, ['class', 'id'], 'quotes and markup never create injected attributes');
     if (process.argv[3] && width === 390) await page.screenshot({ path: `${process.argv[3]}-${colorScheme}.png`, fullPage: true });
     console.log(`writing preview: ${width}px ${colorScheme} passed`);
     await page.close();

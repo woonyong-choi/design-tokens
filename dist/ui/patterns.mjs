@@ -17,7 +17,7 @@ export function DocumentArticle({ title, titleId, icon, lead, metadata, body, af
   if (!['publication', 'writing'].includes(variant)) throw new TypeError(`unknown document variant: ${variant}`);
   const isWriting = variant === 'writing';
   const leadTag = isWriting ? 'div' : 'p';
-  const headingId = titleId === undefined ? '' : ` id="${id(titleId)}"`;
+  const headingId = titleId === undefined ? '' : ` id="${titleAnchorId(titleId)}"`;
   return out(`<article class="app-document${isWriting ? ' is-writing' : ''}"><header class="app-document-header"><h1 class="app-article-title"${headingId}>${icon ? slot(icon, 'icon') : ''}${escape(title)}</h1></header><${leadTag} class="app-article-lead app-document-lead${isWriting ? ' app-prose' : ''}">${slot(lead, 'lead')}</${leadTag}><div class="app-document-metadata">${slot(metadata, 'metadata')}</div><div class="app-prose app-document-body">${slot(body, 'body')}</div>${after ? slot(after, 'after') : ''}</article>`);
 }
 
@@ -198,4 +198,11 @@ export function ProjectList({ title, projects }) {
 /** 검색 상태 안내와 선택 동작을 같은 중앙 정렬 영역에 둔다. */
 export function SearchMessage({ lines }) {
   return out(`<div class="app-search-message"><p>${lines.map(line => escape(line)).join('<br>')}</p></div>`);
+}
+
+function titleAnchorId(value) {
+  if (typeof value !== 'string' || !value.length || /[\s\p{Cc}\p{Cf}]/u.test(value)) {
+    throw new TypeError('invalid title id: expected a non-empty string without whitespace or control characters');
+  }
+  return escape(value);
 }

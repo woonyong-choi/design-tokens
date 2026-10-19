@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { WritingPreview, DocumentArticle, trusted } from '../dist/ui/index.mjs';
+import { WritingPreview, DocumentArticle, SectionIntro, trusted } from '../dist/ui/index.mjs';
 
 const content = { title: '제목 <script> &', intro: trusted('<p>소개 <em>강조</em></p>'), body: trusted('<pre class="app-code"><code>const x = 1;</code></pre><sup><a href="#note">1</a></sup><math><mi>x</mi></math><figure class="app-figure app-width-wide"><img src="/figure.svg" alt="그림"></figure>') };
 
@@ -37,9 +37,18 @@ test('WritingPreview_preserves_the_moved_title_anchor_and_checks_ids', () => {
   assert.match(html, /href="#original-heading_1"/);
   assert.equal((html.match(/id="original-heading_1"/g) || []).length, 1);
   assert.equal(String(WritingPreview({ ...content, titleId: undefined })), String(WritingPreview(content)));
-  for (const titleId of ['', null, false, 0, 1, {}, [], 'bad id', '" onmouseover="alert(1)', '<anchor>']) {
-    assert.throws(() => WritingPreview({ ...content, titleId }), { name: 'TypeError', message: /^Invalid id:/ });
+  for (const titleId of ['', null, false, 0, 1, {}, [], 'bad id', '" onmouseover="alert(1)', 'bad\u0000id', 'bad\u007fid', 'bad\u0085id', 'bad\u200bid', 'bad\u00a0id']) {
+    assert.throws(() => WritingPreview({ ...content, titleId }), { name: 'TypeError', message: /^invalid title id:/ });
   }
+});
+
+test('WritingPreview_accepts_document_engine_unicode_heading_ids_without_changing_general_ids', () => {
+  const html = String(WritingPreview({ ...content, titleId: '한글-제목-앵커' }));
+
+  assert.match(html, /<h1 class="app-article-title" id="한글-제목-앵커">/);
+  assert.throws(() => SectionIntro({ id: '한글-제목-앵커', title: '제목' }), /Invalid id:/);
+  const escaped = String(WritingPreview({ ...content, titleId: '한글"\'&<앵커>' }));
+  assert.match(escaped, /id="한글&quot;&#39;&amp;&lt;앵커&gt;"/);
 });
 
 test('WritingPreview_spacing_is_scoped_and_body_styles_are_shared', () => {

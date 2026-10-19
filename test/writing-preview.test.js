@@ -30,6 +30,18 @@ test('DocumentArticle_default_publication_markup_stays_unchanged', () => {
   assert.equal(html, '<article class="app-document"><header class="app-document-header"><h1 class="app-article-title">Title</h1></header><p class="app-article-lead app-document-lead">Lead</p><div class="app-document-metadata">Meta</div><div class="app-prose app-document-body">Body</div></article>');
 });
 
+test('WritingPreview_preserves_the_moved_title_anchor_and_checks_ids', () => {
+  const html = String(WritingPreview({ ...content, titleId: 'original-heading_1', body: trusted('<p><a href="#original-heading_1">제목으로 이동</a></p>') }));
+
+  assert.match(html, /<h1 class="app-article-title" id="original-heading_1">/);
+  assert.match(html, /href="#original-heading_1"/);
+  assert.equal((html.match(/id="original-heading_1"/g) || []).length, 1);
+  assert.equal(String(WritingPreview({ ...content, titleId: undefined })), String(WritingPreview(content)));
+  for (const titleId of ['', null, false, 0, 1, {}, [], 'bad id', '" onmouseover="alert(1)', '<anchor>']) {
+    assert.throws(() => WritingPreview({ ...content, titleId }), { name: 'TypeError', message: /^Invalid id:/ });
+  }
+});
+
 test('WritingPreview_spacing_is_scoped_and_body_styles_are_shared', () => {
   const css = readFileSync(new URL('../styles/article.css', import.meta.url), 'utf8');
 

@@ -53,7 +53,7 @@ design-tokens는 여러 소비자가 공유하는 토큰, 아이콘, CSS, 정적
 
 [그림 원본](assets/build-flow.diagramplay)은 디자인 원본, 빌드, 패키지, 소비 앱을 네 단계로 보여 준다. 생성한 SVG를 직접 고치지 않고 원본과 함께 갱신한다.
 
-생성 도구는 DiagramPlay의 `76cdaacd39258174db4182393a19184cb7a7f001` 커밋이다. 해당 소스와 의존성을 준비한 뒤 이 저장소 루트에서 실행한다. `DIAGRAMPLAY_PATH`는 준비한 DiagramPlay 저장소 경로다.
+생성 도구는 DiagramPlay의 `ebdc3e9c84c3d5443af7f1b6b5d9b2a18e5002ca` 커밋이다. 해당 소스와 의존성을 준비한 뒤 이 저장소 루트에서 실행한다. `DIAGRAMPLAY_PATH`는 준비한 DiagramPlay 저장소 경로다.
 
 ```sh
 node "$DIAGRAMPLAY_PATH/src/cli.js" check docs/assets/build-flow.diagramplay --strict

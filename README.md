@@ -54,7 +54,7 @@ JS
 아래 명령은 검증한 커밋을 Git 의존성으로 설치합니다.
 
 ```sh
-npm install --save-dev 'github:woonyong-choi/design-tokens#d7e73d07809b5c72a50c7e7295fb0b76fcddc0ac'
+npm install --save-dev 'github:woonyong-choi/design-tokens#d90409ced0307889cb7e7106b40092ad8f4475a7'
 ```
 
 설치한 프로젝트에서도 위 HTML 예제를 실행할 수 있습니다. 커밋에 생성한 `dist/`가 포함돼 있어 소비자가 디자인 파일을 다시 빌드할 필요는 없습니다. 새 커밋으로 옮길 때는 [갱신 절차](docs/distribution.md#갱신)를 따르세요.

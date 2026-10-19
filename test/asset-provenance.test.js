@@ -3,6 +3,8 @@ import { createHash } from 'node:crypto';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { test } from 'node:test';
 
+import { parseIconSvg } from '../ui/svg.mjs';
+
 const root = new URL('../', import.meta.url).pathname;
 const sources = JSON.parse(readFileSync(root + 'assets/sources.json', 'utf8'));
 const catalog = JSON.parse(readFileSync(root + 'assets/icons/catalog.json', 'utf8'));
@@ -82,13 +84,21 @@ test('icon_catalog_sources_have_notices_and_never_point_to_blocked_hosts', () =>
   }
 });
 
-// 한 소비자만 쓰는 기술 로고는 그 소비자가 소유한다. 여기에는 공통 소셜 역할과 Torso 내장 그림이 함께 쓰는 표식만 둔다.
-const TORSO_BRANDS = ['git', 'nginx', 'postgresql', 'redis'];
-
-test('brand_marks_are_only_the_shared_ones_and_every_notice_belongs_to_a_catalog_entry', () => {
-  const shared = new Set([...Object.values(catalog.social), ...TORSO_BRANDS]);
-  for (const name of Object.keys(catalog.brands)) assert.ok(shared.has(name), `${name}: 공통으로 쓰지 않는 기술 로고는 소비자 저장소가 소유한다`);
-  for (const name of TORSO_BRANDS) assert.ok(Object.hasOwn(catalog.brands, name), name);
+test('brand_marks_preserve_source_identity_result_hash_and_catalog_notice', () => {
+  for (const [name, brand] of Object.entries(catalog.brands)) {
+    assert.match(brand.file ?? '', /^brands\/[a-z0-9-]+\.svg$/, name);
+    assert.ok(existsSync(root + 'assets/icons/' + brand.file), name);
+    assert.match(brand.sourceSha256 ?? '', /^[0-9a-f]{64}$/, name);
+    assert.ok(brand.variant, name);
+    assert.ok(brand.guide, name);
+    assert.ok(brand.treatment, name);
+    assert.equal(sha256('assets/icons/' + brand.file), brand.sha256, name);
+    assert.equal(brand.transformSha256, brand.sha256, name);
+    assert.doesNotThrow(() => parseIconSvg(readFileSync(root + 'assets/icons/' + brand.file, 'utf8')), name);
+    const library = catalog.libraries.find(item => item.name === brand.library);
+    assert.ok(library, name);
+    assert.ok(existsSync(root + 'assets/icons/' + (brand.notice ?? library.notice)), name);
+  }
   const notices = new Set([...catalog.libraries, ...Object.values(catalog.brands)].map(item => item.notice).filter(Boolean));
   for (const name of filesUnder('assets/icons/licenses')) assert.ok(notices.has(`licenses/${name}`), `${name}: 카탈로그가 가리키지 않는 고지`);
 });

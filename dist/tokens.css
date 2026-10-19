@@ -531,6 +531,7 @@
   --spacing-figure-control-icon-stroke: 2.5px;
   --spacing-figure-pill-height: 18px;
   --spacing-figure-icon-node: 20px;
+  --spacing-figure-icon-brand: var(--spacing-figure-icon-node);
   --spacing-figure-icon-tile: 32px;
   --spacing-figure-icon-tile-gap: 6px;
   --spacing-figure-tag-height: 14px;

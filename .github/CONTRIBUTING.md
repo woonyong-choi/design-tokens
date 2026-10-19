@@ -15,6 +15,7 @@ git clone https://github.com/woonyong-choi/design-tokens.git
 cd design-tokens
 npm ci
 npm run build
+npm run build:diagram
 ```
 
 ## 검사
@@ -24,6 +25,7 @@ PR을 열기 전에 아래 검사가 모두 통과해야 한다. 정본을 바�
 ```sh
 npm test
 npm run check
+npm run check:diagram
 ```
 
 UI를 바꾸면 소비자의 실제 화면과 조작을 확인한다. 자동 검사 통과와 화면 검수를 구분하고 실행하지 않은 검증을 완료로 기록하지 않는다.

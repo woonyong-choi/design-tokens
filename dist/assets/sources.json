@@ -99,7 +99,7 @@
     "license": "per library notice",
     "catalog": "icons/catalog.json",
     "notices": "icons/licenses/",
-    "description": "Each library and brand in the catalog records its source and notice. Project redrawings use the repository MIT license."
+    "description": "Each library and brand in the catalog records its source and notice. Migrated technology marks preserve existing bytes and source treatments; official AWS service icons retain vendor geometry and palette. Vendor marks retain their own permissions and trademark conditions and are not relicensed under the repository MIT license."
   },
   {
     "files": "icons/licenses/*.txt",

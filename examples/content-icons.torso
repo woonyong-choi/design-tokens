@@ -2,9 +2,9 @@ torso
 title "공유 아이콘 연결"
 
 box visitor "사용자" icon=user
-box gateway "게이트웨이" icon=apigw
-box service "애플리케이션" icon=server
-box database "저장소" icon=db
-visitor -> gateway
-gateway -> service
-service -> database
+box administrator "관리자" icon=admin
+box repository "Git 저장소" icon=git
+box database "PostgreSQL" icon=postgresql
+visitor -> administrator
+administrator -> repository
+repository -> database

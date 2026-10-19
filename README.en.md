@@ -90,6 +90,8 @@ The design documents are written in Korean.
 - [Shared components](docs/components.md)
   - [Shared icons](docs/design/content-icons.md)
 
+The package includes icons and roles used by the blog, document engine, and Torso. The default help role is `question`, and `kinds` is empty. Removed icon names and aliases fail lookup.
+
 [All documentation](docs/README.md)
 
 ## Development

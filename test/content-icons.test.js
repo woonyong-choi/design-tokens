@@ -28,6 +28,18 @@ test('semantic_catalog_covers_every_svg_once_at_two_levels', () => {
   assert.equal(Object.keys(files).some(name => /assets\/controls|catalog-detail|current-review/.test(name)), false);
 });
 
+test('active_consumer_inventory_matches_source_and_distribution', () => {
+  const general = 'check checkbox-check checkbox-empty checkbox-indeterminate chevron-right close document download-bottom ellipsis file-copy maximize minimize pause play question replay rss scan search-mono user user-settings warning zoom-in zoom-out'.split(' ').sort();
+  const names = [...general, ...Object.keys(catalog.brands)].sort();
+  assert.deepEqual(Object.keys(catalog.icons).sort(), names);
+  assert.deepEqual(readdirSync(root + 'assets/icons', { recursive: true }).filter(name => name.endsWith('.svg')).map(name => name.split('/').at(-1).slice(0, -4)).sort(), names);
+  assert.deepEqual(Object.keys(files).filter(name => /^assets\/icons\/.*\.svg$/.test(name)).map(name => name.split('/').at(-1).slice(0, -4)).sort(), names);
+  assert.deepEqual(catalog.aliases, { admin: 'user-settings', administrator: 'user-settings', incident: 'warning', person: 'user' });
+  assert.deepEqual(catalog.controls, {
+    copy: 'file-copy', download: 'download-bottom', 'maximize-2': 'maximize', 'minimize-2': 'minimize', check: 'check', alert: 'warning', 'zoom-in': 'zoom-in', 'zoom-out': 'zoom-out', scan: 'scan', search: 'search-mono', clear: 'close', play: 'play', pause: 'pause', replay: 'replay', chevron: 'chevron-right', 'video-play': 'play', 'task-empty': 'checkbox-empty', 'task-done': 'checkbox-check', 'task-cancelled': 'checkbox-indeterminate',
+  });
+});
+
 test('independent_png_icons_preserve_image_paths_dimensions_and_provenance', () => {
   const names = ['icons/communication/newsletter.png', 'icons/communication/testimonials.png'];
   assert.deepEqual(Object.keys(files).filter(name => name.startsWith('assets/icons/') && name.endsWith('.png')).sort(), names.map(name => `assets/${name}`));
@@ -54,10 +66,10 @@ test('independent_png_icons_preserve_image_paths_dimensions_and_provenance', () 
 
 test('loader_resolves_aliases_and_variants_without_accepting_paths', () => {
   for (const [alias, target] of Object.entries(catalog.aliases)) assert.equal(iconFile(alias), iconFile(target));
-  assert.equal(iconFile('copy', { variant: 'detail' }), 'programming/copy-detail.svg');
+  assert.equal(iconFile('document', { variant: 'detail' }), 'documents/document.svg');
   assert.equal(iconFile('file-copy', { variant: 'detail' }), iconFile('file-copy'));
   for (const name of ['missing', '../copy', 'constructor', '__proto__']) assert.throws(() => readIcon(name), /unknown icon/);
-  assert.throws(() => iconFile('copy', { variant: 'small' }), /unknown icon variant/);
+  assert.throws(() => iconFile('document', { variant: 'small' }), /unknown icon variant/);
   for (const library of catalog.libraries) assert.ok(files['assets/icons/' + library.notice], library.name);
   for (const [name, brand] of Object.entries(catalog.brands)) {
     assert.ok(catalog.icons[name], name);
@@ -119,24 +131,25 @@ test('presentation_variants_reject_partial_hidden_or_cross_referenced_content', 
   ]) assert.throws(() => parseIconSvg(`<svg viewBox="0 0 24 24">${body}</svg>`), body);
 });
 
-test('shared_components_render_catalog_roles_and_validate_graphic_slots', () => {
-  // #135: 글 형식의 공통 이름은 합의한 대표 그래픽 하나로 연결된다.
-  assert.deepEqual(catalog.kinds, {
-    concept: 'document', architecture: 'hierarchy', experiment: 'flask',
-    troubleshooting: 'bug', build: 'code-block', review: 'code-review',
-    retrospective: 'change-history', project: 'briefcase',
-  });
+test('shared_components_render_catalog_roles_and_validate_graphic_slots', async () => {
+  assert.deepEqual(catalog.kinds, {});
+  assert.deepEqual(catalog.articles, { question: 'question' });
+  assert.deepEqual(catalog.social, { github: 'github', rss: 'rss', linkedin: 'linkedin' });
   for (const [group, render] of [['controls', ControlIcon], ['articles', ArticleIcon], ['social', SocialIcon]]) {
     for (const name of Object.keys(catalog[group])) assert.match(String(render(name)), /<svg[^>]*aria-hidden="true"/);
     assert.throws(() => render('missing'), /unknown/);
   }
-  const graphic = trusted(renderSvgIcon(readIcon('database')));
-  const badge = trusted(renderSvgIcon(readIcon(catalog.kinds.experiment)));
+  const graphic = trusted(renderSvgIcon(readIcon('document')));
+  const badge = trusted(renderSvgIcon(readIcon('question')));
   assert.match(String(ContentIcon({ graphic, badge })), /app-content-icon-badge/);
   assert.doesNotMatch(String(ContentIcon({ graphic })), /app-content-icon-badge/);
   assert.throws(() => ContentIcon({ graphic, badge: '<svg/>' }), /must be trusted/);
-  const runtime = files['ui/icon-data.mjs'].toString();
-  assert.ok(runtime.length < Object.values(catalog.icons).reduce((sum, icon) => sum + files['assets/icons/' + icon.file].length, 0) / 10);
+  const runtime = await import('data:text/javascript;base64,' + Buffer.from(files['ui/icon-data.mjs']).toString('base64'));
+  const roles = Object.fromEntries(['controls', 'articles', 'social'].map(group => [group, catalog[group]]));
+  const names = [...new Set(Object.values(roles).flatMap(group => Object.values(group)))].sort();
+  assert.deepEqual(runtime.ICON_ROLES, roles);
+  assert.deepEqual(Object.keys(runtime.ICON_DATA).sort(), names);
+  for (const name of names) assert.equal(runtime.ICON_DATA[name], files['assets/icons/' + catalog.icons[name].file].toString());
 });
 
 test('media_controls_preserve_white_symbols_and_inherit_button_color', () => {

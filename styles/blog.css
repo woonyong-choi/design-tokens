@@ -31,7 +31,6 @@
 .app-blog-card-meta { display: flex; align-items: center; gap: calc(var(--spacing-gap-xs) / 2); padding: 0 var(--spacing-card-inset) var(--spacing-card-inset); font-size: var(--text-tiny-text); white-space: nowrap; color: var(--color-ui-muted); }
 .app-blog-card-date, .app-blog-card-comments { flex: none; }
 .app-blog-card-comments { display: inline-flex; align-items: center; justify-content: center; gap: calc(var(--spacing-gap-xs) / 2); min-width: var(--spacing-icon); min-height: var(--spacing-icon); margin-inline-start: auto; }
-.app-blog-card-comment-icon { flex: none; width: var(--text-small-text); height: var(--text-small-text); }
 .app-blog-card-author { display: flex; align-items: center; gap: calc(var(--spacing-gap-xs) / 2); min-width: 0; color: inherit; }
 .app-blog-card-author > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .app-blog-card-avatar { flex: none; width: calc(var(--spacing-icon) - var(--spacing-gap-xs)); height: calc(var(--spacing-icon) - var(--spacing-gap-xs)); object-fit: cover; border-radius: var(--radius-pill); }

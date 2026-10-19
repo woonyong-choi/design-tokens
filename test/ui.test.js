@@ -148,14 +148,12 @@ test('tag_sizes_preserve_default_markup_and_apply_to_overflow', () => {
 test('card_comment_counts_without_a_thread_are_text_and_unknown_counts_are_not_zero', () => {
   const base = { href: '/x/', title: '제목', publishedAt: '2026-10-19' };
   const zero = html(ui.BlogCard({ ...base, commentCount: 0 }));
-  assert.match(zero, /<span class="app-blog-card-comments"><svg data-control-icon="comment"[^>]*aria-hidden="true"/);
-  assert.match(zero, /<span class="app-sr">댓글 <\/span>0<span class="app-sr">개<\/span>/);
+  assert.match(zero, /<span class="app-blog-card-comments">댓글 · 0<\/span>/);
+  assert.doesNotMatch(zero, /<svg|data-control-icon="comment"/);
   assert.doesNotMatch(zero, /<a class="app-blog-card-comments"/);
   const unknown = html(ui.BlogCard({ ...base, commentsHref: '/x/#comments' }));
-  assert.match(unknown, /href="\/x\/#comments"><svg data-control-icon="comment"/);
-  assert.match(unknown, /<span class="app-sr">댓글 보기<\/span>/);
-  assert.doesNotMatch(unknown, /<span class="app-sr">개/);
-  assert.doesNotMatch(unknown, /댓글 0개/);
+  assert.match(unknown, /<a class="app-blog-card-comments" href="\/x\/#comments">댓글 보기<\/a>/);
+  assert.doesNotMatch(unknown, /<svg|data-control-icon="comment"|댓글 · 0/);
   assert.doesNotMatch(html(ui.BlogCard(base)), /app-blog-card-comments/);
 });
 
@@ -375,12 +373,12 @@ test('home_and_list_components_have_one_definition_with_escaped_text_and_checked
 
   const metadataCard = html(ui.BlogCard({ href: '/a/', title: 'A', cover: icon, description: '<설명>', publishedAt: '2026-10-08', commentsHref: '/a/#comments', commentCount: 2, author: { name: '<저자>', href: '/author/', avatar: '/avatar.png' } }));
   assert.match(metadataCard, /<p class="app-card-summary">&lt;설명&gt;<\/p><\/div><\/a><div class="app-blog-card-meta">.*<time class="app-blog-card-date" datetime="2026-10-08">2026-10-08<\/time>/);
-  assert.match(metadataCard, /<a class="app-blog-card-comments" href="\/a\/#comments"><svg data-control-icon="comment"/);
-  assert.match(metadataCard, /<span class="app-sr">댓글 <\/span>2<span class="app-sr">개<\/span>/);
+  assert.match(metadataCard, /<a class="app-blog-card-comments" href="\/a\/#comments">댓글 · 2<\/a>/);
+  assert.doesNotMatch(metadataCard, /<svg|data-control-icon="comment"/);
   assert.equal((metadataCard.match(/<a /g) ?? []).length, 2);
   assert.doesNotMatch(metadataCard, /href="\/author\/"/);
   assert.match(metadataCard, /<span>&lt;저자&gt;<\/span>/);
-  assert.match(html(ui.BlogCard({ href: '/a/', title: 'A', cover: icon, commentsHref: '/a/#comments' })), /<span class="app-sr">댓글 보기<\/span><\/a>/);
+  assert.match(html(ui.BlogCard({ href: '/a/', title: 'A', cover: icon, commentsHref: '/a/#comments' })), />댓글 보기<\/a>/);
   // #77: 태그 링크는 글 링크 밖에 있고 이름과 주소를 검증한다.
   const taggedCard = html(ui.BlogCard({ href: '/a/', title: 'A', cover: icon, description: '소개', tagItems: [{ href: '/tags/python/', label: 'Python' }, { href: '/tags/reference/', label: '<참조>' }], publishedAt: '2026-10-08' }));
   assert.match(taggedCard, /app-card-summary[^>]*>소개<\/p><\/div><\/a><div class="app-blog-card-tags"[^>]*><a class="app-tag" href="\/tags\/python\/">Python<\/a> <a class="app-tag" href="\/tags\/reference\/">&lt;참조&gt;<\/a>/);

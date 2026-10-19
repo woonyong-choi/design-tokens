@@ -119,7 +119,7 @@ const html = CardGroup({ columns: 4, cards });
 
 `ProjectList({ title, projects })`는 대표 카드와 관련 문서 링크를 항목별로 묶는다. 각 프로젝트는 `href`, `title`, `description`, 선택적인 `icon` 슬롯과 `links: [{ href, title }]`를 받는다. 아이콘은 신뢰된 HTML 슬롯이며, 제목과 설명은 일반 텍스트다. 카드와 관련 링크의 URL은 모두 검사한다. 소비자는 프로젝트 콘텐츠와 경로만 전달한다.
 
-`BlogCard.commentsHref`는 카드의 글 링크와 분리된 댓글 링크다. 댓글 수가 있으면 말풍선과 숫자를 표시하고, 모르면 숫자를 만들지 않고 말풍선만 표시한다. 보조 기술에는 댓글 수 또는 댓글 보기 이름을 전달한다.
+`BlogCard.commentsHref`는 카드의 글 링크와 분리된 댓글 링크다. 유효한 댓글 수가 있으면 `댓글 · N`을 표시하고, 댓글 주소만 있으면 `댓글 보기`를 표시한다. 보이는 텍스트가 접근 가능한 이름이며 아이콘은 사용하지 않는다.
 
 ## 확장
 
@@ -129,7 +129,7 @@ const html = CardGroup({ columns: 4, cards });
 
 `TagFilter({ tags, reset })`는 `id`, `label`, `selected` 항목을 중앙 정렬한 태그 토글로 만든다. 토글은 실제 단추이며 `aria-pressed`로 선택 상태를 표시한다. 호스트는 `data-tag-toggle`의 태그 ID를 검색 상태에 반영한다. `SearchBox`의 선택 `filters` 슬롯으로 추천 검색어 아래에 배치한다. 후보 태그와 교집합 계산은 호스트 검색 모델이 맡는다.
 
-`PageHeading({ title, icon })`는 선택적 장식 아이콘을 포함한 페이지 제목이다. `icon`은 검증된 슬롯이며 접근 가능한 제목은 일반 텍스트로 유지한다. `BlogCard`의 댓글 표시는 공통 말풍선 아이콘의 하늘색 면·파란 윤곽과 숫자를 사용하고 보조 기술에는 댓글 수를 문장으로 전달한다. `commentCount`가 유효하고 `commentsHref`가 없으면 비대화형 숫자를 표시한다. 댓글 주소만 있으면 숫자를 추측하지 않고 댓글 보기 이름을 가진 아이콘 링크를 표시한다.
+`PageHeading({ title, icon })`는 선택적 장식 아이콘을 포함한 페이지 제목이다. `icon`은 검증된 슬롯이며 접근 가능한 제목은 일반 텍스트로 유지한다. `BlogCard`의 댓글 표시는 아이콘 없이 `댓글 · N` 텍스트를 사용한다. `commentCount`가 유효하고 `commentsHref`가 없으면 비대화형 텍스트를 표시한다. 댓글 주소만 있으면 숫자를 추측하지 않고 `댓글 보기` 링크를 표시한다.
 
 `LogoItem({ href, label, src })`은 목적지가 있으면 기술 로고 링크를 만든다. 목적지가 없으면 같은 크기의 비대화형 `span`에 비활성 상태를 표시하고 공통 `opacity.dim`을 적용한다. 소비자는 `label`에 관련 글이 없는 상태를 설명한다. 비활성 항목은 탭 이동과 호버 동작을 갖지 않는다.
 

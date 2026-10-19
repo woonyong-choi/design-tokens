@@ -66,8 +66,7 @@ export function BlogCard({ href, title, showTitle = true, level = 3, cover, auto
   const link = safeUrl(href);
   const date = publishedAt ? `<time class="app-blog-card-date" datetime="${escape(publishedAt)}">${escape(dateLabel || publishedAt)}</time>` : '';
   const knownCount = Number.isSafeInteger(commentCount) && commentCount >= 0;
-  const commentIcon = commentsHref || knownCount ? ControlIcon('comment', 'app-blog-card-comment-icon') : '';
-  const count = commentIcon + (knownCount ? `<span><span class="app-sr">댓글 </span>${commentCount}<span class="app-sr">개</span></span>` : '<span class="app-sr">댓글 보기</span>');
+  const count = knownCount ? `댓글 · ${commentCount}` : '댓글 보기';
   const comments = commentsHref ? `<a class="app-blog-card-comments" href="${safeUrl(commentsHref)}">${count}</a>` : knownCount ? `<span class="app-blog-card-comments">${count}</span>` : '';
   const byline = author?.name ? `${author.avatar ? `<img class="app-blog-card-avatar" src="${safeUrl(author.avatar)}" alt="" loading="lazy" decoding="async">` : ''}<span>${escape(author.name)}</span>` : '';
   const writer = byline ? `<span class="app-blog-card-author">${byline}</span>` : '';

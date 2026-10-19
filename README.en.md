@@ -14,7 +14,7 @@ The package provides design values such as colors, spacing, and typography along
 
 ## Quick start
 
-Node.js 20 or later and npm are required.
+Node.js 20 or later and npm are required. Diagram consumers can use the [diagram tarball installation](docs/distribution.md#도표-전용-tarball).
 
 ### Run from the repository
 

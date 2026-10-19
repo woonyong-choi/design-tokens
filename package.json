@@ -46,7 +46,9 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "test": "node --test test/*.test.js",
-    "check": "node scripts/build.mjs --check"
+    "check": "node scripts/build.mjs --check",
+    "build:diagram": "node scripts/build-diagram-package.mjs",
+    "check:diagram": "node scripts/build-diagram-package.mjs --check"
   },
   "engines": {
     "node": ">=20"

@@ -52,7 +52,7 @@ JS
 아래 명령은 검증한 커밋을 Git 의존성으로 설치합니다.
 
 ```sh
-npm install --save-dev 'github:woonyong-choi/design-tokens#5c274d680d3f0c65b76fc6ac6c756138772474f5'
+npm install --save-dev 'github:woonyong-choi/design-tokens#8c7133a79d623d6d0774ebe22a668c0931e7a1cb'
 ```
 
 설치한 프로젝트에서도 위 HTML 예제를 실행할 수 있습니다. 커밋에 생성한 `dist/`가 포함돼 있어 소비자가 디자인 파일을 다시 빌드할 필요는 없습니다. 새 커밋으로 옮길 때는 [갱신 절차](docs/distribution.md#갱신)를 따르세요.
@@ -99,7 +99,7 @@ npm install --save-dev 'github:woonyong-choi/design-tokens#5c274d680d3f0c65b76fc
 - [공통 구성 요소](docs/components.md)
   - [공통 아이콘](docs/design/content-icons.md)
 
-아이콘은 공개 블로그·문서 엔진·Torso와 등록된 비공개 미리보기에서 사용하는 도형과 역할을 배포합니다. 현재 일반 SVG 49개와 기술·서비스 브랜드 34개, 별칭 10개를 유지합니다. 비공개 메타데이터의 상세형 선택을 보존하며, 본문에서 수집한 7개 이름은 토큰 검증 전까지 해당 기본 도형을 보존합니다. 도움말 기본 역할은 `question`이며 글 형식 매핑 `kinds`는 비어 있습니다. 미사용 아이콘 이름과 별칭은 조회 오류가 됩니다.
+아이콘은 공개 블로그·문서 엔진·DiagramPlay와 등록된 비공개 미리보기에서 사용하는 도형과 역할을 배포합니다. 현재 일반 SVG 49개와 기술·서비스 브랜드 34개, 별칭 10개를 유지합니다. 비공개 메타데이터의 상세형 선택을 보존하며, 본문에서 수집한 7개 이름은 토큰 검증 전까지 해당 기본 도형을 보존합니다. 도움말 기본 역할은 `question`이며 글 형식 매핑 `kinds`는 비어 있습니다. 미사용 아이콘 이름과 별칭은 조회 오류가 됩니다.
 
 [전체 문서](docs/README.md)
 

@@ -49,7 +49,7 @@ The output is an `app-support-grid is-four` group containing a link to `/docs/me
 This command installs a verified commit as a Git dependency.
 
 ```sh
-npm install --save-dev 'github:woonyong-choi/design-tokens#5c274d680d3f0c65b76fc6ac6c756138772474f5'
+npm install --save-dev 'github:woonyong-choi/design-tokens#8c7133a79d623d6d0774ebe22a668c0931e7a1cb'
 ```
 
 Run the same HTML example in the consuming project. The commit includes generated `dist/` files, so consumers do not need to rebuild the design files. Follow the [update procedure](docs/distribution.md#갱신) when moving to a new commit.
@@ -92,7 +92,7 @@ The design documents are written in Korean.
 - [Shared components](docs/components.md)
   - [Shared icons](docs/design/content-icons.md)
 
-The package includes icons and roles used by the public blog, document engine, Torso, and registered private previews. It retains 49 general SVGs, 34 technology and service brands, and 10 aliases. Private metadata keeps its detail selection. Seven names collected from body tokens retain their default shapes pending token validation. The default help role is `question`, and `kinds` is empty. Removed icon names and aliases fail lookup.
+The package includes icons and roles used by the public blog, document engine, DiagramPlay, and registered private previews. It retains 49 general SVGs, 34 technology and service brands, and 10 aliases. Private metadata keeps its detail selection. Seven names collected from body tokens retain their default shapes pending token validation. The default help role is `question`, and `kinds` is empty. Removed icon names and aliases fail lookup.
 
 [All documentation](docs/README.md)
 

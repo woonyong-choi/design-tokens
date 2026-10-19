@@ -17,7 +17,7 @@
 
 ## 빠른 시작
 
-Node.js 20 이상과 npm이 필요합니다. 도표만 쓰는 앱은 [도표 전용 tarball 설치](docs/distribution.md#도표-전용-tarball)를 사용할 수 있습니다.
+Node.js 20 이상과 npm이 필요합니다. 도표만 쓰는 앱은 사람·서비스 브랜드와 기본 UI·상태 SVG 18개를 담은 [도표 전용 tarball 설치](docs/distribution.md#도표-전용-tarball)를 사용할 수 있습니다.
 
 ### 저장소에서 확인
 

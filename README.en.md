@@ -14,7 +14,7 @@ The package provides design values such as colors, spacing, and typography along
 
 ## Quick start
 
-Node.js 20 or later and npm are required. Diagram consumers can use the [diagram tarball installation](docs/distribution.md#도표-전용-tarball).
+Node.js 20 or later and npm are required. Diagram consumers can use the [diagram tarball installation](docs/distribution.md#도표-전용-tarball), containing 18 SVGs for people, service brands, UI controls, and states.
 
 ### Run from the repository
 

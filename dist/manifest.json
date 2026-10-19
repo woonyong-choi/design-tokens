@@ -7881,7 +7881,7 @@
     "assets/icons/people/user-scan.svg": "415a12a0a768d9f4b14c587e45e3ed2a16add54dd2b197eab48319a0b471b884",
     "assets/icons/people/user-search.svg": "95f51ac70c79bc602e14256d11d8df2ff38c252d063655c93562a58c67515171",
     "assets/icons/people/user-security.svg": "be1b03cd90babedc33c9dc0bb1b576ab8c848f24767303229b8cffeb53dc80dc",
-    "assets/icons/people/user-settings.svg": "8a181d3716b093ad8769f72c94553b18a45a3d26d0a37b9edf22c5c3bcc4bccb",
+    "assets/icons/people/user-settings.svg": "192f3bfa30c2f5a0d3bdad032c6a27c1a3c62d3d23655e802b8fa03c5a0bbc17",
     "assets/icons/people/user-share.svg": "1f9cf78f52f593429a62320a8dc5b6603016bb040ce57c906fda73e7cf965734",
     "assets/icons/people/user-sharing.svg": "039cbfed67886342dc5b7949be9a0b600513e06131f3bcf1036f44b82b722681",
     "assets/icons/people/user-signal-1.svg": "7f59bf1697fc59d2288582e8d17cdf14e4688c0b996e893be54bc0c65a9e5ad2",
@@ -9975,5 +9975,5 @@
     "ui/table.mjs": "d285303ed3e84599a512085e79dfd92db751a890ad4890b81930f1ccf2126ae0",
     "ui/toolbar.mjs": "3fab9dbcd66cbb7273e8ce39d7754e5783ea4e605418dc4faf2c91831067cdd2"
   },
-  "contentHash": "18595048c17ac315081a6f3a306c33d4765c348bd0c7885699b482b75346fb95"
+  "contentHash": "a247119ac1e8748e2118a69340b45ac0781a224fa80dff1c0d38a3178694226e"
 }

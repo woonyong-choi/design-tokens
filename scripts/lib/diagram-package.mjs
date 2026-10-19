@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto';
 
 const POLICY = Object.freeze({
-  icons: Object.freeze('admin apigw bastion cache cdn db desktop dns function lb mobile monitoring mq nginx postgresql redis region server user vpn check warning close ellipsis git github'.split(' ')),
+  icons: Object.freeze('user admin nginx postgresql redis git github check warning close ellipsis'.split(' ')),
   controls: Object.freeze('copy download maximize-2 minimize-2 check alert zoom-in zoom-out scan'.split(' ')),
   files: Object.freeze(['tokens.css', 'tokens.js', 'tokens.json', 'tokens.dark.json', 'styles/tabs.css', 'styles/toolbar.css', 'styles/diagram-embed.css']),
 });

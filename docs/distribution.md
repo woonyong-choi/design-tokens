@@ -58,10 +58,10 @@ npm install --save-dev 'https://raw.githubusercontent.com/woonyong-choi/design-t
 | 토큰 | `tokens.css`, `tokens.js`, `tokens.json`, `tokens.dark.json` |
 | 도표 스타일 | `styles/diagram/**`, `styles/tabs.css`, `styles/toolbar.css`, `styles/diagram-embed.css` |
 | UI | `ui/**` 원문 전체. `ui/icon-data.mjs`만 도표 조작 9개로 재생성 |
-| 아이콘 | 도표 20개, 상태 4개, git·github, 조작 역할 9개의 합집합인 canonical SVG 33개 |
-| 카탈로그 | 선택한 아이콘·브랜드, 선택 대상의 별칭 14개, 조작 역할 9개. 분류·라이브러리와 모든 notice 경로 보존 |
+| 아이콘 | 사람 2개, 서비스 브랜드 5개, UI·상태 11개의 합집합인 canonical SVG 18개 |
+| 카탈로그 | 선택한 아이콘·브랜드, 선택 대상의 별칭 4개, 조작 역할 9개. 분류·라이브러리와 모든 notice 경로 보존 |
 
-도표 이름은 `admin apigw bastion cache cdn db desktop dns function lb mobile monitoring mq nginx postgresql redis region server user vpn`이다. 상태는 `check warning close ellipsis`이고 조작 역할은 `copy download maximize-2 minimize-2 check alert zoom-in zoom-out scan`이다. 별칭은 canonical 파일로 해석한다. UI 안의 조작 SVG 9개와 원시 SVG 파일의 중복은 브라우저 렌더링과 Node 아이콘 읽기가 각각 쓰는 의도된 구성이다.
+사람은 `user admin`, 서비스 브랜드는 `nginx postgresql redis git github`를 선택한다. 상태는 `check warning close ellipsis`이고 조작 역할은 `copy download maximize-2 minimize-2 check alert zoom-in zoom-out scan`이다. 별칭 `admin administrator incident person`은 canonical 파일로 해석한다. 선택하지 않은 일반 도표 아이콘은 이 tarball에서 제외하며 전체 패키지에는 그대로 남는다. UI 안의 조작 SVG 9개와 원시 SVG 파일의 중복은 브라우저 렌더링과 Node 아이콘 읽기가 각각 쓰는 의도된 구성이다.
 
 글꼴, 다른 이미지, 전체 웹 CSS와 전체 아이콘 카탈로그는 포함하지 않는다. 카탈로그의 `social`, `articles`, `kinds`는 빈 객체다. 따라서 원문 UI 파일을 포함하더라도 해당 역할이 필요한 홈페이지 구성 요소는 이 프로필의 지원 범위가 아니다. AWS 전용 서비스 아이콘은 없다. 선택 집합에 없는 이름은 `readIcon`이 거부한다. 전체 UI 원문은 소비자가 파일을 직접 읽어 브라우저 모듈을 조립할 수 있도록 유지하며 별도로 묶거나 축소하지 않는다.
 

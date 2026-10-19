@@ -14,6 +14,8 @@ The package provides design values such as colors, spacing, and typography along
 
 ## Quick start
 
+The full Git package provides 24 general SVGs and 34 technology and service brand SVGs. Use `getIconCatalog().brands` and `readIcon` from `/icons` to read all brands. The sources include the Devicon Linux variant and the JavaScript community logo.
+
 Node.js 20 or later and npm are required. Diagram consumers can use the [diagram tarball installation](docs/distribution.md#도표-전용-tarball), containing 18 SVGs for people, service brands, UI controls, and states.
 
 ### Run from the repository

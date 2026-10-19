@@ -7,6 +7,10 @@ here does not imply endorsement. Software licenses do not grant blanket rights t
 these trademarks. Source URLs, chosen variants and source hashes are recorded per
 file in config/assets.json.
 
+Repository location after migration: the current source records are in
+assets/icons/catalog.json under brands. The original notice above retains the
+consumer file path used before migration.
+
 C: distributed by the C language homepage, https://www.c-language.org/.
 No claim of a unique ISO-designated logo is made.
 C#: Microsoft / .NET authors, https://github.com/dotnet/brand.

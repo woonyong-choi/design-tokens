@@ -28,6 +28,8 @@
     "./tailwind.css": "./dist/tailwind.css",
     "./diagram": "./dist/ui/diagram.mjs",
     "./runtime/document": "./dist/ui/runtime/document.js",
+    "./runtime/document-widgets": "./dist/ui/runtime/document-widgets.js",
+    "./styles/document-widgets.css": "./dist/styles/document-widgets.css",
     "./runtime/document-navigation": "./dist/ui/runtime/document-navigation.js",
     "./runtime/flows": "./dist/ui/runtime/flows.js",
     "./runtime/video": "./dist/ui/runtime/video.js",

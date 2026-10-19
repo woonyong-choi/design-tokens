@@ -51,6 +51,8 @@ JS
 
 ### 다른 프로젝트에 설치
 
+사이트 레이아웃 없이 본문 위젯만 연결하려면 `/runtime/document-widgets`의 `mountDocumentWidgets`와 `/styles/document-widgets.css`를 사용하세요. 호스트 본문의 기본 글자·배경·폭을 유지하며 반환한 함수로 연결을 정리합니다. [호스트 입력과 수명 계약](docs/components.md#본문-위젯-연결)을 확인하세요. native 도표 통신은 제공하지 않습니다.
+
 아래 명령은 검증한 커밋을 Git 의존성으로 설치합니다.
 
 ```sh

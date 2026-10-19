@@ -6,24 +6,25 @@ import { cssTimeMs } from '../dist/ui/runtime/time.js';
 import { ToolIcon } from '../dist/ui/toolbar.mjs';
 import { bindDiagramHost } from '../dist/ui/runtime/diagram-host.js';
 
-function toolbar({ write, download, duration = '2400ms', source = '줄\r\n\t값 <>&' } = {}) {
+function toolbar({ write, copyText, download, duration = '2400ms', source = '줄\r\n\t값 <>&' } = {}) {
   const buttons = Object.fromEntries(['copy', 'download'].map(action => [action, {
     dataset: {}, innerHTML: ToolIcon(action), attrs: {}, hidden: true,
     title: action === 'copy' ? '코드 복사' : 'HTML 다운로드',
     setAttribute(key, value) { this.attrs[key] = value; }, removeAttribute(key) { delete this.attrs[key]; },
     addEventListener(_, handler) { this.click = handler; },
+    removeEventListener(_, handler) { if (this.click === handler) delete this.click; },
   }]));
   const status = { textContent: '' };
   const root = { querySelector: selector => selector === '[data-tool-status]' ? status : buttons[selector.match(/"(\w+)"/)[1]], append() {} };
   const timers = [];
   const document = { createElement: () => ({ setAttribute() {}, select() {}, remove() {} }), addEventListener() {}, removeEventListener() {}, execCommand: () => false };
-  runInNewContext(`(${bindToolbar.toString()})(root, options)`, {
-    root, options: { source, download }, ToolIcon, cssTimeMs, document, isSecureContext: true,
+  const dispose = runInNewContext(`(${bindToolbar.toString()})(root, options)`, {
+    root, options: { source, download, copyText }, ToolIcon, cssTimeMs, document, isSecureContext: true,
     navigator: { clipboard: write ? { writeText: write } : undefined },
     getComputedStyle: () => ({ getPropertyValue: () => duration }),
-    setTimeout: (callback, delay) => { timers.push({ callback, delay }); }, clearTimeout() {},
+    setTimeout: (callback, delay) => { const timer = { callback, delay }; timers.push(timer); return timer; }, clearTimeout(timer) { if (timer) timer.cleared = true; },
   });
-  return { ...buttons, status, reset: () => timers.at(-1).callback(), delay: () => timers.at(-1).delay };
+  return { ...buttons, status, dispose, timers, reset: () => timers.at(-1).callback(), delay: () => timers.at(-1).delay };
 }
 
 test('shared_toolbar_waits_for_exact_copy_and_ignores_concurrent_clicks', async () => {
@@ -81,6 +82,39 @@ test('shared_toolbar_hides_unavailable_actions_and_announces_download_start', as
   await failed.download.click();
   assert.equal(failed.status.textContent, '다운로드하지 못했습니다');
   assert.equal(failed.download.title, '다운로드하지 못했습니다. 다시 시도하세요');
+});
+
+test('bindToolbar_dispose_cancels_feedback_and_restores_controls', async () => {
+  const view = toolbar({ copyText: async () => {} });
+  await view.copy.click();
+  assert.equal(view.copy.dataset.state, 'done');
+
+  view.dispose();
+  view.dispose();
+
+  assert.equal(view.timers.at(-1).cleared, true);
+  assert.equal(view.copy.click, undefined);
+  assert.equal(view.copy.dataset.state, undefined);
+  assert.equal(view.status.textContent, '');
+  assert.equal(view.copy.title, '코드 복사');
+});
+
+test('bindToolbar_dispose_prevents_late_success_and_failure_from_mutating_dom', async () => {
+  for (const rejects of [false, true]) {
+    let finish;
+    const copies = [];
+    const view = toolbar({ copyText: text => { copies.push(text); return new Promise((resolve, reject) => { finish = rejects ? reject : resolve; }); } });
+    const pending = view.copy.click();
+    view.dispose();
+    const before = JSON.stringify([view.copy, view.status]);
+
+    finish();
+    await pending;
+
+    assert.deepEqual(copies, ['줄\r\n\t값 <>&']);
+    assert.equal(JSON.stringify([view.copy, view.status]), before);
+    assert.equal(view.timers.length, 0);
+  }
 });
 
 test('diagram_host_limits_messages_to_its_frame_and_keeps_height_during_fullscreen', () => {

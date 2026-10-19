@@ -6,6 +6,7 @@ import { buildTables, readSource } from './tokens.mjs';
 import { themeTable, resolveValue, themeCss, tailwindCss } from './token-css.mjs';
 import { flattenStyle } from './style-source.mjs';
 import { bundleStyles } from './styles-bundle.mjs';
+import { documentWidgetStyles } from './widget-styles.mjs';
 import { parseIconSvg } from '../../ui/svg.mjs';
 
 const serialize = value => JSON.stringify(value, null, 2) + '\n';
@@ -44,15 +45,17 @@ export function buildDesign(root) {
   };
   const sources = { light: source.light, dark: combine(source.light, source.dark) };
   const table = themeTable(sources.light);
-  themeTable(sources.dark);
+  const darkTable = themeTable(sources.dark);
   const theme = { meta: { modes: ['light', 'dark'], defaultMode: 'light' }, sources };
   const css = flattenStyle(join(root, 'styles/index.css'), join(root, 'styles'));
+  const widgetCss = ['base', 'tabs', 'toolbar', 'controls', 'prose'].map(name => readFileSync(join(root, `styles/${name}.css`), 'utf8')).join('\n');
   const files = {
     'tokens.json': serialize(source.light), 'tokens.dark.json': serialize(source.dark),
     'tokens.css': themeCss(theme), 'tokens.js': tokenModule(table), 'tailwind.css': tailwindCss(theme),
     'styles.source.css': css,
     ...Object.fromEntries(['tabs', 'toolbar', 'table', 'diagram-embed'].map(name => [`styles/${name}.css`, readFileSync(join(root, `styles/${name}.css`))])),
     'styles.css': css.replace(/breakpoint\(([\w-]+)\)/g, (_, name) => resolveValue(table, `breakpoint.${name}`)),
+    'styles/document-widgets.css': documentWidgetStyles(widgetCss, { light: table, dark: darkTable }).replace(/breakpoint\(([\w-]+)\)/g, (_, name) => resolveValue(table, `breakpoint.${name}`)),
     ...filesIn(join(root, 'assets'), 'assets/'), ...filesIn(join(root, 'ui'), 'ui/'),
     ...filesIn(join(root, 'styles/diagram'), 'styles/diagram/'),
   };

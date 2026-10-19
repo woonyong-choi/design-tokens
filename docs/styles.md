@@ -149,6 +149,14 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 ## 본문과 코드
 
+### 본문 위젯 스타일
+
+`styles/document-widgets.css` 배포물은 base의 숨김 규칙과 tabs·toolbar·controls·prose의 코드·탭·툴팁·각주·수식 규칙을 빌드에서 선택해 `app-document-widgets` 아래로 범위를 제한한 생성물이다. 손으로 복제한 별도 CSS는 없으며 기존 정본 규칙 변경이 사이트와 위젯 출력에 함께 반영된다. 위젯 토큰도 기존 light·dark 정본에서 필요한 값만 생성하며 root의 사용자 정의 속성으로 한정한다.
+
+전체 base·prose·사이트 CSS, 웹폰트 등록과 documentElement의 테마 분기는 포함하지 않는다. root와 일반 제목·문단의 글꼴·색·배경·폭·간격은 호스트가 소유한다. 코드와 조작부 등 위젯 자체의 글꼴·색·간격은 공통 토큰을 사용한다. root의 `data-widget-theme`는 호스트가 light 또는 dark로 명시하며 없으면 위젯만 light다. 기존 웹 본문은 전체 CSS를 계속 사용한다.
+
+이 출력은 KaTeX 스타일·글꼴이나 도표 문서를 포함하지 않는다. 수식 자산은 document-engine의 mathAssets 결과에 따라 호스트가 로드한다. 도표 iframe의 native 메시지 연결은 제공하지 않는다.
+
 본문의 Markdown 표와 단축키 표는 `Table`과 `styles/table.css`를 공유한다. 면·글자·구분선은 카드와 같은 의미 토큰을 읽으며 문서가 지정한 열 정렬은 유지한다. 도표의 상태·범주·도형 색은 `color.category`의 같은 계열에서 역할별로 파생한다. 넓은 데이터 면에만 적용하는 별도 팔레트는 두지 않는다.
 
 표는 내용의 고유 폭을 확보해 코드 옆의 짧은 설명이 한두 글자씩 세로로 눌리지 않게 한다. 긴 셀은 기존 본문 읽기 폭인 `container.body-width` 안에서 줄바꿈한다. 코드도 긴 식은 줄바꿈하되 공백·줄바꿈과 원문을 보존한다. 좁은 화면에서는 표 영역 안에서 가로로 이동하고 페이지 전체 폭은 늘리지 않는다.
@@ -214,6 +222,10 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 큐의 빈 칸·찬 칸과 카드 내용 면도 `figure.css`가 칠을 소유한다. 소비자는 같은 칸 윤곽을 재사용하고 값에 따른 칸 수와 표시 시각만 정한다.
 
 ## 확인
+
+`node test/document-widgets-browser.mjs <playwright-core의 index.mjs 경로>`는 320·1280px에서 분리된 두 root의 코드·탭·플랫폼·툴팁, 중복 mount 거절, dispose·재연결과 사이트 자동 진입점 호환을 검사한다. native 본문 계산 스타일 보존과 listener 전부 제거, 대기 중 복사 완료 뒤 DOM 무변경을 확인한다. 선택적인 마지막 인수는 화면 기록 경로 접두사다. 실제 Obsidian 앱 연결과 테마 충돌은 이 브라우저 검사에 포함하지 않는다.
+
+`node test/document-widget-ids.mjs <document-engine의 index.js 경로>`는 실제 엔진의 고유 pageId로 두 문서를 렌더링해 제목·탭·ARIA·툴팁·각주 ID의 비충돌과 참조 해소를 확인한다. 진단용 id만으로는 격리되지 않는 반례도 검사한다. 임의의 호스트 HTML이나 다른 엔진 버전까지 격리를 보장하는 검사는 아니다.
 
 `npm test`, `npm run build`, `npm run check`로 계약과 생성물을 검사한다. 구조·스타일을 바꾼 경우 소비자의 실제 검색·태그·복사·문서 탐색을 넓은 화면과 모바일에서 확인한다. 제공된 Things 기준에서 의도적으로 확장한 기능을 제거해 외형만 맞추지 않는다.
 

@@ -121,9 +121,9 @@ JS
 
 | 소비자 | 선언 | 이유 |
 |---|---|---|
-| Torso | `peerDependencies` 범위 + `devDependencies` 고정 commit | 그림은 호스트 앱이 설치한 같은 디자인을 읽고, 자체 시험·그림 생성은 고정 commit으로 한다 |
+| DiagramPlay | `peerDependencies` 범위 + `devDependencies` 고정 commit | 그림은 호스트 앱이 설치한 같은 디자인을 읽고, 자체 시험·그림 생성은 고정 commit으로 한다 |
 | document-engine | `peerDependencies` 범위 + `devDependencies` 고정 commit | 기본 테마는 호스트 앱이 준 디자인을 쓴다 |
-| homepage | `devDependencies` 고정 commit | 사이트가 디자인·Torso·문서 엔진의 버전을 함께 정한다 |
+| homepage | `devDependencies` 고정 commit | 사이트가 디자인·DiagramPlay·문서 엔진의 버전을 함께 정한다 |
 
 `peerDependencies`의 범위는 `package.json`의 `version`(semver)과 비교한다. Git으로 설치한 패키지도 이 값을 가지므로 앱이 고른 commit 하나가 모든 부품에 공유된다. 범위를 벗어나는 호환 변경은 `version`을 올려 알린다.
 
@@ -141,4 +141,4 @@ JS
 
 `v*` 태그는 `.github/workflows/release.yml`의 검사와 GitHub 릴리스를 실행한다. 태그와 `package.json`의 버전이 다르면 실패한다. `NPM_TOKEN`이 없으면 npm 발행만 건너뛴다. 일반 main 병합은 이 워크플로를 실행하지 않는다.
 
-현재 Git 의존성 설치에는 자동 전달용 배포 키가 필요 없다. 저장소에 남아 있다면 `DAPHNIS_DEPLOY_KEY`(이 저장소), `HOMEPAGE_DEPLOY_KEY`·`DESIGN_AUTOMATION_TOKEN`(Torso), `DESIGN_SOURCE_SSH_KEY`·`ENGINE_SOURCE_REPOSITORY`·`ENGINE_SOURCE_SSH_KEY`·`DESIGN_AUTOMATION_TOKEN`(homepage)과 대응하는 deploy key를 지운다. npm 발행용 `NPM_TOKEN`은 태그 릴리스에서만 쓴다.
+현재 Git 의존성 설치에는 자동 전달용 배포 키가 필요 없다. 저장소에 남아 있다면 `DAPHNIS_DEPLOY_KEY`(이 저장소), `HOMEPAGE_DEPLOY_KEY`·`DESIGN_AUTOMATION_TOKEN`(DiagramPlay), `DESIGN_SOURCE_SSH_KEY`·`ENGINE_SOURCE_REPOSITORY`·`ENGINE_SOURCE_SSH_KEY`·`DESIGN_AUTOMATION_TOKEN`(homepage)과 대응하는 deploy key를 지운다. npm 발행용 `NPM_TOKEN`은 태그 릴리스에서만 쓴다.

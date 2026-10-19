@@ -14,7 +14,7 @@
 
 원본 도형을 다시 그리지 않는다. 기존 렌더러가 지원하지 않는 색 표현을 정적 벡터로 변환했다면 원래 도형·팔레트·그라디언트 함수와 변환 사실을 기록하고, 같은 크기의 원배포 렌더와 픽셀·시각 대조한다. 이 호환 변환을 원본 파일의 바이트 그대로라고 설명하지 않는다. 출처·권리 고지는 카탈로그가 연결한 `assets/icons/licenses/`의 각 고지를 따른다.
 
-아이콘 원본은 `assets/icons/<의미>/<이름>.svg` 한 곳에서 편집한다. 홈페이지와 Torso는 같은 배포본과 렌더러를 사용한다. `icons` 안의 깊이는 의미 폴더와 파일까지 2단계다. 이 제한은 홈페이지 원고에는 적용하지 않는다.
+아이콘 원본은 `assets/icons/<의미>/<이름>.svg` 한 곳에서 편집한다. 홈페이지와 DiagramPlay는 같은 배포본과 렌더러를 사용한다. `icons` 안의 깊이는 의미 폴더와 파일까지 2단계다. 이 제한은 홈페이지 원고에는 적용하지 않는다.
 
 도표 전용 tarball은 사람 `user`·`admin`, 서비스 브랜드 5개와 기존 UI·상태만 선택한다. 전체 패키지는 일반 SVG 49개와 중앙 브랜드 SVG 34개를 제공한다. 일반 도형·역할·별칭은 실제 사용 범위만 유지한다. 선택 범위와 설치 계약은 [도표 전용 tarball](../distribution.md#도표-전용-tarball)을 따른다. `admin`과 `administrator`는 `user-settings`를 가리킨다. 두 표현의 사람 머리·몸통은 `user`와 같고 중앙 톱니는 관리자 구별 표식이다.
 
@@ -33,7 +33,7 @@
 
 파일 이름은 소문자 kebab-case이고 카탈로그 전체에서 고유해야 한다. 기존 `-mono` 이름은 참조 호환성을 위해 유지하고, 상세 대안은 `-detail`을 사용한다. 색상과 단색을 따로 그려야 할 때는 같은 SVG 안의 두 표현 그룹을 사용한다. 크기별 폴더나 SVG를 변환한 PNG 사본은 만들지 않는다. 별칭은 검색어와 이름 해석을 연결하며 기존 직접 이미지 경로를 대체하지 않는다. 현재 소비자가 참조하지 않는 일반 도형·별칭·역할은 함께 제거한다. 중앙 브랜드 원본은 이 일반 도형 정리 조건과 별도로 관리한다.
 
-현재 일반 SVG는 기본형·상세형을 합쳐 49개이며, 기술·서비스 브랜드 34개와 함께 총 83개를 배포한다. 사용 범위에는 공개 블로그·문서 엔진·Torso와 현재 등록된 비공개 미리보기의 메타데이터·이동 목록이 포함된다. 메타데이터는 기존 별칭과 `detail` 선택을 유지한다. 본문에서 수집한 7개 이름은 도표·인라인 토큰 검증이 끝나지 않아 해당 이름의 기본 도형만 보존한다. 이 보존을 본문 사용 검증 완료로 보지 않는다.
+현재 일반 SVG는 기본형·상세형을 합쳐 49개이며, 기술·서비스 브랜드 34개와 함께 총 83개를 배포한다. 사용 범위에는 공개 블로그·문서 엔진·DiagramPlay와 현재 등록된 비공개 미리보기의 메타데이터·이동 목록이 포함된다. 메타데이터는 기존 별칭과 `detail` 선택을 유지한다. 본문에서 수집한 7개 이름은 도표·인라인 토큰 검증이 끝나지 않아 해당 이름의 기본 도형만 보존한다. 이 보존을 본문 사용 검증 완료로 보지 않는다.
 
 별칭 10개는 `admin`·`administrator` → `user-settings`, `apigw` → `gateway`, `architecture` → `hierarchy`, `deploy` → `box-up`, `incident` → `warning`, `model` → `brain-circuit`, `notify` → `event`, `person` → `user`, `processor` → `cpu`다. 역할은 조작부 19개·소셜 3개·도움말 `question`과 빈 `kinds`를 유지한다.
 
@@ -152,23 +152,23 @@ Things의 [공식 기능 설명](https://culturedcode.com/things/features/)은 �
 
 ## 다이어그램
 
-Torso는 `icon=user`처럼 카탈로그 이름과 별칭을 직접 쓴다. 사용자 SVG가 필요한 경우만 `icons content "폴더"`와 `icon=content:user`를 쓴다. 도형의 측정·연결점·배치·경로 계산은 Torso가 맡는다.
+DiagramPlay는 `icon=user`처럼 카탈로그 이름과 별칭을 직접 쓴다. 사용자 SVG가 필요한 경우만 `icons content "폴더"`와 `icon=content:user`를 쓴다. 도형의 측정·연결점·배치·경로 계산은 DiagramPlay가 맡는다.
 
-[실행 예제](../../examples/content-icons.torso)는 `torso` 문법으로 `user`, `admin`, `git`, `postgresql`를 연결한다.
+[실행 예제](../../examples/content-icons.diagramplay)는 `diagramplay` 문법으로 `user`, `admin`, `git`, `postgresql`를 연결한다.
 
 ![공통 아이콘으로 표현한 요청 경로](../../examples/content-icons.svg)
 
 ```sh
-TORSO_ROOT=/path/to/Torso
-node "$TORSO_ROOT/src/cli.js" check examples/content-icons.torso --strict
-node "$TORSO_ROOT/src/cli.js" render examples/content-icons.torso --strict --static
+DIAGRAMPLAY_ROOT=/path/to/diagramplay
+node "$DIAGRAMPLAY_ROOT/src/cli.js" check examples/content-icons.diagramplay --strict
+node "$DIAGRAMPLAY_ROOT/src/cli.js" render examples/content-icons.diagramplay --strict --static
 ```
 
-재생성 전에 Torso의 `@woonyong-choi/design-tokens` 개발 의존성을 같은 commit으로 맞춘다. 설치된 패키지 파일을 직접 수정하지 않는다.
+재생성 전에 DiagramPlay의 `@woonyong-choi/design-tokens` 개발 의존성을 같은 commit으로 맞춘다. 설치된 패키지 파일을 직접 수정하지 않는다.
 
 ## 변경 후 확인
 
-`npm run build`, `npm test`, `npm run check`로 파일 목록, 원본·출력 연결, 역할·별칭, 외부 고지, 안전한 SVG 삽입을 확인한다. 실제 소비 화면에서는 설계 판정 기준에 따라 밝고 어두운 배경, 색상·단색, 기본형·상세형과 사용 크기를 대조한다. 호버·초점·복사 결과·배지 가독성과 Torso의 연결·애니메이션도 확인한다.
+`npm run build`, `npm test`, `npm run check`로 파일 목록, 원본·출력 연결, 역할·별칭, 외부 고지, 안전한 SVG 삽입을 확인한다. 실제 소비 화면에서는 설계 판정 기준에 따라 밝고 어두운 배경, 색상·단색, 기본형·상세형과 사용 크기를 대조한다. 호버·초점·복사 결과·배지 가독성과 DiagramPlay의 연결·애니메이션도 확인한다.
 
 검수 기록에는 아이콘 이름, 소스 버전, 비교 근거, 크기·테마·표현, 사용 장면, 발견한 문제와 남은 한계를 적는다. 기준별 판단을 남기고 임의의 완성도 백분율이나 일괄 통과로 대체하지 않는다. 파일 검사·시각 검토·사용자 승인·병합·소비자 반영은 각각 구분한다. 일회성 검수 이미지와 기록은 제품 저장소에 쌓지 않는다.
 

@@ -29,7 +29,7 @@ test('semantic_catalog_covers_every_svg_once_at_two_levels', () => {
 });
 
 test('active_consumer_inventory_matches_source_and_distribution', () => {
-  const general = 'check checkbox-check checkbox-empty checkbox-indeterminate chevron-right close document download-bottom ellipsis file-copy maximize minimize pause play question replay rss scan search-mono user user-settings warning zoom-in zoom-out'.split(' ').sort();
+  const general = 'chat check checkbox-check checkbox-empty checkbox-indeterminate chevron-right close document download-bottom ellipsis file-copy maximize minimize pause play question replay rss scan search-mono user user-settings warning zoom-in zoom-out'.split(' ').sort();
   const content = 'api api-detail box-up brain-circuit code-review components cpu cpu-detail database database-detail document-detail event gateway hierarchy hierarchy-detail network network-detail operating-system operating-system-detail project search security server terminal terminal-detail'.split(' ');
   const names = [...general, ...content, ...Object.keys(catalog.brands)].sort();
   assert.deepEqual(Object.keys(catalog.icons).sort(), names);
@@ -37,7 +37,7 @@ test('active_consumer_inventory_matches_source_and_distribution', () => {
   assert.deepEqual(Object.keys(files).filter(name => /^assets\/icons\/.*\.svg$/.test(name)).map(name => name.split('/').at(-1).slice(0, -4)).sort(), names);
   assert.deepEqual(catalog.aliases, { admin: 'user-settings', administrator: 'user-settings', apigw: 'gateway', architecture: 'hierarchy', deploy: 'box-up', incident: 'warning', model: 'brain-circuit', notify: 'event', person: 'user', processor: 'cpu' });
   assert.deepEqual(catalog.controls, {
-    copy: 'file-copy', download: 'download-bottom', 'maximize-2': 'maximize', 'minimize-2': 'minimize', check: 'check', alert: 'warning', 'zoom-in': 'zoom-in', 'zoom-out': 'zoom-out', scan: 'scan', search: 'search-mono', clear: 'close', play: 'play', pause: 'pause', replay: 'replay', chevron: 'chevron-right', 'video-play': 'play', 'task-empty': 'checkbox-empty', 'task-done': 'checkbox-check', 'task-cancelled': 'checkbox-indeterminate',
+    comment: 'chat', copy: 'file-copy', download: 'download-bottom', 'maximize-2': 'maximize', 'minimize-2': 'minimize', check: 'check', alert: 'warning', 'zoom-in': 'zoom-in', 'zoom-out': 'zoom-out', scan: 'scan', search: 'search-mono', clear: 'close', play: 'play', pause: 'pause', replay: 'replay', chevron: 'chevron-right', 'video-play': 'play', 'task-empty': 'checkbox-empty', 'task-done': 'checkbox-check', 'task-cancelled': 'checkbox-indeterminate',
   });
 });
 
@@ -187,15 +187,41 @@ test('shared_components_render_catalog_roles_and_validate_graphic_slots', async 
   const names = [...new Set(Object.values(roles).flatMap(group => Object.values(group)))].sort();
   assert.deepEqual(runtime.ICON_ROLES, roles);
   assert.deepEqual(Object.keys(runtime.ICON_DATA).sort(), names);
-  for (const name of names) assert.equal(runtime.ICON_DATA[name], files['assets/icons/' + catalog.icons[name].file].toString());
+  for (const name of names) assert.equal(runtime.ICON_DATA[name], readFileSync(root + 'assets/icons/' + catalog.icons[name].file, 'utf8'));
+});
+
+test('comment_control_preserves_bubble_geometry_and_consumer_class', () => {
+  assert.equal(iconFile('chat'), 'communication/chat.svg');
+  assert.equal(catalog.controls.comment, 'chat');
+  const svg = String(ControlIcon('comment', 'app-blog-card-comment-icon'));
+  assert.match(svg, /<svg[^>]*data-control-icon="comment"/);
+  assert.match(svg, /class="app-blog-card-comment-icon"/);
+  assert.match(svg, /viewBox="0 0 32 32"/);
+  assert.match(svg, /<path[^>]*stroke-width="2.25"/);
+  assert.match(svg, /stroke-linecap="round" stroke-linejoin="round"/);
+  assert.doesNotMatch(svg, /<svg[^>]*\scolor=|(?:fill|stroke)="#/);
+  assert.match(String(ControlIcon('comment')), /class="app-control-icon"/);
+  const color = renderSvgIcon(readFileSync(root + 'assets/icons/communication/chat.svg', 'utf8'));
+  assert.match(color, /fill="var\(--icon-accent-soft\)"/);
+  assert.match(color, /stroke="var\(--icon-accent-outline\)"/);
+  assert.doesNotMatch(color, /fill="none"/);
+  assert.equal(readIcon('chat'), files['assets/icons/communication/chat.svg'].toString());
 });
 
 test('media_controls_preserve_white_symbols_and_inherit_button_color', () => {
   for (const name of ['play', 'video-play', 'pause']) {
     const svg = String(ControlIcon(name));
     assert.match(svg, /<circle[^>]*fill="currentColor"/);
-    assert.match(svg, /<(?:path|rect)[^>]*fill="#fff(?:fff)?"/);
+    assert.match(svg, /<(?:path|rect)[^>]*fill="var\(--icon-paper\)"/);
     assert.doesNotMatch(svg, /<svg[^>]*\scolor=/);
   }
   assert.doesNotMatch(String(ControlIcon('copy')), /fill="#fff(?:fff)?"/);
+});
+
+test('comment_control_preserves_a_colored_surface_and_outline', () => {
+  const svg = String(ControlIcon('comment'));
+  assert.match(svg, /fill="var\(--icon-accent-soft\)"/);
+  assert.match(svg, /stroke="var\(--icon-accent-outline\)"/);
+  assert.match(svg, /aria-hidden="true"/);
+  assert.match(String(ControlIcon('copy')), /(?:fill|stroke)="currentColor"/);
 });

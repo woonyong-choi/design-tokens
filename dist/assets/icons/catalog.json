@@ -33,6 +33,7 @@
     "processor": "cpu"
   },
   "controls": {
+    "comment": "chat",
     "copy": "file-copy",
     "download": "download-bottom",
     "maximize-2": "maximize",
@@ -1028,6 +1029,11 @@
       "file": "brands/typescript.svg",
       "category": "brands",
       "label": "TypeScript"
+    },
+    "chat": {
+      "file": "communication/chat.svg",
+      "category": "communication",
+      "label": "chat"
     },
     "rss": {
       "file": "communication/rss.svg",

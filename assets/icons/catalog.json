@@ -33,6 +33,7 @@
     "processor": "cpu"
   },
   "controls": {
+    "comment": "chat",
     "copy": "file-copy",
     "download": "download-bottom",
     "maximize-2": "maximize",

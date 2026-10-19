@@ -670,6 +670,10 @@
     }
   },
   "icon": {
+    "accent-outline": {
+      "$type": "color",
+      "$value": "{color.category.blue.dark-ink}"
+    },
     "neutral": {
       "$type": "color",
       "$value": "{color.ink}"

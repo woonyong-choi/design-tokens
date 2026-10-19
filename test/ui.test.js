@@ -496,7 +496,7 @@ test('video_overlay_keeps_a_colored_inline_control_in_all_public_players', () =>
     assert.match(overlay[0], /data-player-play aria-label="[^"]+"/);
     assert.match(overlay[1], /^<svg data-control-icon="play"[^>]*aria-hidden="true"[^>]*focusable="false"/);
     assert.match(overlay[1], /<circle[^>]*fill="currentColor"/);
-    assert.match(overlay[1], /<path[^>]*fill="#fff(?:fff)?"/);
+    assert.match(overlay[1], /<path[^>]*fill="var\(--icon-paper\)"/);
     assert.doesNotMatch(overlay[1], /<svg[^>]*\scolor=/);
   }
   const css = read('../dist/styles.source.css');

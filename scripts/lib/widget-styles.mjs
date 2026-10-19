@@ -24,5 +24,5 @@ export function documentWidgetStyles(css, tables) {
     const keys = new Map([...tables[mode].keys()].map(key => [`--${key.replaceAll('.', '-')}`, key]));
     return [...names].filter(name => keys.has(name)).map(name => `  ${name}: ${resolveValue(tables[mode], keys.get(name))};`).join('\n');
   };
-  return `/* tokens/tokens.json + styles/: 생성물, 손으로 고치지 않음 */\n:where(${SCOPE}) {\n${declarations('light')}\n}\n:where(${SCOPE}[data-widget-theme="dark"]) {\n${declarations('dark')}\n}\n${styles}\n`;
+  return `/* tokens/tokens.json + styles/: 생성물, 손으로 고치지 않음 */\n:where(${SCOPE}) {\n${declarations('light')}\n}\n:where(${SCOPE}[data-widget-theme="dark"]) {\n${declarations('dark')}\n}\n${styles.trim()}\n`;
 }

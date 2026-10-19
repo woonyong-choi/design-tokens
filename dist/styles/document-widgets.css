@@ -288,4 +288,3 @@
 .app-document-widgets .katex-display { margin-block: 0; }
 .app-document-widgets .katex-block, .app-document-widgets .katex-display { overflow-x: auto; overflow-y: hidden; }
 .app-document-widgets .katex-error { color: var(--color-ui-muted); text-decoration: underline dotted; }
-

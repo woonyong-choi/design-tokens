@@ -80,7 +80,7 @@ An independent product that does not share this design is better served by its o
 | Not available | GitHub releases and a public npm distribution |
 | Remaining check | [Light search field comparison and screenshots #11](https://github.com/woonyong-choi/design-tokens/issues/11) |
 
-The package version is `0.1.1`. Inputs and components may change before 1.0. Run consumer checks and visual review when updating a commit. A merge in this repository does not update or deploy consumers.
+The package version is `0.2.0`. Inputs and components may change before 1.0. Run consumer checks and visual review when updating a commit. A merge in this repository does not update or deploy consumers.
 
 ## Documentation
 
@@ -92,7 +92,7 @@ The design documents are written in Korean.
 - [Shared components](docs/components.md)
   - [Shared icons](docs/design/content-icons.md)
 
-The package includes icons and roles used by the public blog, document engine, Torso, and registered private previews. It retains 49 general SVGs, 6 brands, and 10 aliases. Private metadata keeps its detail selection. Seven names collected from body tokens retain their default shapes pending token validation. The default help role is `question`, and `kinds` is empty. Removed icon names and aliases fail lookup.
+The package includes icons and roles used by the public blog, document engine, Torso, and registered private previews. It retains 49 general SVGs, 34 technology and service brands, and 10 aliases. Private metadata keeps its detail selection. Seven names collected from body tokens retain their default shapes pending token validation. The default help role is `question`, and `kinds` is empty. Removed icon names and aliases fail lookup.
 
 [All documentation](docs/README.md)
 
@@ -102,8 +102,10 @@ Update generated artifacts when changing their sources.
 
 ```sh
 npm run build
+npm run build:diagram
 npm test
 npm run check
+npm run check:diagram
 ```
 
 CI runs installation, tests, and artifact checks on Node.js 20 and 22. `npm run check` compares committed artifacts with a fresh build. See the [contribution guide](.github/CONTRIBUTING.md) for the change process and [style structure](docs/styles.md#강제하는-것) for checks on visual values and CSS variables.

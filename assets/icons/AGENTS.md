@@ -356,8 +356,10 @@ G8은 모든 파일에 적용한다. 먼저 필수 특징마다 실제 인접 �
 
 ```sh
 npm run build
+npm run build:diagram
 npm test
 npm run check
+npm run check:diagram
 git diff --check
 ```
 

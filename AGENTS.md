@@ -28,6 +28,8 @@
 
 ## 명령
 
+CI는 `ubuntu-24.04`에서 Node 20·22로 검사한다. Action 자체는 Node 24 기반 공식 release의 SHA로 고정한다(2026-10-19 확인). 태그 릴리스의 제품 Node 22와 검사·발행 조건은 유지한다.
+
 ```sh
 npm ci
 npm run build

@@ -51,7 +51,7 @@ The output is an `app-support-grid is-four` group containing a link to `/docs/me
 This command installs a verified commit as a Git dependency.
 
 ```sh
-npm install --save-dev 'github:woonyong-choi/design-tokens#d7e73d07809b5c72a50c7e7295fb0b76fcddc0ac'
+npm install --save-dev 'github:woonyong-choi/design-tokens#d90409ced0307889cb7e7106b40092ad8f4475a7'
 ```
 
 Run the same HTML example in the consuming project. The commit includes generated `dist/` files, so consumers do not need to rebuild the design files. Follow the [update procedure](docs/distribution.md#갱신) when moving to a new commit.

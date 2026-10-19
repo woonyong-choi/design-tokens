@@ -11,7 +11,9 @@ design-tokens는 여러 소비자가 공유하는 토큰, 아이콘, CSS, 정적
 | `ui/` | 신뢰 경계가 있는 HTML 조각·패턴·레이아웃과 공통 런타임 |
 | `scripts/lib/` | 토큰 참조, CSS 평탄화와 생성 |
 | `scripts/build.mjs` | 정본을 읽어 배포물을 만들거나 일치를 검사 |
-| `dist/` | 커밋하는 생성물. 수동 수정 금지 |
+| `dist/` | 커밋하는 전체 생성물. 수동 수정 금지 |
+| `scripts/lib/diagram-package.mjs` | 전체 생성 결과에서 도표 선택 정책과 메타데이터 생성 |
+| `scripts/build-diagram-package.mjs`, `artifacts/diagram.tgz` | npm pack으로 도표 선택 패키지 생성·검사와 커밋하는 tarball |
 | `test/` | 참조·대비·구성 요소·산출물·축소 계약 검사 |
 
 ## 한 방향의 생성
@@ -23,6 +25,8 @@ design-tokens는 여러 소비자가 공유하는 토큰, 아이콘, CSS, 정적
 토큰은 DTCG의 `$type`, `$value`와 경로 참조를 사용한다. 색은 hex 문자열이고 치수·시간은 값과 단위를 가진 객체다. DTCG 색 객체 전체를 구현했다고 표시하지 않는다.
 
 `dist/manifest.json`은 생성 파일과 내용 해시를 기록한다. `npm run check`와 시험이 원본에서 다시 만든 결과와 비교하는 이 저장소의 검사 자료이고, 소비자에게 사본을 전달하거나 사본 해시를 비교하는 데 쓰지 않는다.
+
+도표 전용 배포는 같은 `buildDesign(root)` 결과를 순수 선택 함수에 넘긴다. 별도 토큰이나 UI 정본을 만들지 않으며 전체 `dist/`에 쓰지 않는다. 선택 manifest는 선택 파일만 해시하고 패키지의 `designTokensProfile.sourceContentHash`는 전체 manifest를 가리킨다. 배포 범위와 재생성 계약은 [도표 전용 tarball](distribution.md#도표-전용-tarball)에 기록한다.
 
 ## 경계
 

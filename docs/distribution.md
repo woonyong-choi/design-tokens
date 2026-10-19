@@ -18,7 +18,7 @@ npm install --save-dev 'github:woonyong-choi/design-tokens#<commit>'
 }
 ```
 
-`dist/`를 Git에 커밋하므로 설치 때 빌드하지 않는다. `install`·`prepare` 같은 설치 스크립트를 두지 않고 `files`는 `dist`와 `LICENSE`만 담는다.
+소비자는 Git에 커밋한 `dist/`를 읽는다. `install`·`prepare` 같은 설치 스크립트를 두지 않고 `files`는 `dist`와 `LICENSE`만 담는다.
 
 `/build/styles`는 저장소에서 빌드한 PurgeCSS와 선택자 parser를 포함한다. 소비자에게 설치되는 런타임 의존성은 `esbuild`와 `postcss`다. 루트 override는 이 저장소의 빌드 입력만 고정하며 소비자에게 override 설정을 요구하지 않는다. 포함한 패키지의 이름·버전과 LICENSE 전문은 `dist/ui/build/styles.mjs`의 법적 주석에 남긴다.
 
@@ -42,6 +42,39 @@ const tokensPath = require.resolve('@woonyong-choi/design-tokens/css');
 ```
 
 파일을 읽는 소비자는 경로를 직접 조립하지 않고 `createRequire(import.meta.url).resolve('@woonyong-choi/design-tokens/<경로>')`로 찾는다. 하드코딩 검사는 `design-tokens-check <대상> --tokens node_modules/@woonyong-choi/design-tokens/dist/tokens.json`으로 실행한다.
+
+## 도표 전용 tarball
+
+도표만 쓰는 소비자는 같은 정본에서 선택한 `artifacts/diagram.tgz`를 설치할 수 있다. 패키지 이름과 버전, Node.js 조건, 런타임 의존성과 검사 명령은 전체 패키지와 같다. 호스트 앱이 전체 패키지를 설치해 같은 이름의 peer 의존성을 충족하는 구성도 허용한다. 두 배포물의 토큰 값과 UI 구현은 같다.
+
+```sh
+npm install --save-dev 'https://raw.githubusercontent.com/woonyong-choi/design-tokens/<commit>/artifacts/diagram.tgz'
+```
+
+`<commit>`은 검증한 전체 commit SHA로 바꾼다. 이 주소의 설치와 고정은 소비자가 관리한다. tarball은 생성 시점의 전체 `dist/`를 수정하지 않는다. 전체 패키지의 `files`가 `dist`와 `LICENSE`만 허용하므로 tarball을 전체 패키지에 중첩해 배포하지 않는다.
+
+| 범위 | 포함 내용 |
+|---|---|
+| 토큰 | `tokens.css`, `tokens.js`, `tokens.json`, `tokens.dark.json` |
+| 도표 스타일 | `styles/diagram/**`, `styles/tabs.css`, `styles/toolbar.css`, `styles/diagram-embed.css` |
+| UI | `ui/**` 원문 전체. `ui/icon-data.mjs`만 도표 조작 9개로 재생성 |
+| 아이콘 | 도표 20개, 상태 4개, git·github, 조작 역할 9개의 합집합인 canonical SVG 33개 |
+| 카탈로그 | 선택한 아이콘·브랜드, 선택 대상의 별칭 14개, 조작 역할 9개. 분류·라이브러리와 모든 notice 경로 보존 |
+
+도표 이름은 `admin apigw bastion cache cdn db desktop dns function lb mobile monitoring mq nginx postgresql redis region server user vpn`이다. 상태는 `check warning close ellipsis`이고 조작 역할은 `copy download maximize-2 minimize-2 check alert zoom-in zoom-out scan`이다. 별칭은 canonical 파일로 해석한다. UI 안의 조작 SVG 9개와 원시 SVG 파일의 중복은 브라우저 렌더링과 Node 아이콘 읽기가 각각 쓰는 의도된 구성이다.
+
+글꼴, 다른 이미지, 전체 웹 CSS와 전체 아이콘 카탈로그는 포함하지 않는다. 카탈로그의 `social`, `articles`, `kinds`는 빈 객체다. 따라서 원문 UI 파일을 포함하더라도 해당 역할이 필요한 홈페이지 구성 요소는 이 프로필의 지원 범위가 아니다. AWS 전용 서비스 아이콘은 없다. 선택 집합에 없는 이름은 `readIcon`이 거부한다. 전체 UI 원문은 소비자가 파일을 직접 읽어 브라우저 모듈을 조립할 수 있도록 유지하며 별도로 묶거나 축소하지 않는다.
+
+고정 export는 대상 파일이 있을 때만 남긴다. wildcard export는 선택한 `dist/` 파일만 노출한다. `package.json.designTokensProfile`은 `name: "diagram"`, 정렬한 canonical `icons`, 정렬한 조작 역할 `controls`, 전체 생성물의 `sourceContentHash`를 기록한다. 선택한 `dist/manifest.json`은 같은 스키마를 쓰며 자기 자신을 제외한 선택 파일의 SHA-256과 별도 `contentHash`를 기록한다. `sourceContentHash`와 선택 manifest의 해시는 서로 다른 범위를 나타낸다.
+
+```sh
+npm run build:diagram
+npm run check:diagram
+```
+
+생성기는 `buildDesign(root)`의 결과에서 순수 함수로 파일을 선택한다. 전용 빌드 출력 영역에 선택 패키지를 쓰고 `npm pack --json --ignore-scripts`를 두 번 실행한다. 두 tarball의 바이트와 npm이 반환한 SHA-512 integrity를 확인한 뒤 정본 tarball을 저장한다. 검사 명령은 다시 생성한 바이트와 커밋한 tarball을 비교한다. CI는 Node.js 20과 22에서 이 검사를 실행한다. 설치 스크립트·개발 의존성·override는 선택 패키지 메타데이터에서 제외한다.
+
+`test/diagram-package.test.js`는 선택 집합과 원문 보존, 누락 입력 거부, manifest, tar 경로·symlink, 전체 패키지 중첩 제외와 실제 tarball 설치를 검사한다. 새 소비자에서 SVG·별칭·조작 UI·도표 프레임·CSS 축소·검사 명령을 실행하고 `npm ls --all`과 `npm audit`를 확인한다. 브라우저 런타임의 import 경로는 실제 설치 파일을 번들러에 넣어 확인한다.
 
 ## 카드 미리보기
 

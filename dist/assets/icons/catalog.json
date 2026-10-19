@@ -102,6 +102,60 @@
     }
   ],
   "brands": {
+    "sqlite": {
+      "label": "SQLite",
+      "source": "https://raw.githubusercontent.com/sqlite/sqlite/master/art/sqlite370.svg",
+      "guide": "https://www.sqlite.org/copyright.html",
+      "authority": "SQLite authors / D. Richard Hipp",
+      "variant": "complete official sqlite370.svg logo; no symbol crop",
+      "sourceSha256": "462c4ce8229b585dd6880cd308b121d9de63eb619db05e469598594e80d7b151",
+      "sourceHashScope": "downloaded selected SVG bytes",
+      "version": "official source repository distribution pinned by sourceSha256",
+      "retrievedOn": "2026-10-19",
+      "library": "technology-logos",
+      "notice": "licenses/technology-logos-NOTICE.txt",
+      "license": "public-domain SQLite documentation artwork; see notice; trademark rights not reassigned",
+      "treatment": "complete source viewBox, white background, wordmark and original paths retained without cropping or redrawing; style declarations expanded to presentation attributes; redundant clip using the same closed gradient path replaced by a same-path mask; original gradient matrix and stops sampled into 512 overlapping static sRGB paint bands for the existing safe renderer; compatibility monochrome retains original foreground paths with transparent background, not an official color variant",
+      "file": "brands/sqlite.svg",
+      "sha256": "5a7d5ddfab2724f6ee25133ce3c2dac470cff82109ab6d3245520ebdad1c885a",
+      "transformSha256": "5a7d5ddfab2724f6ee25133ce3c2dac470cff82109ab6d3245520ebdad1c885a"
+    },
+    "langgraph": {
+      "label": "LangGraph",
+      "source": "https://cdn.prod.website-files.com/65b8cd72835ceeacd4449a53/6989c024c2d98286a8fb058f_Frame%202147255166-1.svg",
+      "guide": "https://www.langchain.com/brand-assets",
+      "authority": "LangChain, Inc.",
+      "variant": "official website standalone navy tile and light-blue LangGraph symbol",
+      "sourceSha256": "bed6a8ecb2cdf3524a2f533b2da8122e66c41df337de3a3babde0012a00ce2e3",
+      "sourceHashScope": "downloaded selected SVG bytes; not brand ZIP or repository lockup",
+      "version": "official website asset pinned by sourceSha256",
+      "retrievedOn": "2026-10-19",
+      "library": "technology-logos",
+      "notice": "licenses/technology-logos-NOTICE.txt",
+      "license": "brand asset usage permission for documentation, presentations, press coverage and community content, subject to brand guidelines; not repository MIT",
+      "treatment": "complete official standalone icon retained, including 40x40 viewBox, navy rounded tile, light-blue symbol and original paths; no lockup crop or recoloring in color output; compatibility monochrome uses the original tile and symbol as a counter mask, not a brand-approved replacement for the provided light/dark color variants",
+      "file": "brands/langgraph.svg",
+      "sha256": "0be957de2f8b6682a2aca4493595757a267f18a28cc0670bd24af7082bac7f72",
+      "transformSha256": "0be957de2f8b6682a2aca4493595757a267f18a28cc0670bd24af7082bac7f72"
+    },
+    "aws": {
+      "label": "AWS Cloud",
+      "source": "https://d1.awsstatic.com/onedam/marketing-channels/website/public/shared/architecture-icon-release/Icon-package_07312026.5846e92413caa21490223536cc97f1269e44fa92.zip",
+      "guide": "https://aws.amazon.com/architecture/icons/",
+      "authority": "Amazon Web Services",
+      "variant": "Architecture-Group-Icons_07312026/AWS-Cloud-logo_32.svg",
+      "sourceSha256": "63d73df1aac59dab323df732f82e196e359fb7b6370c0ca8e51e7b897cd350be",
+      "sourceHashScope": "selected SVG bytes; ZIP sha256 d2d166c453526471749d520e0db022c459abef759d2946cf2dd1d1c992dc6526",
+      "version": "07312026",
+      "retrievedOn": "2026-10-19",
+      "library": "aws-architecture",
+      "notice": "licenses/aws-architecture.txt",
+      "license": "AWS-specific architecture icon permission and site terms; not MIT",
+      "treatment": "complete official generic AWS Cloud group logo, not an EC2 or other service substitute; original 40x40 viewBox, dark square, compound AWS lettering and smile path preserved; unused namespace, unreferenced IDs, nonvisual XML/title and root display-size metadata omitted for the safe renderer; compatibility monochrome uses the unchanged source compound path as a transparent counter, not an official brand color variant; architecture icon permission applies, not unrestricted AWS Smile logo permission",
+      "file": "brands/aws.svg",
+      "sha256": "c8ca81e4b8d0f86b5af078f377d56f27bb9b119a5578f5cc9979db3a249db710",
+      "transformSha256": "c8ca81e4b8d0f86b5af078f377d56f27bb9b119a5578f5cc9979db3a249db710"
+    },
     "nats": {
       "label": "NATS",
       "source": "https://raw.githubusercontent.com/cncf/artwork/main/projects/nats/icon/color/nats-icon-color.svg",
@@ -982,6 +1036,11 @@
       "category": "brands",
       "label": "Amazon Virtual Private Cloud"
     },
+    "aws": {
+      "file": "brands/aws.svg",
+      "category": "brands",
+      "label": "AWS Cloud"
+    },
     "c": {
       "file": "brands/c.svg",
       "category": "brands",
@@ -1021,6 +1080,11 @@
       "file": "brands/kubernetes.svg",
       "category": "brands",
       "label": "Kubernetes"
+    },
+    "langgraph": {
+      "file": "brands/langgraph.svg",
+      "category": "brands",
+      "label": "LangGraph"
     },
     "linkedin": {
       "file": "brands/linkedin.svg",
@@ -1071,6 +1135,11 @@
       "file": "brands/spring.svg",
       "category": "brands",
       "label": "Spring"
+    },
+    "sqlite": {
+      "file": "brands/sqlite.svg",
+      "category": "brands",
+      "label": "SQLite"
     },
     "typescript": {
       "file": "brands/typescript.svg",

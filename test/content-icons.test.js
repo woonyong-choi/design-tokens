@@ -105,6 +105,9 @@ test('private_preview_metadata_and_pending_body_names_resolve_original_targets',
     nats: ['brands/nats.svg', 'brands/nats.svg'],
     jetstream: ['brands/nats.svg', 'brands/nats.svg'],
     react: ['brands/react.svg', 'brands/react.svg'],
+    sqlite: ['brands/sqlite.svg', 'brands/sqlite.svg'],
+    langgraph: ['brands/langgraph.svg', 'brands/langgraph.svg'],
+    aws: ['brands/aws.svg', 'brands/aws.svg'],
   };
   for (const [name, [base, detail]] of Object.entries(metadata)) {
     assert.equal(iconFile(name), base, name);

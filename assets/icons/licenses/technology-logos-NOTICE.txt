@@ -1,5 +1,60 @@
 Technology logos
 
+SQLite: D. Richard Hipp / SQLite authors. The complete official vector logo is
+distributed in https://github.com/sqlite/sqlite/blob/master/art/sqlite370.svg
+and on https://www.sqlite.org/ as images/sqlite370_banner.svg.
+https://www.sqlite.org/copyright.html dedicates SQLite code and documentation
+to the public domain. The documentation origin and public-domain dedication of
+the SQLite logo are also recorded at
+https://commons.wikimedia.org/wiki/File:SQLite370.svg.
+This asset retains the complete official logo, including its white background
+and wordmark; it does not use or claim ownership of the separately licensed
+community square-icon derivative. Physical width/height metadata and unused IDs
+are omitted; style declarations become explicit presentation attributes.
+The gradient uses the original source matrix and stop interpolation, sampled
+into 512 overlapping static sRGB paint bands. A redundant same-path clip is
+represented by a same-path mask. Source and transformed hashes are in catalog.
+The existing caller-controlled monochrome API uses original foreground paths
+without the white canvas; this is not an official color variant. Public-domain
+copyright status is not asserted as a grant or reassignment of trademark rights.
+
+LangGraph: LangChain, Inc. The standalone icon is distributed on the official
+website and used in its Open Source navigation, without extracting or cropping
+the icon from a lockup. Original navy tile and light-blue symbol are preserved.
+https://www.langchain.com/brand-assets states:
+"All logos are approved for use in documentation, presentations, press coverage,
+and community content, subject to the usage guidelines below."
+The guidelines require locked proportions, sufficient clear space and contrast,
+provided light/dark variants rather than background-specific recoloring, and no
+stretching, off-brand colors or effects. These conditions govern public color
+use. The generic monochrome renderer is compatibility behavior, not permission
+to publish a recolored LangGraph mark in place of the official variants.
+The LangGraph software repository has an MIT license, Copyright (c) 2024
+LangChain, Inc.: https://github.com/langchain-ai/langgraph/blob/main/LICENSE.
+That software license is not asserted as a blanket trademark or website-asset
+license; this selected website icon relies on the explicit brand usage terms.
+
+Unselected assets reviewed for this catalog addition
+
+Elasticsearch: no logo is included by this addition. The official guidance at
+https://www.elastic.co/brand permits accurate textual references to Elasticsearch
+and prohibits implying affiliation or endorsement. It also states that logo
+design use is reserved for authorized resellers, distributors, licensees and
+officially sponsored conferences. The community speaker guide at
+https://www.elastic.co/community/speaker-guide invites logos in presentation
+slides and diagrams. Those statements do not clearly establish the permission
+for this general technical-tag asset distribution; this is an unresolved scope
+question, not an assertion that all educational logo use is forbidden.
+
+Obsidian: no logo is included by this addition. https://obsidian.md/brand says
+"Please do not edit, change, distort, recolor, or reconfigure the Obsidian logo."
+It permits customizing the app icon for personal use and asks commercial users
+to contact Obsidian. These are distinct statements; the page does not state a
+blanket ban on unmodified noncommercial blog references. The supplied icon at
+https://obsidian.md/images/obsidian-logo-gradient.svg uses radialGradient and
+clipPath elements unsupported by the current safe SVG renderer. No renderer
+extension, unverified flattening, lockup crop, or replacement artwork is added.
+
 NATS: CNCF / NATS authors. Official CNCF color icon from
 https://github.com/cncf/artwork/tree/main/projects/nats.
 The artwork is made available under the Linux Foundation trademark usage

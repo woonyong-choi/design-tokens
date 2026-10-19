@@ -42,7 +42,7 @@ test('active_consumer_inventory_matches_source_and_distribution', () => {
 });
 
 test('independent_png_icons_preserve_image_paths_dimensions_and_provenance', () => {
-  const names = ['icons/communication/newsletter.png', 'icons/communication/testimonials.png'];
+  const names = ['icons/communication/newsletter.png', 'icons/communication/technology-thought.png', 'icons/communication/testimonials.png'];
   assert.deepEqual(Object.keys(files).filter(name => name.startsWith('assets/icons/') && name.endsWith('.png')).sort(), names.map(name => `assets/${name}`));
   const sources = JSON.parse(readFileSync(root + 'assets/sources.json', 'utf8'));
   for (const name of names) {
@@ -53,9 +53,16 @@ test('independent_png_icons_preserve_image_paths_dimensions_and_provenance', () 
     assert.equal(provenance.license, 'MIT', name);
     assert.equal(provenance.sha256, hash, name);
     assert.equal(provenance.bytes, source.length, name);
-    assert.notEqual(provenance.previousSource.sha256, hash, name);
-    assert.match(provenance.previousSource.url, /^https:\/\/culturedcode\.com\//, name);
-    assert.equal(provenance.previousSource.use, 'comparison-only', name);
+    assert.equal(provenance.width, 128, name);
+    assert.equal(provenance.height, 128, name);
+    assert.equal(provenance.format, 'PNG RGBA', name);
+    if (name.endsWith('/technology-thought.png')) {
+      assert.equal(provenance.previousSource, undefined, name);
+    } else {
+      assert.notEqual(provenance.previousSource.sha256, hash, name);
+      assert.match(provenance.previousSource.url, /^https:\/\/culturedcode\.com\//, name);
+      assert.equal(provenance.previousSource.use, 'comparison-only', name);
+    }
     assert.equal(provenance.url, undefined, name);
     assert.deepEqual(files['assets/' + name], source, name);
     assert.equal(source.subarray(0, 8).toString('hex'), '89504e470d0a1a0a', name);

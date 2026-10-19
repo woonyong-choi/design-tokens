@@ -1,5 +1,50 @@
 Technology logos
 
+NATS: CNCF / NATS authors. Official CNCF color icon from
+https://github.com/cncf/artwork/tree/main/projects/nats.
+The artwork is made available under the Linux Foundation trademark usage
+guidelines, not the MIT license of this repository:
+https://github.com/cncf/artwork/blob/main/LICENSE.md
+https://www.linuxfoundation.org/trademark-usage/
+Use identifies the technology only and does not imply sponsorship or endorsement.
+The original path geometry, viewBox and palette are retained. CSS class fills are
+expanded into SVG presentation attributes for the existing safe renderer.
+The caller-controlled monochrome API uses the original six colored paths and
+the original white N path as a transparent mask counter. This compatibility
+rendering is not asserted to be an official color variant.
+JetStream reuses the NATS mark through a catalog alias; it is the persistence
+layer of NATS, not a separate logo or independent vendor:
+https://docs.nats.io/concepts/jetstream
+
+React: Meta Platforms, Inc. and affiliates / React authors.
+https://github.com/facebook/react/blob/main/fixtures/dom/public/react-logo.svg
+The original cyan symbol, viewBox and path geometry are retained.
+The source repository license below applies to the distributed source artwork;
+trademark rights remain with their respective owners. Identification only,
+without affiliation, sponsorship or endorsement.
+
+MIT License
+
+Copyright (c) Meta Platforms, Inc. and affiliates.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
 These names and logos identify their respective projects and are trademarks of
 their owners. They are shown on this site only to identify the technology that a
 page or tag is about. They are not original artwork of this site, and their use

@@ -35,7 +35,7 @@ test('active_consumer_inventory_matches_source_and_distribution', () => {
   assert.deepEqual(Object.keys(catalog.icons).sort(), names);
   assert.deepEqual(readdirSync(root + 'assets/icons', { recursive: true }).filter(name => name.endsWith('.svg')).map(name => name.split('/').at(-1).slice(0, -4)).sort(), names);
   assert.deepEqual(Object.keys(files).filter(name => /^assets\/icons\/.*\.svg$/.test(name)).map(name => name.split('/').at(-1).slice(0, -4)).sort(), names);
-  assert.deepEqual(catalog.aliases, { admin: 'user-settings', administrator: 'user-settings', apigw: 'gateway', architecture: 'hierarchy', deploy: 'box-up', incident: 'warning', model: 'brain-circuit', notify: 'event', person: 'user', processor: 'cpu' });
+  assert.deepEqual(catalog.aliases, { admin: 'user-settings', administrator: 'user-settings', apigw: 'gateway', architecture: 'hierarchy', deploy: 'box-up', incident: 'warning', jetstream: 'nats', model: 'brain-circuit', notify: 'event', person: 'user', processor: 'cpu' });
   assert.deepEqual(catalog.controls, {
     comment: 'chat', copy: 'file-copy', download: 'download-bottom', 'maximize-2': 'maximize', 'minimize-2': 'minimize', check: 'check', alert: 'warning', 'zoom-in': 'zoom-in', 'zoom-out': 'zoom-out', scan: 'scan', search: 'search-mono', clear: 'close', play: 'play', pause: 'pause', replay: 'replay', chevron: 'chevron-right', 'video-play': 'play', 'task-empty': 'checkbox-empty', 'task-done': 'checkbox-check', 'task-cancelled': 'checkbox-indeterminate',
   });
@@ -102,6 +102,9 @@ test('private_preview_metadata_and_pending_body_names_resolve_original_targets',
     security: ['security/security.svg', 'security/security.svg'],
     terminal: ['programming/terminal.svg', 'programming/terminal-detail.svg'],
     redis: ['brands/redis.svg', 'brands/redis.svg'],
+    nats: ['brands/nats.svg', 'brands/nats.svg'],
+    jetstream: ['brands/nats.svg', 'brands/nats.svg'],
+    react: ['brands/react.svg', 'brands/react.svg'],
   };
   for (const [name, [base, detail]] of Object.entries(metadata)) {
     assert.equal(iconFile(name), base, name);

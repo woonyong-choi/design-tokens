@@ -146,14 +146,16 @@
     "assets/icons/brands/kubernetes.svg": "15e14b4a7cd8467b35f5b36c852d4d56ec800bf83b687682433226080dd48b01",
     "assets/icons/brands/linkedin.svg": "f6078208555a6cbf2aba5d24ba9dbdd85c031980dacdf26be99e35b5d83d2b48",
     "assets/icons/brands/linux.svg": "9377c4a8710de9b68efb34b2eb3139bb24a9640adfb763ab40d9ff6d833e4d63",
+    "assets/icons/brands/nats.svg": "8eb5ede67820f80ed75e5a8c77e25bc039482ad7939783e1725d9c40d6117a82",
     "assets/icons/brands/nginx.svg": "cae3c525a864428d5c00fcc8a41ed075fd260e1fa114ca0aec6e0779c2ef25bc",
     "assets/icons/brands/nodejs.svg": "3f187d41c22c873ffc4f6f0331af38339358fe01e9868f408630ef054090704d",
     "assets/icons/brands/postgresql.svg": "1c390605fda1f7460e442581310173c8c02298f491031f7de6ada0c488625a3f",
     "assets/icons/brands/python.svg": "b0e46b75141f1310707d4cd2f83577b449f5bbc778e4540e676f189d28033e74",
+    "assets/icons/brands/react.svg": "0a262c8c84ac1efcb39d787bf3228842ec607ca13445edd5c1ff3dc571678dd5",
     "assets/icons/brands/redis.svg": "72d4a0cf62a3460ddd8b9e837527b0d600cfcf74a1031ad21922207d2cec36b5",
     "assets/icons/brands/spring.svg": "70d139406413db03ed528965410e99e410cd785769008e2e178366b844ee0ba2",
     "assets/icons/brands/typescript.svg": "19d36a72518a2cf175efd101295a473ccda5cc78adc924b08ccd075a1d1a5dba",
-    "assets/icons/catalog.json": "9dec12c30da7e84f9fead23167fdba46cea7fb1761dffd243919b828adf40a55",
+    "assets/icons/catalog.json": "c5af9f7e072ab279bf924d14164da3b0af181d4dc92c10bae8e5d6ab431d2bbb",
     "assets/icons/communication/chat.svg": "0cd2f4dc5bdacf5c6cb2f60e258471f7fb1a66d5f57ba536565e487598a325c2",
     "assets/icons/communication/newsletter.png": "4e1689a4ef32bc68b10553475d8ae9ed5728ef0ba2c43f4a0d18c6e2985b76c5",
     "assets/icons/communication/rss.svg": "ed8661841828a03d3f96db9b830587aad77ffe2799e846cfeaf7eff3a02c251a",
@@ -182,7 +184,7 @@
     "assets/icons/licenses/collected-icons.txt": "421f7279fd885da757a789c3d2a0184f8d8ba758e1637b183795bccbd9860fcd",
     "assets/icons/licenses/devicon.txt": "121194741d4a915b9f5890fdd6dd95121f9b1f816517c792358d72d7c838d664",
     "assets/icons/licenses/project-logos.txt": "d20a1a09248e333fc8440b78e3c015bcc4cc3af8f83cd297c351d1b07dac22d3",
-    "assets/icons/licenses/technology-logos-NOTICE.txt": "83b61b1f5823266a4eec9a03f404d65045122d7484d94fec8bdc3060e94c8a0d",
+    "assets/icons/licenses/technology-logos-NOTICE.txt": "d1ba71f01fa5bd73c84c757313d4d1f1a8d8ba00830ff96916d56ce8592aa2b6",
     "assets/icons/media/pause.svg": "0aaeeb579f2c26825568fff4ffc06f791c2744a418e6aafb8b6187fcb390bd52",
     "assets/icons/media/play.svg": "eea36b10408553ed1fb9ff37fdb7ab7d926e97361bbec4c47ec56d9cdf5f325d",
     "assets/icons/media/replay.svg": "704ffcb93260da7d0bb3685e73f31b054537604aac8389b3bd0ed50244805949",
@@ -247,5 +249,5 @@
     "ui/table.mjs": "d285303ed3e84599a512085e79dfd92db751a890ad4890b81930f1ccf2126ae0",
     "ui/toolbar.mjs": "3fab9dbcd66cbb7273e8ce39d7754e5783ea4e605418dc4faf2c91831067cdd2"
   },
-  "contentHash": "9eafb44faafa81e722caeef2da34be982c95b7134dfb29c008f50f77d88c967d"
+  "contentHash": "f1509af2de42072e4bb9bb91e2139cf13350bc6ce57869ecfc57da8e6cb7919d"
 }

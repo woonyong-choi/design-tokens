@@ -154,8 +154,9 @@
     "assets/icons/brands/spring.svg": "70d139406413db03ed528965410e99e410cd785769008e2e178366b844ee0ba2",
     "assets/icons/brands/typescript.svg": "19d36a72518a2cf175efd101295a473ccda5cc78adc924b08ccd075a1d1a5dba",
     "assets/icons/catalog.json": "8e8d4d77ff3a6bc9087605223b715e9d234da10a3813f5578a49435215386639",
-    "assets/icons/communication/newsletter.png": "3c488b65546742aac634e977e89187f733493d367fe025230984b801554105ef",
+    "assets/icons/communication/newsletter.png": "4e1689a4ef32bc68b10553475d8ae9ed5728ef0ba2c43f4a0d18c6e2985b76c5",
     "assets/icons/communication/rss.svg": "ed8661841828a03d3f96db9b830587aad77ffe2799e846cfeaf7eff3a02c251a",
+    "assets/icons/communication/technology-thought.png": "c4ced0b40cbba15f025898d284ab535c4b8286da1919de4deb6a9713f8d26810",
     "assets/icons/communication/testimonials.png": "5c86cf7c9350dde251b54d68824bf5a7b0084a6d2f8330e9fd3fa0c4f498fa19",
     "assets/icons/computer-architecture/cpu-detail.svg": "3a206b942efe0e42d5726e6d45cf05ae6924dad4a23f9e81031336b766fca8b1",
     "assets/icons/computer-architecture/cpu.svg": "59b5775159d427ef52d768e47d6e61777cc3c65967316e330d0c029166c491a5",
@@ -197,7 +198,7 @@
     "assets/icons/programming/terminal.svg": "995bd48e1de12fcb906b19969d144133b3fbea09602995d9350b7c517fc4b21a",
     "assets/icons/security/security.svg": "3155befdc3524ddc87baacbcba5deb63333b43558a4420a7e4d020cca83950a4",
     "assets/illustrations/project-placeholder.svg": "4453cd5c92033929e11a57d6f1cc112c9f9b013e0c6f34f6815d665e18b9c336",
-    "assets/sources.json": "156e0842d0e687f9be086505a29626b019784dfb9102ebfaad4205a797dffed0",
+    "assets/sources.json": "9358be8de4f61c1d5b5d0b854cc533886e13ffdc936e99ea2c2307c8c36d41d0",
     "styles.css": "ab3577f113d366e4ab5969e9a2130a98f9cdb8ab067edd9ef81984b8cd298520",
     "styles.source.css": "b570e098cccaf45308fe74294416acba29921fda46709450b82e6fcd3fdf9e5b",
     "styles/diagram-embed.css": "f8743b4bb0f2f8485338d2a2311a6bc37e8a10ef61eb8142e0b59b0a1b460ef0",
@@ -245,5 +246,5 @@
     "ui/table.mjs": "d285303ed3e84599a512085e79dfd92db751a890ad4890b81930f1ccf2126ae0",
     "ui/toolbar.mjs": "3fab9dbcd66cbb7273e8ce39d7754e5783ea4e605418dc4faf2c91831067cdd2"
   },
-  "contentHash": "4311b1ede3f16c19e8a8e3147b72b2c84b3d0b0c02c0b2eb5721ac51bee84597"
+  "contentHash": "6f1b18752115395126d6e5bde0aef1de0c0bc19d4bd493400eb707ab96b4b4be"
 }

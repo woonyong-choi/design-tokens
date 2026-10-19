@@ -33,3 +33,22 @@ All paths, shapes, transforms, colors, backgrounds, viewBox values,
 proportions, XML declaration, and title text remain unchanged.
 Monochrome rendering in an existing caller-controlled API is a compatibility
 presentation and is not a separately approved AWS color variant.
+
+Generic AWS Cloud group logo
+
+The central catalog additionally selects
+Architecture-Group-Icons_07312026/AWS-Cloud-logo_32.svg from the same official
+07312026 package. It represents AWS Cloud generally, not EC2 or another service.
+The complete 40x40 source icon, original dark square, AWS compound lettering and
+smile path are retained. Unused namespace and unreferenced IDs are omitted.
+Nonvisual XML/title and root display-size metadata are omitted; the original
+viewBox and all visible geometry and paint are unchanged.
+This selection uses the architecture icon permission above, not an unrestricted
+license to the standalone AWS Smile or to imply AWS sponsorship or endorsement.
+https://aws.amazon.com/architecture/icons/ states that customers and partners
+may use the toolkits and assets to create architecture diagrams, and that icons
+may also appear in materials such as whitepapers, presentations, data sheets
+and posters. Consumer use must remain within those conditions; this record does
+not decide an unverified customer's status or authorize arbitrary marketing use.
+Caller-controlled monochrome is a compatibility rendering of the same geometry,
+not an official replacement for the supplied source color variant.

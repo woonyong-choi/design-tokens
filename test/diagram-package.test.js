@@ -12,7 +12,7 @@ import { verifyDesign } from '../scripts/lib/verify-dist.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const INPUT = Object.freeze({ packageJson: readFileSync(join(ROOT, 'package.json')), license: readFileSync(join(ROOT, 'LICENSE')), fullFiles: buildDesign(ROOT) });
-const ICONS = Object.freeze('cache cdn check chart-line close cloud-pin database desktop dns download-bottom ellipsis file-copy function gateway git github load-balancer maximize minimize nginx phone-mobile postgresql proxy queue redis scan secured-network server user user-settings warning zoom-in zoom-out'.split(' ').sort());
+const ICONS = Object.freeze('check close download-bottom ellipsis file-copy git github maximize minimize nginx postgresql redis scan user user-settings warning zoom-in zoom-out'.split(' ').sort());
 const CONTROLS = Object.freeze('alert check copy download maximize-2 minimize-2 scan zoom-in zoom-out'.split(' ').sort());
 
 function run(command, args, cwd) {
@@ -38,7 +38,7 @@ test('buildDiagramPackage_selects_the_diagram_contract_without_mutating_full_des
   assert.equal(pkg.exports['./tailwind.css'], undefined);
   const catalog = JSON.parse(files.get('dist/assets/icons/catalog.json'));
   assert.deepEqual(Object.keys(catalog.icons).sort(), ICONS);
-  assert.equal(Object.keys(catalog.aliases).length, 14);
+  assert.deepEqual(catalog.aliases, { admin: 'user-settings', administrator: 'user-settings', incident: 'warning', person: 'user' });
   for (const group of ['social', 'articles', 'kinds']) assert.deepEqual(catalog[group], {});
   assert.deepEqual(Object.keys(catalog.controls).sort(), CONTROLS);
   const fullCatalog = JSON.parse(INPUT.fullFiles['assets/icons/catalog.json']);
@@ -48,14 +48,29 @@ test('buildDiagramPackage_selects_the_diagram_contract_without_mutating_full_des
   for (const item of [...fullCatalog.libraries, ...Object.values(fullCatalog.brands)]) if (item.notice) assert.ok(files.has(`dist/assets/icons/${item.notice}`));
   for (const [name, content] of Object.entries(INPUT.fullFiles)) if ((name.startsWith('ui/') && name !== 'ui/icon-data.mjs') || name.startsWith('styles/diagram/')) assert.deepEqual(files.get(`dist/${name}`), Buffer.from(content), name);
   const svgFiles = [...files.keys()].filter(name => name.endsWith('.svg'));
-  assert.equal(svgFiles.length, 33);
+  assert.equal(svgFiles.length, 18);
   assert.deepEqual(svgFiles.sort(), Object.values(catalog.icons).map(icon => `dist/assets/icons/${icon.file}`).sort());
+  for (const name of svgFiles) assert.deepEqual(files.get(name), Buffer.from(INPUT.fullFiles[name.slice(5)]), name);
   assert.ok(![...files.keys()].some(name => /fonts|illustrations|styles\.css|styles\.source|tailwind/.test(name)));
   fixture('manifest', folder => {
     for (const [name, content] of files) { mkdirSync(dirname(join(folder, name)), { recursive: true }); writeFileSync(join(folder, name), content); }
     const manifest = verifyDesign(join(folder, 'dist'));
     assert.notEqual(manifest.contentHash, pkg.designTokensProfile.sourceContentHash);
   });
+});
+
+test('admin_preserves_user_silhouette_and_existing_central_gear', () => {
+  const user = readFileSync(join(ROOT, 'assets/icons/people/user.svg'), 'utf8');
+  const admin = readFileSync(join(ROOT, 'assets/icons/people/user-settings.svg'), 'utf8');
+  const gearHashes = ['ec8fd9961c58187f7630598062b5f563d9c79bed675cb9dc6386ffc609420991', '4693129c011de8ef19580c2058ca1703e7a6bee442285c96e7d1f996c6e32efe'];
+  for (const [index, mode] of ['color', 'monochrome'].entries()) {
+    const userGroup = user.split('\n').find(line => line.includes(`data-name="${mode}"`));
+    const adminGroup = admin.split('\n').find(line => line.includes(`data-name="${mode}"`));
+    const userShapes = userGroup.match(/<(?:circle|path)\b[^>]*\/>/g);
+    const adminShapes = adminGroup.match(/<(?:circle|path)\b[^>]*\/>/g);
+    assert.deepEqual(adminShapes.slice(0, -2), userShapes, `${mode} person silhouette`);
+    assert.equal(createHash('sha256').update(adminShapes.slice(-2).join('')).digest('hex'), gearHashes[index], `${mode} central gear`);
+  }
 });
 
 test('buildDiagramPackage_rejects_unknown_icons_missing_files_and_controls', () => {
@@ -104,11 +119,11 @@ test('installed_diagram_tarball_runs_public_ui_runtime_styles_icons_and_bin', ()
     import { trusted } from '@woonyong-choi/design-tokens/components';
     const require = createRequire(import.meta.url);
     const catalog = getIconCatalog();
-    assert.equal(Object.keys(catalog.icons).length, 33);
+    assert.equal(Object.keys(catalog.icons).length, 18);
     for (const name of [...Object.keys(catalog.icons), ...Object.keys(catalog.aliases)]) assert.match(readIcon(name), /<svg/);
     for (const role of Object.keys(ICON_ROLES.controls)) assert.match(String(ControlIcon(role)), /<svg/);
     assert.equal(Object.keys(ICON_DATA).length, 9);
-    assert.throws(() => readIcon('aws-ec2'), /unknown icon/);
+    for (const name of 'apigw bastion cache cdn db desktop dns function lb mobile monitoring mq region server vpn aws-ec2'.split(' ')) assert.throws(() => readIcon(name), /unknown icon/);
     assert.throws(() => ControlIcon('search'), /unknown controls/);
     assert.match(String(DiagramEmbed({src:'/diagram.html',title:'test',dimensions:{width:100,height:100}})), /iframe/);
     assert.match(DiagramFrame({ canvas: '<svg></svg>', source: 'diagram', labels: ['one'] }), /data-tool="copy"/);

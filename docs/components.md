@@ -39,6 +39,18 @@ const html = CardGroup({ columns: 4, cards });
 
 일반 텍스트는 이스케이프한다. URL은 허용 프로토콜과 문자 범위를 검사한다. HTML 슬롯은 `trusted()` 표시가 없는 문자열을 거절한다. 이 표시는 sanitizer가 아니므로 소비자는 검증된 Markdown 출력과 구성 요소의 결과에만 사용한다.
 
+### 본문 위젯 연결
+
+`@woonyong-choi/design-tokens/runtime/document-widgets`의 `mountDocumentWidgets(root, { copyText, platform } = {})`는 import 시 DOM을 건드리지 않는다. 호스트가 검증한 HTML을 넣은 Element를 전달하면 코드 복사·탭·플랫폼 연동·툴팁을 해당 root 안에서만 연결하고 정리 함수를 반환한다. `copyText(text)`는 호스트의 동기·비동기 복사 함수이며 `false` 반환 또는 예외는 실패다. 생략하면 기존 브라우저 clipboard와 복사 명령을 사용한다. `platform`은 선택적인 문자열이며 URL이나 저장소에서 읽지 않는다. 플랫폼 선택은 같은 root의 뒤쪽 플랫폼 묶음에만 전파한다.
+
+같은 root 또는 서로 포함하는 root의 중복 mount는 오류다. 서로 분리된 root는 독립적으로 연결한다. 반환한 `dispose()`는 여러 번 호출해도 안전하며 listener·알림 timer를 제거하고 복사 중 상태를 정리한다. 이미 시작한 호스트 복사 자체를 취소하지는 않지만 완료·실패 뒤 해당 DOM을 변경하지 않는다. dispose 뒤 다시 mount할 수 있다. 본문 전체를 교체하거나 읽기보기를 종료하기 전에 dispose한다. root 안에 추가한 HTML은 `root.dispatchEvent(new CustomEvent('content-added', { detail: addedElement }))`로 연결하며, 기존 요소의 재연결과 root 밖의 요소는 무시한다. 자동 DOM 관찰이나 제거된 하위 요소별 조기 정리는 하지 않으므로 본문 교체에는 dispose와 새 mount를 사용한다.
+
+본문 위젯 스타일은 `@woonyong-choi/design-tokens/styles/document-widgets.css`를 한 번 로드한다. mount는 Element에 `app-document-widgets`를 붙이며 dispose는 원래 없던 이 클래스만 제거한다. 밝은 위젯 토큰이 기본이며 호스트는 root의 `data-widget-theme="dark"` 또는 `"light"`로 위젯 테마를 명시한다. 호스트의 documentElement나 기본 본문 글자·배경·폭은 변경하지 않는다. 스타일과 자산 로딩의 자세한 경계는 [스타일 구조](styles.md#본문-위젯-스타일)를 따른다.
+
+복수 문서의 DOM ID와 ARIA 연결은 호스트가 고유한 `parseDocument(source, { pageId })`로 만든다. `renderDocument(document, { id })`의 진단용 식별자는 대체 수단이 아니다. 위젯 연결은 ID를 재작성하지 않으며 탭과 툴팁을 root 안에서 찾는다. 같은 root 안의 중복 ID는 호스트 입력 오류다. 일반 제목 링크·각주 이동은 호스트의 기본 탐색 동작을 사용한다.
+
+기존 `/runtime/document` 경로는 같은 바인더를 Document에 연결하는 사이트 자동 진입점이다. 기존 URL의 platform 선택과 document 수준 content-added를 유지하며 페이지 루트에는 클래스를 추가하지 않는다. 이 경로와 native root mount를 같은 Document에 중복 연결하지 않는다. native API는 iframe 메시지·도표 테마·대체 전체화면을 연결하지 않는다. 기존 도표 웹 경로만 유지하며, origin이 null인 앱이나 sandbox 도표는 정확한 자산 신뢰·source·세션 nonce·navigation 계약을 송수신 양쪽에서 검증하기 전까지 비활성으로 둔다.
+
 `Details({ title, open, body })`는 제목을 이스케이프하고 검증된 본문을 접기 요소로 감싼다. Markdown 어댑터는 같은 `Details.open({ open })`·`Details.close()`와 `Details.summaryOpen()`·`Details.summaryClose()`로 태그를 조립한다. `open`은 생략하면 `false`다. 요약의 인라인 Markdown, 중첩 접기와 코드 블록은 소비자가 이미 분석한 토큰을 렌더하고 요약이 없으면 요약 태그를 생략한다. 공통 태그나 `app-details` 클래스를 소비자에서 다시 정의하지 않는다.
 
 `Figure`·`Gallery`·`Video`·`Tabs`의 표시 폭은 `width: 'content' | 'narrow' | 'wide'`로 지정하며 생략하면 `content`다. `contentWidth(props)`도 같은 문자열을 반환하고 폭 외의 콘텐츠 속성은 허용한다. 어댑터는 원래 블록 입력을 이 함수로 검사한 결과를 `width`에 전달한다. `wide`나 `size`가 자기 속성으로 존재하면 값이 `false`나 `undefined`여도 각각 `Use width instead of wide`·`Use width instead of size` 오류로 거부한다.

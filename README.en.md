@@ -48,6 +48,8 @@ The output is an `app-support-grid is-four` group containing a link to `/docs/me
 
 ### Install in another project
 
+Use `mountDocumentWidgets` from `/runtime/document-widgets` with `/styles/document-widgets.css` to connect body widgets without a site layout. The host retains its base typography, background, and width. Call the returned function to dispose the bindings. See the [host input and lifecycle contract](docs/components.md#본문-위젯-연결). Native diagram messaging is not provided.
+
 This command installs a verified commit as a Git dependency.
 
 ```sh

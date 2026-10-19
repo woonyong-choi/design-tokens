@@ -209,6 +209,7 @@
     "styles/diagram/gallery.css": "1f125fee0b11a62ec6873382d246cf220404e1d9e24b3b4b8de759f57cf2b1e3",
     "styles/diagram/player.css": "55169a9e309132bb6d520f59690079f13b55766e1ad6be4c69528e8d75c3734e",
     "styles/diagram/status.css": "3c0e2dabcf3d4140385f9d5b4bb08391824e3feaa7f02aabe746bfaa96777294",
+    "styles/document-widgets.css": "8614d49f3e7fff5d4f9dd8d5e91a01ea7a80c171902d05539ad2dacdab39c911",
     "styles/table.css": "d67831d6d1dd5b8d8de69101b4cb423b610b18757ec386cdc0754bab59ef1e43",
     "styles/tabs.css": "e7762ad9522cde4e59d71fd446d414c467b7a1155ed6d07338f3da349b8a7567",
     "styles/toolbar.css": "9f756722c76780175bd2bebe45ee20ee4f6b0fcf24d8940fc654fbee570c394e",
@@ -237,15 +238,16 @@
     "ui/runtime/diagram-host.js": "90c2fd536af0bbba19b891843f9ed05539145724ac9a0309b2d9b5b845a87997",
     "ui/runtime/diagram.js": "4f3d5a1660e6120025cc40edef18aa598fedfa909cbe6ba4b2b02c242ffe95fa",
     "ui/runtime/document-navigation.js": "b266955e34c994aa6748b9328ad34a8d45206dc6312a94b73c44239d3172ff1f",
-    "ui/runtime/document.js": "744cae11119bda81d653c7c26a8c7fb846b189efc8110f251065323dcdc77ac3",
+    "ui/runtime/document-widgets.js": "7b0e7667da696bb12e9ce740b33168e26c967d800d919e5cf64a62b0bffccb6d",
+    "ui/runtime/document.js": "0ebaa2e33b1674c65f1f5c4b8f452d4879a50755f77aca5600c32201cb430469",
     "ui/runtime/flows.js": "5cd0733c6ba1c4a098968b6690614791dde1335ea1fdb98a0d282bd30bf4550a",
-    "ui/runtime/tabs.js": "9f2696e1d779b11c42b0b753fb80272a57586b08e3e4b7bff13e2a66a12da21e",
+    "ui/runtime/tabs.js": "ae1815d1cdf79d2053720319c805412f22f1e1085614d6ae7a1ad7dd9d6b7194",
     "ui/runtime/time.js": "eec23d0da9cc9d62411ef8c37a601fbfc4c5c966e7d9e39b4d71dd24ba229273",
-    "ui/runtime/toolbar.js": "a66a022be48b9cdc5bc4df0502a89fb9667ec81e17955a5580371499a07fae00",
+    "ui/runtime/toolbar.js": "4483a65dd767dd2976e2009fd3c62cb942b4bb1b6eb1778e26a08e81f15da223",
     "ui/runtime/video.js": "798ae83453616b75b32e0a8b3560cfaf780c74e7f07618069a59bdda8ff984ae",
     "ui/svg.mjs": "df5c87760287d73fe6412ddac4129a952219e2bdf536d7bf8259d64c52c08d38",
     "ui/table.mjs": "d285303ed3e84599a512085e79dfd92db751a890ad4890b81930f1ccf2126ae0",
     "ui/toolbar.mjs": "3fab9dbcd66cbb7273e8ce39d7754e5783ea4e605418dc4faf2c91831067cdd2"
   },
-  "contentHash": "9eafb44faafa81e722caeef2da34be982c95b7134dfb29c008f50f77d88c967d"
+  "contentHash": "92d95e9986da40c5b34d7121363eee3224469eaea3d7ceddd0e8ae142887c2a0"
 }

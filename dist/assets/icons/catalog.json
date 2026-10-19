@@ -10,13 +10,27 @@
     "media": "사진·영상·음악·오디오와 재생·촬영",
     "communication": "메시지·메일·통화·알림·대화·공유",
     "people": "사람·관계·직업·표정·몸짓·사용자",
-    "brands": "이름이 특정 서비스·제품·브랜드를 가리키는 표식"
+    "brands": "이름이 특정 서비스·제품·브랜드를 가리키는 표식",
+    "backend-api": "서버·API·HTTP·백엔드 서비스",
+    "networking": "통신망·연결·무선 신호·네트워크 구성",
+    "programming": "소스 코드·개발 도구·언어·버전 관리",
+    "databases": "데이터베이스·스키마·관계·질의",
+    "algorithms": "흐름·분기·반복·문제 해결 절차",
+    "operating-systems": "운영체제·터미널·시스템 실행과 관리",
+    "computer-architecture": "프로세서·회로·논리 게이트·컴퓨터 하드웨어 구조",
+    "security": "인증·신원·권한·보안·보호"
   },
   "aliases": {
     "admin": "user-settings",
     "administrator": "user-settings",
+    "apigw": "gateway",
+    "architecture": "hierarchy",
+    "deploy": "box-up",
     "incident": "warning",
-    "person": "user"
+    "model": "brain-circuit",
+    "notify": "event",
+    "person": "user",
+    "processor": "cpu"
   },
   "controls": {
     "copy": "file-copy",
@@ -161,6 +175,11 @@
     }
   },
   "icons": {
+    "box-up": {
+      "file": "actions/box-up.svg",
+      "category": "actions",
+      "label": "배포"
+    },
     "check": {
       "file": "actions/check.svg",
       "category": "actions",
@@ -206,6 +225,31 @@
       "category": "actions",
       "label": "zoom-out"
     },
+    "brain-circuit": {
+      "file": "algorithms/brain-circuit.svg",
+      "category": "algorithms",
+      "label": "인공지능"
+    },
+    "api-detail": {
+      "file": "backend-api/api-detail.svg",
+      "category": "backend-api",
+      "label": "API"
+    },
+    "api": {
+      "file": "backend-api/api.svg",
+      "category": "backend-api",
+      "label": "API"
+    },
+    "event": {
+      "file": "backend-api/event.svg",
+      "category": "backend-api",
+      "label": "이벤트"
+    },
+    "server": {
+      "file": "backend-api/server.svg",
+      "category": "backend-api",
+      "label": "서버"
+    },
     "git": {
       "file": "brands/git.svg",
       "category": "brands",
@@ -241,10 +285,55 @@
       "category": "communication",
       "label": "rss"
     },
+    "cpu-detail": {
+      "file": "computer-architecture/cpu-detail.svg",
+      "category": "computer-architecture",
+      "label": "컴퓨터 시스템"
+    },
+    "cpu": {
+      "file": "computer-architecture/cpu.svg",
+      "category": "computer-architecture",
+      "label": "컴퓨터 시스템"
+    },
+    "database-detail": {
+      "file": "databases/database-detail.svg",
+      "category": "databases",
+      "label": "데이터베이스"
+    },
+    "database": {
+      "file": "databases/database.svg",
+      "category": "databases",
+      "label": "데이터베이스"
+    },
+    "document-detail": {
+      "file": "documents/document-detail.svg",
+      "category": "documents",
+      "label": "문서"
+    },
     "document": {
       "file": "documents/document.svg",
       "category": "documents",
       "label": "문서"
+    },
+    "hierarchy-detail": {
+      "file": "documents/hierarchy-detail.svg",
+      "category": "documents",
+      "label": "소프트웨어 공학"
+    },
+    "hierarchy": {
+      "file": "documents/hierarchy.svg",
+      "category": "documents",
+      "label": "소프트웨어 공학"
+    },
+    "project": {
+      "file": "documents/project.svg",
+      "category": "documents",
+      "label": "프로젝트"
+    },
+    "search": {
+      "file": "documents/search.svg",
+      "category": "documents",
+      "label": "검색"
     },
     "maximize": {
       "file": "editing/maximize.svg",
@@ -281,6 +370,11 @@
       "category": "layout",
       "label": "checkbox-indeterminate"
     },
+    "components": {
+      "file": "layout/components.svg",
+      "category": "layout",
+      "label": "컴포넌트"
+    },
     "pause": {
       "file": "media/pause.svg",
       "category": "media",
@@ -301,6 +395,31 @@
       "category": "navigation",
       "label": "chevron-right"
     },
+    "gateway": {
+      "file": "networking/gateway.svg",
+      "category": "networking",
+      "label": "게이트웨이"
+    },
+    "network-detail": {
+      "file": "networking/network-detail.svg",
+      "category": "networking",
+      "label": "네트워크"
+    },
+    "network": {
+      "file": "networking/network.svg",
+      "category": "networking",
+      "label": "네트워크"
+    },
+    "operating-system-detail": {
+      "file": "operating-systems/operating-system-detail.svg",
+      "category": "operating-systems",
+      "label": "운영체제"
+    },
+    "operating-system": {
+      "file": "operating-systems/operating-system.svg",
+      "category": "operating-systems",
+      "label": "운영체제"
+    },
     "user-settings": {
       "file": "people/user-settings.svg",
       "category": "people",
@@ -310,6 +429,26 @@
       "file": "people/user.svg",
       "category": "people",
       "label": "사용자"
+    },
+    "code-review": {
+      "file": "programming/code-review.svg",
+      "category": "programming",
+      "label": "코드 리뷰"
+    },
+    "terminal-detail": {
+      "file": "programming/terminal-detail.svg",
+      "category": "programming",
+      "label": "터미널"
+    },
+    "terminal": {
+      "file": "programming/terminal.svg",
+      "category": "programming",
+      "label": "터미널"
+    },
+    "security": {
+      "file": "security/security.svg",
+      "category": "security",
+      "label": "보안"
     }
   }
 }

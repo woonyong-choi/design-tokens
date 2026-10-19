@@ -97,7 +97,7 @@ npm install --save-dev 'github:woonyong-choi/design-tokens#1441d59721cea72a69a1e
 - [공통 구성 요소](docs/components.md)
   - [공통 아이콘](docs/design/content-icons.md)
 
-아이콘은 블로그·문서 엔진·Torso에서 사용하는 도형과 역할만 배포합니다. 도움말 기본 역할은 `question`이며 글 형식 매핑 `kinds`는 비어 있습니다. 미사용 아이콘 이름과 별칭은 조회 오류가 됩니다.
+아이콘은 공개 블로그·문서 엔진·Torso와 등록된 비공개 미리보기에서 사용하는 도형과 역할을 배포합니다. 현재 일반 SVG 49개와 브랜드 6개, 별칭 10개를 유지합니다. 비공개 메타데이터의 상세형 선택을 보존하며, 본문에서 수집한 7개 이름은 토큰 검증 전까지 해당 기본 도형을 보존합니다. 도움말 기본 역할은 `question`이며 글 형식 매핑 `kinds`는 비어 있습니다. 미사용 아이콘 이름과 별칭은 조회 오류가 됩니다.
 
 [전체 문서](docs/README.md)
 

@@ -10,13 +10,27 @@
     "media": "사진·영상·음악·오디오와 재생·촬영",
     "communication": "메시지·메일·통화·알림·대화·공유",
     "people": "사람·관계·직업·표정·몸짓·사용자",
-    "brands": "이름이 특정 서비스·제품·브랜드를 가리키는 표식"
+    "brands": "이름이 특정 서비스·제품·브랜드를 가리키는 표식",
+    "backend-api": "서버·API·HTTP·백엔드 서비스",
+    "networking": "통신망·연결·무선 신호·네트워크 구성",
+    "programming": "소스 코드·개발 도구·언어·버전 관리",
+    "databases": "데이터베이스·스키마·관계·질의",
+    "algorithms": "흐름·분기·반복·문제 해결 절차",
+    "operating-systems": "운영체제·터미널·시스템 실행과 관리",
+    "computer-architecture": "프로세서·회로·논리 게이트·컴퓨터 하드웨어 구조",
+    "security": "인증·신원·권한·보안·보호"
   },
   "aliases": {
     "admin": "user-settings",
     "administrator": "user-settings",
+    "apigw": "gateway",
+    "architecture": "hierarchy",
+    "deploy": "box-up",
     "incident": "warning",
-    "person": "user"
+    "model": "brain-circuit",
+    "notify": "event",
+    "person": "user",
+    "processor": "cpu"
   },
   "controls": {
     "copy": "file-copy",

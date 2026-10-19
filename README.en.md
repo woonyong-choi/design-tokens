@@ -90,7 +90,7 @@ The design documents are written in Korean.
 - [Shared components](docs/components.md)
   - [Shared icons](docs/design/content-icons.md)
 
-The package includes icons and roles used by the blog, document engine, and Torso. The default help role is `question`, and `kinds` is empty. Removed icon names and aliases fail lookup.
+The package includes icons and roles used by the public blog, document engine, Torso, and registered private previews. It retains 49 general SVGs, 6 brands, and 10 aliases. Private metadata keeps its detail selection. Seven names collected from body tokens retain their default shapes pending token validation. The default help role is `question`, and `kinds` is empty. Removed icon names and aliases fail lookup.
 
 [All documentation](docs/README.md)
 

@@ -30,11 +30,12 @@ test('semantic_catalog_covers_every_svg_once_at_two_levels', () => {
 
 test('active_consumer_inventory_matches_source_and_distribution', () => {
   const general = 'check checkbox-check checkbox-empty checkbox-indeterminate chevron-right close document download-bottom ellipsis file-copy maximize minimize pause play question replay rss scan search-mono user user-settings warning zoom-in zoom-out'.split(' ').sort();
-  const names = [...general, ...Object.keys(catalog.brands)].sort();
+  const content = 'api api-detail box-up brain-circuit code-review components cpu cpu-detail database database-detail document-detail event gateway hierarchy hierarchy-detail network network-detail operating-system operating-system-detail project search security server terminal terminal-detail'.split(' ');
+  const names = [...general, ...content, ...Object.keys(catalog.brands)].sort();
   assert.deepEqual(Object.keys(catalog.icons).sort(), names);
   assert.deepEqual(readdirSync(root + 'assets/icons', { recursive: true }).filter(name => name.endsWith('.svg')).map(name => name.split('/').at(-1).slice(0, -4)).sort(), names);
   assert.deepEqual(Object.keys(files).filter(name => /^assets\/icons\/.*\.svg$/.test(name)).map(name => name.split('/').at(-1).slice(0, -4)).sort(), names);
-  assert.deepEqual(catalog.aliases, { admin: 'user-settings', administrator: 'user-settings', incident: 'warning', person: 'user' });
+  assert.deepEqual(catalog.aliases, { admin: 'user-settings', administrator: 'user-settings', apigw: 'gateway', architecture: 'hierarchy', deploy: 'box-up', incident: 'warning', model: 'brain-circuit', notify: 'event', person: 'user', processor: 'cpu' });
   assert.deepEqual(catalog.controls, {
     copy: 'file-copy', download: 'download-bottom', 'maximize-2': 'maximize', 'minimize-2': 'minimize', check: 'check', alert: 'warning', 'zoom-in': 'zoom-in', 'zoom-out': 'zoom-out', scan: 'scan', search: 'search-mono', clear: 'close', play: 'play', pause: 'pause', replay: 'replay', chevron: 'chevron-right', 'video-play': 'play', 'task-empty': 'checkbox-empty', 'task-done': 'checkbox-check', 'task-cancelled': 'checkbox-indeterminate',
   });
@@ -66,7 +67,7 @@ test('independent_png_icons_preserve_image_paths_dimensions_and_provenance', () 
 
 test('loader_resolves_aliases_and_variants_without_accepting_paths', () => {
   for (const [alias, target] of Object.entries(catalog.aliases)) assert.equal(iconFile(alias), iconFile(target));
-  assert.equal(iconFile('document', { variant: 'detail' }), 'documents/document.svg');
+  assert.equal(iconFile('document', { variant: 'detail' }), 'documents/document-detail.svg');
   assert.equal(iconFile('file-copy', { variant: 'detail' }), iconFile('file-copy'));
   for (const name of ['missing', '../copy', 'constructor', '__proto__']) assert.throws(() => readIcon(name), /unknown icon/);
   assert.throws(() => iconFile('document', { variant: 'small' }), /unknown icon variant/);
@@ -76,6 +77,36 @@ test('loader_resolves_aliases_and_variants_without_accepting_paths', () => {
     assert.match(brand.source, /^https:\/\//);
     assert.ok(catalog.libraries.some(library => library.name === brand.library));
   }
+});
+
+test('private_preview_metadata_and_pending_body_names_resolve_original_targets', () => {
+  const metadata = {
+    api: ['backend-api/api.svg', 'backend-api/api-detail.svg'],
+    architecture: ['documents/hierarchy.svg', 'documents/hierarchy-detail.svg'],
+    components: ['layout/components.svg', 'layout/components.svg'],
+    database: ['databases/database.svg', 'databases/database-detail.svg'],
+    deploy: ['actions/box-up.svg', 'actions/box-up.svg'],
+    document: ['documents/document.svg', 'documents/document-detail.svg'],
+    model: ['algorithms/brain-circuit.svg', 'algorithms/brain-circuit.svg'],
+    network: ['networking/network.svg', 'networking/network-detail.svg'],
+    'operating-system': ['operating-systems/operating-system.svg', 'operating-systems/operating-system-detail.svg'],
+    processor: ['computer-architecture/cpu.svg', 'computer-architecture/cpu-detail.svg'],
+    project: ['documents/project.svg', 'documents/project.svg'],
+    security: ['security/security.svg', 'security/security.svg'],
+    terminal: ['programming/terminal.svg', 'programming/terminal-detail.svg'],
+    redis: ['brands/redis.svg', 'brands/redis.svg'],
+  };
+  for (const [name, [base, detail]] of Object.entries(metadata)) {
+    assert.equal(iconFile(name), base, name);
+    assert.equal(iconFile(name, { variant: 'detail' }), detail, name);
+    assert.equal(readIcon(name, { variant: 'detail' }), files['assets/icons/' + detail].toString(), name);
+    for (const size of ['medium', 'small']) {
+      assert.match(String(ContentIcon({ graphic: trusted(renderSvgIcon(readIcon(name, { variant: 'detail' }))), size })), /<svg/);
+    }
+  }
+  const pendingBody = { apigw: 'networking/gateway.svg', 'code-review': 'programming/code-review.svg', document: 'documents/document.svg', notify: 'backend-api/event.svg', person: 'people/user.svg', search: 'documents/search.svg', server: 'backend-api/server.svg' };
+  for (const [name, file] of Object.entries(pendingBody)) assert.equal(iconFile(name), file, name);
+  for (const name of ['missing', 'binary-tree', 'gateway-detail', 'event-detail', 'search-detail', 'server-detail']) assert.throws(() => readIcon(name), /unknown icon/, name);
 });
 
 test('static_svg_rejects_active_or_broken_content', () => {

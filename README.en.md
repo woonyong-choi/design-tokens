@@ -48,6 +48,8 @@ The output is an `app-support-grid is-four` group containing a link to `/docs/me
 
 ### Install in another project
 
+`WritingPreview` displays a title, introduction, body, status, and tags without site navigation or dates. Pass verified introduction and body HTML according to the [input contract](docs/components.md). The package owns writing-preview spacing and prose styles.
+
 This command installs a verified commit as a Git dependency.
 
 ```sh

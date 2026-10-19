@@ -14,6 +14,11 @@
 .app-document-header .app-article-title { margin: 0; border-color: var(--color-article-title-border); }
 .app-document-lead { font-size: var(--text-post-lead-size); margin: 0 0 var(--spacing-post-lead-margin); }
 .app-document-metadata { margin-bottom: var(--spacing-post-lead-margin); }
+.app-writing-preview { min-width: 0; padding: var(--spacing-gap); container-type: inline-size; }
+.app-document.is-writing { --component-width-wide: min(var(--container-page), 100cqw); margin-top: 0; }
+.app-document.is-writing .app-document-lead > :last-child { margin-bottom: 0; }
+.app-document.is-writing .app-document-lead:empty, .app-document.is-writing .app-document-metadata:empty { display: none; }
+.app-document.is-writing .app-document-dates { margin: 0 0 var(--spacing-gap-sm); }
 .app-document-dates { display: flex; flex-wrap: wrap; gap: var(--spacing-gap-sm); color: var(--color-ui-muted); font-size: var(--text-small-text); }
 .app-example-notice { padding: var(--spacing-gap-sm); border-left: var(--spacing-outline) solid var(--color-ui-line); color: var(--color-ui-muted); font-size: var(--text-small-text); }
 .app-source-link { font-size: var(--text-small-text); }

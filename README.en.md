@@ -44,14 +44,14 @@ JS
 
 The output is an `app-support-grid is-four` group containing a link to `/docs/memory/`. To display it in a browser, include the HTML with the package's `tokens.css` and `styles.css`. Preserve the relative paths to fonts and icons referenced by the CSS. Follow the complete [card preview example](docs/distribution.md#카드-미리보기) to open the styled card in a browser.
 
-`BlogCard` provides automatic title covers and comment counts as `댓글 · N` text. `TagFilter` shares hover, selection, and reset states for search tags. `LogoItem` renders a disabled state without a destination. Consumers own published tags and search conditions.
+`BlogCard` provides automatic title covers and comment counts as `댓글 · N` text. `TagFilter` shares hover, selection, and reset states for search tags. `LogoItem` renders a disabled state without a destination. Consumers own published tags and search conditions. `FlowRail` moves automatically only when its content exceeds the available width.
 
 ### Install in another project
 
 This command installs a verified commit as a Git dependency.
 
 ```sh
-npm install --save-dev 'github:woonyong-choi/design-tokens#f6e76381ba265a778cba6b79c869c51d31214ce7'
+npm install --save-dev 'github:woonyong-choi/design-tokens#d7e73d07809b5c72a50c7e7295fb0b76fcddc0ac'
 ```
 
 Run the same HTML example in the consuming project. The commit includes generated `dist/` files, so consumers do not need to rebuild the design files. Follow the [update procedure](docs/distribution.md#갱신) when moving to a new commit.

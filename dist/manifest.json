@@ -154,7 +154,7 @@
     "assets/icons/brands/spring.svg": "70d139406413db03ed528965410e99e410cd785769008e2e178366b844ee0ba2",
     "assets/icons/brands/typescript.svg": "19d36a72518a2cf175efd101295a473ccda5cc78adc924b08ccd075a1d1a5dba",
     "assets/icons/catalog.json": "9dec12c30da7e84f9fead23167fdba46cea7fb1761dffd243919b828adf40a55",
-    "assets/icons/communication/chat.svg": "7b91b367940edca19e4a267a337bfb017310aa8b5a5ed1fc46a2d3958b84ef37",
+    "assets/icons/communication/chat.svg": "0cd2f4dc5bdacf5c6cb2f60e258471f7fb1a66d5f57ba536565e487598a325c2",
     "assets/icons/communication/newsletter.png": "4e1689a4ef32bc68b10553475d8ae9ed5728ef0ba2c43f4a0d18c6e2985b76c5",
     "assets/icons/communication/rss.svg": "ed8661841828a03d3f96db9b830587aad77ffe2799e846cfeaf7eff3a02c251a",
     "assets/icons/communication/technology-thought.png": "c4ced0b40cbba15f025898d284ab535c4b8286da1919de4deb6a9713f8d26810",
@@ -213,10 +213,10 @@
     "styles/tabs.css": "e7762ad9522cde4e59d71fd446d414c467b7a1155ed6d07338f3da349b8a7567",
     "styles/toolbar.css": "9f756722c76780175bd2bebe45ee20ee4f6b0fcf24d8940fc654fbee570c394e",
     "tailwind.css": "ac29d8de931388b14e638d22eff14af44676b770a52ca6c9f8f8b040273e6a7d",
-    "tokens.css": "c9c924c4d56bed748ae89f257d5d6f6dbe7a9113a32893362685e2a08d535244",
+    "tokens.css": "fcc8236239000372081b1698cd840df18b027c8c5e34d67b60b31493860f183d",
     "tokens.dark.json": "f6d2d164deda9e65626c9828b4bd9c66f7de338d83534643251c2ea2a491ebf3",
-    "tokens.js": "a38010c6f44d4f875de71e8c3adf91f0383fa17e29cd0ad26a5dec6368f3cfc5",
-    "tokens.json": "fbfe1ac22bf9a7aa29a63c4630160c6a1cda7c586077b80e2d533e0d74af44b1",
+    "tokens.js": "50ad53f9d3b7e640dbe090f66f61eed8bd73517697476db64a481e97e4745373",
+    "tokens.json": "eebc1db626f55c71dd6779a441654e00a80669247d149afc5b8c85cb000b89ec",
     "ui/build/check-tokens.mjs": "c3281b894a72ce7289fd489dcea5b36cdfea60a531ae7b12389ee949b7c107c1",
     "ui/build/icons.mjs": "151587c8ae4d959154f76cd029307b4b345d2331ce91c161ef895050b4c3a34b",
     "ui/build/lib/find-hardcoded.mjs": "6ff3e5c3b249b36260a7c2ae2b46c22fdb2de0180f239f1bab09ba4cf401086e",
@@ -247,5 +247,5 @@
     "ui/table.mjs": "d285303ed3e84599a512085e79dfd92db751a890ad4890b81930f1ccf2126ae0",
     "ui/toolbar.mjs": "3fab9dbcd66cbb7273e8ce39d7754e5783ea4e605418dc4faf2c91831067cdd2"
   },
-  "contentHash": "d5208d19b280dead47145186ca99e1fad78c8924db15dc076e815fabe46f65ae"
+  "contentHash": "a4658ee769ea4b295d8b959d02eb9ec3b6b1d7a6568a2c88432f4a06a2cb2cae"
 }

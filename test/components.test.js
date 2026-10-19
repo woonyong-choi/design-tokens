@@ -9,6 +9,7 @@ import { resolveValue, themeTable } from '../scripts/lib/token-css.mjs';
 import { contrast } from '../scripts/lib/contrast.mjs';
 import { RUNTIME_PROPERTIES } from '../ui/build/lib/tokens-patterns.mjs';
 import { SYNTAX_ROLES } from '../dist/ui/components.mjs';
+import { readIcon } from '../dist/ui/build/icons.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const modules = readdirSync(root + 'styles', { recursive: true }).filter(name => name.endsWith('.css')).map(name => `styles/${name}`);
@@ -63,9 +64,11 @@ test('diagram_outline_is_readable_on_both_card_and_canvas_surfaces', () => {
 });
 
 test('icons_keep_contrast_on_page_paper_and_tool_surfaces_in_both_themes', () => {
+  const staticChatStroke = /stroke="(#[a-f0-9]+)"/i.exec(readIcon('chat'))[1];
   for (const [mode, table] of Object.entries(tables)) {
     const hex = name => resolveValue(table, name);
     assert.ok(contrast(hex('icon.neutral'), hex('color.ui-card')) >= 3, `${mode} icon on page`);
+    assert.ok(contrast(staticChatStroke, hex('color.help-bg')) >= 3, `${mode} static chat outline on card`);
     for (const surface of ['color.help-bg', 'color.help-hover', 'color.help-active']) assert.ok(contrast(hex('icon.accent-outline'), hex(surface)) >= 3, `${mode} comment outline on ${surface}`);
     assert.ok(contrast(hex('icon.brand.postgresql'), hex('color.ui-card')) >= 3, `${mode} PostgreSQL silhouette on page`);
     assert.ok(contrast(hex('icon.brand.nginx'), hex('color.ui-card')) >= 3, `${mode} NGINX silhouette on page`);

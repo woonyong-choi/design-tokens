@@ -2791,7 +2791,7 @@ export const values = freeze({
     "accent": "#1c60c2",
     "accent-soft": "#cfe0fc",
     "accent-edge": "#9ebef0",
-    "accent-outline": "#1e6bd6",
+    "accent-outline": "#3f7fe0",
     "positive": "#2aa275",
     "positive-edge": "#1f8560",
     "positive-soft": "#c9eedd",

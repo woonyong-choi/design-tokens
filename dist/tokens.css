@@ -1194,6 +1194,7 @@
   --icon-accent: var(--primitive-icon-accent);
   --icon-accent-soft: var(--primitive-icon-accent-soft);
   --icon-accent-edge: var(--primitive-icon-accent-edge);
+  --icon-accent-outline: var(--color-category-blue-anchor);
   --icon-positive: var(--primitive-icon-positive);
   --icon-positive-edge: var(--primitive-icon-positive-edge);
   --icon-positive-soft: var(--primitive-icon-positive-soft);
@@ -1448,6 +1449,7 @@
   --color-workspace-hover: var(--color-gray-788);
   --color-workspace-selected: var(--color-gray-635);
   --icon-neutral: var(--color-ink);
+  --icon-accent-outline: var(--color-category-blue-dark-ink);
   --icon-brand-github: var(--color-gray-0);
   --icon-brand-postgresql: #6495bb;
   --icon-device-case: var(--primitive-icon-device-case-dark);
@@ -1611,6 +1613,7 @@
   --color-workspace-hover: var(--color-gray-788);
   --color-workspace-selected: var(--color-gray-635);
   --icon-neutral: var(--color-ink);
+  --icon-accent-outline: var(--color-category-blue-dark-ink);
   --icon-brand-github: var(--color-gray-0);
   --icon-brand-postgresql: #6495bb;
   --icon-device-case: var(--primitive-icon-device-case-dark);
@@ -1773,6 +1776,7 @@
   --color-workspace-hover: var(--color-gray-94);
   --color-workspace-selected: var(--color-gray-212);
   --icon-neutral: var(--primitive-help-title-color);
+  --icon-accent-outline: var(--color-category-blue-anchor);
   --icon-brand-github: var(--color-gray-1000);
   --icon-brand-postgresql: #336791;
   --icon-device-case: var(--primitive-icon-device-case);

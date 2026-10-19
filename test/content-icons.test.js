@@ -187,28 +187,41 @@ test('shared_components_render_catalog_roles_and_validate_graphic_slots', async 
   const names = [...new Set(Object.values(roles).flatMap(group => Object.values(group)))].sort();
   assert.deepEqual(runtime.ICON_ROLES, roles);
   assert.deepEqual(Object.keys(runtime.ICON_DATA).sort(), names);
-  for (const name of names) assert.equal(runtime.ICON_DATA[name], files['assets/icons/' + catalog.icons[name].file].toString());
+  for (const name of names) assert.equal(runtime.ICON_DATA[name], readFileSync(root + 'assets/icons/' + catalog.icons[name].file, 'utf8'));
 });
 
-test('comment_control_preserves_outline_and_consumer_class_without_fixed_color', () => {
+test('comment_control_preserves_bubble_geometry_and_consumer_class', () => {
   assert.equal(iconFile('chat'), 'communication/chat.svg');
   assert.equal(catalog.controls.comment, 'chat');
   const svg = String(ControlIcon('comment', 'app-blog-card-comment-icon'));
   assert.match(svg, /<svg[^>]*data-control-icon="comment"/);
   assert.match(svg, /class="app-blog-card-comment-icon"/);
   assert.match(svg, /viewBox="0 0 32 32"/);
-  assert.match(svg, /<path[^>]*fill="none"[^>]*stroke="currentColor"[^>]*stroke-width="2.38"/);
+  assert.match(svg, /<path[^>]*stroke-width="2.25"/);
   assert.match(svg, /stroke-linecap="round" stroke-linejoin="round"/);
   assert.doesNotMatch(svg, /<svg[^>]*\scolor=|(?:fill|stroke)="#/);
   assert.match(String(ControlIcon('comment')), /class="app-control-icon"/);
+  const color = renderSvgIcon(readFileSync(root + 'assets/icons/communication/chat.svg', 'utf8'));
+  assert.match(color, /fill="var\(--icon-accent-soft\)"/);
+  assert.match(color, /stroke="var\(--icon-accent-outline\)"/);
+  assert.doesNotMatch(color, /fill="none"/);
+  assert.equal(readIcon('chat'), files['assets/icons/communication/chat.svg'].toString());
 });
 
 test('media_controls_preserve_white_symbols_and_inherit_button_color', () => {
   for (const name of ['play', 'video-play', 'pause']) {
     const svg = String(ControlIcon(name));
     assert.match(svg, /<circle[^>]*fill="currentColor"/);
-    assert.match(svg, /<(?:path|rect)[^>]*fill="#fff(?:fff)?"/);
+    assert.match(svg, /<(?:path|rect)[^>]*fill="var\(--icon-paper\)"/);
     assert.doesNotMatch(svg, /<svg[^>]*\scolor=/);
   }
   assert.doesNotMatch(String(ControlIcon('copy')), /fill="#fff(?:fff)?"/);
+});
+
+test('comment_control_preserves_a_colored_surface_and_outline', () => {
+  const svg = String(ControlIcon('comment'));
+  assert.match(svg, /fill="var\(--icon-accent-soft\)"/);
+  assert.match(svg, /stroke="var\(--icon-accent-outline\)"/);
+  assert.match(svg, /aria-hidden="true"/);
+  assert.match(String(ControlIcon('copy')), /(?:fill|stroke)="currentColor"/);
 });

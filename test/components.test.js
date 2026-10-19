@@ -66,6 +66,7 @@ test('icons_keep_contrast_on_page_paper_and_tool_surfaces_in_both_themes', () =>
   for (const [mode, table] of Object.entries(tables)) {
     const hex = name => resolveValue(table, name);
     assert.ok(contrast(hex('icon.neutral'), hex('color.ui-card')) >= 3, `${mode} icon on page`);
+    for (const surface of ['color.help-bg', 'color.help-hover', 'color.help-active']) assert.ok(contrast(hex('icon.accent-outline'), hex(surface)) >= 3, `${mode} comment outline on ${surface}`);
     assert.ok(contrast(hex('icon.brand.postgresql'), hex('color.ui-card')) >= 3, `${mode} PostgreSQL silhouette on page`);
     assert.ok(contrast(hex('icon.brand.nginx'), hex('color.ui-card')) >= 3, `${mode} NGINX silhouette on page`);
     assert.ok(contrast(hex('icon.neutral-edge'), hex('icon.paper')) >= 4.5, `${mode} annotation on paper`);

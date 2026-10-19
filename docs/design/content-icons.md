@@ -82,7 +82,7 @@ LinkedIn과 NGINX는 공식 SVG에서 독립 심벌 그룹을 선택하고 워�
 
 `npm run build`가 의미 폴더를 읽어 배포 카탈로그의 `icons` 목록을 생성한다. 소스 JSON에는 개별 SVG 파일 목록을 다시 적지 않는다. `getIconCatalog().icons`에서 빌드한 목록을 읽는다. 빌드는 잘못된 깊이, 중복 이름, 없는 별칭·역할·고지, 미해결 토큰과 허용하지 않은 SVG를 거부한다. 좌표와 도형 내부 획은 원본 기하이고 화면의 표시 크기와 일반 아이콘 색은 공통 토큰을 따른다. 브랜드 컬러는 원배포 자산의 식별 색을 유지한다.
 
-현재 빌드는 `dist/assets/icons` SVG와 역할용 `dist/ui/icon-data.mjs`의 색 변수를 밝음 값으로 치환한다. 어두운 토큰으로 원본을 직접 렌더한 그림은 이 정적 배포 결과와 다를 수 있다. 검수는 실제 빌드 SVG도 밝고 어두운 소비 배경에 놓고 수행한다. 필수 외곽·연결에는 양 배경의 대비를 확보하는 고정 중성 역할 `icon.structure-edge`를, 밝은 물체 안의 필수 기호에는 인접색을 확인한 고정 잉크 역할을 사용한다. 기존 테마값 전체를 바꾸거나 소비자 CSS로 결함을 가리지 않는다.
+`dist/assets/icons`의 독립 SVG는 색 변수를 밝음 값으로 치환한다. `readIcon`도 이 정적 SVG를 반환한다. 역할용 `dist/ui/icon-data.mjs`는 같은 빌드 입력의 원본 변수를 보존하며 공통 토큰 CSS의 현재 테마를 따른다. 단색 역할은 기존처럼 `currentColor`를 사용하고 mask 내부의 색은 보존한다. 독립 SVG는 실제 밝고 어두운 소비 배경에서, inline 역할은 두 테마의 기본·호버·선택 상태에서 검수한다. 필수 외곽·연결에는 양 배경의 대비를 확보하는 고정 중성 역할 `icon.structure-edge`를, 밝은 물체 안의 필수 기호에는 인접색을 확인한 고정 잉크 역할을 사용한다. 기존 테마값 전체를 바꾸거나 소비자 CSS로 결함을 가리지 않는다.
 
 ```js
 import { getIconCatalog, iconFile, readIcon } from '@woonyong-choi/design-tokens/icons';

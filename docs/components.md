@@ -101,6 +101,8 @@ const html = CardGroup({ columns: 4, cards });
 
 `ToolButton({ action, label, icon })`은 이름 있는 아이콘 버튼, `Toolbar({ label, buttons, extra })`는 상태 알림과 버튼 묶음, `ToolHeader({ label, toolbar })`는 블록 안의 머리글이다. 버튼·추가 조작은 검증된 HTML 슬롯만 받는다. `ControlIcon(name, className)`과 `ToolIcon`의 이름은 공통 조작 아이콘 목록 안에서만 선택한다. `CodeBlock`과 `DiagramFrame`은 이 구성 요소를 조립한다. 소비자는 별도 버튼 CSS나 복사 피드백을 만들지 않는다. 결과 문구는 공통 화면 읽기용 숨김 클래스로 배치 흐름에서 제외하고 `aria-live`로 알린다. 버튼 아이콘과 `title`은 성공·실패를 나타내고 실패하면 재시도를 안내한다. 알림을 초기화할 때 원래 아이콘과 `title`로 복원한다.
 
+`ControlIcon`의 댓글 역할은 말풍선의 하늘색 면과 파란 윤곽을 보존한다. 재생·일시정지와 함께 원본 색 역할을 사용하며, 나머지 조작 아이콘은 `currentColor`를 따른다. 인라인 역할은 공통 토큰 CSS의 현재 테마를 따르고, `readIcon`의 독립 SVG는 밝음 값으로 고정된다.
+
 버튼 묶음은 별도 면 없이 코드·도표 블록 위에 놓인다. 호버·키보드 초점과 누르는 동안의 상태는 공통 스타일로 표시하며, 복사 성공·실패 상태색을 유지한다. 소비자는 버튼 개수나 동작만 조립한다.
 
 ## 표와 색상

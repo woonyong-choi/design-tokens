@@ -43,7 +43,7 @@ const tokensPath = require.resolve('@woonyong-choi/design-tokens/css');
 
 파일을 읽는 소비자는 경로를 직접 조립하지 않고 `createRequire(import.meta.url).resolve('@woonyong-choi/design-tokens/<경로>')`로 찾는다. 하드코딩 검사는 `design-tokens-check <대상> --tokens node_modules/@woonyong-choi/design-tokens/dist/tokens.json`으로 실행한다.
 
-전체 Git 패키지는 일반 SVG 24개와 브랜드 SVG 34개를 배포한다. `/icons`의 `getIconCatalog().brands`와 `readIcon`으로 전체 브랜드를 조회한다. 일반 도형·역할·별칭은 실제 사용 범위만 유지한다. `articles`는 기본 도움말 `question`만 유지하며 `kinds`는 빈 객체다. 제거된 이름과 별칭은 조회 오류다.
+전체 Git 패키지는 일반 SVG 49개와 브랜드 SVG 34개를 배포한다. `/icons`의 `getIconCatalog().brands`와 `readIcon`으로 전체 브랜드를 조회한다. 일반 도형·역할·별칭은 실제 사용 범위만 유지한다. `articles`는 기본 도움말 `question`만 유지하며 `kinds`는 빈 객체다. 제거된 이름과 별칭은 조회 오류다.
 
 ## 도표 전용 tarball
 

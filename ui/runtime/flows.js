@@ -54,11 +54,15 @@ for (const [scope, rails] of scopes) {
   }
 
   function measure() {
-    const sizes = rows.map(row => ({
-      width: row.viewport.clientWidth,
-      distance: row.group.children.length > (shared ? 0 : 1)
-        ? row.group.getBoundingClientRect().width + (parseFloat(getComputedStyle(row.track).columnGap) || 0) : 0,
-    }));
+    const sizes = rows.map(row => {
+      const style = getComputedStyle(row.viewport);
+      const width = row.viewport.getBoundingClientRect().width
+        - (parseFloat(style.paddingLeft) || 0) - (parseFloat(style.paddingRight) || 0)
+        - (parseFloat(style.borderLeftWidth) || 0) - (parseFloat(style.borderRightWidth) || 0);
+      const groupWidth = row.group.getBoundingClientRect().width;
+      const gap = parseFloat(getComputedStyle(row.track).columnGap) || 0;
+      return { width, distance: groupWidth > width ? groupWidth + gap : 0 };
+    });
     if (sizes.every((size, index) => size.width === rows[index].width && size.distance === rows[index].distance)) return;
     for (const [index, row] of rows.entries()) {
       const progress = row.distance ? position(row) / row.distance : 0;

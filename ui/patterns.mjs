@@ -13,8 +13,18 @@ export function SearchBox({ combobox = true, large = false, query = '', action, 
   return out(`<section class="app-search app-public-search${large ? ' is-prominent' : ''}" data-public-search aria-label="${escape(labels.region)}"><form action="${safeUrl(action)}" role="search">${TextInput({ id: 'site-query', name: 'q', label: labels.input, value: query, placeholder: labels.placeholder, autocomplete: 'off', size: large ? 'large' : 'medium', surface: 'field', icon: ControlIcon('search', 'app-input-icon'), action: out(`<button class="app-search-clear" type="button" data-clear-query aria-label="${escape(labels.clear)}" hidden>${ControlIcon('clear')}</button>`), role: combobox ? 'combobox' : 'searchbox', controls: combobox ? 'search-suggestions' : undefined })}</form><div class="app-search-panel" id="search-suggestions" role="listbox" hidden></div><p class="app-sr" data-search-status role="status" aria-live="polite"></p>${suggestions.length ? `<p class="app-search-frequent">${escape(labels.suggestions)} ${suggestions.map(query => `<button type="button" data-query="${escape(query)}">${escape(query)}</button>`).join(' ')}</p>` : ''}${filters === undefined ? '' : slot(filters, 'filters')}${fallback ? `<noscript>${slot(fallback, 'fallback')}</noscript>` : ''}</section>`);
 }
 
-export function DocumentArticle({ title, icon, lead, metadata, body, after }) {
-  return out(`<article class="app-document"><header class="app-document-header"><h1 class="app-article-title">${icon ? slot(icon, 'icon') : ''}${escape(title)}</h1></header><p class="app-article-lead app-document-lead">${slot(lead, 'lead')}</p><div class="app-document-metadata">${slot(metadata, 'metadata')}</div><div class="app-prose app-document-body">${slot(body, 'body')}</div>${after ? slot(after, 'after') : ''}</article>`);
+export function DocumentArticle({ title, titleId, icon, lead, metadata, body, after, variant = 'publication' }) {
+  if (!['publication', 'writing'].includes(variant)) throw new TypeError(`unknown document variant: ${variant}`);
+  const isWriting = variant === 'writing';
+  const leadTag = isWriting ? 'div' : 'p';
+  const headingId = titleId === undefined ? '' : ` id="${titleAnchorId(titleId)}"`;
+  return out(`<article class="app-document${isWriting ? ' is-writing' : ''}"><header class="app-document-header"><h1 class="app-article-title"${headingId}>${icon ? slot(icon, 'icon') : ''}${escape(title)}</h1></header><${leadTag} class="app-article-lead app-document-lead${isWriting ? ' app-prose' : ''}">${slot(lead, 'lead')}</${leadTag}><div class="app-document-metadata">${slot(metadata, 'metadata')}</div><div class="app-prose app-document-body">${slot(body, 'body')}</div>${after ? slot(after, 'after') : ''}</article>`);
+}
+
+/** 소개·본문은 trusted HTML 슬롯이고 제목·상태는 일반 텍스트, 태그는 TagList 입력이다. */
+export function WritingPreview({ title, titleId, intro, body, statusLabel = '', tags = [] }) {
+  const metadata = out(`${statusLabel ? `<p class="app-document-dates">${escape(statusLabel)}</p>` : ''}${tags.length ? TagList({ tags }) : ''}`);
+  return out(`<div class="app-writing-preview">${DocumentArticle({ title, titleId, lead: intro, metadata, body, variant: 'writing' })}</div>`);
 }
 
 // ---- 소개·목록·홈 구성 요소 ----
@@ -188,4 +198,11 @@ export function ProjectList({ title, projects }) {
 /** 검색 상태 안내와 선택 동작을 같은 중앙 정렬 영역에 둔다. */
 export function SearchMessage({ lines }) {
   return out(`<div class="app-search-message"><p>${lines.map(line => escape(line)).join('<br>')}</p></div>`);
+}
+
+function titleAnchorId(value) {
+  if (typeof value !== 'string' || !value.length || /[\s\p{Cc}\p{Cf}]/u.test(value)) {
+    throw new TypeError('invalid title id: expected a non-empty string without whitespace or control characters');
+  }
+  return escape(value);
 }

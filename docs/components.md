@@ -39,6 +39,8 @@ const html = CardGroup({ columns: 4, cards });
 
 일반 텍스트는 이스케이프한다. URL은 허용 프로토콜과 문자 범위를 검사한다. HTML 슬롯은 `trusted()` 표시가 없는 문자열을 거절한다. 이 표시는 sanitizer가 아니므로 소비자는 검증된 Markdown 출력과 구성 요소의 결과에만 사용한다.
 
+`WritingPreview({ title, titleId, intro, body, statusLabel = '', tags = [] })`는 작성용 문서 틀이다. `title`과 `statusLabel`은 일반 텍스트이며, `intro`와 `body`는 document-engine이 렌더링한 HTML을 `trusted()`로 감싼 필수 슬롯이다. 빈 소개는 `trusted('')`로 전달한다. 소개는 블록 HTML을 받으며 본문과 함께 기존 `app-prose` 스타일을 사용한다. 선택적인 `titleId`는 제목 `h1`의 ID로 기존 앵커를 보존한다. 생략하면 ID 속성을 출력하지 않는다. 제목 전용 ID는 document-engine의 `한글-제목-앵커` 같은 Unicode 문자열을 허용하며 속성값을 이스케이프한다. 빈 문자열·잘못된 타입·공백·제어문자·형식 제어문자는 `TypeError`로 거절한다. 공통 `id()`의 영문·숫자·밑줄·하이픈 제한은 다른 구성 요소에서 그대로 유지한다. `tags`는 `TagList`와 같은 `[{ label, href }]` 입력이다. 날짜·브랜드·사이트 헤더·탐색·푸터·소셜·댓글은 생성하지 않는다. `DocumentArticle`의 `writing` 변형을 조립하며 기본 `publication` 변형은 기존 마크업을 유지한다. `WritingPreview`는 `DocumentLayout` 없이 단독으로 사용한다.
+
 `Details({ title, open, body })`는 제목을 이스케이프하고 검증된 본문을 접기 요소로 감싼다. Markdown 어댑터는 같은 `Details.open({ open })`·`Details.close()`와 `Details.summaryOpen()`·`Details.summaryClose()`로 태그를 조립한다. `open`은 생략하면 `false`다. 요약의 인라인 Markdown, 중첩 접기와 코드 블록은 소비자가 이미 분석한 토큰을 렌더하고 요약이 없으면 요약 태그를 생략한다. 공통 태그나 `app-details` 클래스를 소비자에서 다시 정의하지 않는다.
 
 `Figure`·`Gallery`·`Video`·`Tabs`의 표시 폭은 `width: 'content' | 'narrow' | 'wide'`로 지정하며 생략하면 `content`다. `contentWidth(props)`도 같은 문자열을 반환하고 폭 외의 콘텐츠 속성은 허용한다. 어댑터는 원래 블록 입력을 이 함수로 검사한 결과를 `width`에 전달한다. `wide`나 `size`가 자기 속성으로 존재하면 값이 `false`나 `undefined`여도 각각 `Use width instead of wide`·`Use width instead of size` 오류로 거부한다.

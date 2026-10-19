@@ -67,6 +67,7 @@
 | Tag, TagList | `.app-tag`, `.app-tags` |
 | SearchBox, SearchResult | `.app-search-clear`, `.app-search-entry`, `.app-search-result-link` |
 | DocumentArticle, PostArticle | `.app-prose`, `.app-blog-post`, `.app-article-lead` |
+| WritingPreview | `.app-writing-preview`, `.app-document.is-writing`, 기존 문서·태그·본문 스타일 |
 | CodeBlock, CopyButton | `.app-code`, `.app-tool-header`, `.app-tool-label` |
 | Table | `.app-table-scroll`, `.app-table` |
 | Tabs, TabList, Gallery | `.app-tabs`, `.app-tablist` |
@@ -93,6 +94,8 @@
 `SectionIntro`의 아이콘 자리는 `spacing.landing-icon`의 64px이다. 카탈로그 SVG는 그 안에서 기존 `ContentIcon` 카드 역할인 48px로 가운데 정렬하고, 원본 PNG는 64px 이미지 표시를 유지한다. 아이콘 도형과 원본 여백을 고치거나 이름별 CSS 배율을 만들지 않는다.
 
 `Card`·`DocumentArticle`·`PostArticle` 제목과 목록·안내 쪽 제목(`.app-page-heading`)은 `word-break: keep-all`로 한국어 어절을 지키고 가용 폭보다 긴 단어는 `overflow-wrap: anywhere`로 넘침을 막는다. 관련 글 제목은 기존 한 줄 말줄임을 유지한다. 문서 제목은 인라인 흐름에서 첫 줄에 아이콘을 놓고 `ContentIcon`의 기존 수직 정렬을 사용한다. 블로그 글 제목은 좌우 폭을 별도로 줄이지 않아 본문 폭을 모두 사용한다.
+
+`WritingPreview`는 `spacing.gap` 안쪽 여백과 기존 본문 폭을 사용한다. 작성 변형만 검색 아래 여백을 없애며 기본 문서·문서 배치의 `spacing.article-search-bottom`은 유지한다. 넓은 본문 자산은 미리보기 컨테이너 폭 안에서 기존 `component.width-wide` 역할을 사용한다. 코드·각주·수식·그림의 본문 스타일은 별도로 덮어쓰지 않는다.
 
 ### 강제하는 것
 
@@ -220,3 +223,5 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 표의 렌더링 회귀 검사는 설치된 Chrome과 별도 `playwright-core` 모듈을 사용한다. `node test/table-browser.mjs <playwright-core의 index.mjs 경로>`로 모바일·데스크톱, 라이트·다크에서 설명 열·긴 코드·긴 문장·다열 표와 키보드 가로 이동을 확인한다. 선택적인 마지막 인수에 기록 파일의 경로 접두사를 주면 측정 JSON과 화면을 저장한다.
 
 `node test/giscus-browser.mjs <playwright-core의 index.mjs 경로>`는 공급자와 같은 `light dark` 메타 설정의 독립 iframe에서 OS light/dark와 두 화면 폭의 댓글·답글·입력란 대비 및 키보드 초점을 확인한다. 선택적인 마지막 인수에 기록 경로 접두사를 주면 JSON과 화면을 저장한다. 공급자의 실제 댓글 연결·펼침은 소비자 화면에서 따로 확인한다.
+
+`node test/writing-preview-browser.mjs <playwright-core의 index.mjs 경로>`는 320·390·768·1440px의 라이트·다크 화면에서 작성 미리보기의 긴 제목·넘침·태그 초점과 기존 발행 문서의 간격·본문 자산 스타일 보존을 검사한다. 선택적인 마지막 인수에 기록 경로 접두사를 주면 390px 화면을 저장한다. 실제 소비자의 모드 전환과 document-engine 출력 연결은 소비자 화면에서 따로 확인한다.

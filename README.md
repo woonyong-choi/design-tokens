@@ -19,7 +19,7 @@
 
 전체 Git 패키지는 일반 SVG 50개와 기술·서비스 브랜드 SVG 34개를 제공합니다. `/icons`의 `getIconCatalog().brands`와 `readIcon`으로 브랜드 전체를 읽을 수 있습니다. 브랜드 출처에는 Linux의 Devicon 변형과 JavaScript 커뮤니티 로고도 포함됩니다.
 
-Node.js 20 이상과 npm이 필요합니다. 도표만 쓰는 앱은 사람·서비스 브랜드와 기본 UI·상태 SVG 18개를 담은 [도표 전용 tarball 설치](docs/distribution.md#도표-전용-tarball)를 사용할 수 있습니다.
+Node.js 20 이상과 npm이 필요합니다. 도표만 쓰는 앱은 사람·서비스 브랜드와 기본 UI·상태 SVG 18개를 담은 [도표 전용 tarball 설치](docs/distribution.md#도표-전용-tarball)를 사용할 수 있습니다. 이 tarball은 CSS 축소 도우미 `/build/styles`를 빼서 `esbuild` 없이 `postcss`만 설치합니다.
 
 ### 저장소에서 확인
 

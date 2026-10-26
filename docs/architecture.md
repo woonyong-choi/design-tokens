@@ -28,7 +28,7 @@ design-tokens는 여러 소비자가 공유하는 토큰, 아이콘, CSS, 정적
 
 `dist/manifest.json`은 생성 파일과 내용 해시를 기록한다. `npm run check`와 시험이 원본에서 다시 만든 결과와 비교하는 이 저장소의 검사 자료이고, 소비자에게 사본을 전달하거나 사본 해시를 비교하는 데 쓰지 않는다.
 
-도표 전용 배포는 같은 `buildDesign(root)` 결과를 순수 선택 함수에 넘긴다. 선택 정책은 사람·서비스 브랜드와 기존 UI·상태 SVG 18개만 담는다. 브랜드 추가는 이 선택 정책을 자동 확장하지 않는다. 별도 토큰이나 UI 정본을 만들지 않으며 전체 `dist/`에 쓰지 않는다. 선택 manifest는 선택 파일만 해시하고 패키지의 `designTokensProfile.sourceContentHash`는 전체 manifest를 가리킨다. 배포 범위와 재생성 계약은 [도표 전용 tarball](distribution.md#도표-전용-tarball)에 기록한다.
+도표 전용 배포는 같은 `buildDesign(root)` 결과를 순수 선택 함수에 넘긴다. 선택 정책은 사람·서비스 브랜드와 기존 UI·상태 SVG 18개만 담고, `esbuild`를 쓰는 CSS 축소 도우미 `ui/build/styles.mjs`를 제외한다. 런타임 의존성은 선택 파일의 import에서 다시 계산한다. 브랜드 추가는 이 선택 정책을 자동 확장하지 않는다. 별도 토큰이나 UI 정본을 만들지 않으며 전체 `dist/`에 쓰지 않는다. 선택 manifest는 선택 파일만 해시하고 패키지의 `designTokensProfile.sourceContentHash`는 전체 manifest를 가리킨다. 배포 범위와 재생성 계약은 [도표 전용 tarball](distribution.md#도표-전용-tarball)에 기록한다.
 
 ## 경계
 

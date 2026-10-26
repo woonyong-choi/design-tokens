@@ -80,7 +80,7 @@
 
 `SiteHeader.logo`의 `.app-logo-brand`는 기존 `spacing.1-5`로 좌우 안쪽 여백 6px을 둔다. 링크 배경과 제목 이미지 사이의 간격을 확보하며 일반 아이콘·텍스트 헤더에는 적용하지 않는다. 링크의 기본·호버 불투명도와 배경은 기존 상태 규칙을 따른다.
 
-홈 발행 변형 `.app-publication.app-canvas`와 `Hero`, 후기 구획은 `color.ui-card`를 사용하며 밝은 테마에서 흰색이다. 후기 구획은 기본 `Section` 배경을 상속한다. 일반 `.app-canvas`와 구독·푸터는 기존 `color.canvas`를 유지한다. 홈 식별 클래스를 보존하므로 로고의 기본·호버 불투명도는 바뀌지 않는다.
+홈 발행 변형 `.app-publication.app-canvas`와 `Hero`, 후기 구획은 `color.ui-card`를 사용하며 밝은 테마에서 흰색이다. 후기·구독 구획과 푸터도 `color.ui-card`를 사용해 본문과 같은 흰색으로 이어진다. 일반 `.app-canvas`만 `color.canvas`를 유지한다. 홈 식별 클래스를 보존하므로 로고의 기본·호버 불투명도는 바뀌지 않는다.
 
 기술 로고의 링크는 아이콘 크기에 양쪽 안쪽 여백을 더한 정사각형이다. 슬롯 가운데에 아이콘을 놓고 평소·호버·키보드 초점에서 같은 가로·세로 비율을 유지한다.
 
@@ -145,7 +145,9 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 랜딩의 제목·설명·후기 보조 글자·구독 안내와 구역 표면은 다크 의미 토큰을 사용한다. 구독 입력의 안내 문구는 `color.ui-muted`, 활성 버튼 글자는 `color.control-paper`를 사용한다. 비활성 입력·버튼은 전체 투명도로 글자까지 흐리지 않으며 버튼을 `color.ui-line` 표면과 `color.body` 글자로 구분한다.
 
-다크 `color.canvas`는 `color.prose-pre-background`를 참조한다. 본문의 `color.ui-card`와 구독·푸터의 구역 차이를 유지하며 새 색을 만들지 않는다.
+다크 `color.canvas`는 `color.prose-pre-background`를 참조한다. 일반 `.app-canvas`와 본문 `color.ui-card`의 구역 차이를 유지하며 새 색을 만들지 않는다.
+
+머리글 메뉴(`color.nav-color`), 푸터 글자(`color.landing-footer-ink`), 구독 안내(`color.landing-newsletter-note-ink`)는 밝은 테마에서 `primitive.muted`를 사용해 흰 배경과 4.5:1 이상의 명도 대비를 유지한다.
 
 ## 본문과 코드
 

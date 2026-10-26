@@ -1,10 +1,10 @@
 import assert from 'node:assert/strict';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { test } from 'node:test';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
 import { buildDesign } from '../scripts/lib/design-build.mjs';
 import { buildDiagramPackage } from '../scripts/lib/diagram-package.mjs';
@@ -33,7 +33,10 @@ test('buildDiagramPackage_selects_the_diagram_contract_without_mutating_full_des
   assert.deepEqual(pkg.designTokensProfile.icons, ICONS);
   assert.deepEqual(pkg.designTokensProfile.controls, CONTROLS);
   assert.equal(pkg.designTokensProfile.sourceContentHash, JSON.parse(INPUT.fullFiles['manifest.json']).contentHash);
-  for (const field of ['name', 'version', 'engines', 'dependencies', 'bin', 'files']) assert.deepEqual(pkg[field], JSON.parse(INPUT.packageJson)[field]);
+  for (const field of ['name', 'version', 'engines', 'bin', 'files']) assert.deepEqual(pkg[field], JSON.parse(INPUT.packageJson)[field]);
+  assert.deepEqual(pkg.dependencies, { postcss: JSON.parse(INPUT.packageJson).dependencies.postcss });
+  assert.equal(pkg.exports['./build/styles'], undefined);
+  assert.equal(files.has('dist/ui/build/styles.mjs'), false);
   for (const field of ['scripts', 'devDependencies', 'overrides']) assert.equal(pkg[field], undefined);
   assert.equal(pkg.exports['./tailwind.css'], undefined);
   const catalog = JSON.parse(files.get('dist/assets/icons/catalog.json'));
@@ -46,7 +49,7 @@ test('buildDiagramPackage_selects_the_diagram_contract_without_mutating_full_des
   assert.deepEqual(catalog.libraries, fullCatalog.libraries);
   assert.deepEqual(catalog.aliases, Object.fromEntries(Object.entries(fullCatalog.aliases).filter(([, target]) => ICONS.includes(target))));
   for (const item of [...fullCatalog.libraries, ...Object.values(fullCatalog.brands)]) if (item.notice) assert.ok(files.has(`dist/assets/icons/${item.notice}`));
-  for (const [name, content] of Object.entries(INPUT.fullFiles)) if ((name.startsWith('ui/') && name !== 'ui/icon-data.mjs') || name.startsWith('styles/diagram/')) assert.deepEqual(files.get(`dist/${name}`), Buffer.from(content), name);
+  for (const [name, content] of Object.entries(INPUT.fullFiles)) if ((name.startsWith('ui/') && !['ui/icon-data.mjs', 'ui/build/styles.mjs'].includes(name)) || name.startsWith('styles/diagram/')) assert.deepEqual(files.get(`dist/${name}`), Buffer.from(content), name);
   const svgFiles = [...files.keys()].filter(name => name.endsWith('.svg'));
   assert.equal(svgFiles.length, 18);
   assert.deepEqual(svgFiles.sort(), Object.values(catalog.icons).map(icon => `dist/assets/icons/${icon.file}`).sort());
@@ -83,6 +86,8 @@ test('buildDiagramPackage_rejects_unknown_icons_missing_files_and_controls', () 
   const noControl = JSON.parse(INPUT.fullFiles['assets/icons/catalog.json']);
   delete noControl.controls.copy;
   assert.throws(() => buildDiagramPackage({ ...INPUT, fullFiles: { ...INPUT.fullFiles, 'assets/icons/catalog.json': JSON.stringify(noControl) } }), /missing diagram control: copy/);
+  const undeclared = { ...INPUT.fullFiles, 'ui/extra.mjs': "import { x } from 'left-pad';\n" };
+  assert.throws(() => buildDiagramPackage({ ...INPUT, fullFiles: undeclared }), /undeclared diagram dependency: left-pad/);
 });
 
 test('diagram_tarball_is_reproducible_safe_and_excluded_from_full_package', () => {
@@ -114,7 +119,7 @@ test('installed_diagram_tarball_runs_public_ui_runtime_styles_icons_and_bin', ()
     import { getIconCatalog, readIcon } from '@woonyong-choi/design-tokens/icons';
     import { ControlIcon } from '@woonyong-choi/design-tokens/ui/icons.mjs';
     import { ICON_DATA, ICON_ROLES } from '@woonyong-choi/design-tokens/ui/icon-data.mjs';
-    import { pruneTokens, compileStyles } from '@woonyong-choi/design-tokens/build/styles';
+    import { pruneTokens } from '@woonyong-choi/design-tokens/ui/build/prune-tokens.mjs';
     import { DiagramEmbed, DiagramFrame } from '@woonyong-choi/design-tokens/diagram';
     import { trusted } from '@woonyong-choi/design-tokens/components';
     const require = createRequire(import.meta.url);
@@ -129,18 +134,20 @@ test('installed_diagram_tarball_runs_public_ui_runtime_styles_icons_and_bin', ()
     assert.match(DiagramFrame({ canvas: '<svg></svg>', source: 'diagram', labels: ['one'] }), /data-tool="copy"/);
     assert.equal(typeof trusted, 'function');
     for (const entry of ['runtime/document-navigation','ui/runtime/toolbar.js','ui/runtime/tabs.js','svg','js','components']) await import('@woonyong-choi/design-tokens/' + entry);
-    const { build } = await import('esbuild');
+    await assert.rejects(import('@woonyong-choi/design-tokens/build/styles'), { code: 'ERR_MODULE_NOT_FOUND' });
+    await assert.rejects(import('@woonyong-choi/design-tokens/ui/build/styles.mjs'), { code: 'ERR_MODULE_NOT_FOUND' });
+    const { build } = await import(${JSON.stringify(pathToFileURL(join(ROOT, 'node_modules/esbuild/lib/main.js')).href)});
     const runtime = await build({ stdin: { contents: ['runtime/document','runtime/flows','runtime/video'].map(entry => 'import \"@woonyong-choi/design-tokens/' + entry + '\";').join('\\n'), resolveDir: process.cwd() }, bundle: true, write: false, platform: 'browser', format: 'esm' });
     assert.ok(runtime.outputFiles[0].text.includes('matchMedia'));
     for (const file of ['ui/html.mjs','ui/svg.mjs','ui/icons.mjs','ui/runtime/flows.js']) assert.ok(readFileSync(require.resolve('@woonyong-choi/design-tokens/' + file), 'utf8').length > 0);
     assert.match(pruneTokens(':root { --keep:red; --drop:blue }', '.x {color:var(--keep)}'), /--keep/);
     assert.doesNotMatch(pruneTokens(':root { --keep:red; --drop:blue }', '.x {color:var(--keep)}'), /--drop/);
-    const compiled = await compileStyles('.used {color:red}.unused{color:blue}', new Map([['/', '<div class="used"></div>']]), new Map());
-    assert.match(compiled.css, /used/);
-    assert.doesNotMatch(compiled.css, /unused/);
   `], folder);
   const installed = JSON.parse(run('npm', ['ls', '--all', '--json'], folder));
   assert.ok(installed.dependencies['@woonyong-choi/design-tokens']);
+  assert.equal(installed.problems, undefined);
+  assert.deepEqual(Object.keys(installed.dependencies['@woonyong-choi/design-tokens'].dependencies), ['postcss']);
+  for (const name of ['esbuild', '@esbuild']) assert.equal(existsSync(join(folder, 'node_modules', name)), false, name);
   const audit = JSON.parse(run('npm', ['audit', '--json'], folder));
   assert.equal(audit.metadata.vulnerabilities.total, 0);
   writeFileSync(join(folder, 'page.css'), '.page { color: #ff0000; }\n');

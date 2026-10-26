@@ -4,7 +4,11 @@ const POLICY = Object.freeze({
   icons: Object.freeze('user admin nginx postgresql redis git github check warning close ellipsis'.split(' ')),
   controls: Object.freeze('copy download maximize-2 minimize-2 check alert zoom-in zoom-out scan'.split(' ')),
   files: Object.freeze(['tokens.css', 'tokens.js', 'tokens.json', 'tokens.dark.json', 'styles/tabs.css', 'styles/toolbar.css', 'styles/diagram-embed.css']),
+  // CSS 축소 도우미(`/build/styles`)는 웹 사이트 빌드용이며 도표 소비자의 실행 경로가 아님. 이 파일만 esbuild를 import함
+  excludedUi: Object.freeze(['ui/build/styles.mjs']),
 });
+const BARE_IMPORT = /(?:\bfrom\s*|\bimport\s*\(\s*|\bimport\s+)['"]([^'"./][^'"]*)['"]/g;
+const packageName = specifier => specifier.startsWith('@') ? specifier.split('/').slice(0, 2).join('/') : specifier.split('/')[0];
 const serialize = value => JSON.stringify(value, null, 2) + '\n';
 const digest = value => createHash('sha256').update(value).digest('hex');
 
@@ -33,7 +37,7 @@ export function buildDiagramPackage({ packageJson, license, fullFiles }) {
   const files = new Map();
   for (const name of POLICY.files) files.set(name, read(name));
   for (const name of Object.keys(fullFiles).sort()) {
-    if (name.startsWith('ui/') || name.startsWith('styles/diagram/')) files.set(name, read(name));
+    if ((name.startsWith('ui/') && !POLICY.excludedUi.includes(name)) || name.startsWith('styles/diagram/')) files.set(name, read(name));
   }
   for (const { file } of Object.values(icons)) {
     if (!/^[a-z][a-z0-9-]*\/[a-z0-9][a-z0-9-]*\.svg$/.test(file)) throw new Error(`invalid diagram icon path: ${file}`);
@@ -51,6 +55,13 @@ export function buildDiagramPackage({ packageJson, license, fullFiles }) {
   const hashes = Object.fromEntries([...files].sort(([a], [b]) => a.localeCompare(b)).map(([name, value]) => [name, digest(value)]));
   files.set('manifest.json', Buffer.from(serialize({ ...fullManifest, files: hashes, contentHash: digest(serialize(hashes)) })));
   const { scripts, devDependencies, overrides, ...pkg } = JSON.parse(packageJson);
+  const used = new Set();
+  for (const [name, value] of files) {
+    if (!/\.(?:mjs|js)$/.test(name)) continue;
+    for (const [, specifier] of value.toString().matchAll(BARE_IMPORT)) if (!specifier.startsWith('node:') && packageName(specifier) !== pkg.name) used.add(packageName(specifier));
+  }
+  for (const name of used) if (!Object.hasOwn(pkg.dependencies ?? {}, name)) throw new Error(`undeclared diagram dependency: ${name}`);
+  pkg.dependencies = Object.fromEntries(Object.entries(pkg.dependencies ?? {}).filter(([name]) => used.has(name)));
   pkg.exports = Object.fromEntries(Object.entries(pkg.exports).filter(([, target]) => {
     if (target === './package.json') return true;
     if (target.includes('*')) {

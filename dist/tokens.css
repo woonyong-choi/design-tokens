@@ -173,7 +173,7 @@
   --color-search-bg: var(--primitive-search-bg);
   --color-help-bg: var(--primitive-help-bg);
   --color-help-border: var(--primitive-help-border);
-  --color-nav-color: var(--primitive-nav-color);
+  --color-nav-color: var(--primitive-muted);
   --color-control-link: var(--primitive-control-link);
   --color-control-hover: var(--primitive-control-hover);
   --color-control-active: var(--primitive-control-active);
@@ -192,7 +192,7 @@
   --color-landing-action-pressed: var(--primitive-landing-action-pressed);
   --color-landing-review-meta-ink: var(--primitive-landing-review-meta-ink);
   --color-landing-review-link-ink: var(--primitive-landing-review-link-ink);
-  --color-landing-footer-ink: var(--primitive-landing-footer-ink);
+  --color-landing-footer-ink: var(--primitive-muted);
   --color-feature-box-background: var(--primitive-feature-box-background);
   --color-feature-hero-background: var(--primitive-feature-hero-background);
   --color-feature-tab-background: var(--primitive-feature-tab-background);
@@ -362,7 +362,7 @@
   --color-flow-ink-gray: var(--color-gray-0);
   --color-newsletter-button-color: var(--primitive-toc-underline);
   --color-primary-hover: var(--primitive-primary-hover);
-  --color-landing-newsletter-note-ink: var(--primitive-landing-newsletter-note-ink);
+  --color-landing-newsletter-note-ink: var(--primitive-muted);
   --color-feature-tab-ink: var(--color-control-paper);
   --color-gallery-selected-ink: var(--color-control-paper);
   --color-tag-background: var(--color-category-blue-light-tint-3);
@@ -763,7 +763,6 @@
   --primitive-support-title-gap: 23.0625px;
   --primitive-support-card-min: 180.25px;
   --primitive-line-compact: 1.2;
-  --primitive-nav-color: rgba(38,52,74,.5);
   --primitive-scrollbar: 15px;
   --primitive-device-width: 371px;
   --primitive-device-pad: 4.5%;
@@ -1100,7 +1099,6 @@
   --primitive-primary-hover: #649fff;
   --primitive-action-shadow: 0 2px 4px rgba(0,0,0,.05);
   --primitive-action-focus: 0 0 0 2px rgba(37,118,235,.5);
-  --primitive-landing-newsletter-note-ink: #9299a4;
   --primitive-icon-brand-nginx: #009639;
   --primitive-icon-device-case: #23262a;
   --primitive-icon-device-case-dark: #89929b;
@@ -1732,7 +1730,7 @@
   --color-search-bg: var(--primitive-search-bg);
   --color-help-bg: var(--primitive-help-bg);
   --color-help-border: var(--primitive-help-border);
-  --color-nav-color: var(--primitive-nav-color);
+  --color-nav-color: var(--primitive-muted);
   --color-control-hover: var(--primitive-control-hover);
   --color-control-muted: var(--primitive-control-muted);
   --color-search-hover: var(--primitive-search-hover);
@@ -1746,7 +1744,7 @@
   --color-landing-action-pressed: var(--primitive-landing-action-pressed);
   --color-landing-review-meta-ink: var(--primitive-landing-review-meta-ink);
   --color-landing-review-link-ink: var(--primitive-landing-review-link-ink);
-  --color-landing-footer-ink: var(--primitive-landing-footer-ink);
+  --color-landing-footer-ink: var(--primitive-muted);
   --color-feature-box-background: var(--primitive-feature-box-background);
   --color-feature-hero-background: var(--primitive-feature-hero-background);
   --color-feature-tab-background: var(--primitive-feature-tab-background);
@@ -1777,7 +1775,7 @@
   --color-related-background: var(--primitive-blue-alpha-4);
   --color-prose-marker: var(--primitive-landing-footer-ink);
   --color-flow-ink-gray: var(--color-gray-0);
-  --color-landing-newsletter-note-ink: var(--primitive-landing-newsletter-note-ink);
+  --color-landing-newsletter-note-ink: var(--primitive-muted);
   --color-feature-tab-ink: var(--color-control-paper);
   --color-gallery-selected-ink: var(--color-control-paper);
   --color-tag-background: var(--color-category-blue-light-tint-3);

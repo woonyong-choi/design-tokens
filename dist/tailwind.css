@@ -174,7 +174,7 @@
   --color-search-bg: var(--primitive-search-bg);
   --color-help-bg: var(--primitive-help-bg);
   --color-help-border: var(--primitive-help-border);
-  --color-nav-color: var(--primitive-nav-color);
+  --color-nav-color: var(--primitive-muted);
   --color-control-link: var(--primitive-control-link);
   --color-control-hover: var(--primitive-control-hover);
   --color-control-active: var(--primitive-control-active);
@@ -193,7 +193,7 @@
   --color-landing-action-pressed: var(--primitive-landing-action-pressed);
   --color-landing-review-meta-ink: var(--primitive-landing-review-meta-ink);
   --color-landing-review-link-ink: var(--primitive-landing-review-link-ink);
-  --color-landing-footer-ink: var(--primitive-landing-footer-ink);
+  --color-landing-footer-ink: var(--primitive-muted);
   --color-feature-box-background: var(--primitive-feature-box-background);
   --color-feature-hero-background: var(--primitive-feature-hero-background);
   --color-feature-tab-background: var(--primitive-feature-tab-background);
@@ -363,7 +363,7 @@
   --color-flow-ink-gray: var(--color-gray-0);
   --color-newsletter-button-color: var(--primitive-toc-underline);
   --color-primary-hover: var(--primitive-primary-hover);
-  --color-landing-newsletter-note-ink: var(--primitive-landing-newsletter-note-ink);
+  --color-landing-newsletter-note-ink: var(--primitive-muted);
   --color-feature-tab-ink: var(--color-control-paper);
   --color-gallery-selected-ink: var(--color-control-paper);
   --color-tag-background: var(--color-category-blue-light-tint-3);

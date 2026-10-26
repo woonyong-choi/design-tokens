@@ -92,6 +92,14 @@ test('dark_landing_text_contrasts_with_its_section_surfaces', async () => {
   }
 });
 
+test('light_header_footer_and_newsletter_text_meet_body_contrast', async () => {
+  const { contrast } = await import('../scripts/lib/contrast.mjs');
+  const background = resolveValue(tables.light, 'color.ui-card');
+  for (const role of ['nav-color', 'landing-footer-ink', 'landing-newsletter-note-ink']) {
+    assert.ok(contrast(resolveValue(tables.light, `color.${role}`), background) >= 4.5, role);
+  }
+});
+
 test('dark_canvas_keeps_secondary_sections_distinct_from_cards', () => {
   assert.notEqual(resolveValue(tables.dark, 'color.canvas'), resolveValue(tables.dark, 'color.ui-card'));
 });

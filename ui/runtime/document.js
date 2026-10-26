@@ -40,6 +40,7 @@ function initContent(root) {
     if (initialized.has(button)) continue;
     initialized.add(button);
     const bubble = document.getElementById(button.getAttribute('popovertarget'));
+    if (!bubble) continue;
     const position = () => {
       const rect = button.getBoundingClientRect();
       const gap = parseFloat(getComputedStyle(bubble).getPropertyValue('--spacing-gap-xs'));
@@ -51,9 +52,16 @@ function initContent(root) {
     };
     button.addEventListener('click', position);
     bubble.addEventListener('toggle', event => { if (event.newState === 'open') position(); });
-    window.addEventListener('resize', () => { if (bubble.matches(':popover-open')) position(); });
-    window.addEventListener('scroll', () => { if (bubble.matches(':popover-open')) bubble.hidePopover(); }, { passive: true });
+    tooltips.add({ bubble, position });
   }
 }
+// 창 크기·스크롤 리스너는 툴팁마다 붙이지 않고 하나만 두며, 문서에서 빠진 툴팁은 함께 정리한다.
+const tooltips = new Set();
+function openTooltips() {
+  for (const tooltip of tooltips) if (!tooltip.bubble.isConnected) tooltips.delete(tooltip);
+  return [...tooltips].filter(({ bubble }) => bubble.matches(':popover-open'));
+}
+window.addEventListener('resize', () => { for (const { position } of openTooltips()) position(); });
+window.addEventListener('scroll', () => { for (const { bubble } of openTooltips()) bubble.hidePopover(); }, { passive: true });
 initContent(document);
 document.addEventListener('content-added', event => initContent(event.detail));

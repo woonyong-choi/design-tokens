@@ -276,6 +276,11 @@ test('diagram_panels_stop_at_natural_size_and_the_readable_minimum', () => {
   assert.equal(Number.parseFloat(resolveValue(tables.light, 'text.figure.9')), Math.min(...figureSizes));
   assert.match(rule('.dp-panels'), /min-width:\s*calc\(var\(--view-w\) \* var\(--spacing-figure-svg-unit\) \* \(var\(--text-figure-9\) \/ var\(--text-figure-meta\)\)\)/);
   assert.match(rule('.fl-canvas'), /overflow-x:\s*auto/);
+  // 넘친 쪽 가장자리 흐림: 스크롤 시간표를 지원할 때만, 전체 화면에서는 끈다
+  const cue = player.match(/@supports \(animation-timeline: scroll\(\)\) \{([\s\S]*?)\n\}/)?.[1] ?? '';
+  assert.match(cue, /animation-timeline:\s*scroll\(self inline\)/);
+  assert.match(cue, /mask-image:\s*linear-gradient\(to right, transparent, currentcolor var\(--fl-fade-start\), currentcolor calc\(100% - var\(--fl-fade-end\)\), transparent\)/);
+  assert.match(cue, /\.fl-figure\.full \.fl-canvas \{\s*animation: none;\s*mask-image: none;/);
   assert.match(rule('.fl-figure.full .dp-panel > svg'), /min-width:\s*0/);
   assert.match(rule('.fl-figure.full .dp-panels'), /min-width:\s*0/);
 });

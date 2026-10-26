@@ -2,11 +2,6 @@
 .app-article-title { border-bottom: var(--spacing-underline) solid var(--color-ui-line); font-size: var(--text-section-title); word-break: keep-all; overflow-wrap: anywhere; color: var(--color-ink); }
 .app-article-title > .app-content-icon { margin-inline-end: var(--spacing-gap-xs); }
 .app-article-lead { font-size: var(--text-article-lead); line-height: var(--leading-line-intro); }
-.app-toc { padding: var(--text-body-text) var(--spacing-platform-inset); margin: 0 0 var(--spacing-prose-paragraph-gap); border: var(--border-width-thin) solid var(--color-toc-border); border-radius: var(--radius-prose-pre-radius); background: var(--color-toc-background); font-size: var(--text-body-text); line-height: var(--leading-feature-body-line); color: var(--color-body); }
-.app-toc-heading { margin: 0 0 calc(var(--text-body-text) / 2); padding: 0; border: 0; font-size: inherit; line-height: inherit; font-weight: var(--font-weight-bold); }
-.app-toc-list { margin: 0 0 var(--spacing-callout-title-gap); padding-left: var(--spacing-prose-list-inset); list-style: decimal; font-variant-numeric: tabular-nums; }
-.app-toc-list li::marker { color: var(--color-toc-marker); }
-.app-toc a { color: inherit; text-decoration: underline var(--color-toc-underline); }
 .app-article-title { line-height: var(--leading-article-title-line); padding-bottom: var(--spacing-article-title-padding); margin-bottom: var(--spacing-article-title-gap); }
 .app-document-shell { line-height: var(--leading-feature-body-line); }
 .app-document { min-width: 0; max-width: var(--container-body-width); margin: var(--spacing-article-search-bottom) auto 0; overflow-wrap: anywhere; }

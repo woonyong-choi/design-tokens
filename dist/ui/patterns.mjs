@@ -95,10 +95,6 @@ export function PageLinks({ label, before, after, numbers = [], summary, resultP
 export const NavigationLink = ({ href, text, back = false }) => out(`<a class="app-navigation-link${back ? ' is-back' : ''}" href="${safeUrl(href)}">${escape(text)}</a>`);
 export const ListLink = ({ href, text }) => out(`<p class="app-page-links">${NavigationLink({ href, text })}</p>`);
 
-/** 전체 목록의 제목 아래에 돌아가기와 선택 동작을 배치한다. */
-export function CollectionHeader({ title, backHref, backLabel, action }) {
-  return out(`<header class="app-collection-header"><h1 class="app-page-heading">${escape(title)}</h1><div class="app-collection-info">${NavigationLink({ href: backHref, text: backLabel, back: true })}${action ? NavigationLink({ href: action.href, text: action.label }) : ''}</div></header>`);
-}
 
 function tagSize(size) {
   if (!['small', 'medium'].includes(size)) throw new Error(`Unknown tag size: ${size}`);
@@ -116,8 +112,6 @@ export function TagFilter({ tags, reset }) {
   return out(`<div class="app-tags app-tag-filter" data-tag-filter role="group" aria-label="태그">${tags.map(tag => `<button class="app-tag" type="button" data-tag-toggle="${escape(tag.id)}" aria-pressed="${Boolean(tag.selected)}">${escape(tag.label)}</button>`).join('')}${reset ? `<a class="app-tag-reset" href="${safeUrl(reset.href)}" data-tag-reset>${escape(reset.label)}</a>` : ''}</div>`);
 }
 
-/** 이 글의 목차. `sections`는 `{ id, title }`이다. */
-export const Toc = ({ title, label, sections }) => out(`<nav class="app-toc" aria-label="${escape(label)}"><h2 class="app-toc-heading">${escape(title)}</h2><ol class="app-toc-list">${sections.map((section) => `<li><a href="#${escape(section.id)}">${escape(section.title)}</a></li>`).join('')}</ol></nav>`);
 
 /** 문서 계층과 현재 글 목차를 본문 밖의 탐색 열에 둔다. */
 export function DocumentLayout({ navigation, outline, content }) {
@@ -180,20 +174,7 @@ export function Highlight({ text: source, query = '' }) {
 export function SearchResultLink({ href, icon, title, example = false, description }) {
   return out(`<a class="app-search-result-link" href="${safeUrl(href)}">${icon === undefined ? '' : slot(icon, 'icon')}<strong>${text(title)}</strong>${example ? '<span class="app-search-result-note"> 예시</span>' : ''}<p>${text(description)}</p></a>`);
 }
-/** 검색 결과 한 줄. 서버 렌더와 브라우저 렌더가 같은 함수를 쓴다. */
-export function SearchResult({ href, icon, title, example = false, description, tags }) {
-  return out(`<article class="app-search-entry">${SearchResultLink({ href, icon, title, example, description })}<div class="app-search-result-tags">${tags.map(tag => String(Tag(tag))).join('')}</div></article>`);
-}
 
-/** 프로젝트 목록: 대표 카드와 관련 문서 링크를 한 항목으로 묶는다. 아이콘은 신뢰된 슬롯이다. */
-export function ProjectList({ title, projects }) {
-  const entries = projects.map(({ href, icon, title: name, description = '', links = [] }) => {
-    const card = `<a class="app-knowledge-card" href="${safeUrl(href)}">${icon === undefined ? '' : slot(icon, 'icon')}<h3>${escape(name)}</h3><p>${escape(description)}</p></a>`;
-    const related = links.map(link => `<a href="${safeUrl(link.href)}">${escape(link.title)} →</a>`).join('');
-    return `<article class="app-project-entry">${card}<div class="app-project-links">${related}</div></article>`;
-  }).join('');
-  return out(`<section class="app-knowledge-section"><div class="app-section-heading"><h2>${escape(title)}</h2></div><div class="app-project-grid">${entries}</div></section>`);
-}
 
 /** 검색 상태 안내와 선택 동작을 같은 중앙 정렬 영역에 둔다. */
 export function SearchMessage({ lines }) {

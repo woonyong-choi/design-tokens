@@ -1,4 +1,0 @@
-/* 단일 페이지: 문의, 일반 문서(plain), 소개(office), 가격. */
-body[data-page=about] > .app-shell { position: absolute; inset: 0 0 auto; z-index: var(--z-index-layer-header); }
-body[data-page=about] .app-header { isolation: isolate; }
-body[data-page=about] .app-header::before { content: ""; position: absolute; inset: 0 0 var(--spacing-header-tail); background: var(--color-office-nav-background); z-index: var(--z-index-layer-background); }

@@ -44,7 +44,7 @@ JS
 
 The output is an `app-support-grid is-four` group containing a link to `/docs/memory/`. To display it in a browser, include the HTML with the package's `tokens.css` and `styles.css`. Preserve the relative paths to fonts and icons referenced by the CSS. Follow the complete [card preview example](docs/distribution.md#카드-미리보기) to open the styled card in a browser.
 
-`BlogCard` provides automatic title covers and comment counts as `댓글 · N` text. `TagFilter` shares hover, selection, and reset states for search tags. `LogoItem` renders a disabled state without a destination. Consumers own published tags and search conditions. `FlowRail` moves automatically only when its content exceeds the available width.
+`BlogCard` provides automatic title covers and comment counts as `댓글 · N` text. `TagFilter` shares hover, selection, and reset states for search tags. `LogoItem` renders a disabled state without a destination. Consumers own published tags and search conditions. `FlowRail` moves automatically only when its content exceeds the available width. Diagram player panels never grow beyond their natural size and never shrink below the scale at which the smallest figure text reaches the smallest text token; narrower screens scroll horizontally inside the figure area.
 
 ### Install in another project
 

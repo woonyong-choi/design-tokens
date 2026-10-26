@@ -1,5 +1,5 @@
 /* 재생기 틀, 도구 막대, 장면 탭. iframe 안(html.embedded)에서는 테두리와 바깥 여백을 뺀다. */
-/* 컨테이너는 가용 폭을 따르고 도표는 그 폭을 꽉 채운다. 문서 안에서는 가로로 스크롤하지 않고, 전체화면 확대에서만 끌어 옮긴다. */
+/* 도표는 가용 폭 안에서 자연 크기까지만 보이고, 가장 작은 글이 가장 작은 글 토큰보다 작아질 만큼은 줄지 않는다. 그보다 좁은 틀에서는 그림 영역 안에서 가로로 옮겨 본다. 전체화면에서는 확대와 끌기를 쓴다. */
 
 body {
   margin: 0;
@@ -53,11 +53,12 @@ html.embedded .fl-figure.full {
   background: var(--color-figure-canvas);
 }
 
-/* 문서 안에서는 자연 높이를 쓰고 가로로 넘치지 않는다(판 묶음이 폭을 채운다). 전체 화면에서는 양쪽 축으로 이동한다. */
+/* 문서 안에서는 자연 높이를 쓴다. 판이 최소 크기에서도 틀보다 넓으면 이 영역 안에서만 가로로 옮겨 보고 페이지 폭은 늘리지 않는다. 전체 화면에서는 양쪽 축으로 이동한다. */
 .fl-canvas {
   min-height: 0;
   padding: var(--spacing-3) 0;
-  overflow-x: clip;
+  overflow-x: auto;
+  overflow-y: hidden;
   background: var(--color-figure-canvas);
   border-radius: var(--radius-card-radius);
 }
@@ -67,15 +68,19 @@ html.embedded .fl-figure.full {
   outline-offset: calc(-1 * var(--border-width-tag));
 }
 
-/* 판 묶음은 그림 면의 폭을 꽉 채운다. 넓은 그림은 줄고 좁은 그림은 커지며, 문서 안에서 가로로 스크롤하지 않는다. 판끼리의 폭 비율은 아래 판 SVG의 --panel-w / --view-w가 지킨다. */
+/* 판 묶음은 그림 면의 폭을 차지한다. 판 SVG는 묶음 폭에 대한 비율 폭(--panel-w / --view-w)이되 자연 크기(SVG 좌표 한 단위가 svg-unit)보다 커지지 않는다.
+   넓은 그림은 글과 함께 줄지만, 그림의 가장 작은 글 역할(text.figure-meta)이 가장 작은 글 토큰(text.figure.9)이 되는 배율 밑으로는 줄지 않는다. DiagramPlay 그림 검사 10번과 같은 기준이다.
+   그 하한이 틀보다 넓으면 .fl-canvas 안에서 가로로 옮겨 본다. 묶음도 가장 넓은 판(--view-w)의 하한 폭을 지켜 좁은 판이 넓은 판 위 가운데에 남는다. 판끼리의 폭 비율은 같은 배율이라 유지된다. */
 .dp-panels {
   width: 100%;
+  min-width: calc(var(--view-w) * var(--spacing-figure-svg-unit) * (var(--text-figure-9) / var(--text-figure-meta)));
   margin: 0 auto;
 }
 
 .dp-panel > svg {
   display: block;
-  width: calc(100% * var(--panel-w) / var(--view-w));
+  width: min(calc(100% * var(--panel-w) / var(--view-w)), calc(var(--panel-w) * var(--spacing-figure-svg-unit)));
+  min-width: calc(var(--panel-w) * var(--spacing-figure-svg-unit) * (var(--text-figure-9) / var(--text-figure-meta)));
   height: auto;
   margin: 0 auto;
 }
@@ -130,11 +135,14 @@ html.embedded .fl-figure.full {
    글자를 키우는 일은 확대가 맡는다. 판 폭의 분모는 문서 안의 보기 폭이 아니라 묶음의 실제 폭(--bundle-w)이다. */
 .fl-figure.full .dp-panels {
   width: calc(var(--fit-w, 100%) * var(--zoom, 1));
+  min-width: 0;
   max-width: none;
 }
 
+/* 전체 화면은 맞춤과 확대가 크기를 정한다. 문서 안의 자연 크기 상한과 최소 크기는 쓰지 않는다. */
 .fl-figure.full .dp-panel > svg {
   width: calc(100% * var(--panel-w) / var(--bundle-w, var(--view-w)));
+  min-width: 0;
 }
 
 .fl-figure.full.zoomed .fl-canvas {

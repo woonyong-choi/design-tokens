@@ -205,16 +205,16 @@
     "styles/diagram/document.css": "ee8346db461b292627ccebf3b1e9ffbc9bf500d6644cac8969327440df5f40dd",
     "styles/diagram/figure.css": "66b012540e5715a304554fd5de849402b4fd75bbbcc2d23b2f9527ecaf246380",
     "styles/diagram/gallery.css": "1f125fee0b11a62ec6873382d246cf220404e1d9e24b3b4b8de759f57cf2b1e3",
-    "styles/diagram/player.css": "55169a9e309132bb6d520f59690079f13b55766e1ad6be4c69528e8d75c3734e",
+    "styles/diagram/player.css": "1178e9125cb5bbf51399132ac0ad399246473f2cc0180f12faf706ff28ba3ebc",
     "styles/diagram/status.css": "3c0e2dabcf3d4140385f9d5b4bb08391824e3feaa7f02aabe746bfaa96777294",
     "styles/table.css": "d67831d6d1dd5b8d8de69101b4cb423b610b18757ec386cdc0754bab59ef1e43",
     "styles/tabs.css": "e7762ad9522cde4e59d71fd446d414c467b7a1155ed6d07338f3da349b8a7567",
     "styles/toolbar.css": "9f756722c76780175bd2bebe45ee20ee4f6b0fcf24d8940fc654fbee570c394e",
-    "tailwind.css": "cd00187431185ecc1e27c7258071c8b5e4cd88bd11200f63bfef9f084b813994",
-    "tokens.css": "bf998ae61cc397df2b000ab81bd3f8e5e1a437303f1bce70ea1df6166cf9b3f4",
+    "tailwind.css": "9e41e66011a305105fd25e0845375b412173adfb0c517184819fbccbcc2e016d",
+    "tokens.css": "da3501cd873cd1b57abb3cbcee3cde0669d67d0eeda579337b6be0fcd2de3243",
     "tokens.dark.json": "41de67a8366c7b4a4cc646fc40027b9633c24f7525e4179d5f99a4adb48ffd8e",
-    "tokens.js": "b8930ce34115ae2fc9c5aa1fe990a92eab1ea4f90a2190288ee2065c7d872ab7",
-    "tokens.json": "db3ed05beb823d34cd1cb3a7581bf3e5830df3bc93c4763bf86c5dc702ba59a3",
+    "tokens.js": "c2e91e57b77b2a140c897ada41e412d5884f931851e4b6339af72a89276ff2ab",
+    "tokens.json": "7bf3e7ae4acc08c7e9bfd69a37acb852c17761296265f255f07db73e991d846f",
     "ui/build/check-tokens.mjs": "c3281b894a72ce7289fd489dcea5b36cdfea60a531ae7b12389ee949b7c107c1",
     "ui/build/icons.mjs": "151587c8ae4d959154f76cd029307b4b345d2331ce91c161ef895050b4c3a34b",
     "ui/build/lib/find-hardcoded.mjs": "6ff3e5c3b249b36260a7c2ae2b46c22fdb2de0180f239f1bab09ba4cf401086e",
@@ -245,5 +245,5 @@
     "ui/table.mjs": "d285303ed3e84599a512085e79dfd92db751a890ad4890b81930f1ccf2126ae0",
     "ui/toolbar.mjs": "3fab9dbcd66cbb7273e8ce39d7754e5783ea4e605418dc4faf2c91831067cdd2"
   },
-  "contentHash": "2c7aa37a91203d5f00ffa164e809d0c14e8f1435abc424827cc0ed85896d1255"
+  "contentHash": "17c3dacc9c05dca2433c451871da3caeb0e08dea4952bbbfe90d1f612aec93c3"
 }

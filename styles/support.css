@@ -31,16 +31,4 @@
 .app-page-heading { margin: var(--spacing-gap-lg) 0 var(--spacing-gap-sm); font-size: var(--text-section-title); line-height: var(--leading-line-title); word-break: keep-all; overflow-wrap: anywhere; }
 .app-page-heading.has-icon { display: flex; align-items: center; gap: var(--spacing-gap-sm); }
 .app-page-heading-icon { display: inline-flex; flex: none; }
-.app-collection-header { margin-bottom: var(--spacing-gap); }
-.app-publication .app-collection-header > .app-page-heading { margin: 0; }
-.app-collection-info { display: flex; flex-wrap: wrap; gap: var(--spacing-gap-xs); align-items: baseline; justify-content: space-between; margin-top: var(--spacing-4); font-size: var(--text-small-text); color: var(--color-ui-muted); }
 .app-knowledge-section { margin-block: var(--spacing-support-gap); }
-.app-section-heading { display: flex; flex-wrap: wrap; gap: var(--spacing-gap-sm); align-items: baseline; justify-content: space-between; margin-bottom: var(--spacing-gap); }
-.app-section-heading h2 { margin: 0; font-size: var(--text-subtitle); line-height: var(--leading-line-intro); color: var(--color-ink); }
-.app-section-heading > a { font-size: var(--text-small-text); white-space: nowrap; }
-.app-project-grid { display: grid; gap: var(--spacing-gap); }
-.app-project-entry { display: grid; gap: var(--spacing-gap); }
-.app-project-links { display: flex; flex-direction: column; justify-content: center; gap: var(--spacing-gap-sm); font-size: var(--text-small-text); }
-@media (min-width: breakpoint(feature-split)) {
-  .app-project-entry { grid-template-columns: minmax(0,1fr) minmax(0,1fr); }
-}

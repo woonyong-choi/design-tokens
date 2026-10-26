@@ -31,7 +31,7 @@
 .app-landing-features { padding-bottom: 0; background: var(--color-feature-canvas); }
 .app-landing-collage { width: var(--spacing-collage-crop); margin-left: var(--spacing-collage-outset); }
 .app-landing-collage img { display: block; width: 100%; }
-.app-landing-newsletter { background: var(--color-canvas); }
+.app-landing-newsletter { background: var(--color-ui-card); }
 .app-landing-newsletter .app-caption { text-align: center; }
 .app-landing-newsletter .app-newsletter { margin-bottom: var(--spacing-landing-nav-gap); }
 .app-landing-newsletter .app-input { height: auto; }

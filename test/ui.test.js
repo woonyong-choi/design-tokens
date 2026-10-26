@@ -384,9 +384,6 @@ test('home_and_list_components_have_one_definition_with_escaped_text_and_checked
   assert.match(taggedCard, /app-card-summary[^>]*>소개<\/p><\/div><\/a><div class="app-blog-card-tags"[^>]*><a class="app-tag" href="\/tags\/python\/">Python<\/a> <a class="app-tag" href="\/tags\/reference\/">&lt;참조&gt;<\/a>/);
   assert.equal((taggedCard.match(/<a /g) ?? []).length, 3);
   assert.throws(() => ui.BlogCard({ href: '/a/', title: 'A', cover: icon, tagItems: [{ href: 'javascript:1', label: '태그' }] }), /Unsupported URL/);
-  // #75: 모든 목록의 제목 아래에 돌아가기를 둔다.
-  const collection = html(ui.CollectionHeader({title:'CS',backHref:'/docs/',backLabel:'돌아가기'}));
-  assert.match(collection, /<h1 class="app-page-heading">CS<\/h1><div class="app-collection-info"><a class="app-navigation-link is-back" href="\/docs\/">돌아가기<\/a>/);
   const pages = html(ui.PageLinks({ label: '쪽', before: { href: '/p/', text: '이전' }, after: { href: '/p/3/', text: '다음' }, numbers: [{ page: 1, href: '/p/' }, { page: 2, href: '/p/2/', current: true }] }));
   assert.equal(pages, '<nav class="app-page-links" aria-label="쪽"><a class="app-navigation-link is-back" rel="prev" href="/p/">이전</a><a href="/p/" aria-label="1페이지">1</a><span aria-current="page">2</span><a class="app-navigation-link" rel="next" href="/p/3/">다음</a></nav>');
   assert.match(html(ui.PageLinks({ label: '쪽', summary: '2 / 3', numbers: [{ page: 1, href: '/' }] })), /<span>2 \/ 3<\/span>/);
@@ -397,7 +394,6 @@ test('home_and_list_components_have_one_definition_with_escaped_text_and_checked
   assert.match(html(ui.TagList({ tags, limit: 3 })), /^<div class="app-tags" role="group" aria-label="태그"><a class="app-tag" href="\/tags\/t1\/">T1&lt;<\/a>.*<details class="app-tags-more"><summary>\+1<\/summary><div class="app-tags"><a class="app-tag" href="\/tags\/t4\/">T4&lt;<\/a><\/div><\/details><\/div>$/);
   assert.doesNotMatch(html(ui.TagList({ tags })), /details/);
 
-  assert.equal(html(ui.Toc({ title: '목차', label: '이 글', sections: [{ id: 's-1', title: 'A&' }] })), '<nav class="app-toc" aria-label="이 글"><h2 class="app-toc-heading">목차</h2><ol class="app-toc-list"><li><a href="#s-1">A&amp;</a></li></ol></nav>');
   const outline = html(ui.DocumentOutline({ sections: [{ id: 's-1', title: 'A&', level: 2 }] }));
   assert.match(outline, /^<details class="app-document-nav" data-document-panel open><summary aria-label="본문 목차"><span>목차<\/span><\/summary><nav aria-label="본문 목차"><ol>/);
   // 좁은 화면에서 본문 위를 차지하지 않도록 문서 탐색과 같은 접기 패널 하나만 쓴다.
@@ -412,8 +408,8 @@ test('home_and_list_components_have_one_definition_with_escaped_text_and_checked
   assert.match(html(ui.PostArticle({ id: 'post-1', detail: true, title: 'T', date: 'd', lead: trusted(''), body: trusted('') })), /^<article class="app-blog-post is-detail" aria-labelledby="post-1">.*<h1 class="app-post-title" id="post-1">T<\/h1>/);
   assert.match(html(ui.PostArticle({ id: 'post-1', detail: true, title: 'T', date: '2026-10-01', dateLabel: '2026년 10월 1일', lead: trusted(''), body: trusted('') })), /datetime="2026-10-01">2026년 10월 1일<\/time>/);
 
-  const result = html(ui.SearchResult({ href: '/a/', icon, title: 'T<', example: true, description: 'd&', tags: [{ href: '/tags/x/', label: 'X' }] }));
-  assert.equal(result, '<article class="app-search-entry"><a class="app-search-result-link" href="/a/"><img alt=""><strong>T&lt;</strong><span class="app-search-result-note"> 예시</span><p>d&amp;</p></a><div class="app-search-result-tags"><a class="app-tag" href="/tags/x/">X</a></div></article>');
+  const result = html(ui.SearchResultLink({ href: '/a/', icon, title: 'T<', example: true, description: 'd&' }));
+  assert.equal(result, '<a class="app-search-result-link" href="/a/"><img alt=""><strong>T&lt;</strong><span class="app-search-result-note"> 예시</span><p>d&amp;</p></a>');
 });
 
 test('search_result_parts_escape_every_field_and_highlight_only_with_mark', () => {
@@ -570,7 +566,7 @@ test('chart_motion_keeps_arrival_timing_and_rejects_non_numeric_css_inputs', () 
 });
 
 test('search results omit absent icons and messages keep separate escaped lines', () => {
-  const result = html(ui.SearchResult({ href: '/a/', title: 'T', description: 'D', tags: [] }));
+  const result = html(ui.SearchResultLink({ href: '/a/', title: 'T', description: 'D' }));
   assert.doesNotMatch(result, /app-content-icon|undefined/);
   assert.match(result, /<strong>T<\/strong>/);
   assert.equal(html(ui.SearchMessage({ lines: ['failed <', 'retry &'] })), '<div class="app-search-message"><p>failed &lt;<br>retry &amp;</p></div>');

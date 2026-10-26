@@ -142,6 +142,16 @@ test('diagram_host_limits_messages_to_its_frame_and_keeps_height_during_fullscre
 });
 
 
+
+test('diagram_host_binds_listeners_once_per_document', () => {
+  let listeners = 0; let observers = 0;
+  const document = { documentElement: { dataset: {} }, querySelectorAll: () => [], addEventListener: () => { listeners++; } };
+  const context = { document, URL, location: { href: 'https://site.test/', origin: 'https://site.test', protocol: 'https:' },
+    addEventListener: () => { listeners++; }, MutationObserver: class { observe() { observers++; } } };
+  runInNewContext(`(${bindDiagramHost.toString()})(); (${bindDiagramHost.toString()})()`, context);
+  assert.equal(listeners, 3);
+  assert.equal(observers, 1);
+});
 test('diagram_host_opaque_origin_keeps_registered_window_and_url_boundary', () => {
   const events = {}; const sent = [];
   const frame = { src: 'https://site.test/diagram.html', height: '128',

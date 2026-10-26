@@ -42,13 +42,6 @@
     "sha256": "c4ced0b40cbba15f025898d284ab535c4b8286da1919de4deb6a9713f8d26810"
   },
   {
-    "file": "illustrations/project-placeholder.svg",
-    "origin": "project-original",
-    "license": "MIT",
-    "bytes": 667,
-    "sha256": "cd211fc1f05bb4fe0fe1d07330818fe03e14d74bd8252dd62b00b7e9e46bace5"
-  },
-  {
     "file": "giscus.css",
     "origin": "project-original",
     "license": "MIT",

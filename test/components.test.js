@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { readdirSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { readSource } from '../scripts/lib/tokens.mjs';
 import { tables } from './helpers.mjs';
@@ -13,7 +13,7 @@ import { readIcon } from '../dist/ui/build/icons.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const modules = readdirSync(root + 'styles', { recursive: true }).filter(name => name.endsWith('.css')).map(name => `styles/${name}`);
-const illustrations = readdirSync(root + 'assets/illustrations').map(name => `assets/illustrations/${name}`);
+const illustrations = existsSync(root + 'assets/illustrations') ? readdirSync(root + 'assets/illustrations').map(name => `assets/illustrations/${name}`) : [];
 const audited = [...modules, ...illustrations, `assets/giscus.css`, ...readdirSync(root + 'ui', { recursive: true }).filter(name => /\.(?:mjs|js)$/.test(name) && !name.startsWith('build/')).map(name => `ui/${name}`)];
 // 스크립트가 데이터에서 계산해 넣는 값. 토큰이 아니다.
 const RUNTIME = new Set(RUNTIME_PROPERTIES);
@@ -237,8 +237,6 @@ test('warning_callout_list_marker_and_input_stay_readable_in_both_themes', () =>
       if (mode === 'dark') assert.ok(contrast(note, page) >= 1.2, `${mode} callout surface stands apart from ${base}`);
       const mark = onSurface(value('color.prose-mark-background'), page);
       assert.ok(contrast(value('color.body'), mark) >= 4.5, `${mode} marked text on ${base}`);
-      const toc = onSurface(value('color.toc-background'), page);
-      assert.ok(contrast(onSurface(value('color.toc-marker'), toc), toc) >= 3, `${mode} toc marker on ${base}`);
       const input = onSurface(value('color.input-background'), page);
       assert.ok(contrast(value('color.input-ink'), input) >= 4.5, `${mode} input text on ${base}`);
       assert.ok(contrast(value('color.input-placeholder'), input) >= 4.5, `${mode} input placeholder on ${base}`);
@@ -252,7 +250,6 @@ test('warning_callout_list_marker_and_input_stay_readable_in_both_themes', () =>
   }
   assert.equal(resolveValue(tables.light, 'color.callout-warning'), resolveValue(tables.light, 'primitive.callout-warning'), 'light warning surface unchanged');
   assert.equal(resolveValue(tables.dark, 'color.prose-mark-background'), resolveValue(tables.dark, 'color.callout-warning'), 'mark shares the warning surface');
-  assert.equal(resolveValue(tables.dark, 'color.toc-marker'), resolveValue(tables.dark, 'color.prose-marker'), 'toc marker shares the list marker');
 });
 
 

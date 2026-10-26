@@ -634,10 +634,6 @@
       "$type": "color",
       "$value": "{color.ui-card}"
     },
-    "feature-hero-background": {
-      "$type": "color",
-      "$value": "{color.ui-card}"
-    },
     "nav-color": {
       "$type": "color",
       "$value": "{color.body}"

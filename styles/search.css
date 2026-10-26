@@ -24,22 +24,13 @@
 .app-search-result-link::after { content: ''; position: absolute; top: 0; bottom: 0; right: var(--spacing-search-results-padding); width: var(--spacing-gap-sm); background: url('./assets/icons/navigation/chevron-right.svg') center / var(--component-help-grouped-chevron) no-repeat; opacity: var(--opacity-help-chevron-opacity); }
 .app-search-result-link:hover, .app-search-result-link:focus-visible, .app-search-result-link[aria-selected=true], .app-search-choice:hover, .app-search-choice[aria-selected=true] { background: var(--color-search-hover); text-decoration: none; }
 .app-search-result-link:active, .app-search-choice:active { background: var(--color-search-active); }
-.app-search-result-link + .app-search-result-link, .app-search-entry + .app-search-entry { border-top: var(--border-width-thin) solid var(--color-search-result-line); }
+.app-search-result-link + .app-search-result-link { border-top: var(--border-width-thin) solid var(--color-search-result-line); }
 .app-search-result-note { white-space: nowrap; margin-left: var(--spacing-gap-xs); font-size: var(--text-small-text); color: var(--color-search-result-muted); }
-.app-search-result-tags { display: flex; flex-wrap: wrap; gap: var(--spacing-gap-xs); padding: var(--component-search-result-padding); padding-top: 0; }
-.app-search-entry { position: relative; border-radius: var(--radius-search-result-radius); isolation: isolate; }
-.app-search-entry:hover, .app-search-entry:focus-within { background: var(--color-search-hover); }
-.app-search-entry:active { background: var(--color-search-active); }
-.app-search-entry > .app-search-result-link { position: static; background: transparent; }
-.app-search-entry > .app-search-result-link::before { content: ""; position: absolute; inset: 0; border-radius: inherit; }
-.app-search-entry:has(> .app-search-result-link:focus-visible) { outline: var(--outline-width-focus) solid var(--color-ui-focus); outline-offset: var(--spacing-focus-offset); }
-.app-search-entry > .app-search-result-link:focus-visible { outline: none; }
-.app-search-result-tags > .app-tag { position: relative; z-index: var(--z-index-raised); }
 .app-search-panel mark { background: var(--color-search-match); color: inherit; }
 .app-search-choice { display: inline-block; margin: var(--spacing-search-results-padding); padding: var(--spacing-gap-xs); border-radius: var(--radius-search-result-radius); color: var(--color-search-result-color); font-size: var(--text-small-text); text-decoration: none; }
 .app-suggestion-label { margin: var(--spacing-gap-sm) var(--spacing-search-results-padding) 0; color: var(--color-ui-muted); font-size: var(--text-small-text); }
 
-.app-search-result-link:not(:has(> .app-content-icon)), .app-search-entry:not(:has(.app-content-icon)) > .app-search-result-tags { padding-left: var(--spacing-search-results-padding); }
+.app-search-result-link:not(:has(> .app-content-icon)) { padding-left: var(--spacing-search-results-padding); }
 
 .app-tag-filter { justify-content: center; align-items: center; gap: var(--spacing-gap-sm); margin-top: var(--spacing-gap-lg); }
 .app-tag-filter .app-tag { max-width: 100%; padding-inline: var(--spacing-gap-sm); overflow-wrap: anywhere; }

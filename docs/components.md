@@ -73,7 +73,7 @@ const html = CardGroup({ columns: 4, cards });
 
 `TextInput({ id, name, label, type, value, placeholder, autocomplete, describedBy, required, disabled, size, surface, icon, action, role, controls })`는 모든 텍스트 입력의 단일 구성 요소다. 보이지 않는 이름표와 `.app-input` 입력을 조립한다. `type`은 `text`·`email`·`url`·`tel`, `size`는 `small`·`medium`·`large`·`control`, `surface`는 `track`·`field`·`card`만 받는다. `name`의 기본값은 `id`다. `icon`과 `action`은 검증한 HTML 슬롯이며, 있으면 입력과 함께 `.app-input-field` 안에 앞 아이콘과 뒤 동작으로 놓인다. `role`은 `searchbox` 또는 `combobox`이고 `combobox`는 추천 목록 ID `controls`가 필요하다. `describedBy`와 `controls`는 ID로 검증하고 값과 안내 문구는 일반 텍스트로 이스케이프한다. `SearchBox`는 `large`가 참이면 `size: 'large'`, 아니면 `size: 'medium'`을 선택하고 `surface: 'field'`로, `EmailForm`은 `size: 'control'`, `surface: 'card'`로 이 구성 요소를 조립한다.
 
-`SearchResultLink`와 `SearchResult`의 `icon`을 생략하면 빈 아이콘 슬롯과 들여쓰기도 생략한다. `SearchMessage({ lines })`은 문자열 배열을 안전하게 줄바꿈하고 같은 중앙 정렬 영역에 소비자의 재시도 버튼을 추가할 수 있다. 소비자는 재시도 동작과 검색 색인을 소유한다. 공통 구성 요소는 검색 결과의 HTML만 만든다.
+`SearchResultLink`의 `icon`을 생략하면 빈 아이콘 슬롯과 들여쓰기도 생략한다. `SearchMessage({ lines })`은 문자열 배열을 안전하게 줄바꿈하고 같은 중앙 정렬 영역에 소비자의 재시도 버튼을 추가할 수 있다. 소비자는 재시도 동작과 검색 색인을 소유한다. 공통 구성 요소는 검색 결과의 HTML만 만든다.
 
 `SearchBox({ combobox: false, ... })`는 입력에 `searchbox` 역할을 사용하고 추천 팝업 ARIA를 붙이지 않는다. 기본값은 `combobox: true`다. `ContentGroup({ collection: true, ... })`는 글 목록 영역의 바깥 간격을 적용한다.
 
@@ -114,10 +114,6 @@ const html = CardGroup({ columns: 4, cards });
 빈 작업 큐의 면은 `color.figure.queue-empty`로 표시한다. 밝은 테마에서는 기존 `color.gray.59`를 참조해 채워진 항목보다 약하게 표시하며, 다크 테마는 같은 의미 토큰의 별도 참조를 사용한다.
 
 `ContentIcon({ graphic, badge, size })`은 검증한 SVG 슬롯을 공통 크기와 배치로 감싼다. 선택적인 `badge`도 검증한 슬롯만 받으며 오른쪽 아래에 주 도형 절반 크기로 놓는다. 글 유형을 붙일지는 소비자의 콘텐츠 규칙으로 결정한다.
-
-## 프로젝트 목록
-
-`ProjectList({ title, projects })`는 대표 카드와 관련 문서 링크를 항목별로 묶는다. 각 프로젝트는 `href`, `title`, `description`, 선택적인 `icon` 슬롯과 `links: [{ href, title }]`를 받는다. 아이콘은 신뢰된 HTML 슬롯이며, 제목과 설명은 일반 텍스트다. 카드와 관련 링크의 URL은 모두 검사한다. 소비자는 프로젝트 콘텐츠와 경로만 전달한다.
 
 `BlogCard.commentsHref`는 카드의 글 링크와 분리된 댓글 링크다. 유효한 댓글 수가 있으면 `댓글 · N`을 표시하고, 댓글 주소만 있으면 `댓글 보기`를 표시한다. 보이는 텍스트가 접근 가능한 이름이며 아이콘은 사용하지 않는다.
 

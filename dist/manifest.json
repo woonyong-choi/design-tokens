@@ -200,8 +200,8 @@
     "assets/icons/security/security.svg": "3155befdc3524ddc87baacbcba5deb63333b43558a4420a7e4d020cca83950a4",
     "assets/illustrations/project-placeholder.svg": "4453cd5c92033929e11a57d6f1cc112c9f9b013e0c6f34f6815d665e18b9c336",
     "assets/sources.json": "9358be8de4f61c1d5b5d0b854cc533886e13ffdc936e99ea2c2307c8c36d41d0",
-    "styles.css": "e8bba497dfc24fff16179bfd8b99f1919e782240e9400ac0b7065e3a251d9db1",
-    "styles.source.css": "15b0d47065538b40ce73643db31dfecc7cd2beb2f0b7f5899e8f744f27cae010",
+    "styles.css": "382b37353f5f1aecd3715429afd35593b3379c577d430ec363c1687ffc473194",
+    "styles.source.css": "2190a83c0f440ed1bc7a52b2ffcd645638b1e7fa782c3c9fac2e79dcaeecfd94",
     "styles/diagram-embed.css": "f8743b4bb0f2f8485338d2a2311a6bc37e8a10ef61eb8142e0b59b0a1b460ef0",
     "styles/diagram/chart.css": "7fe9a835f2792f39f3c81230040eee4644376972dc9953fec0d9519524c27b76",
     "styles/diagram/document.css": "ee8346db461b292627ccebf3b1e9ffbc9bf500d6644cac8969327440df5f40dd",
@@ -247,5 +247,5 @@
     "ui/table.mjs": "d285303ed3e84599a512085e79dfd92db751a890ad4890b81930f1ccf2126ae0",
     "ui/toolbar.mjs": "3fab9dbcd66cbb7273e8ce39d7754e5783ea4e605418dc4faf2c91831067cdd2"
   },
-  "contentHash": "f3fc0a5cd524a57d85b25bcdaf048a6b80ec74bd7e2576fbf5f8f9ff54e49b56"
+  "contentHash": "c0b295238325931f14d517c6c1e1a925948ca7f20b1d92260be3c93507e960b7"
 }

@@ -62,5 +62,3 @@
 .app-feature-media > .app-figure { display: flow-root; }
 .app-feature-description { margin-top: 0; }
 .app-feature-description > div { margin-bottom: var(--text-feature-box-text); }
-body[data-page=features] { background: var(--color-feature-hero-background); }
-body[data-page=features] > main { background: var(--color-ui-card); }

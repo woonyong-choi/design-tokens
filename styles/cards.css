@@ -39,12 +39,6 @@
 .app-help-card.is-inline :is(.app-article-icon, .app-content-icon) { width: var(--spacing-help-inline-icon); height: var(--spacing-help-inline-icon); left: var(--spacing-help-inline-icon-inset); top: var(--spacing-help-inline-icon-inset); }
 .app-help-card.is-inline::after { right: var(--spacing-help-inline-chevron-inset); width: var(--spacing-compact-inset); background-size: var(--component-help-inline-chevron); opacity: var(--opacity-help-inline-opacity); }
 .app-help-card.is-inline.has-no-icon { padding-left: var(--spacing-help-inline-no-icon); }
-.app-knowledge-card { position: relative; display: block; box-sizing: border-box; min-width: 0; padding: var(--spacing-card-top) var(--spacing-card-right) var(--spacing-card-inset) var(--spacing-card-inset); color: var(--color-body); background: var(--color-help-bg); border: var(--border-width-thin) solid var(--color-help-border); border-radius: var(--radius-help-radius); transition: background var(--duration-help-motion), border-color var(--duration-help-motion); }
-.app-knowledge-card > .app-content-icon { position: absolute; top: var(--spacing-card-inset); left: var(--spacing-card-inset); }
-.app-knowledge-card:hover { background: var(--color-help-hover); border-color: var(--color-help-hover-border); text-decoration: none; }
-.app-knowledge-card:active { background: var(--color-help-active); }
-.app-knowledge-card h3 { margin: 0 0 var(--spacing-help-title-gap); font-size: var(--text-body-text); font-weight: var(--font-weight-bold); line-height: var(--leading-line-card); color: var(--color-help-title-color); }
-.app-knowledge-card p { margin: 0; font-size: var(--text-body-text); line-height: var(--leading-line-card); color: var(--color-help-copy-color); }
 .app-related-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--spacing-gap-xs); }
 /* 관련 글 제목과 목록은 하나의 작은 묶음으로 배치한다. */
 .app-prose .app-related-grid { margin-bottom: var(--spacing-gap-sm); }
@@ -62,9 +56,6 @@
 .app-tag[aria-pressed=true], .app-tag:hover, .app-tag:focus-visible, .app-tags-more > summary:hover, .app-tags-more > summary:focus-visible { color: var(--color-on-action); background: var(--color-tag-hover); text-decoration: none; }
 .app-tag[aria-pressed], .app-tags-more > summary { cursor: pointer; }
 .app-tags-more > .app-tags { margin-top: var(--spacing-gap-xs); }
-@media (prefers-reduced-motion: reduce) {
-  .app-knowledge-card { transition: none; }
-}
 
 /* 주제와 블로그 목록은 설명의 전체 텍스트를 보존하고 두 줄까지만 표시한다. */
 .app-card-summary { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: var(--component-card-summary-lines); overflow: hidden; word-break: keep-all; overflow-wrap: anywhere; }

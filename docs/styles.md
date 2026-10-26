@@ -65,7 +65,7 @@
 | Card, CardGroup | `.app-help-card`, `.app-card-summary`, `.app-support-grid` |
 | BlogCard | `.app-blog-card`, `.app-blog-card-link`, `.app-blog-card-body` |
 | Tag, TagList | `.app-tag`, `.app-tags` |
-| SearchBox, SearchResult | `.app-search-clear`, `.app-search-entry`, `.app-search-result-link` |
+| SearchBox, SearchResultLink | `.app-search-clear`, `.app-search-result-link` |
 | DocumentArticle, PostArticle | `.app-prose`, `.app-blog-post`, `.app-article-lead` |
 | CodeBlock, CopyButton | `.app-code`, `.app-tool-header`, `.app-tool-label` |
 | Table | `.app-table-scroll`, `.app-table` |
@@ -131,7 +131,7 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 태그의 hover·focus와 탭 글자는 실제 합성 배경에서 4.5:1 이상, 탭 선택 면은 비선택 면과 3:1 이상의 대비를 유지한다. 일반·분할 탭은 `color.feature-tab-selected`와 `color.feature-tab-ink`를 함께 사용한다. 다크의 선택 면은 비선택 면과의 대비를 위해 밝은 파랑이므로 글자는 `color.gray.933`으로 두어 7:1 이상을 유지한다. 재생기의 장면 탭도 같은 규칙을 읽는다. 숫자 탭은 두 테마 모두 무채색의 `color.gallery-selected`와 `color.gallery-selected-ink`를 사용하며, 다크 모드에서 밝은 면과 어두운 숫자로 명암을 뒤집는다.
 
-`CollectionHeader`는 제목 아래 돌아가기와 선택 보조 동작을 배치한다. 전체 보기·돌아가기·본문 이어 읽기는 `NavigationLink`의 글꼴·크기·색과 꺾쇠를 공유한다. 카드 열 개수는 묶음의 속성이고 바깥 컨테이너 폭과 분리한다. 홈페이지의 넓은 CS 4열·Tech 5열은 소비자의 구성이다.
+전체 보기·돌아가기·본문 이어 읽기는 `NavigationLink`의 글꼴·크기·색과 꺾쇠를 공유한다. 카드 열 개수는 묶음의 속성이고 바깥 컨테이너 폭과 분리한다. 홈페이지의 넓은 CS 4열·Tech 5열은 소비자의 구성이다.
 
 영상 재생·일시정지 제어는 버튼 색을 따르는 채운 원과 흰색 기호를 사용한다. `ControlIcon`은 두 제어의 배색을 보존하고 다른 제어의 단색 변환을 유지한다.
 
@@ -167,7 +167,7 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 일반 안내 상자는 `color.callout-background`·`color.callout-border`를 읽고, 다크에서 Things 다크 안내 상자 값(`rgba(240,246,255,.09)`, 테두리 `rgba(236,244,255,.07)`)으로 페이지보다 밝은 면을 둔다. 라이트는 기존 코드 예시 면을 참조한다.
 
-본문 `mark` 배경 `color.prose-mark-background`는 `color.callout-warning`을 참조해 다크에서 같은 반투명 노랑을 쓴다. 목차 기호 `color.toc-marker`는 `color.prose-marker`를 참조해 본문 글머리와 같은 기준을 따른다.
+본문 `mark` 배경 `color.prose-mark-background`는 `color.callout-warning`을 참조해 다크에서 같은 반투명 노랑을 쓴다.
 
 그림 격자 칸 안의 `.app-figure`는 바깥 여백이 없어 이미지가 칸 폭을 채우며 칸 사이는 격자의 `spacing.gap`만 둔다.
 

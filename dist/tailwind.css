@@ -51,7 +51,6 @@
   --color-data-grid: var(--color-gray-212);
   --color-data-compare-fill: var(--color-category-yellow-fill);
   --color-data-compare-outline: var(--color-category-yellow-light-border);
-  --color-data-main-fill: var(--color-category-blue-fill);
   --color-data-category-family-1: blue;
   --color-data-category-family-2: yellow;
   --color-data-category-family-3: red;
@@ -195,7 +194,6 @@
   --color-landing-review-link-ink: var(--primitive-landing-review-link-ink);
   --color-landing-footer-ink: var(--primitive-muted);
   --color-feature-box-background: var(--primitive-feature-box-background);
-  --color-feature-hero-background: var(--primitive-feature-hero-background);
   --color-feature-tab-background: var(--primitive-feature-tab-background);
   --color-input-background: var(--color-feature-tab-background);
   --color-input-ink: var(--color-body);
@@ -229,7 +227,6 @@
   --color-platform-color: var(--color-ink);
   --color-platform-hover: var(--primitive-platform-hover);
   --color-platform-active: var(--primitive-platform-active);
-  --color-office-nav-background: var(--primitive-office-nav-background);
   --color-nav-hover-color: var(--primitive-nav-hover-color);
   --color-nav-active-color: var(--primitive-nav-active-color);
   --color-nav-active-background: var(--primitive-nav-active-background);
@@ -244,18 +241,7 @@
   --color-article-title-border: var(--primitive-navy-alpha-15);
   --color-related-background: var(--primitive-blue-alpha-4);
   --color-related-border: var(--primitive-navy-alpha-6);
-  --color-toc-background: var(--primitive-syntax-example-background);
-  --color-toc-border: var(--primitive-syntax-example-border);
-  --color-toc-marker: var(--color-prose-marker);
-  --color-toc-underline: var(--primitive-toc-underline);
-  --color-control-search-ink: var(--primitive-control-search-ink);
-  --color-control-chevron-ink: var(--primitive-control-chevron-ink);
-  --color-control-play-ink: var(--primitive-control-play-ink);
-  --color-control-overlay-ink: var(--primitive-control-overlay-ink);
-  --color-control-task-fill: var(--primitive-control-task-fill);
-  --color-control-task-ink: var(--primitive-control-task-ink);
   --color-control-paper: var(--color-gray-0);
-  --color-control-cutout: var(--color-gray-1000);
   --color-prose-rule-color: var(--primitive-prose-rule-color);
   --color-prose-caption-color: var(--color-ui-muted);
   --color-prose-link-active: var(--primitive-prose-link-active);
@@ -359,7 +345,6 @@
   --color-category-cyan-dark-effect: #4ddae9;
   --color-category-cyan-solid: var(--color-category-cyan-light-ink);
   --color-category-cyan-on-solid: var(--color-gray-0);
-  --color-figure-data-line: var(--color-action-link);
   --color-flow-ink-gray: var(--color-gray-0);
   --color-newsletter-button-color: var(--primitive-toc-underline);
   --color-primary-hover: var(--primitive-primary-hover);
@@ -463,7 +448,6 @@
   --spacing-landing-chevron-gap: var(--primitive-landing-chevron-gap);
   --spacing-landing-chevron-offset: var(--primitive-landing-chevron-offset);
   --spacing-landing-chevron-align: var(--primitive-landing-chevron-align);
-  --spacing-landing-quote-glyph-gap: var(--primitive-landing-quote-glyph-gap);
   --spacing-quote-credit-gap: var(--primitive-quote-credit-gap);
   --spacing-feature-box-padding: var(--primitive-feature-box-padding);
   --spacing-feature-tab-height: var(--primitive-feature-tab-height);
@@ -615,7 +599,6 @@
   --shadow-platform-active-shadow: var(--primitive-platform-active-shadow);
   --shadow-diagram: var(--primitive-figure-shadow);
   --shadow-action-shadow: var(--primitive-action-shadow);
-  --text-body-sm: 14px;
   --text-heading: 36px;
   --text-section-title: var(--primitive-section-title);
   --text-intro-text: var(--primitive-intro-text);
@@ -658,7 +641,6 @@
   --text-newsletter-button-font: var(--primitive-newsletter-button-font);
   --text-5xl: var(--spacing-12);
   --text-tool: var(--primitive-tiny-text);
-  --leading-body-sm: 1.43;
   --leading-heading: 1.2;
   --leading-normal: 1.5;
   --leading-snug: 1.35;
@@ -700,7 +682,6 @@
   --breakpoint-document-outline: 1300px;
   --ease-move: cubic-bezier(0, 0, 1, 1);
   --ease-reveal: cubic-bezier(0, 0, 0.58, 1);
-  --ease-icon-easing: var(--primitive-icon-easing);
   --container-page: var(--primitive-page);
   --container-body-width: var(--primitive-body-width);
   --container-intro: var(--primitive-intro);

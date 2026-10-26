@@ -63,6 +63,43 @@ html.embedded .fl-figure.full {
   border-radius: var(--radius-card-radius);
 }
 
+/* 가로로 옮겨 볼 부분이 남은 쪽 가장자리를 흐리게 해 그림이 이어진다는 것을 보인다. 스크롤 위치를 따르는 시간표(scroll-timeline)가 있을 때만 쓴다.
+   왼쪽 흐림은 스크롤 앞쪽 spacing-12 구간에서 생기고, 오른쪽 흐림은 뒤쪽 같은 구간에서 사라진다. 넘치지 않는 틀은 시간표가 비활성이라 두 값 모두 초기값 0이다.
+   지원하지 않는 브라우저는 흐림 없이 스크롤바만 쓴다. 마스크는 알파만 읽어 색 값을 쓰지 않는다. */
+@property --fl-fade-start {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fl-fade-end {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0;
+}
+
+@keyframes fl-fade-start-in {
+  to { --fl-fade-start: var(--spacing-6); }
+}
+
+@keyframes fl-fade-end-out {
+  from { --fl-fade-end: var(--spacing-6); }
+}
+
+@supports (animation-timeline: scroll()) {
+  .fl-canvas {
+    animation: fl-fade-start-in var(--ease-move) both, fl-fade-end-out var(--ease-move) both;
+    animation-timeline: scroll(self inline), scroll(self inline);
+    animation-range: normal var(--spacing-12), calc(100% - var(--spacing-12)) normal;
+    mask-image: linear-gradient(to right, transparent, currentcolor var(--fl-fade-start), currentcolor calc(100% - var(--fl-fade-end)), transparent);
+  }
+
+  .fl-figure.full .fl-canvas {
+    animation: none;
+    mask-image: none;
+  }
+}
+
 .fl-canvas:focus-visible {
   outline: var(--outline-width-focus) solid var(--color-ui-focus);
   outline-offset: calc(-1 * var(--border-width-tag));

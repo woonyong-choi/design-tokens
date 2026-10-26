@@ -113,6 +113,26 @@ test('wide figure scrolls inside the canvas by keyboard at 390px', async () => {
   } finally { await page.close(); }
 });
 
+test('canvas edges fade only on the side that can still scroll', async () => {
+  const fades = page => page.evaluate(() => {
+    const style = getComputedStyle(document.querySelector('.fl-canvas'));
+    return [style.getPropertyValue('--fl-fade-start'), style.getPropertyValue('--fl-fade-end')].map(Number.parseFloat);
+  });
+  const wide = await measure(390, 'wide');
+  try {
+    const [startAtBegin, endAtBegin] = await fades(wide.page);
+    assert.equal(startAtBegin, 0, 'nothing is hidden to the left before scrolling');
+    assert.ok(endAtBegin > 0, 'the right edge fades while more figure lies to the right');
+    await wide.page.evaluate(() => { const canvas = document.querySelector('.fl-canvas'); canvas.scrollLeft = canvas.scrollWidth; });
+    await wide.page.waitForTimeout(100);
+    const [startAtEnd, endAtEnd] = await fades(wide.page);
+    assert.ok(startAtEnd > 0, 'the left edge fades after scrolling to the end');
+    assert.equal(endAtEnd, 0, 'nothing is hidden to the right at the end');
+  } finally { await wide.page.close(); }
+  const narrow = await measure(1280, 'narrow');
+  try { assert.deepEqual(await fades(narrow.page), [0, 0], 'a figure that fits has no fade'); } finally { await narrow.page.close(); }
+});
+
 test('full screen keeps fit and zoom without the document minimum', async () => {
   const { page, layout } = await measure(320, 'wide', true);
   try { assert.ok(layout.panels[0].shown <= layout.canvasWidth + 1, 'full screen fits the widest panel to the area'); } finally { await page.close(); }

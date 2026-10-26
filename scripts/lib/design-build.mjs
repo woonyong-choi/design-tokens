@@ -53,7 +53,7 @@ export function buildDesign(root) {
     'styles.source.css': css,
     ...Object.fromEntries(['tabs', 'toolbar', 'table', 'diagram-embed'].map(name => [`styles/${name}.css`, readFileSync(join(root, `styles/${name}.css`))])),
     'styles.css': css.replace(/breakpoint\(([\w-]+)\)/g, (_, name) => resolveValue(table, `breakpoint.${name}`)),
-    ...filesIn(join(root, 'assets'), 'assets/'), ...filesIn(join(root, 'ui'), 'ui/'),
+    ...Object.fromEntries(Object.entries(filesIn(join(root, 'assets'), 'assets/')).filter(([name]) => !name.endsWith('/AGENTS.md'))), ...filesIn(join(root, 'ui'), 'ui/'),
     ...filesIn(join(root, 'styles/diagram'), 'styles/diagram/'),
   };
   const cssPaths = new Map([...table.keys()].map(name => [`--${name.replaceAll('.', '-')}`, name]));

@@ -1,5 +1,9 @@
 /** 등록된 도표 창과만 높이·테마·대체 전체화면을 주고받는다. */
 export function bindDiagramHost() {
+  // 같은 문서에서 두 번 불려도 리스너와 관찰자를 한 번만 붙인다. toString()으로 삽입되므로 모듈 변수 대신 전역 표시를 쓴다.
+  const bound = Symbol.for('design-tokens.diagram-host');
+  if (globalThis[bound]) return;
+  globalThis[bound] = true;
   const selector = 'iframe[data-diagram]';
   const initialized = new WeakSet();
   const origin = globalThis.origin ?? location.origin;

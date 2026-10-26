@@ -526,6 +526,7 @@
   --spacing-figure-grid-cell: 32px;
   --spacing-figure-figure-canvas: 960px;
   --spacing-figure-figure-canvas-wide: 1440px;
+  --spacing-figure-svg-unit: 1px;
   --spacing-figure-chip-max-width: 210px;
   --spacing-figure-gallery-column: var(--spacing-figure-figure-canvas);
   --spacing-figure-gallery-frame: 820px;

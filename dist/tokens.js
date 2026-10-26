@@ -641,6 +641,7 @@ export const tokens = freeze({
       },
       "figure-canvas": "var(--spacing-figure-figure-canvas)",
       "figure-canvas-wide": "var(--spacing-figure-figure-canvas-wide)",
+      "svg-unit": "var(--spacing-figure-svg-unit)",
       "chip": {
         "max-width": "var(--spacing-figure-chip-max-width)"
       },
@@ -2036,6 +2037,7 @@ export const values = freeze({
       },
       "figure-canvas": 960,
       "figure-canvas-wide": 1440,
+      "svg-unit": 1,
       "chip": {
         "max-width": 210
       },

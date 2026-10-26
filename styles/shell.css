@@ -13,7 +13,7 @@
 .app-logo-brand :is(img, svg) { display: block; width: auto; height: var(--text-body-text); }
 .app-canvas { background: var(--color-canvas); }
 .app-publication.app-canvas { background: var(--color-ui-card); }
-.app-footer { background: var(--color-canvas); padding-block: var(--spacing-gap-lg); }
+.app-footer { background: var(--color-ui-card); padding-block: var(--spacing-gap-lg); }
 .app-footer-bar { display: flex; flex-wrap: wrap; gap: var(--spacing-gap-xs) var(--spacing-gap); align-items: center; justify-content: space-between; border-top: var(--border-width-thin) solid var(--color-ui-line); padding-top: calc(var(--spacing-gap) / 3); }
 .app-footer-copy { margin: 0; min-width: 0; overflow-wrap: anywhere; }
 .app-footer-links { display: flex; gap: var(--spacing-gap-sm); align-items: center; }

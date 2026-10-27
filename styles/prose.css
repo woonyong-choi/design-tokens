@@ -1,5 +1,5 @@
 /* 본문 문법: app-prose 아래 제목·문단·목록·인용·표·코드·콜아웃·각주·수식·도표. 새 Markdown 요소는 여기에 둔다. */
-.app-prose { overflow-wrap: anywhere; line-height: var(--leading-feature-body-line); }
+.app-prose { word-break: keep-all; overflow-wrap: anywhere; line-height: var(--leading-prose-body); }
 .app-prose h1 { font-size: var(--text-section-title); line-height: var(--leading-prose-heading-line); margin: var(--component-prose-h1-margin); }
 .app-prose h1:first-child, .app-prose h2.app-heading-1:first-child { margin-top: 0; }
 .app-prose h2 { font-size: var(--text-subtitle); line-height: var(--leading-line-intro); color: var(--color-ink); }
@@ -84,7 +84,7 @@
 .app-syntax-row pre { margin: 0 0 var(--spacing-syntax-example-gap); padding: var(--component-syntax-example-padding); background: var(--color-syntax-example-background); border: var(--border-width-thin) solid var(--color-syntax-example-border); border-radius: var(--radius-syntax-example-radius); color: var(--color-body); white-space: pre-wrap; }
 /* 일반 페이지의 본문 간격은 앞선 구성 요소 규칙을 덮어쓴다. 블로그와 지원 문서 문맥은 위쪽 기본 본문 규칙에 함께 선언한다. */
 .app-prose p.app-fineprint { margin: var(--component-prose-fineprint-margin); font-size: var(--text-post-date-size); line-height: var(--leading-caption-line); color: var(--color-prose-caption-color); }
-.app-prose p.app-article-lead { font-size: var(--text-post-lead-size); line-height: var(--leading-line-intro); margin-bottom: var(--spacing-post-lead-margin); }
+.app-prose p.app-article-lead { font-size: var(--text-post-lead-size); line-height: var(--leading-line-intro); margin-bottom: var(--spacing-post-lead-margin); color: var(--color-body); }
 .app-cancelled-task { display: inline-block; width: var(--spacing-task-size); height: var(--spacing-task-size); vertical-align: var(--spacing-task-align); background: url('./assets/icons/layout/checkbox-indeterminate.svg') center / contain no-repeat; }
 .task-list-item.is-cancelled { text-decoration: line-through; color: var(--color-ui-muted); list-style: none; }
 .app-callout.is-fineprint { font-size: var(--text-post-date-size); line-height: var(--leading-caption-line); }
@@ -125,3 +125,6 @@
 .app-prose .katex-display { margin-block: 0; }
 .app-prose .katex-block, .app-prose .katex-display { overflow-x: auto; overflow-y: hidden; }
 .app-prose .katex-error { color: var(--color-ui-muted); text-decoration: underline dotted; }
+@media (max-width: breakpoint(feature-split)) {
+  .app-prose p.app-article-lead { font-size: var(--text-compact-text); }
+}

@@ -228,3 +228,7 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 `node test/giscus-browser.mjs <playwright-core의 index.mjs 경로>`는 공급자와 같은 `light dark` 메타 설정의 독립 iframe에서 OS light/dark와 두 화면 폭의 댓글·답글·입력란 대비 및 키보드 초점을 확인한다. 선택적인 마지막 인수에 기록 경로 접두사를 주면 JSON과 화면을 저장한다. 공급자의 실제 댓글 연결·펼침은 소비자 화면에서 따로 확인한다.
 
 `node test/diagram-frame-browser.mjs <playwright-core의 index.mjs 경로>`는 합성 그림(좁은 판 하나, 표준 판 하나, 폭이 다른 두 판)을 공통 `DiagramFrame`과 배포 CSS로 1280·390·320px에서 열어, 판이 자연 크기보다 커지지 않고 하한 배율 밑으로 줄지 않으며 판끼리 같은 배율·같은 가운데이고 페이지 가로 넘침이 없는지 잰다. 390px의 넓은 그림은 그림 영역에 초점을 두고 방향키로 오른쪽 끝까지 옮겨지는지, 옮길 부분이 남은 쪽 가장자리만 흐린지(처음 오른쪽, 끝에서 왼쪽, 넘치지 않는 그림은 없음), 전체화면은 하한 없이 영역에 맞는지 본다.
+
+## 글 읽기 간격
+
+블로그 본문(`.app-prose`)은 한글 긴 글 읽기를 위해 `leading.prose-body`(1.75) 줄 간격을 쓴다. 글 머리의 날짜·제목은 왼쪽 정렬이고 도입 문단은 `color.body`로 본문 제목보다 한 단계 연하다. 검색 위·아래 여백(`spacing.search-top`, `spacing.search-bottom`)과 글 위쪽 여백(`component.post-padding`)은 48px다.

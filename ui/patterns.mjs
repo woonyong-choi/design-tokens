@@ -60,7 +60,7 @@ export function TitleCover({ title }) {
   return out(`<div class="app-title-cover${length > 40 ? ' is-long' : ''}" aria-hidden="true"><span class="app-title-cover-title">${escape(title)}</span></div>`);
 }
 
-export function BlogCard({ href, title, showTitle = true, level = 3, cover, automaticCover = false, tags, tagItems = [], description = '', publishedAt, dateLabel, commentsHref, commentCount, author }) {
+export function BlogCard({ href, title, showTitle = true, level = 3, cover, automaticCover = false, tags, tagItems = [], tagLimit = 3, description = '', publishedAt, dateLabel, commentsHref, commentCount, author }) {
   const heading = level === 2 ? 'h2' : 'h3';
   // 제목 표지는 본문 제목을 숨긴 카드에서만 제목을 대신한다. 둘 다 보이면 같은 제목이 두 번 나온다.
   const media = cover === undefined && automaticCover && !showTitle ? TitleCover({ title }) : cover;
@@ -73,7 +73,9 @@ export function BlogCard({ href, title, showTitle = true, level = 3, cover, auto
   const writer = byline ? `<span class="app-blog-card-author">${byline}</span>` : '';
   const fields = [writer, date].filter(Boolean).join('<span aria-hidden="true">·</span>');
   const metadata = fields || comments ? `<div class="app-blog-card-meta">${fields}${comments}</div>` : '';
-  const summary = tagItems.length ? `<div class="app-blog-card-tags" role="group" aria-label="태그">${tagItems.map(item => String(Tag(item))).join(' ')}</div>` : '';
+  // 카드는 대표 태그만 보인다. 나머지는 글 머리의 전체 태그에서 확인한다.
+  const shown = tagItems.slice(0, tagLimit);
+  const summary = shown.length ? `<div class="app-blog-card-tags" role="group" aria-label="태그">${shown.map(item => String(Tag(item))).join(' ')}</div>` : '';
   return out(`<article class="app-blog-card"><a class="app-blog-card-link" href="${link}" aria-label="${escape(title)}">${media === undefined ? '' : `<div class="app-blog-cover">${slot(media, 'cover')}</div>`}<div class="app-blog-card-body"><${heading} class="app-blog-card-title${showTitle ? '' : ' app-sr'}">${escape(title)}</${heading}>${description ? `<p class="app-card-summary">${escape(description)}</p>` : ''}</div></a>${summary}${tags === undefined ? '' : slot(tags, 'tags')}${metadata}</article>`);
 }
 /** 쪽 이동. `before`·`after`는 `{ href, text }`, `numbers`는 `{ page, href, current }`, `summary`는 번호 대신 쓰는 글자다. */

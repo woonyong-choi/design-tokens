@@ -576,6 +576,9 @@
   --spacing-tool-icon: var(--spacing-4);
   --spacing-tool-target: var(--spacing-7);
   --spacing-toolbar: var(--spacing-10);
+  --spacing-blog-card-inset: var(--spacing-8);
+  --spacing-blog-card-inset-compact: var(--spacing-6);
+  --spacing-blog-card-gap: var(--spacing-8);
   --radius-lg: 8px;
   --radius-full: 999px;
   --radius-sm: 4px;
@@ -608,6 +611,7 @@
   --radius-newsletter-button-radius: var(--primitive-newsletter-button-radius);
   --radius-help-grouped-radius: var(--primitive-help-grouped-radius);
   --radius-tooltip-radius: var(--primitive-tooltip-radius);
+  --radius-blog-card-radius: var(--spacing-4);
   --shadow-help-hover-shadow: var(--primitive-help-hover-shadow);
   --shadow-landing-review-shadow: var(--primitive-landing-review-shadow);
   --shadow-feature-tab-shadow: var(--primitive-feature-tab-shadow);
@@ -1234,6 +1238,7 @@
   --component-table-padding: var(--primitive-table-padding);
   --component-newsletter-button-padding: var(--primitive-newsletter-button-padding);
   --component-action-focus: var(--primitive-action-focus);
+  --component-blog-card-summary-lines: 3;
   --outline-width-focus: 3px;
   --stroke-width-control: var(--spacing-0-5);
   color-scheme: light;

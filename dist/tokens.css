@@ -585,7 +585,6 @@
   --spacing-blog-card-avatar: var(--spacing-7);
   --spacing-post-avatar: var(--spacing-10);
   --spacing-editor-body-min: 480px;
-  --spacing-editor-list-max: 320px;
   --radius-lg: 8px;
   --radius-full: 999px;
   --radius-sm: 4px;
@@ -1100,6 +1099,7 @@
   --breakpoint-nav-narrow: 340px;
   --breakpoint-document-tree: 1040px;
   --breakpoint-document-outline: 1300px;
+  --breakpoint-editor-split: 1279px;
   --border-width-thin: 1px;
   --border-width-hair: 0.75px;
   --border-width-strong: 2.5px;

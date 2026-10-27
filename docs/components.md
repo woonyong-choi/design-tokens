@@ -71,7 +71,7 @@ const html = CardGroup({ columns: 4, cards });
 
 ## 텍스트 입력과 검색
 
-`TextInput({ id, name, label, type, value, placeholder, autocomplete, describedBy, required, disabled, size, surface, icon, action, role, controls, labelVisible })`는 모든 텍스트 입력의 단일 구성 요소다. 보이지 않는 이름표와 `.app-input` 입력을 조립한다. `labelVisible: true`이면 이름표를 `.app-field-label`로 입력 위에 보인다. `type`은 `text`·`email`·`url`·`tel`·`date`, `size`는 `small`·`medium`·`large`·`control`, `surface`는 `track`·`field`·`card`만 받는다. `name`의 기본값은 `id`다. `icon`과 `action`은 검증한 HTML 슬롯이며, 있으면 입력과 함께 `.app-input-field` 안에 앞 아이콘과 뒤 동작으로 놓인다. `role`은 `searchbox` 또는 `combobox`이고 `combobox`는 추천 목록 ID `controls`가 필요하다. `describedBy`와 `controls`는 ID로 검증하고 값과 안내 문구는 일반 텍스트로 이스케이프한다. `SearchBox`는 `large`가 참이면 `size: 'large'`, 아니면 `size: 'medium'`을 선택하고 `surface: 'field'`로, `EmailForm`은 `size: 'control'`, `surface: 'card'`로 이 구성 요소를 조립한다.
+`TextInput({ id, name, label, type, value, placeholder, autocomplete, describedBy, required, disabled, size, surface, icon, action, role, controls, labelVisible })`는 모든 텍스트 입력의 단일 구성 요소다. 보이지 않는 이름표와 `.app-input` 입력을 조립한다. `labelVisible: true`이면 이름표를 `.app-field-label`로 입력 위에 보인다(글 작성 화면). `type`은 `text`·`email`·`url`·`tel`·`date`, `size`는 `small`·`medium`·`large`·`control`, `surface`는 `track`·`field`·`card`만 받는다. `name`의 기본값은 `id`다. `icon`과 `action`은 검증한 HTML 슬롯이며, 있으면 입력과 함께 `.app-input-field` 안에 앞 아이콘과 뒤 동작으로 놓인다. `role`은 `searchbox` 또는 `combobox`이고 `combobox`는 추천 목록 ID `controls`가 필요하다. `describedBy`와 `controls`는 ID로 검증하고 값과 안내 문구는 일반 텍스트로 이스케이프한다. `SearchBox`는 `large`가 참이면 `size: 'large'`, 아니면 `size: 'medium'`을 선택하고 `surface: 'field'`로, `EmailForm`은 `size: 'control'`, `surface: 'card'`로 이 구성 요소를 조립한다.
 
 `SearchResultLink`의 `icon`을 생략하면 빈 아이콘 슬롯과 들여쓰기도 생략한다. `SearchMessage({ lines })`은 문자열 배열을 안전하게 줄바꿈하고 같은 중앙 정렬 영역에 소비자의 재시도 버튼을 추가할 수 있다. 소비자는 재시도 동작과 검색 색인을 소유한다. 공통 구성 요소는 검색 결과의 HTML만 만든다.
 
@@ -81,18 +81,19 @@ const html = CardGroup({ columns: 4, cards });
 
 ## 글 작성 화면
 
-`ui/editor.mjs`는 글 작성 화면의 조각을 소유한다. 스타일은 `styles/editor.css` 한 곳이다.
+`ui/editor.mjs`는 글 작성 화면의 조각을 소유한다. 스타일은 `styles/editor.css` 한 곳이다. 화면은 위 막대 아래에 목록·편집·실시간 미리보기 세 칸이 화면 높이를 나눠 쓰고, 칸마다 따로 스크롤한다.
 
-- `Button({ label, variant, type, action, disabled, hidden })`: `variant`는 `primary`·`secondary`, `type`은 `button`·`submit`이다. `action`은 화면 스크립트가 찾는 `data-action` 이름이며 소문자와 `-`만 받는다.
-- `TextArea({ id, name, label, value, placeholder, rows, code, describedBy })`: 보이는 이름표와 여러 줄 입력이다. `code: true`이면 고정폭 글꼴과 `spacing.editor-body-min` 최소 높이를 쓴다.
-- `Select({ id, name, label, options, value })`: 보이는 이름표와 선택 상자다. `options`는 `{ value, label }` 목록이다.
-- `Field({ control, hint, hintId })`: 입력 하나와 도움말을 한 칸으로 묶는다. 도움말에는 `hintId`가 필요하다.
-- `EditorActions({ items })`: 단추 슬롯을 `.app-editor-actions` 한 줄로 놓는다.
-- `EditorPanel({ body })`: 폼 바깥의 입력 칸 묶음을 `.app-editor-panel`로 세로로 쌓는다.
-- `EditorList({ label, items })`: 편집할 항목 단추 목록이다. 항목은 `{ id, title, note, selected }`이며 고른 항목은 `aria-current`로 표시한다.
-- `EditorLayout({ label, aside, main })`: 왼쪽 목록(`container.editor-aside`)과 오른쪽 편집 칸이다. `feature-split` 분기점보다 좁으면 한 줄로 쌓고 목록은 `spacing.editor-list-max` 높이 안에서 스크롤한다. 편집 칸 바로 아래의 `form`과 `.app-editor-panel`은 입력 칸을 세로로 쌓고, `.app-editor-actions`는 단추를 한 줄로 놓는다.
+- `EditorLayout({ label, bar, aside, main, preview, view })`: 전체 틀이다. `breakpoint.editor-split`보다 좁으면 목록과 편집·미리보기 중 하나, `feature-split`보다 좁으면 한 칸만 보인다. 보이는 칸은 `data-view`(`list`·`edit`·`preview`)가 정한다. `view-list`·`view-edit`·`view-preview` 동작 단추는 해당 칸이 숨을 수 있는 너비에서만 보인다.
+- `EditorBar({ title, home, status, actions })`: 위 막대다. `home`은 `{ href, label }` 돌아가기 링크, `status`는 상태 글자 슬롯, `actions`는 오른쪽 단추 줄 슬롯이다.
+- `EditorList({ label, items })`: 항목 `{ id, title, state, date, selected }` 단추 목록이다. 고른 항목은 `aria-current`로 흰 카드가 된다.
+- `EditorState({ state })`: `draft`(회색)·`public`(사이트 태그와 같은 파란 칩) 상태 칩이다.
+- `Button({ label, variant, type, action, disabled, hidden, pressed })`: `variant`는 `primary`·`secondary`·`quiet`다. 높이와 곡률은 입력과 같다. `action`은 화면 스크립트가 찾는 `data-action` 이름이며 소문자와 `-`만 받는다.
+- `TextArea({ id, name, label, value, placeholder, rows, variant, code, labelVisible, describedBy })`: `variant`는 `field`(회색 면)·`title`(글 머리 제목 크기)·`plain`(도입문 크기 요약)·`code`(본문 원문)다. `title`·`plain`은 면 없이 내용 높이만큼 늘어나 긴 제목도 잘리지 않는다. `code: true`는 `variant: 'code'`와 같다.
+- `Select({ id, name, label, options, value })`, `Field({ control, hint, hintId })`, `FieldRow({ fields })`: 이름표가 보이는 입력 칸과 한 줄 배치다. 이름표는 작은 보조 글자, 입력은 검색 입력과 같은 회색 면이다.
+- `EditorActions({ items })`, `EditorPanel({ body })`: 단추 한 줄과 세로 칸 묶음이다.
+- `EditorNotice({ title, body, actions, footer })`: 작성 화면에 들어가기 전의 가운데 안내 카드다(로그인·설정 안내). 폭은 `container.form`이다.
 
-주 단추 색은 `color.button-primary`, 글자는 `color.button-primary-ink`, 호버는 `color.button-primary-hover`다. 작성과 미리보기 전환은 공통 `Tabs`를 쓴다.
+주 단추 색은 `color.button-primary`, 글자는 `color.button-primary-ink`, 호버는 `color.button-primary-hover`다. 목록 칸 폭은 `container.editor-aside`, 본문 최소 높이는 `spacing.editor-body-min`이다.
 
 ## 소비 방식
 

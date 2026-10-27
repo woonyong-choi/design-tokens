@@ -20,6 +20,8 @@
 .app-input:focus { outline: 0; box-shadow: var(--component-input-focus); }
 .app-input.is-medium { height: auto; padding: var(--component-article-search-padding); border-radius: var(--radius-article-search-radius); font-size: var(--text-article-search-font); line-height: var(--leading-line-intro); }
 .app-input.is-large { height: auto; padding: var(--component-search-input-padding); border-radius: var(--radius-search-input-radius); font-size: var(--text-search-input-font); line-height: var(--leading-line-intro); }
+/* 글 작성 화면의 여러 줄 입력도 같은 안내 글자 색을 쓴다. */
+.app-textarea::placeholder { color: var(--color-input-field-placeholder); }
 .app-input.is-control { height: var(--spacing-control); padding: var(--spacing-platform-button-y); border-radius: var(--radius-newsletter-input-radius); font-size: inherit; line-height: normal; }
 .app-input.is-field { background: var(--color-search-bg); }
 .app-input.is-field::placeholder { color: var(--color-input-field-placeholder); }

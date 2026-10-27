@@ -25,9 +25,9 @@ export function Select({ id: name, name: field = name, label, options, value }) 
 }
 
 /** 이름표와 입력, 도움말을 한 칸으로 묶는다. `control`은 TextInput·TextArea·Select 슬롯이다. */
-export function Field({ control, hint, hintId, wide = false }) {
+export function Field({ control, hint, hintId }) {
   if (hint && !hintId) throw new Error('Field hint requires hintId');
-  return out(`<div class="app-field${wide ? ' is-wide' : ''}">${slot(control, 'field control')}${hint ? `<p class="app-field-hint" id="${id(hintId)}">${escape(hint)}</p>` : ''}</div>`);
+  return out(`<div class="app-field">${slot(control, 'field control')}${hint ? `<p class="app-field-hint" id="${id(hintId)}">${escape(hint)}</p>` : ''}</div>`);
 }
 
 /** 편집할 항목 목록. 각 항목은 단추이며 `data-item`으로 고른다. `note`는 상태처럼 짧은 보조 글자다. */

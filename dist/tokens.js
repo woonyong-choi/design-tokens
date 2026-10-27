@@ -696,7 +696,8 @@ export const tokens = freeze({
     "blog-card-gap": "var(--spacing-blog-card-gap)",
     "blog-card-avatar": "var(--spacing-blog-card-avatar)",
     "post-avatar": "var(--spacing-post-avatar)",
-    "editor-body-min": "var(--spacing-editor-body-min)"
+    "editor-body-min": "var(--spacing-editor-body-min)",
+    "editor-list-max": "var(--spacing-editor-list-max)"
   },
   "radius": {
     "lg": "var(--radius-lg)",
@@ -1344,7 +1345,6 @@ export const tokens = freeze({
     "form": "var(--container-form)",
     "shell-width": "var(--container-shell-width)",
     "diagram": "var(--container-diagram)",
-    "editor": "var(--container-editor)",
     "editor-aside": "var(--container-editor-aside)"
   },
   "blur": {
@@ -2108,7 +2108,8 @@ export const values = freeze({
     "blog-card-gap": 32,
     "blog-card-avatar": 28,
     "post-avatar": 40,
-    "editor-body-min": 480
+    "editor-body-min": 480,
+    "editor-list-max": 320
   },
   "radius": {
     "lg": 8,
@@ -2756,7 +2757,6 @@ export const values = freeze({
     "form": 500,
     "shell-width": "92%",
     "diagram": 960,
-    "editor": 1280,
     "editor-aside": 280
   },
   "blur": {

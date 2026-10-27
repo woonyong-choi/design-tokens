@@ -334,7 +334,7 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 .app-field { display: flex; flex-direction: column; gap: var(--spacing-gap-xs); min-width: 0; }
 .app-field-label { font-size: var(--text-small-text); font-weight: var(--font-weight-medium); color: var(--color-ink); }
 .app-field-hint { margin: 0; font-size: var(--text-tiny-text); color: var(--color-ui-muted); }
-.app-textarea, .app-select { box-sizing: border-box; width: 100%; margin: 0; padding: var(--spacing-gap-xs) var(--spacing-gap-sm); border: 0; border-radius: var(--radius-input-radius); background: var(--color-input-background); color: var(--color-input-ink); font: inherit; font-size: var(--text-input-font); line-height: var(--leading-normal); }
+.app-textarea, .app-select { box-sizing: border-box; width: 100%; margin: 0; padding: var(--spacing-gap-xs) var(--spacing-gap-sm); border: 0; border-radius: var(--radius-input-radius); background: var(--color-search-bg); color: var(--color-input-ink); font: inherit; font-size: var(--text-input-font); line-height: var(--leading-normal); }
 .app-select { height: var(--spacing-input-height); }
 .app-textarea { resize: vertical; }
 .app-textarea.is-code { min-height: var(--spacing-editor-body-min); font-family: var(--font-mono); font-size: var(--text-small-text); line-height: var(--leading-prose-body); tab-size: 2; }
@@ -350,6 +350,8 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 .app-editor { display: grid; grid-template-columns: var(--container-editor-aside) minmax(0, 1fr); gap: var(--spacing-gap-lg); align-items: start; }
 .app-editor-aside { display: flex; flex-direction: column; gap: var(--spacing-gap-sm); position: sticky; top: var(--spacing-gap); }
 .app-editor-main { display: flex; flex-direction: column; gap: var(--spacing-gap); min-width: 0; }
+.app-editor-main > form, .app-editor-panel { display: flex; flex-direction: column; gap: var(--spacing-gap); min-width: 0; }
+.app-editor-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--spacing-gap-sm); }
 .app-editor-list { display: flex; flex-direction: column; gap: calc(var(--spacing-gap-xs) / 2); margin: 0; padding: 0; list-style: none; }
 .app-editor-item { display: flex; flex-direction: column; gap: calc(var(--spacing-gap-xs) / 2); width: 100%; padding: var(--spacing-gap-xs) var(--spacing-gap-sm); border: 0; border-radius: var(--radius-button-radius); background: transparent; color: var(--color-ink); font: inherit; text-align: start; cursor: pointer; }
 .app-editor-item:hover { background: var(--color-help-bg); }
@@ -360,6 +362,7 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 @media (max-width: breakpoint(feature-split)) {
   .app-editor { grid-template-columns: minmax(0, 1fr); }
   .app-editor-aside { position: static; }
+  .app-editor-list { max-height: var(--spacing-editor-list-max); overflow-y: auto; }
 }
 /* 아이콘 도형은 assets/icons에서 읽고 배치는 이 공통 조각에서 정한다. */
 .app-article-icon { display: inline-block; flex: none; width: var(--spacing-article-icon); height: var(--spacing-article-icon); }

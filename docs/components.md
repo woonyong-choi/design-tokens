@@ -86,9 +86,9 @@ const html = CardGroup({ columns: 4, cards });
 - `Button({ label, variant, type, action, disabled, hidden })`: `variant`는 `primary`·`secondary`, `type`은 `button`·`submit`이다. `action`은 화면 스크립트가 찾는 `data-action` 이름이며 소문자와 `-`만 받는다.
 - `TextArea({ id, name, label, value, placeholder, rows, code, describedBy })`: 보이는 이름표와 여러 줄 입력이다. `code: true`이면 고정폭 글꼴과 `spacing.editor-body-min` 최소 높이를 쓴다.
 - `Select({ id, name, label, options, value })`: 보이는 이름표와 선택 상자다. `options`는 `{ value, label }` 목록이다.
-- `Field({ control, hint, hintId, wide })`: 입력 하나와 도움말을 한 칸으로 묶는다. 도움말에는 `hintId`가 필요하다.
+- `Field({ control, hint, hintId })`: 입력 하나와 도움말을 한 칸으로 묶는다. 도움말에는 `hintId`가 필요하다.
 - `EditorList({ label, items })`: 편집할 항목 단추 목록이다. 항목은 `{ id, title, note, selected }`이며 고른 항목은 `aria-current`로 표시한다.
-- `EditorLayout({ label, aside, main })`: 왼쪽 목록(`container.editor-aside`)과 오른쪽 편집 칸이다. `feature-split` 분기점보다 좁으면 한 줄로 쌓는다.
+- `EditorLayout({ label, aside, main })`: 왼쪽 목록(`container.editor-aside`)과 오른쪽 편집 칸이다. `feature-split` 분기점보다 좁으면 한 줄로 쌓고 목록은 `spacing.editor-list-max` 높이 안에서 스크롤한다. 편집 칸 바로 아래의 `form`과 `.app-editor-panel`은 입력 칸을 세로로 쌓고, `.app-editor-actions`는 단추를 한 줄로 놓는다.
 
 주 단추 색은 `color.button-primary`, 글자는 `color.button-primary-ink`, 호버는 `color.button-primary-hover`다. 작성과 미리보기 전환은 공통 `Tabs`를 쓴다.
 

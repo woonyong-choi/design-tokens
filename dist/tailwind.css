@@ -567,6 +567,7 @@
   --spacing-blog-card-avatar: var(--spacing-7);
   --spacing-post-avatar: var(--spacing-10);
   --spacing-editor-body-min: 480px;
+  --spacing-editor-list-max: 320px;
   --radius-lg: 8px;
   --radius-full: 999px;
   --radius-sm: 4px;
@@ -702,7 +703,6 @@
   --container-form: var(--primitive-form);
   --container-shell-width: var(--primitive-shell-width);
   --container-diagram: 960px;
-  --container-editor: 1280px;
   --container-editor-aside: 280px;
   --blur-blur: var(--primitive-blur);
   --aspect-ratio-video: var(--primitive-ratio-video);

@@ -81,19 +81,19 @@ const html = CardGroup({ columns: 4, cards });
 
 ## 글 관리
 
-사이트 화면 위에 얹는 글 관리 조각이다. 기본 조각은 `ui/editor.mjs`와 `styles/editor.css`, 관리 화면은 `ui/write.mjs`와 `styles/write.css`가 소유한다. 보이고 숨기는 일과 저장은 사용하는 쪽 스크립트가 맡는다.
+사이트 화면 위에 얹는 글 관리 조각이다. 기본 조각은 `ui/editor.mjs`와 `styles/editor.css`, 관리 화면은 `ui/write.mjs`와 `styles/write.css`가 소유한다. 보이고 숨기는 일과 저장은 사용하는 쪽 스크립트가 맡는다. 글자 굵기와 크기는 블로그 카드·글 머리와 같은 단계를 쓴다.
 
 - `Button({ label, variant, type, action, disabled, hidden, pressed })`: `variant`는 `primary`·`secondary`·`quiet`다. 높이와 곡률은 입력과 같다. `action`은 스크립트가 찾는 `data-action` 이름이며 소문자와 `-`만 받는다.
-- `TextArea({ id, name, label, value, placeholder, rows, variant, labelVisible, maxLength, describedBy })`: `variant`는 `field`(회색 면)·`title`(글 제목 크기, 내용 높이만큼 늘어남)·`source`(본문 원문)다.
-- `Field({ control, hint, hintId })`, `EditorState({ state })`: 입력 칸 묶음과 `draft`(임시)·`private`(비공개)·`public`(공개) 상태 칩이다.
-- `EditorNotice({ title, body, actions, footer })`: 관리 화면에 들어가기 전의 가운데 안내 카드다(로그인 안내). 폭은 `container.form`이다.
-- `AdminDock({ count, panel })`: 오른쪽 아래에 고정되는 관리자 단추 묶음이다. 위는 임시·비공개 글 수를 보이는 목록 단추(`open-drafts`), 아래는 새 글을 여는 동그란 + 단추(`new-post`)다. 크기는 `spacing.admin-fab`, 그림자는 `shadow.admin`이다.
-- `AdminDrafts({ id, items })`: 단추 묶음 위에 뜨는 임시·비공개 글 목록이다. 항목은 `{ id, title, state, date }`이며 `data-item`으로 고른다.
-- `PostOwnerActions({ state })`: 글 화면의 글쓴이 줄 끝에 붙이는 수정(`edit-post`)·삭제(`delete-post`) 글자 단추다. 공개가 아닌 글은 상태 칩을 함께 보인다.
+- `TextArea({ id, name, label, value, placeholder, rows, variant, labelVisible, maxLength, describedBy })`: `variant`는 `field`(회색 면)·`title`(글 제목 크기, 내용 높이만큼 늘어남)·`source`(본문 원문)다. 크기 조절 손잡이는 두지 않는다.
+- `Field({ control, hint, hintId })`: 입력과 도움말 묶음이다.
+- `AdminDock({ count, panel })`: 오른쪽 아래에 고정되는 관리자 단추 묶음이다. 위는 임시 글 수를 보이는 목록 단추(`open-drafts`), 아래는 새 글을 여는 동그란 + 단추(`new-post`)다. 크기는 `spacing.admin-fab`, 그림자는 `shadow.admin`이다.
+- `AdminDrafts({ id, items })`: 단추 묶음 위에 뜨는 임시 글 목록 카드다. 항목은 `{ id, title, date }`이며 `data-item`으로 고른다.
+- `PostOwnerActions()`: 글 화면의 글쓴이 줄 끝에 붙이는 수정(`edit-post`)·삭제(`delete-post`) 글자 단추다.
 - `TagInput({ id, label, tags, placeholder })`: 사이트 태그 모양의 칩과 `surface: 'bare'` 입력이다. 칩의 `data-tag`가 태그 값이다.
-- `WriteToolbar({ label })`: 제목 1~4, 굵게·기울임·취소선, 인용·링크·그림·코드 단추다. `data-format`이 넣을 문법이다.
-- `WriteScreen({ id, preview })`: 화면 전체를 덮는 작성 창이다. 왼쪽은 제목·구분 막대·태그·서식·본문과 아래 막대(나가기 `close-write`, 임시저장 `save-draft`, 출간하기 `open-publish`), 오른쪽은 미리보기 칸이다. `feature-split`보다 좁으면 편집 칸만 보인다.
-- `PublishScreen({ id, urlPrefix })`: 출간 설정 창이다. 왼쪽은 썸네일(`upload-thumbnail`·`remove-thumbnail`)과 요약 150자, 오른쪽은 공개 설정(`data-visibility`), 주소 이름, 발행일과 취소(`close-publish`)·출간하기(`publish`)다. 폭은 `container.publish`다.
+- `WriteToolbar({ label })`: 제목 1~4, 굵게·기울임·취소선, 인용·링크·그림·코드 단추다. `data-format`이 넣을 문법이며 본문을 스크롤해도 위에 붙어 있다.
+- `WriteScreen({ id, preview })`: 화면 전체를 덮는 작성 창이다. 왼쪽은 제목·태그·서식·본문과 아래 막대(나가기 `close-write`, 임시저장 `save-draft`, 출간하기 `open-publish`), 오른쪽은 사이트 글 화면과 같은 흰 면의 미리보기 칸이다. `feature-split`보다 좁으면 편집 칸만 보인다.
+- `PublishScreen({ id, urlPrefix, card })`: 출간 설정 창이다. 왼쪽은 목록 카드 미리보기(`card` 슬롯, 사용하는 쪽이 `BlogCard`로 채움), 썸네일 바꾸기(`upload-thumbnail`)·자동 썸네일로(`remove-thumbnail`), 요약 150자, 오른쪽은 주소 이름·발행일과 취소(`close-publish`)·출간하기(`publish`)다. 폭은 `container.publish`다.
+- `AdminLogin({ title, body, actions, status })`: 사이트 머리·꼬리말 안의 관리자 로그인 본문이다. 글 화면과 같은 폭·여백과 글 머리 제목을 쓴다.
 - `Dialog({ id, title, body, actions })`, `Toast()`: 확인 창과 화면 아래 가운데의 짧은 알림이다.
 
 겹침 순서는 `z-index.admin` < `write` < `dialog` < `toast`다. 주 단추 색은 `color.button-primary`, 글자는 `color.button-primary-ink`, 호버는 `color.button-primary-hover`다.
@@ -134,7 +134,7 @@ const html = CardGroup({ columns: 4, cards });
 
 `ContentIcon({ graphic, badge, size })`은 검증한 SVG 슬롯을 공통 크기와 배치로 감싼다. 선택적인 `badge`도 검증한 슬롯만 받으며 오른쪽 아래에 주 도형 절반 크기로 놓는다. 글 유형을 붙일지는 소비자의 콘텐츠 규칙으로 결정한다.
 
-`BlogCard`의 자동 제목 표지(`automaticCover`)는 `showTitle: false`로 본문 제목을 숨긴 카드에서만 쓴다. 본문 제목이 보이면 자동 표지를 만들지 않아 같은 제목이 두 번 나오지 않는다. 카드는 위에서부터 표지, 태그, 제목, 요약, 글쓴이·날짜·댓글 순서로 놓인다. 제목은 `component.card-summary-lines` 줄, 요약은 `component.blog-card-summary-lines` 줄까지 보인다. `tagItems`는 앞에서부터 `tagLimit`(기본 3)개만 보인다. `author`는 `{ name, avatar }`이며 `avatar`는 선택 사진 주소다. 카드 여백·간격·곡률은 `spacing.blog-card-inset`, `spacing.blog-card-gap`, `radius.blog-card-radius`가 소유한다.
+`BlogCard`의 자동 제목 표지(`automaticCover`)는 그림이 없는 글의 표지를 제목으로 만든다. 사이트 태그와 같은 파란 면에 제목을 왼쪽 아래로 놓는다. 카드는 위에서부터 표지, 태그, 제목, 요약, 글쓴이·날짜·댓글 순서로 놓인다. 제목은 `component.card-summary-lines` 줄, 요약은 `component.blog-card-summary-lines` 줄까지 보인다. `tagItems`는 앞에서부터 `tagLimit`(기본 3)개만 보인다. `author`는 `{ name, avatar }`이며 `avatar`는 선택 사진 주소다. 카드 여백·간격·곡률은 `spacing.blog-card-inset`, `spacing.blog-card-gap`, `radius.blog-card-radius`가 소유한다.
 
 `BlogCard.commentsHref`는 카드의 글 링크와 분리된 댓글 링크다. 유효한 댓글 수가 있으면 `댓글 · N`을 표시하고, 댓글 주소만 있으면 `댓글 보기`를 표시한다. 보이는 텍스트가 접근 가능한 이름이며 아이콘은 사용하지 않는다.
 

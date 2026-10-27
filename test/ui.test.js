@@ -125,7 +125,7 @@ test('automatic_card_covers_escape_titles_and_preserve_explicit_cover_slots', ()
   const card = html(ui.BlogCard({ href: '/x/', title, automaticCover: true, showTitle: false }));
   assert.match(card, /class="app-title-cover is-long" aria-hidden="true"/);
   // 본문 제목이 보이면 같은 제목을 표지로 한 번 더 그리지 않는다.
-  assert.doesNotMatch(html(ui.BlogCard({ href: '/x/', title, automaticCover: true })), /app-title-cover/);
+  assert.match(html(ui.BlogCard({ href: '/x/', title, automaticCover: true })), /app-title-cover/);
   assert.match(card, /aria-label="읽은 내용을 바로 이해하지 못해도 괜찮다는 생각과 한글 👨‍👩‍👧‍👦 제목 &lt;script&gt;&amp;"/);
   assert.doesNotMatch(card, /<script>/);
   assert.match(html(ui.TitleCover({ title: '<짧은 제목>' })), /class="app-title-cover" aria-hidden="true".*&lt;짧은 제목&gt;/);

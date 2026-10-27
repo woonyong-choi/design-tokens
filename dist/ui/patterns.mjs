@@ -62,8 +62,8 @@ export function TitleCover({ title }) {
 
 export function BlogCard({ href, title, showTitle = true, level = 3, cover, automaticCover = false, tags, tagItems = [], tagLimit = 3, description = '', publishedAt, dateLabel, commentsHref, commentCount, author }) {
   const heading = level === 2 ? 'h2' : 'h3';
-  // 제목 표지는 본문 제목을 숨긴 카드에서만 제목을 대신한다. 둘 다 보이면 같은 제목이 두 번 나온다.
-  const media = cover === undefined && automaticCover && !showTitle ? TitleCover({ title }) : cover;
+  // 그림이 없는 글은 제목으로 표지를 자동으로 만든다. 직접 넘긴 표지(빈 슬롯 포함)가 먼저다.
+  const media = cover === undefined && automaticCover ? TitleCover({ title }) : cover;
   const link = safeUrl(href);
   const date = publishedAt ? `<time class="app-blog-card-date" datetime="${escape(publishedAt)}">${escape(dateLabel || publishedAt)}</time>` : '';
   const knownCount = Number.isSafeInteger(commentCount) && commentCount >= 0;

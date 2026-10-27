@@ -1,8 +1,8 @@
-/* 글 작성 화면의 기본 조각: 입력 칸, 여러 줄 입력, 단추, 상태 칩, 들어가기 전 안내 카드. */
+/* 글 작성 화면의 기본 조각: 입력 칸, 여러 줄 입력, 단추. */
 .app-field { display: flex; flex-direction: column; gap: var(--spacing-gap-xs); min-width: 0; }
 .app-field-label { font-size: var(--text-tiny-text); font-weight: var(--font-weight-medium); color: var(--color-ui-muted); }
 .app-field-hint { margin: 0; font-size: var(--text-tiny-text); color: var(--color-ui-muted); }
-.app-textarea { box-sizing: border-box; width: 100%; margin: 0; padding: var(--spacing-gap-xs) var(--spacing-gap-sm); border: 0; border-radius: var(--radius-input-radius); background: var(--color-search-bg); color: var(--color-input-ink); font: inherit; font-size: var(--text-small-text); line-height: var(--leading-normal); resize: vertical; }
+.app-textarea { box-sizing: border-box; display: block; width: 100%; margin: 0; padding: var(--spacing-gap-xs) var(--spacing-gap-sm); border: 0; border-radius: var(--radius-input-radius); background: var(--color-search-bg); color: var(--color-input-ink); font: inherit; font-size: var(--text-small-text); line-height: var(--leading-normal); resize: none; }
 .app-textarea:focus-visible { outline: var(--outline-width-focus) solid var(--color-ui-focus); outline-offset: 0; }
 .app-textarea:is(.is-title, .is-source) { padding: 0; border-radius: 0; background: transparent; resize: none; }
 .app-textarea:is(.is-title, .is-source):focus-visible { outline: 0; }
@@ -18,17 +18,3 @@
 .app-button.is-quiet:hover { background: var(--color-search-bg); color: var(--color-ink); }
 .app-button:focus-visible { outline: var(--outline-width-focus) solid var(--color-ui-focus); outline-offset: var(--spacing-outline); }
 .app-button:disabled { cursor: default; opacity: var(--opacity-dim); }
-
-.app-editor-state { display: inline-block; padding: 0 var(--spacing-gap-xs); border-radius: var(--radius-pill); font-size: var(--text-tiny-text); font-weight: var(--font-weight-medium); line-height: var(--leading-line-body); white-space: nowrap; }
-.app-editor-state:is(.is-draft, .is-private) { background: var(--color-search-bg); color: var(--color-ui-muted); }
-.app-editor-state.is-public { background: var(--color-tag-background); color: var(--color-tag-ink); }
-
-/* 들어가기 전 안내 카드: 회색 바탕 가운데의 흰 카드. */
-.app-editor-notice { display: grid; place-items: center; min-height: 100dvh; padding: var(--spacing-gap); background: var(--color-help-bg); }
-.app-editor-notice-card { display: flex; flex-direction: column; gap: var(--spacing-gap); width: 100%; max-width: var(--container-form); padding: var(--spacing-gap-lg); border: var(--border-width-thin) solid var(--color-ui-line); border-radius: var(--radius-blog-card-radius); background: var(--color-ui-card); }
-.app-editor-notice-card > p:empty { display: none; }
-.app-editor-notice-card > p { margin: 0; font-size: var(--text-small-text); line-height: var(--leading-normal); color: var(--color-body); word-break: keep-all; }
-.app-editor-notice-title { margin: 0; font-size: var(--text-intro-text); font-weight: var(--font-weight-bold); line-height: var(--leading-heading); color: var(--color-ink); }
-.app-editor-notice-card .app-button { width: 100%; }
-.app-editor-notice-footer { padding-top: var(--spacing-gap); border-top: var(--border-width-thin) solid var(--color-ui-line); font-size: var(--text-small-text); color: var(--color-ui-muted); }
-.app-editor-notice-footer a { color: inherit; }

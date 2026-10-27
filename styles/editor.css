@@ -1,0 +1,31 @@
+/* 글 작성 화면: 이름표가 보이는 입력 칸, 동작 단추, 왼쪽 목록과 오른쪽 편집 칸. */
+.app-field { display: flex; flex-direction: column; gap: var(--spacing-gap-xs); min-width: 0; }
+.app-field-label { font-size: var(--text-small-text); font-weight: var(--font-weight-medium); color: var(--color-ink); }
+.app-field-hint { margin: 0; font-size: var(--text-tiny-text); color: var(--color-ui-muted); }
+.app-textarea, .app-select { box-sizing: border-box; width: 100%; margin: 0; padding: var(--spacing-gap-xs) var(--spacing-gap-sm); border: 0; border-radius: var(--radius-input-radius); background: var(--color-input-background); color: var(--color-input-ink); font: inherit; font-size: var(--text-input-font); line-height: var(--leading-normal); }
+.app-select { height: var(--spacing-input-height); }
+.app-textarea { resize: vertical; }
+.app-textarea.is-code { min-height: var(--spacing-editor-body-min); font-family: var(--font-mono); font-size: var(--text-small-text); line-height: var(--leading-prose-body); tab-size: 2; }
+:is(.app-textarea, .app-select):focus-visible { outline: var(--outline-width-focus) solid var(--color-ui-focus); outline-offset: 0; }
+
+.app-button { display: inline-flex; align-items: center; justify-content: center; gap: var(--spacing-gap-xs); min-height: var(--spacing-input-height); padding: 0 var(--spacing-gap); border: var(--border-width-thin) solid var(--color-ui-line); border-radius: var(--radius-button-radius); background: var(--color-ui-card); color: var(--color-ink); font: inherit; font-size: var(--text-small-text); font-weight: var(--font-weight-medium); cursor: pointer; transition: background var(--duration-fast) var(--ease-reveal); }
+.app-button:hover { background: var(--color-help-bg); }
+.app-button.is-primary { border-color: transparent; background: var(--color-button-primary); color: var(--color-button-primary-ink); }
+.app-button.is-primary:hover { background: var(--color-button-primary-hover); }
+.app-button:focus-visible { outline: var(--outline-width-focus) solid var(--color-ui-focus); outline-offset: var(--spacing-outline); }
+.app-button:disabled { cursor: default; opacity: var(--opacity-dim); }
+
+.app-editor { display: grid; grid-template-columns: var(--container-editor-aside) minmax(0, 1fr); gap: var(--spacing-gap-lg); align-items: start; }
+.app-editor-aside { display: flex; flex-direction: column; gap: var(--spacing-gap-sm); position: sticky; top: var(--spacing-gap); }
+.app-editor-main { display: flex; flex-direction: column; gap: var(--spacing-gap); min-width: 0; }
+.app-editor-list { display: flex; flex-direction: column; gap: calc(var(--spacing-gap-xs) / 2); margin: 0; padding: 0; list-style: none; }
+.app-editor-item { display: flex; flex-direction: column; gap: calc(var(--spacing-gap-xs) / 2); width: 100%; padding: var(--spacing-gap-xs) var(--spacing-gap-sm); border: 0; border-radius: var(--radius-button-radius); background: transparent; color: var(--color-ink); font: inherit; text-align: start; cursor: pointer; }
+.app-editor-item:hover { background: var(--color-help-bg); }
+.app-editor-item[aria-current=true] { background: var(--color-help-bg); box-shadow: inset var(--border-width-strong) 0 0 var(--color-tag-hover); }
+.app-editor-item:focus-visible { outline: var(--outline-width-focus) solid var(--color-ui-focus); outline-offset: calc(-1 * var(--spacing-outline)); }
+.app-editor-item-title { font-size: var(--text-small-text); font-weight: var(--font-weight-medium); line-height: var(--leading-snug); word-break: keep-all; overflow-wrap: anywhere; }
+.app-editor-item-note { font-size: var(--text-tiny-text); color: var(--color-ui-muted); }
+@media (max-width: breakpoint(feature-split)) {
+  .app-editor { grid-template-columns: minmax(0, 1fr); }
+  .app-editor-aside { position: static; }
+}

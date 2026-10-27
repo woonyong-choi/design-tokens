@@ -436,7 +436,10 @@ export const tokens = freeze({
     },
     "tag-ink": "var(--color-tag-ink)",
     "tag-preview": "var(--color-tag-preview)",
-    "tag-preview-ink": "var(--color-tag-preview-ink)"
+    "tag-preview-ink": "var(--color-tag-preview-ink)",
+    "button-primary": "var(--color-button-primary)",
+    "button-primary-ink": "var(--color-button-primary-ink)",
+    "button-primary-hover": "var(--color-button-primary-hover)"
   },
   "font": {
     "sans": "var(--font-sans)",
@@ -692,7 +695,8 @@ export const tokens = freeze({
     "blog-card-inset-compact": "var(--spacing-blog-card-inset-compact)",
     "blog-card-gap": "var(--spacing-blog-card-gap)",
     "blog-card-avatar": "var(--spacing-blog-card-avatar)",
-    "post-avatar": "var(--spacing-post-avatar)"
+    "post-avatar": "var(--spacing-post-avatar)",
+    "editor-body-min": "var(--spacing-editor-body-min)"
   },
   "radius": {
     "lg": "var(--radius-lg)",
@@ -1339,7 +1343,9 @@ export const tokens = freeze({
     "intro": "var(--container-intro)",
     "form": "var(--container-form)",
     "shell-width": "var(--container-shell-width)",
-    "diagram": "var(--container-diagram)"
+    "diagram": "var(--container-diagram)",
+    "editor": "var(--container-editor)",
+    "editor-aside": "var(--container-editor-aside)"
   },
   "blur": {
     "blur": "var(--blur-blur)"
@@ -1842,7 +1848,10 @@ export const values = freeze({
     },
     "tag-ink": "#1161cb",
     "tag-preview": "#c3d9f8",
-    "tag-preview-ink": "#0d54b3"
+    "tag-preview-ink": "#0d54b3",
+    "button-primary": "#1e6bd6",
+    "button-primary-ink": "#ffffff",
+    "button-primary-hover": "#649fff"
   },
   "font": {
     "sans": "Pretendard, \"Pretendard Variable\", -apple-system, BlinkMacSystemFont, \"Apple SD Gothic Neo\", sans-serif",
@@ -2098,7 +2107,8 @@ export const values = freeze({
     "blog-card-inset-compact": 24,
     "blog-card-gap": 32,
     "blog-card-avatar": 28,
-    "post-avatar": 40
+    "post-avatar": 40,
+    "editor-body-min": 480
   },
   "radius": {
     "lg": 8,
@@ -2745,7 +2755,9 @@ export const values = freeze({
     "intro": 440,
     "form": 500,
     "shell-width": "92%",
-    "diagram": 960
+    "diagram": 960,
+    "editor": 1280,
+    "editor-aside": 280
   },
   "blur": {
     "blur": 5

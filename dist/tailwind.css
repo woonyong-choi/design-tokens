@@ -391,7 +391,7 @@
   --spacing-article-icon: var(--primitive-article-icon);
   --spacing-header-tail: var(--primitive-header-tail);
   --spacing-hero-logo-gap: var(--primitive-hero-logo-gap);
-  --spacing-search-top: 15vh;
+  --spacing-search-top: var(--spacing-12);
   --spacing-support-title-gap: var(--primitive-support-title-gap);
   --spacing-support-card-min: var(--primitive-support-card-min);
   --spacing-scrollbar: var(--primitive-scrollbar);
@@ -662,6 +662,8 @@
   --leading-search-message-line: var(--leading-line-body);
   --leading-diagram-body: 1.6;
   --leading-newsletter-button-line: calc(var(--spacing-unit) * 5);
+  --leading-prose-body: 1.75;
+  --leading-card-title: var(--leading-snug);
   --tracking-text: -0.3px;
   --font-weight-prose-script-weight: var(--primitive-prose-script-weight);
   --font-weight-semibold: 600;

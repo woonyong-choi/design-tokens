@@ -115,6 +115,8 @@ const html = CardGroup({ columns: 4, cards });
 
 `ContentIcon({ graphic, badge, size })`은 검증한 SVG 슬롯을 공통 크기와 배치로 감싼다. 선택적인 `badge`도 검증한 슬롯만 받으며 오른쪽 아래에 주 도형 절반 크기로 놓는다. 글 유형을 붙일지는 소비자의 콘텐츠 규칙으로 결정한다.
 
+`BlogCard`의 자동 제목 표지(`automaticCover`)는 `showTitle: false`로 본문 제목을 숨긴 카드에서만 쓴다. 본문 제목이 보이면 표지 없이 제목·요약·날짜만 그려 같은 제목이 두 번 나오지 않는다. 본문 제목은 두 줄, 요약은 `component.card-summary-lines` 줄까지 보인다.
+
 `BlogCard.commentsHref`는 카드의 글 링크와 분리된 댓글 링크다. 유효한 댓글 수가 있으면 `댓글 · N`을 표시하고, 댓글 주소만 있으면 `댓글 보기`를 표시한다. 보이는 텍스트가 접근 가능한 이름이며 아이콘은 사용하지 않는다.
 
 ## 확장

@@ -1,8 +1,8 @@
 /* 블로그: 글 머리, 목록 카드, 쪽 이동, 댓글, 글 꼬리말. */
 .app-blog-post { max-width: var(--container-body-width); }
 .app-blog-slice + .app-blog-slice { border-top: var(--spacing-post-divider-width) solid var(--color-post-divider-color); }
-.app-post-date { display: block; text-align: center; }
-.app-post-title { text-align: center; color: var(--color-ink); }
+.app-post-date { display: block; text-align: start; }
+.app-post-title { text-align: start; color: var(--color-ink); }
 .app-post-title a { color: inherit; }
 .app-blog-post { padding: var(--component-post-padding); margin: 0 auto; color: var(--color-ink); line-height: var(--leading-feature-body-line); }
 .app-post-header { margin: var(--spacing-post-header-margin) 0; }
@@ -27,14 +27,14 @@
 .app-blog-card .app-tag:focus-visible { outline-offset: calc(-1 * var(--spacing-outline)); }
 .app-blog-post .app-tags { margin-block: var(--spacing-gap) var(--spacing-gap-lg); }
 .app-blog-post .app-tags a { text-decoration: none; }
-.app-blog-card-title { margin: 0 0 var(--spacing-gap-sm); overflow: hidden; font-size: var(--text-body-text); line-height: var(--leading-line-card); text-overflow: ellipsis; white-space: nowrap; color: var(--color-help-title-color); }
-.app-blog-card-meta { display: flex; align-items: center; gap: calc(var(--spacing-gap-xs) / 2); padding: 0 var(--spacing-card-inset) var(--spacing-card-inset); font-size: var(--text-tiny-text); white-space: nowrap; color: var(--color-ui-muted); }
+.app-blog-card-title { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: var(--component-card-summary-lines); margin: 0 0 var(--spacing-gap-sm); overflow: hidden; font-size: var(--text-body-text); font-weight: var(--font-weight-bold); line-height: var(--leading-card-title); word-break: keep-all; overflow-wrap: anywhere; color: var(--color-help-title-color); }
+.app-blog-card-meta { display: flex; align-items: center; gap: calc(var(--spacing-gap-xs) / 2); margin-top: auto; padding: 0 var(--spacing-card-inset) var(--spacing-card-inset); font-size: var(--text-tiny-text); white-space: nowrap; color: var(--color-ui-muted); }
 .app-blog-card-date, .app-blog-card-comments { flex: none; }
 .app-blog-card-comments { display: inline-flex; align-items: center; justify-content: center; gap: calc(var(--spacing-gap-xs) / 2); min-width: var(--spacing-icon); min-height: var(--spacing-icon); margin-inline-start: auto; }
 .app-blog-card-author { display: flex; align-items: center; gap: calc(var(--spacing-gap-xs) / 2); min-width: 0; color: inherit; }
 .app-blog-card-author > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .app-blog-card-avatar { flex: none; width: calc(var(--spacing-icon) - var(--spacing-gap-xs)); height: calc(var(--spacing-icon) - var(--spacing-gap-xs)); object-fit: cover; border-radius: var(--radius-pill); }
-.app-blog-card-body > p { margin: 0; font-size: var(--text-tiny-text); line-height: var(--leading-line-card); word-break: normal; color: var(--color-ui-muted); }
+.app-blog-card-body > p { margin: 0; font-size: var(--text-small-text); line-height: var(--leading-normal); word-break: keep-all; overflow-wrap: anywhere; color: var(--color-ui-muted); }
 .app-page-links { display: flex; flex-wrap: wrap; gap: var(--spacing-gap-sm); align-items: center; justify-content: center; margin-block: var(--spacing-support-gap); }
 .app-page-links a, .app-page-links [aria-current=page] { padding: var(--spacing-gap-xs) var(--spacing-gap-sm); border-radius: var(--radius-button-radius); }
 .app-page-links [aria-current=page] { background: var(--color-help-hover); color: var(--color-ink); }

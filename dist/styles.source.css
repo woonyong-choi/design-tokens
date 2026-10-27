@@ -447,7 +447,7 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 .app-help-card.is-summary :is(.app-article-icon, .app-content-icon) { top: var(--spacing-card-inset); left: var(--spacing-card-inset); width: var(--spacing-8); height: var(--spacing-8); }
 .app-help-card.is-summary.has-no-icon, .app-support-grid.is-pair > .app-help-card.is-summary.has-no-icon { padding-top: var(--spacing-card-inset); padding-left: var(--spacing-card-inset); }
 /* 본문 문법: app-prose 아래 제목·문단·목록·인용·표·코드·콜아웃·각주·수식·도표. 새 Markdown 요소는 여기에 둔다. */
-.app-prose { overflow-wrap: anywhere; line-height: var(--leading-feature-body-line); }
+.app-prose { word-break: keep-all; overflow-wrap: anywhere; line-height: var(--leading-prose-body); }
 .app-prose h1 { font-size: var(--text-section-title); line-height: var(--leading-prose-heading-line); margin: var(--component-prose-h1-margin); }
 .app-prose h1:first-child, .app-prose h2.app-heading-1:first-child { margin-top: 0; }
 .app-prose h2 { font-size: var(--text-subtitle); line-height: var(--leading-line-intro); color: var(--color-ink); }
@@ -532,7 +532,7 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 .app-syntax-row pre { margin: 0 0 var(--spacing-syntax-example-gap); padding: var(--component-syntax-example-padding); background: var(--color-syntax-example-background); border: var(--border-width-thin) solid var(--color-syntax-example-border); border-radius: var(--radius-syntax-example-radius); color: var(--color-body); white-space: pre-wrap; }
 /* 일반 페이지의 본문 간격은 앞선 구성 요소 규칙을 덮어쓴다. 블로그와 지원 문서 문맥은 위쪽 기본 본문 규칙에 함께 선언한다. */
 .app-prose p.app-fineprint { margin: var(--component-prose-fineprint-margin); font-size: var(--text-post-date-size); line-height: var(--leading-caption-line); color: var(--color-prose-caption-color); }
-.app-prose p.app-article-lead { font-size: var(--text-post-lead-size); line-height: var(--leading-line-intro); margin-bottom: var(--spacing-post-lead-margin); }
+.app-prose p.app-article-lead { font-size: var(--text-post-lead-size); line-height: var(--leading-line-intro); margin-bottom: var(--spacing-post-lead-margin); color: var(--color-body); }
 .app-cancelled-task { display: inline-block; width: var(--spacing-task-size); height: var(--spacing-task-size); vertical-align: var(--spacing-task-align); background: url('./assets/icons/layout/checkbox-indeterminate.svg') center / contain no-repeat; }
 .task-list-item.is-cancelled { text-decoration: line-through; color: var(--color-ui-muted); list-style: none; }
 .app-callout.is-fineprint { font-size: var(--text-post-date-size); line-height: var(--leading-caption-line); }
@@ -573,6 +573,9 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 .app-prose .katex-display { margin-block: 0; }
 .app-prose .katex-block, .app-prose .katex-display { overflow-x: auto; overflow-y: hidden; }
 .app-prose .katex-error { color: var(--color-ui-muted); text-decoration: underline dotted; }
+@media (max-width: breakpoint(feature-split)) {
+  .app-prose p.app-article-lead { font-size: var(--text-compact-text); }
+}
 /* 미디어: 그림, 영상 플레이어, 기기 틀(토큰으로 그린 둥근 몸체와 화면). 갤러리는 탭 구성 요소다. 본문 블록 폭(app-width-*)은 그림·도표·영상·탭(갤러리)·코드가 함께 쓰며 가로 여백(margin-inline)은 폭 규칙만 정한다. 블록 구성 요소는 세로 여백(margin-block)만 쓴다. */
 .app-figure { margin-block: var(--spacing-gap-lg); text-align: center; }
 .app-figure img { width: 100%; border-radius: var(--radius-media-radius); }
@@ -691,8 +694,8 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 /* 블로그: 글 머리, 목록 카드, 쪽 이동, 댓글, 글 꼬리말. */
 .app-blog-post { max-width: var(--container-body-width); }
 .app-blog-slice + .app-blog-slice { border-top: var(--spacing-post-divider-width) solid var(--color-post-divider-color); }
-.app-post-date { display: block; text-align: center; }
-.app-post-title { text-align: center; color: var(--color-ink); }
+.app-post-date { display: block; text-align: start; }
+.app-post-title { text-align: start; color: var(--color-ink); }
 .app-post-title a { color: inherit; }
 .app-blog-post { padding: var(--component-post-padding); margin: 0 auto; color: var(--color-ink); line-height: var(--leading-feature-body-line); }
 .app-post-header { margin: var(--spacing-post-header-margin) 0; }
@@ -717,14 +720,14 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 .app-blog-card .app-tag:focus-visible { outline-offset: calc(-1 * var(--spacing-outline)); }
 .app-blog-post .app-tags { margin-block: var(--spacing-gap) var(--spacing-gap-lg); }
 .app-blog-post .app-tags a { text-decoration: none; }
-.app-blog-card-title { margin: 0 0 var(--spacing-gap-sm); overflow: hidden; font-size: var(--text-body-text); line-height: var(--leading-line-card); text-overflow: ellipsis; white-space: nowrap; color: var(--color-help-title-color); }
-.app-blog-card-meta { display: flex; align-items: center; gap: calc(var(--spacing-gap-xs) / 2); padding: 0 var(--spacing-card-inset) var(--spacing-card-inset); font-size: var(--text-tiny-text); white-space: nowrap; color: var(--color-ui-muted); }
+.app-blog-card-title { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: var(--component-card-summary-lines); margin: 0 0 var(--spacing-gap-sm); overflow: hidden; font-size: var(--text-body-text); font-weight: var(--font-weight-bold); line-height: var(--leading-card-title); word-break: keep-all; overflow-wrap: anywhere; color: var(--color-help-title-color); }
+.app-blog-card-meta { display: flex; align-items: center; gap: calc(var(--spacing-gap-xs) / 2); margin-top: auto; padding: 0 var(--spacing-card-inset) var(--spacing-card-inset); font-size: var(--text-tiny-text); white-space: nowrap; color: var(--color-ui-muted); }
 .app-blog-card-date, .app-blog-card-comments { flex: none; }
 .app-blog-card-comments { display: inline-flex; align-items: center; justify-content: center; gap: calc(var(--spacing-gap-xs) / 2); min-width: var(--spacing-icon); min-height: var(--spacing-icon); margin-inline-start: auto; }
 .app-blog-card-author { display: flex; align-items: center; gap: calc(var(--spacing-gap-xs) / 2); min-width: 0; color: inherit; }
 .app-blog-card-author > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .app-blog-card-avatar { flex: none; width: calc(var(--spacing-icon) - var(--spacing-gap-xs)); height: calc(var(--spacing-icon) - var(--spacing-gap-xs)); object-fit: cover; border-radius: var(--radius-pill); }
-.app-blog-card-body > p { margin: 0; font-size: var(--text-tiny-text); line-height: var(--leading-line-card); word-break: normal; color: var(--color-ui-muted); }
+.app-blog-card-body > p { margin: 0; font-size: var(--text-small-text); line-height: var(--leading-normal); word-break: keep-all; overflow-wrap: anywhere; color: var(--color-ui-muted); }
 .app-page-links { display: flex; flex-wrap: wrap; gap: var(--spacing-gap-sm); align-items: center; justify-content: center; margin-block: var(--spacing-support-gap); }
 .app-page-links a, .app-page-links [aria-current=page] { padding: var(--spacing-gap-xs) var(--spacing-gap-sm); border-radius: var(--radius-button-radius); }
 .app-page-links [aria-current=page] { background: var(--color-help-hover); color: var(--color-ink); }

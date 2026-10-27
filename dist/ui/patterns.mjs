@@ -62,7 +62,8 @@ export function TitleCover({ title }) {
 
 export function BlogCard({ href, title, showTitle = true, level = 3, cover, automaticCover = false, tags, tagItems = [], description = '', publishedAt, dateLabel, commentsHref, commentCount, author }) {
   const heading = level === 2 ? 'h2' : 'h3';
-  const media = cover === undefined && automaticCover ? TitleCover({ title }) : cover;
+  // 제목 표지는 본문 제목을 숨긴 카드에서만 제목을 대신한다. 둘 다 보이면 같은 제목이 두 번 나온다.
+  const media = cover === undefined && automaticCover && !showTitle ? TitleCover({ title }) : cover;
   const link = safeUrl(href);
   const date = publishedAt ? `<time class="app-blog-card-date" datetime="${escape(publishedAt)}">${escape(dateLabel || publishedAt)}</time>` : '';
   const knownCount = Number.isSafeInteger(commentCount) && commentCount >= 0;

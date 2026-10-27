@@ -400,7 +400,7 @@
   --spacing-article-icon: var(--primitive-article-icon);
   --spacing-header-tail: var(--primitive-header-tail);
   --spacing-hero-logo-gap: var(--primitive-hero-logo-gap);
-  --spacing-search-top: 15vh;
+  --spacing-search-top: var(--spacing-12);
   --spacing-support-title-gap: var(--primitive-support-title-gap);
   --spacing-support-card-min: var(--primitive-support-card-min);
   --spacing-scrollbar: var(--primitive-scrollbar);
@@ -680,6 +680,8 @@
   --leading-search-message-line: var(--leading-line-body);
   --leading-diagram-body: 1.6;
   --leading-newsletter-button-line: calc(var(--spacing-unit) * 5);
+  --leading-prose-body: 1.75;
+  --leading-card-title: var(--leading-snug);
   --tracking-text: -0.3px;
   --font-weight-prose-script-weight: var(--primitive-prose-script-weight);
   --font-weight-semibold: 600;
@@ -726,7 +728,7 @@
   --primitive-nav-width: 100px;
   --primitive-nav-height: 32px;
   --primitive-reference-width: 900px;
-  --primitive-search-bottom: 122.1875px;
+  --primitive-search-bottom: 48px;
   --primitive-search-bg: #edeef1;
   --primitive-help-bg: #f6f7fa;
   --primitive-help-border: #ebecef;
@@ -855,7 +857,7 @@
   --primitive-search-suggestion-width: 80%;
   --primitive-post-divider-color: rgba(0,22,53,.07);
   --primitive-comments-fade: linear-gradient(to bottom, transparent, var(--color-gray-0));
-  --primitive-post-padding: 72px 0 144px;
+  --primitive-post-padding: 48px 0 144px;
   --primitive-post-date-size: 16.02px;
   --primitive-post-date-color: #989fa8;
   --primitive-post-title-size: 37.8px;

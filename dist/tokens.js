@@ -801,7 +801,9 @@ export const tokens = freeze({
     "platform-line": "var(--leading-platform-line)",
     "search-message-line": "var(--leading-search-message-line)",
     "diagram-body": "var(--leading-diagram-body)",
-    "newsletter-button-line": "var(--leading-newsletter-button-line)"
+    "newsletter-button-line": "var(--leading-newsletter-button-line)",
+    "prose-body": "var(--leading-prose-body)",
+    "card-title": "var(--leading-card-title)"
   },
   "tracking": {
     "text": "var(--tracking-text)"
@@ -1867,7 +1869,7 @@ export const values = freeze({
     "reference-logo": 250,
     "nav-width": 100,
     "nav-height": 32,
-    "search-bottom": 122.1875,
+    "search-bottom": 48,
     "support-gap": 69,
     "card-top": 68,
     "card-right": 30,
@@ -1876,7 +1878,7 @@ export const values = freeze({
     "article-icon": 38,
     "header-tail": 20,
     "hero-logo-gap": 36,
-    "search-top": "15vh",
+    "search-top": 48,
     "support-title-gap": 23.0625,
     "support-card-min": 180.25,
     "scrollbar": 15,
@@ -2197,7 +2199,9 @@ export const values = freeze({
     "platform-line": 1.3,
     "search-message-line": 1.4,
     "diagram-body": 1.6,
-    "newsletter-button-line": "calc(4px * 5)"
+    "newsletter-button-line": "calc(4px * 5)",
+    "prose-body": 1.75,
+    "card-title": 1.35
   },
   "tracking": {
     "text": -0.3
@@ -2250,7 +2254,7 @@ export const values = freeze({
     "nav-width": 100,
     "nav-height": 32,
     "reference-width": 900,
-    "search-bottom": 122.1875,
+    "search-bottom": 48,
     "search-bg": "#edeef1",
     "help-bg": "#f6f7fa",
     "help-border": "#ebecef",
@@ -2379,7 +2383,7 @@ export const values = freeze({
     "search-suggestion-width": "80%",
     "post-divider-color": "rgba(0,22,53,.07)",
     "comments-fade": "linear-gradient(to bottom, transparent, #ffffff)",
-    "post-padding": "72px 0 144px",
+    "post-padding": "48px 0 144px",
     "post-date-size": 16.02,
     "post-date-color": "#989fa8",
     "post-title-size": 37.8,
@@ -2743,7 +2747,7 @@ export const values = freeze({
     "landing-nav-scale": 0.98,
     "search-input-padding": "0.5em 46px 0.5em 42px",
     "comments-fade": "linear-gradient(to bottom, transparent, #ffffff)",
-    "post-padding": "72px 0 144px",
+    "post-padding": "48px 0 144px",
     "post-h2-margin": "69.1875px 0 23.0625px",
     "post-h3-margin": "54.3375px 0 18.1125px",
     "article-search-padding": "10.625px 40px 10.625px 36px",

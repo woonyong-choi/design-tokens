@@ -478,12 +478,12 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 .app-prose dl:not(.app-definitions) dt { font-weight: var(--font-weight-bold); }
 .app-prose dl:not(.app-definitions) dd { margin: var(--component-prose-definition-margin); }
 .app-prose .app-figure { margin-top: 0; margin-bottom: var(--spacing-post-paragraph-margin); }
-.app-prose .app-figure img { border-radius: 0; }
+/* 본문에 넣은 그림은 따로 지정하지 않아도 같은 곡률로 모서리를 둥글게 자른다. 기기 틀 안의 화면은 기기 곡률을 따른다. */
+.app-prose .app-figure > :is(img, a > img) { border-radius: var(--radius-prose-figure-radius); }
 :is(.app-prose, .app-figure-grid-item) > .app-figure { display: flex; flex-direction: column; align-items: center; text-align: start; }
 :is(.app-prose, .app-figure-grid-item) > .app-figure > .app-player { align-self: stretch; }
 :is(.app-prose, .app-figure-grid-item) > .app-figure > a > img { display: block; }
 :is(.app-prose, .app-figure-grid-item) > .app-figure:not(.app-width-wide):not(.app-width-narrow) > :is(img, a > img) { width: auto; }
-.app-prose .app-figure img.is-rounded { border-radius: var(--radius-prose-rounded-radius); }
 .app-prose .app-figure figcaption { margin: var(--spacing-post-caption-margin) 0 0; font-size: var(--text-post-date-size); line-height: var(--leading-caption-line); text-align: center; color: var(--color-prose-caption-color); }
 .app-prose .app-figure figcaption:empty { display: none; }
 .app-prose code { padding: var(--component-prose-code-padding); border: var(--border-width-thin) solid var(--color-prose-code-border); border-radius: var(--radius-prose-code-radius); background: var(--color-prose-code-background); color: var(--color-prose-code-color); font-family: var(--font-mono); font-size: var(--text-prose-code-size); line-height: var(--leading-feature-body-line); white-space: pre-wrap; overflow-wrap: break-word; }
@@ -704,8 +704,6 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 .app-prose .app-post-byline .app-post-avatar, .app-post-avatar { flex: none; margin: 0; width: var(--spacing-post-avatar); height: var(--spacing-post-avatar); border-radius: var(--radius-pill); object-fit: cover; background: var(--color-ui-card); }
 .app-post-byline-name { font-size: var(--text-post-date-size); font-weight: var(--font-weight-medium); color: var(--color-ink); }
 .app-post-byline .app-post-date { display: inline; }
-/* 글 머리 태그도 목록 카드처럼 흰 바탕에서 구별되는 회색 알약으로 둔다. 호버·초점은 공통 태그 상태를 쓴다. */
-.app-blog-post .app-tags { --color-tag-background: var(--color-help-bg); --color-tag-ink: var(--color-ink); }
 .app-post-date { font-size: var(--text-post-date-size); line-height: var(--leading-feature-body-line); color: var(--color-post-date-color); }
 .app-post-title { margin: var(--spacing-post-title-margin) 0; font-size: var(--text-post-title-size); word-break: keep-all; overflow-wrap: anywhere; }
 .app-post-title { line-height: var(--leading-post-title-line); }
@@ -733,9 +731,6 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 .app-blog-card-body > p.app-card-summary { -webkit-line-clamp: var(--component-blog-card-summary-lines); margin: 0; font-size: var(--text-compact-text); line-height: var(--leading-normal); word-break: keep-all; overflow-wrap: anywhere; color: var(--color-body); }
 .app-blog-card-meta { order: 3; display: flex; flex-wrap: wrap; align-items: center; gap: var(--spacing-gap-sm) var(--spacing-gap); margin-top: auto; padding: var(--spacing-gap) var(--spacing-blog-card-inset) var(--spacing-blog-card-inset); font-size: var(--text-small-text); color: var(--color-body); }
 .app-blog-card-date { font-weight: var(--font-weight-medium); color: var(--color-ink); }
-/* 카드 태그는 회색 카드 위의 흰 알약이다. 의미 토큰만 바꿔 공통 태그의 호버·초점 상태를 그대로 쓴다. */
-.app-blog-card-tags { --color-tag-background: var(--color-ui-card); --color-tag-ink: var(--color-ink); }
-.app-blog-card-tags .app-tag { padding-inline: var(--spacing-gap-sm); font-size: var(--text-small-text); }
 .app-blog-card-meta > [aria-hidden=true] { display: none; }
 .app-blog-card-date, .app-blog-card-comments { flex: none; }
 .app-blog-card-comments { display: inline-flex; align-items: center; justify-content: center; gap: calc(var(--spacing-gap-xs) / 2); min-width: var(--spacing-icon); min-height: var(--spacing-icon); margin-inline-start: auto; }

@@ -727,6 +727,7 @@ export const tokens = freeze({
     "newsletter-button-radius": "var(--radius-newsletter-button-radius)",
     "help-grouped-radius": "var(--radius-help-grouped-radius)",
     "tooltip-radius": "var(--radius-tooltip-radius)",
+    "prose-figure-radius": "var(--radius-prose-figure-radius)",
     "blog-card-radius": "var(--radius-blog-card-radius)"
   },
   "shadow": {
@@ -2132,6 +2133,7 @@ export const values = freeze({
     "newsletter-button-radius": 7.632,
     "help-grouped-radius": 10,
     "tooltip-radius": 24,
+    "prose-figure-radius": 12,
     "blog-card-radius": 16
   },
   "shadow": {

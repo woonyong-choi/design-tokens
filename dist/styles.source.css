@@ -421,9 +421,8 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 .app-publish-section { display: flex; flex-direction: column; gap: var(--spacing-gap-sm); }
 .app-publish-heading { margin: 0; font-size: var(--text-compact-text); font-weight: var(--font-weight-bold); color: var(--color-ink); }
 .app-publish-card > .app-blog-card { pointer-events: none; }
-.app-publish-thumbnail-actions { display: flex; gap: var(--spacing-gap-xs); }
-.app-publish-section .app-textarea { background: var(--color-ui-card); border: var(--border-width-thin) solid var(--color-ui-line); }
-.app-publish-count { margin: 0; font-size: var(--text-tiny-text); text-align: end; color: var(--color-ui-muted); font-variant-numeric: tabular-nums; }
+.app-publish-visibility { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-gap-xs); }
+.app-publish-visibility .app-button[aria-pressed="true"] { border-color: var(--color-button-primary); color: var(--color-button-primary); font-weight: var(--font-weight-bold); }
 .app-publish-url { display: flex; align-items: center; height: var(--spacing-input-height); padding: 0 var(--spacing-gap-sm); border: var(--border-width-thin) solid var(--color-ui-line); border-radius: var(--radius-input-radius); background: var(--color-ui-card); font-size: var(--text-small-text); color: var(--color-ui-muted); }
 .app-publish-url:focus-within { outline: var(--outline-width-focus) solid var(--color-ui-focus); outline-offset: 0; }
 .app-publish-url .app-input { color: var(--color-ink); font-size: var(--text-small-text); }

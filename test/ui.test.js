@@ -409,6 +409,9 @@ test('home_and_list_components_have_one_definition_with_escaped_text_and_checked
   assert.equal(post, '<article class="app-blog-post" aria-labelledby="post-1"><header class="app-post-header"><time class="app-post-date" datetime="2026-10-01">2026-10-01 · 예시 글</time><h2 class="app-post-title" id="post-1"><a href="/a/">T</a></h2></header><div class="app-prose app-feed-body"><p class="app-article-lead">도입</p><p>본문</p></div><footer class="app-post-footer"><p class="app-post-author">저자</p><i></i></footer><aside></aside></article>');
   assert.match(html(ui.PostArticle({ id: 'post-1', detail: true, title: 'T', date: 'd', lead: trusted(''), body: trusted('') })), /^<article class="app-blog-post is-detail" aria-labelledby="post-1">.*<h1 class="app-post-title" id="post-1">T<\/h1>/);
   assert.match(html(ui.PostArticle({ id: 'post-1', detail: true, title: 'T', date: '2026-10-01', dateLabel: '2026년 10월 1일', lead: trusted(''), body: trusted('') })), /datetime="2026-10-01">2026년 10월 1일<\/time>/);
+  // 요약이 비면 머리글 문단을 만들지 않는다.
+  assert.doesNotMatch(html(ui.PostArticle({ id: 'post-1', detail: true, title: 'T', date: 'd', lead: trusted(''), body: trusted('<p>본문</p>') })), /app-article-lead/);
+  assert.match(html(ui.PostArticle({ id: 'post-1', detail: true, title: 'T', date: 'd', lead: trusted('도입'), body: trusted('') })), /<p class="app-article-lead">도입<\/p>/);
 
   const result = html(ui.SearchResultLink({ href: '/a/', icon, title: 'T<', example: true, description: 'd&' }));
   assert.equal(result, '<a class="app-search-result-link" href="/a/"><img alt=""><strong>T&lt;</strong><span class="app-search-result-note"> 예시</span><p>d&amp;</p></a>');

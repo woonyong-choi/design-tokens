@@ -225,7 +225,7 @@
     "ui/components.mjs": "3e08f7a212f6eb9737831b0e4b71318d2dc2ac69614bad09e55e5134479dd0f0",
     "ui/diagram.mjs": "d582cd18e78cb703c5eec35f4ef68bf4496c814850efae1033c8e82807794fc7",
     "ui/document.mjs": "0b466b99dabad1ff5d7aea7003af2abf2a697d6465c0263085021d2d0cd8de20",
-    "ui/editor.mjs": "30d5e805a62d5fe4931951fe6ad2ece83adce1fcb8d8aa73d546c5ecece40c1c",
+    "ui/editor.mjs": "5b825181f9a148a631e18c3e792a99f5d351c1063009da547707d69fae673b58",
     "ui/html.mjs": "4bb51a5267c8d7d7e917b7434681695606408ddc887c40d1d37f6be6d193d044",
     "ui/icon-data.mjs": "5b831e5e031ffc3bfb4d267062fb95795c397b526cc743f10daba5c130a6a436",
     "ui/icons.mjs": "6921da2b6de8e4661a8ee8745ee60cd8d3e58b31a58c87e46a758f00f94ebc86",
@@ -246,5 +246,5 @@
     "ui/table.mjs": "d285303ed3e84599a512085e79dfd92db751a890ad4890b81930f1ccf2126ae0",
     "ui/toolbar.mjs": "3fab9dbcd66cbb7273e8ce39d7754e5783ea4e605418dc4faf2c91831067cdd2"
   },
-  "contentHash": "45010166ff58c645db03bcd7cefb84ad6430f4d6d1c8246291adef1732383f56"
+  "contentHash": "4e17d7ab203d38a60eab7571cb199af198defdae0c652d2805872e9eb53add50"
 }

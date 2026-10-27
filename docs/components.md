@@ -71,13 +71,26 @@ const html = CardGroup({ columns: 4, cards });
 
 ## 텍스트 입력과 검색
 
-`TextInput({ id, name, label, type, value, placeholder, autocomplete, describedBy, required, disabled, size, surface, icon, action, role, controls })`는 모든 텍스트 입력의 단일 구성 요소다. 보이지 않는 이름표와 `.app-input` 입력을 조립한다. `type`은 `text`·`email`·`url`·`tel`, `size`는 `small`·`medium`·`large`·`control`, `surface`는 `track`·`field`·`card`만 받는다. `name`의 기본값은 `id`다. `icon`과 `action`은 검증한 HTML 슬롯이며, 있으면 입력과 함께 `.app-input-field` 안에 앞 아이콘과 뒤 동작으로 놓인다. `role`은 `searchbox` 또는 `combobox`이고 `combobox`는 추천 목록 ID `controls`가 필요하다. `describedBy`와 `controls`는 ID로 검증하고 값과 안내 문구는 일반 텍스트로 이스케이프한다. `SearchBox`는 `large`가 참이면 `size: 'large'`, 아니면 `size: 'medium'`을 선택하고 `surface: 'field'`로, `EmailForm`은 `size: 'control'`, `surface: 'card'`로 이 구성 요소를 조립한다.
+`TextInput({ id, name, label, type, value, placeholder, autocomplete, describedBy, required, disabled, size, surface, icon, action, role, controls, labelVisible })`는 모든 텍스트 입력의 단일 구성 요소다. 보이지 않는 이름표와 `.app-input` 입력을 조립한다. `labelVisible: true`이면 이름표를 `.app-field-label`로 입력 위에 보인다. `type`은 `text`·`email`·`url`·`tel`·`date`, `size`는 `small`·`medium`·`large`·`control`, `surface`는 `track`·`field`·`card`만 받는다. `name`의 기본값은 `id`다. `icon`과 `action`은 검증한 HTML 슬롯이며, 있으면 입력과 함께 `.app-input-field` 안에 앞 아이콘과 뒤 동작으로 놓인다. `role`은 `searchbox` 또는 `combobox`이고 `combobox`는 추천 목록 ID `controls`가 필요하다. `describedBy`와 `controls`는 ID로 검증하고 값과 안내 문구는 일반 텍스트로 이스케이프한다. `SearchBox`는 `large`가 참이면 `size: 'large'`, 아니면 `size: 'medium'`을 선택하고 `surface: 'field'`로, `EmailForm`은 `size: 'control'`, `surface: 'card'`로 이 구성 요소를 조립한다.
 
 `SearchResultLink`의 `icon`을 생략하면 빈 아이콘 슬롯과 들여쓰기도 생략한다. `SearchMessage({ lines })`은 문자열 배열을 안전하게 줄바꿈하고 같은 중앙 정렬 영역에 소비자의 재시도 버튼을 추가할 수 있다. 소비자는 재시도 동작과 검색 색인을 소유한다. 공통 구성 요소는 검색 결과의 HTML만 만든다.
 
 `SearchBox({ combobox: false, ... })`는 입력에 `searchbox` 역할을 사용하고 추천 팝업 ARIA를 붙이지 않는다. 기본값은 `combobox: true`다. `ContentGroup({ collection: true, ... })`는 글 목록 영역의 바깥 간격을 적용한다.
 
 검색 결과의 유형 표시는 짧은 한 덩어리로 유지한다. 긴 제목은 줄바꿈할 수 있지만 제목 뒤의 유형 표시는 중간에서 갈라지지 않는다.
+
+## 글 작성 화면
+
+`ui/editor.mjs`는 글 작성 화면의 조각을 소유한다. 스타일은 `styles/editor.css` 한 곳이다.
+
+- `Button({ label, variant, type, action, disabled, hidden })`: `variant`는 `primary`·`secondary`, `type`은 `button`·`submit`이다. `action`은 화면 스크립트가 찾는 `data-action` 이름이며 소문자와 `-`만 받는다.
+- `TextArea({ id, name, label, value, placeholder, rows, code, describedBy })`: 보이는 이름표와 여러 줄 입력이다. `code: true`이면 고정폭 글꼴과 `spacing.editor-body-min` 최소 높이를 쓴다.
+- `Select({ id, name, label, options, value })`: 보이는 이름표와 선택 상자다. `options`는 `{ value, label }` 목록이다.
+- `Field({ control, hint, hintId })`: 입력 하나와 도움말을 한 칸으로 묶는다. 도움말에는 `hintId`가 필요하다.
+- `EditorList({ label, items })`: 편집할 항목 단추 목록이다. 항목은 `{ id, title, note, selected }`이며 고른 항목은 `aria-current`로 표시한다.
+- `EditorLayout({ label, aside, main })`: 왼쪽 목록(`container.editor-aside`)과 오른쪽 편집 칸이다. `feature-split` 분기점보다 좁으면 한 줄로 쌓고 목록은 `spacing.editor-list-max` 높이 안에서 스크롤한다. 편집 칸 바로 아래의 `form`과 `.app-editor-panel`은 입력 칸을 세로로 쌓고, `.app-editor-actions`는 단추를 한 줄로 놓는다.
+
+주 단추 색은 `color.button-primary`, 글자는 `color.button-primary-ink`, 호버는 `color.button-primary-hover`다. 작성과 미리보기 전환은 공통 `Tabs`를 쓴다.
 
 ## 소비 방식
 

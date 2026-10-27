@@ -362,6 +362,9 @@
   --color-tag-ink: var(--color-category-blue-light-ink);
   --color-tag-preview: var(--color-category-blue-light-tint-4);
   --color-tag-preview-ink: var(--color-category-blue-light-ink-strong);
+  --color-button-primary: var(--color-tag-hover);
+  --color-button-primary-ink: var(--color-on-action);
+  --color-button-primary-hover: var(--color-primary-hover);
   --font-sans: Pretendard, "Pretendard Variable", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   --font-figure-sans: FigSans, FigSansSym, FigSansMath, ui-sans-serif, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
@@ -563,6 +566,8 @@
   --spacing-blog-card-gap: var(--spacing-8);
   --spacing-blog-card-avatar: var(--spacing-7);
   --spacing-post-avatar: var(--spacing-10);
+  --spacing-editor-body-min: 480px;
+  --spacing-editor-list-max: 320px;
   --radius-lg: 8px;
   --radius-full: 999px;
   --radius-sm: 4px;
@@ -698,6 +703,7 @@
   --container-form: var(--primitive-form);
   --container-shell-width: var(--primitive-shell-width);
   --container-diagram: 960px;
+  --container-editor-aside: 280px;
   --blur-blur: var(--primitive-blur);
   --aspect-ratio-video: var(--primitive-ratio-video);
   --aspect-device-ratio: var(--primitive-device-ratio);

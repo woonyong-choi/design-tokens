@@ -696,8 +696,7 @@ export const tokens = freeze({
     "blog-card-gap": "var(--spacing-blog-card-gap)",
     "blog-card-avatar": "var(--spacing-blog-card-avatar)",
     "post-avatar": "var(--spacing-post-avatar)",
-    "editor-body-min": "var(--spacing-editor-body-min)",
-    "editor-list-max": "var(--spacing-editor-list-max)"
+    "editor-body-min": "var(--spacing-editor-body-min)"
   },
   "radius": {
     "lg": "var(--radius-lg)",
@@ -1229,7 +1228,8 @@ export const tokens = freeze({
     "review-wide": "var(--breakpoint-review-wide)",
     "nav-narrow": "var(--breakpoint-nav-narrow)",
     "document-tree": "var(--breakpoint-document-tree)",
-    "document-outline": "var(--breakpoint-document-outline)"
+    "document-outline": "var(--breakpoint-document-outline)",
+    "editor-split": "var(--breakpoint-editor-split)"
   },
   "border-width": {
     "thin": "var(--border-width-thin)",
@@ -2108,8 +2108,7 @@ export const values = freeze({
     "blog-card-gap": 32,
     "blog-card-avatar": 28,
     "post-avatar": 40,
-    "editor-body-min": 480,
-    "editor-list-max": 320
+    "editor-body-min": 480
   },
   "radius": {
     "lg": 8,
@@ -2641,7 +2640,8 @@ export const values = freeze({
     "review-wide": 1002,
     "nav-narrow": 340,
     "document-tree": 1040,
-    "document-outline": 1300
+    "document-outline": 1300,
+    "editor-split": 1279
   },
   "border-width": {
     "thin": 1,

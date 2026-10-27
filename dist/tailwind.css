@@ -567,7 +567,6 @@
   --spacing-blog-card-avatar: var(--spacing-7);
   --spacing-post-avatar: var(--spacing-10);
   --spacing-editor-body-min: 480px;
-  --spacing-editor-list-max: 320px;
   --radius-lg: 8px;
   --radius-full: 999px;
   --radius-sm: 4px;
@@ -695,6 +694,7 @@
   --breakpoint-nav-narrow: 340px;
   --breakpoint-document-tree: 1040px;
   --breakpoint-document-outline: 1300px;
+  --breakpoint-editor-split: 1279px;
   --ease-move: cubic-bezier(0, 0, 1, 1);
   --ease-reveal: cubic-bezier(0, 0, 0.58, 1);
   --container-page: var(--primitive-page);

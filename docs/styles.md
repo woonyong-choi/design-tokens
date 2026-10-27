@@ -63,7 +63,7 @@
 | TextInput | `.app-input`, `.app-input-field`, `.app-input-icon` |
 | Hero, Section, SectionIntro, QuoteCard | `.app-hero-copy`, `.app-hero-logo`, `.app-hero-wordmark`, `.app-landing-section`, `.app-landing-heading`, `.app-landing-icon`, `.app-interview-summary` |
 | Card, CardGroup | `.app-help-card`, `.app-card-summary`, `.app-support-grid` |
-| BlogCard | `.app-blog-card`, `.app-blog-card-link`, `.app-blog-card-body` |
+| BlogCard | `.app-blog-card`, `.app-blog-card-link`, `.app-blog-cover`, `.app-blog-card-tags`, `.app-blog-card-body`, `.app-blog-card-meta`, `.app-blog-card-author` |
 | Tag, TagList | `.app-tag`, `.app-tags` |
 | SearchBox, SearchResultLink | `.app-search-clear`, `.app-search-result-link` |
 | DocumentArticle, PostArticle | `.app-prose`, `.app-blog-post`, `.app-article-lead` |

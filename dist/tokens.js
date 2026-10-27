@@ -687,7 +687,10 @@ export const tokens = freeze({
     "newsletter-button-margin": "var(--spacing-newsletter-button-margin)",
     "tool-icon": "var(--spacing-tool-icon)",
     "tool-target": "var(--spacing-tool-target)",
-    "toolbar": "var(--spacing-toolbar)"
+    "toolbar": "var(--spacing-toolbar)",
+    "blog-card-inset": "var(--spacing-blog-card-inset)",
+    "blog-card-inset-compact": "var(--spacing-blog-card-inset-compact)",
+    "blog-card-gap": "var(--spacing-blog-card-gap)"
   },
   "radius": {
     "lg": "var(--radius-lg)",
@@ -721,7 +724,8 @@ export const tokens = freeze({
     "newsletter-input-radius": "var(--radius-newsletter-input-radius)",
     "newsletter-button-radius": "var(--radius-newsletter-button-radius)",
     "help-grouped-radius": "var(--radius-help-grouped-radius)",
-    "tooltip-radius": "var(--radius-tooltip-radius)"
+    "tooltip-radius": "var(--radius-tooltip-radius)",
+    "blog-card-radius": "var(--radius-blog-card-radius)"
   },
   "shadow": {
     "help-hover-shadow": "var(--shadow-help-hover-shadow)",
@@ -1389,7 +1393,8 @@ export const tokens = freeze({
     "card-summary-lines": "var(--component-card-summary-lines)",
     "table-padding": "var(--component-table-padding)",
     "newsletter-button-padding": "var(--component-newsletter-button-padding)",
-    "action-focus": "var(--component-action-focus)"
+    "action-focus": "var(--component-action-focus)",
+    "blog-card-summary-lines": "var(--component-blog-card-summary-lines)"
   },
   "outline-width": {
     "focus": "var(--outline-width-focus)"
@@ -2085,7 +2090,10 @@ export const values = freeze({
     "newsletter-button-margin": 4.24,
     "tool-icon": 16,
     "tool-target": 28,
-    "toolbar": 40
+    "toolbar": 40,
+    "blog-card-inset": 32,
+    "blog-card-inset-compact": 24,
+    "blog-card-gap": 32
   },
   "radius": {
     "lg": 8,
@@ -2119,7 +2127,8 @@ export const values = freeze({
     "newsletter-input-radius": 6.4,
     "newsletter-button-radius": 7.632,
     "help-grouped-radius": 10,
-    "tooltip-radius": 24
+    "tooltip-radius": 24,
+    "blog-card-radius": 16
   },
   "shadow": {
     "help-hover-shadow": "0 4px 8px rgba(0,0,0,.06), 0 8px 16px rgba(0,0,0,.06)",
@@ -2787,7 +2796,8 @@ export const values = freeze({
     "card-summary-lines": 2,
     "table-padding": ".3em .5em",
     "newsletter-button-padding": "7.1232px 16.96px",
-    "action-focus": "0 0 0 2px rgba(37,118,235,.5)"
+    "action-focus": "0 0 0 2px rgba(37,118,235,.5)",
+    "blog-card-summary-lines": 3
   },
   "outline-width": {
     "focus": 3

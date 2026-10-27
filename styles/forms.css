@@ -27,6 +27,9 @@
 .app-input.is-field::placeholder { color: var(--color-input-field-placeholder); }
 .app-input.is-card { background: var(--color-ui-card); border: var(--border-width-thin) solid var(--color-ui-line); }
 .app-input.is-card::placeholder { color: var(--color-ui-muted); }
+.app-input.is-bare { width: auto; flex: 1; min-width: 0; height: auto; padding: 0; border-radius: 0; background: transparent; }
+.app-input.is-bare::placeholder { color: var(--color-input-field-placeholder); }
+.app-input.is-bare:focus-visible { outline: 0; }
 /* 앞 아이콘 칸. 기본·본문 크기는 일반 아이콘, 강조 크기는 검색 아이콘 크기를 쓴다. 중간·큰 크기의 여백에는 아이콘 칸과 뒤 동작 칸이 들어 있다. */
 .app-input-field { position: relative; }
 .app-input-icon { position: absolute; top: 50%; left: var(--spacing-gap-xs); width: var(--spacing-icon); transform: translateY(-50%); }

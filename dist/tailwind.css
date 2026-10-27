@@ -365,6 +365,7 @@
   --color-button-primary: var(--color-tag-hover);
   --color-button-primary-ink: var(--color-on-action);
   --color-button-primary-hover: var(--color-primary-hover);
+  --color-dialog-backdrop: var(--primitive-dialog-backdrop);
   --font-sans: Pretendard, "Pretendard Variable", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   --font-figure-sans: FigSans, FigSansSym, FigSansMath, ui-sans-serif, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
@@ -567,6 +568,13 @@
   --spacing-blog-card-avatar: var(--spacing-7);
   --spacing-post-avatar: var(--spacing-10);
   --spacing-editor-body-min: 480px;
+  --spacing-admin-fab: 56px;
+  --spacing-admin-fab-icon: 20px;
+  --spacing-admin-panel-max: 420px;
+  --spacing-write-pad: var(--spacing-12);
+  --spacing-write-rule: 64px;
+  --spacing-write-footer: 64px;
+  --spacing-write-tag-min: 160px;
   --radius-lg: 8px;
   --radius-full: 999px;
   --radius-sm: 4px;
@@ -611,6 +619,7 @@
   --shadow-platform-active-shadow: var(--primitive-platform-active-shadow);
   --shadow-diagram: var(--primitive-figure-shadow);
   --shadow-action-shadow: var(--primitive-action-shadow);
+  --shadow-admin: var(--primitive-admin-shadow);
   --text-heading: 36px;
   --text-section-title: var(--primitive-section-title);
   --text-intro-text: var(--primitive-intro-text);
@@ -694,7 +703,6 @@
   --breakpoint-nav-narrow: 340px;
   --breakpoint-document-tree: 1040px;
   --breakpoint-document-outline: 1300px;
-  --breakpoint-editor-split: 1279px;
   --ease-move: cubic-bezier(0, 0, 1, 1);
   --ease-reveal: cubic-bezier(0, 0, 0.58, 1);
   --container-page: var(--primitive-page);
@@ -703,7 +711,8 @@
   --container-form: var(--primitive-form);
   --container-shell-width: var(--primitive-shell-width);
   --container-diagram: 960px;
-  --container-editor-aside: 280px;
+  --container-admin-panel: 340px;
+  --container-publish: 768px;
   --blur-blur: var(--primitive-blur);
   --aspect-ratio-video: var(--primitive-ratio-video);
   --aspect-device-ratio: var(--primitive-device-ratio);

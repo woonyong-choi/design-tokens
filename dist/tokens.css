@@ -364,6 +364,7 @@
   --color-button-primary: var(--color-tag-hover);
   --color-button-primary-ink: var(--color-on-action);
   --color-button-primary-hover: var(--color-primary-hover);
+  --color-dialog-backdrop: var(--primitive-dialog-backdrop);
   --font-sans: Pretendard, "Pretendard Variable", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   --font-figure-sans: FigSans, FigSansSym, FigSansMath, ui-sans-serif, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
@@ -585,6 +586,13 @@
   --spacing-blog-card-avatar: var(--spacing-7);
   --spacing-post-avatar: var(--spacing-10);
   --spacing-editor-body-min: 480px;
+  --spacing-admin-fab: 56px;
+  --spacing-admin-fab-icon: 20px;
+  --spacing-admin-panel-max: 420px;
+  --spacing-write-pad: var(--spacing-12);
+  --spacing-write-rule: 64px;
+  --spacing-write-footer: 64px;
+  --spacing-write-tag-min: 160px;
   --radius-lg: 8px;
   --radius-full: 999px;
   --radius-sm: 4px;
@@ -629,6 +637,7 @@
   --shadow-platform-active-shadow: var(--primitive-platform-active-shadow);
   --shadow-diagram: var(--primitive-figure-shadow);
   --shadow-action-shadow: var(--primitive-action-shadow);
+  --shadow-admin: var(--primitive-admin-shadow);
   --text-heading: 36px;
   --text-section-title: var(--primitive-section-title);
   --text-intro-text: var(--primitive-intro-text);
@@ -1086,6 +1095,8 @@
   --primitive-ui-font: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --primitive-icon-structure-edge: #7d8794;
   --primitive-icon-idea-soft: #f8e47c;
+  --primitive-dialog-backdrop: rgba(15,18,24,.4);
+  --primitive-admin-shadow: 0 4px 16px rgba(0,0,0,.12);
   --breakpoint-mobile: 560px;
   --breakpoint-support-pair: 400px;
   --breakpoint-product-pair: 480px;
@@ -1099,7 +1110,6 @@
   --breakpoint-nav-narrow: 340px;
   --breakpoint-document-tree: 1040px;
   --breakpoint-document-outline: 1300px;
-  --breakpoint-editor-split: 1279px;
   --border-width-thin: 1px;
   --border-width-hair: 0.75px;
   --border-width-strong: 2.5px;
@@ -1107,9 +1117,14 @@
   --border-width-tag: 1.5px;
   --border-width-edge: 1.75px;
   --border-width-casing: 4.5px;
+  --border-width-write-rule: 6px;
   --z-index-raised: 2;
   --z-index-overlay: 10;
   --z-index-layer-header: var(--z-index-overlay);
+  --z-index-admin: 20;
+  --z-index-write: 30;
+  --z-index-dialog: 40;
+  --z-index-toast: 50;
   --opacity-tag: 0.15;
   --opacity-halo: 0.2;
   --opacity-dim: 0.3;
@@ -1195,7 +1210,8 @@
   --container-form: var(--primitive-form);
   --container-shell-width: var(--primitive-shell-width);
   --container-diagram: 960px;
-  --container-editor-aside: 280px;
+  --container-admin-panel: 340px;
+  --container-publish: 768px;
   --blur-blur: var(--primitive-blur);
   --aspect-ratio-video: var(--primitive-ratio-video);
   --aspect-device-ratio: var(--primitive-device-ratio);

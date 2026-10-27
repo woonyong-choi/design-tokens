@@ -439,7 +439,8 @@ export const tokens = freeze({
     "tag-preview-ink": "var(--color-tag-preview-ink)",
     "button-primary": "var(--color-button-primary)",
     "button-primary-ink": "var(--color-button-primary-ink)",
-    "button-primary-hover": "var(--color-button-primary-hover)"
+    "button-primary-hover": "var(--color-button-primary-hover)",
+    "dialog-backdrop": "var(--color-dialog-backdrop)"
   },
   "font": {
     "sans": "var(--font-sans)",
@@ -696,7 +697,14 @@ export const tokens = freeze({
     "blog-card-gap": "var(--spacing-blog-card-gap)",
     "blog-card-avatar": "var(--spacing-blog-card-avatar)",
     "post-avatar": "var(--spacing-post-avatar)",
-    "editor-body-min": "var(--spacing-editor-body-min)"
+    "editor-body-min": "var(--spacing-editor-body-min)",
+    "admin-fab": "var(--spacing-admin-fab)",
+    "admin-fab-icon": "var(--spacing-admin-fab-icon)",
+    "admin-panel-max": "var(--spacing-admin-panel-max)",
+    "write-pad": "var(--spacing-write-pad)",
+    "write-rule": "var(--spacing-write-rule)",
+    "write-footer": "var(--spacing-write-footer)",
+    "write-tag-min": "var(--spacing-write-tag-min)"
   },
   "radius": {
     "lg": "var(--radius-lg)",
@@ -744,7 +752,8 @@ export const tokens = freeze({
     "platform-hover-shadow": "var(--shadow-platform-hover-shadow)",
     "platform-active-shadow": "var(--shadow-platform-active-shadow)",
     "diagram": "var(--shadow-diagram)",
-    "action-shadow": "var(--shadow-action-shadow)"
+    "action-shadow": "var(--shadow-action-shadow)",
+    "admin": "var(--shadow-admin)"
   },
   "text": {
     "heading": "var(--text-heading)",
@@ -1213,7 +1222,9 @@ export const tokens = freeze({
     "tooltip-radius": "var(--primitive-tooltip-radius)",
     "ui-font": "var(--primitive-ui-font)",
     "icon-structure-edge": "var(--primitive-icon-structure-edge)",
-    "icon-idea-soft": "var(--primitive-icon-idea-soft)"
+    "icon-idea-soft": "var(--primitive-icon-idea-soft)",
+    "dialog-backdrop": "var(--primitive-dialog-backdrop)",
+    "admin-shadow": "var(--primitive-admin-shadow)"
   },
   "breakpoint": {
     "mobile": "var(--breakpoint-mobile)",
@@ -1228,8 +1239,7 @@ export const tokens = freeze({
     "review-wide": "var(--breakpoint-review-wide)",
     "nav-narrow": "var(--breakpoint-nav-narrow)",
     "document-tree": "var(--breakpoint-document-tree)",
-    "document-outline": "var(--breakpoint-document-outline)",
-    "editor-split": "var(--breakpoint-editor-split)"
+    "document-outline": "var(--breakpoint-document-outline)"
   },
   "border-width": {
     "thin": "var(--border-width-thin)",
@@ -1238,12 +1248,17 @@ export const tokens = freeze({
     "lifeline": "var(--border-width-lifeline)",
     "tag": "var(--border-width-tag)",
     "edge": "var(--border-width-edge)",
-    "casing": "var(--border-width-casing)"
+    "casing": "var(--border-width-casing)",
+    "write-rule": "var(--border-width-write-rule)"
   },
   "z-index": {
     "raised": "var(--z-index-raised)",
     "overlay": "var(--z-index-overlay)",
-    "layer-header": "var(--z-index-layer-header)"
+    "layer-header": "var(--z-index-layer-header)",
+    "admin": "var(--z-index-admin)",
+    "write": "var(--z-index-write)",
+    "dialog": "var(--z-index-dialog)",
+    "toast": "var(--z-index-toast)"
   },
   "opacity": {
     "tag": "var(--opacity-tag)",
@@ -1345,7 +1360,8 @@ export const tokens = freeze({
     "form": "var(--container-form)",
     "shell-width": "var(--container-shell-width)",
     "diagram": "var(--container-diagram)",
-    "editor-aside": "var(--container-editor-aside)"
+    "admin-panel": "var(--container-admin-panel)",
+    "publish": "var(--container-publish)"
   },
   "blur": {
     "blur": "var(--blur-blur)"
@@ -1851,7 +1867,8 @@ export const values = freeze({
     "tag-preview-ink": "#0d54b3",
     "button-primary": "#1e6bd6",
     "button-primary-ink": "#ffffff",
-    "button-primary-hover": "#649fff"
+    "button-primary-hover": "#649fff",
+    "dialog-backdrop": "rgba(15,18,24,.4)"
   },
   "font": {
     "sans": "Pretendard, \"Pretendard Variable\", -apple-system, BlinkMacSystemFont, \"Apple SD Gothic Neo\", sans-serif",
@@ -2108,7 +2125,14 @@ export const values = freeze({
     "blog-card-gap": 32,
     "blog-card-avatar": 28,
     "post-avatar": 40,
-    "editor-body-min": 480
+    "editor-body-min": 480,
+    "admin-fab": 56,
+    "admin-fab-icon": 20,
+    "admin-panel-max": 420,
+    "write-pad": 48,
+    "write-rule": 64,
+    "write-footer": 64,
+    "write-tag-min": 160
   },
   "radius": {
     "lg": 8,
@@ -2156,7 +2180,8 @@ export const values = freeze({
     "platform-hover-shadow": "0 1px 4px rgba(0,0,0,.16)",
     "platform-active-shadow": "inset 0 1px 2px rgba(0,0,0,.1)",
     "diagram": "0 2px 8px rgba(0,0,0,.10), 0 0 2px rgba(0,0,0,.10)",
-    "action-shadow": "0 2px 4px rgba(0,0,0,.05)"
+    "action-shadow": "0 2px 4px rgba(0,0,0,.05)",
+    "admin": "0 4px 16px rgba(0,0,0,.12)"
   },
   "text": {
     "heading": 36,
@@ -2625,7 +2650,9 @@ export const values = freeze({
     "tooltip-radius": 24,
     "ui-font": "system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
     "icon-structure-edge": "#7d8794",
-    "icon-idea-soft": "#f8e47c"
+    "icon-idea-soft": "#f8e47c",
+    "dialog-backdrop": "rgba(15,18,24,.4)",
+    "admin-shadow": "0 4px 16px rgba(0,0,0,.12)"
   },
   "breakpoint": {
     "mobile": 560,
@@ -2640,8 +2667,7 @@ export const values = freeze({
     "review-wide": 1002,
     "nav-narrow": 340,
     "document-tree": 1040,
-    "document-outline": 1300,
-    "editor-split": 1279
+    "document-outline": 1300
   },
   "border-width": {
     "thin": 1,
@@ -2650,12 +2676,17 @@ export const values = freeze({
     "lifeline": 1.25,
     "tag": 1.5,
     "edge": 1.75,
-    "casing": 4.5
+    "casing": 4.5,
+    "write-rule": 6
   },
   "z-index": {
     "raised": 2,
     "overlay": 10,
-    "layer-header": 10
+    "layer-header": 10,
+    "admin": 20,
+    "write": 30,
+    "dialog": 40,
+    "toast": 50
   },
   "opacity": {
     "tag": 0.15,
@@ -2757,7 +2788,8 @@ export const values = freeze({
     "form": 500,
     "shell-width": "92%",
     "diagram": 960,
-    "editor-aside": 280
+    "admin-panel": 340,
+    "publish": 768
   },
   "blur": {
     "blur": 5

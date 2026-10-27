@@ -19,11 +19,12 @@ test('editor_controls_escape_text_and_reject_unknown_values', () => {
 
 test('admin_dock_drafts_and_owner_actions_use_actions_scripts_find', () => {
   const dock = String(AdminDock({ count: 3 }));
-  assert.match(dock, /data-action="open-drafts" aria-expanded="false" aria-controls="admin-drafts">임시 글<span class="app-admin-count" data-admin-count>3<\/span>/);
+  assert.match(dock, /data-action="open-drafts" aria-expanded="false" aria-controls="admin-drafts">임시·비공개<span class="app-admin-count" data-admin-count>3<\/span>/);
   assert.match(dock, /class="app-admin-fab" data-action="new-post" aria-label="새 글 쓰기"/);
   assert.throws(() => AdminDock({ count: -1 }), /count/);
   assert.match(String(AdminDrafts({ items: [{ id: 'publish/a.md', title: '<가>', date: '2026-10-27' }] })), /data-item="publish\/a.md"><span class="app-admin-item-title">&lt;가&gt;<\/span><span class="app-admin-item-meta">2026-10-27 임시저장<\/span>/);
-  assert.match(String(AdminDrafts({ items: [] })), /임시저장한 글이 없습니다/);
+  assert.match(String(AdminDrafts({ items: [{ id: 'publish/b.md', title: '나', date: '2026-10-27', label: '비공개' }] })), /<span class="app-admin-item-meta">2026-10-27 비공개<\/span>/);
+  assert.match(String(AdminDrafts({ items: [] })), /임시저장하거나 비공개한 글이 없습니다/);
   assert.equal(String(PostOwnerActions()), '<span class="app-post-owner"><button type="button" data-action="edit-post">수정</button><button type="button" data-action="delete-post">삭제</button></span>');
 });
 
@@ -40,9 +41,10 @@ test('write_and_publish_screens_start_hidden_with_named_controls', () => {
   const publish = String(PublishScreen({ card: trusted('<article></article>') }));
   assert.match(publish, /role="dialog" aria-modal="true" aria-label="출간 설정" hidden/);
   assert.match(publish, /<div class="app-publish-card" data-publish-card><article><\/article><\/div>/);
-  assert.doesNotMatch(publish, /data-visibility|비공개/);
-  for (const action of ['upload-thumbnail', 'remove-thumbnail', 'close-publish', 'publish']) assert.match(publish, new RegExp(`data-action="${action}"`));
-  assert.match(publish, /maxlength="150"/);
+  // 썸네일·요약은 본문에서 자동으로 정하므로 고르는 칸이 없다. 공개 설정은 두 단추 중 하나가 눌린 상태다.
+  assert.doesNotMatch(publish, /upload-thumbnail|remove-thumbnail|name="description"|maxlength/);
+  assert.match(publish, /<div class="app-publish-visibility" role="group" aria-label="공개 설정"><button[^>]+data-action="visibility-public" aria-pressed="true">전체 공개<\/button><button[^>]+data-action="visibility-private" aria-pressed="false">비공개<\/button><\/div>/);
+  for (const action of ['close-publish', 'publish']) assert.match(publish, new RegExp(`data-action="${action}"`));
   assert.match(String(Dialog({ id: 'confirm', title: '삭제', body: '<글>을 지울까요?', actions: [Button({ label: '취소', action: 'cancel' })] })), /role="alertdialog"[^>]*hidden><div class="app-dialog-card"><h2 class="app-dialog-title" id="confirm-title">삭제<\/h2><p class="app-dialog-body" data-dialog-body>&lt;글&gt;을 지울까요\?<\/p>/);
   assert.equal(String(Toast()), '<div class="app-toast" role="status" aria-live="polite" hidden></div>');
 });

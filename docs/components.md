@@ -87,13 +87,13 @@ const html = CardGroup({ columns: 4, cards });
 - `LinkButton({ label, href, variant, external })`: 단추 모양의 링크다. `external: true`이면 새 창으로 연다.
 - `TextArea({ id, name, label, value, placeholder, rows, variant, labelVisible, maxLength, describedBy })`: `variant`는 `field`(회색 면)·`title`(글 제목 크기, 내용 높이만큼 늘어남)·`source`(본문 원문)다. 크기 조절 손잡이는 두지 않는다.
 - `Field({ control, hint, hintId })`: 입력과 도움말 묶음이다.
-- `AdminDock({ count, panel })`: 오른쪽 아래에 고정되는 관리자 단추 묶음이다. 위는 임시 글 수를 보이는 목록 단추(`open-drafts`), 아래는 새 글을 여는 동그란 + 단추(`new-post`)다. 크기는 `spacing.admin-fab`, 그림자는 `shadow.admin`이다.
-- `AdminDrafts({ id, items })`: 단추 묶음 위에 뜨는 임시 글 목록 카드다. 항목은 `{ id, title, date }`이며 `data-item`으로 고른다.
+- `AdminDock({ count, panel })`: 오른쪽 아래에 고정되는 관리자 단추 묶음이다. 위는 임시·비공개 글 수를 보이는 목록 단추(`open-drafts`), 아래는 새 글을 여는 동그란 + 단추(`new-post`)다. 크기는 `spacing.admin-fab`, 그림자는 `shadow.admin`이다.
+- `AdminDrafts({ id, items })`: 단추 묶음 위에 뜨는 임시·비공개 글 목록 카드다. 항목은 `{ id, title, date, label }`이며 label은 상태 이름(기본 임시저장)이고 `data-item`으로 고른다.
 - `PostOwnerActions()`: 글 화면의 글쓴이 줄 끝에 붙이는 수정(`edit-post`)·삭제(`delete-post`) 글자 단추다.
 - `TagInput({ id, label, tags, placeholder })`: 사이트 태그 모양의 칩과 `surface: 'bare'` 입력이다. 칩의 `data-tag`가 태그 값이다.
 - `WriteToolbar({ label })`: 제목 1~4, 굵게·기울임·취소선, 인용·링크·그림·코드 단추다. `data-format`이 넣을 문법이며 본문을 스크롤해도 위에 붙어 있다.
 - `WriteScreen({ id, preview })`: 화면 전체를 덮는 작성 창이다. 왼쪽은 제목·태그·서식·본문과 아래 막대(나가기 `close-write`, 임시저장 `save-draft`, 출간하기 `open-publish`), 오른쪽은 사이트 글 화면과 같은 흰 면의 미리보기 칸이다. `feature-split`보다 좁으면 편집 칸만 보인다.
-- `PublishScreen({ id, urlPrefix, card })`: 출간 설정 창이다. 왼쪽은 목록 카드 미리보기(`card` 슬롯, 사용하는 쪽이 `BlogCard`로 채움), 썸네일 바꾸기(`upload-thumbnail`)·자동 썸네일로(`remove-thumbnail`), 요약 150자, 오른쪽은 주소 이름·발행일과 취소(`close-publish`)·출간하기(`publish`)다. 폭은 `container.publish`다.
+- `PublishScreen({ id, urlPrefix, card })`: 출간 설정 창이다. 왼쪽은 목록 카드 미리보기(`card` 슬롯, 사용하는 쪽이 `BlogCard`로 채움)와 썸네일·요약이 본문에서 자동으로 정해진다는 안내, 오른쪽은 공개 설정(`visibility-public`·`visibility-private`, 고른 쪽 `aria-pressed="true"`)·주소 이름·발행일과 취소(`close-publish`)·출간하기(`publish`)다. 폭은 `container.publish`다.
 - `AdminLogin({ title, logo, home, homeLabel, actions, status })`: 사이트 머리·꼬리말 없는 빈 화면 가운데에 사이트 로고(`logo` 슬롯, 홈 링크)와 로그인 단추만 두는 로그인 화면이다. `title`은 화면 읽기용 제목이다. 단추 폭은 `container.admin-login`이다.
 - `Dialog({ id, title, body, actions })`, `Toast()`: 확인 창과 화면 아래 가운데의 짧은 알림이다.
 

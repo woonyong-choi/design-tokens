@@ -137,10 +137,13 @@ export function DocumentPager({ label, before, after }) {
 }
 
 /** 블로그 글 한 편의 틀(피드와 상세 공통). 본문·도입문·꼬리말은 슬롯이다. */
-export function PostArticle({ id: post, detail = false, href, title, date, dateLabel = date, dateNote = '', cover, lead, tags, body, author, footer, after }) {
+/** `byline: { name, avatar }`이 있으면 날짜를 제목 위 대신 도입문 아래의 글쓴이 줄에 둔다. 목록 카드의 글쓴이 줄과 같은 순서다. */
+export function PostArticle({ id: post, detail = false, href, title, date, dateLabel = date, dateNote = '', cover, lead, tags, body, author, byline, footer, after }) {
   const heading = detail ? `<h1 class="app-post-title" id="${id(post)}">${escape(title)}</h1>` : `<h2 class="app-post-title" id="${id(post)}"><a href="${safeUrl(href)}">${escape(title)}</a></h2>`;
   const footerContent = `${author ? `<p class="app-post-author">${escape(author)}</p>` : ''}${footer === undefined ? '' : slot(footer, 'footer')}`;
-  return out(`<article class="app-blog-post${detail ? ' is-detail' : ''}" aria-labelledby="${post}"><header class="app-post-header"><time class="app-post-date" datetime="${escape(date)}">${escape(dateLabel)}${escape(dateNote)}</time>${heading}</header><div class="app-prose app-feed-body"><p class="app-article-lead">${slot(lead, 'lead')}</p>${tags === undefined ? '' : slot(tags, 'tags')}${cover === undefined ? '' : `<div class="app-post-cover app-width-wide">${slot(cover, 'cover')}</div>`}${slot(body, 'body')}</div>${footerContent ? `<footer class="app-post-footer">${footerContent}</footer>` : ''}${after === undefined ? '' : slot(after, 'after')}</article>`);
+  const time = `<time class="app-post-date" datetime="${escape(date)}">${escape(dateLabel)}${escape(dateNote)}</time>`;
+  const writer = byline?.name ? `<div class="app-post-byline">${byline.avatar ? `<img class="app-post-avatar" src="${safeUrl(byline.avatar)}" alt="" decoding="async">` : ''}<span class="app-post-byline-name">${escape(byline.name)}</span>${time}</div>` : '';
+  return out(`<article class="app-blog-post${detail ? ' is-detail' : ''}" aria-labelledby="${post}"><header class="app-post-header">${writer ? '' : time}${heading}</header><div class="app-prose app-feed-body"><p class="app-article-lead">${slot(lead, 'lead')}</p>${writer}${tags === undefined ? '' : slot(tags, 'tags')}${cover === undefined ? '' : `<div class="app-post-cover app-width-wide">${slot(cover, 'cover')}</div>`}${slot(body, 'body')}</div>${footerContent ? `<footer class="app-post-footer">${footerContent}</footer>` : ''}${after === undefined ? '' : slot(after, 'after')}</article>`);
 }
 
 const text = (value) => isTrusted(value) ? value.html : escape(value);

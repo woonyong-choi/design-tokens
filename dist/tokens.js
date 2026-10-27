@@ -690,7 +690,9 @@ export const tokens = freeze({
     "toolbar": "var(--spacing-toolbar)",
     "blog-card-inset": "var(--spacing-blog-card-inset)",
     "blog-card-inset-compact": "var(--spacing-blog-card-inset-compact)",
-    "blog-card-gap": "var(--spacing-blog-card-gap)"
+    "blog-card-gap": "var(--spacing-blog-card-gap)",
+    "blog-card-avatar": "var(--spacing-blog-card-avatar)",
+    "post-avatar": "var(--spacing-post-avatar)"
   },
   "radius": {
     "lg": "var(--radius-lg)",
@@ -2093,7 +2095,9 @@ export const values = freeze({
     "toolbar": 40,
     "blog-card-inset": 32,
     "blog-card-inset-compact": 24,
-    "blog-card-gap": 32
+    "blog-card-gap": 32,
+    "blog-card-avatar": 28,
+    "post-avatar": 40
   },
   "radius": {
     "lg": 8,

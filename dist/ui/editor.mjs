@@ -1,5 +1,5 @@
 // 글 작성 화면의 기본 조각: 단추, 여러 줄 입력, 입력 칸.
-import { escape, id, out, slot } from './html.mjs';
+import { escape, id, out, safeUrl, slot } from './html.mjs';
 
 const BUTTON_VARIANTS = ['primary', 'secondary', 'quiet'];
 const ACTION = /^[a-z][a-z-]*$/;
@@ -11,6 +11,12 @@ export function Button({ label, variant = 'secondary', type = 'button', action, 
   if (action !== undefined && !ACTION.test(action)) throw new Error(`Invalid button action: ${action}`);
   const variantClass = variant === 'secondary' ? '' : ` is-${variant}`;
   return out(`<button type="${type}" class="app-button${variantClass}"${action ? ` data-action="${action}"` : ''}${pressed === undefined ? '' : ` aria-pressed="${pressed}"`}${disabled ? ' disabled' : ''}${hidden ? ' hidden' : ''}>${escape(label)}</button>`);
+}
+
+/** 단추 모양의 링크. 다른 사이트로 가는 링크는 새 창으로 연다. */
+export function LinkButton({ label, href, variant = 'secondary', external = false }) {
+  if (!BUTTON_VARIANTS.includes(variant)) throw new Error(`Unknown button variant: ${variant}`);
+  return out(`<a class="app-button${variant === 'secondary' ? '' : ` is-${variant}`}" href="${safeUrl(href)}"${external ? ' target="_blank" rel="noopener noreferrer"' : ''}>${escape(label)}</a>`);
 }
 
 /** 여러 줄 입력. `variant`는 field(회색 면), title(글 제목 크기), source(본문 원문)다. title은 내용 높이만큼 늘어난다. */

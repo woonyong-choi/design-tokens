@@ -34,7 +34,7 @@ export function LogoItem({ href, label, src }) {
   return out(`<li class="app-technology">${item}</li>`);
 }
 
-const INPUT_TYPES = ['text', 'email', 'url', 'tel', 'date'];
+const INPUT_TYPES = ['text', 'email', 'url', 'tel', 'date', 'password'];
 const INPUT_SIZES = ['small', 'medium', 'large', 'control'];
 const INPUT_SURFACES = ['track', 'field', 'card', 'bare'];
 const INPUT_ROLES = ['searchbox', 'combobox'];

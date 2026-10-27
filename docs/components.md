@@ -71,7 +71,7 @@ const html = CardGroup({ columns: 4, cards });
 
 ## 텍스트 입력과 검색
 
-`TextInput({ id, name, label, type, value, placeholder, autocomplete, describedBy, required, disabled, size, surface, icon, action, role, controls, labelVisible })`는 모든 텍스트 입력의 단일 구성 요소다. 보이지 않는 이름표와 `.app-input` 입력을 조립한다. `labelVisible: true`이면 이름표를 `.app-field-label`로 입력 위에 보인다. `type`은 `text`·`email`·`url`·`tel`·`date`, `size`는 `small`·`medium`·`large`·`control`, `surface`는 `track`·`field`·`card`·`bare`만 받는다. `name`의 기본값은 `id`다. `icon`과 `action`은 검증한 HTML 슬롯이며, 있으면 입력과 함께 `.app-input-field` 안에 앞 아이콘과 뒤 동작으로 놓인다. `role`은 `searchbox` 또는 `combobox`이고 `combobox`는 추천 목록 ID `controls`가 필요하다. `describedBy`와 `controls`는 ID로 검증하고 값과 안내 문구는 일반 텍스트로 이스케이프한다. `SearchBox`는 `large`가 참이면 `size: 'large'`, 아니면 `size: 'medium'`을 선택하고 `surface: 'field'`로, `EmailForm`은 `size: 'control'`, `surface: 'card'`로 이 구성 요소를 조립한다.
+`TextInput({ id, name, label, type, value, placeholder, autocomplete, describedBy, required, disabled, size, surface, icon, action, role, controls, labelVisible })`는 모든 텍스트 입력의 단일 구성 요소다. 보이지 않는 이름표와 `.app-input` 입력을 조립한다. `labelVisible: true`이면 이름표를 `.app-field-label`로 입력 위에 보인다. `type`은 `text`·`email`·`url`·`tel`·`date`·`password`, `size`는 `small`·`medium`·`large`·`control`, `surface`는 `track`·`field`·`card`·`bare`만 받는다. `name`의 기본값은 `id`다. `icon`과 `action`은 검증한 HTML 슬롯이며, 있으면 입력과 함께 `.app-input-field` 안에 앞 아이콘과 뒤 동작으로 놓인다. `role`은 `searchbox` 또는 `combobox`이고 `combobox`는 추천 목록 ID `controls`가 필요하다. `describedBy`와 `controls`는 ID로 검증하고 값과 안내 문구는 일반 텍스트로 이스케이프한다. `SearchBox`는 `large`가 참이면 `size: 'large'`, 아니면 `size: 'medium'`을 선택하고 `surface: 'field'`로, `EmailForm`은 `size: 'control'`, `surface: 'card'`로 이 구성 요소를 조립한다.
 
 `SearchResultLink`의 `icon`을 생략하면 빈 아이콘 슬롯과 들여쓰기도 생략한다. `SearchMessage({ lines })`은 문자열 배열을 안전하게 줄바꿈하고 같은 중앙 정렬 영역에 소비자의 재시도 버튼을 추가할 수 있다. 소비자는 재시도 동작과 검색 색인을 소유한다. 공통 구성 요소는 검색 결과의 HTML만 만든다.
 
@@ -84,6 +84,7 @@ const html = CardGroup({ columns: 4, cards });
 사이트 화면 위에 얹는 글 관리 조각이다. 기본 조각은 `ui/editor.mjs`와 `styles/editor.css`, 관리 화면은 `ui/write.mjs`와 `styles/write.css`가 소유한다. 보이고 숨기는 일과 저장은 사용하는 쪽 스크립트가 맡는다. 글자 굵기와 크기는 블로그 카드·글 머리와 같은 단계를 쓴다.
 
 - `Button({ label, variant, type, action, disabled, hidden, pressed })`: `variant`는 `primary`·`secondary`·`quiet`다. 높이와 곡률은 입력과 같다. `action`은 스크립트가 찾는 `data-action` 이름이며 소문자와 `-`만 받는다.
+- `LinkButton({ label, href, variant, external })`: 단추 모양의 링크다. `external: true`이면 새 창으로 연다.
 - `TextArea({ id, name, label, value, placeholder, rows, variant, labelVisible, maxLength, describedBy })`: `variant`는 `field`(회색 면)·`title`(글 제목 크기, 내용 높이만큼 늘어남)·`source`(본문 원문)다. 크기 조절 손잡이는 두지 않는다.
 - `Field({ control, hint, hintId })`: 입력과 도움말 묶음이다.
 - `AdminDock({ count, panel })`: 오른쪽 아래에 고정되는 관리자 단추 묶음이다. 위는 임시 글 수를 보이는 목록 단추(`open-drafts`), 아래는 새 글을 여는 동그란 + 단추(`new-post`)다. 크기는 `spacing.admin-fab`, 그림자는 `shadow.admin`이다.

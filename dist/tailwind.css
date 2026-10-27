@@ -362,9 +362,9 @@
   --color-tag-ink: var(--color-category-blue-light-ink);
   --color-tag-preview: var(--color-category-blue-light-tint-4);
   --color-tag-preview-ink: var(--color-category-blue-light-ink-strong);
-  --color-button-primary: var(--color-tag-hover);
-  --color-button-primary-ink: var(--color-on-action);
-  --color-button-primary-hover: var(--color-primary-hover);
+  --color-button-primary: var(--color-ink);
+  --color-button-primary-ink: var(--color-ui-card);
+  --color-button-primary-hover: var(--color-ui-muted);
   --color-dialog-backdrop: var(--primitive-dialog-backdrop);
   --font-sans: Pretendard, "Pretendard Variable", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -713,6 +713,7 @@
   --container-diagram: 960px;
   --container-admin-panel: 340px;
   --container-publish: 768px;
+  --container-admin-login: 320px;
   --blur-blur: var(--primitive-blur);
   --aspect-ratio-video: var(--primitive-ratio-video);
   --aspect-device-ratio: var(--primitive-device-ratio);

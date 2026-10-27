@@ -1361,7 +1361,8 @@ export const tokens = freeze({
     "shell-width": "var(--container-shell-width)",
     "diagram": "var(--container-diagram)",
     "admin-panel": "var(--container-admin-panel)",
-    "publish": "var(--container-publish)"
+    "publish": "var(--container-publish)",
+    "admin-login": "var(--container-admin-login)"
   },
   "blur": {
     "blur": "var(--blur-blur)"
@@ -1865,9 +1866,9 @@ export const values = freeze({
     "tag-ink": "#1161cb",
     "tag-preview": "#c3d9f8",
     "tag-preview-ink": "#0d54b3",
-    "button-primary": "#1e6bd6",
+    "button-primary": "#303336",
     "button-primary-ink": "#ffffff",
-    "button-primary-hover": "#649fff",
+    "button-primary-hover": "#55606e",
     "dialog-backdrop": "rgba(15,18,24,.4)"
   },
   "font": {
@@ -2789,7 +2790,8 @@ export const values = freeze({
     "shell-width": "92%",
     "diagram": 960,
     "admin-panel": 340,
-    "publish": 768
+    "publish": 768,
+    "admin-login": 320
   },
   "blur": {
     "blur": 5

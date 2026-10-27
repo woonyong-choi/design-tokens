@@ -347,7 +347,7 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 .app-textarea.is-source { font-size: var(--text-compact-text); line-height: var(--leading-prose-body); color: var(--color-ink); tab-size: 2; word-break: keep-all; }
 
 /* 단추: 입력과 같은 높이·곡률. 주 단추는 사이트 태그 강조색, quiet는 테두리 없는 글자 단추다. */
-.app-button { display: inline-flex; align-items: center; justify-content: center; gap: var(--spacing-gap-xs); height: var(--spacing-input-height); padding: 0 var(--spacing-gap); border: var(--border-width-thin) solid var(--color-ui-line); border-radius: var(--radius-input-radius); background: var(--color-ui-card); color: var(--color-ink); font: inherit; font-size: var(--text-small-text); font-weight: var(--font-weight-bold); white-space: nowrap; cursor: pointer; transition: background var(--duration-fast) var(--ease-reveal); }
+.app-button { display: inline-flex; align-items: center; justify-content: center; gap: var(--spacing-gap-xs); height: var(--spacing-input-height); padding: 0 var(--spacing-gap); border: var(--border-width-thin) solid var(--color-ui-line); border-radius: var(--radius-input-radius); background: var(--color-ui-card); color: var(--color-ink); font: inherit; font-size: var(--text-small-text); font-weight: var(--font-weight-medium); white-space: nowrap; cursor: pointer; transition: background var(--duration-fast) var(--ease-reveal); }
 .app-button:hover { background: var(--color-help-bg); }
 .app-button.is-primary { border-color: transparent; background: var(--color-button-primary); color: var(--color-button-primary-ink); }
 .app-button.is-primary:hover { background: var(--color-button-primary-hover); }
@@ -368,7 +368,7 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 .app-admin-fab-icon::after { inset: 0 auto 0 50%; width: var(--border-width-strong); transform: translateX(-50%); }
 .app-admin-drafts { display: inline-flex; align-items: center; gap: var(--spacing-gap-xs); height: var(--spacing-control); padding: 0 var(--spacing-gap-sm); border: var(--border-width-thin) solid var(--color-help-border); border-radius: var(--radius-pill); background: var(--color-ui-card); color: var(--color-body); font: inherit; font-size: var(--text-small-text); box-shadow: var(--shadow-admin); cursor: pointer; }
 .app-admin-drafts:hover, .app-admin-drafts[aria-expanded=true] { background: var(--color-help-bg); color: var(--color-ink); }
-.app-admin-count { min-width: var(--spacing-gap); padding: 0 var(--spacing-gap-xs); border-radius: var(--radius-pill); background: var(--color-tag-background); font-size: var(--text-tiny-text); line-height: var(--leading-line-body); text-align: center; color: var(--color-tag-ink); }
+.app-admin-count { min-width: var(--spacing-gap); padding: 0 var(--spacing-gap-xs); border-radius: var(--radius-pill); background: var(--color-search-bg); font-size: var(--text-tiny-text); line-height: var(--leading-line-body); text-align: center; color: var(--color-ui-muted); }
 :is(.app-admin-fab, .app-admin-drafts):focus-visible { outline: var(--outline-width-focus) solid var(--color-ui-focus); outline-offset: var(--spacing-outline); }
 
 /* 임시 글 목록: 블로그 카드와 같은 면·테두리·곡률의 카드. */
@@ -441,14 +441,13 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 .app-toast { position: fixed; left: 50%; bottom: calc(var(--spacing-gap) + env(safe-area-inset-bottom)); z-index: var(--z-index-toast); max-width: calc(100vw - var(--spacing-gap) * 2); padding: var(--spacing-gap-xs) var(--spacing-gap); border-radius: var(--radius-pill); background: var(--color-ink); color: var(--color-ui-card); font-size: var(--text-small-text); box-shadow: var(--shadow-admin); transform: translateX(-50%); }
 .app-toast[hidden] { display: none; }
 
-/* 로그인 화면: 사이트 머리·꼬리말 안의 글 화면과 같은 폭과 글 머리 제목. */
-.app-admin-login { max-width: var(--container-body-width); margin: 0 auto; padding: var(--component-post-padding); }
-.app-admin-login .app-post-title { margin-top: 0; }
-.app-admin-login-body { font-size: var(--text-post-lead-size); line-height: var(--leading-line-intro); color: var(--color-body); word-break: keep-all; }
-.app-admin-login-body p { margin: 0 0 var(--spacing-gap); }
-.app-admin-login-body p[hidden] { display: none; }
-.app-admin-login-actions { display: flex; flex-wrap: wrap; gap: var(--spacing-gap-xs); margin-top: var(--spacing-gap); }
-.app-admin-login .app-caption { margin-top: var(--spacing-gap); }
+/* 로그인 화면: 빈 화면 가운데에 로고와 로그인 단추. */
+.app-admin-login { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--spacing-gap-lg); min-height: 100dvh; padding: var(--spacing-gap); text-align: center; }
+.app-admin-login-logo { display: inline-flex; color: var(--color-landing-title-color); }
+.app-admin-login-logo :is(img, svg) { display: block; width: auto; height: var(--text-section-title); }
+.app-admin-login-actions { display: flex; flex-direction: column; gap: var(--spacing-gap-xs); width: min(100%, var(--container-admin-login)); }
+.app-admin-login-actions .app-button { width: 100%; }
+.app-admin-login .app-caption { min-height: 1lh; margin: 0; }
 
 @media (max-width: 600px) {
   .app-write { grid-template-columns: minmax(0, 1fr); }

@@ -11,8 +11,7 @@ test('editor_controls_escape_text_and_reject_unknown_values', () => {
   assert.throws(() => TextArea({ id: 'x', label: 'x', variant: 'rich' }), /variant/);
   assert.throws(() => Field({ control: trusted(''), hint: '도움말' }), /hintId/);
   assert.match(String(TextInput({ id: 'tag', label: '태그', surface: 'bare' })), /class="app-input is-bare"/);
-  assert.equal(String(AdminLogin({ title: '로그인', actions: Button({ label: '로그인' }) })), '<section class="app-admin-login"><h1 class="app-post-title">로그인</h1><div class="app-admin-login-actions"><button type="button" class="app-button">로그인</button></div></section>');
-  assert.match(String(AdminLogin({ title: '<글 관리>', body: trusted('<p>안내</p>'), actions: Button({ label: '로그인', action: 'signin' }) })), /^<section class="app-admin-login"><h1 class="app-post-title">&lt;글 관리&gt;<\/h1><div class="app-admin-login-body"><p>안내<\/p><\/div><div class="app-admin-login-actions"><button/);
+  assert.equal(String(AdminLogin({ title: '로그인', logo: trusted('<svg></svg>'), homeLabel: 'Who Knows 홈', actions: Button({ label: '로그인' }) })), '<section class="app-admin-login"><h1 class="app-sr">로그인</h1><a class="app-admin-login-logo" href="/" aria-label="Who Knows 홈"><svg></svg></a><div class="app-admin-login-actions"><button type="button" class="app-button">로그인</button></div></section>');
 });
 
 test('admin_dock_drafts_and_owner_actions_use_actions_scripts_find', () => {

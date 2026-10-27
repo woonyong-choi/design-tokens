@@ -84,7 +84,7 @@ const html = CardGroup({ columns: 4, cards });
 사이트 화면 위에 얹는 글 관리 조각이다. 기본 조각은 `ui/editor.mjs`와 `styles/editor.css`, 관리 화면은 `ui/write.mjs`와 `styles/write.css`가 소유한다. 보이고 숨기는 일과 저장은 사용하는 쪽 스크립트가 맡는다. 글자 굵기와 크기는 블로그 카드·글 머리와 같은 단계를 쓴다.
 
 - `Button({ label, variant, type, action, disabled, hidden, pressed })`: `variant`는 `primary`·`secondary`·`quiet`다. 높이와 곡률은 입력과 같다. `action`은 스크립트가 찾는 `data-action` 이름이며 소문자와 `-`만 받는다.
-- `LinkButton({ label, href, variant, external })`: 단추 모양의 링크다. `external: true`이면 새 창으로 연다.
+- `LinkButton({ label, href, variant, external, hidden })`: 단추 모양의 링크다. `external: true`이면 새 창으로 열고, `hidden: true`이면 처음엔 숨긴다.
 - `TextArea({ id, name, label, value, placeholder, rows, variant, labelVisible, maxLength, describedBy })`: `variant`는 `field`(회색 면)·`title`(글 제목 크기, 내용 높이만큼 늘어남)·`source`(본문 원문)다. 크기 조절 손잡이는 두지 않는다.
 - `Field({ control, hint, hintId })`: 입력과 도움말 묶음이다.
 - `AdminDock({ count, panel })`: 오른쪽 아래에 고정되는 관리자 단추 묶음이다. 위는 임시·비공개 글 수를 보이는 목록 단추(`open-drafts`), 아래는 새 글을 여는 동그란 + 단추(`new-post`)다. 크기는 `spacing.admin-fab`, 그림자는 `shadow.admin`이다.

@@ -447,7 +447,7 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 .app-admin-login-body { font-size: var(--text-post-lead-size); line-height: var(--leading-line-intro); color: var(--color-body); word-break: keep-all; }
 .app-admin-login-body p { margin: 0 0 var(--spacing-gap); }
 .app-admin-login-body p[hidden] { display: none; }
-.app-admin-login-actions { display: flex; flex-wrap: wrap; gap: var(--spacing-gap-xs); margin-top: var(--spacing-gap-lg); }
+.app-admin-login-actions { display: flex; flex-wrap: wrap; gap: var(--spacing-gap-xs); margin-top: var(--spacing-gap); }
 .app-admin-login .app-caption { margin-top: var(--spacing-gap); }
 
 @media (max-width: breakpoint(feature-split)) {

@@ -93,10 +93,10 @@ const html = CardGroup({ columns: 4, cards });
 - `WriteToolbar({ label })`: 제목 1~4, 굵게·기울임·취소선, 인용·링크·그림·코드 단추다. `data-format`이 넣을 문법이며 본문을 스크롤해도 위에 붙어 있다.
 - `WriteScreen({ id, preview })`: 화면 전체를 덮는 작성 창이다. 왼쪽은 제목·태그·서식·본문과 아래 막대(나가기 `close-write`, 임시저장 `save-draft`, 출간하기 `open-publish`), 오른쪽은 사이트 글 화면과 같은 흰 면의 미리보기 칸이다. `feature-split`보다 좁으면 편집 칸만 보인다.
 - `PublishScreen({ id, urlPrefix, card })`: 출간 설정 창이다. 왼쪽은 목록 카드 미리보기(`card` 슬롯, 사용하는 쪽이 `BlogCard`로 채움), 썸네일 바꾸기(`upload-thumbnail`)·자동 썸네일로(`remove-thumbnail`), 요약 150자, 오른쪽은 주소 이름·발행일과 취소(`close-publish`)·출간하기(`publish`)다. 폭은 `container.publish`다.
-- `AdminLogin({ title, body, actions, status })`: 사이트 머리·꼬리말 안의 관리자 로그인 본문이다. 글 화면과 같은 폭·여백과 글 머리 제목을 쓰며 `body`는 생략할 수 있다.
+- `AdminLogin({ title, logo, home, homeLabel, actions, status })`: 사이트 머리·꼬리말 없는 빈 화면 가운데에 사이트 로고(`logo` 슬롯, 홈 링크)와 로그인 단추만 두는 로그인 화면이다. `title`은 화면 읽기용 제목이다. 단추 폭은 `container.admin-login`이다.
 - `Dialog({ id, title, body, actions })`, `Toast()`: 확인 창과 화면 아래 가운데의 짧은 알림이다.
 
-겹침 순서는 `z-index.admin` < `write` < `dialog` < `toast`다. 주 단추 색은 `color.button-primary`, 글자는 `color.button-primary-ink`, 호버는 `color.button-primary-hover`다.
+겹침 순서는 `z-index.admin` < `write` < `dialog` < `toast`다. 주 단추는 로고와 같은 짙은 글자색 면(`color.button-primary`, 글자 `color.button-primary-ink`, 호버 `color.button-primary-hover`)이고 글자는 중간 굵기다.
 
 ## 소비 방식
 

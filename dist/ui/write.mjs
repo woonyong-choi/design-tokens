@@ -1,6 +1,6 @@
 // 사이트 위에 얹는 글 관리 조각. 관리자에게만 보이는 오른쪽 아래 단추, 임시 글 목록, 글 수정·삭제 줄,
 // 벨로그식 작성 화면과 출간 화면, 확인 창, 알림을 만든다. 보이고 숨기는 일은 사용하는 쪽 스크립트가 맡는다.
-import { escape, id, out, slot } from './html.mjs';
+import { escape, id, out, safeUrl, slot } from './html.mjs';
 import { Button, Field, TextArea } from './editor.mjs';
 import { TextInput } from './layout.mjs';
 
@@ -68,9 +68,12 @@ export function PublishScreen({ id: screen = 'publish-screen', urlPrefix = '/blo
   return out(`<div class="app-publish" id="${id(screen)}" role="dialog" aria-modal="true" aria-label="출간 설정" hidden><form class="app-publish-wrapper" data-publish-form novalidate><div class="app-publish-pane">${left}</div><div class="app-publish-divider" aria-hidden="true"></div><div class="app-publish-pane is-settings"><div>${address}${date}</div>${actions}</div></form></div>`);
 }
 
-/** 관리자 로그인 화면 본문. 사이트 머리·꼬리말 안의 글 화면과 같은 폭·제목 크기를 쓴다. `body`는 선택 슬롯이다. */
-export function AdminLogin({ title, body, actions, status }) {
-  return out(`<section class="app-admin-login"><h1 class="app-post-title">${escape(title)}</h1>${body === undefined ? '' : `<div class="app-admin-login-body">${slot(body, 'login body')}</div>`}${actions === undefined ? '' : `<div class="app-admin-login-actions">${slot(actions, 'login actions')}</div>`}${status === undefined ? '' : slot(status, 'login status')}</section>`);
+/**
+ * 관리자 로그인 화면. 사이트 머리·꼬리말 없이 빈 화면 가운데에 사이트 로고와 로그인 단추만 둔다.
+ * `logo`는 사이트 로고 슬롯, `home`은 로고가 가리킬 주소, `title`은 화면 읽기용 제목이다.
+ */
+export function AdminLogin({ title, logo, home = '/', homeLabel = '홈', actions, status }) {
+  return out(`<section class="app-admin-login"><h1 class="app-sr">${escape(title)}</h1><a class="app-admin-login-logo" href="${safeUrl(home)}" aria-label="${escape(homeLabel)}">${slot(logo, 'login logo')}</a>${actions === undefined ? '' : `<div class="app-admin-login-actions">${slot(actions, 'login actions')}</div>`}${status === undefined ? '' : slot(status, 'login status')}</section>`);
 }
 
 /** 확인 창. `actions`는 Button 슬롯 목록이다. */

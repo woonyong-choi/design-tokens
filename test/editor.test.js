@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { Button, EditorLayout, EditorList, Field, Select, TextArea, TextInput, trusted } from '../dist/ui/index.mjs';
+import { Button, EditorActions, EditorPanel, EditorLayout, EditorList, Field, Select, TextArea, TextInput, trusted } from '../dist/ui/index.mjs';
 
 test('editor_controls_escape_text_and_reject_unknown_values', () => {
   assert.equal(String(Button({ label: '<저장>', variant: 'primary', action: 'save' })), '<button type="button" class="app-button is-primary" data-action="save">&lt;저장&gt;</button>');
@@ -20,4 +20,6 @@ test('editor_list_marks_selected_item_and_layout_keeps_slots', () => {
   assert.doesNotMatch(list.split('</li>')[1], /aria-current/);
   assert.match(String(EditorLayout({ label: '글 목록', aside: trusted('<p>목록</p>'), main: trusted('<p>편집</p>') })), /<aside class="app-editor-aside" aria-label="글 목록"><p>목록<\/p><\/aside><div class="app-editor-main"><p>편집<\/p><\/div>/);
   assert.throws(() => EditorLayout({ label: 'x', aside: '<p>', main: trusted('') }), /trusted/);
+  assert.equal(String(EditorActions({ items: [Button({ label: '저장' })] })), '<div class="app-editor-actions"><button type="button" class="app-button">저장</button></div>');
+  assert.equal(String(EditorPanel({ body: trusted('<p>칸</p>') })), '<div class="app-editor-panel"><p>칸</p></div>');
 });

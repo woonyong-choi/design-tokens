@@ -30,6 +30,15 @@ export function Field({ control, hint, hintId }) {
   return out(`<div class="app-field">${slot(control, 'field control')}${hint ? `<p class="app-field-hint" id="${id(hintId)}">${escape(hint)}</p>` : ''}</div>`);
 }
 
+/** 단추를 한 줄로 놓는다. `items`는 Button 등 검증한 슬롯 목록이다. */
+export function EditorActions({ items }) {
+  if (!Array.isArray(items) || !items.length) throw new Error('EditorActions requires items');
+  return out(`<div class="app-editor-actions">${items.map(item => slot(item, 'editor action')).join('')}</div>`);
+}
+
+/** 입력 칸을 세로로 쌓는 묶음. 탭 패널처럼 폼 바깥의 칸 묶음에 쓴다. */
+export const EditorPanel = ({ body }) => out(`<div class="app-editor-panel">${slot(body, 'editor panel')}</div>`);
+
 /** 편집할 항목 목록. 각 항목은 단추이며 `data-item`으로 고른다. `note`는 상태처럼 짧은 보조 글자다. */
 export function EditorList({ label, items }) {
   return out(`<ul class="app-editor-list" aria-label="${escape(label)}">${items.map(item => `<li><button type="button" class="app-editor-item" data-item="${escape(item.id)}"${item.selected ? ' aria-current="true"' : ''}><span class="app-editor-item-title">${escape(item.title)}</span>${item.note ? `<span class="app-editor-item-note">${escape(item.note)}</span>` : ''}</button></li>`).join('')}</ul>`);

@@ -32,8 +32,10 @@ test('write_and_publish_screens_start_hidden_with_named_controls', () => {
   const write = String(WriteScreen({ preview: trusted('<div data-preview></div>') }));
   assert.match(write, /^<div class="app-write" id="write-screen" role="dialog" aria-modal="true" aria-label="글 쓰기" hidden>/);
   for (const name of ['write-screen-title', 'write-screen-tag', 'write-screen-body']) assert.match(write, new RegExp(`id="${name}"`));
-  for (const action of ['close-write', 'save-draft', 'open-publish']) assert.match(write, new RegExp(`data-action="${action}"`));
+  for (const action of ['close-write', 'delete-current', 'save-draft', 'open-publish']) assert.match(write, new RegExp(`data-action="${action}"`));
   assert.doesNotMatch(write, /app-write-rule/);
+  // 삭제는 저장된 글을 열었을 때만 사용하는 쪽이 보인다.
+  assert.match(write, /data-action="delete-current" hidden>삭제<\/button>/);
   assert.match(write, /<section class="app-write-preview" aria-label="미리보기"><div data-preview><\/div><\/section>/);
   const tools = String(WriteToolbar());
   assert.deepEqual([...tools.matchAll(/data-format="([a-z0-9]+)"/g)].map(match => match[1]), ['h1', 'h2', 'h3', 'h4', 'bold', 'italic', 'strike', 'quote', 'link', 'image', 'code']);

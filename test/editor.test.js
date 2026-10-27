@@ -1,10 +1,13 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { AdminDock, AdminDrafts, AdminLogin, Button, Dialog, Field, PostOwnerActions, PublishScreen, TagInput, TextArea, TextInput, Toast, WriteScreen, WriteToolbar, trusted } from '../dist/ui/index.mjs';
+import { AdminDock, AdminDrafts, AdminLogin, Button, LinkButton, Dialog, Field, PostOwnerActions, PublishScreen, TagInput, TextArea, TextInput, Toast, WriteScreen, WriteToolbar, trusted } from '../dist/ui/index.mjs';
 
 test('editor_controls_escape_text_and_reject_unknown_values', () => {
   assert.equal(String(Button({ label: '<저장>', variant: 'primary', action: 'save' })), '<button type="button" class="app-button is-primary" data-action="save">&lt;저장&gt;</button>');
   assert.throws(() => Button({ label: 'x', variant: 'danger' }), /variant/);
+  assert.equal(String(LinkButton({ label: '토큰 만들기', href: 'https://github.com/settings', variant: 'quiet', external: true })), '<a class="app-button is-quiet" href="https://github.com/settings" target="_blank" rel="noopener noreferrer">토큰 만들기</a>');
+  assert.throws(() => LinkButton({ label: 'x', href: 'javascript:alert(1)' }), /Unsupported URL/);
+  assert.match(String(TextInput({ id: 'token', label: '토큰', type: 'password' })), /type="password"/);
   assert.throws(() => Button({ label: 'x', action: 'Save()' }), /action/);
   assert.match(String(TextArea({ id: 'body', label: '본문', value: '</textarea><b>', variant: 'source', labelVisible: false })), /^<label class="app-sr" for="body">본문<\/label><textarea class="app-textarea is-source"[^>]*spellcheck="false">&lt;\/textarea&gt;&lt;b&gt;<\/textarea>$/);
   assert.match(String(TextArea({ id: 'd', label: '요약', maxLength: 150 })), /maxlength="150"/);

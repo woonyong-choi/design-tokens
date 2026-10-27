@@ -71,7 +71,7 @@ const html = CardGroup({ columns: 4, cards });
 
 ## 텍스트 입력과 검색
 
-`TextInput({ id, name, label, type, value, placeholder, autocomplete, describedBy, required, disabled, size, surface, icon, action, role, controls, labelVisible })`는 모든 텍스트 입력의 단일 구성 요소다. 보이지 않는 이름표와 `.app-input` 입력을 조립한다. `labelVisible: true`이면 이름표를 `.app-field-label`로 입력 위에 보인다(글 작성 화면). `type`은 `text`·`email`·`url`·`tel`·`date`, `size`는 `small`·`medium`·`large`·`control`, `surface`는 `track`·`field`·`card`만 받는다. `name`의 기본값은 `id`다. `icon`과 `action`은 검증한 HTML 슬롯이며, 있으면 입력과 함께 `.app-input-field` 안에 앞 아이콘과 뒤 동작으로 놓인다. `role`은 `searchbox` 또는 `combobox`이고 `combobox`는 추천 목록 ID `controls`가 필요하다. `describedBy`와 `controls`는 ID로 검증하고 값과 안내 문구는 일반 텍스트로 이스케이프한다. `SearchBox`는 `large`가 참이면 `size: 'large'`, 아니면 `size: 'medium'`을 선택하고 `surface: 'field'`로, `EmailForm`은 `size: 'control'`, `surface: 'card'`로 이 구성 요소를 조립한다.
+`TextInput({ id, name, label, type, value, placeholder, autocomplete, describedBy, required, disabled, size, surface, icon, action, role, controls, labelVisible })`는 모든 텍스트 입력의 단일 구성 요소다. 보이지 않는 이름표와 `.app-input` 입력을 조립한다. `labelVisible: true`이면 이름표를 `.app-field-label`로 입력 위에 보인다. `type`은 `text`·`email`·`url`·`tel`·`date`, `size`는 `small`·`medium`·`large`·`control`, `surface`는 `track`·`field`·`card`·`bare`만 받는다. `name`의 기본값은 `id`다. `icon`과 `action`은 검증한 HTML 슬롯이며, 있으면 입력과 함께 `.app-input-field` 안에 앞 아이콘과 뒤 동작으로 놓인다. `role`은 `searchbox` 또는 `combobox`이고 `combobox`는 추천 목록 ID `controls`가 필요하다. `describedBy`와 `controls`는 ID로 검증하고 값과 안내 문구는 일반 텍스트로 이스케이프한다. `SearchBox`는 `large`가 참이면 `size: 'large'`, 아니면 `size: 'medium'`을 선택하고 `surface: 'field'`로, `EmailForm`은 `size: 'control'`, `surface: 'card'`로 이 구성 요소를 조립한다.
 
 `SearchResultLink`의 `icon`을 생략하면 빈 아이콘 슬롯과 들여쓰기도 생략한다. `SearchMessage({ lines })`은 문자열 배열을 안전하게 줄바꿈하고 같은 중앙 정렬 영역에 소비자의 재시도 버튼을 추가할 수 있다. 소비자는 재시도 동작과 검색 색인을 소유한다. 공통 구성 요소는 검색 결과의 HTML만 만든다.
 
@@ -79,21 +79,24 @@ const html = CardGroup({ columns: 4, cards });
 
 검색 결과의 유형 표시는 짧은 한 덩어리로 유지한다. 긴 제목은 줄바꿈할 수 있지만 제목 뒤의 유형 표시는 중간에서 갈라지지 않는다.
 
-## 글 작성 화면
+## 글 관리
 
-`ui/editor.mjs`는 글 작성 화면의 조각을 소유한다. 스타일은 `styles/editor.css` 한 곳이다. 화면은 위 막대 아래에 목록·편집·실시간 미리보기 세 칸이 화면 높이를 나눠 쓰고, 칸마다 따로 스크롤한다.
+사이트 화면 위에 얹는 글 관리 조각이다. 기본 조각은 `ui/editor.mjs`와 `styles/editor.css`, 관리 화면은 `ui/write.mjs`와 `styles/write.css`가 소유한다. 보이고 숨기는 일과 저장은 사용하는 쪽 스크립트가 맡는다.
 
-- `EditorLayout({ label, bar, aside, main, preview, view })`: 전체 틀이다. `breakpoint.editor-split`보다 좁으면 목록과 편집·미리보기 중 하나, `feature-split`보다 좁으면 한 칸만 보인다. 보이는 칸은 `data-view`(`list`·`edit`·`preview`)가 정한다. `view-list`·`view-edit`·`view-preview` 동작 단추는 해당 칸이 숨을 수 있는 너비에서만 보인다.
-- `EditorBar({ title, home, status, actions })`: 위 막대다. `home`은 `{ href, label }` 돌아가기 링크, `status`는 상태 글자 슬롯, `actions`는 오른쪽 단추 줄 슬롯이다.
-- `EditorList({ label, items })`: 항목 `{ id, title, state, date, selected }` 단추 목록이다. 고른 항목은 `aria-current`로 흰 카드가 된다.
-- `EditorState({ state })`: `draft`(회색)·`public`(사이트 태그와 같은 파란 칩) 상태 칩이다.
-- `Button({ label, variant, type, action, disabled, hidden, pressed })`: `variant`는 `primary`·`secondary`·`quiet`다. 높이와 곡률은 입력과 같다. `action`은 화면 스크립트가 찾는 `data-action` 이름이며 소문자와 `-`만 받는다.
-- `TextArea({ id, name, label, value, placeholder, rows, variant, code, labelVisible, describedBy })`: `variant`는 `field`(회색 면)·`title`(글 머리 제목 크기)·`plain`(도입문 크기 요약)·`code`(본문 원문)다. `title`·`plain`은 면 없이 내용 높이만큼 늘어나 긴 제목도 잘리지 않는다. `code: true`는 `variant: 'code'`와 같다.
-- `Select({ id, name, label, options, value })`, `Field({ control, hint, hintId })`, `FieldRow({ fields })`: 이름표가 보이는 입력 칸과 한 줄 배치다. 이름표는 작은 보조 글자, 입력은 검색 입력과 같은 회색 면이다.
-- `EditorActions({ items })`, `EditorPanel({ body })`: 단추 한 줄과 세로 칸 묶음이다.
-- `EditorNotice({ title, body, actions, footer })`: 작성 화면에 들어가기 전의 가운데 안내 카드다(로그인·설정 안내). 폭은 `container.form`이다.
+- `Button({ label, variant, type, action, disabled, hidden, pressed })`: `variant`는 `primary`·`secondary`·`quiet`다. 높이와 곡률은 입력과 같다. `action`은 스크립트가 찾는 `data-action` 이름이며 소문자와 `-`만 받는다.
+- `TextArea({ id, name, label, value, placeholder, rows, variant, labelVisible, maxLength, describedBy })`: `variant`는 `field`(회색 면)·`title`(글 제목 크기, 내용 높이만큼 늘어남)·`source`(본문 원문)다.
+- `Field({ control, hint, hintId })`, `EditorState({ state })`: 입력 칸 묶음과 `draft`(임시)·`private`(비공개)·`public`(공개) 상태 칩이다.
+- `EditorNotice({ title, body, actions, footer })`: 관리 화면에 들어가기 전의 가운데 안내 카드다(로그인 안내). 폭은 `container.form`이다.
+- `AdminDock({ count, panel })`: 오른쪽 아래에 고정되는 관리자 단추 묶음이다. 위는 임시·비공개 글 수를 보이는 목록 단추(`open-drafts`), 아래는 새 글을 여는 동그란 + 단추(`new-post`)다. 크기는 `spacing.admin-fab`, 그림자는 `shadow.admin`이다.
+- `AdminDrafts({ id, items })`: 단추 묶음 위에 뜨는 임시·비공개 글 목록이다. 항목은 `{ id, title, state, date }`이며 `data-item`으로 고른다.
+- `PostOwnerActions({ state })`: 글 화면의 글쓴이 줄 끝에 붙이는 수정(`edit-post`)·삭제(`delete-post`) 글자 단추다. 공개가 아닌 글은 상태 칩을 함께 보인다.
+- `TagInput({ id, label, tags, placeholder })`: 사이트 태그 모양의 칩과 `surface: 'bare'` 입력이다. 칩의 `data-tag`가 태그 값이다.
+- `WriteToolbar({ label })`: 제목 1~4, 굵게·기울임·취소선, 인용·링크·그림·코드 단추다. `data-format`이 넣을 문법이다.
+- `WriteScreen({ id, preview })`: 화면 전체를 덮는 작성 창이다. 왼쪽은 제목·구분 막대·태그·서식·본문과 아래 막대(나가기 `close-write`, 임시저장 `save-draft`, 출간하기 `open-publish`), 오른쪽은 미리보기 칸이다. `feature-split`보다 좁으면 편집 칸만 보인다.
+- `PublishScreen({ id, urlPrefix })`: 출간 설정 창이다. 왼쪽은 썸네일(`upload-thumbnail`·`remove-thumbnail`)과 요약 150자, 오른쪽은 공개 설정(`data-visibility`), 주소 이름, 발행일과 취소(`close-publish`)·출간하기(`publish`)다. 폭은 `container.publish`다.
+- `Dialog({ id, title, body, actions })`, `Toast()`: 확인 창과 화면 아래 가운데의 짧은 알림이다.
 
-주 단추 색은 `color.button-primary`, 글자는 `color.button-primary-ink`, 호버는 `color.button-primary-hover`다. 목록 칸 폭은 `container.editor-aside`, 본문 최소 높이는 `spacing.editor-body-min`이다.
+겹침 순서는 `z-index.admin` < `write` < `dialog` < `toast`다. 주 단추 색은 `color.button-primary`, 글자는 `color.button-primary-ink`, 호버는 `color.button-primary-hover`다.
 
 ## 소비 방식
 

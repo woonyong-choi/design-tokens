@@ -44,7 +44,7 @@
 
 기초 초기화와 초점 링은 `base.css`가 소유한다. 일반 초점 링은 `outline-width.focus`와 `color.ui.focus`를 사용하며, 잘리는 내부 링크는 해당 구성 요소가 안쪽 오프셋만 지정한다. 페이지 전체 스크롤바와 내부 도표 스크롤바는 각각 `spacing.scrollbar`, `spacing.figure-scrollbar` 역할을 사용한다.
 
-`styles/index.css`는 `styles/*.css`를 순서대로 가져온다. 기본 요소는 base·shell·tabs·toolbar·table·controls·forms·editor·icons·search·cards·prose·media, 맥락 배치는 article·support·blog·landing·features·pages가 소유한다. 한 클래스의 정본은 한 모듈에 두고 다른 모듈은 부모 맥락에서만 재정의한다.
+`styles/index.css`는 `styles/*.css`를 순서대로 가져온다. 기본 요소는 base·shell·tabs·toolbar·table·controls·forms·editor·write·icons·search·cards·prose·media, 맥락 배치는 article·support·blog·landing·features·pages가 소유한다. 한 클래스의 정본은 한 모듈에 두고 다른 모듈은 부모 맥락에서만 재정의한다.
 
 빌드는 로컬 CSS import를 평탄화한다. 외부·절대 경로, 폴더 탈출, 순환·중복 import와 조건부 import는 거부한다. `url()`은 배포 CSS 기준 `./assets/...`를 사용한다. `breakpoint(이름)`은 토큰 값으로 바뀐다. 웹과 도표는 `styles/tabs.css`를 함께 읽어 탭을 다시 정의하지 않는다.
 

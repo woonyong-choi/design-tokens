@@ -14,9 +14,9 @@ export function Button({ label, variant = 'secondary', type = 'button', action, 
 }
 
 /** 단추 모양의 링크. 다른 사이트로 가는 링크는 새 창으로 연다. */
-export function LinkButton({ label, href, variant = 'secondary', external = false }) {
+export function LinkButton({ label, href, variant = 'secondary', external = false, hidden = false }) {
   if (!BUTTON_VARIANTS.includes(variant)) throw new Error(`Unknown button variant: ${variant}`);
-  return out(`<a class="app-button${variant === 'secondary' ? '' : ` is-${variant}`}" href="${safeUrl(href)}"${external ? ' target="_blank" rel="noopener noreferrer"' : ''}>${escape(label)}</a>`);
+  return out(`<a class="app-button${variant === 'secondary' ? '' : ` is-${variant}`}" href="${safeUrl(href)}"${external ? ' target="_blank" rel="noopener noreferrer"' : ''}${hidden ? ' hidden' : ''}>${escape(label)}</a>`);
 }
 
 /** 여러 줄 입력. `variant`는 field(회색 면), title(글 제목 크기), source(본문 원문)다. title은 내용 높이만큼 늘어난다. */

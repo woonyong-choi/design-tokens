@@ -93,9 +93,9 @@ const html = CardGroup({ columns: 4, cards });
 - `TagInput({ id, label, tags, placeholder })`: 사이트 태그 모양의 칩과 `surface: 'bare'` 입력이다. 칩의 `data-tag`가 태그 값이다.
 - `WriteToolbar({ label })`: 제목 1~4, 굵게·기울임·취소선, 인용·링크·그림·코드 단추다. `data-format`이 넣을 문법이며 본문을 스크롤해도 위에 붙어 있다.
 - `WriteScreen({ id, preview })`: 화면 전체를 덮는 작성 창이다. 왼쪽은 제목·태그·서식·본문과 아래 막대(나가기 `close-write`, 임시저장 `save-draft`, 출간하기 `open-publish`), 오른쪽은 사이트 글 화면과 같은 흰 면의 미리보기 칸이다. `feature-split`보다 좁으면 편집 칸만 보인다.
-- `PublishScreen({ id, urlPrefix, card })`: 출간 설정 창이다. 왼쪽은 목록 카드 미리보기(`card` 슬롯, 사용하는 쪽이 `BlogCard`로 채움)와 썸네일·요약이 본문에서 자동으로 정해진다는 안내, 오른쪽은 공개 설정(`visibility-public`·`visibility-private`, 고른 쪽 `aria-pressed="true"`)·주소 이름·발행일과 취소(`close-publish`)·출간하기(`publish`)다. 폭은 `container.publish`다.
+- `PublishScreen({ id, urlPrefix, card })`: 출간 설정 창이다. 왼쪽은 목록 카드 미리보기(`card` 슬롯, 사용하는 쪽이 `BlogCard`로 채움)(썸네일·요약은 본문에서 자동으로 정함), 오른쪽은 공개 설정(`visibility-public`·`visibility-private`, 고른 쪽 `aria-pressed="true"`는 주 단추 색으로 채움)·주소 이름·발행일과 취소(`close-publish`)·출간하기(`publish`)다. 폭은 `container.publish`다.
 - `AdminLogin({ title, logo, home, homeLabel, actions, status })`: 사이트 머리·꼬리말 없는 빈 화면 가운데에 사이트 로고(`logo` 슬롯, 홈 링크)와 로그인 단추만 두는 로그인 화면이다. `title`은 화면 읽기용 제목이다. 단추 폭은 `container.admin-login`이다.
-- `Dialog({ id, title, body, actions })`, `Toast()`: 확인 창과 화면 아래 가운데의 짧은 알림이다.
+- `Dialog({ id, title, body, actions })`, `Toast()`: 확인 창과 화면 위 가운데의 짧은 알림이다. 알림은 클릭을 가로채지 않아 아래 단추를 가리지 않는다.
 
 겹침 순서는 `z-index.admin` < `write` < `dialog` < `toast`다. 주 단추는 태그·링크와 같은 파란 면(`color.button-primary`, 흰 글자 `color.button-primary-ink`, 호버 더 짙은 파랑 `color.button-primary-hover`)이고 글자는 중간 굵기다.
 

@@ -52,7 +52,7 @@ export function WriteScreen({ id: screen = 'write-screen', preview } = {}) {
     WriteToolbar(),
     TextArea({ id: `${screen}-body`, name: 'body', label: '본문', variant: 'source', rows: 20, labelVisible: false, placeholder: '당신의 이야기를 적어 보세요...' }),
   ].map(String).join('');
-  const footer = `<div class="app-write-footer">${Button({ label: '← 나가기', variant: 'quiet', action: 'close-write' })}<div class="app-write-footer-actions">${Button({ label: '임시저장', variant: 'quiet', action: 'save-draft' })}${Button({ label: '출간하기', variant: 'primary', action: 'open-publish' })}</div></div>`;
+  const footer = `<div class="app-write-footer">${Button({ label: '← 나가기', variant: 'quiet', action: 'close-write' })}<div class="app-write-footer-actions">${Button({ label: '삭제', variant: 'quiet', action: 'delete-current', hidden: true })}${Button({ label: '임시저장', variant: 'quiet', action: 'save-draft' })}${Button({ label: '출간하기', variant: 'primary', action: 'open-publish' })}</div></div>`;
   return out(`<div class="app-write" id="${id(screen)}" role="dialog" aria-modal="true" aria-label="글 쓰기" hidden><form class="app-write-editor" data-write-form novalidate><div class="app-write-fields">${editor}</div>${footer}</form><section class="app-write-preview" aria-label="미리보기">${preview === undefined ? '' : slot(preview, 'write preview')}</section></div>`);
 }
 

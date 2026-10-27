@@ -690,7 +690,9 @@ export const tokens = freeze({
     "toolbar": "var(--spacing-toolbar)",
     "blog-card-inset": "var(--spacing-blog-card-inset)",
     "blog-card-inset-compact": "var(--spacing-blog-card-inset-compact)",
-    "blog-card-gap": "var(--spacing-blog-card-gap)"
+    "blog-card-gap": "var(--spacing-blog-card-gap)",
+    "blog-card-avatar": "var(--spacing-blog-card-avatar)",
+    "post-avatar": "var(--spacing-post-avatar)"
   },
   "radius": {
     "lg": "var(--radius-lg)",
@@ -725,6 +727,7 @@ export const tokens = freeze({
     "newsletter-button-radius": "var(--radius-newsletter-button-radius)",
     "help-grouped-radius": "var(--radius-help-grouped-radius)",
     "tooltip-radius": "var(--radius-tooltip-radius)",
+    "prose-figure-radius": "var(--radius-prose-figure-radius)",
     "blog-card-radius": "var(--radius-blog-card-radius)"
   },
   "shadow": {
@@ -2093,7 +2096,9 @@ export const values = freeze({
     "toolbar": 40,
     "blog-card-inset": 32,
     "blog-card-inset-compact": 24,
-    "blog-card-gap": 32
+    "blog-card-gap": 32,
+    "blog-card-avatar": 28,
+    "post-avatar": 40
   },
   "radius": {
     "lg": 8,
@@ -2128,6 +2133,7 @@ export const values = freeze({
     "newsletter-button-radius": 7.632,
     "help-grouped-radius": 10,
     "tooltip-radius": 24,
+    "prose-figure-radius": 12,
     "blog-card-radius": 16
   },
   "shadow": {

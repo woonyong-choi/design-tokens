@@ -30,12 +30,12 @@
 .app-prose dl:not(.app-definitions) dt { font-weight: var(--font-weight-bold); }
 .app-prose dl:not(.app-definitions) dd { margin: var(--component-prose-definition-margin); }
 .app-prose .app-figure { margin-top: 0; margin-bottom: var(--spacing-post-paragraph-margin); }
-.app-prose .app-figure img { border-radius: 0; }
+/* 본문에 넣은 그림은 따로 지정하지 않아도 같은 곡률로 모서리를 둥글게 자른다. 기기 틀 안의 화면은 기기 곡률을 따른다. */
+.app-prose .app-figure > :is(img, a > img) { border-radius: var(--radius-prose-figure-radius); }
 :is(.app-prose, .app-figure-grid-item) > .app-figure { display: flex; flex-direction: column; align-items: center; text-align: start; }
 :is(.app-prose, .app-figure-grid-item) > .app-figure > .app-player { align-self: stretch; }
 :is(.app-prose, .app-figure-grid-item) > .app-figure > a > img { display: block; }
 :is(.app-prose, .app-figure-grid-item) > .app-figure:not(.app-width-wide):not(.app-width-narrow) > :is(img, a > img) { width: auto; }
-.app-prose .app-figure img.is-rounded { border-radius: var(--radius-prose-rounded-radius); }
 .app-prose .app-figure figcaption { margin: var(--spacing-post-caption-margin) 0 0; font-size: var(--text-post-date-size); line-height: var(--leading-caption-line); text-align: center; color: var(--color-prose-caption-color); }
 .app-prose .app-figure figcaption:empty { display: none; }
 .app-prose code { padding: var(--component-prose-code-padding); border: var(--border-width-thin) solid var(--color-prose-code-border); border-radius: var(--radius-prose-code-radius); background: var(--color-prose-code-background); color: var(--color-prose-code-color); font-family: var(--font-mono); font-size: var(--text-prose-code-size); line-height: var(--leading-feature-body-line); white-space: pre-wrap; overflow-wrap: break-word; }

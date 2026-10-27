@@ -1866,9 +1866,9 @@ export const values = freeze({
     "tag-ink": "#1161cb",
     "tag-preview": "#c3d9f8",
     "tag-preview-ink": "#0d54b3",
-    "button-primary": "#303336",
+    "button-primary": "#1161cb",
     "button-primary-ink": "#ffffff",
-    "button-primary-hover": "#55606e",
+    "button-primary-hover": "#0d54b3",
     "dialog-backdrop": "rgba(15,18,24,.4)"
   },
   "font": {

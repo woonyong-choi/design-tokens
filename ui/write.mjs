@@ -61,7 +61,7 @@ export function WriteScreen({ id: screen = 'write-screen', preview } = {}) {
  * 오른쪽은 주소·발행일과 취소·출간하기. 썸네일을 고르지 않으면 본문 첫 그림, 그것도 없으면 제목 표지가 자동으로 쓰인다.
  */
 export function PublishScreen({ id: screen = 'publish-screen', urlPrefix = '/blog/', card } = {}) {
-  const left = `<section class="app-publish-section"><h3 class="app-publish-heading">목록 카드 미리보기</h3><div class="app-publish-card" data-publish-card>${card === undefined ? '' : slot(card, 'publish card')}</div><p class="app-field-hint">썸네일은 본문의 첫 그림, 그림이 없으면 제목으로 만듭니다. 요약은 본문의 첫 문단입니다.</p></section>`;
+  const left = `<section class="app-publish-section"><h3 class="app-publish-heading">목록 카드 미리보기</h3><div class="app-publish-card" data-publish-card>${card === undefined ? '' : slot(card, 'publish card')}</div></section>`;
   const visibility = `<section class="app-publish-section"><h3 class="app-publish-heading">공개 설정</h3><div class="app-publish-visibility" role="group" aria-label="공개 설정">${Button({ label: '전체 공개', action: 'visibility-public', pressed: true })}${Button({ label: '비공개', action: 'visibility-private', pressed: false })}</div></section>`;
   const address = `<section class="app-publish-section"><h3 class="app-publish-heading">주소</h3><div class="app-publish-url"><span>${escape(urlPrefix)}</span>${TextInput({ id: `${screen}-slug`, name: 'slug', label: '주소 이름', surface: 'bare', autocomplete: 'off', describedBy: `${screen}-slug-hint` })}</div><p class="app-field-hint" id="${screen}-slug-hint">영어 소문자·숫자와 - 만 씁니다. 처음 출간할 때만 정합니다.</p></section>`;
   const date = `<section class="app-publish-section"><h3 class="app-publish-heading">발행일</h3>${Field({ control: TextInput({ id: `${screen}-date`, name: 'publishedAt', label: '발행일', type: 'date', surface: 'field' }) })}</section>`;
@@ -82,5 +82,5 @@ export function Dialog({ id: dialog, title, body, actions }) {
   return out(`<div class="app-dialog" id="${id(dialog)}" role="alertdialog" aria-modal="true" aria-labelledby="${dialog}-title" hidden><div class="app-dialog-card"><h2 class="app-dialog-title" id="${dialog}-title">${escape(title)}</h2><p class="app-dialog-body" data-dialog-body>${escape(body)}</p><div class="app-dialog-actions">${actions.map(item => slot(item, 'dialog action')).join('')}</div></div></div>`);
 }
 
-/** 화면 아래 가운데에 잠깐 뜨는 알림. 글자는 스크립트가 채운다. */
+/** 화면 위 가운데에 잠깐 뜨는 알림. 클릭은 아래 요소로 통과한다. 글자는 스크립트가 채운다. */
 export const Toast = () => out('<div class="app-toast" role="status" aria-live="polite" hidden></div>');

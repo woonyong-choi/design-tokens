@@ -97,7 +97,7 @@ const html = CardGroup({ columns: 4, cards });
 - `AdminLogin({ title, logo, home, homeLabel, actions, status })`: 사이트 머리·꼬리말 없는 빈 화면 가운데에 사이트 로고(`logo` 슬롯, 홈 링크)와 로그인 단추만 두는 로그인 화면이다. `title`은 화면 읽기용 제목이다. 단추 폭은 `container.admin-login`이다.
 - `Dialog({ id, title, body, actions })`, `Toast()`: 확인 창과 화면 아래 가운데의 짧은 알림이다.
 
-겹침 순서는 `z-index.admin` < `write` < `dialog` < `toast`다. 주 단추는 로고와 같은 짙은 글자색 면(`color.button-primary`, 글자 `color.button-primary-ink`, 호버 `color.button-primary-hover`)이고 글자는 중간 굵기다.
+겹침 순서는 `z-index.admin` < `write` < `dialog` < `toast`다. 주 단추는 태그·링크와 같은 파란 면(`color.button-primary`, 흰 글자 `color.button-primary-ink`, 호버 더 짙은 파랑 `color.button-primary-hover`)이고 글자는 중간 굵기다.
 
 ## 소비 방식
 

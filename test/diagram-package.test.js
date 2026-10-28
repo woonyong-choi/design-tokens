@@ -12,7 +12,7 @@ import { verifyDesign } from '../scripts/lib/verify-dist.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const INPUT = Object.freeze({ packageJson: readFileSync(join(ROOT, 'package.json')), license: readFileSync(join(ROOT, 'LICENSE')), fullFiles: buildDesign(ROOT) });
-const ICONS = Object.freeze('check close ellipsis git github mdi-account-alert mdi-alert mdi-aws mdi-card-account-details mdi-check mdi-content-copy mdi-cookie mdi-database mdi-docker mdi-domain mdi-download mdi-email mdi-file-check mdi-file-key mdi-fit-to-screen-outline mdi-fullscreen mdi-fullscreen-exit mdi-google mdi-google-cloud mdi-google-drive mdi-harddisk mdi-image-multiple mdi-key mdi-kubernetes mdi-lock mdi-magnify-minus-outline mdi-magnify-plus-outline mdi-refresh mdi-server mdi-shield-check mdi-web nginx postgresql redis user user-settings warning'.split(' ').sort());
+const ICONS = Object.freeze('aws-api-gateway aws-cloudfront aws-cloudwatch aws-dynamodb aws-ec2 aws-ecs aws-eks aws-elasticache aws-elb aws-iam aws-lambda aws-rds aws-route53 aws-s3 aws-sns aws-sqs aws-vpc check close docker ellipsis git github google google-cloud google-drive kubernetes mdi-account mdi-account-alert mdi-alert mdi-card-account-details mdi-check mdi-content-copy mdi-cookie mdi-database mdi-domain mdi-download mdi-email mdi-file-check mdi-file-key mdi-fit-to-screen-outline mdi-fullscreen mdi-fullscreen-exit mdi-harddisk mdi-image-multiple mdi-key mdi-lock mdi-magnify-minus-outline mdi-magnify-plus-outline mdi-refresh mdi-server mdi-shield-check mdi-web nginx postgresql redis user user-settings warning'.split(' ').sort());
 const CONTROLS = Object.freeze('alert check copy download maximize-2 minimize-2 scan zoom-in zoom-out'.split(' ').sort());
 
 function run(command, args, cwd) {
@@ -50,7 +50,7 @@ test('buildDiagramPackage_selects_the_diagram_contract_without_mutating_full_des
   for (const item of [...fullCatalog.libraries, ...Object.values(fullCatalog.brands)]) if (item.notice) assert.ok(files.has(`dist/assets/icons/${item.notice}`));
   for (const [name, content] of Object.entries(INPUT.fullFiles)) if ((name.startsWith('ui/') && !['ui/icon-data.mjs', 'ui/build/styles.mjs'].includes(name)) || name.startsWith('styles/diagram/')) assert.deepEqual(files.get(`dist/${name}`), Buffer.from(content), name);
   const svgFiles = [...files.keys()].filter(name => name.endsWith('.svg'));
-  assert.equal(svgFiles.length, 42);
+  assert.equal(svgFiles.length, 59);
   assert.deepEqual(svgFiles.sort(), Object.values(catalog.icons).map(icon => `dist/assets/icons/${icon.file}`).sort());
   for (const name of svgFiles) assert.deepEqual(files.get(name), Buffer.from(INPUT.fullFiles[name.slice(5)]), name);
   assert.ok(![...files.keys()].some(name => /fonts|illustrations|styles\.css|styles\.source|tailwind/.test(name)));
@@ -123,11 +123,11 @@ test('installed_diagram_tarball_runs_public_ui_runtime_styles_icons_and_bin', ()
     import { trusted } from '@woonyong-choi/design-tokens/components';
     const require = createRequire(import.meta.url);
     const catalog = getIconCatalog();
-    assert.equal(Object.keys(catalog.icons).length, 42);
+    assert.equal(Object.keys(catalog.icons).length, 59);
     for (const name of [...Object.keys(catalog.icons), ...Object.keys(catalog.aliases)]) assert.match(readIcon(name), /<svg/);
     for (const role of Object.keys(ICON_ROLES.controls)) assert.match(String(ControlIcon(role)), /<svg/);
     assert.equal(Object.keys(ICON_DATA).length, 9);
-    for (const name of 'apigw bastion cache cdn db desktop dns function lb mobile monitoring mq region server vpn aws-ec2'.split(' ')) assert.throws(() => readIcon(name), /unknown icon/);
+    for (const name of 'apigw bastion cache cdn db desktop dns function lb mobile monitoring mq region server vpn'.split(' ')) assert.throws(() => readIcon(name), /unknown icon/);
     assert.throws(() => ControlIcon('search'), /unknown controls/);
     assert.match(String(DiagramEmbed({src:'/diagram.html',title:'test',dimensions:{width:100,height:100}})), /iframe/);
     assert.match(DiagramFrame({ canvas: '<svg></svg>', source: 'diagram', labels: ['one'] }), /data-tool="copy"/);

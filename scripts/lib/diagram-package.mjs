@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto';
 
 const POLICY = Object.freeze({
-  icons: Object.freeze('user admin nginx postgresql redis git github check warning close ellipsis diagram-browser diagram-server diagram-cookie diagram-session diagram-jwt diagram-lock diagram-key diagram-refresh diagram-identity diagram-attacker diagram-mail diagram-drive diagram-photos diagram-provider diagram-signature diagram-shield platform-google platform-google-cloud platform-google-drive platform-kubernetes platform-docker platform-aws'.split(' ')),
+  icons: Object.freeze('user admin nginx postgresql redis git github check warning close ellipsis diagram-browser diagram-server diagram-cookie diagram-session diagram-jwt diagram-lock diagram-key diagram-refresh diagram-identity diagram-attacker diagram-mail diagram-drive diagram-photos diagram-provider diagram-signature diagram-shield diagram-user platform-google platform-google-cloud platform-google-drive platform-kubernetes platform-docker platform-redis platform-postgresql platform-aws-ec2 platform-aws-lambda platform-aws-ecs platform-aws-eks platform-aws-s3 platform-aws-rds platform-aws-dynamodb platform-aws-elasticache platform-aws-sqs platform-aws-sns platform-aws-api-gateway platform-aws-elb platform-aws-route53 platform-aws-cloudfront platform-aws-vpc platform-aws-iam platform-aws-cloudwatch'.split(' ')),
   controls: Object.freeze('copy download maximize-2 minimize-2 check alert zoom-in zoom-out scan'.split(' ')),
   files: Object.freeze(['tokens.css', 'tokens.js', 'tokens.json', 'tokens.dark.json', 'styles/tabs.css', 'styles/toolbar.css', 'styles/diagram-embed.css']),
   // CSS 축소 도우미(`/build/styles`)는 웹 사이트 빌드용이며 도표 소비자의 실행 경로가 아님. 이 파일만 esbuild를 import함

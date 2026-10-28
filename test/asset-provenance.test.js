@@ -113,11 +113,11 @@ test('repository_has_no_third_party_site_file_names_or_asset_links', () => {
 });
 
 
-test('diagram_icons_and_controls_use_one_material_design_icons_release', () => {
+test('general_diagram_icons_and_controls_use_one_material_design_icons_release', () => {
   const library = catalog.libraries.find(item => item.name === 'material-design-icons');
   assert.equal(library.version, '7.4.47');
-  const selected = [...Object.entries(catalog.aliases).filter(([role]) => /^(diagram|platform)-/.test(role)).map(([, target]) => target), ...Object.values(catalog.diagramControls)];
-  assert.equal(new Set(selected).size, 31);
+  const selected = [...Object.entries(catalog.aliases).filter(([role]) => /^diagram-/.test(role)).map(([, target]) => target), ...Object.values(catalog.diagramControls)];
+  assert.equal(new Set(selected).size, 26);
   for (const target of selected) {
     const icon = library.icons[target];
     assert.ok(icon, target);
@@ -127,4 +127,15 @@ test('diagram_icons_and_controls_use_one_material_design_icons_release', () => {
     assert.match(readFileSync(root + 'assets/icons/' + icon.file, 'utf8'), /fill="currentColor"/);
     assert.deepEqual(parseIconSvg(readFileSync(root + 'assets/icons/' + icon.file, 'utf8')).viewBox, [0, 0, 24, 24]);
   }
+});
+
+
+test('platform_aliases_preserve_vendor_brands_and_aws_service_assets', () => {
+  for (const [alias, target] of Object.entries(catalog.aliases).filter(([name]) => name.startsWith('platform-'))) {
+    assert.ok(catalog.brands[target], alias);
+    assert.ok(!target.startsWith('mdi-'), alias);
+    if (target.startsWith('aws-')) assert.equal(catalog.brands[target].library, 'aws-architecture');
+  }
+  assert.equal(catalog.aliases['platform-redis'], 'redis');
+  assert.equal(catalog.aliases['platform-postgresql'], 'postgresql');
 });

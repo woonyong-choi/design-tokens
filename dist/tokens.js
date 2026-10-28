@@ -1610,10 +1610,10 @@ export const values = freeze({
       "number-ink": "#ffffff",
       "outline": "#888888",
       "selection-fill": "#d5e4fa",
-      "canvas": "#e9edf2",
+      "canvas": "#ffffff",
       "flash": "#d9e6ff",
       "active-surface": "#ebf1ff",
-      "label-fill": "#c9c9c9",
+      "label-fill": "#e7e7e7",
       "label-ink": "#303336",
       "label-active-fill": "#1e6bd6",
       "label-active-ink": "#ffffff",
@@ -1624,7 +1624,7 @@ export const values = freeze({
         "warn-ink": "#ffffff",
         "fail-fill": "#cc0041",
         "fail-ink": "#ffffff",
-        "wait-fill": "#c9c9c9",
+        "wait-fill": "#e7e7e7",
         "wait-ink": "#303336"
       }
     },

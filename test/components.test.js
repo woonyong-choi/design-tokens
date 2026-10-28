@@ -56,8 +56,7 @@ test('category_and_flow_share_readable_solid_color_pairs', () => {
 test('diagram_outline_is_readable_on_both_card_and_canvas_surfaces', () => {
   for (const [mode, table] of Object.entries(tables)) {
     const value = key => resolveValue(table, key);
-    assert.notEqual(value('color.prose-pre-background'), value('color.ui-card'), mode + ' diagram surface differs from page');
-    for (const background of ['color.ui-card', 'color.prose-pre-background']) {
+    for (const background of ['color.ui-card', 'color.figure.canvas']) {
       assert.ok(contrast(value('color.figure.outline'), value(background)) >= 3, mode + ' outline on ' + background);
     }
   }
@@ -129,7 +128,7 @@ test('syntax_and_comment_colors_keep_text_contrast_on_the_code_surface', () => {
   for (const [mode, table] of Object.entries(tables)) {
     const hex = name => resolveValue(table, name);
     const inline = onSurface(hex('color.prose-code-background'), hex('color.ui-card'));
-    const code = hex('color.figure.canvas');
+    const code = hex('color.prose-pre-background');
     assert.ok(contrast(onSurface(hex('color.prose-code-color'), inline), inline) >= 4.5, `${mode} inline code`);
     for (const role of ['color.prose-code-color', ...SYNTAX_ROLES.map(role => `color.syntax-${role}`)]) {
       assert.ok(contrast(onSurface(hex(role), code), code) >= 4.5, `${mode}.${role} on code surface ${code}`);
@@ -253,13 +252,14 @@ test('warning_callout_list_marker_and_input_stay_readable_in_both_themes', () =>
 });
 
 
-test('code_and_diagram_canvas_share_a_visible_gray_surface_in_light_mode', () => {
+test('diagram_paper_and_code_surface_keep_their_own_semantic_roles_in_light_mode', () => {
   const canvas = resolveValue(tables.light, 'color.figure.canvas');
-  assert.equal(canvas, resolveValue(tables.light, 'color.soft'));
-  assert.ok(contrast(canvas, resolveValue(tables.light, 'color.ui-card')) >= 1.15);
+  assert.equal(canvas, resolveValue(tables.light, 'color.control-paper'));
+  assert.notEqual(canvas, resolveValue(tables.light, 'color.prose-pre-background'));
+  assert.notEqual(canvas, resolveValue(tables.light, 'color.figure.label-fill'));
   const prose = readFileSync(root + 'styles/prose.css', 'utf8');
   const diagram = readFileSync(root + 'styles/diagram/player.css', 'utf8');
-  assert.match(prose, /background: var\(--color-figure-canvas\)/);
+  assert.match(prose, /background: var\(--color-prose-pre-background\)/);
   assert.match(diagram, /background: var\(--color-figure-canvas\)/);
 });
 

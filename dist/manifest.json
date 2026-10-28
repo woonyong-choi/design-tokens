@@ -198,8 +198,8 @@
     "assets/icons/programming/terminal.svg": "995bd48e1de12fcb906b19969d144133b3fbea09602995d9350b7c517fc4b21a",
     "assets/icons/security/security.svg": "3155befdc3524ddc87baacbcba5deb63333b43558a4420a7e4d020cca83950a4",
     "assets/sources.json": "8e6580783bf559aeb17189cddcc023fbd15198803d33c42f494cbbc083dde112",
-    "styles.css": "a75a45fcf18aead39e2ce2ccc66797a43ee9d6317951f3109bd87cca392c65db",
-    "styles.source.css": "047fa683327ebdd1a76541fd4950afc69da12b896a065ba442d9f0c5d221de14",
+    "styles.css": "1cf3ac929be08236019771407ec7579a5c9b289ff1bce9d790cfbd3700d3e03c",
+    "styles.source.css": "dfe42a69aab4aeedabc2996196859ca2d3761b9cba942232fbd3752f1e079fcd",
     "styles/diagram-embed.css": "f8743b4bb0f2f8485338d2a2311a6bc37e8a10ef61eb8142e0b59b0a1b460ef0",
     "styles/diagram/chart.css": "7fe9a835f2792f39f3c81230040eee4644376972dc9953fec0d9519524c27b76",
     "styles/diagram/document.css": "ee8346db461b292627ccebf3b1e9ffbc9bf500d6644cac8969327440df5f40dd",
@@ -247,5 +247,5 @@
     "ui/toolbar.mjs": "3fab9dbcd66cbb7273e8ce39d7754e5783ea4e605418dc4faf2c91831067cdd2",
     "ui/write.mjs": "e3de56e37109766624facf9da318fcc7402193b04ec31f0e1198f95c0a95d700"
   },
-  "contentHash": "0609f9c49374d07eb20fc941aa6a6db893f2bb3d91553ff1171861fb0a0e6f01"
+  "contentHash": "8901e22b3b97309300ab7a1066d5f57bebb109f22cca582920eba4115e416aa0"
 }

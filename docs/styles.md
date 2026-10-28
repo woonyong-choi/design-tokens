@@ -173,7 +173,7 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 코드 구문 역할은 `SYNTAX_ROLES`와 `SyntaxToken`으로 연결하며 분석기는 소비자가 선택한다.
 
-본문의 코드 블록(`.app-code`)과 그림(`.app-prose .app-figure` 안의 그림)은 같은 곡률 `radius.prose-block-radius`(8px)를 쓴다. 글자 크기에 따라 바뀌는 em 값이 아닌 고정값이라 둘의 모서리가 같다.
+본문의 코드 블록(`.app-code`)과 그림(`.app-prose .app-figure` 안의 그림)은 같은 곡률 `radius.prose-block-radius`(8px)를 쓴다. 글자 크기에 따라 바뀌는 em 값이 아닌 고정값이라 둘의 모서리가 같다. 그림 상자(`.app-figure`)는 브라우저 기본 좌우 여백(40px)을 없애 본문 폭을 그대로 쓴다. 그래서 본문보다 큰 그림은 코드 블록과 같은 폭으로 줄고, 본문보다 작은 그림은 원래 크기로 가운데에 놓인다(늘려서 흐려지지 않게).
 
 코드 블록과 도표는 `ToolHeader`, `Toolbar`, `ToolButton`을 조립한다. 코드·그림의 면 안쪽 오른쪽에 도구 막대를 둔다. 이름표(`.app-tool-label`)가 있는 머리글은 버튼 높이를 차지해 콘텐츠와 겹치지 않는다. 이름표 없는 머리글(그림)은 자리를 차지하지 않고 면 오른쪽 위에 겹쳐 놓여, 숨은 도구 막대가 콘텐츠 위에 빈 띠를 만들지 않는다.
 

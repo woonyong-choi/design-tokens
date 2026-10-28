@@ -47,7 +47,7 @@ design-tokens는 여러 소비자가 공유하는 토큰, 아이콘, CSS, 정적
 
 ## 배포 경로
 
-소비하는 앱이 고정 commit을 고르고 DiagramPlay·document-engine은 앱이 설치한 같은 패키지를 peer 의존성으로 읽는다. [공통 디자인 배포](distribution.md)에 진입점과 갱신 절차를 기록한다. 태그 릴리스는 별도이며 main 병합이 npm 발행을 뜻하지 않는다.
+소비하는 앱이 고정 commit을 고르고 DiagramPlay와 homepage 내부 문서 렌더러는 앱이 설치한 같은 패키지를 읽는다. [공통 디자인 배포](distribution.md)에 진입점과 갱신 절차를 기록한다. 태그 릴리스는 별도이며 main 병합이 npm 발행을 뜻하지 않는다.
 
 ## README 흐름 그림
 

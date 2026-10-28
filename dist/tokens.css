@@ -431,7 +431,6 @@
   --spacing-panorama-width: var(--primitive-panorama-width);
   --spacing-collage-crop: var(--primitive-collage-crop);
   --spacing-collage-outset: var(--primitive-collage-outset);
-  --spacing-platform-inset: var(--primitive-platform-inset);
   --spacing-platform-button-x: var(--primitive-platform-button-x);
   --spacing-platform-button-y: var(--primitive-platform-button-y);
   --spacing-platform-button-gap: var(--primitive-platform-button-gap);
@@ -819,7 +818,6 @@
   --primitive-collage-outset: -5.55555556%;
   --primitive-feature-line: 1.3;
   --primitive-feature-box-text: 16.2px;
-  --primitive-platform-inset: 1.25em;
   --primitive-platform-text: 0.89em;
   --primitive-platform-button-x: 1em;
   --primitive-platform-button-y: 0.5em;
@@ -962,7 +960,6 @@
   --primitive-callout-border-dark: rgba(236,244,255,.07);
   --primitive-task-size: 1.667cap;
   --primitive-task-align: -.3335cap;
-  --primitive-platform-nav-margin: .5em 0 1em;
   --primitive-platform-line: 1.3;
   --primitive-platform-hover: rgba(0,20,49,.18);
   --primitive-platform-active: rgba(0,15,37,.23);
@@ -1248,7 +1245,6 @@
   --component-key-margin: var(--primitive-key-margin);
   --component-prose-h1-margin: var(--primitive-prose-h1-margin);
   --component-callout-padding: var(--primitive-callout-padding);
-  --component-platform-nav-margin: var(--primitive-platform-nav-margin);
   --component-help-centered-padding: var(--primitive-help-centered-padding);
   --component-help-grouped-padding: var(--primitive-help-grouped-padding);
   --component-help-inline-padding: var(--primitive-help-inline-padding);

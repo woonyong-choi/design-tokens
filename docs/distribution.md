@@ -123,8 +123,7 @@ JS
 | 소비자 | 선언 | 이유 |
 |---|---|---|
 | DiagramPlay | `peerDependencies` 범위 + `devDependencies` 고정 commit | 그림은 호스트 앱이 설치한 같은 디자인을 읽고, 자체 시험·그림 생성은 고정 commit으로 한다 |
-| document-engine | `peerDependencies` 범위 + `devDependencies` 고정 commit | 기본 테마는 호스트 앱이 준 디자인을 쓴다 |
-| homepage | `devDependencies` 고정 commit | 사이트가 디자인·DiagramPlay·문서 엔진의 버전을 함께 정한다 |
+| homepage | `devDependencies` 고정 commit | 사이트가 디자인·DiagramPlay의 버전을 함께 정한다. 내부 문서 렌더러는 사이트가 설치한 디자인을 쓴다 |
 
 `peerDependencies`의 범위는 `package.json`의 `version`(semver)과 비교한다. Git으로 설치한 패키지도 이 값을 가지므로 앱이 고른 commit 하나가 모든 부품에 공유된다. 범위를 벗어나는 호환 변경은 `version`을 올려 알린다.
 

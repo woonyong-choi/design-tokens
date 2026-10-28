@@ -9,15 +9,11 @@ const { trusted } = ui;
 const read = (path) => readFileSync(fileURLToPath(new URL(path, import.meta.url)), 'utf8');
 const html = (value) => String(value);
 
-test('outline_levels_and_streamed_panel_indices_reject_attribute_injection', () => {
+test('outline_levels_reject_attribute_injection', () => {
   for (const level of ['2" onclick="alert(1)', '2', 0, 7, 1.5, undefined]) {
     assert.throws(() => ui.DocumentOutline({ sections: [{ id: 'a', title: 'A', level }] }), /heading level/);
   }
-  for (const index of ['0" onclick="alert(1)', '0', -1, 1.5, undefined]) {
-    assert.throws(() => ui.Tabs.panelOpen({ id: 'tabs', index }), /panel index/);
-  }
   assert.match(html(ui.DocumentOutline({ sections: [{ id: 'a', title: 'A', level: 2 }] })), /data-heading-level="2"/);
-  assert.match(ui.Tabs.panelOpen({ id: 'tabs', index: 0 }), /id="tabs-panel-0"/);
 });
 
 test('tables_escape_names_preserve_semantic_rows_and_share_the_stream_wrapper', () => {
@@ -63,26 +59,19 @@ test('slots_require_trusted_html_and_text_and_urls_are_handled_by_the_component'
   assert.throws(() => ui.Callout({ title: 't', body: '<b>raw</b>' }), /must be trusted/);
   assert.throws(() => ui.Card({ href: 'javascript:alert(1)', title: 't' }), /Unsupported URL/);
   assert.throws(() => ui.Card({ href: '//evil.example/', title: 't' }), /Unsupported URL/);
-  assert.throws(() => ui.Tabs({ id: 'a b', label: 'x', tabs: [{ label: 'l', body: trusted('') }] }), /Invalid id/);
+  assert.throws(() => ui.Gallery({ id: 'a b', slides: [{ image: trusted('') }] }), /Invalid id/);
   const card = html(ui.Card({ href: '/a/?x=1&y="2"', title: '<i>제목</i>', description: 'a & b' }));
   assert.match(card, /href="\/a\/\?x=1&amp;y=&quot;2&quot;"/);
   assert.match(card, /<strong>&lt;i&gt;제목&lt;\/i&gt;<\/strong><p>a &amp; b<\/p>/);
   assert.match(html(ui.Callout({ title: 'T', tone: 'warning', fineprint: true, body: trusted('<p>본문</p>') })), /^<aside class="app-callout is-warning is-fineprint"><strong>T<\/strong><p>본문<\/p><\/aside>$/);
 });
 
-test('tabs_link_ids_roles_and_selection_and_stream_form_equals_whole_form', () => {
-  const tabs = [{ label: 'Mac', body: trusted('<p>1</p>') }, { label: 'iPhone', body: trusted('<p>2</p>') }];
-  const props = { id: 'g1', label: '기기', platform: true, labels: ['Mac', 'iPhone'] };
-  const whole = html(ui.Tabs({ id: 'g1', label: '기기', platform: true, tabs }));
-  const stream = ui.Tabs.open(props) + tabs.map((tab, index) => ui.Tabs.panelOpen({ id: 'g1', index }) + tab.body + ui.Tabs.panelClose()).join('') + ui.Tabs.close(props);
-  assert.equal(whole, stream);
-  assert.match(whole, /^<section class="app-tabs is-platform" data-tabs data-platform>/);
-  for (const index of [0, 1]) {
-    assert.match(whole, new RegExp(`id="g1-tab-${index}" role="tab" aria-selected="${index === 0}" aria-controls="g1-panel-${index}" tabindex="${index ? '-1' : '0'}"`));
-    assert.match(whole, new RegExp(`id="g1-panel-${index}" role="tabpanel" aria-labelledby="g1-tab-${index}" tabindex="0"${index ? ' hidden' : ''}>`));
-  }
-  assert.equal((whole.match(/ hidden>/g) ?? []).length, 1);
-  assert.throws(() => ui.Tabs.close(), /same props/);
+// 문서 탭(`Tabs`, platform 동기화)은 없앴다. 패널 묶음과 선택 줄은 갤러리와 도표 장면만 쓴다.
+test('document_tabs_are_not_exported', () => {
+  for (const name of ['Tabs', 'TAB_FRAMES', 'TAB_POSITIONS']) assert.equal(ui[name], undefined, name);
+  assert.deepEqual(ui.TAB_SELECTORS, ['buttons', 'segmented', 'numbers']);
+  const runtime = read('../ui/runtime/document.js');
+  assert.doesNotMatch(runtime, /platform/);
 });
 
 test('card_variants_group_wrappers_and_related_have_one_definition', () => {
@@ -165,11 +154,14 @@ test('page_heading_uses_a_trusted_decorative_icon_and_escapes_the_title', () => 
   assert.throws(() => ui.PageHeading({ title: 'Search', icon: '<svg/>' }), /trusted/);
 });
 
-test('gallery_is_the_tabs_component_with_numbers_or_names_and_only_the_selected_slide_visible', () => {
+test('gallery_links_panels_to_a_numbers_or_names_tab_list_and_only_the_selected_slide_is_visible', () => {
   const slides = [1, 2, 3].map((n) => ({ image: trusted(`<img alt="${n}">`), caption: n === 1 ? '첫째' : undefined }));
   const gallery = html(ui.Gallery({ id: 'gal', title: '둘러보기', slides }));
-  assert.match(gallery, /^<section class="app-tabs is-selector-numbers" data-tabs><div class="app-tabpanel" id="gal-panel-0"/);
-  assert.equal(gallery, html(ui.Tabs({ id: 'gal', label: '둘러보기', selector: 'numbers', tabs: slides.map((slide, index) => ({ label: `슬라이드 ${index + 1}`, body: ui.Figure({ media: slide.image, caption: slide.caption }) })) })));
+  assert.match(gallery, /^<section class="app-tabs" data-tabs><div class="app-tabpanel" id="gal-panel-0"/);
+  for (const index of [0, 1, 2]) {
+    assert.match(gallery, new RegExp(`id="gal-tab-${index}" role="tab" aria-selected="${index === 0}" aria-controls="gal-panel-${index}" tabindex="${index ? '-1' : '0'}"`));
+    assert.match(gallery, new RegExp(`id="gal-panel-${index}" role="tabpanel" aria-labelledby="gal-tab-${index}" tabindex="0"${index ? ' hidden' : ''}>`));
+  }
   assert.match(gallery, /<div class="app-tablist is-after-panel is-numbers" role="tablist" aria-label="둘러보기">/);
   assert.match(gallery, /aria-controls="gal-panel-1" tabindex="-1" aria-label="슬라이드 2">2<\/button>/);
   assert.match(gallery, /id="gal-panel-0" role="tabpanel" aria-labelledby="gal-tab-0" tabindex="0"><figure class="app-figure"><img alt="1"><figcaption>첫째<\/figcaption><\/figure>/);
@@ -182,7 +174,7 @@ test('gallery_is_the_tabs_component_with_numbers_or_names_and_only_the_selected_
   assert.match(second, /id="g-panel-1" role="tabpanel" aria-labelledby="g-tab-1" tabindex="0"><figure/);
   assert.match(second, /id="g-panel-0" role="tabpanel" aria-labelledby="g-tab-0" tabindex="0" hidden>/);
   // 이름이 모두 있으면 분할 줄
-  assert.match(html(ui.Gallery({ id: 'g', slides: slides.map((s, i) => ({ ...s, label: `L${i}` })) })), /app-tabs is-selector-segmented/);
+  assert.match(html(ui.Gallery({ id: 'g', slides: slides.map((s, i) => ({ ...s, label: `L${i}` })) })), /class="app-tablist is-after-panel is-segmented"/);
   assert.throws(() => ui.Gallery({ id: 'g', selected: 3, slides }), /out of range/);
   assert.throws(() => ui.Gallery({ id: 'g', slides: [] }), /requires slides/);
 });
@@ -231,8 +223,6 @@ test('content_width_contract_is_shared_by_figure_gallery_video_and_code', () => 
     contentWidth: props => ui.contentWidth(props),
     Figure: props => ui.Figure({ media, ...props }),
     Gallery: props => ui.Gallery({ id: 'g', slides: [{ image: media }], ...props }),
-    Tabs: props => ui.Tabs({ id: 't', tabs: [{ label: '탭', body: media }], ...props }),
-    'Tabs.open': props => ui.Tabs.open({ id: 't', labels: ['탭'], ...props }),
     Video: props => ui.Video({ id: 'v', src: '/a.mp4', poster: '/a.png', ...props }),
   };
   for (const [name, render] of Object.entries(renderers)) {
@@ -243,7 +233,7 @@ test('content_width_contract_is_shared_by_figure_gallery_video_and_code', () => 
   assert.match(html(ui.Figure({ media, width: 'narrow' })), /^<figure class="app-figure app-width-narrow">/);
   assert.match(html(ui.Figure({ media, width: 'wide' })), /^<figure class="app-figure app-width-wide">/);
   assert.match(html(ui.Figure({ media })), /^<figure class="app-figure"><img alt=""><\/figure>$/);
-  assert.match(html(ui.Gallery({ id: 'g', width: 'wide', slides: [{ image: media }] })), /^<section class="app-tabs is-selector-numbers app-width-wide"/);
+  assert.match(html(ui.Gallery({ id: 'g', width: 'wide', slides: [{ image: media }] })), /^<section class="app-tabs app-width-wide"/);
   assert.match(html(ui.CodeBlock({ code: trusted('<code>x</code>'), width: 'wide' })), /^<div class="app-code app-tool-surface app-width-wide">/);
   assert.match(html(ui.Video({ id: 'v', src: '/a.mp4', poster: '/a.png', width: 'wide', remoteIcon: media })), /^<figure class="app-figure app-width-wide">/);
   const video = html(ui.Video({ id: 'ratio', src: '/a.mp4', poster: '/a.png', width: 'narrow', playerWide: true, playerWidth: 960, playerHeight: 540 }));
@@ -433,50 +423,15 @@ test('search_result_parts_escape_every_field_and_highlight_only_with_mark', () =
   assert.equal(html(ui.Tag({ href: '/tags/x/', label: 'X ×' })), '<a class="app-tag" href="/tags/x/">X ×</a>');
 });
 
-test('tabs_default_to_frameless_bottom_buttons_and_only_deviations_become_classes', () => {
-  const tabs = [{ label: '전', body: trusted('<p>1</p>') }, { label: '후', body: trusted('<p>2</p>') }];
-  // 옵션이 없으면 클래스도 없고 선택 줄은 패널 뒤다.
-  const base = html(ui.Tabs({ id: 'g', label: '탭', tabs }));
-  assert.match(base, /^<section class="app-tabs" data-tabs><div class="app-tabpanel" id="g-panel-0"/);
-  assert.match(base, /<\/div><div class="app-tablist is-after-panel" role="tablist" aria-label="탭">.*aria-controls="g-panel-1" tabindex="-1">후<\/button><\/div><\/section>$/);
-  // 기본값을 적어도 쓰지 않은 것과 같다.
-  assert.equal(html(ui.Tabs({ id: 'g', label: '탭', tabs, frame: 'none', position: 'bottom', selector: 'buttons', width: 'content' })), base);
-  // 벗어난 값만 클래스가 된다.
-  const classOf = (props) => /class="([^"]*)" data-tabs/.exec(html(ui.Tabs({ id: 'g', tabs, ...props })))[1];
-  assert.equal(classOf({ frame: 'panel' }), 'app-tabs is-frame-panel');
-  assert.equal(classOf({ position: 'top' }), 'app-tabs is-position-top');
-  assert.equal(classOf({ selector: 'segmented' }), 'app-tabs is-selector-segmented');
-  assert.equal(classOf({ selector: 'numbers', width: 'wide' }), 'app-tabs is-selector-numbers app-width-wide');
-  assert.equal(classOf({ frame: 'panel', position: 'top', selector: 'segmented', width: 'wide' }), 'app-tabs is-frame-panel is-position-top is-selector-segmented app-width-wide');
-  assert.doesNotMatch(base + classOf({ position: 'top' }), /is-frame-none|is-position-bottom|is-selector-buttons|width-content/);
-  // 위쪽이면 선택 줄이 패널 앞에 온다.
-  assert.match(html(ui.Tabs({ id: 'g', label: '탭', tabs, position: 'top' })), /^<section class="app-tabs is-position-top" data-tabs><div class="app-tablist"/);
-  // 토큰 스트림 형태도 같은 문자열이다.
-  const props = { id: 'g', label: '탭', labels: ['전', '후'], selector: 'segmented', width: 'wide' };
-  const stream = ui.Tabs.open(props) + tabs.map((tab, index) => ui.Tabs.panelOpen({ id: 'g', index }) + tab.body + ui.Tabs.panelClose()).join('') + ui.Tabs.close(props);
-  assert.equal(stream, html(ui.Tabs({ id: 'g', label: '탭', tabs, selector: 'segmented', width: 'wide' })));
-  // 번호 모양은 라벨 없이 쓸 수 있고 버튼에는 번호, 접근성 이름에는 라벨이 나온다.
-  const numbers = html(ui.Tabs({ id: 'g', label: '탭', selector: 'numbers', tabs: [{ body: trusted('') }, { label: '둘', body: trusted('') }] }));
-  assert.match(numbers, /aria-label="탭 1">1<\/button><button[^>]*aria-label="둘">2<\/button>/);
-  // 처음 보이는 탭
-  assert.match(html(ui.Tabs({ id: 'g', tabs, selected: 1 })), /id="g-tab-1" role="tab" aria-selected="true" aria-controls="g-panel-1" tabindex="0"/);
-  // 잘못된 값과 platform 충돌은 거부한다.
-  assert.throws(() => ui.Tabs({ id: 'g', tabs, frame: 'box' }), /Unknown tabs frame/);
-  assert.throws(() => ui.Tabs({ id: 'g', tabs, position: 'left' }), /Unknown tabs position/);
-  assert.throws(() => ui.Tabs({ id: 'g', tabs, selector: 'tiles' }), /Unknown tabs selector/);
-  assert.throws(() => ui.Tabs({ id: 'g', tabs, width: 'huge' }), /Unknown width/);
-  assert.throws(() => ui.Tabs({ id: 'g', tabs, selected: 2 }), /out of range/);
-  assert.throws(() => ui.Tabs({ id: 'g', tabs, platform: true, selector: 'numbers' }), /Platform tabs always/);
-  assert.throws(() => ui.Tabs({ id: 'g', tabs, platform: true, position: 'bottom' }), /Platform tabs always/);
-});
-
-test('tabs_share_one_selection_style_across_documents_and_diagrams', () => {
+test('tab_lists_share_one_selection_style_across_galleries_and_diagram_scenes', () => {
   const labels = ['첫 장면', '다음 `상태`'];
-  const document = html(ui.Tabs({ id: 'document', tabs: labels.map(label => ({ label, body: trusted('') })) }));
+  const list = html(ui.TabList({ id: 'list', labels, afterPanel: true }));
   const diagram = DiagramFrame({ canvas: '', labels });
   const tabListClass = markup => /class="([^"]+)" role="tablist"/.exec(markup)[1];
-  assert.equal(tabListClass(diagram), tabListClass(document));
+  assert.equal(tabListClass(diagram), tabListClass(list));
   assert.equal(tabListClass(diagram), 'app-tablist is-after-panel');
+  const gallery = html(ui.Gallery({ id: 'gal', slides: labels.map(label => ({ image: trusted(''), label })) }));
+  assert.equal(tabListClass(gallery), 'app-tablist is-after-panel is-segmented');
   assert.match(diagram, /aria-selected="true" aria-controls="scene-panel" tabindex="0"/);
   assert.match(diagram, /aria-selected="false" aria-controls="scene-panel" tabindex="-1">다음 <code>상태<\/code>/);
   const css = read('../styles/tabs.css');
@@ -500,10 +455,10 @@ test('tab_panels_never_reserve_height_so_the_selector_follows_the_visible_conten
   const panelRules = [...css.matchAll(/(?:^|\n)([^\n{}]*\.app-tabpanel[^\n{}]*)\{([^}]*)\}/g)];
   assert.ok(panelRules.length >= 2);
   for (const [, selector, body] of panelRules) {
-    if (selector.includes('.app-feature')) continue;
     assert.doesNotMatch(body, /visibility|grid-area|min-height|[^-]height:|position: absolute/, selector);
   }
-  assert.match(css, /\.app-tabs:not\(\.is-position-top\):not\(\.is-platform\):not\(\.is-frame-panel\) \.app-tabpanel > :last-child \{ margin-bottom: 0; \}/);
+  assert.match(css, /\.app-tabs \.app-tabpanel > :last-child \{ margin-bottom: 0; \}/);
+  assert.doesNotMatch(css, /is-platform|is-frame-panel|is-position-top|is-split/);
 });
 
 test('related_cards_are_single_row_compact_links_with_ellipsis_titles_and_no_description_styles', () => {

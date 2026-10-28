@@ -6,9 +6,9 @@ export function ContentGroup({ title, body, after, collection = false }) {
   return out(`<section class="app-support-group${collection ? ' app-knowledge-section' : ''}">${title ? `<h2>${escape(title)}</h2>` : ''}${slot(body, 'body')}${after ? `<p>${slot(after, 'after')}</p>` : ''}</section>`);
 }
 
-export function FeatureSection({ tone = 'canvas', split = false, heading, body, descriptions = [] }) {
+export function FeatureSection({ tone = 'canvas', heading, body, descriptions = [] }) {
   if (!['canvas', 'lightest', 'light', 'medium'].includes(tone)) throw new Error(`Unknown feature tone: ${tone}`);
-  return out(`<section class="app-feature app-feature-${tone}${split ? ' is-split' : ''}"><div class="app-shell">${slot(heading, 'heading')}</div><div class="app-feature-workspace"><div class="app-feature-media">${slot(body, 'body')}</div>${descriptions.length ? `<div class="app-feature-description">${descriptions.map(item => `<div><h3>${escape(item.title)}</h3><p>${escape(item.body)}</p></div>`).join('')}</div>` : ''}</div></section>`);
+  return out(`<section class="app-feature app-feature-${tone}"><div class="app-shell">${slot(heading, 'heading')}</div><div class="app-feature-media">${slot(body, 'body')}</div>${descriptions.length ? `<div class="app-feature-description">${descriptions.map(item => `<div><h3>${escape(item.title)}</h3><p>${escape(item.body)}</p></div>`).join('')}</div>` : ''}</section>`);
 }
 
 export function SyntaxExamples({ items }) {

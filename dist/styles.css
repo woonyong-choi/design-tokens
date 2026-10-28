@@ -175,7 +175,7 @@ body > main { overflow-x: clip; }
   .app-header { height: calc(var(--spacing-header) - (var(--text-nav-desktop-text) - var(--text-nav-text)) / 2); }
   .app-header a { font-size: var(--text-nav-text); }
 }
-/* 선택 줄: 문서 탭, 갤러리와 도표 장면이 같은 부품을 사용한다. */
+/* 선택 줄: 갤러리와 도표 장면이 같은 부품을 사용한다. */
 .app-tablist, .app-tablist button { box-sizing: border-box; }
 .app-tablist.is-after-panel { margin-block: var(--spacing-gap-sm) 0; }
 .app-tablist { display: flex; flex-wrap: wrap; justify-content: center; max-width: none; margin: 0; padding: 0; font-size: var(--text-body-text); background: transparent; }
@@ -269,10 +269,12 @@ body > main { overflow-x: clip; }
 .app-diagram iframe { display: block; width: 100%; border: 0; }
 iframe[data-diagram].is-fullscreen { position: fixed; inset: 0; z-index: var(--z-index-overlay); width: 100%; height: 100%; max-height: none; background: var(--color-ui-card); }
 .has-fullscreen-diagram { overflow: hidden; }
-/* 조작 요소: 재생·원격 버튼, 주요 동작 링크, 탭 목록, 툴팁, 인라인 버튼. 화면은 맥락 선택자로 크기만 바꾼다. */
-.app-tabs { margin-block: var(--spacing-gap); }
+/* 조작 요소: 재생·원격 버튼, 주요 동작 링크, 갤러리 패널 묶음, 툴팁, 인라인 버튼. 화면은 맥락 선택자로 크기만 바꾼다. */
+/* 갤러리 패널 묶음: 상자 없이 보이는 장 하나와 그 아래 선택 줄(tabs.css). */
+.app-tabs { margin-block: 0 var(--spacing-prose-paragraph-gap); }
 .app-tabpanel { text-align: left; }
-.app-tabs > .app-tablist:not(.is-after-panel) { margin: var(--component-platform-nav-margin); }
+.app-tabs .app-tabpanel > :first-child { margin-top: 0; }
+.app-tabs .app-tabpanel > :last-child { margin-bottom: 0; }
 .app-tooltip { border-bottom: var(--border-width-thin) dotted currentColor; cursor: help; }
 .app-remote { padding: var(--spacing-control-inset-block) var(--spacing-control-inset-inline); line-height: 1; color: var(--color-control-link); border: 0; border-radius: var(--radius-control-radius); background: transparent; cursor: pointer; }
 .app-remote:hover { color: var(--color-control-link); background: var(--color-control-hover); }
@@ -282,13 +284,6 @@ iframe[data-diagram].is-fullscreen { position: fixed; inset: 0; z-index: var(--z
 .app-remote.is-playing:hover { background: var(--color-control-active); }
 .app-remote { align-items: center; gap: var(--spacing-gap-xs); font-weight: var(--font-weight-semibold); }
 .app-remote [data-control-icon] { width: var(--text-subtitle); height: var(--text-subtitle); }
-.app-tabs:is(.is-platform, .is-frame-panel) { margin-block: 0 var(--spacing-prose-paragraph-gap); padding-inline: var(--spacing-platform-inset); border: var(--border-width-thin) solid var(--color-syntax-example-border); border-radius: var(--radius-prose-pre-radius); background: var(--color-syntax-example-background); }
-/* 탭 기본(옵션을 생략하면): 상자 없음, 선택 줄은 패널 아래, 둥근 단추. 기본을 벗어난 값만 클래스가 붙는다: is-frame-panel, is-position-top, is-selector-segmented|numbers. 옛 is-platform은 panel, top, buttons다. */
-.app-tabs.is-frame-panel:not(.is-position-top) .app-tablist { margin-bottom: var(--spacing-gap-sm); }
-.app-tabs:not(.is-position-top):not(.is-platform):not(.is-frame-panel) { margin-block: 0 var(--spacing-prose-paragraph-gap); }
-.app-tabs:not(.is-position-top):not(.is-platform) .app-tabpanel > :first-child { margin-top: 0; }
-.app-tabs:not(.is-position-top):not(.is-platform):not(.is-frame-panel) .app-tabpanel > :last-child { margin-bottom: 0; }
-.app-tabs.is-selector-segmented.is-position-top .app-tablist { margin-block: var(--spacing-gap); }
 button.app-tooltip { padding: 0; background: none; color: var(--color-control-link); border: 0; font: inherit; cursor: pointer; text-decoration: underline dotted; }
 .app-tooltip-bubble { position: fixed; inset: auto; left: clamp(var(--spacing-gap-xs),var(--anchor-x),calc(100vw - var(--spacing-tooltip-width) - var(--spacing-gap-xs))); top: var(--anchor-y); width: var(--spacing-tooltip-width); max-width: calc(100vw - var(--spacing-gap)); margin: 0; padding: var(--component-tooltip-padding); border: 0; border-radius: var(--radius-tooltip-radius); background: var(--color-ui-card); color: var(--color-ink); box-shadow: var(--shadow-tooltip-shadow); font-size: var(--text-landing-product-copy); line-height: var(--leading-feature-body-line); }
 .app-tooltip-bubble p { margin: 0; }
@@ -1014,25 +1009,13 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 @media (max-width: 560px) {
   .app-player-button.is-compact { width: var(--spacing-flow-control-size); height: var(--spacing-flow-control-size); }
 }
-/* 기능 소개 화면: 기능 히어로, 설명 상자, 분할 작업 영역, 데모 목록, 기능 탭. */
+/* 기능 소개 화면: 기능 히어로, 설명 상자, 데모 목록. */
 .app-feature { text-align: center; }
 .app-feature-media { max-width: var(--container-page); margin: var(--spacing-gap-lg) auto 0; }
 .app-feature-media img { margin: auto; }
 .app-feature-description { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); margin: var(--spacing-gap-lg) auto 0; text-align: left; }
 .app-feature-description p { margin: 0; }
 .app-feature .app-figure img { border-radius: 0; }
-.app-feature.is-split .app-feature-workspace { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); margin-top: var(--spacing-gap-lg); }
-.app-feature.is-split .app-feature-media, .app-feature.is-split .app-tabs { display: contents; }
-.app-feature.is-split .app-tablist { grid-column: 1 / -1; grid-row: 1; }
-.app-feature.is-split .app-tabpanel { grid-column: 2; grid-row: 2; }
-.app-feature.is-split .app-feature-description { display: flex; flex-direction: column; justify-content: center; grid-column: 1; grid-row: 2; gap: var(--spacing-card-inset); margin: 0; }
-.app-feature.is-split .app-figure { margin: 0; }
-@media (max-width: 600px) {
-  .app-feature.is-split .app-feature-workspace { grid-template-columns: minmax(0,1fr); }
-  .app-feature.is-split .app-tabpanel { grid-column: 1; }
-  .app-feature.is-split .app-feature-description { grid-column: 1; }
-}
-.app-feature.is-split .app-tablist { margin: 0 auto; }
 .app-feature .app-device { margin: 0 auto; }
 .app-feature-demos { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); align-items: center; text-align: left; }
 .app-feature-demo-description { margin-block: var(--spacing-gap-lg); }
@@ -1058,14 +1041,11 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 @media (max-width: 734px) { .app-feature-list, .app-feature-description { grid-template-columns: minmax(0,1fr); } }
 .app-feature-description { align-items: start; }
 .app-feature-description > div { line-height: var(--leading-feature-body-line); }
-.app-feature.is-split .app-feature-description > div { padding: var(--spacing-feature-box-padding); background: var(--color-feature-box-background); }
-.app-feature.is-split .app-feature-workspace { gap: var(--spacing-landing-panel-gap); }
 .app-feature-list > ul { list-style: none; padding: 0; margin: 0; }
 .app-feature-list li, .app-feature-demo-description { padding: var(--spacing-feature-box-padding); background: var(--color-feature-box-background); border-radius: var(--radius-feature-box-radius); font-size: var(--text-feature-box-text); line-height: var(--leading-feature-body-line); margin: 0 0 var(--text-feature-box-text); }
 .app-feature-demo-description h3 { align-items: center; flex-wrap: wrap; margin: 0; font-size: inherit; }
 .app-feature-demo-description p { margin: 0; }
 .app-feature-demos { gap: var(--spacing-landing-panel-gap); }
-@media (max-width: 600px) { .app-feature.is-split .app-feature-description { grid-row: 2; } .app-feature.is-split .app-tabpanel { grid-row: 3; } }
 .app-feature .app-remote { font-size: var(--text-body-text); }
 .app-feature .app-figure { margin: 0 0 var(--spacing-landing-panel-gap); }
 .app-feature .app-figure figcaption { margin-top: 0; font-size: inherit; }

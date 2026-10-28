@@ -31,7 +31,7 @@ test('semantic_catalog_covers_every_svg_once_at_two_levels', () => {
 test('active_consumer_inventory_matches_source_and_distribution', () => {
   const general = 'chat check checkbox-check checkbox-empty checkbox-indeterminate chevron-right close document download-bottom ellipsis file-copy maximize minimize pause play question replay rss scan search-mono user user-settings warning zoom-in zoom-out'.split(' ').sort();
   const content = 'api api-detail box-up brain-circuit code-review components cpu cpu-detail database database-detail document-detail event gateway hierarchy hierarchy-detail network network-detail operating-system operating-system-detail project search security server terminal terminal-detail'.split(' ');
-  const imported = 'mdi-web mdi-server mdi-cookie mdi-database mdi-file-key mdi-lock mdi-key mdi-refresh mdi-card-account-details mdi-account-alert mdi-email mdi-harddisk mdi-image-multiple mdi-domain mdi-file-check mdi-shield-check mdi-content-copy mdi-download mdi-fullscreen mdi-fullscreen-exit mdi-check mdi-alert mdi-magnify-plus-outline mdi-magnify-minus-outline mdi-fit-to-screen-outline mdi-account'.split(' ');
+  const imported = 'mdi-web mdi-server mdi-cookie mdi-database mdi-file-key mdi-lock mdi-key mdi-refresh mdi-card-account-details mdi-account-alert mdi-email mdi-harddisk mdi-image-multiple mdi-domain mdi-file-check mdi-shield-check mdi-account'.split(' ');
   const names = [...general, ...content, ...imported, ...Object.keys(catalog.brands)].sort();
   assert.deepEqual(Object.keys(catalog.icons).sort(), names);
   assert.deepEqual(readdirSync(root + 'assets/icons', { recursive: true }).filter(name => name.endsWith('.svg')).map(name => name.split('/').at(-1).slice(0, -4)).sort(), names);

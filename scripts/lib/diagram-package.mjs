@@ -25,8 +25,8 @@ export function buildDiagramPackage({ packageJson, license, fullFiles }) {
     return target;
   };
   const controls = Object.fromEntries(POLICY.controls.map(role => {
-    if (!Object.hasOwn(catalog.diagramControls, role)) throw new Error(`missing diagram control: ${role}`);
-    return [role, catalog.diagramControls[role]];
+    if (!Object.hasOwn(catalog.controls, role)) throw new Error(`missing diagram control: ${role}`);
+    return [role, catalog.controls[role]];
   }));
   const names = [...new Set([...POLICY.icons, ...Object.values(controls)].map(canonical))].sort();
   const selected = new Set(names);

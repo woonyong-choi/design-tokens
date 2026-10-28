@@ -107,15 +107,6 @@
     "assets/icons/actions/check.svg": "ce5dca46872c35ac2e6c80f32de84778bbc1b7cf370553b7c001d8daaf409e84",
     "assets/icons/actions/close.svg": "cc861e6fc088f1760dff5f421b94ace3f22d123857ca365b204e7093e4e46047",
     "assets/icons/actions/ellipsis.svg": "ad7b3f025b53bd6b1fc19c8a04ab88f815f2c52ad3e3db86ace2f5f05e4661b1",
-    "assets/icons/actions/mdi-alert.svg": "2049e5d1cbe57ac7ac40daca26a1ba8b6d770f089ff6e9591c9e987051de41fb",
-    "assets/icons/actions/mdi-check.svg": "5fbcb8fb30f44cdb604ae951063ddefdd80d14388d7e9a2c580fd7d956a24596",
-    "assets/icons/actions/mdi-content-copy.svg": "425482c75cc56d40fb2936c523e018274439bded69b6c94c8ce53f0959a0c681",
-    "assets/icons/actions/mdi-download.svg": "5ee4dd5ce562212970a403b21e2b92d58a7a25c6b36b8fe11a46a1ab4c636ce2",
-    "assets/icons/actions/mdi-fit-to-screen-outline.svg": "8c3f4355cc644f7cdc1913452be4c285c526cf2f6fe76cd085d2daa80a19d2d1",
-    "assets/icons/actions/mdi-fullscreen-exit.svg": "93c6e06fc465790d3360a2c3e9b6a00332cb84218f8d9b99e30139c465e45840",
-    "assets/icons/actions/mdi-fullscreen.svg": "2d595cdf236e12e8d74e764129b4a43974e74342f95241da51218d8ddac3c4f8",
-    "assets/icons/actions/mdi-magnify-minus-outline.svg": "815eb1c7d3be6b8b2f79414d1cfd36d14ed2a3b3c6a28675ac6225c3f7378f78",
-    "assets/icons/actions/mdi-magnify-plus-outline.svg": "d77035b0014b27259195023f8beee9eb4d418d4ed1b0c988f01c5eb95a2a8b57",
     "assets/icons/actions/mdi-refresh.svg": "48d1361a25bf25671af3ef3557f564bb258e3fdf5bc01580cc578689eb359f02",
     "assets/icons/actions/question.svg": "d53c0532ba45707658745c04d0c1b77f281bdc783645f96f242e408cf9ce7376",
     "assets/icons/actions/scan.svg": "c0f1395f271607e52971fc32d3bd29c2ea32511e6e0b3425293e4f11997e8a09",
@@ -167,7 +158,7 @@
     "assets/icons/brands/redis.svg": "72d4a0cf62a3460ddd8b9e837527b0d600cfcf74a1031ad21922207d2cec36b5",
     "assets/icons/brands/spring.svg": "70d139406413db03ed528965410e99e410cd785769008e2e178366b844ee0ba2",
     "assets/icons/brands/typescript.svg": "19d36a72518a2cf175efd101295a473ccda5cc78adc924b08ccd075a1d1a5dba",
-    "assets/icons/catalog.json": "10d42441e396121f3b0895495ad123dc99dc7d3bbcb288beb65f579630d2d539",
+    "assets/icons/catalog.json": "8ee4804d03dcaf9ac9d73cf442b679cbb4194fa6f65e6586028962bc6771df87",
     "assets/icons/communication/chat.svg": "0cd2f4dc5bdacf5c6cb2f60e258471f7fb1a66d5f57ba536565e487598a325c2",
     "assets/icons/communication/mdi-email.svg": "9ea954ec5bc0fb92c5fbed8e19521c86e680da3e52e042e8596f7ea6cb1d308b",
     "assets/icons/communication/newsletter.png": "4e1689a4ef32bc68b10553475d8ae9ed5728ef0ba2c43f4a0d18c6e2985b76c5",
@@ -278,5 +269,5 @@
     "ui/toolbar.mjs": "3fab9dbcd66cbb7273e8ce39d7754e5783ea4e605418dc4faf2c91831067cdd2",
     "ui/write.mjs": "796ee2fb248a61f1c1ee67e4a6e65766f3cd5abae1142592be4e9e83eec83989"
   },
-  "contentHash": "75f1c5d5b342248af4805a545d970e25c5a10abf4a490a0deb31435a5c028bc5"
+  "contentHash": "fb410595e08e121bce20b7903abc517008d69273614ab98d1cad2d0fdbc4711b"
 }

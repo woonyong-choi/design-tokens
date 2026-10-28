@@ -113,11 +113,11 @@ test('repository_has_no_third_party_site_file_names_or_asset_links', () => {
 });
 
 
-test('general_diagram_icons_and_controls_use_one_material_design_icons_release', () => {
+test('general_diagram_icons_use_one_material_design_icons_release', () => {
   const library = catalog.libraries.find(item => item.name === 'material-design-icons');
   assert.equal(library.version, '7.4.47');
-  const selected = [...Object.entries(catalog.aliases).filter(([role]) => /^diagram-/.test(role)).map(([, target]) => target), ...Object.values(catalog.diagramControls)];
-  assert.equal(new Set(selected).size, 26);
+  const selected = [...Object.entries(catalog.aliases).filter(([role]) => /^diagram-/.test(role)).map(([, target]) => target)];
+  assert.equal(new Set(selected).size, 17);
   for (const target of selected) {
     const icon = library.icons[target];
     assert.ok(icon, target);

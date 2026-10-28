@@ -11,6 +11,11 @@ body {
 }
 
 /* 예제 단독 재생 화면에서도 목록과 같은 테마 선택을 쓴다. */
+.fl-figure,
+.dp-theme {
+  --font-sans: var(--font-figure-sans);
+}
+
 .dp-theme {
   display: flex;
   justify-content: flex-end;
@@ -43,7 +48,6 @@ html.embedded body {
 }
 
 html.embedded .fl-figure {
-  max-width: none;
   background: transparent;
   border-radius: 0;
   box-shadow: none;

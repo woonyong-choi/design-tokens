@@ -544,9 +544,9 @@
     "styles/diagram-embed.css": "f8743b4bb0f2f8485338d2a2311a6bc37e8a10ef61eb8142e0b59b0a1b460ef0",
     "styles/diagram/chart.css": "7fe9a835f2792f39f3c81230040eee4644376972dc9953fec0d9519524c27b76",
     "styles/diagram/document.css": "ee8346db461b292627ccebf3b1e9ffbc9bf500d6644cac8969327440df5f40dd",
-    "styles/diagram/figure.css": "f4822b60592ed7a09b06e76d75d9a156d5660ae81b35ce9b5f8f403676c9ed0c",
+    "styles/diagram/figure.css": "ee019f94a456c25baf9f7eee5c450a6de7c207df320a93700928546d3cdf20f9",
     "styles/diagram/gallery.css": "bdd288b0e7b9c210edf62af135cea8d31aed3bec4782047a33dde2b427367aeb",
-    "styles/diagram/player.css": "d5d6fc0909bf59ac381aa3a15f57619b0282ce0e2f49290105443b290206fa3b",
+    "styles/diagram/player.css": "2575fc11dafb00cd811778bc408e7ca659c2cac90e722b29d1c118ed8cb4d5a4",
     "styles/diagram/status.css": "1bd7e564a2ef1c4bd5367f2bc174cc25288fba55ac8eb379dc3ca19a53474c49",
     "styles/table.css": "d67831d6d1dd5b8d8de69101b4cb423b610b18757ec386cdc0754bab59ef1e43",
     "styles/tabs.css": "e7762ad9522cde4e59d71fd446d414c467b7a1155ed6d07338f3da349b8a7567",
@@ -588,5 +588,5 @@
     "ui/toolbar.mjs": "3fab9dbcd66cbb7273e8ce39d7754e5783ea4e605418dc4faf2c91831067cdd2",
     "ui/write.mjs": "796ee2fb248a61f1c1ee67e4a6e65766f3cd5abae1142592be4e9e83eec83989"
   },
-  "contentHash": "bfa2deb1130c3e1a37de44a4c243c2ac49e6d0e9a4bd7c54babffe80c5e548bf"
+  "contentHash": "e94fce04197a2c164919573250d3ab2f0370a2409264bc4d2f8002217c602d2c"
 }

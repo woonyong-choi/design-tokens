@@ -424,26 +424,26 @@
   pointer-events: none;
 }
 
-/* 제어 구획의 경계는 관계선보다 약하며 제목 밑면은 생명선을 가린다. */
+/* 제어 구획은 일반 그룹과 같은 경계·제목 역할을 쓴다. 제목 밑면은 판과 같아 생명선만 가린다. */
 .fl .fl-fragment-border {
   fill: none;
-  stroke: var(--color-ui-line);
+  stroke: var(--color-figure-outline);
   stroke-width: var(--border-width-thin);
 }
 
 .fl .fl-fragment-divider {
   fill: none;
-  stroke: var(--color-ui-line);
+  stroke: var(--color-figure-outline);
   stroke-width: var(--border-width-hair);
   stroke-dasharray: var(--dash-card) var(--dash-card);
 }
 
 .fl .fl-fragment-heading {
-  fill: var(--color-ui-card);
+  fill: var(--color-figure-canvas);
 }
 
-.fl .fl-fragment-label {
-  font-weight: var(--font-weight-semibold);
+.fl .fl-fragment-branch .meta {
+  fill: var(--color-ui-muted);
 }
 
 .fl .fl-packet > circle:first-child {

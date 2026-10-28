@@ -492,7 +492,7 @@
     "assets/icons/brands/redis.svg": "72d4a0cf62a3460ddd8b9e837527b0d600cfcf74a1031ad21922207d2cec36b5",
     "assets/icons/brands/spring.svg": "70d139406413db03ed528965410e99e410cd785769008e2e178366b844ee0ba2",
     "assets/icons/brands/typescript.svg": "19d36a72518a2cf175efd101295a473ccda5cc78adc924b08ccd075a1d1a5dba",
-    "assets/icons/catalog.json": "3ec8cae92761cf22016ca62029489dbb227aeea8098d51016b50579613cd096b",
+    "assets/icons/catalog.json": "55b841924e9bf5fec53d12cf390799d7f91f65d2c2d4b790e228ec602c0dd211",
     "assets/icons/communication/chat.svg": "0cd2f4dc5bdacf5c6cb2f60e258471f7fb1a66d5f57ba536565e487598a325c2",
     "assets/icons/communication/newsletter.png": "4e1689a4ef32bc68b10553475d8ae9ed5728ef0ba2c43f4a0d18c6e2985b76c5",
     "assets/icons/communication/rss.svg": "ed8661841828a03d3f96db9b830587aad77ffe2799e846cfeaf7eff3a02c251a",
@@ -588,5 +588,5 @@
     "ui/toolbar.mjs": "3fab9dbcd66cbb7273e8ce39d7754e5783ea4e605418dc4faf2c91831067cdd2",
     "ui/write.mjs": "796ee2fb248a61f1c1ee67e4a6e65766f3cd5abae1142592be4e9e83eec83989"
   },
-  "contentHash": "df09b0e650c364f0346aaae45edc82ce779be872318c7f2ca2390c8c59ef5483"
+  "contentHash": "67e3077800867f3b27bcda6c40abf65302ecb141d20e70f83024bbd71cd49245"
 }

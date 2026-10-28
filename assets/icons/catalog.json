@@ -2877,8 +2877,13 @@
       "treatment": "Original SVG bytes, geometry, palette and viewBox retained.",
       "type": "group",
       "boundary": {
+        "type": "auto-scaling-group",
         "line": "dashed",
-        "guideSlide": 15
+        "guideSlides": [
+          7,
+          8,
+          15
+        ]
       }
     },
     "nhn-group-nhncloud-member": {
@@ -2911,7 +2916,16 @@
       "license": "NHN Cloud artwork; architecture diagram use per README; no general open-source license stated",
       "notice": "licenses/nhn-cloud.txt",
       "treatment": "Original SVG bytes, geometry, palette and viewBox retained.",
-      "type": "group"
+      "type": "group",
+      "boundary": {
+        "type": "cloud",
+        "line": "solid",
+        "guideSlides": [
+          7,
+          8,
+          15
+        ]
+      }
     },
     "nhn-group-on-premise": {
       "label": "on premise",
@@ -2927,7 +2941,16 @@
       "license": "NHN Cloud artwork; architecture diagram use per README; no general open-source license stated",
       "notice": "licenses/nhn-cloud.txt",
       "treatment": "Original SVG bytes, geometry, palette and viewBox retained.",
-      "type": "group"
+      "type": "group",
+      "boundary": {
+        "type": "on-premise",
+        "line": "solid",
+        "guideSlides": [
+          7,
+          8,
+          15
+        ]
+      }
     },
     "nhn-group-organization": {
       "label": "organization",
@@ -2943,7 +2966,16 @@
       "license": "NHN Cloud artwork; architecture diagram use per README; no general open-source license stated",
       "notice": "licenses/nhn-cloud.txt",
       "treatment": "Original SVG bytes, geometry, palette and viewBox retained.",
-      "type": "group"
+      "type": "group",
+      "boundary": {
+        "type": "organization",
+        "line": "solid",
+        "guideSlides": [
+          7,
+          8,
+          15
+        ]
+      }
     },
     "nhn-group-private-subnet": {
       "label": "private subnet",
@@ -2975,7 +3007,16 @@
       "license": "NHN Cloud artwork; architecture diagram use per README; no general open-source license stated",
       "notice": "licenses/nhn-cloud.txt",
       "treatment": "Original SVG bytes, geometry, palette and viewBox retained.",
-      "type": "group"
+      "type": "group",
+      "boundary": {
+        "type": "project",
+        "line": "solid",
+        "guideSlides": [
+          7,
+          8,
+          15
+        ]
+      }
     },
     "nhn-group-region": {
       "label": "region",
@@ -2993,8 +3034,13 @@
       "treatment": "Original SVG bytes, geometry, palette and viewBox retained.",
       "type": "group",
       "boundary": {
+        "type": "region",
         "line": "dashed",
-        "guideSlide": 15
+        "guideSlides": [
+          7,
+          8,
+          15
+        ]
       }
     },
     "nhn-group-vpc": {
@@ -3011,7 +3057,16 @@
       "license": "NHN Cloud artwork; architecture diagram use per README; no general open-source license stated",
       "notice": "licenses/nhn-cloud.txt",
       "treatment": "Original SVG bytes, geometry, palette and viewBox retained.",
-      "type": "group"
+      "type": "group",
+      "boundary": {
+        "type": "vpc",
+        "line": "solid",
+        "guideSlides": [
+          7,
+          8,
+          15
+        ]
+      }
     },
     "nhn-group-server-content": {
       "label": "server content",
@@ -3027,7 +3082,16 @@
       "license": "NHN Cloud artwork; architecture diagram use per README; no general open-source license stated",
       "notice": "licenses/nhn-cloud.txt",
       "treatment": "Original SVG bytes, geometry, palette and viewBox retained.",
-      "type": "group"
+      "type": "group",
+      "boundary": {
+        "type": "server-contents",
+        "line": "solid",
+        "guideSlides": [
+          7,
+          8,
+          15
+        ]
+      }
     },
     "nhn-group-compute-instance": {
       "label": "compute instance",
@@ -4643,7 +4707,16 @@
       "license": "NHN Cloud artwork; architecture diagram use per README; no general open-source license stated",
       "notice": "licenses/nhn-cloud.txt",
       "treatment": "Original SVG bytes, geometry, palette and viewBox retained.",
-      "type": "group"
+      "type": "group",
+      "boundary": {
+        "type": "security-group",
+        "line": "solid",
+        "guideSlides": [
+          7,
+          8,
+          15
+        ]
+      }
     },
     "nhn-group-network-service-gateway": {
       "label": "network service gateway",
@@ -8325,6 +8398,112 @@
       "person": "nhn-general-external-user",
       "admin": "nhn-general-manager",
       "administrator": "nhn-general-manager"
+    },
+    "boundaries": {
+      "cloud": {
+        "line": "solid",
+        "guideSlides": [
+          7,
+          8,
+          15
+        ]
+      },
+      "organization": {
+        "line": "solid",
+        "guideSlides": [
+          7,
+          8,
+          15
+        ]
+      },
+      "project": {
+        "line": "solid",
+        "guideSlides": [
+          7,
+          8,
+          15
+        ]
+      },
+      "on-premise": {
+        "line": "solid",
+        "guideSlides": [
+          7,
+          8,
+          15
+        ]
+      },
+      "region": {
+        "line": "dashed",
+        "guideSlides": [
+          7,
+          8,
+          15
+        ]
+      },
+      "availability-zone": {
+        "line": "dashed",
+        "guideSlides": [
+          7,
+          8,
+          15
+        ]
+      },
+      "auto-scaling-group": {
+        "line": "dashed",
+        "guideSlides": [
+          7,
+          8,
+          15
+        ]
+      },
+      "vpc": {
+        "line": "solid",
+        "guideSlides": [
+          7,
+          8,
+          15
+        ]
+      },
+      "subnet": {
+        "line": "solid",
+        "guideSlides": [
+          7,
+          8,
+          15
+        ]
+      },
+      "security-group": {
+        "line": "solid",
+        "guideSlides": [
+          7,
+          8,
+          15
+        ]
+      },
+      "server-contents": {
+        "line": "solid",
+        "guideSlides": [
+          7,
+          8,
+          15
+        ]
+      },
+      "instance-contents": {
+        "line": "solid",
+        "guideSlides": [
+          7,
+          8,
+          15
+        ]
+      },
+      "service": {
+        "line": "solid",
+        "guideSlides": [
+          7,
+          8,
+          15
+        ]
+      }
     }
   }
 }

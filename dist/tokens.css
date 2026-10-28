@@ -585,6 +585,7 @@
   --spacing-figure-sequence-row: 44px;
   --spacing-figure-group-title: 28px;
   --spacing-figure-figure-compact-width: 320px;
+  --spacing-figure-comparison-column: var(--primitive-diagram-comparison-column);
   --spacing-focus-offset: calc(var(--spacing-unit) * 0.375);
   --spacing-icon: var(--primitive-icon);
   --spacing-control: var(--primitive-control);
@@ -1109,6 +1110,8 @@
   --primitive-icon-idea-soft: #f8e47c;
   --primitive-dialog-backdrop: rgba(15,18,24,.4);
   --primitive-admin-shadow: 0 4px 16px rgba(0,0,0,.12);
+  --primitive-diagram-comparison-column: 350px;
+  --primitive-diagram-comparison-width: 1280px;
   --breakpoint-mobile: 560px;
   --breakpoint-support-pair: 400px;
   --breakpoint-product-pair: 480px;
@@ -1225,6 +1228,7 @@
   --container-admin-panel: 340px;
   --container-publish: 768px;
   --container-admin-login: 320px;
+  --container-diagram-comparison: var(--primitive-diagram-comparison-width);
   --blur-blur: var(--primitive-blur);
   --aspect-ratio-video: var(--primitive-ratio-video);
   --aspect-device-ratio: var(--primitive-device-ratio);

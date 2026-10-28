@@ -187,7 +187,6 @@ html.embedded .fl-figure.full {
    불투명도는 건드리지 않는다. 세기는 시각마다 재생기가 정한 값이다. 켜짐과 평소 색은 figure.css의 효과 한 벌이다. */
 .fl .fl-edge .pill {
   fill: color-mix(in srgb, var(--color-figure-label-active-fill) calc(var(--pill-tint, 0) * 100%), var(--color-figure-label-fill));
-  stroke: color-mix(in srgb, var(--fx-edge) calc(var(--pill-tint, 0) * 100%), var(--fx-edge-rest));
 }
 
 .fl .fl-edge .edgelabel {

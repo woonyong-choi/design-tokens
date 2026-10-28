@@ -1,4 +1,4 @@
-/* 상태와 관계 라벨 모두 채운 면·대비 글자·테두리를 쓴다. 상태 의미만 색으로 구분한다. */
+/* 상태와 관계 라벨 모두 채운 면과 대비 글자를 쓴다. 상태 의미만 색으로 구분한다. */
 .fl .fl-status {
   color: var(--status-ink);
 }
@@ -15,6 +15,6 @@
 .fl .fl-status-wait { --status-fill: var(--color-figure-status-wait-fill); --status-ink: var(--color-figure-status-wait-ink); }
 .fl .status-pill {
   fill: var(--status-fill);
-  stroke: currentColor;
+  stroke: none;
   stroke-width: var(--border-width-thin);
 }

@@ -697,7 +697,10 @@ export const tokens = freeze({
       "group": {
         "title": "var(--spacing-figure-group-title)"
       },
-      "figure-compact-width": "var(--spacing-figure-figure-compact-width)"
+      "figure-compact-width": "var(--spacing-figure-figure-compact-width)",
+      "comparison": {
+        "column": "var(--spacing-figure-comparison-column)"
+      }
     },
     "focus-offset": "var(--spacing-focus-offset)",
     "icon": "var(--spacing-icon)",
@@ -1238,7 +1241,9 @@ export const tokens = freeze({
     "icon-structure-edge": "var(--primitive-icon-structure-edge)",
     "icon-idea-soft": "var(--primitive-icon-idea-soft)",
     "dialog-backdrop": "var(--primitive-dialog-backdrop)",
-    "admin-shadow": "var(--primitive-admin-shadow)"
+    "admin-shadow": "var(--primitive-admin-shadow)",
+    "diagram-comparison-column": "var(--primitive-diagram-comparison-column)",
+    "diagram-comparison-width": "var(--primitive-diagram-comparison-width)"
   },
   "breakpoint": {
     "mobile": "var(--breakpoint-mobile)",
@@ -1376,7 +1381,8 @@ export const tokens = freeze({
     "diagram": "var(--container-diagram)",
     "admin-panel": "var(--container-admin-panel)",
     "publish": "var(--container-publish)",
-    "admin-login": "var(--container-admin-login)"
+    "admin-login": "var(--container-admin-login)",
+    "diagram-comparison": "var(--container-diagram-comparison)"
   },
   "blur": {
     "blur": "var(--blur-blur)"
@@ -2140,7 +2146,10 @@ export const values = freeze({
       "group": {
         "title": 28
       },
-      "figure-compact-width": 320
+      "figure-compact-width": 320,
+      "comparison": {
+        "column": 350
+      }
     },
     "focus-offset": "calc(4px * 0.375)",
     "icon": 24,
@@ -2681,7 +2690,9 @@ export const values = freeze({
     "icon-structure-edge": "#7d8794",
     "icon-idea-soft": "#f8e47c",
     "dialog-backdrop": "rgba(15,18,24,.4)",
-    "admin-shadow": "0 4px 16px rgba(0,0,0,.12)"
+    "admin-shadow": "0 4px 16px rgba(0,0,0,.12)",
+    "diagram-comparison-column": 350,
+    "diagram-comparison-width": 1280
   },
   "breakpoint": {
     "mobile": 560,
@@ -2819,7 +2830,8 @@ export const values = freeze({
     "diagram": 960,
     "admin-panel": 340,
     "publish": 768,
-    "admin-login": 320
+    "admin-login": 320,
+    "diagram-comparison": 1280
   },
   "blur": {
     "blur": 5

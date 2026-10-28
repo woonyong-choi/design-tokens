@@ -235,3 +235,23 @@ summary {
   gap: var(--spacing-2-5);
   padding-block: var(--spacing-4);
 }
+
+/* 다섯 표현을 같은 화면과 테마에서 나란히 검수하는 비교 목록. */
+.is-comparison { padding: var(--spacing-6); }
+.is-comparison .top, .is-comparison main { max-width: var(--container-diagram-comparison); }
+.is-comparison main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--spacing-figure-comparison-column)), 1fr));
+  gap: var(--spacing-4);
+}
+.is-comparison .comparison-card {
+  min-width: 0;
+  padding: var(--spacing-4);
+  border-radius: var(--radius-card-radius);
+  background: var(--color-figure-canvas);
+}
+.is-comparison h2 { margin: 0; font-size: var(--text-figure-15); }
+.is-comparison .comparison-preview { display: block; margin-block: var(--spacing-3); }
+.is-comparison .comparison-preview img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: contain; }
+.is-comparison .comparison-card p { margin: 0; font-size: var(--text-figure-13); color: var(--color-ui-muted); }
+.is-comparison .comparison-card nav { display: flex; gap: var(--spacing-4); margin-top: var(--spacing-3); }

@@ -567,6 +567,7 @@
   --spacing-figure-sequence-row: 44px;
   --spacing-figure-group-title: 28px;
   --spacing-figure-figure-compact-width: 320px;
+  --spacing-figure-comparison-column: var(--primitive-diagram-comparison-column);
   --spacing-focus-offset: calc(var(--spacing-unit) * 0.375);
   --spacing-icon: var(--primitive-icon);
   --spacing-control: var(--primitive-control);
@@ -726,6 +727,7 @@
   --container-admin-panel: 340px;
   --container-publish: 768px;
   --container-admin-login: 320px;
+  --container-diagram-comparison: var(--primitive-diagram-comparison-width);
   --blur-blur: var(--primitive-blur);
   --aspect-ratio-video: var(--primitive-ratio-video);
   --aspect-device-ratio: var(--primitive-device-ratio);

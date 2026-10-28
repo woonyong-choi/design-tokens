@@ -176,12 +176,12 @@
 
 .fl .pill {
   fill: var(--color-figure-label-fill);
-  stroke: var(--fx-edge-rest);
+  stroke: none;
 }
 
 .fl .badge-pill {
-  fill: var(--color-ui-card);
-  stroke: var(--fx-edge-rest);
+  fill: var(--color-figure-label-fill);
+  stroke: none;
 }
 
 .fl .fl-mini-pill {

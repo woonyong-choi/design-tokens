@@ -223,6 +223,7 @@
   --color-search-result-muted: var(--primitive-search-result-muted);
   --color-search-match: var(--primitive-search-match);
   --color-gallery-background: var(--primitive-gallery-background);
+  --color-gallery-surface: var(--color-gray-43);
   --color-gallery-hover: var(--primitive-gallery-hover);
   --color-gallery-active: var(--primitive-gallery-active);
   --color-gallery-selected: var(--primitive-gallery-selected);
@@ -1413,6 +1414,7 @@
   --color-search-result-color: rgba(255, 255, 255, 0.78);
   --color-search-result-muted: var(--color-ui-muted);
   --color-gallery-background: var(--color-feature-tab-background);
+  --color-gallery-surface: var(--color-canvas);
   --color-gallery-hover: var(--color-control-hover);
   --color-gallery-active: var(--color-feature-tab-background);
   --color-gallery-selected: var(--color-ink);
@@ -1580,6 +1582,7 @@
   --color-search-result-color: rgba(255, 255, 255, 0.78);
   --color-search-result-muted: var(--color-ui-muted);
   --color-gallery-background: var(--color-feature-tab-background);
+  --color-gallery-surface: var(--color-canvas);
   --color-gallery-hover: var(--color-control-hover);
   --color-gallery-active: var(--color-feature-tab-background);
   --color-gallery-selected: var(--color-ink);
@@ -1746,6 +1749,7 @@
   --color-search-result-color: var(--primitive-search-result-color);
   --color-search-result-muted: var(--primitive-search-result-muted);
   --color-gallery-background: var(--primitive-gallery-background);
+  --color-gallery-surface: var(--color-gray-43);
   --color-gallery-hover: var(--primitive-gallery-hover);
   --color-gallery-active: var(--primitive-gallery-active);
   --color-gallery-selected: var(--primitive-gallery-selected);

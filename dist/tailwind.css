@@ -224,6 +224,7 @@
   --color-search-result-muted: var(--primitive-search-result-muted);
   --color-search-match: var(--primitive-search-match);
   --color-gallery-background: var(--primitive-gallery-background);
+  --color-gallery-surface: var(--color-gray-43);
   --color-gallery-hover: var(--primitive-gallery-hover);
   --color-gallery-active: var(--primitive-gallery-active);
   --color-gallery-selected: var(--primitive-gallery-selected);

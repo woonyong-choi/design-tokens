@@ -420,6 +420,10 @@
       "$type": "color",
       "$value": "{color.feature-tab-background}"
     },
+    "gallery-surface": {
+      "$type": "color",
+      "$value": "{color.canvas}"
+    },
     "gallery-hover": {
       "$type": "color",
       "$value": "{color.control-hover}"

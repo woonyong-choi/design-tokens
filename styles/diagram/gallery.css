@@ -249,7 +249,7 @@ summary {
   min-width: 0;
   padding: var(--spacing-4);
   border-radius: var(--radius-card-radius);
-  background: var(--color-figure-canvas);
+  background: var(--color-gallery-surface);
 }
 .is-comparison h2 { margin: 0; font-size: var(--text-figure-15); }
 .is-comparison .comparison-preview { display: block; margin-block: var(--spacing-3); }
@@ -260,7 +260,7 @@ summary {
 .is-comparison .comparison-detail {
   margin-block: var(--spacing-8);
   padding: var(--spacing-4);
-  background: var(--color-figure-canvas);
+  background: var(--color-gallery-surface);
   border-radius: var(--radius-card-radius);
 }
 .is-comparison .comparison-detail header { padding: 0 0 var(--spacing-4); }

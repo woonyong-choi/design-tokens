@@ -29,7 +29,7 @@ h1 {
 .top p {
   grid-column: 1;
   margin: 0;
-  font-size: var(--text-figure-15);
+  font-size: var(--text-small);
   color: var(--color-ui-muted);
 }
 
@@ -69,7 +69,7 @@ h2 {
   align-items: baseline;
   min-width: 0;
   margin: 0;
-  font: var(--font-weight-semibold) var(--text-figure-22) var(--font-sans);
+  font: var(--font-weight-semibold) var(--text-title-3) var(--font-sans);
 }
 
 /* 백틱으로 감싼 글은 코드 글꼴로 그린다. */
@@ -85,14 +85,14 @@ code {
   overflow-wrap: anywhere;
 }
 .name {
-  font-size: var(--text-figure-13);
+  font-size: var(--text-caption);
   font-weight: var(--font-weight-normal);
   color: var(--color-ui-muted);
   overflow-wrap: anywhere;
 }
 
 .kind {
-  font-size: var(--text-figure-11);
+  font-size: var(--text-caption);
   color: var(--color-ui-muted);
 }
 
@@ -104,7 +104,7 @@ nav {
 }
 
 nav a {
-  font-size: var(--text-figure-13);
+  font-size: var(--text-caption);
   color: var(--color-ui-link);
   text-decoration: none;
 }
@@ -142,7 +142,7 @@ iframe:not(.has-diagram-height) {
 
 h3 {
   margin: 0;
-  font-size: var(--text-figure-15);
+  font-size: var(--text-small);
   overflow-wrap: anywhere;
 }
 
@@ -153,7 +153,7 @@ p {
 pre {
   overflow: auto;
   padding: var(--spacing-6);
-  font-size: var(--text-figure-13);
+  font-size: var(--text-caption);
   background: var(--color-prose-pre-background);
   border-radius: var(--radius-md);
 }
@@ -168,7 +168,7 @@ summary {
 }
 
 .catalog-lead {
-  font-size: var(--text-figure-22);
+  font-size: var(--text-title-3);
   color: var(--color-ui-muted);
 }
 
@@ -194,7 +194,7 @@ summary {
 }
 
 .catalog-card code {
-  font-size: var(--text-figure-13);
+  font-size: var(--text-caption);
   color: var(--color-ui-muted);
 }
 
@@ -216,7 +216,7 @@ summary {
 .catalog-scenes {
   margin: 0;
   padding-left: var(--spacing-8);
-  font-size: var(--text-figure-13);
+  font-size: var(--text-caption);
 }
 
 .catalog-scenes span {
@@ -225,7 +225,7 @@ summary {
 
 .catalog-support {
   margin: 0;
-  font-size: var(--text-figure-13);
+  font-size: var(--text-caption);
   color: var(--color-ui-muted);
 }
 

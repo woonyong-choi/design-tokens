@@ -43,24 +43,30 @@ html.embedded .fl-figure.full {
   background: var(--color-ui-card);
 }
 
-/* 그림의 바탕은 SVG와 같다. 도구 막대는 이 면 위 오른쪽 위에 뜬다. */
+/* 그림 틀은 코드·표·그림과 같은 블록 틀(1px 선, 반경 12)이고 면을 칠하지 않는다. 도구 단추는 틀 위쪽 자기 줄(.app-tool-header.is-row)에 있어 그림을 덮지 않는다. */
 .fl-surface {
   position: relative;
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
   min-height: 0;
-  background: var(--color-figure-canvas);
+  border: var(--border-width-thin) solid var(--color-ui-line);
+  border-radius: var(--radius-prose-block-radius);
+  background: transparent;
+}
+
+.fl-surface > .app-tool-header {
+  padding: var(--spacing-2) var(--spacing-2) 0;
 }
 
 /* 문서 안에서는 자연 높이를 쓴다. 판이 최소 크기에서도 틀보다 넓으면 이 영역 안에서만 가로로 옮겨 보고 페이지 폭은 늘리지 않는다. 전체 화면에서는 양쪽 축으로 이동한다. */
 .fl-canvas {
   min-height: 0;
-  padding: var(--spacing-3) 0;
+  padding: var(--spacing-2) 0 var(--spacing-4);
   overflow-x: auto;
   overflow-y: hidden;
-  background: var(--color-figure-canvas);
-  border-radius: var(--radius-card-radius);
+  background: transparent;
+  border-radius: var(--radius-prose-block-radius);
 }
 
 /* 가로로 옮겨 볼 부분이 남은 쪽 가장자리를 흐리게 해 그림이 이어진다는 것을 보인다. 스크롤 위치를 따르는 시간표(scroll-timeline)가 있을 때만 쓴다.
@@ -106,18 +112,18 @@ html.embedded .fl-figure.full {
 }
 
 /* 판 묶음은 그림 면의 폭을 차지한다. 판 SVG는 묶음 폭에 대한 비율 폭(--panel-w / --view-w)이되 자연 크기(SVG 좌표 한 단위가 svg-unit)보다 커지지 않는다.
-   넓은 그림은 글과 함께 줄지만, 그림의 가장 작은 글 역할(text.figure-meta)이 가장 작은 글 토큰(text.figure.9)이 되는 배율 밑으로는 줄지 않는다. DiagramPlay 그림 검사 10번과 같은 기준이다.
+   넓은 그림은 글과 함께 줄지만, 그림의 가장 작은 글 역할(text.caption)이 가장 작은 글 토큰(text.figure.9)이 되는 배율 밑으로는 줄지 않는다. DiagramPlay 그림 검사 10번과 같은 기준이다.
    그 하한이 틀보다 넓으면 .fl-canvas 안에서 가로로 옮겨 본다. 묶음도 가장 넓은 판(--view-w)의 하한 폭을 지켜 좁은 판이 넓은 판 위 가운데에 남는다. 판끼리의 폭 비율은 같은 배율이라 유지된다. */
 .dp-panels {
   width: 100%;
-  min-width: calc(var(--view-w) * var(--spacing-figure-svg-unit) * (var(--text-figure-9) / var(--text-figure-meta)));
+  min-width: calc(var(--view-w) * var(--spacing-figure-svg-unit) * (var(--text-figure-9) / var(--text-caption)));
   margin: 0 auto;
 }
 
 .dp-panel > svg {
   display: block;
   width: min(calc(100% * var(--panel-w) / var(--view-w)), calc(var(--panel-w) * var(--spacing-figure-svg-unit)));
-  min-width: calc(var(--panel-w) * var(--spacing-figure-svg-unit) * (var(--text-figure-9) / var(--text-figure-meta)));
+  min-width: calc(var(--panel-w) * var(--spacing-figure-svg-unit) * (var(--text-figure-9) / var(--text-caption)));
   height: auto;
   margin: 0 auto;
 }
@@ -154,6 +160,11 @@ html.embedded .fl-figure.full {
   inset: 0;
   z-index: var(--z-index-overlay);
   max-width: none;
+  border-radius: 0;
+}
+
+.fl-figure.full .fl-surface {
+  border: 0;
   border-radius: 0;
 }
 

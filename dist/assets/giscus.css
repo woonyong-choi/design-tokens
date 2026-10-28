@@ -1,5 +1,5 @@
 /* iframe 내부에서도 개인 사이트와 같은 역할 토큰을 사용한다. */
-:root { color: #303336; background: #ffffff; }
+:root { color: #595c5e; background: #ffffff; }
 main {
   --color-fg-default: #303336;
   --color-fg-muted: #55606e;
@@ -11,8 +11,8 @@ main {
   --color-border-default: #dfe3e8;
   --color-border-muted: #dfe3e8;
   --color-neutral-muted: #dfe3e8;
-  --color-accent-fg: #2576eb;
-  --color-accent-emphasis: #2576eb;
+  --color-accent-fg: #1e6bd6;
+  --color-accent-emphasis: #1e6bd6;
   --color-accent-muted: #dde9ff;
   --color-accent-subtle: #ebf1ff;
   --color-btn-text: #303336;
@@ -24,11 +24,11 @@ main {
   --color-btn-active-border: #dde9ff;
   --color-btn-selected-bg: #ebf1ff;
   --color-btn-primary-text: #ffffff;
-  --color-btn-primary-bg: #2576eb;
-  --color-btn-primary-border: #2576eb;
-  --color-btn-primary-hover-bg: #2576eb;
-  --color-btn-primary-hover-border: #2576eb;
-  --color-btn-primary-selected-bg: #2576eb;
+  --color-btn-primary-bg: #1e6bd6;
+  --color-btn-primary-border: #1e6bd6;
+  --color-btn-primary-hover-bg: #1e6bd6;
+  --color-btn-primary-hover-border: #1e6bd6;
+  --color-btn-primary-selected-bg: #1e6bd6;
   --color-btn-primary-disabled-text: #55606e;
   --color-btn-primary-disabled-bg: #e9edf2;
   --color-btn-primary-disabled-border: #dfe3e8;
@@ -37,10 +37,10 @@ main {
   --color-segmented-control-button-bg: #ffffff;
   --color-segmented-control-button-selected-border: #dfe3e8;
   --color-prettylights-syntax-comment: #55606e;
-  --color-prettylights-syntax-constant: #9d5100;
-  --color-prettylights-syntax-entity: #cc0041;
-  --color-prettylights-syntax-keyword: #cc0041;
-  --color-prettylights-syntax-string: #1161cb;
+  --color-prettylights-syntax-constant: #a9c4ff;
+  --color-prettylights-syntax-entity: #81a9fd;
+  --color-prettylights-syntax-keyword: #81a9fd;
+  --color-prettylights-syntax-string: #f2943c;
   --color-prettylights-syntax-storage-modifier-import: #303336;
   --color-prettylights-syntax-variable: #303336;
   font-family: Pretendard, "Pretendard Variable", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
@@ -61,20 +61,20 @@ main {
 .gsc-main .gsc-comment-box-tabs { background: transparent; border: 0; border-radius: 0; padding: 0; margin-bottom: 12px; }
 .gsc-main .gsc-comment-box-tabs > div { margin: 0; }
 .gsc-main .gsc-comment-box-tabs button { border: 0; border-radius: 8px; background: transparent; padding: 8px 12px; color: #55606e; font: inherit; }
-.gsc-main .gsc-comment-box-tabs button.color-bg-canvas { color: #2576eb; background: #ebf1ff; font-weight: 600; }
+.gsc-main .gsc-comment-box-tabs button.color-bg-canvas { color: #1e6bd6; background: #ebf1ff; font-weight: 600; }
 .gsc-main .gsc-comment-box-main { padding: 0; margin: 0; }
 .gsc-main .gsc-comment-box-write { border: 0; border-radius: 0; background: transparent; }
 .gsc-main .gsc-comment-box-write:focus-within { box-shadow: none; outline: 0; }
-.gsc-main .gsc-comment-box-preview { font-family: Pretendard, "Pretendard Variable", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif; font-size: 18px; line-height: 1.4; color: #303336; background: #f6f7fa; border: 0; border-radius: 12px; padding: 18px; }
-.gsc-main .gsc-comment-box-textarea { font-family: Pretendard, "Pretendard Variable", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif; font-size: 18px; line-height: 1.4; color: #303336; background: #edeef1; border: 1px solid transparent; border-radius: 12px; padding: 18px; box-shadow: none; resize: none; }
-.gsc-main .gsc-comment-box-textarea:focus { outline: 3px solid #2576eb; outline-offset: calc(-1 * 3px); border-color: transparent; box-shadow: none; }
+.gsc-main .gsc-comment-box-preview { font-family: Pretendard, "Pretendard Variable", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif; font-size: 18px; line-height: 1.4; color: #595c5e; background: #f6f7fa; border: 0; border-radius: 12px; padding: 18px; }
+.gsc-main .gsc-comment-box-textarea { font-family: Pretendard, "Pretendard Variable", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif; font-size: 18px; line-height: 1.4; color: #595c5e; background: #edeef1; border: 1px solid transparent; border-radius: 12px; padding: 18px; box-shadow: none; resize: none; }
+.gsc-main .gsc-comment-box-textarea:focus { outline: 3px solid #1e6bd6; outline-offset: calc(-1 * 3px); border-color: transparent; box-shadow: none; }
 /* iframe의 important 유틸리티보다 요청한 표시 상태를 우선한다. */
 .gsc-main .gsc-comment-box-md-toolbar, .gsc-main .gsc-comment-box-markdown-hint { display: none !important; }
 .gsc-main .gsc-comment-box-textarea::placeholder { color: #55606e; opacity: 1; }
 .gsc-main .gsc-comment-box-textarea-extras { background: transparent; border: 0; padding: 8px 0; }
 .gsc-main .gsc-comment-box-bottom { margin: 8px 0 0; padding: 0; gap: 12px; }
 .gsc-main .gsc-comment-box-buttons :is(button,a) { font-family: Pretendard, "Pretendard Variable", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif; font-size: 15px; font-weight: 600; padding: 8px 12px; border-radius: 8px; box-shadow: none; }
-.gsc-main .gsc-comment-box-buttons a.btn-primary { background: transparent; border-color: transparent; color: #2576eb; }
+.gsc-main .gsc-comment-box-buttons a.btn-primary { background: transparent; border-color: transparent; color: #1e6bd6; }
 .gsc-main .gsc-comment-box-buttons a.btn-primary:hover { background: #ebf1ff; text-decoration: none; }
 .gsc-main .gsc-comment { font-size: 18px; margin: 0; }
 /* 댓글은 본문의 연속으로 두고 서비스의 카드 외곽선을 제거한다. */
@@ -82,7 +82,7 @@ main {
 .gsc-main .gsc-comment + .gsc-comment { border-top: 1px solid #ebecef; padding-top: 48px; }
 .gsc-main .gsc-comment-header { padding: 12px 0 0; color: #55606e; font-size: 15px; gap: 12px; }
 .gsc-main .gsc-comment-author { flex-wrap: wrap; gap: 8px; }
-.gsc-main .gsc-comment-content, .gsc-main .gsc-reply-content { font-family: Pretendard, "Pretendard Variable", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif; font-size: 18px; line-height: 1.4; color: #303336; }
+.gsc-main .gsc-comment-content, .gsc-main .gsc-reply-content { font-family: Pretendard, "Pretendard Variable", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif; font-size: 18px; line-height: 1.4; color: #595c5e; }
 .gsc-main .gsc-comment-content { padding: 12px 0; border-radius: 0; }
 .gsc-main :is(.gsc-comment-content,.gsc-reply-content) code { font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace; }
 .gsc-main .gsc-comment-footer { padding-inline: 0; padding-bottom: 12px; font-size: 15px; }
@@ -103,11 +103,11 @@ main {
 .gsc-main .gsc-reactions-popover { border-color: #ebecef; border-radius: 12px; }
 .gsc-main :is(.gsc-comment-reactions,.gsc-reply-reactions,.gsc-direct-reaction-buttons) { align-items: center; gap: 8px; }
 .gsc-main .gsc-social-reaction-summary-item { display: inline-flex; align-items: center; justify-content: center; gap: calc(8px / 2); min-width: calc(24px + 8px); height: calc(24px + 8px); margin: 0; padding: 0 8px; border: 1px solid transparent; border-radius: 8px; box-shadow: none; background: #e9edf2; color: #55606e; font-family: Pretendard, "Pretendard Variable", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif; font-size: 15px; line-height: 1.2; }
-.gsc-main .gsc-social-reaction-summary-item.has-reacted { border-color: transparent; background: #ebf1ff; color: #2576eb; }
-.gsc-main .gsc-social-reaction-summary-item:not(:disabled):hover, .gsc-main .gsc-reactions-menu[open] > summary { background: #ebf1ff; color: #2576eb; border-color: #dde9ff; }
+.gsc-main .gsc-social-reaction-summary-item.has-reacted { border-color: transparent; background: #ebf1ff; color: #1e6bd6; }
+.gsc-main .gsc-social-reaction-summary-item:not(:disabled):hover, .gsc-main .gsc-reactions-menu[open] > summary { background: #ebf1ff; color: #1e6bd6; border-color: #dde9ff; }
 .gsc-main .gsc-social-reaction-summary-item > :is(svg,span) { margin: 0; }
 .gsc-main .gsc-emoji-button { border-radius: 8px; }
-.gsc-main :is(.gsc-comment-box-tabs button,.gsc-right-header button):hover { background: #ebf1ff; color: #2576eb; }
-.gsc-main :is(button,a,summary):focus-visible { outline: 3px solid #2576eb; outline-offset: 3px; }
+.gsc-main :is(.gsc-comment-box-tabs button,.gsc-right-header button):hover { background: #ebf1ff; color: #1e6bd6; }
+.gsc-main :is(button,a,summary):focus-visible { outline: 3px solid #1e6bd6; outline-offset: 3px; }
 .gsc-main a { text-decoration: none; }
 .gsc-main a:hover { text-decoration: underline; }

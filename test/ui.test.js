@@ -181,7 +181,12 @@ test('gallery_links_panels_to_a_numbers_or_names_tab_list_and_only_the_selected_
 
 test('code_block_and_tooltip_keep_accessible_name_status_and_popover_links', () => {
   const block = html(ui.CodeBlock({ code: trusted('<code>x</code>'), language: 'C<>', filename: 'a&b.c' }));
-  assert.match(block, /<span class="app-tool-label">C&lt;&gt; · a&amp;b.c<\/span>/);
+  // 언어 이름은 머리줄로 보이지 않고 속성으로만 남는다. 파일 이름만 이름표가 된다.
+  assert.match(block, /data-language="C&lt;&gt;"/);
+  assert.match(block, /<span class="app-tool-label">a&amp;b.c<\/span>/);
+  const plain = html(ui.CodeBlock({ code: trusted('<code>x</code>'), language: 'js' }));
+  assert.doesNotMatch(plain, /app-tool-label/);
+  assert.match(plain, /<div class="app-tool-header"><div class="app-toolbar"/);
   assert.match(block, /data-tool="copy" aria-label="코드 복사" title="코드 복사" hidden/);
   assert.match(block, /class="app-tool-status app-sr" data-tool-status role="status" aria-live="polite" aria-atomic="true"/);
   assert.match(read('../dist/styles/toolbar.css'), /\.app-sr\s*\{/);
@@ -270,12 +275,13 @@ test('figure_video_device_and_small_prose_shapes_have_one_definition', () => {
   assert.equal(html(ui.CancelledTask()), '<span class="app-cancelled-task" role="img" aria-label="취소된 작업"></span>');
 });
 
-test('code_blocks_wrap_instead_of_scrolling_and_widths_use_shared_tokens', () => {
+test('code_blocks_scroll_long_lines_and_widths_use_shared_tokens', () => {
   const css = read('../styles/prose.css') + read('../styles/media.css');
+  // 긴 줄은 줄을 바꾸지 않고 코드 블록 안에서 가로로 옮겨 본다. 페이지 폭은 늘지 않는다.
   const pre = /\.app-code pre \{([^}]*)\}/.exec(css)[1];
-  assert.match(pre, /white-space: pre-wrap/);
-  assert.match(pre, /overflow-wrap: anywhere/);
-  assert.doesNotMatch(pre, /overflow-x|overflow: (?:auto|scroll)|white-space: pre;/);
+  assert.match(pre, /white-space: pre;/);
+  assert.match(pre, /overflow-x: auto/);
+  assert.match(/\.app-code \{([^}]*)\}/.exec(css)[1], /overflow: hidden/);
   assert.match(css, /\.app-width-narrow \{[^}]*var\(--spacing-width-narrow\)/);
   assert.match(css, /\.app-width-wide \{[^}]*var\(--component-width-wide\)[^}]*calc\(\(100% - var\(--component-width-wide\)\) \/ 2\)/);
   assert.doesNotMatch(css, /app-breakout/);
@@ -435,7 +441,14 @@ test('tab_lists_share_one_selection_style_across_galleries_and_diagram_scenes', 
   assert.match(diagram, /aria-selected="true" aria-controls="scene-panel" tabindex="0"/);
   assert.match(diagram, /aria-selected="false" aria-controls="scene-panel" tabindex="-1">다음 <code>상태<\/code>/);
   const css = read('../styles/tabs.css');
-  assert.match(css, /\.app-tablist \{[^}]*font-size: var\(--text-body-text\)/);
+  // 기본 탭은 사이트 단추 모양: 작은 글 단계, 1px 선, 반경 8, 높이 32(안쪽 6·12에서 선 두께를 뺀 값)
+  assert.match(css, /\.app-tablist \{[^}]*font-size: var\(--text-small\)/);
+  const button = /\n\.app-tablist button \{([^}]*)\}/.exec(css)[1];
+  assert.match(button, /border: var\(--border-width-thin\) solid var\(--color-ui-line\)/);
+  assert.match(button, /border-radius: var\(--radius-lg\)/);
+  assert.match(button, /font-size: var\(--text-small\)/);
+  assert.match(button, /line-height: var\(--leading-caption\)/);
+  assert.match(button, /padding: calc\(var\(--spacing-1-5\) - var\(--border-width-thin\)\) calc\(var\(--spacing-3\) - var\(--border-width-thin\)\)/);
   assert.match(css, /flex-wrap: wrap/);
   assert.match(css, /overflow-wrap: anywhere/);
   assert.match(css, /:focus-visible/);

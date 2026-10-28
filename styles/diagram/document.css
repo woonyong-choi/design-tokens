@@ -20,7 +20,7 @@ body {
 }
 
 .bar a {
-  font-size: var(--text-figure-13);
+  font-size: var(--text-caption);
   color: var(--color-ui-link);
 }
 
@@ -60,12 +60,12 @@ code {
 
 /* 제목, 파일 이름, 종류 꼬리표는 기준선을 맞춰 한 줄에 놓고 사이를 간격 토큰으로 띄운다. 머리가 좁으면 칸 단위로 다음 줄로 넘긴다(말줄임 없음). */
 .name {
-  font-size: var(--text-figure-13);
+  font-size: var(--text-caption);
   overflow-wrap: anywhere;
 }
 
 .kind {
-  font-size: var(--text-figure-11);
+  font-size: var(--text-caption);
   color: var(--color-ui-muted);
 }
 
@@ -85,7 +85,7 @@ img {
   display: inline-flex;
   align-items: center;
   min-height: var(--spacing-figure-control-inner);
-  font-size: var(--text-figure-13);
+  font-size: var(--text-caption);
   color: var(--color-ui-link);
 }
 

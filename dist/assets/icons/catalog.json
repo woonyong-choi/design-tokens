@@ -31,22 +31,6 @@
     "notify": "event",
     "person": "user",
     "processor": "cpu",
-    "diagram-browser": "mdi-web",
-    "diagram-server": "mdi-server",
-    "diagram-cookie": "mdi-cookie",
-    "diagram-session": "mdi-database",
-    "diagram-jwt": "mdi-file-key",
-    "diagram-lock": "mdi-lock",
-    "diagram-key": "mdi-key",
-    "diagram-refresh": "mdi-refresh",
-    "diagram-identity": "mdi-card-account-details",
-    "diagram-attacker": "mdi-account-alert",
-    "diagram-mail": "mdi-email",
-    "diagram-drive": "mdi-harddisk",
-    "diagram-photos": "mdi-image-multiple",
-    "diagram-provider": "mdi-domain",
-    "diagram-signature": "mdi-file-check",
-    "diagram-shield": "mdi-shield-check",
     "platform-google": "google",
     "platform-google-cloud": "google-cloud",
     "platform-google-drive": "google-drive",
@@ -70,8 +54,7 @@
     "platform-aws-cloudfront": "aws-cloudfront",
     "platform-aws-vpc": "aws-vpc",
     "platform-aws-iam": "aws-iam",
-    "platform-aws-cloudwatch": "aws-cloudwatch",
-    "diagram-user": "mdi-account"
+    "platform-aws-cloudwatch": "aws-cloudwatch"
   },
   "controls": {
     "comment": "chat",
@@ -139,168 +122,6 @@
       "license": "AWS-specific architecture icon permission and site terms; not MIT",
       "notice": "licenses/aws-architecture.txt",
       "description": "백엔드 운영 다이어그램용 공식 서비스 아이콘 17종만 선택. 도형·색·고유 배경을 보존한다."
-    },
-    {
-      "name": "material-design-icons",
-      "version": "7.4.47",
-      "source": "https://github.com/Templarian/MaterialDesign-SVG",
-      "license": "Apache-2.0; see Pictogrammers notice",
-      "notice": "licenses/material-design-icons.txt",
-      "icons": {
-        "mdi-web": {
-          "file": "layout/mdi-web.svg",
-          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/web.svg",
-          "sourceSha256": "3ea2acc1f5bc86f48bffc186a11d6f538c6fc7a9e31dee5900814e0959cf2eb8",
-          "sha256": "d21f2e36d521cf4eab6c47895acfe9c66b9ce2053181666beb37cb0d4a6c3294",
-          "author": "Google",
-          "license": "Apache-2.0; see Pictogrammers notice",
-          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
-        },
-        "mdi-server": {
-          "file": "backend-api/mdi-server.svg",
-          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/server.svg",
-          "sourceSha256": "7409d190b5d74a512baa6de22146264f540c365d9a1d3e10f431d91b2cd65070",
-          "sha256": "a59c08c9aedfcb7074524d247002b916f36e9043dcd1675914d8d407f5d34c31",
-          "author": "Austin Andrews",
-          "license": "Apache-2.0; see Pictogrammers notice",
-          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
-        },
-        "mdi-cookie": {
-          "file": "security/mdi-cookie.svg",
-          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/cookie.svg",
-          "sourceSha256": "720e7f134f75c29e3b7aea57f84bf69be94a431390f2e4d1e4bacd030766aa25",
-          "sha256": "421b82038c062fb3ad2e637cda2d66c790aeb562be4ab67cd6feaffd34a2871d",
-          "author": "Google",
-          "license": "Apache-2.0; see Pictogrammers notice",
-          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
-        },
-        "mdi-database": {
-          "file": "databases/mdi-database.svg",
-          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/database.svg",
-          "sourceSha256": "fde25097feda892934cd6576bec8d19957769eda8b60597f2e9b5b21ec40faa0",
-          "sha256": "37b9043c1bcf77b3f4bf8bcd4bfa9e1e5eec4546d0212da2ede5c52a72b32fef",
-          "author": "Simran",
-          "license": "Apache-2.0; see Pictogrammers notice",
-          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
-        },
-        "mdi-file-key": {
-          "file": "security/mdi-file-key.svg",
-          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/file-key.svg",
-          "sourceSha256": "95e27ec8d94e308beeb6817f62c2afca0f28a164a646d50d0ce7b0bb301551b2",
-          "sha256": "912d84f9345973b9de59e6c56db2a598b88302f2f17a0353867fb1ea79789b9a",
-          "author": "Michael Richins",
-          "license": "Apache-2.0; see Pictogrammers notice",
-          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
-        },
-        "mdi-lock": {
-          "file": "security/mdi-lock.svg",
-          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/lock.svg",
-          "sourceSha256": "a129183f1505149f480e9097f9e916eccbde36cd3c025fb6f9ad09644a1d6548",
-          "sha256": "71311023843abfcc9d141d927358e7385b9c326029f1d990ad1e2783a6722340",
-          "author": "Google",
-          "license": "Apache-2.0; see Pictogrammers notice",
-          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
-        },
-        "mdi-key": {
-          "file": "security/mdi-key.svg",
-          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/key.svg",
-          "sourceSha256": "78e4bcbba25163c20708eb4a096f93c15f4f1065bd7b3342a77eadf9ec619ee3",
-          "sha256": "5d8584259ebdce0d902fd6198360d912b5563548c2415e84ba3df3e713f33bd9",
-          "author": "Google",
-          "license": "Apache-2.0; see Pictogrammers notice",
-          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
-        },
-        "mdi-refresh": {
-          "file": "actions/mdi-refresh.svg",
-          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/refresh.svg",
-          "sourceSha256": "6d9544dbd768dcabe41bc1e58eee213e88461024d1f72496cf0a90dcb3e250b6",
-          "sha256": "48d1361a25bf25671af3ef3557f564bb258e3fdf5bc01580cc578689eb359f02",
-          "author": "Google",
-          "license": "Apache-2.0; see Pictogrammers notice",
-          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
-        },
-        "mdi-card-account-details": {
-          "file": "people/mdi-card-account-details.svg",
-          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/card-account-details.svg",
-          "sourceSha256": "96ed94dd9827879a102a1b1463897ad10115a73dff28e14f1bb513093d990c76",
-          "sha256": "c76a85b99a635ad4f103cb334dd4326e07fec28abb2d604e68354d7e66e78bff",
-          "author": "Christopher Schreiner",
-          "license": "Apache-2.0; see Pictogrammers notice",
-          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
-        },
-        "mdi-account-alert": {
-          "file": "people/mdi-account-alert.svg",
-          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/account-alert.svg",
-          "sourceSha256": "d126f75c2ab31d25c5f782f2da6bab95bb356fa8074cd402325599f7be8317c9",
-          "sha256": "df84ee6502f9803990df8f55a912412de1e44a6c0db37b3e2a7ca04eab73ab58",
-          "author": "Austin Andrews",
-          "license": "Apache-2.0; see Pictogrammers notice",
-          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
-        },
-        "mdi-email": {
-          "file": "communication/mdi-email.svg",
-          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/email.svg",
-          "sourceSha256": "9aa5faa6c02396170d5316dd0506b57565a2977c9c4564cefd1fea5fea760a1c",
-          "sha256": "9ea954ec5bc0fb92c5fbed8e19521c86e680da3e52e042e8596f7ea6cb1d308b",
-          "author": "Google",
-          "license": "Apache-2.0; see Pictogrammers notice",
-          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
-        },
-        "mdi-harddisk": {
-          "file": "files-io/mdi-harddisk.svg",
-          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/harddisk.svg",
-          "sourceSha256": "9b4f6b454ff7b666985aee7c0b3abb5cb8af7d71b959e566439c3976148c5b53",
-          "sha256": "a2b3170740ad8b402b8594aca4d01f8b5a0eacd373f60d940a4f935c264fa4f2",
-          "author": "Austin Andrews",
-          "license": "Apache-2.0; see Pictogrammers notice",
-          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
-        },
-        "mdi-image-multiple": {
-          "file": "media/mdi-image-multiple.svg",
-          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/image-multiple.svg",
-          "sourceSha256": "cfc236bb8a1eddbb256fd47707c9c3df20b69005189e8fb246784a3c5ad5f922",
-          "sha256": "67a9a7bdd45a6a644c7f75450b79ee78aea85a7851e17118c0f71045ca5e5a73",
-          "author": "Google",
-          "license": "Apache-2.0; see Pictogrammers notice",
-          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
-        },
-        "mdi-domain": {
-          "file": "backend-api/mdi-domain.svg",
-          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/domain.svg",
-          "sourceSha256": "3f31e73a97ebc4df2e0b55f636e713733a5801925976cea6644dd72914b45300",
-          "sha256": "e83bf949241d7f13b7f430c301b8fe2173f8b5fbe774ff068ebb4979a0618c65",
-          "author": "Google",
-          "license": "Apache-2.0; see Pictogrammers notice",
-          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
-        },
-        "mdi-file-check": {
-          "file": "security/mdi-file-check.svg",
-          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/file-check.svg",
-          "sourceSha256": "51093934f16ec4c44cf0ebc2831e66232fad41b4d655e09bc9a2737166bae82d",
-          "sha256": "107455e73d4b869ac7463501779ccc07ecb24bdca4add5e568584c9f5daa30ce",
-          "author": "Simran",
-          "license": "Apache-2.0; see Pictogrammers notice",
-          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
-        },
-        "mdi-shield-check": {
-          "file": "security/mdi-shield-check.svg",
-          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/shield-check.svg",
-          "sourceSha256": "e64250b11f695be074c753f54c4e06146153b0f3ffce57d6285e1db38565f972",
-          "sha256": "71df3d09c4901b85a95e28c278bbc3dcfddf69f0733546558b0c68d4de1ac7cc",
-          "author": "Google",
-          "license": "Apache-2.0; see Pictogrammers notice",
-          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
-        },
-        "mdi-account": {
-          "file": "people/mdi-account.svg",
-          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/account.svg",
-          "sourceSha256": "319e0b386f266e0c4cf2325a463d0b3ec688daabc35c3b45fb264b809437ac32",
-          "sha256": "d60a41c6a645fa9693c0a957ea074a1242e3e25c80f5f158e82ca8fe46c57095",
-          "license": "Apache-2.0; see Pictogrammers notice",
-          "treatment": "Only root fill=currentColor added for theme inheritance; original geometry and viewBox retained.",
-          "author": "Google"
-        }
-      }
     },
     {
       "name": "svg-logos",
@@ -1043,11 +864,12 @@
     }
   },
   "usage": {
-    "general": "Use one MDI set only when the icon distinguishes an actor, trust boundary or object type. Labels remain visible.",
+    "general": "Do not add generic role or decorative icons to diagrams. Use labels and standard diagram shapes.",
     "platform": "Use the original platform logo only when the diagram explicitly names that product. AWS services use official AWS architecture icons.",
     "omit": "Omit decoration for named business actions, generic databases or queues already identified by their shape, and structural fields such as JWT parts.",
     "extension": "Add vendor source, original/result hashes and rights notice to this shared catalog before use; never copy icons into a consumer.",
-    "controls": "Use the existing shared controls and components unchanged. Diagram icon selection never overrides the common toolbar."
+    "controls": "Use the existing shared controls and components unchanged. Diagram icon selection never overrides the common toolbar.",
+    "aws": "Place official AWS service icons on the service boundary or block heading, not repeatedly inside business cards."
   },
   "icons": {
     "box-up": {
@@ -1069,11 +891,6 @@
       "file": "actions/ellipsis.svg",
       "category": "actions",
       "label": "ellipsis"
-    },
-    "mdi-refresh": {
-      "file": "actions/mdi-refresh.svg",
-      "category": "actions",
-      "label": "mdi refresh"
     },
     "question": {
       "file": "actions/question.svg",
@@ -1124,16 +941,6 @@
       "file": "backend-api/event.svg",
       "category": "backend-api",
       "label": "이벤트"
-    },
-    "mdi-domain": {
-      "file": "backend-api/mdi-domain.svg",
-      "category": "backend-api",
-      "label": "mdi domain"
-    },
-    "mdi-server": {
-      "file": "backend-api/mdi-server.svg",
-      "category": "backend-api",
-      "label": "mdi server"
     },
     "server": {
       "file": "backend-api/server.svg",
@@ -1330,11 +1137,6 @@
       "category": "communication",
       "label": "chat"
     },
-    "mdi-email": {
-      "file": "communication/mdi-email.svg",
-      "category": "communication",
-      "label": "mdi email"
-    },
     "rss": {
       "file": "communication/rss.svg",
       "category": "communication",
@@ -1359,11 +1161,6 @@
       "file": "databases/database.svg",
       "category": "databases",
       "label": "데이터베이스"
-    },
-    "mdi-database": {
-      "file": "databases/mdi-database.svg",
-      "category": "databases",
-      "label": "mdi database"
     },
     "document-detail": {
       "file": "documents/document-detail.svg",
@@ -1415,11 +1212,6 @@
       "category": "files-io",
       "label": "file-copy"
     },
-    "mdi-harddisk": {
-      "file": "files-io/mdi-harddisk.svg",
-      "category": "files-io",
-      "label": "mdi harddisk"
-    },
     "checkbox-check": {
       "file": "layout/checkbox-check.svg",
       "category": "layout",
@@ -1439,16 +1231,6 @@
       "file": "layout/components.svg",
       "category": "layout",
       "label": "컴포넌트"
-    },
-    "mdi-web": {
-      "file": "layout/mdi-web.svg",
-      "category": "layout",
-      "label": "mdi web"
-    },
-    "mdi-image-multiple": {
-      "file": "media/mdi-image-multiple.svg",
-      "category": "media",
-      "label": "mdi image multiple"
     },
     "pause": {
       "file": "media/pause.svg",
@@ -1495,21 +1277,6 @@
       "category": "operating-systems",
       "label": "운영체제"
     },
-    "mdi-account-alert": {
-      "file": "people/mdi-account-alert.svg",
-      "category": "people",
-      "label": "mdi account alert"
-    },
-    "mdi-account": {
-      "file": "people/mdi-account.svg",
-      "category": "people",
-      "label": "mdi account"
-    },
-    "mdi-card-account-details": {
-      "file": "people/mdi-card-account-details.svg",
-      "category": "people",
-      "label": "mdi card account details"
-    },
     "user-settings": {
       "file": "people/user-settings.svg",
       "category": "people",
@@ -1534,36 +1301,6 @@
       "file": "programming/terminal.svg",
       "category": "programming",
       "label": "터미널"
-    },
-    "mdi-cookie": {
-      "file": "security/mdi-cookie.svg",
-      "category": "security",
-      "label": "mdi cookie"
-    },
-    "mdi-file-check": {
-      "file": "security/mdi-file-check.svg",
-      "category": "security",
-      "label": "mdi file check"
-    },
-    "mdi-file-key": {
-      "file": "security/mdi-file-key.svg",
-      "category": "security",
-      "label": "mdi file key"
-    },
-    "mdi-key": {
-      "file": "security/mdi-key.svg",
-      "category": "security",
-      "label": "mdi key"
-    },
-    "mdi-lock": {
-      "file": "security/mdi-lock.svg",
-      "category": "security",
-      "label": "mdi lock"
-    },
-    "mdi-shield-check": {
-      "file": "security/mdi-shield-check.svg",
-      "category": "security",
-      "label": "mdi shield check"
     },
     "security": {
       "file": "security/security.svg",

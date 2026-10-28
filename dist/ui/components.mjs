@@ -61,23 +61,8 @@ export const Tooltip = ({ id: target, label, text }) => out(`${TooltipTrigger({ 
 /** 블록 설명: 단락 하나의 단추 + 슬롯 본문 말풍선. */
 export const TooltipBlock = ({ id: target, label, body }) => out(`<p>${TooltipTrigger({ id: target, label })}</p>${TooltipBubble({ id: target, body })}`);
 
-export const TAB_FRAMES = ['none', 'panel'];
-export const TAB_POSITIONS = ['bottom', 'top'];
 export const TAB_SELECTORS = ['buttons', 'segmented', 'numbers'];
-// 기본은 frame none, position bottom, selector buttons(둥근 단추)다. 기본을 벗어난 값만 클래스가 된다(is-frame-panel, is-position-top, is-selector-segmented|numbers).
-// platform은 기기별 안내 묶음으로 panel, top, buttons와 같고 `is-platform` 클래스 하나로 나타낸다.
-function tabVariant({ platform = false, frame, position, selector }) {
-  if (frame !== undefined && !TAB_FRAMES.includes(frame)) throw new Error(`Unknown tabs frame: ${frame}`);
-  if (position !== undefined && !TAB_POSITIONS.includes(position)) throw new Error(`Unknown tabs position: ${position}`);
-  if (selector !== undefined && !TAB_SELECTORS.includes(selector)) throw new Error(`Unknown tabs selector: ${selector}`);
-  if (platform) {
-    if ((frame ?? 'panel') !== 'panel' || (position ?? 'top') !== 'top' || (selector ?? 'buttons') !== 'buttons') throw new Error('Platform tabs always use frame panel, position top and selector buttons');
-    return { frame: 'panel', position: 'top', selector: 'buttons', classes: '' };
-  }
-  const [f, p, s] = [frame ?? 'none', position ?? 'bottom', selector ?? 'buttons'];
-  return { frame: f, position: p, selector: s, classes: `${f === 'none' ? '' : ` is-frame-${f}`}${p === 'bottom' ? '' : ` is-position-${p}`}${s === 'buttons' ? '' : ` is-selector-${s}`}` };
-}
-/** 패널과 별도로 조립할 수 있는 선택 줄. controls는 같은 캔버스를 공유하는 장면에도 쓸 수 있다. */
+/** 선택 줄. 갤러리와 도표 장면이 함께 쓴다. controls는 같은 캔버스를 공유하는 장면에도 쓸 수 있다. */
 export function TabList({ id: group, label = '탭', labels, selector = 'buttons', selected = 0, controls, inlineCode = false, afterPanel = false }) {
   id(group);
   if (!TAB_SELECTORS.includes(selector)) throw new Error(`Unknown tabs selector: ${selector}`);
@@ -85,37 +70,6 @@ export function TabList({ id: group, label = '탭', labels, selector = 'buttons'
   const content = text => inlineCode ? String(text).split('`').map((part, at) => at % 2 ? `<code>${escape(part)}</code>` : escape(part)).join('') : escape(text);
   return out(`<div class="app-tablist${afterPanel ? ' is-after-panel' : ''}${selector === 'buttons' ? '' : ` is-${selector}`}" role="tablist" aria-label="${escape(label)}">${labels.map((text, index) => `<button type="button" id="${group}-tab-${index}" role="tab" aria-selected="${index === selected}" aria-controls="${id(controls?.[index] ?? `${group}-panel-${index}`)}" tabindex="${index === selected ? '0' : '-1'}"${numbers ? ` aria-label="${escape(text ?? `탭 ${index + 1}`)}"` : ''}>${numbers ? index + 1 : content(text)}</button>`).join('')}</div>`);
 }
-/**
- * 탭 묶음. `tabs`는 `{ label, body }`이고 body는 슬롯이다.
- * 옵션: `frame`(none, panel), `position`(bottom, top), `selector`(buttons, segmented, numbers), `width`(content, narrow, wide), `selected`(처음 보이는 탭).
- * 모두 생략하면 상자 없이 둥근 단추 줄이 패널 아래에 온다. `numbers`만 라벨 없이 쓸 수 있고 버튼에는 번호, 접근성 이름에는 라벨이 나온다.
- * 보이는 패널만 높이를 차지하므로 선택 줄은 현재 내용 바로 옆에 붙는다. `position: bottom`이면 탭 목록이 패널 뒤에 놓인다.
- */
-export function Tabs(props) {
-  const { id: group, label, platform = false, tabs, frame, position, selector, selected = 0 } = props;
-  if (!Array.isArray(tabs) || !tabs.length) throw new Error('Tabs require tabs');
-  if (!Number.isInteger(selected) || selected < 0 || selected >= tabs.length) throw new Error('Tabs selected index is out of range');
-  const groupProps = { id: group, label, platform, labels: tabs.map((tab) => tab.label), frame, position, selector, selected, width: contentWidth(props) };
-  return out(`${Tabs.open(groupProps)}${tabs.map((tab, index) => `${Tabs.panelOpen({ id: group, index, selected })}${slot(tab.body, 'tab body')}${Tabs.panelClose()}`).join('')}${Tabs.close(groupProps)}`);
-}
-Tabs.open = (props) => {
-  const { id: group, label = props.platform ? '기기별 안내' : '탭', platform = false, labels } = props;
-  const variant = tabVariant(props);
-  return `<section class="app-tabs${platform ? ' is-platform' : ''}${variant.classes}${widthClass(props)}" data-tabs${platform ? ' data-platform' : ''}>${variant.position === 'bottom' ? '' : TabList({ id: group, label, labels, selector: variant.selector, selected: props.selected })}`;
-};
-Tabs.panelOpen = ({ id: group, index, selected = 0 }) => {
-  if (!Number.isSafeInteger(index) || index < 0) throw new TypeError('invalid tab panel index');
-  return `<div class="app-tabpanel" id="${id(group)}-panel-${index}" role="tabpanel" aria-labelledby="${group}-tab-${index}" tabindex="0"${index === selected ? '' : ' hidden'}>`;
-};
-Tabs.panelClose = () => '</div>';
-// 위치가 bottom이면 탭 목록은 닫을 때 낸다. 열 때와 같은 속성을 넘긴다.
-Tabs.close = (props) => {
-  if (!props) throw new Error('Tabs.close needs the same props as Tabs.open');
-  const variant = tabVariant(props);
-  if (variant.position !== 'bottom') return '</section>';
-  const { id: group, label = props.platform ? '기기별 안내' : '탭', labels } = props;
-  return `${TabList({ id: group, label, labels, selector: variant.selector, selected: props.selected, afterPanel: true })}</section>`;
-};
 
 /** 도움말 카드. `icon`은 슬롯이고 없으면 아이콘 자리가 없다. `related`는 이어서 읽을 글의 한 줄 카드(작은 아이콘, 제목, 갈매기표)이며 설명은 그리지 않는다. `headingLevel`을 주면 제목이 해당 단계의 제목 역할이 된다. */
 export function Card({ href, title, showTitle = true, description = '', icon, variant, compact = false, horizontal = false, headingLevel, rel, label }) {
@@ -143,7 +97,7 @@ CardGroup.close = () => '</div>';
 CardGroup.gap = (variant) => variant === 'inline' ? ' ' : '';
 
 /**
- * 번호 단추로 한 장씩 보는 갤러리. 모양과 동작은 `Tabs`(기본 frame none, position bottom)를 그대로 쓴다.
+ * 번호 단추로 한 장씩 보는 갤러리. 패널 묶음(`.app-tabs`, `data-tabs`) 아래에 `TabList`를 둔다.
  * 이름이 모두 있으면 분할 선택 줄, 아니면 번호 줄이다. 보이는 장만 높이를 차지하므로 선택 줄은 현재 그림 바로 아래에 있다.
  * `slides`는 `{ image(슬롯), caption, label }`이다.
  */
@@ -151,11 +105,11 @@ export function Gallery(props) {
   const { id: group, title = '이미지 슬라이드', selected = 0, slides } = props;
   if (!Array.isArray(slides) || !slides.length) throw new Error('Gallery requires slides');
   if (!Number.isInteger(selected) || selected < 0 || selected >= slides.length) throw new Error('Gallery selected index is out of range');
+  id(group);
   const labeled = slides.every((slide) => typeof slide.label === 'string');
-  return Tabs({
-    id: group, label: title, selector: labeled ? 'segmented' : 'numbers', selected, width: contentWidth(props),
-    tabs: slides.map((slide, index) => ({ label: slide.label ?? `슬라이드 ${index + 1}`, body: Figure({ media: slide.image, caption: slide.caption }) })),
-  });
+  const panels = slides.map((slide, index) => `<div class="app-tabpanel" id="${group}-panel-${index}" role="tabpanel" aria-labelledby="${group}-tab-${index}" tabindex="0"${index === selected ? '' : ' hidden'}>${Figure({ media: slide.image, caption: slide.caption })}</div>`).join('');
+  const labels = slides.map((slide, index) => slide.label ?? `슬라이드 ${index + 1}`);
+  return out(`<section class="app-tabs${widthClass(props)}" data-tabs>${panels}${TabList({ id: group, label: title, labels, selector: labeled ? 'segmented' : 'numbers', selected, afterPanel: true })}</section>`);
 }
 
 /** 그림과 영상 같은 미디어 한 장. `media`는 슬롯, `href`를 주면 링크로 감싼다. `controls` 슬롯은 캡션 줄에 붙는다. */

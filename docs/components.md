@@ -7,13 +7,13 @@
 | 모듈 | 책임 |
 |---|---|
 | `html.mjs` | 텍스트·URL·ID 검사와 신뢰된 HTML 슬롯 |
-| `components.mjs` | 카드·코드·탭·이미지·영상·도구 설명 등 기본 조각 |
+| `components.mjs` | 카드·코드·선택 줄·갤러리·이미지·영상·도구 설명 등 기본 조각 |
 | `patterns.mjs` | 태그·검색·목록·문서 탐색·본문·반복 흐름 |
 | `layout.mjs` | 헤더·푸터·소개·구간·인용·구독 폼 |
 | `table.mjs` | 본문·단축키 표의 틀과 이름 |
 | `document.mjs` | 문서의 접힘·단축키 표시·예제·기능 설명 |
 | `icons.mjs` | 공통 카탈로그의 문서·소셜·조작 SVG |
-| `runtime/` | 복사·탭·도구 설명·문서 탐색·영상·흐름 |
+| `runtime/` | 복사·선택 줄(갤러리·장면)·도구 설명·문서 탐색·영상·흐름 |
 | `build/` | 토큰 검사와 정적 CSS 축소 |
 
 콘텐츠, 공개 승인, 댓글 공급자, 검색 색인과 URL은 소비자의 책임이다. 같은 UI 구조나 색·간격·시간을 소비자에서 다시 정의하지 않는다. 새 표현은 기존 구성 요소의 속성 또는 이름 있는 새 구성 요소로 추가한다.
@@ -41,7 +41,7 @@ const html = CardGroup({ columns: 4, cards });
 
 `Details({ title, open, body })`는 제목을 이스케이프하고 검증된 본문을 접기 요소로 감싼다. Markdown 어댑터는 같은 `Details.open({ open })`·`Details.close()`와 `Details.summaryOpen()`·`Details.summaryClose()`로 태그를 조립한다. `open`은 생략하면 `false`다. 요약의 인라인 Markdown, 중첩 접기와 코드 블록은 소비자가 이미 분석한 토큰을 렌더하고 요약이 없으면 요약 태그를 생략한다. 공통 태그나 `app-details` 클래스를 소비자에서 다시 정의하지 않는다.
 
-`Figure`·`Gallery`·`Video`·`Tabs`의 표시 폭은 `width: 'content' | 'narrow' | 'wide'`로 지정하며 생략하면 `content`다. `contentWidth(props)`도 같은 문자열을 반환하고 폭 외의 콘텐츠 속성은 허용한다. 어댑터는 원래 블록 입력을 이 함수로 검사한 결과를 `width`에 전달한다. `wide`나 `size`가 자기 속성으로 존재하면 값이 `false`나 `undefined`여도 각각 `Use width instead of wide`·`Use width instead of size` 오류로 거부한다.
+`Figure`·`Gallery`·`Video`의 표시 폭은 `width: 'content' | 'narrow' | 'wide'`로 지정하며 생략하면 `content`다. `contentWidth(props)`도 같은 문자열을 반환하고 폭 외의 콘텐츠 속성은 허용한다. 어댑터는 원래 블록 입력을 이 함수로 검사한 결과를 `width`에 전달한다. `wide`나 `size`가 자기 속성으로 존재하면 값이 `false`나 `undefined`여도 각각 `Use width instead of wide`·`Use width instead of size` 오류로 거부한다.
 
 영상 재생기의 비율은 `Player.wide`와 `Video.playerWide`, 원본 크기는 `Video.playerWidth`·`playerHeight`로 지정한다. 그림 격자의 `FigureGrid.size`와 카드의 `Card.compact`도 각 구성 요소의 별도 역할이다.
 
@@ -103,11 +103,13 @@ const html = CardGroup({ columns: 4, cards });
 
 설치·진입점·갱신 절차는 [공통 디자인 배포](distribution.md)를 따른다.
 
-## 탭과 도표
+## 선택 줄과 도표
 
-문서와 장면 선택 줄은 `TabList`의 `afterPanel: true`로 패널 아래 간격을 공유한다. 선택 줄은 `text.body-text`를 글자 기준으로 사용하므로 부모 글자 크기가 달라도 버튼의 글자·여백·곡률이 같다. 이 간격과 버튼의 상자 크기·안쪽 여백·시스템 글꼴은 `styles/tabs.css` 하나가 정하고 재생기 푸터에서 여백을 더하지 않는다.
+문서 탭(`Tabs`, 기기별 안내 `platform`, 그 동기화)은 없앴다. 선택 줄은 갤러리와 도표 장면만 쓴다.
 
-`Tabs`는 패널과 `TabList`를 조립한다. `Tabs`와 `DiagramFrame`의 선택 줄은 기본 `selector: 'buttons'`를 공유하여 각각 둥근 버튼으로 표시한다. 다른 모양은 `Tabs`·`TabList`의 `selector`에 `segmented` 또는 `numbers`를 명시한다. `Gallery`도 같은 부품을 사용하며 라벨이 있으면 `segmented`, 없으면 `numbers`를 선택한다.
+갤러리와 장면 선택 줄은 `TabList`의 `afterPanel: true`로 패널 아래 간격을 공유한다. 선택 줄은 `text.body-text`를 글자 기준으로 사용하므로 부모 글자 크기가 달라도 버튼의 글자·여백·곡률이 같다. 이 간격과 버튼의 상자 크기·안쪽 여백·시스템 글꼴은 `styles/tabs.css` 하나가 정하고 재생기 푸터에서 여백을 더하지 않는다.
+
+`TabList`의 기본은 `selector: 'buttons'`(둥근 버튼)이며 `DiagramFrame`이 이 모양을 쓴다. 다른 모양은 `selector`에 `segmented` 또는 `numbers`를 명시한다. `Gallery`는 패널 묶음(`.app-tabs`, `data-tabs`)과 그 아래 `TabList`를 조립하며 라벨이 모두 있으면 `segmented`, 아니면 `numbers`를 선택한다. 갤러리의 장 선택은 `runtime/document.js`가 `bindTabs`로 연결한다.
 
 `DiagramFrame`은 같은 `TabList`로 장면을 선택하고 `runtime/tabs.js`의 `bindTabs`로 aria-selected, Tab 정지점, 방향키·Home·End를 연결한다. 다이어그램의 시간표와 장면 선택 후 재생은 소비자가 맡는다. 선택 색·호버·전환 시간·움직임 줄이기는 `styles/tabs.css` 한 곳에서 정한다.
 

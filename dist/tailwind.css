@@ -422,7 +422,6 @@
   --spacing-panorama-width: var(--primitive-panorama-width);
   --spacing-collage-crop: var(--primitive-collage-crop);
   --spacing-collage-outset: var(--primitive-collage-outset);
-  --spacing-platform-inset: var(--primitive-platform-inset);
   --spacing-platform-button-x: var(--primitive-platform-button-x);
   --spacing-platform-button-y: var(--primitive-platform-button-y);
   --spacing-platform-button-gap: var(--primitive-platform-button-gap);

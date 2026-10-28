@@ -7,7 +7,7 @@
   <a href="README.md">한국어</a> | English
 </p>
 
-The package provides design values such as colors, spacing, and typography alongside HTML components such as cards and tabs. Tokens, CSS, icons, and browser behavior live in one place so static sites and diagram tools can share a design.
+The package provides design values such as colors, spacing, and typography alongside HTML components such as cards and galleries. Tokens, CSS, icons, and browser behavior live in one place so static sites and diagram tools can share a design.
 
 > [!NOTE]
 > In development. There are no releases; build from source.
@@ -58,7 +58,7 @@ Run the same HTML example in the consuming project. The commit includes generate
 
 ## Why
 
-Building site cards and diagram controls separately means changing the same colors, spacing, and tab behavior in several places. This package shares design values, HTML structure, and common behavior together. Each app owns its content, URLs, search indexes, and service policies.
+Building site cards and diagram controls separately means changing the same colors, spacing, and selector behavior in several places. This package shares design values, HTML structure, and common behavior together. Each app owns its content, URLs, search indexes, and service policies.
 
 An independent product that does not share this design is better served by its own component system.
 
@@ -94,7 +94,7 @@ The design documents are written in Korean.
 - [Shared components](docs/components.md)
   - [Shared icons](docs/design/content-icons.md)
 
-The package includes icons and roles used by the public blog, document engine, DiagramPlay, and registered private previews. It retains 50 general SVGs, 34 technology and service brands, and 10 aliases. Private metadata keeps its detail selection. Seven names collected from body tokens retain their default shapes pending token validation. The default help role is `question`, and `kinds` is empty. Removed icon names and aliases fail lookup.
+The package includes icons and roles used by the public blog (including its internal document renderer), DiagramPlay, and registered private previews. It retains 50 general SVGs, 34 technology and service brands, and 10 aliases. Private metadata keeps its detail selection. Seven names collected from body tokens retain their default shapes pending token validation. The default help role is `question`, and `kinds` is empty. Removed icon names and aliases fail lookup.
 
 [All documentation](docs/README.md)
 

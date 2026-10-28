@@ -9,7 +9,7 @@
 | 토큰 | `tokens/tokens.json` | 색·글자·간격·곡률·시간 값과 기본값 참조 |
 | 구성 요소 | `ui/` | 검증된 속성에서 HTML과 접근성 연결을 생성 |
 | 스타일 | `styles/` | 클래스의 기본 모양과 맥락별 배치 |
-| 동작 | `ui/runtime/` | 복사·탭·툴팁·문서 탐색·영상·흐름 |
+| 동작 | `ui/runtime/` | 복사·선택 줄(갤러리·장면)·툴팁·문서 탐색·영상·흐름 |
 | 콘텐츠 | 소비자의 설정과 Markdown | 제목·설명·링크·목록·노출 정책 |
 
 값 변경은 토큰에서, 재사용 구조 변경은 구성 요소에서 처리한다. 페이지마다 같은 조각을 복사해 고치지 않는다. 상세 속성과 신뢰 경계는 [공통 구성 요소](components.md)를 따른다.
@@ -69,7 +69,7 @@
 | DocumentArticle, PostArticle | `.app-prose`, `.app-blog-post`, `.app-article-lead` |
 | CodeBlock, CopyButton | `.app-code`, `.app-tool-header`, `.app-tool-label` |
 | Table | `.app-table-scroll`, `.app-table` |
-| Tabs, TabList, Gallery | `.app-tabs`, `.app-tablist` |
+| TabList, Gallery | `.app-tabs`(갤러리 패널 묶음), `.app-tablist` |
 | Figure, Player | `.app-figure`, `.app-player` |
 | Details, 문서 안내 | `.app-details`, `.app-callout` |
 | DocumentNavigation, DocumentPager | `.app-document-nav`, `.app-related-grid` |
@@ -137,7 +137,7 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 검색 결과 페이지의 `SearchBox({ combobox: false })`는 처음 HTML부터 `searchbox` 역할을 사용하며 추천 목록 ARIA를 붙이지 않는다. 기본 추천 검색은 `combobox` 계약을 유지한다. `ContentGroup`의 `collection` 변형은 글 목록 절의 바깥 간격을 함께 소유한다.
 
-카드 변형 목록은 `CARD_VARIANTS`, 탭 변형 목록은 `TAB_FRAMES`·`TAB_POSITIONS`·`TAB_SELECTORS`를 가져와 입력 검사에 사용한다. 페이지 이전·다음 링크는 공통 탐색 꺾쇠를 사용하므로 소비자가 라벨에 화살표 글자를 붙이지 않는다.
+카드 변형 목록은 `CARD_VARIANTS`, 선택 줄 모양 목록은 `TAB_SELECTORS`를 가져와 입력 검사에 사용한다. 페이지 이전·다음 링크는 공통 탐색 꺾쇠를 사용하므로 소비자가 라벨에 화살표 글자를 붙이지 않는다.
 
 ## 페이지와 영상
 

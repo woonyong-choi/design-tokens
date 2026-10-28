@@ -607,7 +607,8 @@
   --radius-newsletter-button-radius: var(--primitive-newsletter-button-radius);
   --radius-help-grouped-radius: var(--primitive-help-grouped-radius);
   --radius-tooltip-radius: var(--primitive-tooltip-radius);
-  --radius-prose-figure-radius: var(--spacing-3);
+  --radius-prose-block-radius: var(--spacing-2);
+  --radius-prose-figure-radius: var(--radius-prose-block-radius);
   --radius-blog-card-radius: var(--spacing-4);
   --shadow-help-hover-shadow: var(--primitive-help-hover-shadow);
   --shadow-landing-review-shadow: var(--primitive-landing-review-shadow);

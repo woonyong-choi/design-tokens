@@ -12,9 +12,7 @@ const modulePath = process.argv[2];
 if (!modulePath) throw new Error('usage: node test/diagram-frame-browser.mjs <playwright-core module>');
 const { chromium } = await import(pathToFileURL(resolve(modulePath)).href);
 const root = fileURLToPath(new URL('../dist/', import.meta.url));
-const smallestToken = Math.min(...Object.values(values.text.figure));
 const smallestRole = values.text['figure-meta'];
-const minimumScale = smallestToken / smallestRole;
 
 // 합성 그림. 글 하나는 그림의 가장 작은 글 역할 크기다.
 const panel = (width, height) => `<section class="dp-panel" style="--panel-w: ${width}"><svg xmlns="http://www.w3.org/2000/svg" class="fl" style="aspect-ratio: ${width} / ${height}" viewBox="0 0 ${width} ${height}" role="img"><title>합성 그림</title><text x="8" y="20" style="font-size: ${smallestRole}px">합성 글</text><rect x="${width - 20}" y="0" width="20" height="20" data-end/></svg></section>`;
@@ -70,7 +68,7 @@ async function measure(width, name, isFull = false) {
   return { page, layout };
 }
 
-for (const width of [1280, 390, 320]) test(`diagram panels stay between the readable minimum and natural size at ${width}px`, async () => {
+for (const width of [1280, 390, 320]) test(`diagram panels fit the available width without horizontal scrolling at ${width}px`, async () => {
   for (const name of Object.keys(figures)) {
     const { page, layout } = await measure(width, name);
     try {
@@ -78,13 +76,13 @@ for (const width of [1280, 390, 320]) test(`diagram panels stay between the read
       for (const { natural, shown } of layout.panels) {
         const scale = shown / natural;
         assert.ok(scale <= 1 + 1e-3, `${name}: panel ${natural} grows to ${shown}px`);
-        assert.ok(scale >= minimumScale - 1e-3, `${name}: panel ${natural} shrinks to scale ${scale.toFixed(3)} below ${minimumScale.toFixed(3)}`);
+        assert.ok(scale > 0, `${name}: panel has a positive scale`);
       }
       const scales = layout.panels.map(({ natural, shown }) => shown / natural);
       assert.ok(Math.max(...scales) - Math.min(...scales) < 1e-3, `${name}: panels keep one scale`);
       const centers = layout.panels.map(({ center }) => center);
       assert.ok(Math.max(...centers) - Math.min(...centers) <= 1, `${name}: narrower panels stay centred over the widest panel`);
-      if (layout.canvasScrollWidth > layout.canvasWidth) assert.equal(layout.overflowX, 'auto', `${name}: overflow is reachable inside the canvas`);
+      assert.ok(layout.canvasScrollWidth <= layout.canvasWidth + 1, `${name}: no horizontal canvas scroll`);
     } finally { await page.close(); }
   }
 });
@@ -92,45 +90,6 @@ for (const width of [1280, 390, 320]) test(`diagram panels stay between the read
 test('narrow figure keeps its natural size in a wide frame', async () => {
   const { page, layout } = await measure(1280, 'narrow');
   try { assert.equal(Math.round(layout.panels[0].shown), 386); } finally { await page.close(); }
-});
-
-test('wide figure scrolls inside the canvas by keyboard at 390px', async () => {
-  const { page, layout } = await measure(390, 'wide');
-  try {
-    assert.ok(layout.canvasScrollWidth > layout.canvasWidth, 'wide figure overflows the canvas at the minimum scale');
-    const canvas = page.locator('.fl-canvas');
-    await canvas.focus();
-    for (let press = 0; press < 200; press++) {
-      if (await canvas.evaluate(element => element.scrollLeft + element.clientWidth >= element.scrollWidth - 1)) break;
-      await page.keyboard.press('ArrowRight');
-    }
-    const end = await page.evaluate(() => {
-      const box = document.querySelector('.fl-canvas').getBoundingClientRect();
-      const mark = document.querySelector('[data-end]').getBoundingClientRect();
-      return mark.right <= box.right + 1 && mark.left >= box.left - 1;
-    });
-    assert.equal(end, true, 'ArrowRight reaches the right edge of the widest panel');
-  } finally { await page.close(); }
-});
-
-test('canvas edges fade only on the side that can still scroll', async () => {
-  const fades = page => page.evaluate(() => {
-    const style = getComputedStyle(document.querySelector('.fl-canvas'));
-    return [style.getPropertyValue('--fl-fade-start'), style.getPropertyValue('--fl-fade-end')].map(Number.parseFloat);
-  });
-  const wide = await measure(390, 'wide');
-  try {
-    const [startAtBegin, endAtBegin] = await fades(wide.page);
-    assert.equal(startAtBegin, 0, 'nothing is hidden to the left before scrolling');
-    assert.ok(endAtBegin > 0, 'the right edge fades while more figure lies to the right');
-    await wide.page.evaluate(() => { const canvas = document.querySelector('.fl-canvas'); canvas.scrollLeft = canvas.scrollWidth; });
-    await wide.page.waitForTimeout(100);
-    const [startAtEnd, endAtEnd] = await fades(wide.page);
-    assert.ok(startAtEnd > 0, 'the left edge fades after scrolling to the end');
-    assert.equal(endAtEnd, 0, 'nothing is hidden to the right at the end');
-  } finally { await wide.page.close(); }
-  const narrow = await measure(1280, 'narrow');
-  try { assert.deepEqual(await fades(narrow.page), [0, 0], 'a figure that fits has no fade'); } finally { await narrow.page.close(); }
 });
 
 test('full screen keeps fit and zoom without the document minimum', async () => {

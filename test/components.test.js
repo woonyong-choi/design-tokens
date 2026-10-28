@@ -263,24 +263,10 @@ test('code_and_diagram_canvas_share_a_visible_gray_surface_in_light_mode', () =>
   assert.match(diagram, /background: var\(--color-figure-canvas\)/);
 });
 
-test('diagram_panels_stop_at_natural_size_and_the_readable_minimum', () => {
-  const player = readFileSync(root + 'styles/diagram/player.css', 'utf8').replace(/\/\*[\s\S]*?\*\//g, '');
-  const rule = selector => player.match(new RegExp(`(?:^|\\n)${selector.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*\\{([^}]*)\\}`))?.[1] ?? '';
-  const svg = rule('.dp-panel > svg');
-  // 자연 크기 상한: 비율 폭과 SVG 좌표 폭 가운데 작은 쪽
-  assert.match(svg, /width:\s*min\(calc\(100% \* var\(--panel-w\) \/ var\(--view-w\)\), calc\(var\(--panel-w\) \* var\(--spacing-figure-svg-unit\)\)\)/);
-  // 최소 크기: 가장 작은 글 역할이 가장 작은 글 토큰이 되는 배율. 숫자를 적지 않고 토큰에서 계산한다.
-  assert.match(svg, /min-width:\s*calc\(var\(--panel-w\) \* var\(--spacing-figure-svg-unit\) \* \(var\(--text-figure-9\) \/ var\(--text-figure-meta\)\)\)/);
-  // 하한의 분자는 text.figure 묶음의 가장 작은 값이어야 한다(DiagramPlay 그림 검사 10번의 기준).
-  const figureSizes = [...tables.light.keys()].filter(name => /^text\.figure\.\d+$/.test(name)).map(name => Number.parseFloat(resolveValue(tables.light, name)));
-  assert.equal(Number.parseFloat(resolveValue(tables.light, 'text.figure.9')), Math.min(...figureSizes));
-  assert.match(rule('.dp-panels'), /min-width:\s*calc\(var\(--view-w\) \* var\(--spacing-figure-svg-unit\) \* \(var\(--text-figure-9\) \/ var\(--text-figure-meta\)\)\)/);
-  assert.match(rule('.fl-canvas'), /overflow-x:\s*auto/);
-  // 넘친 쪽 가장자리 흐림: 스크롤 시간표를 지원할 때만, 전체 화면에서는 끈다
-  const cue = player.match(/@supports \(animation-timeline: scroll\(\)\) \{([\s\S]*?)\n\}/)?.[1] ?? '';
-  assert.match(cue, /animation-timeline:\s*scroll\(self inline\)/);
-  assert.match(cue, /mask-image:\s*linear-gradient\(to right, transparent, currentcolor var\(--fl-fade-start\), currentcolor calc\(100% - var\(--fl-fade-end\)\), transparent\)/);
-  assert.match(cue, /\.fl-figure\.full \.fl-canvas \{\s*animation: none;\s*mask-image: none;/);
-  assert.match(rule('.fl-figure.full .dp-panel > svg'), /min-width:\s*0/);
-  assert.match(rule('.fl-figure.full .dp-panels'), /min-width:\s*0/);
+test('diagram_panels_fit_available_width_and_keep_fullscreen_zoom', () => {
+  const player = readFileSync(root + 'styles/diagram/player.css', 'utf8');
+  assert.doesNotMatch(player, /min-width:\s*calc/);
+  assert.match(player, /\.fl-canvas \{[^}]*overflow: hidden;/);
+  assert.match(player, /\.fl-figure\.full \.fl-canvas \{[^}]*overflow: auto;/);
+  assert.match(player, /width: calc\(var\(--fit-w, 100%\) \* var\(--zoom, 1\)\)/);
 });

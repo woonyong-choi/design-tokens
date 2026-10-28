@@ -122,3 +122,11 @@ test('diagram_label_faces_keep_readable_ink_in_both_themes_and_states', async ()
     assert.ok(contrast(ink, fill) >= 4.5, `${state || 'rest'} label contrast`);
   }
 });
+
+
+test('diagram_status_pills_keep_filled_contrast_for_every_kind_and_theme', async () => {
+  const { contrast } = await import('../scripts/lib/contrast.mjs');
+  for (const table of [tables.light, tables.dark]) for (const kind of ['ok', 'warn', 'fail', 'wait']) {
+    assert.ok(contrast(resolveValue(table, `color.figure.status.${kind}-ink`), resolveValue(table, `color.figure.status.${kind}-fill`)) >= 4.5, `${kind} status contrast`);
+  }
+});

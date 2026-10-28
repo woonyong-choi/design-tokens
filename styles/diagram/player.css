@@ -10,6 +10,16 @@ body {
   background: var(--color-ui-card);
 }
 
+/* 예제 단독 재생 화면에서도 목록과 같은 테마 선택을 쓴다. */
+.dp-theme {
+  display: flex;
+  justify-content: flex-end;
+  max-width: var(--figure-canvas, var(--spacing-figure-figure-canvas));
+  margin: 0 auto var(--spacing-4);
+}
+
+html.embedded .dp-theme { display: none; }
+
 /* 본문이나 목록 카드에 삽입된 재생기(iframe)는 둘러싼 면 위에 그대로 놓인다. 바탕을 칠하지 않고 바깥 여백이 없어 그림이 본문 흐름에 붙는다. */
 html.embedded { overflow: clip; }
 

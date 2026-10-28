@@ -167,7 +167,17 @@ export const tokens = freeze({
       "label-fill": "var(--color-figure-label-fill)",
       "label-ink": "var(--color-figure-label-ink)",
       "label-active-fill": "var(--color-figure-label-active-fill)",
-      "label-active-ink": "var(--color-figure-label-active-ink)"
+      "label-active-ink": "var(--color-figure-label-active-ink)",
+      "status": {
+        "ok-fill": "var(--color-figure-status-ok-fill)",
+        "ok-ink": "var(--color-figure-status-ok-ink)",
+        "warn-fill": "var(--color-figure-status-warn-fill)",
+        "warn-ink": "var(--color-figure-status-warn-ink)",
+        "fail-fill": "var(--color-figure-status-fail-fill)",
+        "fail-ink": "var(--color-figure-status-fail-ink)",
+        "wait-fill": "var(--color-figure-status-wait-fill)",
+        "wait-ink": "var(--color-figure-status-wait-ink)"
+      }
     },
     "paint": {
       "red": {
@@ -1600,7 +1610,17 @@ export const values = freeze({
       "label-fill": "#ebecef",
       "label-ink": "#303336",
       "label-active-fill": "#1e6bd6",
-      "label-active-ink": "#ffffff"
+      "label-active-ink": "#ffffff",
+      "status": {
+        "ok-fill": "#00744e",
+        "ok-ink": "#ffffff",
+        "warn-fill": "#9d5100",
+        "warn-ink": "#ffffff",
+        "fail-fill": "#cc0041",
+        "fail-ink": "#ffffff",
+        "wait-fill": "#ebecef",
+        "wait-ink": "#303336"
+      }
     },
     "paint": {
       "red": {

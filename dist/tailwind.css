@@ -132,6 +132,14 @@
   --color-figure-label-ink: var(--color-ink);
   --color-figure-label-active-fill: var(--color-state-active-fill);
   --color-figure-label-active-ink: var(--color-state-on-active);
+  --color-figure-status-ok-fill: var(--color-category-green-solid);
+  --color-figure-status-ok-ink: var(--color-category-green-on-solid);
+  --color-figure-status-warn-fill: var(--color-category-orange-solid);
+  --color-figure-status-warn-ink: var(--color-category-orange-on-solid);
+  --color-figure-status-fail-fill: var(--color-category-red-solid);
+  --color-figure-status-fail-ink: var(--color-category-red-on-solid);
+  --color-figure-status-wait-fill: var(--color-figure-label-fill);
+  --color-figure-status-wait-ink: var(--color-figure-label-ink);
   --color-paint-red-fill: var(--color-category-red-light-tint-1);
   --color-paint-red-outline: var(--color-category-red-light-border);
   --color-paint-red-ink: var(--color-category-red-light-ink);

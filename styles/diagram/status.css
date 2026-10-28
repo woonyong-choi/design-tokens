@@ -1,16 +1,20 @@
-/* 단계별 도형 상태 알약의 글자. 기호와 테두리는 상태 색이고 글자는 fg다. 상태를 쓰는 그림에만 넣는다. */
+/* 상태와 관계 라벨 모두 채운 면·대비 글자·테두리를 쓴다. 상태 의미만 색으로 구분한다. */
+.fl .fl-status {
+  color: var(--status-ink);
+}
+
 .fl .status-text {
   font-size: var(--text-figure-meta);
   font-weight: var(--font-weight-semibold);
-  fill: var(--color-ink);
+  fill: currentColor;
 }
 
-.fl .fl-status-ok { color: var(--color-state-success); }
-.fl .fl-status-warn { color: var(--color-state-warning); }
-.fl .fl-status-fail { color: var(--color-state-error); }
-.fl .fl-status-wait { color: var(--color-outline); }
+.fl .fl-status-ok { --status-fill: var(--color-figure-status-ok-fill); --status-ink: var(--color-figure-status-ok-ink); }
+.fl .fl-status-warn { --status-fill: var(--color-figure-status-warn-fill); --status-ink: var(--color-figure-status-warn-ink); }
+.fl .fl-status-fail { --status-fill: var(--color-figure-status-fail-fill); --status-ink: var(--color-figure-status-fail-ink); }
+.fl .fl-status-wait { --status-fill: var(--color-figure-status-wait-fill); --status-ink: var(--color-figure-status-wait-ink); }
 .fl .status-pill {
-  fill: var(--color-ui-card);
+  fill: var(--status-fill);
   stroke: currentColor;
   stroke-width: var(--border-width-thin);
 }

@@ -234,3 +234,5 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 ### 다이어그램 관계 라벨
 
 번호 유무와 관계없이 관계 라벨은 채운 중립 배경과 대비 글자를 사용한다. `color.figure.label-fill`, `label-ink`, `label-active-fill`, `label-active-ink`가 두 테마와 활성 상태를 함께 정한다. 번호가 있는 라벨은 같은 바탕에 원형 번호만 더한다. HTML의 `--pill-tint`와 SVG의 시간표 효과는 같은 네 역할을 사용한다.
+
+도표 상태 배지도 채운 면·대비 글자·테두리를 사용한다. 성공·경고·실패는 `color.figure.status.*`의 의미 색으로, 대기는 중립 라벨 색으로 표시한다. 단독 재생 화면의 테마 선택 배치는 `dp-theme`이 소유하고 삽입 화면에서는 숨긴다.

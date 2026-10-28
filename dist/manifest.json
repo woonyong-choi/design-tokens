@@ -546,16 +546,16 @@
     "styles/diagram/document.css": "ee8346db461b292627ccebf3b1e9ffbc9bf500d6644cac8969327440df5f40dd",
     "styles/diagram/figure.css": "19585f7d6552fcee5ee7325521b5c951bb93325e7943a4de3e4e6b9ca181f8e3",
     "styles/diagram/gallery.css": "1f125fee0b11a62ec6873382d246cf220404e1d9e24b3b4b8de759f57cf2b1e3",
-    "styles/diagram/player.css": "8aea82dd5490c9d28262ca4d9e72cd50b13733d5a1557e2a795a0dece72094ca",
-    "styles/diagram/status.css": "3c0e2dabcf3d4140385f9d5b4bb08391824e3feaa7f02aabe746bfaa96777294",
+    "styles/diagram/player.css": "5e2bb5e2e1b9be211af74a987f0e931c87432a74789c9f4e74436b21512fb14d",
+    "styles/diagram/status.css": "15c1d86cfd11518101e13f2a48aba9722dce05c9d58c46f583ca939e34aa8f6c",
     "styles/table.css": "d67831d6d1dd5b8d8de69101b4cb423b610b18757ec386cdc0754bab59ef1e43",
     "styles/tabs.css": "e7762ad9522cde4e59d71fd446d414c467b7a1155ed6d07338f3da349b8a7567",
     "styles/toolbar.css": "9f756722c76780175bd2bebe45ee20ee4f6b0fcf24d8940fc654fbee570c394e",
-    "tailwind.css": "b572cc3ffbe2bdd4692eefd38f9ba4cc111f0f5cc23f9525f97a171f2dab18a2",
-    "tokens.css": "b7e4560d770f949650ad44a794d959a9d02796e0ac349c05aefea23449895a92",
+    "tailwind.css": "e2195a6f52fb4bab40dc19bac9e5736dfdd861711f1d4235397059b005d4e39a",
+    "tokens.css": "5754cc629c7744357b283106a34b5fa8b0062d881d550192c368e3a116d2b548",
     "tokens.dark.json": "41de67a8366c7b4a4cc646fc40027b9633c24f7525e4179d5f99a4adb48ffd8e",
-    "tokens.js": "4ab3abec018ec7d856482bbfebc388395074ca7f0ed2c758066e2f03314069e4",
-    "tokens.json": "113115710128a7ad7b038b0655e0396b7b78c1eef7e9d888a9d4ca21c1677878",
+    "tokens.js": "6ceb31f116587471e7ac7692f66561bae6caa4804542c228b26eefa74ef07b18",
+    "tokens.json": "91e6f61ab2b62b4df001ed94283928af8185f2cb70589ab3a14acdc650a27cc4",
     "ui/build/check-tokens.mjs": "c3281b894a72ce7289fd489dcea5b36cdfea60a531ae7b12389ee949b7c107c1",
     "ui/build/icons.mjs": "151587c8ae4d959154f76cd029307b4b345d2331ce91c161ef895050b4c3a34b",
     "ui/build/lib/find-hardcoded.mjs": "6ff3e5c3b249b36260a7c2ae2b46c22fdb2de0180f239f1bab09ba4cf401086e",
@@ -588,5 +588,5 @@
     "ui/toolbar.mjs": "3fab9dbcd66cbb7273e8ce39d7754e5783ea4e605418dc4faf2c91831067cdd2",
     "ui/write.mjs": "796ee2fb248a61f1c1ee67e4a6e65766f3cd5abae1142592be4e9e83eec83989"
   },
-  "contentHash": "2ddc900d7abb2f9e738d7f278bf3fe4757f98a27beabed704ce51e529587e3f5"
+  "contentHash": "85093ef691cff7a439bf0ba6cd016e7f07d894655ce10f1ff8cdb7a1f396429c"
 }

@@ -202,7 +202,7 @@
     "assets/icons/licenses/bootstrap.txt": "0fb3e11bd57e896c5a512afd64864d28a37de45d19835016c87ca1ad19ead969",
     "assets/icons/licenses/collected-icons.txt": "421f7279fd885da757a789c3d2a0184f8d8ba758e1637b183795bccbd9860fcd",
     "assets/icons/licenses/devicon.txt": "121194741d4a915b9f5890fdd6dd95121f9b1f816517c792358d72d7c838d664",
-    "assets/icons/licenses/material-design-icons.txt": "3d0aaf0bd7f38a564e99ab252dff9f86b059e4ee557a6ece85501069464dc6db",
+    "assets/icons/licenses/material-design-icons.txt": "b0e9132e763d29c7384b18f2e3dcfb783e21310ac07977e9dea9ed24b05f7d4f",
     "assets/icons/licenses/project-logos.txt": "d20a1a09248e333fc8440b78e3c015bcc4cc3af8f83cd297c351d1b07dac22d3",
     "assets/icons/licenses/technology-logos-NOTICE.txt": "83b61b1f5823266a4eec9a03f404d65045122d7484d94fec8bdc3060e94c8a0d",
     "assets/icons/media/mdi-image-multiple.svg": "67a9a7bdd45a6a644c7f75450b79ee78aea85a7851e17118c0f71045ca5e5a73",
@@ -279,5 +279,5 @@
     "ui/toolbar.mjs": "3fab9dbcd66cbb7273e8ce39d7754e5783ea4e605418dc4faf2c91831067cdd2",
     "ui/write.mjs": "796ee2fb248a61f1c1ee67e4a6e65766f3cd5abae1142592be4e9e83eec83989"
   },
-  "contentHash": "d432107a54ec3d8e29e0a893e737e33475b51257276432d77642e35101637cf1"
+  "contentHash": "a74b8e32fba6c496699edbc0fd2f700d28e63b0214e468f5e2bdfe4e6cbe9969"
 }

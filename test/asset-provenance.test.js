@@ -119,6 +119,7 @@ test('nhn_catalog_defines_official_asset_types_and_the_inspected_guide', () => {
   const library = catalog.libraries.find(item => item.name === 'nhn-cloud');
   assert.equal(library.version, '53c6a3262a613d01d1030c30591f9981b30d6a89');
   assert.equal(library.guide.version, '2.2');
+  assert.deepEqual(library.presentation, { general: 'monochrome', service: 'source', resource: 'source', group: 'source' });
   assert.equal(library.guide.sha256, '0952982bd50041cf3cf6b188bb00751e12ee32311ca9f66567bdaefc7188e219');
   const types = Object.values(library.icons).reduce((counts, icon) => ({ ...counts, [icon.type]: (counts[icon.type] ?? 0) + 1 }), {});
   assert.deepEqual(types, { group: 148, general: 30, resource: 29, service: 133 });

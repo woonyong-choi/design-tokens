@@ -492,7 +492,7 @@
     "assets/icons/brands/redis.svg": "72d4a0cf62a3460ddd8b9e837527b0d600cfcf74a1031ad21922207d2cec36b5",
     "assets/icons/brands/spring.svg": "70d139406413db03ed528965410e99e410cd785769008e2e178366b844ee0ba2",
     "assets/icons/brands/typescript.svg": "19d36a72518a2cf175efd101295a473ccda5cc78adc924b08ccd075a1d1a5dba",
-    "assets/icons/catalog.json": "952f02539b064105e75d9edf49df44fd631e83c4678f48b0314ce830ad7b65ea",
+    "assets/icons/catalog.json": "e2ea29323d582fd4646fef30053a6e165e5c5962ba846d4def2a8fbdbcad60c4",
     "assets/icons/communication/chat.svg": "0cd2f4dc5bdacf5c6cb2f60e258471f7fb1a66d5f57ba536565e487598a325c2",
     "assets/icons/communication/newsletter.png": "4e1689a4ef32bc68b10553475d8ae9ed5728ef0ba2c43f4a0d18c6e2985b76c5",
     "assets/icons/communication/rss.svg": "ed8661841828a03d3f96db9b830587aad77ffe2799e846cfeaf7eff3a02c251a",
@@ -583,10 +583,10 @@
     "ui/runtime/time.js": "eec23d0da9cc9d62411ef8c37a601fbfc4c5c966e7d9e39b4d71dd24ba229273",
     "ui/runtime/toolbar.js": "a66a022be48b9cdc5bc4df0502a89fb9667ec81e17955a5580371499a07fae00",
     "ui/runtime/video.js": "798ae83453616b75b32e0a8b3560cfaf780c74e7f07618069a59bdda8ff984ae",
-    "ui/svg.mjs": "21e6ccf7b2c03371f3e67f7730bf4455adaef483a5ffae82d7bb774edd80bd19",
+    "ui/svg.mjs": "2d33b01eb370f5667496a61674c97cc38b95a14f7b0b25f8ca7aca2312b68020",
     "ui/table.mjs": "d285303ed3e84599a512085e79dfd92db751a890ad4890b81930f1ccf2126ae0",
     "ui/toolbar.mjs": "3fab9dbcd66cbb7273e8ce39d7754e5783ea4e605418dc4faf2c91831067cdd2",
     "ui/write.mjs": "796ee2fb248a61f1c1ee67e4a6e65766f3cd5abae1142592be4e9e83eec83989"
   },
-  "contentHash": "3ebf67aa13305c3b3ee765089e9a31840b2ee2bc1b24fcbffb1f972278bc693a"
+  "contentHash": "e39278c36511837320bc50788ee27955c3871617d5d817e355274d8f90c0532c"
 }

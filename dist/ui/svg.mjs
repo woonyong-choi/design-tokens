@@ -1,4 +1,4 @@
-// 정적 아이콘의 도형과 내부 mask 참조만 읽는다. 원본 좌표는 유지하고 삽입할 때 ID를 분리한다.
+// 정적 아이콘의 도형과 내부 mask·clipPath 참조만 읽는다. 원본 좌표는 유지하고 삽입할 때 ID를 분리한다.
 import { escape } from './html.mjs';
 
 const SHAPES = Object.freeze({
@@ -33,7 +33,7 @@ const MAX_LENGTH = 262144;
 const MAX_ELEMENTS = 4096;
 let nextIconId = 0;
 
-/** @returns {{viewBox: number[], body: string}} @throws {Error} 정적 도형·내부 mask 참조 밖의 SVG일 때 */
+/** @returns {{viewBox: number[], body: string}} @throws {Error} 정적 도형·내부 mask·clipPath 참조 밖의 SVG일 때 */
 export function parseIconSvg(text) {
   const parsed = parseSvg(text);
   return { viewBox: parsed.viewBox, body: svgBody(parsed) };

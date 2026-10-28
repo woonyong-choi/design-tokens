@@ -2169,6 +2169,12 @@
           15,
           16
         ]
+      },
+      "presentation": {
+        "general": "monochrome",
+        "service": "source",
+        "resource": "source",
+        "group": "source"
       }
     }
   ],

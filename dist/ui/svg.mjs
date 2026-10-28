@@ -3,17 +3,18 @@ import { escape } from './html.mjs';
 
 const SHAPES = Object.freeze({
   svg: ['viewBox', 'width', 'height', 'xmlns', 'version', 'role', 'aria-hidden', 'focusable'],
-  g: ['display'], defs: [],
+  g: ['display'], defs: [], clipPath: ['clipPathUnits'],
   mask: ['x', 'y', 'width', 'height', 'maskUnits', 'maskContentUnits', 'mask-type'],
   path: ['d'], rect: ['x', 'y', 'width', 'height', 'rx', 'ry'],
   circle: ['cx', 'cy', 'r'], ellipse: ['cx', 'cy', 'rx', 'ry'],
   line: ['x1', 'y1', 'x2', 'y2'], polyline: ['points'], polygon: ['points'],
   title: [], desc: [],
 });
-const COMMON = Object.freeze(['id', 'color', 'fill', 'stroke', 'transform', 'mask', 'opacity', 'fill-opacity', 'stroke-opacity', 'stroke-width', 'stroke-miterlimit', 'stroke-linecap', 'stroke-linejoin', 'stroke-dasharray', 'stroke-dashoffset', 'fill-rule', 'clip-rule', 'data-name']);
+const COMMON = Object.freeze(['id', 'color', 'fill', 'stroke', 'transform', 'mask', 'clip-path', 'opacity', 'fill-opacity', 'stroke-opacity', 'stroke-width', 'stroke-miterlimit', 'stroke-linecap', 'stroke-linejoin', 'stroke-dasharray', 'stroke-dashoffset', 'fill-rule', 'clip-rule', 'data-name']);
 const WORDS = Object.freeze({
   'stroke-linecap': ['butt', 'round', 'square'], 'stroke-linejoin': ['miter', 'round', 'bevel'],
   'fill-rule': ['nonzero', 'evenodd'], 'clip-rule': ['nonzero', 'evenodd'],
+  clipPathUnits: ['userSpaceOnUse', 'objectBoundingBox'],
   maskUnits: ['userSpaceOnUse', 'objectBoundingBox'], maskContentUnits: ['userSpaceOnUse', 'objectBoundingBox'],
   'mask-type': ['alpha', 'luminance'], role: ['img', 'presentation'],
   display: ['inline', 'none'],
@@ -72,10 +73,10 @@ function parseSvg(text) {
     end = match.index + match[0].length;
   }
   if (!state.root || state.stack.length || source.slice(end).trim()) throw new Error('icon SVG must contain one closed svg element');
-  for (const { target, variant } of state.references) {
-    const mask = state.ids.get(target);
-    if (mask?.tag !== 'mask') throw new Error(`icon mask does not exist: ${target}`);
-    if (mask.variant !== variant) throw new Error('icon mask cannot cross presentation variants');
+  for (const { target, variant, kind } of state.references) {
+    const shape = state.ids.get(target);
+    if (shape?.tag !== kind) throw new Error(`icon ${kind} does not exist: ${target}`);
+    if (shape.variant !== variant) throw new Error(`icon ${kind} cannot cross presentation variants`);
   }
   if (state.variants.size && (state.variants.size !== 2 || state.elements.some(element => !element.variant))) throw new Error('icon needs exactly two complete presentation variants');
   return { viewBox: viewBoxOf(state.root.attrs), root: state.root, elements: state.elements };
@@ -111,7 +112,9 @@ function readElement([, closing, tag, raw, selfClosing], state) {
     if (state.ids.has(attrs.id)) throw new Error(`duplicate icon id: ${attrs.id}`);
     state.ids.set(attrs.id, { tag, variant });
   }
-  if (!hidden && attrs.mask && attrs.mask !== 'none') state.references.push({ target: attrs.mask.slice(5, -1), variant });
+  for (const [attribute, kind] of [['mask', 'mask'], ['clip-path', 'clipPath']]) {
+    if (!hidden && attrs[attribute] && attrs[attribute] !== 'none') state.references.push({ target: attrs[attribute].slice(5, -1), variant, kind });
+  }
   if (!selfClosing) state.stack.push(element);
 }
 
@@ -139,7 +142,7 @@ function validateAttribute(tag, name, value) {
   if (name === 'xmlns') return requireValue(value === 'http://www.w3.org/2000/svg', name);
   if (name === 'viewBox') return;
   if (Object.hasOwn(WORDS, name)) return requireValue(WORDS[name].includes(value), name);
-  if (name === 'mask') return requireValue(value === 'none' || /^url\(#[a-zA-Z_][\w.-]*\)$/.test(value), name);
+  if (name === 'mask' || name === 'clip-path') return requireValue(value === 'none' || /^url\(#[a-zA-Z_][\w.-]*\)$/.test(value), name);
   if (['color', 'fill', 'stroke'].includes(name)) return requireValue(/^(?:none|transparent|currentColor|black|white)$/i.test(value) || /^#(?:[\da-f]{3,4}|[\da-f]{6}|[\da-f]{8})$/i.test(value) || VARIABLE.test(value), name);
   if (name === 'transform') return validateTransform(value);
   if (name === 'd') return requireValue(/^[MmLlHhVvCcSsQqTtAaZz\d\s.,+\-eE]*$/.test(value) && finiteGeometry(value), name);
@@ -212,7 +215,7 @@ function attributes(element, { prefix, monochrome = false }) {
   return Object.entries(attrs).map(([name, original]) => {
     let value = original;
     if (prefix && name === 'id') value = `${prefix}-${value}`;
-    if (prefix && name === 'mask' && value !== 'none') value = `url(#${prefix}-${value.slice(5, -1)})`;
+    if (prefix && ['mask', 'clip-path'].includes(name) && value !== 'none') value = `url(#${prefix}-${value.slice(5, -1)})`;
     if (monochrome && !element.isMask && ['fill', 'stroke'].includes(name) && !/^(none|transparent)$/i.test(value)) value = 'currentColor';
     return ` ${name}="${escape(value)}"`;
   }).join('');

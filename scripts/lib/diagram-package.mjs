@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto';
 
 const POLICY = Object.freeze({
-  icons: Object.freeze('user admin nginx postgresql redis git github check warning close ellipsis platform-google platform-google-cloud platform-google-drive platform-kubernetes platform-docker platform-redis platform-postgresql platform-aws-ec2 platform-aws-lambda platform-aws-ecs platform-aws-eks platform-aws-s3 platform-aws-rds platform-aws-dynamodb platform-aws-elasticache platform-aws-sqs platform-aws-sns platform-aws-api-gateway platform-aws-elb platform-aws-route53 platform-aws-cloudfront platform-aws-vpc platform-aws-iam platform-aws-cloudwatch'.split(' ')),
+  icons: Object.freeze('check warning close ellipsis'.split(' ')),
   controls: Object.freeze('copy download maximize-2 minimize-2 check alert zoom-in zoom-out scan'.split(' ')),
   files: Object.freeze(['tokens.css', 'tokens.js', 'tokens.json', 'tokens.dark.json', 'styles/tabs.css', 'styles/toolbar.css', 'styles/diagram-embed.css']),
   // CSS 축소 도우미(`/build/styles`)는 웹 사이트 빌드용이며 도표 소비자의 실행 경로가 아님. 이 파일만 esbuild를 import함
@@ -28,10 +28,13 @@ export function buildDiagramPackage({ packageJson, license, fullFiles }) {
     if (!Object.hasOwn(catalog.controls, role)) throw new Error(`missing diagram control: ${role}`);
     return [role, catalog.controls[role]];
   }));
-  const names = [...new Set([...POLICY.icons, ...Object.values(controls)].map(canonical))].sort();
+  const architecture = Object.entries(catalog.brands).filter(([, icon]) => icon.library === catalog.diagram.library).map(([name]) => name);
+  if (!architecture.length) throw new Error(`missing diagram icon library: ${catalog.diagram.library}`);
+  const names = [...new Set([...architecture, ...POLICY.icons, ...Object.values(controls)].map(canonical))].sort();
   const selected = new Set(names);
   const icons = Object.fromEntries(names.map(name => [name, catalog.icons[name]]));
-  const aliases = Object.fromEntries(Object.entries(catalog.aliases).filter(([, target]) => selected.has(target)));
+  const aliases = { ...Object.fromEntries(Object.entries(catalog.aliases).filter(([, target]) => selected.has(target))), ...catalog.diagram.aliases };
+  for (const [alias, target] of Object.entries(aliases)) if (!selected.has(target)) throw new Error(`unknown diagram alias: ${alias}`);
   const brands = Object.fromEntries(Object.entries(catalog.brands).filter(([name]) => selected.has(name)));
   const profileCatalog = { ...catalog, icons, aliases, brands, controls, social: {}, articles: {}, kinds: {} };
   const files = new Map();

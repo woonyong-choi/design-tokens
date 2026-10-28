@@ -35,7 +35,7 @@ test('active_consumer_inventory_matches_source_and_distribution', () => {
   assert.deepEqual(Object.keys(catalog.icons).sort(), names);
   assert.deepEqual(readdirSync(root + 'assets/icons', { recursive: true }).filter(name => name.endsWith('.svg')).map(name => name.split('/').at(-1).slice(0, -4)).sort(), names);
   assert.deepEqual(Object.keys(files).filter(name => /^assets\/icons\/.*\.svg$/.test(name)).map(name => name.split('/').at(-1).slice(0, -4)).sort(), names);
-  assert.deepEqual(catalog.aliases, {"admin": "user-settings", "administrator": "user-settings", "apigw": "gateway", "architecture": "hierarchy", "deploy": "box-up", "incident": "warning", "model": "brain-circuit", "notify": "event", "person": "user", "processor": "cpu", "platform-google": "google", "platform-google-cloud": "google-cloud", "platform-google-drive": "google-drive", "platform-kubernetes": "kubernetes", "platform-docker": "docker", "platform-redis": "redis", "platform-postgresql": "postgresql", "platform-aws-ec2": "aws-ec2", "platform-aws-lambda": "aws-lambda", "platform-aws-ecs": "aws-ecs", "platform-aws-eks": "aws-eks", "platform-aws-s3": "aws-s3", "platform-aws-rds": "aws-rds", "platform-aws-dynamodb": "aws-dynamodb", "platform-aws-elasticache": "aws-elasticache", "platform-aws-sqs": "aws-sqs", "platform-aws-sns": "aws-sns", "platform-aws-api-gateway": "aws-api-gateway", "platform-aws-elb": "aws-elb", "platform-aws-route53": "aws-route53", "platform-aws-cloudfront": "aws-cloudfront", "platform-aws-vpc": "aws-vpc", "platform-aws-iam": "aws-iam", "platform-aws-cloudwatch": "aws-cloudwatch"});
+  assert.deepEqual(catalog.aliases, {"admin": "user-settings", "administrator": "user-settings", "apigw": "gateway", "architecture": "hierarchy", "deploy": "box-up", "incident": "warning", "model": "brain-circuit", "notify": "event", "person": "user", "processor": "cpu", "nhn-cloud": "nhn-group-nhn-cloud", "nhn-region": "nhn-group-region", "nhn-vpc": "nhn-group-vpc", "nhn-nks": "nhn-service-container-nks", "nhn-group-nks": "nhn-group-container-nks", "nhn-group-kafka": "nhn-group-data-n-analytics-kafka-instance", "nhn-group-monitoring": "nhn-group-monitoring-cloud-monitoring", "nhn-group-postgresql": "nhn-group-database-rds-for-postgresql", "nhn-group-redis": "nhn-group-database-redis-instance"});
   assert.deepEqual(catalog.controls, {
     comment: 'chat', copy: 'file-copy', download: 'download-bottom', 'maximize-2': 'maximize', 'minimize-2': 'minimize', check: 'check', alert: 'warning', 'zoom-in': 'zoom-in', 'zoom-out': 'zoom-out', scan: 'scan', search: 'search-mono', clear: 'close', play: 'play', pause: 'pause', replay: 'replay', chevron: 'chevron-right', 'video-play': 'play', 'task-empty': 'checkbox-empty', 'task-done': 'checkbox-check', 'task-cancelled': 'checkbox-indeterminate',
   });
@@ -224,4 +224,15 @@ test('comment_control_preserves_a_colored_surface_and_outline', () => {
   assert.match(svg, /stroke="var\(--icon-accent-outline\)"/);
   assert.match(svg, /aria-hidden="true"/);
   assert.match(String(ControlIcon('copy')), /(?:fill|stroke)="currentColor"/);
+});
+
+
+test('nhn_clipped_source_icons_keep_local_clips_and_separate_ids', () => {
+  const source = readIcon('nhn-service-compute-gpu-instance');
+  const first = renderSvgIcon(source, { prefix: 'first' });
+  const second = renderSvgIcon(source, { prefix: 'second' });
+  assert.match(first, /clip-path="url\(#first-clip/);
+  assert.match(second, /clip-path="url\(#second-clip/);
+  const wrap = body => `<svg viewBox="0 0 24 24">${body}</svg>`;
+  for (const body of ['<rect clip-path="url(https://example.com/clip)"/>', '<rect clip-path="url(#missing)"/>', '<defs><mask id="mask"/></defs><rect clip-path="url(#mask)"/>']) assert.throws(() => parseIconSvg(wrap(body)), body);
 });

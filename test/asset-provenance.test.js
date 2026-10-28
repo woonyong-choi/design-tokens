@@ -114,12 +114,17 @@ test('repository_has_no_third_party_site_file_names_or_asset_links', () => {
 
 
 
-test('platform_aliases_preserve_vendor_brands_and_aws_service_assets', () => {
-  for (const [alias, target] of Object.entries(catalog.aliases).filter(([name]) => name.startsWith('platform-'))) {
-    assert.ok(catalog.brands[target], alias);
-    assert.ok(!target.startsWith('mdi-'), alias);
-    if (target.startsWith('aws-')) assert.equal(catalog.brands[target].library, 'aws-architecture');
+
+test('nhn_catalog_defines_official_asset_types_and_the_inspected_guide', () => {
+  const library = catalog.libraries.find(item => item.name === 'nhn-cloud');
+  assert.equal(library.version, '53c6a3262a613d01d1030c30591f9981b30d6a89');
+  assert.equal(library.guide.version, '2.2');
+  assert.equal(library.guide.sha256, '0952982bd50041cf3cf6b188bb00751e12ee32311ca9f66567bdaefc7188e219');
+  const types = Object.values(library.icons).reduce((counts, icon) => ({ ...counts, [icon.type]: (counts[icon.type] ?? 0) + 1 }), {});
+  assert.deepEqual(types, { group: 148, general: 30, resource: 29, service: 133 });
+  for (const [name, icon] of Object.entries(library.icons)) {
+    assert.equal(catalog.brands[name].library, 'nhn-cloud');
+    assert.equal(catalog.brands[name].type, icon.type);
+    assert.match(icon.source, /^https:\/\/raw\.githubusercontent\.com\/nhn-cloud\/Icons\/53c6a326/);
   }
-  assert.equal(catalog.aliases['platform-redis'], 'redis');
-  assert.equal(catalog.aliases['platform-postgresql'], 'postgresql');
 });

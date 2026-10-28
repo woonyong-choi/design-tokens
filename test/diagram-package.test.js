@@ -12,7 +12,8 @@ import { verifyDesign } from '../scripts/lib/verify-dist.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const INPUT = Object.freeze({ packageJson: readFileSync(join(ROOT, 'package.json')), license: readFileSync(join(ROOT, 'LICENSE')), fullFiles: buildDesign(ROOT) });
-const ICONS = Object.freeze('aws-api-gateway aws-cloudfront aws-cloudwatch aws-dynamodb aws-ec2 aws-ecs aws-eks aws-elasticache aws-elb aws-iam aws-lambda aws-rds aws-route53 aws-s3 aws-sns aws-sqs aws-vpc check close docker download-bottom ellipsis file-copy git github google google-cloud google-drive kubernetes maximize minimize nginx postgresql redis scan user user-settings warning zoom-in zoom-out'.split(' ').sort());
+const NHN = Object.keys(JSON.parse(INPUT.fullFiles['assets/icons/catalog.json']).brands).filter(name => name.startsWith('nhn-'));
+const ICONS = Object.freeze([...NHN, ...'check close download-bottom ellipsis file-copy maximize minimize scan warning zoom-in zoom-out'.split(' ')].sort());
 const CONTROLS = Object.freeze('alert check copy download maximize-2 minimize-2 scan zoom-in zoom-out'.split(' ').sort());
 
 function run(command, args, cwd) {
@@ -46,11 +47,15 @@ test('buildDiagramPackage_selects_the_diagram_contract_without_mutating_full_des
   const fullCatalog = JSON.parse(INPUT.fullFiles['assets/icons/catalog.json']);
   assert.deepEqual(catalog.categories, fullCatalog.categories);
   assert.deepEqual(catalog.libraries, fullCatalog.libraries);
-  assert.deepEqual(catalog.aliases, Object.fromEntries(Object.entries(fullCatalog.aliases).filter(([, target]) => ICONS.includes(target))));
+  assert.deepEqual(catalog.aliases, { ...Object.fromEntries(Object.entries(fullCatalog.aliases).filter(([, target]) => ICONS.includes(target))), ...fullCatalog.diagram.aliases });
+  assert.equal(NHN.length, 340);
+  assert.ok(Object.values(catalog.brands).every(icon => icon.library === 'nhn-cloud'));
+  assert.equal(catalog.aliases.user, 'nhn-general-external-user');
+  assert.equal(catalog.aliases.admin, 'nhn-general-manager');
   for (const item of [...fullCatalog.libraries, ...Object.values(fullCatalog.brands)]) if (item.notice) assert.ok(files.has(`dist/assets/icons/${item.notice}`));
   for (const [name, content] of Object.entries(INPUT.fullFiles)) if ((name.startsWith('ui/') && !['ui/icon-data.mjs', 'ui/build/styles.mjs'].includes(name)) || name.startsWith('styles/diagram/')) assert.deepEqual(files.get(`dist/${name}`), Buffer.from(content), name);
   const svgFiles = [...files.keys()].filter(name => name.endsWith('.svg'));
-  assert.equal(svgFiles.length, 40);
+  assert.equal(svgFiles.length, 351);
   assert.deepEqual(svgFiles.sort(), Object.values(catalog.icons).map(icon => `dist/assets/icons/${icon.file}`).sort());
   for (const name of svgFiles) assert.deepEqual(files.get(name), Buffer.from(INPUT.fullFiles[name.slice(5)]), name);
   assert.ok(![...files.keys()].some(name => /fonts|illustrations|styles\.css|styles\.source|tailwind/.test(name)));
@@ -123,7 +128,7 @@ test('installed_diagram_tarball_runs_public_ui_runtime_styles_icons_and_bin', ()
     import { trusted } from '@woonyong-choi/design-tokens/components';
     const require = createRequire(import.meta.url);
     const catalog = getIconCatalog();
-    assert.equal(Object.keys(catalog.icons).length, 40);
+    assert.equal(Object.keys(catalog.icons).length, 351);
     for (const name of [...Object.keys(catalog.icons), ...Object.keys(catalog.aliases)]) assert.match(readIcon(name), /<svg/);
     for (const role of Object.keys(ICON_ROLES.controls)) assert.match(String(ControlIcon(role)), /<svg/);
     assert.equal(Object.keys(ICON_DATA).length, 9);

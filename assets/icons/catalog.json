@@ -30,7 +30,29 @@
     "model": "brain-circuit",
     "notify": "event",
     "person": "user",
-    "processor": "cpu"
+    "processor": "cpu",
+    "platform-google": "mdi-google",
+    "platform-google-cloud": "mdi-google-cloud",
+    "platform-google-drive": "mdi-google-drive",
+    "platform-kubernetes": "mdi-kubernetes",
+    "platform-docker": "mdi-docker",
+    "platform-aws": "mdi-aws",
+    "diagram-browser": "mdi-web",
+    "diagram-server": "mdi-server",
+    "diagram-cookie": "mdi-cookie",
+    "diagram-session": "mdi-database",
+    "diagram-jwt": "mdi-file-key",
+    "diagram-lock": "mdi-lock",
+    "diagram-key": "mdi-key",
+    "diagram-refresh": "mdi-refresh",
+    "diagram-identity": "mdi-card-account-details",
+    "diagram-attacker": "mdi-account-alert",
+    "diagram-mail": "mdi-email",
+    "diagram-drive": "mdi-harddisk",
+    "diagram-photos": "mdi-image-multiple",
+    "diagram-provider": "mdi-domain",
+    "diagram-signature": "mdi-file-check",
+    "diagram-shield": "mdi-shield-check"
   },
   "controls": {
     "comment": "chat",
@@ -98,6 +120,294 @@
       "license": "AWS-specific architecture icon permission and site terms; not MIT",
       "notice": "licenses/aws-architecture.txt",
       "description": "백엔드 운영 다이어그램용 공식 서비스 아이콘 17종만 선택. 도형·색·고유 배경을 보존한다."
+    },
+    {
+      "name": "material-design-icons",
+      "version": "7.4.47",
+      "source": "https://github.com/Templarian/MaterialDesign-SVG",
+      "license": "Apache-2.0; see Pictogrammers notice",
+      "notice": "licenses/material-design-icons.txt",
+      "icons": {
+        "mdi-web": {
+          "file": "layout/mdi-web.svg",
+          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/web.svg",
+          "sourceSha256": "3ea2acc1f5bc86f48bffc186a11d6f538c6fc7a9e31dee5900814e0959cf2eb8",
+          "sha256": "d21f2e36d521cf4eab6c47895acfe9c66b9ce2053181666beb37cb0d4a6c3294",
+          "author": "Google",
+          "license": "Apache-2.0; see Pictogrammers notice",
+          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+        },
+        "mdi-server": {
+          "file": "backend-api/mdi-server.svg",
+          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/server.svg",
+          "sourceSha256": "7409d190b5d74a512baa6de22146264f540c365d9a1d3e10f431d91b2cd65070",
+          "sha256": "a59c08c9aedfcb7074524d247002b916f36e9043dcd1675914d8d407f5d34c31",
+          "author": "Austin Andrews",
+          "license": "Apache-2.0; see Pictogrammers notice",
+          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+        },
+        "mdi-cookie": {
+          "file": "security/mdi-cookie.svg",
+          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/cookie.svg",
+          "sourceSha256": "720e7f134f75c29e3b7aea57f84bf69be94a431390f2e4d1e4bacd030766aa25",
+          "sha256": "421b82038c062fb3ad2e637cda2d66c790aeb562be4ab67cd6feaffd34a2871d",
+          "author": "Google",
+          "license": "Apache-2.0; see Pictogrammers notice",
+          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+        },
+        "mdi-database": {
+          "file": "databases/mdi-database.svg",
+          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/database.svg",
+          "sourceSha256": "fde25097feda892934cd6576bec8d19957769eda8b60597f2e9b5b21ec40faa0",
+          "sha256": "37b9043c1bcf77b3f4bf8bcd4bfa9e1e5eec4546d0212da2ede5c52a72b32fef",
+          "author": "Simran",
+          "license": "Apache-2.0; see Pictogrammers notice",
+          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+        },
+        "mdi-file-key": {
+          "file": "security/mdi-file-key.svg",
+          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/file-key.svg",
+          "sourceSha256": "95e27ec8d94e308beeb6817f62c2afca0f28a164a646d50d0ce7b0bb301551b2",
+          "sha256": "912d84f9345973b9de59e6c56db2a598b88302f2f17a0353867fb1ea79789b9a",
+          "author": "Michael Richins",
+          "license": "Apache-2.0; see Pictogrammers notice",
+          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+        },
+        "mdi-lock": {
+          "file": "security/mdi-lock.svg",
+          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/lock.svg",
+          "sourceSha256": "a129183f1505149f480e9097f9e916eccbde36cd3c025fb6f9ad09644a1d6548",
+          "sha256": "71311023843abfcc9d141d927358e7385b9c326029f1d990ad1e2783a6722340",
+          "author": "Google",
+          "license": "Apache-2.0; see Pictogrammers notice",
+          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+        },
+        "mdi-key": {
+          "file": "security/mdi-key.svg",
+          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/key.svg",
+          "sourceSha256": "78e4bcbba25163c20708eb4a096f93c15f4f1065bd7b3342a77eadf9ec619ee3",
+          "sha256": "5d8584259ebdce0d902fd6198360d912b5563548c2415e84ba3df3e713f33bd9",
+          "author": "Google",
+          "license": "Apache-2.0; see Pictogrammers notice",
+          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+        },
+        "mdi-refresh": {
+          "file": "actions/mdi-refresh.svg",
+          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/refresh.svg",
+          "sourceSha256": "6d9544dbd768dcabe41bc1e58eee213e88461024d1f72496cf0a90dcb3e250b6",
+          "sha256": "48d1361a25bf25671af3ef3557f564bb258e3fdf5bc01580cc578689eb359f02",
+          "author": "Google",
+          "license": "Apache-2.0; see Pictogrammers notice",
+          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+        },
+        "mdi-card-account-details": {
+          "file": "people/mdi-card-account-details.svg",
+          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/card-account-details.svg",
+          "sourceSha256": "96ed94dd9827879a102a1b1463897ad10115a73dff28e14f1bb513093d990c76",
+          "sha256": "c76a85b99a635ad4f103cb334dd4326e07fec28abb2d604e68354d7e66e78bff",
+          "author": "Christopher Schreiner",
+          "license": "Apache-2.0; see Pictogrammers notice",
+          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+        },
+        "mdi-account-alert": {
+          "file": "people/mdi-account-alert.svg",
+          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/account-alert.svg",
+          "sourceSha256": "d126f75c2ab31d25c5f782f2da6bab95bb356fa8074cd402325599f7be8317c9",
+          "sha256": "df84ee6502f9803990df8f55a912412de1e44a6c0db37b3e2a7ca04eab73ab58",
+          "author": "Austin Andrews",
+          "license": "Apache-2.0; see Pictogrammers notice",
+          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+        },
+        "mdi-email": {
+          "file": "communication/mdi-email.svg",
+          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/email.svg",
+          "sourceSha256": "9aa5faa6c02396170d5316dd0506b57565a2977c9c4564cefd1fea5fea760a1c",
+          "sha256": "9ea954ec5bc0fb92c5fbed8e19521c86e680da3e52e042e8596f7ea6cb1d308b",
+          "author": "Google",
+          "license": "Apache-2.0; see Pictogrammers notice",
+          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+        },
+        "mdi-harddisk": {
+          "file": "files-io/mdi-harddisk.svg",
+          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/harddisk.svg",
+          "sourceSha256": "9b4f6b454ff7b666985aee7c0b3abb5cb8af7d71b959e566439c3976148c5b53",
+          "sha256": "a2b3170740ad8b402b8594aca4d01f8b5a0eacd373f60d940a4f935c264fa4f2",
+          "author": "Austin Andrews",
+          "license": "Apache-2.0; see Pictogrammers notice",
+          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+        },
+        "mdi-image-multiple": {
+          "file": "media/mdi-image-multiple.svg",
+          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/image-multiple.svg",
+          "sourceSha256": "cfc236bb8a1eddbb256fd47707c9c3df20b69005189e8fb246784a3c5ad5f922",
+          "sha256": "67a9a7bdd45a6a644c7f75450b79ee78aea85a7851e17118c0f71045ca5e5a73",
+          "author": "Google",
+          "license": "Apache-2.0; see Pictogrammers notice",
+          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+        },
+        "mdi-domain": {
+          "file": "backend-api/mdi-domain.svg",
+          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/domain.svg",
+          "sourceSha256": "3f31e73a97ebc4df2e0b55f636e713733a5801925976cea6644dd72914b45300",
+          "sha256": "e83bf949241d7f13b7f430c301b8fe2173f8b5fbe774ff068ebb4979a0618c65",
+          "author": "Google",
+          "license": "Apache-2.0; see Pictogrammers notice",
+          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+        },
+        "mdi-file-check": {
+          "file": "security/mdi-file-check.svg",
+          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/file-check.svg",
+          "sourceSha256": "51093934f16ec4c44cf0ebc2831e66232fad41b4d655e09bc9a2737166bae82d",
+          "sha256": "107455e73d4b869ac7463501779ccc07ecb24bdca4add5e568584c9f5daa30ce",
+          "author": "Simran",
+          "license": "Apache-2.0; see Pictogrammers notice",
+          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+        },
+        "mdi-shield-check": {
+          "file": "security/mdi-shield-check.svg",
+          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/shield-check.svg",
+          "sourceSha256": "e64250b11f695be074c753f54c4e06146153b0f3ffce57d6285e1db38565f972",
+          "sha256": "71df3d09c4901b85a95e28c278bbc3dcfddf69f0733546558b0c68d4de1ac7cc",
+          "author": "Google",
+          "license": "Apache-2.0; see Pictogrammers notice",
+          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+        },
+        "mdi-google": {
+          "file": "brands/mdi-google.svg",
+          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/google.svg",
+          "sourceSha256": "10bfeef365d80f6fc331aec93bed9c5987fcd8aa334a47c4682b126861ef3bdd",
+          "sha256": "ffa819a40bfab639388df458ea33c6c905a029170da44ef0291d4c15e7c6e534",
+          "author": "Google",
+          "license": "Apache-2.0; see Pictogrammers notice",
+          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+        },
+        "mdi-google-cloud": {
+          "file": "brands/mdi-google-cloud.svg",
+          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/google-cloud.svg",
+          "sourceSha256": "1d9f0030478e4c8abb6fa274473eb3183ca7913a0714ecebe93c7f4dd842b7b7",
+          "sha256": "d349978f36b27b7ead3cf879f10806633b0b3399045ad746fdc9ca6009dff523",
+          "author": "Google",
+          "license": "Apache-2.0; see Pictogrammers notice",
+          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+        },
+        "mdi-google-drive": {
+          "file": "brands/mdi-google-drive.svg",
+          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/google-drive.svg",
+          "sourceSha256": "1b8bfc8608f88b3760d94721001162fb132998a6b37be48d842b99c3d0a66519",
+          "sha256": "e80a9d02f1114419679177169a10ab5dc6928726bd1b4c831eb89ac00c38ddb4",
+          "author": "Google",
+          "license": "Apache-2.0; see Pictogrammers notice",
+          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+        },
+        "mdi-kubernetes": {
+          "file": "brands/mdi-kubernetes.svg",
+          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/kubernetes.svg",
+          "sourceSha256": "133468c664b21b46d9584998f7b12229d04952baf6a18a6fe4d867aebb0be201",
+          "sha256": "8322c775b12c2d70838e5e161d715a8aa3c0281cc23c086c1da0d739a4c17187",
+          "author": "Contributors",
+          "license": "Apache-2.0; see Pictogrammers notice",
+          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+        },
+        "mdi-docker": {
+          "file": "brands/mdi-docker.svg",
+          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/docker.svg",
+          "sourceSha256": "5bf93daaf0947c2a0ab3096f3ace6101c119db6dac2aefd7c2970e79295c05ce",
+          "sha256": "0038b03ca8c79e792b9d745b9afb505935352170ebb4a73838fbc0ef745d63c1",
+          "author": "Contributors",
+          "license": "Apache-2.0; see Pictogrammers notice",
+          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+        },
+        "mdi-aws": {
+          "file": "brands/mdi-aws.svg",
+          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/aws.svg",
+          "sourceSha256": "475f07c3a486c33fd80b48a2a88a3a496fa7f4baeb13e53e35e527d5576a3029",
+          "sha256": "7295721f897bce62cc602cf6314126d3740fe55118ca49fccbb1e0dee45d6aef",
+          "author": "Contributors",
+          "license": "Apache-2.0; see Pictogrammers notice",
+          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+        },
+        "mdi-content-copy": {
+          "file": "actions/mdi-content-copy.svg",
+          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/content-copy.svg",
+          "sourceSha256": "5584bbc724b175dc9a197294266ec1c579b798149333ea65ebdd811fbd02e7c1",
+          "sha256": "425482c75cc56d40fb2936c523e018274439bded69b6c94c8ce53f0959a0c681",
+          "author": "Google",
+          "license": "Apache-2.0; see Pictogrammers notice",
+          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+        },
+        "mdi-download": {
+          "file": "actions/mdi-download.svg",
+          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/download.svg",
+          "sourceSha256": "23a56c5c12ff618b0ad59e38c8e1b53b7802ed96c7a043fbbd3ee936e27a2a2c",
+          "sha256": "5ee4dd5ce562212970a403b21e2b92d58a7a25c6b36b8fe11a46a1ab4c636ce2",
+          "author": "Google",
+          "license": "Apache-2.0; see Pictogrammers notice",
+          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+        },
+        "mdi-fullscreen": {
+          "file": "actions/mdi-fullscreen.svg",
+          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/fullscreen.svg",
+          "sourceSha256": "0f283a364c954187860d507e3193b8d0193eefa59e64b02b4fef30b80478d4af",
+          "sha256": "2d595cdf236e12e8d74e764129b4a43974e74342f95241da51218d8ddac3c4f8",
+          "author": "Google",
+          "license": "Apache-2.0; see Pictogrammers notice",
+          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+        },
+        "mdi-fullscreen-exit": {
+          "file": "actions/mdi-fullscreen-exit.svg",
+          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/fullscreen-exit.svg",
+          "sourceSha256": "e5ff4edb3a067fd2badc145974f13e1553792c7b1eafa46a3565624994d523ef",
+          "sha256": "93c6e06fc465790d3360a2c3e9b6a00332cb84218f8d9b99e30139c465e45840",
+          "author": "Google",
+          "license": "Apache-2.0; see Pictogrammers notice",
+          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+        },
+        "mdi-check": {
+          "file": "actions/mdi-check.svg",
+          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/check.svg",
+          "sourceSha256": "5da1ba7a43964bcc1106bc2e07ef7d731565e01c8f47aa14a0dfae93d3c6b4b8",
+          "sha256": "5fbcb8fb30f44cdb604ae951063ddefdd80d14388d7e9a2c580fd7d956a24596",
+          "author": "Google",
+          "license": "Apache-2.0; see Pictogrammers notice",
+          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+        },
+        "mdi-alert": {
+          "file": "actions/mdi-alert.svg",
+          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/alert.svg",
+          "sourceSha256": "c00bfa9286c688ee06d389d8fe6744130eafa329307195b9d4f7296b1d69f3a5",
+          "sha256": "2049e5d1cbe57ac7ac40daca26a1ba8b6d770f089ff6e9591c9e987051de41fb",
+          "author": "Google",
+          "license": "Apache-2.0; see Pictogrammers notice",
+          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+        },
+        "mdi-magnify-plus-outline": {
+          "file": "actions/mdi-magnify-plus-outline.svg",
+          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/magnify-plus-outline.svg",
+          "sourceSha256": "e20f7e411ca44b725c89698876b9637e4596fd8063c32ddb2c125d3a2aac9385",
+          "sha256": "d77035b0014b27259195023f8beee9eb4d418d4ed1b0c988f01c5eb95a2a8b57",
+          "author": "Google",
+          "license": "Apache-2.0; see Pictogrammers notice",
+          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+        },
+        "mdi-magnify-minus-outline": {
+          "file": "actions/mdi-magnify-minus-outline.svg",
+          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/magnify-minus-outline.svg",
+          "sourceSha256": "873a5c183e4b256e1be2c93c980f84a8bf3968427092180f8ead44f93bae355c",
+          "sha256": "815eb1c7d3be6b8b2f79414d1cfd36d14ed2a3b3c6a28675ac6225c3f7378f78",
+          "author": "Google",
+          "license": "Apache-2.0; see Pictogrammers notice",
+          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+        },
+        "mdi-fit-to-screen-outline": {
+          "file": "actions/mdi-fit-to-screen-outline.svg",
+          "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/fit-to-screen-outline.svg",
+          "sourceSha256": "30690b319edf81f315d2361af1cd89c72d0417c917d99471a7f971cdc7e165a4",
+          "sha256": "8c3f4355cc644f7cdc1913452be4c285c526cf2f6fe76cd085d2daa80a19d2d1",
+          "author": "Google",
+          "license": "Apache-2.0; see Pictogrammers notice",
+          "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+        }
+      }
     }
   ],
   "brands": {
@@ -782,6 +1092,107 @@
       "guide": "https://aws.amazon.com/architecture/icons/",
       "terms": "https://aws.amazon.com/terms/",
       "treatment": "original 64x64 viewBox, geometry, palette, background and proportions retained; removed unused xmlns:xlink declaration and non-referenced id attributes only; no repainting or path changes"
+    },
+    "mdi-google": {
+      "label": "Google",
+      "file": "brands/mdi-google.svg",
+      "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/google.svg",
+      "guide": "https://pictogrammers.com/library/mdi/",
+      "variant": "Material Design Icons solid monochrome glyph",
+      "sourceSha256": "10bfeef365d80f6fc331aec93bed9c5987fcd8aa334a47c4682b126861ef3bdd",
+      "sha256": "ffa819a40bfab639388df458ea33c6c905a029170da44ef0291d4c15e7c6e534",
+      "transformSha256": "ffa819a40bfab639388df458ea33c6c905a029170da44ef0291d4c15e7c6e534",
+      "version": "7.4.47",
+      "library": "material-design-icons",
+      "license": "Apache-2.0 collection; marks retain their trademark conditions",
+      "notice": "licenses/material-design-icons.txt",
+      "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+    },
+    "mdi-google-cloud": {
+      "label": "Google Cloud",
+      "file": "brands/mdi-google-cloud.svg",
+      "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/google-cloud.svg",
+      "guide": "https://pictogrammers.com/library/mdi/",
+      "variant": "Material Design Icons solid monochrome glyph",
+      "sourceSha256": "1d9f0030478e4c8abb6fa274473eb3183ca7913a0714ecebe93c7f4dd842b7b7",
+      "sha256": "d349978f36b27b7ead3cf879f10806633b0b3399045ad746fdc9ca6009dff523",
+      "transformSha256": "d349978f36b27b7ead3cf879f10806633b0b3399045ad746fdc9ca6009dff523",
+      "version": "7.4.47",
+      "library": "material-design-icons",
+      "license": "Apache-2.0 collection; marks retain their trademark conditions",
+      "notice": "licenses/material-design-icons.txt",
+      "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+    },
+    "mdi-google-drive": {
+      "label": "Google Drive",
+      "file": "brands/mdi-google-drive.svg",
+      "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/google-drive.svg",
+      "guide": "https://pictogrammers.com/library/mdi/",
+      "variant": "Material Design Icons solid monochrome glyph",
+      "sourceSha256": "1b8bfc8608f88b3760d94721001162fb132998a6b37be48d842b99c3d0a66519",
+      "sha256": "e80a9d02f1114419679177169a10ab5dc6928726bd1b4c831eb89ac00c38ddb4",
+      "transformSha256": "e80a9d02f1114419679177169a10ab5dc6928726bd1b4c831eb89ac00c38ddb4",
+      "version": "7.4.47",
+      "library": "material-design-icons",
+      "license": "Apache-2.0 collection; marks retain their trademark conditions",
+      "notice": "licenses/material-design-icons.txt",
+      "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+    },
+    "mdi-kubernetes": {
+      "label": "Kubernetes",
+      "file": "brands/mdi-kubernetes.svg",
+      "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/kubernetes.svg",
+      "guide": "https://pictogrammers.com/library/mdi/",
+      "variant": "Material Design Icons solid monochrome glyph",
+      "sourceSha256": "133468c664b21b46d9584998f7b12229d04952baf6a18a6fe4d867aebb0be201",
+      "sha256": "8322c775b12c2d70838e5e161d715a8aa3c0281cc23c086c1da0d739a4c17187",
+      "transformSha256": "8322c775b12c2d70838e5e161d715a8aa3c0281cc23c086c1da0d739a4c17187",
+      "version": "7.4.47",
+      "library": "material-design-icons",
+      "license": "Apache-2.0 collection; marks retain their trademark conditions",
+      "notice": "licenses/material-design-icons.txt",
+      "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+    },
+    "mdi-docker": {
+      "label": "Docker",
+      "file": "brands/mdi-docker.svg",
+      "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/docker.svg",
+      "guide": "https://pictogrammers.com/library/mdi/",
+      "variant": "Material Design Icons solid monochrome glyph",
+      "sourceSha256": "5bf93daaf0947c2a0ab3096f3ace6101c119db6dac2aefd7c2970e79295c05ce",
+      "sha256": "0038b03ca8c79e792b9d745b9afb505935352170ebb4a73838fbc0ef745d63c1",
+      "transformSha256": "0038b03ca8c79e792b9d745b9afb505935352170ebb4a73838fbc0ef745d63c1",
+      "version": "7.4.47",
+      "library": "material-design-icons",
+      "license": "Apache-2.0 collection; marks retain their trademark conditions",
+      "notice": "licenses/material-design-icons.txt",
+      "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
+    },
+    "mdi-aws": {
+      "label": "AWS",
+      "file": "brands/mdi-aws.svg",
+      "source": "https://unpkg.com/@mdi/svg@7.4.47/svg/aws.svg",
+      "guide": "https://pictogrammers.com/library/mdi/",
+      "variant": "Material Design Icons solid monochrome glyph",
+      "sourceSha256": "475f07c3a486c33fd80b48a2a88a3a496fa7f4baeb13e53e35e527d5576a3029",
+      "sha256": "7295721f897bce62cc602cf6314126d3740fe55118ca49fccbb1e0dee45d6aef",
+      "transformSha256": "7295721f897bce62cc602cf6314126d3740fe55118ca49fccbb1e0dee45d6aef",
+      "version": "7.4.47",
+      "library": "material-design-icons",
+      "license": "Apache-2.0 collection; marks retain their trademark conditions",
+      "notice": "licenses/material-design-icons.txt",
+      "treatment": "Only explicit root fill=currentColor added for theme inheritance; original geometry, viewBox and internal path bytes retained."
     }
+  },
+  "diagramControls": {
+    "copy": "mdi-content-copy",
+    "download": "mdi-download",
+    "maximize-2": "mdi-fullscreen",
+    "minimize-2": "mdi-fullscreen-exit",
+    "check": "mdi-check",
+    "alert": "mdi-alert",
+    "zoom-in": "mdi-magnify-plus-outline",
+    "zoom-out": "mdi-magnify-minus-outline",
+    "scan": "mdi-fit-to-screen-outline"
   }
 }

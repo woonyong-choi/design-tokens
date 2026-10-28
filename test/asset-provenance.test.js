@@ -111,3 +111,20 @@ test('repository_has_no_third_party_site_file_names_or_asset_links', () => {
   const shipped = repository.filter(path => /^(styles|ui|tokens|dist)\//.test(path) && /\.(css|m?js|json|html|svg)$/.test(path) && !path.endsWith('assets/sources.json'));
   for (const path of shipped) assert.doesNotMatch(readFileSync(root + path, 'utf8'), /culturedcode\.com/i, path);
 });
+
+
+test('diagram_icons_and_controls_use_one_material_design_icons_release', () => {
+  const library = catalog.libraries.find(item => item.name === 'material-design-icons');
+  assert.equal(library.version, '7.4.47');
+  const selected = [...Object.entries(catalog.aliases).filter(([role]) => /^(diagram|platform)-/.test(role)).map(([, target]) => target), ...Object.values(catalog.diagramControls)];
+  assert.equal(new Set(selected).size, 31);
+  for (const target of selected) {
+    const icon = library.icons[target];
+    assert.ok(icon, target);
+    assert.match(icon.source, /^https:\/\/unpkg\.com\/@mdi\/svg@7\.4\.47\/svg\//);
+    assert.equal(sha256('assets/icons/' + icon.file), icon.sha256, target);
+    assert.match(icon.sourceSha256, /^[0-9a-f]{64}$/);
+    assert.match(readFileSync(root + 'assets/icons/' + icon.file, 'utf8'), /fill="currentColor"/);
+    assert.deepEqual(parseIconSvg(readFileSync(root + 'assets/icons/' + icon.file, 'utf8')).viewBox, [0, 0, 24, 24]);
+  }
+});

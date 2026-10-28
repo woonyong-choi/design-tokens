@@ -45,7 +45,10 @@ test('write_and_publish_screens_start_hidden_with_named_controls', () => {
   assert.match(publish, /role="dialog" aria-modal="true" aria-label="출간 설정" hidden/);
   assert.match(publish, /<div class="app-publish-card" data-publish-card><article><\/article><\/div>/);
   // 썸네일·요약은 본문에서 자동으로 정하므로 고르는 칸이 없다. 공개 설정은 두 단추 중 하나가 눌린 상태다.
-  assert.doesNotMatch(publish, /upload-thumbnail|remove-thumbnail|name="description"|maxlength/);
+  // 썸네일은 본문에서 자동으로 정한다. 요약은 카드에 보일 글로 직접 쓸 수 있고 150자까지다.
+  assert.doesNotMatch(publish, /upload-thumbnail|remove-thumbnail/);
+  assert.match(publish, /name="description"[^>]*maxlength="150"|maxlength="150"[^>]*name="description"/);
+  assert.match(publish, /data-publish-count>0<\/span> \/ 150/);
   assert.match(publish, /<div class="app-publish-visibility" role="group" aria-label="공개 설정"><button[^>]+data-action="visibility-public" aria-pressed="true">전체 공개<\/button><button[^>]+data-action="visibility-private" aria-pressed="false">비공개<\/button><\/div>/);
   for (const action of ['close-publish', 'publish']) assert.match(publish, new RegExp(`data-action="${action}"`));
   assert.match(String(Dialog({ id: 'confirm', title: '삭제', body: '<글>을 지울까요?', actions: [Button({ label: '취소', action: 'cancel' })] })), /role="alertdialog"[^>]*hidden><div class="app-dialog-card"><h2 class="app-dialog-title" id="confirm-title">삭제<\/h2><p class="app-dialog-body" data-dialog-body>&lt;글&gt;을 지울까요\?<\/p>/);

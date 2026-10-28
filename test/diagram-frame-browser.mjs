@@ -13,7 +13,7 @@ if (!modulePath) throw new Error('usage: node test/diagram-frame-browser.mjs <pl
 const { chromium } = await import(pathToFileURL(resolve(modulePath)).href);
 const root = fileURLToPath(new URL('../dist/', import.meta.url));
 const smallestToken = Math.min(...Object.values(values.text.figure));
-const smallestRole = values.text['figure-meta'];
+const smallestRole = values.text.caption;
 const minimumScale = smallestToken / smallestRole;
 
 // 합성 그림. 글 하나는 그림의 가장 작은 글 역할 크기다.

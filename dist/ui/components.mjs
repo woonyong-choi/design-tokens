@@ -35,16 +35,22 @@ export function SyntaxToken({ text, role }) {
 }
 
 /** `code`는 이스케이프 또는 구문 강조를 마친 `<code>` 슬롯이다. */
+/** 언어 이름은 머리줄로 보이지 않고 `data-language`로만 남는다. 파일 이름이 있으면 이름표 줄이 생긴다. */
 export function CodeBlock({ code, label = '코드 복사', language = '', filename = '', width }) {
-  const heading = [language, filename].filter(Boolean).join(' · ');
   const toolbar = Toolbar({ label: '코드 도구', buttons: [CopyButton({ label })] });
-  return out(`<div class="app-code app-tool-surface${widthClass({ width })}">${ToolHeader({ label: heading, toolbar })}<pre>${slot(code, 'code')}</pre></div>`);
+  const lang = language ? ` data-language="${escape(language)}"` : '';
+  return out(`<div class="app-code app-tool-surface${widthClass({ width })}"${lang}>${ToolHeader({ label: filename, toolbar })}<pre>${slot(code, 'code')}</pre></div>`);
 }
 
 export function Callout({ title, tone, fineprint = false, body }) {
   return out(`${Callout.open({ title, tone, fineprint })}${slot(body, 'body')}${Callout.close()}`);
 }
-Callout.open = ({ title, tone, fineprint = false }) => `<aside class="app-callout${tone === 'warning' ? ' is-warning' : ''}${fineprint ? ' is-fineprint' : ''}"><strong>${escape(title)}</strong>`;
+/** 상태 안내의 종류. 옅은 상태 면과 같은 아이콘 묶음의 색 아이콘이 상태를 알린다. */
+export const CALLOUT_TONES = Object.freeze(['success', 'warning', 'error']);
+Callout.open = ({ title, tone, fineprint = false }) => {
+  if (tone !== undefined && !CALLOUT_TONES.includes(tone)) throw new Error(`Unknown callout tone: ${tone}`);
+  return `<aside class="app-callout${tone ? ` is-${tone}` : ''}${fineprint ? ' is-fineprint' : ''}"><strong>${escape(title)}</strong>`;
+};
 Callout.close = () => '</aside>';
 
 export function TooltipTrigger({ id: target, label }) {

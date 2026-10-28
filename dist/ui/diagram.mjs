@@ -16,7 +16,7 @@ const VIEW_BUTTONS = ToolHeader({ toolbar: Toolbar({ label: '그림 도구', but
   ToolButton({ action: 'copy', className: 'fl-copy', label: '문법 복사', icon: 'copy' }),
   ToolButton({ action: 'download', className: 'fl-download', label: 'HTML 다운로드', icon: 'download' }),
   ToolButton({ action: 'fullscreen', className: 'fl-full', label: '전체화면', icon: 'maximize-2' }),
-], extra: zoomTools }) });
+], extra: zoomTools }), row: true });
 
 // cost: time O(n), heap O(n), stack O(1)
 // vars: n = 원본 글자 수

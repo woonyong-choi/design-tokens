@@ -1,29 +1,29 @@
 /* 그림 안 글자와 모양. HTML 재생기와 움직이는 SVG가 같이 쓴다. */
 /* 카드 안 글(label, sub, meta, cell, item, row)의 기준 점(text-anchor)은 글이 정한다(measure/texts.js의 anchor). 여기서는 글꼴과 색만 정한다. */
-/* 글 위계는 셋이다: 제목(공통 디자인.label-size 15: 카드 제목은 regular, 그룹 제목은 semibold), 문장과 이름표(detail-size 13: 부제, 선 라벨, 메모, 이동 글, 카드 줄, 제약, 형식), 작은 표시(micro-size 11: 번호, 태그, 표식, 키, 눈금, 단위). 크기와 굵기는 measure/texts.js의 STYLE이 같은 토큰으로 잰다. */
+/* 글 위계는 본문 단계에 묶인 둘이다: 그림·그룹 제목(작은 글 text.small 15, semibold)과 그 밖의 모든 글(설명 text.caption 13: 상자 이름, 부제, 선 라벨, 메모, 이동 글, 카드 줄, 번호, 태그, 표식, 키, 배지, 눈금). 크기와 굵기는 DiagramPlay measure/texts.js의 STYLE이 같은 토큰으로 잰다. */
 .fl text {
   font-family: var(--font-figure-sans);
   letter-spacing: var(--tracking-text);
 }
 
 .fl .label {
-  font-size: var(--text-small-text);
+  font-size: var(--text-caption);
   fill: var(--color-ink);
 }
 
 .fl .sub {
-  font-size: var(--text-tiny-text);
-  fill: var(--color-ui-muted);
+  font-size: var(--text-caption);
+  fill: var(--color-body);
 }
 
 .fl .frame {
-  font-size: var(--text-small-text);
+  font-size: var(--text-small);
   font-weight: var(--font-weight-semibold);
-  fill: var(--color-group-title);
+  fill: var(--color-ink);
 }
 
 .fl .edgelabel {
-  font-size: var(--text-tiny-text);
+  font-size: var(--text-caption);
   text-anchor: middle;
   fill: var(--fx-ink-rest);
 }
@@ -34,8 +34,8 @@
 .fl .mini,
 .fl .cell,
 .fl .item {
-  font-size: var(--text-tiny-text);
-  fill: var(--color-ink);
+  font-size: var(--text-caption);
+  fill: var(--color-body);
 }
 
 .fl .row.mono {
@@ -54,26 +54,26 @@
 }
 
 .fl .tag {
-  font-size: var(--text-figure-meta);
+  font-size: var(--text-caption);
   font-weight: var(--font-weight-semibold);
   fill: var(--color-ink);
 }
 
 .fl .mark {
-  font-size: var(--text-figure-meta);
+  font-size: var(--text-caption);
   font-weight: var(--font-weight-semibold);
   fill: var(--color-state-active-text);
 }
 
 /* 값 카드 줄의 값 글자. 줄의 이름(row)은 카드 층이 그리고 값은 오른쪽 끝에 얹힌다. 이름과 같은 크기이고 굵기만 다르다. */
 .fl .value {
-  font-size: var(--text-tiny-text);
+  font-size: var(--text-caption);
   font-weight: var(--font-weight-semibold);
   fill: var(--color-ink);
 }
 
 .fl .chip {
-  font-size: var(--text-tiny-text);
+  font-size: var(--text-caption);
   text-anchor: middle;
 }
 
@@ -105,7 +105,7 @@
 
 /* 열 키(PK, FK, UNQ)는 작은 표시이고 글자색이다. 파랑은 켜진 상태에만 쓴다. */
 .fl .cell .key {
-  font-size: var(--text-figure-meta);
+  font-size: var(--text-caption);
   font-weight: var(--font-weight-semibold);
   fill: var(--color-ink);
 }
@@ -237,7 +237,7 @@
 
 /* 도형 윗줄과 그룹 제목 줄의 장식: 글자 배지, 아이콘 */
 .fl .badge {
-  font-size: var(--text-figure-meta);
+  font-size: var(--text-caption);
   font-weight: var(--font-weight-semibold);
   text-anchor: middle;
   fill: var(--color-ink);
@@ -257,7 +257,7 @@
 }
 
 .fl .number {
-  font-size: var(--text-figure-meta);
+  font-size: var(--text-caption);
   font-weight: var(--font-weight-semibold);
   text-anchor: middle;
   fill: var(--color-figure-number-ink);
@@ -296,13 +296,13 @@
 .fl {
   --paint-fill: var(--color-ui-card);
   --paint-outline: var(--color-figure-outline);
-  --paint-ink: var(--color-group-title);
+  --paint-ink: var(--color-ink);
   --fx-edge: var(--color-state-active);
   --fx-ink: var(--color-state-active-text);
   --fx-row: var(--color-figure-selection-fill);
   --fx-flash: var(--color-figure-flash);
   --fx-edge-rest: var(--color-figure-outline);
-  --fx-ink-rest: var(--color-ui-muted);
+  --fx-ink-rest: var(--color-body);
   --fx-line-rest: var(--color-line);
 }
 
@@ -442,7 +442,7 @@
 }
 
 /* 독립 SVG도 재생 판과 같은 바탕과 움직임 줄이기 규칙을 쓴다. */
-.fl .fl-canvas-surface { fill: var(--color-figure-canvas); rx: var(--radius-card-radius); }
+.fl .fl-canvas-surface { fill: var(--color-figure-canvas); rx: var(--radius-prose-block-radius); }
 .fl .fl-still { display: none; }
 @media (prefers-reduced-motion: reduce) {
   .fl .fl-motion { display: none; }

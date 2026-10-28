@@ -40,15 +40,23 @@ test('body_and_caption_text_are_readable_on_the_page_in_each_theme', () => {
   }
 });
 
+// 구분색 넷: 면 위 글자(on)는 본문 대비, 이름 있는 색의 글자(ink)는 페이지 위 본문 대비다.
+// 다크 연한 회색 글자(#94969b)는 사용자 확정값이라 페이지 위 4.38이고, 직접 라벨이 필요한 계열(label required)이며 이 예외 하나만 둔다.
+const INK_EXCEPTIONS = new Set(['dark silver']);
 test('category_and_flow_share_readable_solid_color_pairs', () => {
   for (const [mode, table] of Object.entries(tables)) {
-    for (const [index, family] of ['blue', 'yellow', 'red', 'green', 'orange', 'purple', 'cyan'].entries()) {
-      const fill = resolveValue(table, `color.category.${family}.solid`);
-      const ink = resolveValue(table, `color.category.${family}.on-solid`);
+    for (const [index, family] of ['blue', 'orange', 'gray', 'silver'].entries()) {
+      const fill = resolveValue(table, `color.category.${family}.fill`);
+      const on = resolveValue(table, `color.category.${family}.on`);
+      assert.equal(resolveValue(table, `color.data.category-family.${index + 1}`), family);
       assert.equal(resolveValue(table, `color.data.category.${index + 1}`), fill);
-      assert.equal(resolveValue(table, `color.data.category-on.${index + 1}`), ink);
-      assert.ok(contrast(ink, fill) >= 4.5, `${mode} ${family}`);
+      assert.equal(resolveValue(table, `color.data.category-on.${index + 1}`), on);
+      assert.ok(contrast(on, fill) >= 4.5, `${mode} ${family} text on fill`);
+      const ink = contrast(resolveValue(table, `color.category.${family}.ink`), resolveValue(table, 'color.ui-card'));
+      if (!INK_EXCEPTIONS.has(`${mode} ${family}`)) assert.ok(ink >= 4.5, `${mode} ${family} ink on page`);
     }
+    assert.deepEqual(['1', '2', '3', '4'].map(key => resolveValue(table, `color.data.category-dash.${key}`)), ['solid', 'solid', 'dashed', 'dotted']);
+    assert.deepEqual(['1', '2', '3', '4'].map(key => resolveValue(table, `color.data.category-label.${key}`)), ['optional', 'optional', 'required', 'required']);
     assert.equal(resolveValue(table, 'color.data.reference'), resolveValue(table, 'color.data.grid'));
   }
 });
@@ -129,12 +137,17 @@ test('syntax_and_comment_colors_keep_text_contrast_on_the_code_surface', () => {
   for (const [mode, table] of Object.entries(tables)) {
     const hex = name => resolveValue(table, name);
     const inline = onSurface(hex('color.prose-code-background'), hex('color.ui-card'));
-    const code = hex('color.figure.canvas');
+    // 코드 블록은 라이트·다크 모두 어두운 면이다.
+    const code = hex('color.code-surface');
+    assert.ok(contrast(code, hex('color.code-ink')) >= 7, `${mode} code surface is dark`);
     assert.ok(contrast(onSurface(hex('color.prose-code-color'), inline), inline) >= 4.5, `${mode} inline code`);
-    for (const role of ['color.prose-code-color', ...SYNTAX_ROLES.map(role => `color.syntax-${role}`)]) {
+    for (const role of ['color.code-ink', ...SYNTAX_ROLES.map(role => `color.syntax-${role}`)]) {
       assert.ok(contrast(onSurface(hex(role), code), code) >= 4.5, `${mode}.${role} on code surface ${code}`);
     }
-    for (const role of ['keyword', 'string', 'number']) assert.notEqual(hex(`color.syntax-${role}`), hex('color.prose-code-color'), role);
+    // 강조는 파랑(키워드·형식), 주황(문자열), 밝은 파랑(숫자), 회색(주석) 넷이고 나머지는 기본 글자색이다.
+    for (const role of ['keyword', 'string', 'number', 'comment']) assert.notEqual(hex(`color.syntax-${role}`), hex('color.code-ink'), role);
+    assert.notEqual(hex('color.syntax-number'), hex('color.syntax-keyword'), 'numbers differ from keywords');
+    for (const role of ['function', 'property', 'parameter', 'variable', 'operator', 'punctuation', 'annotation']) assert.equal(hex(`color.syntax-${role}`), hex('color.code-ink'), role);
   }
 });
 
@@ -152,6 +165,9 @@ test('tab_and_tag_states_keep_text_and_selection_contrast_in_both_themes', () =>
     const selected = value('color.feature-tab-selected');
     const ink = value('color.feature-tab-ink');
     assert.ok(contrast(ink, selected) >= 4.5, mode + ' selected tab text');
+    // 기본 탭은 투명 면 위 본문색 글자와 1px 선, 선택은 메인 파랑 면이다.
+    assert.ok(contrast(value('color.body'), value('color.ui-card')) >= 4.5, mode + ' tab text');
+    assert.ok(contrast(selected, value('color.ui-card')) >= 3, mode + ' selected tab on page');
     for (const base of ['color.ui-card', 'color.prose-pre-background']) {
       const gallery = onSurface(value('color.gallery-selected'), value(base));
       assert.ok(contrast(value('color.gallery-selected-ink'), gallery) >= 4.5, mode + ' selected number text');
@@ -228,13 +244,9 @@ test('warning_callout_list_marker_and_input_stay_readable_in_both_themes', () =>
     const value = name => resolveValue(table, name);
     for (const base of ['color.ui-card', 'color.prose-pre-background']) {
       const page = value(base);
-      const warning = onSurface(value('color.callout-warning'), page);
-      assert.ok(contrast(value('color.body'), warning) >= 4.5, `${mode} warning callout text on ${base}`);
       assert.ok(contrast(onSurface(value('color.prose-marker'), page), page) >= 3, `${mode} list marker on ${base}`);
-      const note = onSurface(value('color.callout-background'), page);
+      const note = onSurface(value('color.prose-soft'), page);
       assert.ok(contrast(value('color.body'), note) >= 4.5, `${mode} callout text on ${base}`);
-      // Things처럼 다크 안내 상자는 페이지보다 밝은 면으로 구분한다. 라이트는 원래 옅은 면을 유지한다.
-      if (mode === 'dark') assert.ok(contrast(note, page) >= 1.2, `${mode} callout surface stands apart from ${base}`);
       const mark = onSurface(value('color.prose-mark-background'), page);
       assert.ok(contrast(value('color.body'), mark) >= 4.5, `${mode} marked text on ${base}`);
       const input = onSurface(value('color.input-background'), page);
@@ -248,19 +260,43 @@ test('warning_callout_list_marker_and_input_stay_readable_in_both_themes', () =>
     // 다크는 밝은 선택 면 위의 어두운 글자이므로 본문 수준 이상의 대비를 둔다.
     assert.ok(contrast(value('color.feature-tab-ink'), value('color.feature-tab-selected')) >= (mode === 'dark' ? 7 : 4.5), `${mode} selected tab text stays clearly legible`);
   }
-  assert.equal(resolveValue(tables.light, 'color.callout-warning'), resolveValue(tables.light, 'primitive.callout-warning'), 'light warning surface unchanged');
   assert.equal(resolveValue(tables.dark, 'color.prose-mark-background'), resolveValue(tables.dark, 'color.callout-warning'), 'mark shares the warning surface');
 });
 
+// 상태 안내: 옅은 상태 면 위 본문색 글자, 같은 아이콘 묶음의 상태색 아이콘. 테두리와 색 줄은 없다.
+test('status_callouts_use_tinted_surfaces_body_text_and_colored_icons', () => {
+  const expected = { light: { success: '#1a7f45', warning: '#9e5400', error: '#c4383a' }, dark: { success: '#6cc189', warning: '#f2943c', error: '#ff8a82' } };
+  for (const [mode, table] of Object.entries(tables)) {
+    const value = name => resolveValue(table, name);
+    for (const state of ['success', 'warning', 'error']) {
+      const surface = value(`color.status.${state}.surface`);
+      assert.equal(value(`color.status.${state}.ink`), expected[mode][state], `${mode} ${state} color`);
+      assert.equal(value(`color.state.${state}`), expected[mode][state], `${mode} state role`);
+      assert.ok(contrast(value('color.body'), surface) >= 4.5, `${mode} ${state} text`);
+      assert.ok(contrast(value(`color.status.${state}.ink`), surface) >= 3, `${mode} ${state} icon`);
+    }
+  }
+  assert.equal(resolveValue(tables.light, 'color.status.warning.ink'), resolveValue(tables.light, 'color.category.orange.ink'), 'warning shares the data orange family');
+  const css = readFileSync(root + 'styles/prose.css', 'utf8');
+  const callout = /\.app-callout \{([^}]*)\}/.exec(css)[1];
+  assert.match(callout, /border: 0/);
+  for (const state of ['success', 'warning', 'error']) assert.match(css, new RegExp(`\\.app-callout\\.is-${state} \\{[^}]*icons/actions/`));
+});
 
-test('code_and_diagram_canvas_share_a_visible_gray_surface_in_light_mode', () => {
-  const canvas = resolveValue(tables.light, 'color.figure.canvas');
-  assert.equal(canvas, resolveValue(tables.light, 'color.soft'));
-  assert.ok(contrast(canvas, resolveValue(tables.light, 'color.ui-card')) >= 1.15);
-  const prose = readFileSync(root + 'styles/prose.css', 'utf8');
-  const diagram = readFileSync(root + 'styles/diagram/player.css', 'utf8');
-  assert.match(prose, /background: var\(--color-figure-canvas\)/);
-  assert.match(diagram, /background: var\(--color-figure-canvas\)/);
+
+// 코드·표·도표·접기는 같은 블록 틀(1px 선, 반경 12)이고 도표는 회색 면을 칠하지 않는다.
+test('code_table_diagram_and_details_share_one_block_frame', () => {
+  for (const table of Object.values(tables)) assert.equal(resolveValue(table, 'color.figure.canvas'), resolveValue(table, 'color.ui-card'));
+  assert.equal(resolveValue(tables.light, 'radius.prose-block-radius'), '12px');
+  const read = name => readFileSync(root + `styles/${name}`, 'utf8');
+  const rule = (css, selector) => css.match(new RegExp(`(?:^|\\n)${selector.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*\\{([^}]*)\\}`))?.[1] ?? '';
+  assert.match(rule(read('prose.css'), '.app-code'), /border-radius: var\(--radius-prose-block-radius\)/);
+  assert.match(rule(read('prose.css'), '.app-details'), /border: var\(--border-width-thin\) solid var\(--color-ui-line\);[^}]*border-radius: var\(--radius-prose-block-radius\)/);
+  assert.match(rule(read('table.css'), '.app-table-scroll'), /border: var\(--border-width-thin\) solid var\(--color-ui-line\);\s*border-radius: var\(--radius-prose-block-radius\)/);
+  const surface = rule(read('diagram/player.css'), '.fl-surface');
+  assert.match(surface, /border: var\(--border-width-thin\) solid var\(--color-ui-line\)/);
+  assert.match(surface, /border-radius: var\(--radius-prose-block-radius\)/);
+  assert.match(surface, /background: transparent/);
 });
 
 test('diagram_panels_stop_at_natural_size_and_the_readable_minimum', () => {
@@ -270,11 +306,11 @@ test('diagram_panels_stop_at_natural_size_and_the_readable_minimum', () => {
   // 자연 크기 상한: 비율 폭과 SVG 좌표 폭 가운데 작은 쪽
   assert.match(svg, /width:\s*min\(calc\(100% \* var\(--panel-w\) \/ var\(--view-w\)\), calc\(var\(--panel-w\) \* var\(--spacing-figure-svg-unit\)\)\)/);
   // 최소 크기: 가장 작은 글 역할이 가장 작은 글 토큰이 되는 배율. 숫자를 적지 않고 토큰에서 계산한다.
-  assert.match(svg, /min-width:\s*calc\(var\(--panel-w\) \* var\(--spacing-figure-svg-unit\) \* \(var\(--text-figure-9\) \/ var\(--text-figure-meta\)\)\)/);
+  assert.match(svg, /min-width:\s*calc\(var\(--panel-w\) \* var\(--spacing-figure-svg-unit\) \* \(var\(--text-figure-9\) \/ var\(--text-caption\)\)\)/);
   // 하한의 분자는 text.figure 묶음의 가장 작은 값이어야 한다(DiagramPlay 그림 검사 10번의 기준).
   const figureSizes = [...tables.light.keys()].filter(name => /^text\.figure\.\d+$/.test(name)).map(name => Number.parseFloat(resolveValue(tables.light, name)));
   assert.equal(Number.parseFloat(resolveValue(tables.light, 'text.figure.9')), Math.min(...figureSizes));
-  assert.match(rule('.dp-panels'), /min-width:\s*calc\(var\(--view-w\) \* var\(--spacing-figure-svg-unit\) \* \(var\(--text-figure-9\) \/ var\(--text-figure-meta\)\)\)/);
+  assert.match(rule('.dp-panels'), /min-width:\s*calc\(var\(--view-w\) \* var\(--spacing-figure-svg-unit\) \* \(var\(--text-figure-9\) \/ var\(--text-caption\)\)\)/);
   assert.match(rule('.fl-canvas'), /overflow-x:\s*auto/);
   // 넘친 쪽 가장자리 흐림: 스크롤 시간표를 지원할 때만, 전체 화면에서는 끈다
   const cue = player.match(/@supports \(animation-timeline: scroll\(\)\) \{([\s\S]*?)\n\}/)?.[1] ?? '';

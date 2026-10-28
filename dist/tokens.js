@@ -44,9 +44,6 @@ export const tokens = freeze({
       "success": "var(--color-state-success)",
       "warning": "var(--color-state-warning)"
     },
-    "flow": {
-      "gray": "var(--color-flow-gray)"
-    },
     "ui": {
       "link": "var(--color-ui-link)",
       "focus": "var(--color-ui-focus)"
@@ -65,64 +62,43 @@ export const tokens = freeze({
         "1": "var(--color-data-category-family-1)",
         "2": "var(--color-data-category-family-2)",
         "3": "var(--color-data-category-family-3)",
-        "4": "var(--color-data-category-family-4)",
-        "5": "var(--color-data-category-family-5)",
-        "6": "var(--color-data-category-family-6)",
-        "7": "var(--color-data-category-family-7)"
+        "4": "var(--color-data-category-family-4)"
       },
       "category": {
         "1": "var(--color-data-category-1)",
         "2": "var(--color-data-category-2)",
         "3": "var(--color-data-category-3)",
-        "4": "var(--color-data-category-4)",
-        "5": "var(--color-data-category-5)",
-        "6": "var(--color-data-category-6)",
-        "7": "var(--color-data-category-7)"
+        "4": "var(--color-data-category-4)"
       },
       "category-outline": {
         "1": "var(--color-data-category-outline-1)",
         "2": "var(--color-data-category-outline-2)",
         "3": "var(--color-data-category-outline-3)",
-        "4": "var(--color-data-category-outline-4)",
-        "5": "var(--color-data-category-outline-5)",
-        "6": "var(--color-data-category-outline-6)",
-        "7": "var(--color-data-category-outline-7)"
+        "4": "var(--color-data-category-outline-4)"
       },
       "category-ink": {
         "1": "var(--color-data-category-ink-1)",
         "2": "var(--color-data-category-ink-2)",
         "3": "var(--color-data-category-ink-3)",
-        "4": "var(--color-data-category-ink-4)",
-        "5": "var(--color-data-category-ink-5)",
-        "6": "var(--color-data-category-ink-6)",
-        "7": "var(--color-data-category-ink-7)"
+        "4": "var(--color-data-category-ink-4)"
       },
       "category-effect": {
         "1": "var(--color-data-category-effect-1)",
         "2": "var(--color-data-category-effect-2)",
         "3": "var(--color-data-category-effect-3)",
-        "4": "var(--color-data-category-effect-4)",
-        "5": "var(--color-data-category-effect-5)",
-        "6": "var(--color-data-category-effect-6)",
-        "7": "var(--color-data-category-effect-7)"
+        "4": "var(--color-data-category-effect-4)"
       },
       "category-tint": {
         "1": "var(--color-data-category-tint-1)",
         "2": "var(--color-data-category-tint-2)",
         "3": "var(--color-data-category-tint-3)",
-        "4": "var(--color-data-category-tint-4)",
-        "5": "var(--color-data-category-tint-5)",
-        "6": "var(--color-data-category-tint-6)",
-        "7": "var(--color-data-category-tint-7)"
+        "4": "var(--color-data-category-tint-4)"
       },
       "category-on": {
         "1": "var(--color-data-category-on-1)",
         "2": "var(--color-data-category-on-2)",
         "3": "var(--color-data-category-on-3)",
-        "4": "var(--color-data-category-on-4)",
-        "5": "var(--color-data-category-on-5)",
-        "6": "var(--color-data-category-on-6)",
-        "7": "var(--color-data-category-on-7)"
+        "4": "var(--color-data-category-on-4)"
       },
       "category-pattern": {
         "1": "var(--color-data-category-pattern-1)",
@@ -147,12 +123,15 @@ export const tokens = freeze({
         "1": "var(--color-data-category-label-1)",
         "2": "var(--color-data-category-label-2)",
         "3": "var(--color-data-category-label-3)",
-        "4": "var(--color-data-category-label-4)",
-        "5": "var(--color-data-category-label-5)",
-        "6": "var(--color-data-category-label-6)",
-        "7": "var(--color-data-category-label-7)"
+        "4": "var(--color-data-category-label-4)"
       },
-      "reference": "var(--color-data-reference)"
+      "reference": "var(--color-data-reference)",
+      "category-dash": {
+        "1": "var(--color-data-category-dash-1)",
+        "2": "var(--color-data-category-dash-2)",
+        "3": "var(--color-data-category-dash-3)",
+        "4": "var(--color-data-category-dash-4)"
+      }
     },
     "figure": {
       "icon": "var(--color-figure-icon)",
@@ -166,45 +145,25 @@ export const tokens = freeze({
       "active-surface": "var(--color-figure-active-surface)"
     },
     "paint": {
-      "red": {
-        "fill": "var(--color-paint-red-fill)",
-        "outline": "var(--color-paint-red-outline)",
-        "ink": "var(--color-paint-red-ink)"
-      },
-      "green": {
-        "fill": "var(--color-paint-green-fill)",
-        "outline": "var(--color-paint-green-outline)",
-        "ink": "var(--color-paint-green-ink)"
-      },
-      "purple": {
-        "fill": "var(--color-paint-purple-fill)",
-        "outline": "var(--color-paint-purple-outline)",
-        "ink": "var(--color-paint-purple-ink)"
-      },
-      "gray": {
-        "fill": "var(--color-paint-gray-fill)",
-        "outline": "var(--color-paint-gray-outline)",
-        "ink": "var(--color-paint-gray-ink)"
-      },
       "blue": {
         "fill": "var(--color-paint-blue-fill)",
         "outline": "var(--color-paint-blue-outline)",
         "ink": "var(--color-paint-blue-ink)"
-      },
-      "yellow": {
-        "fill": "var(--color-paint-yellow-fill)",
-        "outline": "var(--color-paint-yellow-outline)",
-        "ink": "var(--color-paint-yellow-ink)"
       },
       "orange": {
         "fill": "var(--color-paint-orange-fill)",
         "outline": "var(--color-paint-orange-outline)",
         "ink": "var(--color-paint-orange-ink)"
       },
-      "cyan": {
-        "fill": "var(--color-paint-cyan-fill)",
-        "outline": "var(--color-paint-cyan-outline)",
-        "ink": "var(--color-paint-cyan-ink)"
+      "gray": {
+        "fill": "var(--color-paint-gray-fill)",
+        "outline": "var(--color-paint-gray-outline)",
+        "ink": "var(--color-paint-gray-ink)"
+      },
+      "silver": {
+        "fill": "var(--color-paint-silver-fill)",
+        "outline": "var(--color-paint-silver-outline)",
+        "ink": "var(--color-paint-silver-ink)"
       }
     },
     "on-action": "var(--color-on-action)",
@@ -305,119 +264,37 @@ export const tokens = freeze({
     "action-link": "var(--color-action-link)",
     "category": {
       "blue": {
-        "anchor": "var(--color-category-blue-anchor)",
         "fill": "var(--color-category-blue-fill)",
+        "line": "var(--color-category-blue-line)",
+        "ink": "var(--color-category-blue-ink)",
         "on": "var(--color-category-blue-on)",
-        "light-border": "var(--color-category-blue-light-border)",
-        "light-ink": "var(--color-category-blue-light-ink)",
-        "light-tint-1": "var(--color-category-blue-light-tint-1)",
-        "light-tint-3": "var(--color-category-blue-light-tint-3)",
-        "dark-border": "var(--color-category-blue-dark-border)",
-        "dark-ink": "var(--color-category-blue-dark-ink)",
-        "dark-tint-1": "var(--color-category-blue-dark-tint-1)",
-        "dark-tint-3": "var(--color-category-blue-dark-tint-3)",
-        "light-effect": "var(--color-category-blue-light-effect)",
-        "dark-effect": "var(--color-category-blue-dark-effect)",
-        "solid": "var(--color-category-blue-solid)",
-        "on-solid": "var(--color-category-blue-on-solid)",
-        "light-tint-4": "var(--color-category-blue-light-tint-4)",
-        "light-ink-strong": "var(--color-category-blue-light-ink-strong)",
-        "dark-tint-4": "var(--color-category-blue-dark-tint-4)",
-        "dark-ink-strong": "var(--color-category-blue-dark-ink-strong)"
-      },
-      "yellow": {
-        "anchor": "var(--color-category-yellow-anchor)",
-        "fill": "var(--color-category-yellow-fill)",
-        "on": "var(--color-category-yellow-on)",
-        "light-border": "var(--color-category-yellow-light-border)",
-        "light-ink": "var(--color-category-yellow-light-ink)",
-        "light-tint-1": "var(--color-category-yellow-light-tint-1)",
-        "dark-border": "var(--color-category-yellow-dark-border)",
-        "dark-ink": "var(--color-category-yellow-dark-ink)",
-        "dark-tint-1": "var(--color-category-yellow-dark-tint-1)",
-        "light-effect": "var(--color-category-yellow-light-effect)",
-        "dark-effect": "var(--color-category-yellow-dark-effect)",
-        "solid": "var(--color-category-yellow-solid)",
-        "on-solid": "var(--color-category-yellow-on-solid)"
-      },
-      "red": {
-        "anchor": "var(--color-category-red-anchor)",
-        "fill": "var(--color-category-red-fill)",
-        "on": "var(--color-category-red-on)",
-        "light-border": "var(--color-category-red-light-border)",
-        "light-ink": "var(--color-category-red-light-ink)",
-        "light-tint-1": "var(--color-category-red-light-tint-1)",
-        "dark-border": "var(--color-category-red-dark-border)",
-        "dark-ink": "var(--color-category-red-dark-ink)",
-        "dark-tint-1": "var(--color-category-red-dark-tint-1)",
-        "light-effect": "var(--color-category-red-light-effect)",
-        "dark-effect": "var(--color-category-red-dark-effect)",
-        "solid": "var(--color-category-red-solid)",
-        "on-solid": "var(--color-category-red-on-solid)"
-      },
-      "green": {
-        "anchor": "var(--color-category-green-anchor)",
-        "fill": "var(--color-category-green-fill)",
-        "on": "var(--color-category-green-on)",
-        "light-border": "var(--color-category-green-light-border)",
-        "light-ink": "var(--color-category-green-light-ink)",
-        "light-tint-1": "var(--color-category-green-light-tint-1)",
-        "dark-border": "var(--color-category-green-dark-border)",
-        "dark-ink": "var(--color-category-green-dark-ink)",
-        "dark-tint-1": "var(--color-category-green-dark-tint-1)",
-        "light-effect": "var(--color-category-green-light-effect)",
-        "dark-effect": "var(--color-category-green-dark-effect)",
-        "solid": "var(--color-category-green-solid)",
-        "on-solid": "var(--color-category-green-on-solid)"
+        "tint": "var(--color-category-blue-tint)",
+        "effect": "var(--color-category-blue-effect)"
       },
       "orange": {
-        "anchor": "var(--color-category-orange-anchor)",
         "fill": "var(--color-category-orange-fill)",
+        "line": "var(--color-category-orange-line)",
+        "ink": "var(--color-category-orange-ink)",
         "on": "var(--color-category-orange-on)",
-        "light-border": "var(--color-category-orange-light-border)",
-        "light-ink": "var(--color-category-orange-light-ink)",
-        "light-tint-1": "var(--color-category-orange-light-tint-1)",
-        "dark-border": "var(--color-category-orange-dark-border)",
-        "dark-ink": "var(--color-category-orange-dark-ink)",
-        "dark-tint-1": "var(--color-category-orange-dark-tint-1)",
-        "light-effect": "var(--color-category-orange-light-effect)",
-        "dark-effect": "var(--color-category-orange-dark-effect)",
-        "solid": "var(--color-category-orange-solid)",
-        "on-solid": "var(--color-category-orange-on-solid)"
+        "tint": "var(--color-category-orange-tint)",
+        "effect": "var(--color-category-orange-effect)"
       },
-      "purple": {
-        "anchor": "var(--color-category-purple-anchor)",
-        "fill": "var(--color-category-purple-fill)",
-        "on": "var(--color-category-purple-on)",
-        "light-border": "var(--color-category-purple-light-border)",
-        "light-ink": "var(--color-category-purple-light-ink)",
-        "light-tint-1": "var(--color-category-purple-light-tint-1)",
-        "dark-border": "var(--color-category-purple-dark-border)",
-        "dark-ink": "var(--color-category-purple-dark-ink)",
-        "dark-tint-1": "var(--color-category-purple-dark-tint-1)",
-        "light-effect": "var(--color-category-purple-light-effect)",
-        "dark-effect": "var(--color-category-purple-dark-effect)",
-        "solid": "var(--color-category-purple-solid)",
-        "on-solid": "var(--color-category-purple-on-solid)"
+      "gray": {
+        "fill": "var(--color-category-gray-fill)",
+        "line": "var(--color-category-gray-line)",
+        "ink": "var(--color-category-gray-ink)",
+        "on": "var(--color-category-gray-on)",
+        "tint": "var(--color-category-gray-tint)",
+        "effect": "var(--color-category-gray-effect)"
       },
-      "cyan": {
-        "anchor": "var(--color-category-cyan-anchor)",
-        "fill": "var(--color-category-cyan-fill)",
-        "on": "var(--color-category-cyan-on)",
-        "light-border": "var(--color-category-cyan-light-border)",
-        "light-ink": "var(--color-category-cyan-light-ink)",
-        "light-tint-1": "var(--color-category-cyan-light-tint-1)",
-        "dark-border": "var(--color-category-cyan-dark-border)",
-        "dark-ink": "var(--color-category-cyan-dark-ink)",
-        "dark-tint-1": "var(--color-category-cyan-dark-tint-1)",
-        "light-effect": "var(--color-category-cyan-light-effect)",
-        "dark-effect": "var(--color-category-cyan-dark-effect)",
-        "solid": "var(--color-category-cyan-solid)",
-        "on-solid": "var(--color-category-cyan-on-solid)"
+      "silver": {
+        "fill": "var(--color-category-silver-fill)",
+        "line": "var(--color-category-silver-line)",
+        "ink": "var(--color-category-silver-ink)",
+        "on": "var(--color-category-silver-on)",
+        "tint": "var(--color-category-silver-tint)",
+        "effect": "var(--color-category-silver-effect)"
       }
-    },
-    "flow-ink": {
-      "gray": "var(--color-flow-ink-gray)"
     },
     "newsletter-button-color": "var(--color-newsletter-button-color)",
     "primary-hover": "var(--color-primary-hover)",
@@ -440,7 +317,51 @@ export const tokens = freeze({
     "button-primary": "var(--color-button-primary)",
     "button-primary-ink": "var(--color-button-primary-ink)",
     "button-primary-hover": "var(--color-button-primary-hover)",
-    "dialog-backdrop": "var(--color-dialog-backdrop)"
+    "dialog-backdrop": "var(--color-dialog-backdrop)",
+    "main": {
+      "anchor": "var(--color-main-anchor)",
+      "fill": "var(--color-main-fill)",
+      "on": "var(--color-main-on)",
+      "light-border": "var(--color-main-light-border)",
+      "light-ink": "var(--color-main-light-ink)",
+      "light-tint-1": "var(--color-main-light-tint-1)",
+      "light-tint-3": "var(--color-main-light-tint-3)",
+      "dark-border": "var(--color-main-dark-border)",
+      "dark-ink": "var(--color-main-dark-ink)",
+      "dark-tint-1": "var(--color-main-dark-tint-1)",
+      "dark-tint-3": "var(--color-main-dark-tint-3)",
+      "light-effect": "var(--color-main-light-effect)",
+      "dark-effect": "var(--color-main-dark-effect)",
+      "solid": "var(--color-main-solid)",
+      "on-solid": "var(--color-main-on-solid)",
+      "light-tint-4": "var(--color-main-light-tint-4)",
+      "light-ink-strong": "var(--color-main-light-ink-strong)",
+      "dark-tint-4": "var(--color-main-dark-tint-4)",
+      "dark-ink-strong": "var(--color-main-dark-ink-strong)",
+      "dark-on": "var(--color-main-dark-on)"
+    },
+    "status": {
+      "success": {
+        "ink": "var(--color-status-success-ink)",
+        "surface": "var(--color-status-success-surface)"
+      },
+      "warning": {
+        "ink": "var(--color-status-warning-ink)",
+        "surface": "var(--color-status-warning-surface)"
+      },
+      "error": {
+        "ink": "var(--color-status-error-ink)",
+        "surface": "var(--color-status-error-surface)"
+      }
+    },
+    "code-surface": "var(--color-code-surface)",
+    "code-ink": "var(--color-code-ink)",
+    "code-border": "var(--color-code-border)",
+    "prose-soft": "var(--color-prose-soft)",
+    "prose-quote-rule": "var(--color-prose-quote-rule)",
+    "prose-link": "var(--color-prose-link)",
+    "prose-link-underline": "var(--color-prose-link-underline)",
+    "code-control-hover": "var(--color-code-control-hover)"
   },
   "font": {
     "sans": "var(--font-sans)",
@@ -461,6 +382,7 @@ export const tokens = freeze({
     "10": "var(--spacing-10)",
     "12": "var(--spacing-12)",
     "15": "var(--spacing-15)",
+    "20": "var(--spacing-20)",
     "unit": "var(--spacing-unit)",
     "header": "var(--spacing-header)",
     "section": "var(--spacing-section)",
@@ -703,7 +625,24 @@ export const tokens = freeze({
     "write-pad": "var(--spacing-write-pad)",
     "write-rule": "var(--spacing-write-rule)",
     "write-footer": "var(--spacing-write-footer)",
-    "write-tag-min": "var(--spacing-write-tag-min)"
+    "write-tag-min": "var(--spacing-write-tag-min)",
+    "prose-paragraph": "var(--spacing-prose-paragraph)",
+    "prose-block": "var(--spacing-prose-block)",
+    "prose-item": "var(--spacing-prose-item)",
+    "prose-h2-before": "var(--spacing-prose-h2-before)",
+    "prose-h2-before-compact": "var(--spacing-prose-h2-before-compact)",
+    "prose-h2-after": "var(--spacing-prose-h2-after)",
+    "prose-h3-before": "var(--spacing-prose-h3-before)",
+    "prose-h3-before-compact": "var(--spacing-prose-h3-before-compact)",
+    "prose-h3-after": "var(--spacing-prose-h3-after)",
+    "prose-rule": "var(--spacing-prose-rule)",
+    "prose-quote-inset": "var(--spacing-prose-quote-inset)",
+    "code-inset": "var(--spacing-code-inset)",
+    "code-inset-compact": "var(--spacing-code-inset-compact)",
+    "post-header-top": "var(--spacing-post-header-top)",
+    "post-header-top-compact": "var(--spacing-post-header-top-compact)",
+    "post-tags-after": "var(--spacing-post-tags-after)",
+    "post-tags-after-compact": "var(--spacing-post-tags-after-compact)"
   },
   "radius": {
     "lg": "var(--radius-lg)",
@@ -740,7 +679,8 @@ export const tokens = freeze({
     "tooltip-radius": "var(--radius-tooltip-radius)",
     "prose-block-radius": "var(--radius-prose-block-radius)",
     "prose-figure-radius": "var(--radius-prose-figure-radius)",
-    "blog-card-radius": "var(--radius-blog-card-radius)"
+    "blog-card-radius": "var(--radius-blog-card-radius)",
+    "xl": "var(--radius-xl)"
   },
   "shadow": {
     "help-hover-shadow": "var(--shadow-help-hover-shadow)",
@@ -789,17 +729,25 @@ export const tokens = freeze({
     "help-inline-text": "var(--text-help-inline-text)",
     "help-grouped-text": "var(--text-help-grouped-text)",
     "figure": {
-      "9": "var(--text-figure-9)",
-      "11": "var(--text-figure-11)",
-      "13": "var(--text-figure-13)",
-      "15": "var(--text-figure-15)",
-      "22": "var(--text-figure-22)"
+      "9": "var(--text-figure-9)"
     },
-    "figure-meta": "var(--text-figure-meta)",
     "landing-newsletter-note": "var(--text-landing-newsletter-note)",
     "newsletter-button-font": "var(--text-newsletter-button-font)",
     "5xl": "var(--text-5xl)",
-    "tool": "var(--text-tool)"
+    "tool": "var(--text-tool)",
+    "display": "var(--text-display)",
+    "display-compact": "var(--text-display-compact)",
+    "title-2": "var(--text-title-2)",
+    "title-2-compact": "var(--text-title-2-compact)",
+    "title-3": "var(--text-title-3)",
+    "title-3-compact": "var(--text-title-3-compact)",
+    "lead": "var(--text-lead)",
+    "lead-compact": "var(--text-lead-compact)",
+    "body": "var(--text-body)",
+    "body-compact": "var(--text-body-compact)",
+    "small": "var(--text-small)",
+    "small-compact": "var(--text-small-compact)",
+    "caption": "var(--text-caption)"
   },
   "leading": {
     "heading": "var(--leading-heading)",
@@ -823,17 +771,37 @@ export const tokens = freeze({
     "diagram-body": "var(--leading-diagram-body)",
     "newsletter-button-line": "var(--leading-newsletter-button-line)",
     "prose-body": "var(--leading-prose-body)",
-    "card-title": "var(--leading-card-title)"
+    "card-title": "var(--leading-card-title)",
+    "display": "var(--leading-display)",
+    "display-compact": "var(--leading-display-compact)",
+    "title-2": "var(--leading-title-2)",
+    "title-2-compact": "var(--leading-title-2-compact)",
+    "title-3": "var(--leading-title-3)",
+    "title-3-compact": "var(--leading-title-3-compact)",
+    "lead": "var(--leading-lead)",
+    "lead-compact": "var(--leading-lead-compact)",
+    "body": "var(--leading-body)",
+    "body-compact": "var(--leading-body-compact)",
+    "small": "var(--leading-small)",
+    "small-compact": "var(--leading-small-compact)",
+    "caption": "var(--leading-caption)"
   },
   "tracking": {
-    "text": "var(--tracking-text)"
+    "text": "var(--tracking-text)",
+    "display": "var(--tracking-display)",
+    "display-compact": "var(--tracking-display-compact)",
+    "title-2": "var(--tracking-title-2)",
+    "title-2-compact": "var(--tracking-title-2-compact)",
+    "title-3": "var(--tracking-title-3)",
+    "title-3-compact": "var(--tracking-title-3-compact)"
   },
   "font-weight": {
     "prose-script-weight": "var(--font-weight-prose-script-weight)",
     "semibold": "var(--font-weight-semibold)",
     "normal": "var(--font-weight-normal)",
     "medium": "var(--font-weight-medium)",
-    "bold": "var(--font-weight-bold)"
+    "bold": "var(--font-weight-bold)",
+    "extrabold": "var(--font-weight-extrabold)"
   },
   "primitive": {
     "canvas": "var(--primitive-canvas)",
@@ -1222,7 +1190,34 @@ export const tokens = freeze({
     "icon-structure-edge": "var(--primitive-icon-structure-edge)",
     "icon-idea-soft": "var(--primitive-icon-idea-soft)",
     "dialog-backdrop": "var(--primitive-dialog-backdrop)",
-    "admin-shadow": "var(--primitive-admin-shadow)"
+    "admin-shadow": "var(--primitive-admin-shadow)",
+    "code-surface": "var(--primitive-code-surface)",
+    "ink-deep": "var(--primitive-ink-deep)",
+    "code-surface-dark": "var(--primitive-code-surface-dark)",
+    "code-ink": "var(--primitive-code-ink)",
+    "code-number": "var(--primitive-code-number)",
+    "syntax-blue": "var(--primitive-syntax-blue)",
+    "syntax-orange": "var(--primitive-syntax-orange)",
+    "syntax-gray": "var(--primitive-syntax-gray)",
+    "body-ink": "var(--primitive-body-ink)",
+    "body-ink-dark": "var(--primitive-body-ink-dark)",
+    "prose-soft": "var(--primitive-prose-soft)",
+    "soft-dark": "var(--primitive-soft-dark)",
+    "link-underline": "var(--primitive-link-underline)",
+    "link-underline-dark": "var(--primitive-link-underline-dark)",
+    "code-control-hover": "var(--primitive-code-control-hover)",
+    "status-success-ink": "var(--primitive-status-success-ink)",
+    "status-success-ink-dark": "var(--primitive-status-success-ink-dark)",
+    "status-success-surface": "var(--primitive-status-success-surface)",
+    "status-success-surface-dark": "var(--primitive-status-success-surface-dark)",
+    "status-warning-ink": "var(--primitive-status-warning-ink)",
+    "status-warning-ink-dark": "var(--primitive-status-warning-ink-dark)",
+    "status-warning-surface": "var(--primitive-status-warning-surface)",
+    "status-warning-surface-dark": "var(--primitive-status-warning-surface-dark)",
+    "status-error-ink": "var(--primitive-status-error-ink)",
+    "status-error-ink-dark": "var(--primitive-status-error-ink-dark)",
+    "status-error-surface": "var(--primitive-status-error-surface)",
+    "status-error-surface-dark": "var(--primitive-status-error-surface-dark)"
   },
   "breakpoint": {
     "mobile": "var(--breakpoint-mobile)",
@@ -1247,7 +1242,8 @@ export const tokens = freeze({
     "tag": "var(--border-width-tag)",
     "edge": "var(--border-width-edge)",
     "casing": "var(--border-width-casing)",
-    "write-rule": "var(--border-width-write-rule)"
+    "write-rule": "var(--border-width-write-rule)",
+    "quote": "var(--border-width-quote)"
   },
   "z-index": {
     "raised": "var(--z-index-raised)",
@@ -1429,15 +1425,15 @@ export const tokens = freeze({
 export const values = freeze({
   "color": {
     "accent": "#1e6bd6",
-    "link": "#1161cb",
+    "link": "#1e6bd6",
     "border-strong": "#b7b7b7",
     "border": "#dfe3e8",
     "surface-raised": "#f4f4f4",
-    "syntax-string": "#1161cb",
-    "syntax-function": "#7d40c8",
-    "syntax-number": "#9d5100",
-    "syntax-keyword": "#cc0041",
-    "syntax-type": "#00744e",
+    "syntax-string": "#f2943c",
+    "syntax-function": "#d8dde4",
+    "syntax-number": "#a9c4ff",
+    "syntax-keyword": "#81a9fd",
+    "syntax-type": "#81a9fd",
     "gray": {
       "0": "#ffffff",
       "43": "#f4f4f4",
@@ -1460,95 +1456,71 @@ export const values = freeze({
     },
     "group-title": "#3d4856",
     "outline": "#787878",
-    "line": "#b7b7b7",
+    "line": "#8b8f95",
     "state": {
       "active": "#1e6bd6",
       "active-fill": "#1e6bd6",
-      "active-text": "#1161cb",
+      "active-text": "#1e6bd6",
       "on-active": "#ffffff",
-      "error": "#cc0041",
-      "success": "#00744e",
-      "warning": "#9d5100"
-    },
-    "flow": {
-      "gray": "#747474"
+      "error": "#c4383a",
+      "success": "#1a7f45",
+      "warning": "#9e5400"
     },
     "ui": {
-      "link": "#1161cb",
-      "focus": "#2576eb"
+      "link": "#1e6bd6",
+      "focus": "#1e6bd6"
     },
     "data": {
       "main": "#1e6bd6",
-      "compare": "#c46800",
-      "heat-low": "#eaf3c0",
+      "compare": "#f28402",
+      "heat-low": "#d5e4fa",
       "heat-high": "#1e6bd6",
       "heat-ink": "#000000",
       "heat-ink-on": "#ffffff",
       "grid": "#c9c9c9",
-      "compare-fill": "#f2d024",
-      "compare-outline": "#d6b600",
+      "compare-fill": "#fdf0e1",
+      "compare-outline": "#df7902",
       "category-family": {
         "1": "blue",
-        "2": "yellow",
-        "3": "red",
-        "4": "green",
-        "5": "orange",
-        "6": "purple",
-        "7": "cyan"
+        "2": "orange",
+        "3": "gray",
+        "4": "silver"
       },
       "category": {
-        "1": "#1e6bd6",
-        "2": "#f2d024",
-        "3": "#cc0041",
-        "4": "#00744e",
-        "5": "#9d5100",
-        "6": "#7d40c8",
-        "7": "#00717b"
+        "1": "#72a3fe",
+        "2": "#f28402",
+        "3": "#8b8f95",
+        "4": "#c4c8cd"
       },
       "category-outline": {
-        "1": "#1e6bd6",
-        "2": "#d6b600",
-        "3": "#cc0041",
-        "4": "#00744e",
-        "5": "#9d5100",
-        "6": "#7d40c8",
-        "7": "#00717b"
+        "1": "#6292eb",
+        "2": "#df7902",
+        "3": "#8b8f95",
+        "4": "#b4b8bd"
       },
       "category-ink": {
-        "1": "#1161cb",
-        "2": "#303336",
-        "3": "#cc0041",
-        "4": "#00744e",
-        "5": "#9d5100",
-        "6": "#7d40c8",
-        "7": "#00717b"
+        "1": "#4068bb",
+        "2": "#9e5400",
+        "3": "#62666c",
+        "4": "#62666c"
       },
       "category-effect": {
-        "1": "#3984f2",
-        "2": "#f0d03b",
-        "3": "#ff697b",
-        "4": "#3aab7c",
-        "5": "#df812e",
-        "6": "#945ae3",
-        "7": "#33a7b3"
+        "1": "#72a3fe",
+        "2": "#f28402",
+        "3": "#8b8f95",
+        "4": "#c4c8cd"
       },
       "category-tint": {
-        "1": "#f7fafe",
-        "2": "#fefcf3",
-        "3": "#fff8f8",
-        "4": "#f7fbf9",
-        "5": "#fff9f5",
-        "6": "#fbf9fe",
-        "7": "#f5fbfc"
+        "1": "#eef4ff",
+        "2": "#fdf0e1",
+        "3": "#f1f2f2",
+        "4": "#f8f8f9"
       },
       "category-on": {
-        "1": "#ffffff",
+        "1": "#000000",
         "2": "#000000",
-        "3": "#ffffff",
-        "4": "#ffffff",
-        "5": "#ffffff",
-        "6": "#ffffff",
-        "7": "#ffffff"
+        "3": "#000000",
+        "4": "#000000"
       },
       "category-pattern": {
         "1": "hatch",
@@ -1563,7 +1535,7 @@ export const values = freeze({
       },
       "category-revision": {
         "1": {
-          "family": 7,
+          "family": 4,
           "pattern": 3,
           "shape": 4,
           "step": 0.5
@@ -1571,81 +1543,64 @@ export const values = freeze({
       },
       "category-label": {
         "1": "optional",
-        "2": "required",
-        "3": "optional",
-        "4": "optional",
-        "5": "optional",
-        "6": "optional",
-        "7": "optional"
+        "2": "optional",
+        "3": "required",
+        "4": "required"
       },
-      "reference": "#c9c9c9"
+      "reference": "#c9c9c9",
+      "category-dash": {
+        "1": "solid",
+        "2": "solid",
+        "3": "dashed",
+        "4": "dotted"
+      }
     },
     "figure": {
-      "icon": "#1e6bd6",
+      "icon": "#62666c",
       "queue-empty": "#f0f0f0",
       "number-fill": "#303336",
       "number-ink": "#ffffff",
-      "outline": "#888888",
+      "outline": "#8b8f95",
       "selection-fill": "#d5e4fa",
-      "canvas": "#e9edf2",
+      "canvas": "#ffffff",
       "flash": "#d9e6ff",
       "active-surface": "#ebf1ff"
     },
     "paint": {
-      "red": {
-        "fill": "#fff8f8",
-        "outline": "#fa1955",
-        "ink": "#cc0041"
-      },
-      "green": {
-        "fill": "#f7fbf9",
-        "outline": "#149265",
-        "ink": "#00744e"
-      },
-      "purple": {
-        "fill": "#fbf9fe",
-        "outline": "#7d40c8",
-        "ink": "#7d40c8"
-      },
-      "gray": {
-        "fill": "#e7e7e7",
-        "outline": "#848484",
-        "ink": "#5d5d5d"
-      },
       "blue": {
-        "fill": "#f7fafe",
-        "outline": "#1e6bd6",
-        "ink": "#1161cb"
-      },
-      "yellow": {
-        "fill": "#fefcf3",
-        "outline": "#d6b600",
-        "ink": "#303336"
+        "fill": "#eef4ff",
+        "outline": "#6292eb",
+        "ink": "#4068bb"
       },
       "orange": {
-        "fill": "#fff9f5",
-        "outline": "#c46800",
-        "ink": "#9d5100"
+        "fill": "#fdf0e1",
+        "outline": "#df7902",
+        "ink": "#9e5400"
       },
-      "cyan": {
-        "fill": "#f5fbfc",
-        "outline": "#008e9a",
-        "ink": "#00717b"
+      "gray": {
+        "fill": "#f1f2f2",
+        "outline": "#8b8f95",
+        "ink": "#62666c"
+      },
+      "silver": {
+        "fill": "#f8f8f9",
+        "outline": "#b4b8bd",
+        "ink": "#62666c"
       }
     },
     "on-action": "#ffffff",
-    "syntax-property": "#7d40c8",
-    "syntax-parameter": "#9d5100",
-    "syntax-constant": "#9d5100",
-    "syntax-annotation": "#00744e",
-    "syntax-variable": "#1f1f1f",
-    "syntax-comment": "#5d5d5d",
-    "syntax-operator": "#1f1f1f",
-    "syntax-punctuation": "#1f1f1f",
+    "syntax-property": "#d8dde4",
+    "syntax-parameter": "#d8dde4",
+    "syntax-constant": "#a9c4ff",
+    "syntax-annotation": "#d8dde4",
+    "syntax-variable": "#d8dde4",
+    "syntax-comment": "#a0a2a7",
+    "syntax-operator": "#d8dde4",
+    "syntax-punctuation": "#d8dde4",
     "canvas": "#f2f5f7",
     "ui-card": "#ffffff",
     "ink": "#303336",
-    "body": "#303336",
+    "body": "#595c5e",
     "ui-muted": "#55606e",
     "ui-line": "#dfe3e8",
     "soft": "#e9edf2",
@@ -1677,14 +1632,14 @@ export const values = freeze({
     "feature-box-background": "rgba(2,17,37,.04)",
     "feature-tab-background": "rgba(0,25,61,.1)",
     "input-background": "rgba(0,25,61,.1)",
-    "input-ink": "#303336",
+    "input-ink": "#595c5e",
     "input-placeholder": "#55606e",
     "input-field-placeholder": "#757575",
     "feature-tab-selected": "#1e6bd6",
     "help-title-color": "#3d4856",
     "help-copy-color": "rgba(0,1,2,.77)",
     "post-divider-color": "rgba(0,22,53,.07)",
-    "post-date-color": "#989fa8",
+    "post-date-color": "#595c5e",
     "syntax-example-background": "rgba(2,21,48,.02)",
     "syntax-example-border": "rgba(0,7,17,.09)",
     "control-active-ink": "#26344a",
@@ -1696,13 +1651,13 @@ export const values = freeze({
     "gallery-hover": "rgba(0,28,70,.12)",
     "gallery-active": "rgba(0,10,24,.34)",
     "gallery-selected": "rgba(0,3,7,.9)",
-    "prose-code-color": "rgba(0,4,10,.69)",
-    "prose-code-border": "rgba(0,48,111,.04)",
-    "prose-code-background": "rgba(0,34,77,.05)",
+    "prose-code-color": "#303336",
+    "prose-code-border": "#f3f5f7",
+    "prose-code-background": "#f3f5f7",
     "prose-pre-background": "#f6f7fa",
     "key-color": "rgba(0,1,2,.85)",
     "key-background": "#fcfcfd",
-    "callout-warning": "#fcf9cf",
+    "callout-warning": "#faebdd",
     "callout-background": "rgba(2,21,48,.02)",
     "callout-border": "rgba(0,7,17,.09)",
     "platform-color": "#303336",
@@ -1723,136 +1678,54 @@ export const values = freeze({
     "related-background": "rgba(0,52,126,.04)",
     "related-border": "rgba(0,28,70,.06)",
     "control-paper": "#ffffff",
-    "prose-rule-color": "rgba(0,20,49,.18)",
-    "prose-caption-color": "#55606e",
+    "prose-rule-color": "#dfe3e8",
+    "prose-caption-color": "#595c5e",
     "prose-link-active": "#114691",
-    "prose-mark-background": "#fcf9cf",
-    "prose-marker": "rgba(0,15,36,.46)",
-    "action-link": "#2576eb",
+    "prose-mark-background": "#faebdd",
+    "prose-marker": "#8b8f95",
+    "action-link": "#1e6bd6",
     "category": {
       "blue": {
-        "anchor": "#1e6bd6",
-        "fill": "#1e6bd6",
-        "on": "#ffffff",
-        "light-border": "#1e6bd6",
-        "light-ink": "#1161cb",
-        "light-tint-1": "#f7fafe",
-        "light-tint-3": "#d5e4fa",
-        "dark-border": "#3a85f2",
-        "dark-ink": "#6da8ff",
-        "dark-tint-1": "#303948",
-        "dark-tint-3": "#303d54",
-        "light-effect": "#3984f2",
-        "dark-effect": "#60a0ff",
-        "solid": "#1e6bd6",
-        "on-solid": "#ffffff",
-        "light-tint-4": "#c3d9f8",
-        "light-ink-strong": "#0d54b3",
-        "dark-tint-4": "#354665",
-        "dark-ink-strong": "#9ac3ff"
-      },
-      "yellow": {
-        "anchor": "#f2d024",
-        "fill": "#f2d024",
+        "fill": "#72a3fe",
+        "line": "#6292eb",
+        "ink": "#4068bb",
         "on": "#000000",
-        "light-border": "#d6b600",
-        "light-ink": "#303336",
-        "light-tint-1": "#fefcf3",
-        "dark-border": "#f2d024",
-        "dark-ink": "#f2d024",
-        "dark-tint-1": "#393938",
-        "light-effect": "#f0d03b",
-        "dark-effect": "#ffec9a",
-        "solid": "#f2d024",
-        "on-solid": "#000000"
-      },
-      "red": {
-        "anchor": "#fa1955",
-        "fill": "#fa1955",
-        "on": "#000000",
-        "light-border": "#fa1955",
-        "light-ink": "#cc0041",
-        "light-tint-1": "#fff8f8",
-        "dark-border": "#ff315d",
-        "dark-ink": "#ff7f8b",
-        "dark-tint-1": "#413439",
-        "light-effect": "#ff697b",
-        "dark-effect": "#ff7785",
-        "solid": "#cc0041",
-        "on-solid": "#ffffff"
-      },
-      "green": {
-        "anchor": "#269c6e",
-        "fill": "#269c6e",
-        "on": "#000000",
-        "light-border": "#149265",
-        "light-ink": "#00744e",
-        "light-tint-1": "#f7fbf9",
-        "dark-border": "#269c6e",
-        "dark-ink": "#4cba8a",
-        "dark-tint-1": "#323b3c",
-        "light-effect": "#3aab7c",
-        "dark-effect": "#46b586",
-        "solid": "#00744e",
-        "on-solid": "#ffffff"
+        "tint": "#eef4ff",
+        "effect": "#72a3fe"
       },
       "orange": {
-        "anchor": "#ff8906",
-        "fill": "#ff8906",
+        "fill": "#f28402",
+        "line": "#df7902",
+        "ink": "#9e5400",
         "on": "#000000",
-        "light-border": "#c46800",
-        "light-ink": "#9d5100",
-        "light-tint-1": "#fff9f5",
-        "dark-border": "#ff8906",
-        "dark-ink": "#ff8906",
-        "dark-tint-1": "#3d3738",
-        "light-effect": "#df812e",
-        "dark-effect": "#ffb27a",
-        "solid": "#9d5100",
-        "on-solid": "#ffffff"
+        "tint": "#fdf0e1",
+        "effect": "#f28402"
       },
-      "purple": {
-        "anchor": "#7d40c8",
-        "fill": "#7d40c8",
-        "on": "#ffffff",
-        "light-border": "#7d40c8",
-        "light-ink": "#7d40c8",
-        "light-tint-1": "#fbf9fe",
-        "dark-border": "#a269f3",
-        "dark-ink": "#bb91ff",
-        "dark-tint-1": "#383547",
-        "light-effect": "#945ae3",
-        "dark-effect": "#b78aff",
-        "solid": "#7d40c8",
-        "on-solid": "#ffffff"
-      },
-      "cyan": {
-        "anchor": "#25c0cf",
-        "fill": "#25c0cf",
+      "gray": {
+        "fill": "#8b8f95",
+        "line": "#8b8f95",
+        "ink": "#62666c",
         "on": "#000000",
-        "light-border": "#008e9a",
-        "light-ink": "#00717b",
-        "light-tint-1": "#f5fbfc",
-        "dark-border": "#25c0cf",
-        "dark-ink": "#25c0cf",
-        "dark-tint-1": "#333a3f",
-        "light-effect": "#33a7b3",
-        "dark-effect": "#4ddae9",
-        "solid": "#00717b",
-        "on-solid": "#ffffff"
+        "tint": "#f1f2f2",
+        "effect": "#8b8f95"
+      },
+      "silver": {
+        "fill": "#c4c8cd",
+        "line": "#b4b8bd",
+        "ink": "#62666c",
+        "on": "#000000",
+        "tint": "#f8f8f9",
+        "effect": "#c4c8cd"
       }
-    },
-    "flow-ink": {
-      "gray": "#ffffff"
     },
     "newsletter-button-color": "#4f91fb",
     "primary-hover": "#649fff",
     "landing-newsletter-note-ink": "#55606e",
     "feature-tab-ink": "#ffffff",
     "gallery-selected-ink": "#ffffff",
-    "tag-background": "#d5e4fa",
+    "tag-background": "#e9f0fb",
     "help-grouped-bg": "rgba(0,0,0,0)",
-    "document-nav-active-ink": "#2576eb",
+    "document-nav-active-ink": "#1e6bd6",
     "workspace": {
       "sidebar": "#f4f4f4",
       "document": "#ffffff",
@@ -1860,13 +1733,57 @@ export const values = freeze({
       "hover": "#e7e7e7",
       "selected": "#c9c9c9"
     },
-    "tag-ink": "#1161cb",
+    "tag-ink": "#4068bb",
     "tag-preview": "#c3d9f8",
     "tag-preview-ink": "#0d54b3",
-    "button-primary": "#1161cb",
+    "button-primary": "#1e6bd6",
     "button-primary-ink": "#ffffff",
     "button-primary-hover": "#0d54b3",
-    "dialog-backdrop": "rgba(15,18,24,.4)"
+    "dialog-backdrop": "rgba(15,18,24,.4)",
+    "main": {
+      "anchor": "#1e6bd6",
+      "fill": "#1e6bd6",
+      "on": "#ffffff",
+      "light-border": "#1e6bd6",
+      "light-ink": "#1e6bd6",
+      "light-tint-1": "#e9f0fb",
+      "light-tint-3": "#d5e4fa",
+      "dark-border": "#7daafd",
+      "dark-ink": "#7daafd",
+      "dark-tint-1": "#383d4a",
+      "dark-tint-3": "#303d54",
+      "light-effect": "#3984f2",
+      "dark-effect": "#a9c4ff",
+      "solid": "#1e6bd6",
+      "on-solid": "#ffffff",
+      "light-tint-4": "#c3d9f8",
+      "light-ink-strong": "#0d54b3",
+      "dark-tint-4": "#354665",
+      "dark-ink-strong": "#9ac3ff",
+      "dark-on": "#1c1c1e"
+    },
+    "status": {
+      "success": {
+        "ink": "#1a7f45",
+        "surface": "#edf3ec"
+      },
+      "warning": {
+        "ink": "#9e5400",
+        "surface": "#faebdd"
+      },
+      "error": {
+        "ink": "#c4383a",
+        "surface": "#fdebec"
+      }
+    },
+    "code-surface": "#2b3440",
+    "code-ink": "#d8dde4",
+    "code-border": "#2b3440",
+    "prose-soft": "#f3f5f7",
+    "prose-quote-rule": "#c4c8cd",
+    "prose-link": "#1e6bd6",
+    "prose-link-underline": "rgba(30,107,214,.4)",
+    "code-control-hover": "rgba(255,255,255,.12)"
   },
   "font": {
     "sans": "Pretendard, \"Pretendard Variable\", -apple-system, BlinkMacSystemFont, \"Apple SD Gothic Neo\", sans-serif",
@@ -1887,6 +1804,7 @@ export const values = freeze({
     "10": 40,
     "12": 48,
     "15": 60,
+    "20": 80,
     "unit": 4,
     "header": 88,
     "section": 100,
@@ -2033,7 +1951,7 @@ export const values = freeze({
         "icon-stroke": 2.5
       },
       "pill": {
-        "height": 18
+        "height": 20
       },
       "icon": {
         "node": 20,
@@ -2042,7 +1960,7 @@ export const values = freeze({
         "tile-gap": 6
       },
       "tag": {
-        "height": 14
+        "height": 18
       },
       "packet": {
         "radius": 4.5,
@@ -2121,7 +2039,7 @@ export const values = freeze({
     "blog-card-inset-compact": 24,
     "blog-card-gap": 32,
     "blog-card-avatar": 28,
-    "post-avatar": 40,
+    "post-avatar": 28,
     "editor-body-min": 480,
     "admin-fab": 56,
     "admin-fab-icon": 20,
@@ -2129,7 +2047,24 @@ export const values = freeze({
     "write-pad": 48,
     "write-rule": 64,
     "write-footer": 64,
-    "write-tag-min": 160
+    "write-tag-min": 160,
+    "prose-paragraph": 16,
+    "prose-block": 24,
+    "prose-item": 8,
+    "prose-h2-before": 80,
+    "prose-h2-before-compact": 48,
+    "prose-h2-after": 16,
+    "prose-h3-before": 40,
+    "prose-h3-before-compact": 32,
+    "prose-h3-after": 8,
+    "prose-rule": 48,
+    "prose-quote-inset": 16,
+    "code-inset": 24,
+    "code-inset-compact": 16,
+    "post-header-top": 48,
+    "post-header-top-compact": 32,
+    "post-tags-after": 48,
+    "post-tags-after-compact": 40
   },
   "radius": {
     "lg": 8,
@@ -2164,9 +2099,10 @@ export const values = freeze({
     "newsletter-button-radius": 7.632,
     "help-grouped-radius": 10,
     "tooltip-radius": 24,
-    "prose-block-radius": 8,
-    "prose-figure-radius": 8,
-    "blog-card-radius": 16
+    "prose-block-radius": 12,
+    "prose-figure-radius": 12,
+    "blog-card-radius": 16,
+    "xl": 12
   },
   "shadow": {
     "help-hover-shadow": "0 4px 8px rgba(0,0,0,.06), 0 8px 16px rgba(0,0,0,.06)",
@@ -2215,17 +2151,25 @@ export const values = freeze({
     "help-inline-text": ".9em",
     "help-grouped-text": ".95em",
     "figure": {
-      "9": 9,
-      "11": 11,
-      "13": 13,
-      "15": 15,
-      "22": 22
+      "9": 9
     },
-    "figure-meta": 11,
     "landing-newsletter-note": 15.2,
     "newsletter-button-font": 16.96,
     "5xl": 48,
-    "tool": 13
+    "tool": 13,
+    "display": 48,
+    "display-compact": 32,
+    "title-2": 32,
+    "title-2-compact": 24,
+    "title-3": 24,
+    "title-3-compact": 20,
+    "lead": 20,
+    "lead-compact": 18,
+    "body": 18,
+    "body-compact": 16,
+    "small": 15,
+    "small-compact": 14,
+    "caption": 13
   },
   "leading": {
     "heading": 1.2,
@@ -2249,17 +2193,37 @@ export const values = freeze({
     "diagram-body": 1.6,
     "newsletter-button-line": "calc(4px * 5)",
     "prose-body": 1.75,
-    "card-title": 1.35
+    "card-title": 1.35,
+    "display": 56,
+    "display-compact": 40,
+    "title-2": 40,
+    "title-2-compact": 32,
+    "title-3": 32,
+    "title-3-compact": 28,
+    "lead": 32,
+    "lead-compact": 28,
+    "body": 28,
+    "body-compact": 26,
+    "small": 24,
+    "small-compact": 20,
+    "caption": 20
   },
   "tracking": {
-    "text": -0.3
+    "text": -0.3,
+    "display": -1.2,
+    "display-compact": -0.8,
+    "title-2": -0.8,
+    "title-2-compact": -0.6,
+    "title-3": -0.6,
+    "title-3-compact": -0.5
   },
   "font-weight": {
     "prose-script-weight": 440,
     "semibold": 600,
     "normal": 400,
     "medium": 500,
-    "bold": 700
+    "bold": 700,
+    "extrabold": 800
   },
   "primitive": {
     "canvas": "#f2f5f7",
@@ -2648,7 +2612,34 @@ export const values = freeze({
     "icon-structure-edge": "#7d8794",
     "icon-idea-soft": "#f8e47c",
     "dialog-backdrop": "rgba(15,18,24,.4)",
-    "admin-shadow": "0 4px 16px rgba(0,0,0,.12)"
+    "admin-shadow": "0 4px 16px rgba(0,0,0,.12)",
+    "code-surface": "#2b3440",
+    "ink-deep": "#1c1c1e",
+    "code-surface-dark": "#1c1c1e",
+    "code-ink": "#d8dde4",
+    "code-number": "#a9c4ff",
+    "syntax-blue": "#81a9fd",
+    "syntax-orange": "#f2943c",
+    "syntax-gray": "#a0a2a7",
+    "body-ink": "#595c5e",
+    "body-ink-dark": "#cacacb",
+    "prose-soft": "#f3f5f7",
+    "soft-dark": "#3c3c41",
+    "link-underline": "rgba(30,107,214,.4)",
+    "link-underline-dark": "rgba(125,170,253,.4)",
+    "code-control-hover": "rgba(255,255,255,.12)",
+    "status-success-ink": "#1a7f45",
+    "status-success-ink-dark": "#6cc189",
+    "status-success-surface": "#edf3ec",
+    "status-success-surface-dark": "#242d29",
+    "status-warning-ink": "#9e5400",
+    "status-warning-ink-dark": "#f2943c",
+    "status-warning-surface": "#faebdd",
+    "status-warning-surface-dark": "#312821",
+    "status-error-ink": "#c4383a",
+    "status-error-ink-dark": "#ff8a82",
+    "status-error-surface": "#fdebec",
+    "status-error-surface-dark": "#332728"
   },
   "breakpoint": {
     "mobile": 560,
@@ -2671,9 +2662,10 @@ export const values = freeze({
     "strong": 2.5,
     "lifeline": 1.25,
     "tag": 1.5,
-    "edge": 1.75,
+    "edge": 1.5,
     "casing": 4.5,
-    "write-rule": 6
+    "write-rule": 6,
+    "quote": 3
   },
   "z-index": {
     "raised": 2,

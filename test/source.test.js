@@ -113,3 +113,12 @@ test('service_brand_icon_size_has_one_shared_role_in_both_modes', () => {
     assert.equal(resolveValue(table, 'spacing.figure.icon.tile'), '32px');
   }
 });
+
+test('diagram_label_faces_keep_readable_ink_in_both_themes_and_states', async () => {
+  const { contrast } = await import('../scripts/lib/contrast.mjs');
+  for (const table of [tables.light, tables.dark]) for (const state of ['', 'active-']) {
+    const fill = resolveValue(table, `color.figure.label-${state}fill`);
+    const ink = resolveValue(table, `color.figure.label-${state}ink`);
+    assert.ok(contrast(ink, fill) >= 4.5, `${state || 'rest'} label contrast`);
+  }
+});

@@ -128,6 +128,10 @@
   --color-figure-canvas: var(--color-soft);
   --color-figure-flash: var(--primitive-search-hover);
   --color-figure-active-surface: var(--primitive-help-hover);
+  --color-figure-label-fill: var(--color-help-border);
+  --color-figure-label-ink: var(--color-ink);
+  --color-figure-label-active-fill: var(--color-state-active-fill);
+  --color-figure-label-active-ink: var(--color-state-on-active);
   --color-paint-red-fill: var(--color-category-red-light-tint-1);
   --color-paint-red-outline: var(--color-category-red-light-border);
   --color-paint-red-ink: var(--color-category-red-light-ink);

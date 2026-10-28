@@ -163,7 +163,11 @@ export const tokens = freeze({
       "selection-fill": "var(--color-figure-selection-fill)",
       "canvas": "var(--color-figure-canvas)",
       "flash": "var(--color-figure-flash)",
-      "active-surface": "var(--color-figure-active-surface)"
+      "active-surface": "var(--color-figure-active-surface)",
+      "label-fill": "var(--color-figure-label-fill)",
+      "label-ink": "var(--color-figure-label-ink)",
+      "label-active-fill": "var(--color-figure-label-active-fill)",
+      "label-active-ink": "var(--color-figure-label-active-ink)"
     },
     "paint": {
       "red": {
@@ -1592,7 +1596,11 @@ export const values = freeze({
       "selection-fill": "#d5e4fa",
       "canvas": "#e9edf2",
       "flash": "#d9e6ff",
-      "active-surface": "#ebf1ff"
+      "active-surface": "#ebf1ff",
+      "label-fill": "#ebecef",
+      "label-ink": "#303336",
+      "label-active-fill": "#1e6bd6",
+      "label-active-ink": "#ffffff"
     },
     "paint": {
       "red": {

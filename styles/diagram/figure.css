@@ -168,8 +168,17 @@
   stroke-dasharray: var(--dash-card) var(--dash-card);
 }
 
-/* 알약은 모두 같은 중립 흰 면과 평소 경계다: 선 라벨, 배지와 개수. */
-.fl .pill,
+/* 관계 라벨은 번호 유무와 관계없이 같은 채움과 대비 글자를 사용한다. */
+.fl .fl-pill {
+  --fx-ink-rest: var(--color-figure-label-ink);
+  --fx-ink: var(--color-figure-label-active-ink);
+}
+
+.fl .pill {
+  fill: var(--color-figure-label-fill);
+  stroke: var(--fx-edge-rest);
+}
+
 .fl .badge-pill {
   fill: var(--color-ui-card);
   stroke: var(--fx-edge-rest);

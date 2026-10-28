@@ -8504,7 +8504,8 @@
           15
         ]
       }
-    }
+    },
+    "groupMarker": "nhn-group-region"
   },
   "icons": {
     "box-up": {

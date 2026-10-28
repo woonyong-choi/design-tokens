@@ -230,3 +230,7 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 ## 글 읽기 간격
 
 블로그 본문(`.app-prose`)은 한글 긴 글 읽기를 위해 `leading.prose-body`(1.75) 줄 간격을 쓴다. 글 머리의 날짜·제목은 왼쪽 정렬이고 도입 문단은 `color.body`로 본문 제목보다 한 단계 연하다. 검색 위·아래 여백(`spacing.search-top`, `spacing.search-bottom`)과 글 위쪽 여백(`component.post-padding`)은 48px다.
+
+### 다이어그램 관계 라벨
+
+번호 유무와 관계없이 관계 라벨은 채운 중립 배경과 대비 글자를 사용한다. `color.figure.label-fill`, `label-ink`, `label-active-fill`, `label-active-ink`가 두 테마와 활성 상태를 함께 정한다. 번호가 있는 라벨은 같은 바탕에 원형 번호만 더한다. HTML의 `--pill-tint`와 SVG의 시간표 효과는 같은 네 역할을 사용한다.

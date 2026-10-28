@@ -252,9 +252,9 @@ test('warning_callout_list_marker_and_input_stay_readable_in_both_themes', () =>
 });
 
 
-test('diagram_paper_and_code_surface_keep_their_own_semantic_roles_in_light_mode', () => {
+test('diagram_canvas_separates_white_cards_and_keeps_code_surface_independent_in_light_mode', () => {
   const canvas = resolveValue(tables.light, 'color.figure.canvas');
-  assert.equal(canvas, resolveValue(tables.light, 'color.control-paper'));
+  assert.notEqual(canvas, resolveValue(tables.light, 'color.ui-card'));
   assert.notEqual(canvas, resolveValue(tables.light, 'color.prose-pre-background'));
   assert.notEqual(canvas, resolveValue(tables.light, 'color.figure.label-fill'));
   const prose = readFileSync(root + 'styles/prose.css', 'utf8');

@@ -190,7 +190,7 @@ html.embedded .fl-figure.full {
 /* 고정 라벨 알약은 늘 보인다. 점이 올라 있는 동안 알약의 채움·테두리·글자가 활성 색이고, 점이 떠난 뒤 재생기가 쓰는 세기(--pill-tint, 1에서 0)만큼 중립 색으로 돌아온다.
    불투명도는 건드리지 않는다. 세기는 시각마다 재생기가 정한 값이다. 켜짐과 평소 색은 figure.css의 효과 한 벌이다. */
 .fl .fl-edge .pill {
-  fill: color-mix(in srgb, var(--color-figure-label-active-fill) calc(var(--pill-tint, 0) * 100%), var(--color-figure-label-fill));
+  fill: color-mix(in srgb, var(--color-figure-label-active-fill) calc(var(--pill-tint, 0) * 100%), var(--fx-pill-rest));
 }
 
 .fl .fl-edge .edgelabel {

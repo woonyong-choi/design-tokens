@@ -182,7 +182,8 @@ export const tokens = freeze({
       "boundary-active": "var(--color-figure-boundary-active)",
       "relation": "var(--color-figure-relation)",
       "ordered-label-fill": "var(--color-figure-ordered-label-fill)",
-      "control-selected": "var(--color-figure-control-selected)"
+      "control-selected": "var(--color-figure-control-selected)",
+      "control-boundary": "var(--color-figure-control-boundary)"
     },
     "paint": {
       "red": {
@@ -712,9 +713,6 @@ export const tokens = freeze({
       },
       "status": {
         "height": "var(--spacing-figure-status-height)"
-      },
-      "class": {
-        "empty-section": "var(--spacing-figure-class-empty-section)"
       }
     },
     "focus-offset": "var(--spacing-focus-offset)",
@@ -1648,7 +1646,8 @@ export const values = freeze({
       "boundary-active": "#d5e4fa",
       "relation": "#787878",
       "ordered-label-fill": "#e7e7e7",
-      "control-selected": "#e7e7e7"
+      "control-selected": "#e7e7e7",
+      "control-boundary": "#b7b7b7"
     },
     "paint": {
       "red": {
@@ -2178,9 +2177,6 @@ export const values = freeze({
       },
       "status": {
         "height": 24
-      },
-      "class": {
-        "empty-section": 4
       }
     },
     "focus-offset": "calc(4px * 0.375)",

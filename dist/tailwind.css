@@ -145,6 +145,7 @@
   --color-figure-relation: var(--color-outline);
   --color-figure-ordered-label-fill: var(--color-gray-94);
   --color-figure-control-selected: var(--color-gray-94);
+  --color-figure-control-boundary: var(--color-line);
   --color-paint-red-fill: var(--color-category-red-light-tint-1);
   --color-paint-red-outline: var(--color-category-red-light-border);
   --color-paint-red-ink: var(--color-category-red-light-ink);
@@ -578,7 +579,6 @@
   --spacing-figure-figure-compact-width: 320px;
   --spacing-figure-comparison-column: var(--primitive-diagram-comparison-column);
   --spacing-figure-status-height: var(--spacing-6);
-  --spacing-figure-class-empty-section: var(--spacing-1);
   --spacing-focus-offset: calc(var(--spacing-unit) * 0.375);
   --spacing-icon: var(--primitive-icon);
   --spacing-control: var(--primitive-control);

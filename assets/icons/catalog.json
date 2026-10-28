@@ -2875,7 +2875,11 @@
       "license": "NHN Cloud artwork; architecture diagram use per README; no general open-source license stated",
       "notice": "licenses/nhn-cloud.txt",
       "treatment": "Original SVG bytes, geometry, palette and viewBox retained.",
-      "type": "group"
+      "type": "group",
+      "boundary": {
+        "line": "dashed",
+        "guideSlide": 15
+      }
     },
     "nhn-group-nhncloud-member": {
       "label": "nhncloud member",
@@ -2987,7 +2991,11 @@
       "license": "NHN Cloud artwork; architecture diagram use per README; no general open-source license stated",
       "notice": "licenses/nhn-cloud.txt",
       "treatment": "Original SVG bytes, geometry, palette and viewBox retained.",
-      "type": "group"
+      "type": "group",
+      "boundary": {
+        "line": "dashed",
+        "guideSlide": 15
+      }
     },
     "nhn-group-vpc": {
       "label": "vpc",

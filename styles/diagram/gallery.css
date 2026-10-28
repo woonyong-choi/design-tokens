@@ -264,4 +264,4 @@ summary {
   border-radius: var(--radius-card-radius);
 }
 .is-comparison .comparison-detail header { padding: 0 0 var(--spacing-4); }
-.is-comparison .comparison-detail img { display: block; width: 100%; height: auto; }
+.is-comparison .comparison-detail img { display: block; width: auto; max-width: 100%; height: auto; margin-inline: auto; }

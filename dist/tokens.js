@@ -177,7 +177,12 @@ export const tokens = freeze({
         "fail-ink": "var(--color-figure-status-fail-ink)",
         "wait-fill": "var(--color-figure-status-wait-fill)",
         "wait-ink": "var(--color-figure-status-wait-ink)"
-      }
+      },
+      "boundary": "var(--color-figure-boundary)",
+      "boundary-active": "var(--color-figure-boundary-active)",
+      "relation": "var(--color-figure-relation)",
+      "ordered-label-fill": "var(--color-figure-ordered-label-fill)",
+      "control-selected": "var(--color-figure-control-selected)"
     },
     "paint": {
       "red": {
@@ -623,7 +628,8 @@ export const tokens = freeze({
         "icon-stroke": "var(--spacing-figure-control-icon-stroke)"
       },
       "pill": {
-        "height": "var(--spacing-figure-pill-height)"
+        "height": "var(--spacing-figure-pill-height)",
+        "padding": "var(--spacing-figure-pill-padding)"
       },
       "icon": {
         "node": "var(--spacing-figure-icon-node)",
@@ -653,7 +659,8 @@ export const tokens = freeze({
         "table-row": "var(--spacing-figure-node-table-row)",
         "circle": "var(--spacing-figure-node-circle)",
         "tile-width": "var(--spacing-figure-node-tile-width)",
-        "tile-pad": "var(--spacing-figure-node-tile-pad)"
+        "tile-pad": "var(--spacing-figure-node-tile-pad)",
+        "header-height": "var(--spacing-figure-node-header-height)"
       },
       "grid": {
         "cell": "var(--spacing-figure-grid-cell)"
@@ -693,7 +700,8 @@ export const tokens = freeze({
         "slot-gap": "var(--spacing-figure-queue-slot-gap)"
       },
       "sequence": {
-        "row": "var(--spacing-figure-sequence-row)"
+        "row": "var(--spacing-figure-sequence-row)",
+        "heading-pad": "var(--spacing-figure-sequence-heading-pad)"
       },
       "group": {
         "title": "var(--spacing-figure-group-title)"
@@ -701,6 +709,12 @@ export const tokens = freeze({
       "figure-compact-width": "var(--spacing-figure-figure-compact-width)",
       "comparison": {
         "column": "var(--spacing-figure-comparison-column)"
+      },
+      "status": {
+        "height": "var(--spacing-figure-status-height)"
+      },
+      "class": {
+        "empty-section": "var(--spacing-figure-class-empty-section)"
       }
     },
     "focus-offset": "var(--spacing-focus-offset)",
@@ -758,7 +772,8 @@ export const tokens = freeze({
     "help-grouped-radius": "var(--radius-help-grouped-radius)",
     "tooltip-radius": "var(--radius-tooltip-radius)",
     "prose-figure-radius": "var(--radius-prose-figure-radius)",
-    "blog-card-radius": "var(--radius-blog-card-radius)"
+    "blog-card-radius": "var(--radius-blog-card-radius)",
+    "group-radius": "var(--radius-group-radius)"
   },
   "shadow": {
     "help-hover-shadow": "var(--shadow-help-hover-shadow)",
@@ -817,7 +832,8 @@ export const tokens = freeze({
     "landing-newsletter-note": "var(--text-landing-newsletter-note)",
     "newsletter-button-font": "var(--text-newsletter-button-font)",
     "5xl": "var(--text-5xl)",
-    "tool": "var(--text-tool)"
+    "tool": "var(--text-tool)",
+    "figure-status": "var(--text-figure-status)"
   },
   "leading": {
     "heading": "var(--leading-heading)",
@@ -1609,12 +1625,12 @@ export const values = freeze({
       "queue-empty": "#e7e7e7",
       "number-fill": "#303336",
       "number-ink": "#ffffff",
-      "outline": "#787878",
+      "outline": "#888888",
       "selection-fill": "#d5e4fa",
       "canvas": "#f4f4f4",
       "flash": "#d9e6ff",
       "active-surface": "#ebf1ff",
-      "label-fill": "#e7e7e7",
+      "label-fill": "#f0f0f0",
       "label-ink": "#303336",
       "label-active-fill": "#1e6bd6",
       "label-active-ink": "#ffffff",
@@ -1625,9 +1641,14 @@ export const values = freeze({
         "warn-ink": "#ffffff",
         "fail-fill": "#cc0041",
         "fail-ink": "#ffffff",
-        "wait-fill": "#e7e7e7",
+        "wait-fill": "#f0f0f0",
         "wait-ink": "#303336"
-      }
+      },
+      "boundary": "#c9c9c9",
+      "boundary-active": "#d5e4fa",
+      "relation": "#787878",
+      "ordered-label-fill": "#e7e7e7",
+      "control-selected": "#e7e7e7"
     },
     "paint": {
       "red": {
@@ -2073,7 +2094,8 @@ export const values = freeze({
         "icon-stroke": 2.5
       },
       "pill": {
-        "height": 18
+        "height": 18,
+        "padding": 4
       },
       "icon": {
         "node": 20,
@@ -2103,7 +2125,8 @@ export const values = freeze({
         "table-row": 26,
         "circle": 40,
         "tile-width": 80,
-        "tile-pad": 8
+        "tile-pad": 8,
+        "header-height": 32
       },
       "grid": {
         "cell": 32
@@ -2143,7 +2166,8 @@ export const values = freeze({
         "slot-gap": 4
       },
       "sequence": {
-        "row": 44
+        "row": 44,
+        "heading-pad": 8
       },
       "group": {
         "title": 28
@@ -2151,6 +2175,12 @@ export const values = freeze({
       "figure-compact-width": 320,
       "comparison": {
         "column": 350
+      },
+      "status": {
+        "height": 24
+      },
+      "class": {
+        "empty-section": 4
       }
     },
     "focus-offset": "calc(4px * 0.375)",
@@ -2208,7 +2238,8 @@ export const values = freeze({
     "help-grouped-radius": 10,
     "tooltip-radius": 24,
     "prose-figure-radius": 12,
-    "blog-card-radius": 16
+    "blog-card-radius": 16,
+    "group-radius": 6
   },
   "shadow": {
     "help-hover-shadow": "0 4px 8px rgba(0,0,0,.06), 0 8px 16px rgba(0,0,0,.06)",
@@ -2267,7 +2298,8 @@ export const values = freeze({
     "landing-newsletter-note": 15.2,
     "newsletter-button-font": 16.96,
     "5xl": 48,
-    "tool": 13
+    "tool": 13,
+    "figure-status": 13
   },
   "leading": {
     "heading": 1.2,

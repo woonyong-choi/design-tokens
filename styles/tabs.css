@@ -18,3 +18,11 @@
 .app-tablist button:focus-visible { outline: var(--outline-width-focus) solid var(--color-ui-focus); outline-offset: var(--spacing-0-5); }
 .app-tablist button:disabled { color: var(--color-ui-muted); cursor: default; background: transparent; box-shadow: none; }
 @media (prefers-reduced-motion: reduce) { .app-tablist button, .app-tablist.is-segmented button, .app-tablist.is-numbers button { transition: none; } }
+
+/* 보조 선택은 같은 조작 계약을 유지하고 면·글자의 무게만 낮춘다. */
+.app-tablist.is-subtle button { padding: var(--spacing-2) var(--spacing-3); font-size: var(--text-tool); background: transparent; box-shadow: none; }
+.app-tablist.is-subtle button:hover { background: var(--color-control-hover); box-shadow: none; }
+.app-tablist.is-subtle button:is([aria-selected=true], [aria-pressed=true]) { color: var(--color-feature-tab-ink); background: var(--color-feature-tab-selected); }
+.app-tablist.is-subtle.is-segmented { background: transparent; padding: 0; }
+.app-tablist.is-subtle.is-segmented button { min-height: var(--spacing-8); min-width: 0; }
+.app-tablist.is-subtle.is-segmented button:is([aria-selected=true], [aria-pressed=true]) { color: var(--color-ink); background: var(--color-figure-control-selected); box-shadow: none; }

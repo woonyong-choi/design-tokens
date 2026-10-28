@@ -12,7 +12,7 @@ export function DiagramEmbed({ src, title, dimensions, width }) {
 const zoomTools = trusted(`<div class="fl-zoom app-tool-group">${[
   ['in', '확대', 'zoom-in'], ['out', '축소', 'zoom-out'], ['fit', '전체 보기', 'scan'],
 ].map(([zoom, label, icon]) => ToolButton({ action: `zoom-${zoom}`, zoom, label, icon })).join('')}</div>`);
-const VIEW_BUTTONS = ToolHeader({ toolbar: Toolbar({ label: '그림 도구', buttons: [
+const VIEW_BUTTONS = ToolHeader({ inline: true, toolbar: Toolbar({ label: '그림 도구', persistent: true, buttons: [
   ToolButton({ action: 'copy', className: 'fl-copy', label: '문법 복사', icon: 'copy' }),
   ToolButton({ action: 'download', className: 'fl-download', label: 'HTML 다운로드', icon: 'download' }),
   ToolButton({ action: 'fullscreen', className: 'fl-full', label: '전체화면', icon: 'maximize-2' }),
@@ -35,7 +35,7 @@ function sourceScript(source) {
 // basis: estimate
 /**
  * 그림 틀(figure). 장면 탭은 빌드 때 만들고 재생기가 선택 동작을 연결한다. 재생 조작 단추와 글 설명은 없다.
- * 탭 줄(.fl-foot)은 그림(.fl-surface) 바로 아래 문서 흐름에 놓인 가운데 줄이다(CSS). 그림 위를 덮지 않는다. 그림 뒤에는 아무것도 오지 않는다.
+ * 탭 줄(.fl-foot)은 그림(.fl-surface) 앞 문서 흐름에 놓여 선택 뒤 재생 시작을 함께 볼 수 있다. 그림 위를 덮지 않는다.
  * @param canvas 그림 영역 안쪽 마크업(판 묶음, html.js panelsMarkup)
  * @param className figure 요소에 더할 class(앞에 공백 포함, 없으면 빈 글)
  * @param style figure 요소에 더할 속성 글(앞에 공백 포함, 없으면 빈 글)
@@ -44,15 +44,15 @@ function sourceScript(source) {
  */
 export function DiagramFrame({ canvas, className = '', style = '', narrow = '', source, labels = [] }) {
   return `<figure class="fl-figure${className}" tabindex="0"${style}>
+<div class="fl-foot">
+${TabList({ id: 'scene', label: '장면 선택', labels, controls: labels.map(() => 'scene-panel'), inlineCode: true, emphasis: 'subtle' })}
+</div>
 <div class="fl-surface app-tool-surface">
 ${VIEW_BUTTONS}
 <div class="fl-canvas" id="scene-panel" role="tabpanel" aria-label="그림" tabindex="0">${canvas}</div>
 </div>
 ${narrow}
 ${source === undefined ? '' : sourceScript(source)}
-<div class="fl-foot">
-${TabList({ id: 'scene', label: '장면 선택', labels, controls: labels.map(() => 'scene-panel'), inlineCode: true, afterPanel: true })}
-</div>
 </figure>`;
 }
 

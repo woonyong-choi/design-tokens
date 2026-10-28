@@ -4,7 +4,7 @@
 }
 
 .fl .status-text {
-  font-size: var(--text-figure-meta);
+  font-size: var(--text-figure-status);
   font-weight: var(--font-weight-semibold);
   fill: currentColor;
 }

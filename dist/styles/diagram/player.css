@@ -33,7 +33,7 @@ html.embedded body {
   background: transparent;
 }
 
-/* 그림 틀은 모든 곳(단독, 삽입, 전체 화면)에서 같은 열 하나다: 그림 면(.fl-surface) 다음에 장면 탭 줄(.fl-foot)이 문서 흐름대로 이어진다. 탭은 그림 위로 올라가지 않는다.
+/* 그림 틀은 모든 곳(단독, 삽입, 전체 화면)에서 같은 열 하나다: 장면 탭 줄(.fl-foot) 다음에 그림 면(.fl-surface)이 문서 흐름대로 이어진다. 탭은 그림 위를 덮지 않는다.
    단독 문서와 삽입 재생기 모두 자연 높이를 쓰고 문서가 세로로 스크롤한다. */
 .fl-figure {
   position: relative;
@@ -104,7 +104,7 @@ html.embedded .fl-figure.full {
   overflow: hidden;
 }
 
-/* 장면이 둘 이상일 때만 보이는 탭 줄이다(없으면 hidden). 그림 면 바로 아래 문서 흐름에 놓인 가운데 줄이고 그림을 덮지 않는다.
+/* 장면이 둘 이상일 때만 보이는 탭 줄이다(없으면 hidden). 그림 면 앞 문서 흐름에 놓인 가운데 줄이고 그림을 덮지 않는다.
    문서 안에서는 틀 높이가 정해지지 않아 백분율 상한이 걸리지 않는다. 전체 화면에서 탭이 그림 공간을 모두 차지하지 않도록 틀 높이의 절반까지만 자라고 넘치면 안에서 스크롤한다. */
 .fl-foot {
   display: flex;
@@ -112,7 +112,7 @@ html.embedded .fl-figure.full {
   justify-content: center;
   box-sizing: border-box;
   max-height: 50%;
-  padding: 0;
+  padding: 0 0 var(--spacing-2);
   overflow: auto;
 }
 

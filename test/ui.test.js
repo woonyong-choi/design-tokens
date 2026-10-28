@@ -470,13 +470,15 @@ test('tabs_default_to_frameless_bottom_buttons_and_only_deviations_become_classe
   assert.throws(() => ui.Tabs({ id: 'g', tabs, platform: true, position: 'bottom' }), /Platform tabs always/);
 });
 
-test('tabs_share_one_selection_style_across_documents_and_diagrams', () => {
+test('tabs_share_selection_roles_with_explicit_subtle_diagram_emphasis', () => {
   const labels = ['첫 장면', '다음 `상태`'];
   const document = html(ui.Tabs({ id: 'document', tabs: labels.map(label => ({ label, body: trusted('') })) }));
   const diagram = DiagramFrame({ canvas: '', labels });
   const tabListClass = markup => /class="([^"]+)" role="tablist"/.exec(markup)[1];
-  assert.equal(tabListClass(diagram), tabListClass(document));
-  assert.equal(tabListClass(diagram), 'app-tablist is-after-panel');
+  assert.equal(tabListClass(document), 'app-tablist is-after-panel');
+  assert.equal(tabListClass(diagram), 'app-tablist is-subtle');
+  assert.ok(diagram.indexOf('class="fl-foot"') < diagram.indexOf('class="fl-surface'));
+  assert.match(diagram, /app-toolbar is-persistent/);
   assert.match(diagram, /aria-selected="true" aria-controls="scene-panel" tabindex="0"/);
   assert.match(diagram, /aria-selected="false" aria-controls="scene-panel" tabindex="-1">다음 <code>상태<\/code>/);
   const css = read('../styles/tabs.css');

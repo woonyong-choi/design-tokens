@@ -1,6 +1,6 @@
 /* 그림 안 글자와 모양. HTML 재생기와 움직이는 SVG가 같이 쓴다. */
 /* 카드 안 글(label, sub, meta, cell, item, row)의 기준 점(text-anchor)은 글이 정한다(measure/texts.js의 anchor). 여기서는 글꼴과 색만 정한다. */
-/* 글 위계는 셋이다: 제목(공통 디자인.label-size 15: 카드 제목은 regular, 그룹 제목은 semibold), 문장과 이름표(detail-size 13: 부제, 선 라벨, 메모, 이동 글, 카드 줄, 제약, 형식), 작은 표시(micro-size 11: 번호, 태그, 표식, 키, 눈금, 단위). 크기와 굵기는 measure/texts.js의 STYLE이 같은 토큰으로 잰다. */
+/* 글 위계는 셋이다: 제목(공통 디자인.label-size 15: 카드 제목은 semibold, 그룹 제목은 semibold), 문장과 이름표(detail-size 13: 부제, 선 라벨, 메모, 이동 글, 카드 줄, 제약, 형식), 작은 표시(micro-size 11: 번호, 태그, 표식, 키, 눈금, 단위). 크기와 굵기는 measure/texts.js의 STYLE이 같은 토큰으로 잰다. */
 .fl text {
   font-family: var(--font-figure-sans);
   letter-spacing: var(--tracking-text);
@@ -8,6 +8,7 @@
 
 .fl .label {
   font-size: var(--text-small-text);
+  font-weight: var(--font-weight-semibold);
   fill: var(--color-ink);
 }
 
@@ -112,7 +113,8 @@
 
 /* 그룹은 기본 면이 없다(투명). 경계와 제목만 있고, 깊이에 따라 회색 면을 겹치지 않는다. 고른 색은 아래 appearance 역할로 적용한다. */
 .fl .frame-box {
-  --fx-edge-rest: var(--color-figure-outline);
+  --fx-edge-rest: var(--color-figure-boundary);
+  --fx-edge: var(--color-figure-boundary-active);
   fill: none;
   stroke: var(--fx-edge-rest);
   stroke-width: var(--border-width-thin);
@@ -175,6 +177,19 @@
 .fl .pill {
   fill: var(--color-figure-label-fill);
   stroke: none;
+}
+
+.fl .fl-edge.is-ordered .pill {
+  fill: var(--color-figure-ordered-label-fill);
+}
+
+.fl .fl-edge.is-auxiliary .fl-path {
+  stroke-width: var(--border-width-tag);
+}
+
+.fl .fl-end-label {
+  font-weight: var(--font-weight-semibold);
+  fill: var(--color-ink);
 }
 
 .fl .badge-pill {
@@ -310,7 +325,7 @@
   --fx-flash: var(--color-figure-flash);
   --fx-edge-rest: var(--color-figure-outline);
   --fx-ink-rest: var(--color-ui-muted);
-  --fx-line-rest: var(--color-line);
+  --fx-line-rest: var(--color-figure-relation);
 }
 
 /* 도형의 평소 면과 켜진 면. 옅은 면으로 고른 도형(filled)은 켜져도 면이 같다. 면이 없는 윤곽(fill='none')과 점은 자기 면이 없거나 자기 색이다. */
@@ -425,13 +440,13 @@
 /* 제어 구획은 일반 그룹과 같은 경계·제목 역할을 쓴다. 제목 밑면은 판과 같아 생명선만 가린다. */
 .fl .fl-fragment-border {
   fill: none;
-  stroke: var(--color-figure-outline);
+  stroke: var(--color-figure-boundary);
   stroke-width: var(--border-width-thin);
 }
 
 .fl .fl-fragment-divider {
   fill: none;
-  stroke: var(--color-figure-outline);
+  stroke: var(--color-figure-boundary);
   stroke-width: var(--border-width-hair);
   stroke-dasharray: var(--dash-card) var(--dash-card);
 }

@@ -202,8 +202,8 @@
         "$type": "color"
       },
       "queue-empty": {
-        "$value": "{color.gray.910}",
-        "$type": "color"
+        "$type": "color",
+        "$value": "{primitive.figure-dark-separator}"
       },
       "outline": {
         "$type": "color",
@@ -227,7 +227,27 @@
       },
       "label-fill": {
         "$type": "color",
+        "$value": "{primitive.figure-dark-hover}"
+      },
+      "boundary": {
+        "$type": "color",
+        "$value": "{primitive.figure-dark-separator}"
+      },
+      "boundary-active": {
+        "$type": "color",
+        "$value": "{color.category.blue.dark-tint-3}"
+      },
+      "relation": {
+        "$type": "color",
+        "$value": "{color.outline}"
+      },
+      "ordered-label-fill": {
+        "$type": "color",
         "$value": "{color.help-border}"
+      },
+      "control-selected": {
+        "$type": "color",
+        "$value": "{primitive.figure-dark-hover}"
       }
     },
     "flow": {

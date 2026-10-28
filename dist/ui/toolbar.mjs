@@ -12,11 +12,11 @@ export function ToolButton({ action, label, icon, className = '', hidden = false
   return out(`<button type="button" class="app-tool-button${className ? ` ${className}` : ''}" data-tool="${action}" aria-label="${escape(label)}" title="${escape(label)}"${hidden ? ' hidden' : ''}${zoom ? ` data-zoom="${zoom}"` : ''}>${ToolIcon(icon)}</button>`);
 }
 
-export function Toolbar({ label, buttons, extra }) {
-  return out(`<div class="app-toolbar" role="toolbar" aria-label="${escape(label)}"><span class="app-tool-status app-sr" data-tool-status role="status" aria-live="polite" aria-atomic="true"></span>${buttons.map(button => slot(button, 'tool button')).join('')}${extra === undefined ? '' : slot(extra, 'extra tools')}</div>`);
+export function Toolbar({ label, buttons, extra, persistent = false }) {
+  return out(`<div class="app-toolbar${persistent ? ' is-persistent' : ''}" role="toolbar" aria-label="${escape(label)}"><span class="app-tool-status app-sr" data-tool-status role="status" aria-live="polite" aria-atomic="true"></span>${buttons.map(button => slot(button, 'tool button')).join('')}${extra === undefined ? '' : slot(extra, 'extra tools')}</div>`);
 }
 
 /** 블록 안에서 버튼 높이를 확보하므로 조작부가 코드나 그림을 덮지 않는다. */
-export function ToolHeader({ label = '', toolbar }) {
-  return out(`<div class="app-tool-header">${label ? `<span class="app-tool-label">${escape(label)}</span>` : ''}${slot(toolbar, 'toolbar')}</div>`);
+export function ToolHeader({ label = '', toolbar, inline = false }) {
+  return out(`<div class="app-tool-header${inline ? ' is-inline' : ''}">${label ? `<span class="app-tool-label">${escape(label)}</span>` : ''}${slot(toolbar, 'toolbar')}</div>`);
 }

@@ -224,6 +224,10 @@
       "active-surface": {
         "$type": "color",
         "$value": "{primitive.figure-dark-hover}"
+      },
+      "label-fill": {
+        "$type": "color",
+        "$value": "{color.help-border}"
       }
     },
     "flow": {

@@ -1613,7 +1613,7 @@ export const values = freeze({
       "canvas": "#e9edf2",
       "flash": "#d9e6ff",
       "active-surface": "#ebf1ff",
-      "label-fill": "#ebecef",
+      "label-fill": "#c9c9c9",
       "label-ink": "#303336",
       "label-active-fill": "#1e6bd6",
       "label-active-ink": "#ffffff",
@@ -1624,7 +1624,7 @@ export const values = freeze({
         "warn-ink": "#ffffff",
         "fail-fill": "#cc0041",
         "fail-ink": "#ffffff",
-        "wait-fill": "#ebecef",
+        "wait-fill": "#c9c9c9",
         "wait-ink": "#303336"
       }
     },

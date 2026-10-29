@@ -543,6 +543,14 @@
     "prose-link-underline": {
       "$value": "{primitive.link-underline-dark}",
       "$type": "color"
+    },
+    "code-ink": {
+      "$type": "color",
+      "$value": "{primitive.code-ink}"
+    },
+    "code-control-hover": {
+      "$type": "color",
+      "$value": "{primitive.code-control-hover}"
     }
   },
   "icon": {

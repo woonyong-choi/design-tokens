@@ -102,7 +102,7 @@
     "assets/fonts/pretendard-variable/PretendardVariable.subset.9.woff2": "523e91cb7665f4a87767e3b0b5099753decba1bd33e3ce7733b92f71001da9a5",
     "assets/fonts/pretendard-variable/PretendardVariable.subset.90.woff2": "ed2d605d80cbe4f2c1df801852f7a1d8ad5e1a4972b26d8fee93427317f32f09",
     "assets/fonts/pretendard-variable/PretendardVariable.subset.91.woff2": "fc9fcd1bea9c8f43f97136a1e89bfa6e34db85f820f86538288647b4c24c5b06",
-    "assets/giscus.css": "1cedae230b4a046499671db66dc7a98705392d718781646e89146a4ac987edfe",
+    "assets/giscus.css": "17e2554ca744eb80b84126c2da5469314fe7631696eca98b832337bee6471d3f",
     "assets/icons/actions/box-up.svg": "8e9542ac2abc8c5d60ce1b3c6d6e7f4a88f072fb26785d96a8566fc9f4dd428c",
     "assets/icons/actions/check.svg": "ce5dca46872c35ac2e6c80f32de84778bbc1b7cf370553b7c001d8daaf409e84",
     "assets/icons/actions/close.svg": "cc861e6fc088f1760dff5f421b94ace3f22d123857ca365b204e7093e4e46047",
@@ -210,11 +210,11 @@
     "styles/table.css": "2882fd6b014b4a62f79ba64c7a084489a3aba5b02e4b63f06b725fa28e1529fd",
     "styles/tabs.css": "da7a2ce99ddec85aaf643369633c178f900a41e1cef1ecbc90c59ac6b56de165",
     "styles/toolbar.css": "68d74a537a9ec1e8c3c95ce44cb87bf4f2768634ec3e42e3dfd94caff32fc0f2",
-    "tailwind.css": "235b15c7dfd2772dd5fecae8fd92e4bda764fdfef7cd5d383eca6ae05b6886e3",
-    "tokens.css": "f6c229ffd257d2201c52631bedcfc1462a03af4cf79f5fe2673e0ef7e96fb14d",
-    "tokens.dark.json": "9190822e3a6c032beb7b60f37fccb3dbca18eaf46e4090cba46a97c351ca4108",
-    "tokens.js": "cb0158afc1d815f50e3e0d9a265c4c6b734aae36cfb5e5093fe8b339d59714c6",
-    "tokens.json": "2bc0c5202336da9b8c6969f3f8363491c1cf004a0df050f5d522c37544e0ae6d",
+    "tailwind.css": "7fa07d3567af82d9b6c182fdbc511f3966f8910ed441c5d7bc3e51b8b538a619",
+    "tokens.css": "cff66244d91cfb6f12893e163a7bfacf49b759da8404453ddddab8de15c18768",
+    "tokens.dark.json": "e72164d692e0210a12dff58ee1c5308c37901bf3eb3739ad96b49f9c9ff83a7d",
+    "tokens.js": "61476a78d79de273430cfd0611e456c0545d995032fe2c78ca13ba04434fa708",
+    "tokens.json": "efa83834564ce512de332668046bb4c1acf15f274bf2dcf87ef37f6e2f92c0c5",
     "ui/build/check-tokens.mjs": "c3281b894a72ce7289fd489dcea5b36cdfea60a531ae7b12389ee949b7c107c1",
     "ui/build/icons.mjs": "151587c8ae4d959154f76cd029307b4b345d2331ce91c161ef895050b4c3a34b",
     "ui/build/lib/find-hardcoded.mjs": "6ff3e5c3b249b36260a7c2ae2b46c22fdb2de0180f239f1bab09ba4cf401086e",
@@ -247,5 +247,5 @@
     "ui/toolbar.mjs": "40c19720e8018b6f8d9e5604ff5f076959f267565108b1d10183a2f9ca405dee",
     "ui/write.mjs": "e3de56e37109766624facf9da318fcc7402193b04ec31f0e1198f95c0a95d700"
   },
-  "contentHash": "0e12242b05dc058f0551eb95ace97a89335c3f22ab38a830adcf5eaee32cdf10"
+  "contentHash": "b92a31caa7cbcb6156b79f6ab6059f76da1a8a0e962b27a5a41532a117b0a8eb"
 }

@@ -829,7 +829,9 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 @media (min-width: 1300px) {
   .app-document-shell:has(.app-document-outline) { max-width: none; }
   .app-document-layout { grid-template-columns: var(--spacing-sidebar-width) minmax(0, 1fr) var(--spacing-sidebar-width); grid-template-areas: "tree content outline"; }
-  .app-document-layout:has(.app-document-outline) { grid-template-columns: minmax(var(--spacing-sidebar-width), 1fr) minmax(0, var(--container-page)) minmax(var(--spacing-sidebar-width), 1fr); grid-template-areas: "tree content outline"; }
+  .app-document-layout:has(.app-document-outline) { grid-template-columns: minmax(var(--spacing-sidebar-width), 1fr) minmax(0, var(--container-body-width)) minmax(var(--spacing-sidebar-width), 1fr); grid-template-areas: "tree content outline"; }
+  /* 목차가 있는 세 열 배치에서는 넓은 그림도 본문 열 폭까지만 쓴다. 넘치면 본문 열이 커져 목차 열이 좁아진다. */
+  .app-document-layout:has(.app-document-outline) .app-width-wide { width: 100%; margin-inline: 0; }
   .app-document-sidebar > .app-document-nav, .app-document-outline > .app-document-nav { max-width: none; }
   .app-document-outline .app-document-nav > summary { display: none; }
   .app-document-outline { position: sticky; top: var(--spacing-gap-lg); max-height: calc(100vh - 2 * var(--spacing-gap-lg)); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }

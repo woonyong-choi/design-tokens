@@ -69,7 +69,6 @@
 .app-publish-visibility { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-gap-xs); }
 .app-publish-visibility .app-button[aria-pressed="true"], .app-publish-visibility .app-button[aria-pressed="true"]:hover { border-color: transparent; background: var(--color-button-primary); color: var(--color-button-primary-ink); font-weight: var(--font-weight-bold); }
 .app-publish-url { display: flex; align-items: center; height: var(--spacing-input-height); padding: 0 var(--spacing-gap-sm); border: var(--border-width-thin) solid var(--color-ui-line); border-radius: var(--radius-input-radius); background: var(--color-ui-card); font-size: var(--text-small-text); color: var(--color-ui-muted); }
-.app-publish-url:focus-within { outline: var(--outline-width-focus) solid var(--color-ui-focus); outline-offset: 0; }
 .app-publish-url .app-input { color: var(--color-ink); font-size: var(--text-small-text); }
 .app-publish-url .app-input:focus, .app-publish-url .app-input:focus-visible { outline: 0; box-shadow: none; }
 .app-publish-section .app-input.is-field { font-size: var(--text-small-text); }

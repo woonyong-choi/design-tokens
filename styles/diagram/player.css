@@ -2,6 +2,9 @@
 /* 도표는 가용 폭 안에서 자연 크기까지만 보이고, 가장 작은 글이 가장 작은 글 토큰보다 작아질 만큼은 줄지 않는다. 그보다 좁은 틀에서는 그림 영역 안에서 가로로 옮겨 본다. 전체화면에서는 확대와 끌기를 쓴다. */
 
 body {
+  /* 도표는 글꼴 파일로 글 폭을 재서 배치하므로 사이트 글꼴(시스템 글꼴)이 아니라 도표 글꼴(Pretendard)을 쓴다. 안의 탭·도구 막대도 이 값을 읽는다. */
+  --font-sans: var(--font-diagram-sans);
+  --font-mono: var(--font-diagram-mono);
   margin: 0;
   padding: var(--spacing-12) var(--spacing-6);
   font-family: var(--font-figure-sans);

@@ -24,7 +24,7 @@ test('unknown_references_cycles_css_collisions_and_invalid_dark_overrides_fail',
   assert.throws(() => resolveToken(flattenTokens({ a: token('{a}') }), 'a'), /cycle/);
 });
 
-// 색 체계: 메인 주황(단추·링크·켜진 경로), 구분색 넷(주황 → 파랑 → 진한 회색 → 연한 회색 순서 고정), 상태색 셋. 보라·노랑·청록은 어디에도 없고 빨강·초록은 상태 전용이다.
+// 색 체계: accent-1 Things 파랑(링크·단추·초점·선택), accent-2 주황(켜진 경로·구분색 1번·경고), 구분색 넷(주황 → 파랑 → 진한 회색 → 연한 회색 순서 고정), 상태색 셋. 보라·노랑·청록은 어디에도 없고 빨강·초록은 상태 전용이다.
 test('one_palette_has_main_orange_four_distinctions_and_three_states_without_purple', () => {
   const distinctions = {
     light: { blue: ['#2b7fff', '#2b7fff', '#155dfc'], orange: ['#ff6900', '#ff6900', '#ff6900'], gray: ['#8b8f95', '#8b8f95', '#62666c'], silver: ['#c4c8cd', '#b4b8bd', '#62666c'] },
@@ -35,11 +35,17 @@ test('one_palette_has_main_orange_four_distinctions_and_three_states_without_pur
     for (const [family, [fill, line, ink]] of Object.entries(distinctions[mode])) {
       assert.deepEqual(['fill', 'line', 'ink'].map(role => resolveValue(table, `color.category.${family}.${role}`)), [fill, line, ink], `${mode} ${family}`);
     }
-    // 메인은 사용자가 정한 주황(라이트 #ff6900, 다크 #ff8904)이고 면·글자·선 모두 같은 값이다.
+    // accent-2는 사용자가 정한 주황(라이트 #ff6900, 다크 #ff8904)이고 도표의 켜진 경로·이동 점이 쓴다.
     assert.equal(resolveValue(table, 'color.data.main'), mode === 'light' ? '#ff6900' : '#ff8904');
-    assert.equal(resolveValue(table, 'color.button-primary'), mode === 'light' ? '#ff6900' : '#ff8904');
-    assert.equal(resolveValue(table, 'color.ui.link'), mode === 'light' ? '#ff6900' : '#ff8904');
+    assert.equal(resolveValue(table, 'color.state.active'), mode === 'light' ? '#ff6900' : '#ff8904');
+    assert.equal(resolveValue(table, 'color.status.warning.ink'), mode === 'light' ? '#ff6900' : '#ff8904');
+    // accent-1은 Things 공통 CSS 값이다: 링크 #2576eb(다크 #649fff), 강한 단추 #4f91fb, 선택 면 #3c84f3(다크는 다크 링크 #649fff 면에 어두운 글자).
+    assert.equal(resolveValue(table, 'color.ui.link'), mode === 'light' ? '#2576eb' : '#649fff');
     assert.equal(resolveValue(table, 'color.action-link'), resolveValue(table, 'color.ui.link'));
+    assert.equal(resolveValue(table, 'color.button-primary'), '#4f91fb');
+    assert.equal(resolveValue(table, 'color.button-primary-hover'), '#649fff');
+    assert.equal(resolveValue(table, 'color.feature-tab-selected'), mode === 'light' ? '#3c84f3' : '#649fff');
+    assert.equal(resolveValue(table, 'component.action-focus'), '0 0 0 2px rgba(37,118,235,.5)');
     // 아이콘 고유색(icon.*)은 아이콘 검수 기준을 따르고 색 역할(color.*)만 본다.
     for (const name of table.keys()) if (name.startsWith('color.')) assert.doesNotMatch(name, /purple|yellow|cyan|^color\.category\.(?:red|green)\./, name);
   }
@@ -49,7 +55,8 @@ test('one_palette_has_main_orange_four_distinctions_and_three_states_without_pur
 
 test('dark_mode_defines_its_own_soft_surface_and_link', () => {
   assert.notEqual(resolveValue(tables.dark, 'color.soft'), resolveValue(tables.light, 'color.soft'));
-  assert.equal(resolveValue(tables.dark, 'color.link'), '#ff8904');
+  assert.equal(resolveValue(tables.dark, 'color.link'), '#649fff');
+  assert.equal(resolveValue(tables.dark, 'color.prose-link-active'), '#92bbfe');
 });
 
 test('all_generated_files_match_the_single_source_and_manifest', () => {

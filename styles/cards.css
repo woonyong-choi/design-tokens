@@ -51,8 +51,9 @@
 .app-related-link[rel=prev] { padding-inline: var(--spacing-card-right) var(--spacing-compact-inset); }
 .app-related-link[rel=prev]::after { right: auto; left: var(--spacing-gap-xs); transform: scaleX(-1); }
 .app-tags { display: flex; flex-wrap: wrap; gap: var(--spacing-2); align-items: baseline; }
-/* 태그는 글 머리, 글 카드, 검색 어디서나 같은 설명 단계(13/20) 알약이다. is-medium도 같은 모양이다. */
-.app-tag, .app-tags-more > summary { display: inline-block; padding: var(--spacing-0-5) var(--spacing-2-5); border: 0; border-radius: var(--radius-pill); color: var(--color-tag-ink); background: var(--color-tag-background); font-size: var(--text-caption); font-weight: var(--font-weight-medium); line-height: var(--leading-caption); text-decoration: none; }
+/* 태그는 글 머리, 글 카드, 검색 어디서나 같은 알약(13/1.4)이다. is-medium은 작은 글(15) 크기다. */
+.app-tag, .app-tags-more > summary { display: inline-block; padding: var(--spacing-0-5) var(--spacing-2-5); border: 0; border-radius: var(--radius-pill); color: var(--color-tag-ink); background: var(--color-tag-background); font-size: var(--text-tiny-text); line-height: var(--leading-line-body); text-decoration: none; }
+.app-tag.is-medium, .app-tags-more > summary.is-medium { font-size: var(--text-small-text); }
 .app-tag[aria-pressed=true], .app-tag:hover, .app-tag:focus-visible, .app-tags-more > summary:hover, .app-tags-more > summary:focus-visible { color: var(--color-on-action); background: var(--color-tag-hover); text-decoration: none; }
 .app-tag[aria-pressed], .app-tags-more > summary { cursor: pointer; }
 .app-tags-more > .app-tags { margin-top: var(--spacing-gap-xs); }

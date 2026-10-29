@@ -35,8 +35,11 @@ test('every_css_variable_used_by_component_sources_is_a_theme_token', () => {
 
 test('body_and_caption_text_are_readable_on_the_page_in_each_theme', () => {
   for (const [mode, table] of Object.entries(tables)) {
-    assert.ok(contrast(resolveValue(table, 'color.body'), resolveValue(table, 'color.ui-card')) >= 4.5, `${mode} body text on page`);
-    assert.ok(contrast(resolveValue(table, 'color.prose-caption-color'), resolveValue(table, 'color.ui-card')) >= 4.5, `${mode} caption text on page`);
+    const page = resolveValue(table, 'color.ui-card');
+    assert.ok(contrast(resolveValue(table, 'color.body'), page) >= 4.5, `${mode} body text on page`);
+    // 사용자 결정: 그림 설명·작은 글은 Things 값(라이트 rgba(4,15,26,.5) 3.62:1, 다크 rgba(239,246,255,.49) 4.15:1)이다. 본문보다 한 단계 약한 보조 글이라 3.5:1을 하한으로 둔다.
+    const caption = resolveValue(table, 'color.prose-caption-color');
+    assert.ok(contrast(onSurface(caption, page), page) >= (THINGS_FIXED.has(caption) ? 3.5 : 4.5), `${mode} caption text on page`);
   }
 });
 
@@ -49,7 +52,11 @@ const FIXED_PALETTE = new Set(['#ff6900', '#ff8904', '#fb2c36', '#ff6467', '#00c
 const onMainMinimum = (ink, surface, normal) => (ink === '#ffffff' && FIXED_PALETTE.has(surface) ? 2.2 : normal);
 // 사용자 결정: 메인 주황은 글자·아이콘·선에도 정해진 값 그대로 쓴다. 라이트 #ff6900은 흰 면 2.89:1, 옅은 면·도구 면 위 2.0~2.6:1로 기준에 못 미치며 예외로 기록한다.
 // 라이트 성공 #00c950은 도표 면 위 도구 누름 면에서 약 1.7:1로 가장 낮다. 상태 아이콘 모양과 글자 라벨로 보완한다.
-const mainMinimum = (color, normal) => (FIXED_PALETTE.has(color) ? Math.min(normal, 1.65) : normal);
+const mainMinimum = (color, normal) => (FIXED_PALETTE.has(color) ? Math.min(normal, 1.65) : THINGS_FIXED.has(color) ? Math.min(normal, 4) : normal);
+// 사용자 결정: accent-1과 글자 위계는 Things 공통 CSS 값 그대로다. 링크 #2576eb는 흰 면 4.31:1·옅은 면 4.03:1, 선택 면 #3c84f3·강한 단추 #4f91fb 위 흰 굵은 글자는 3.63:1·3.10:1이다.
+// 색은 바꾸지 않고 이 예외로 기록한다(docs/styles.md 색 체계). 링크는 4:1, 선택 면·단추 위 흰 굵은 글자는 3:1을 하한으로 둔다.
+const THINGS_FIXED = new Set(['#2576eb', '#649fff', '#3c84f3', '#4f91fb', 'rgba(4,15,26,.5)', 'rgba(239,246,255,.49)']);
+const onThingsMinimum = (ink, surface, normal) => (ink === '#ffffff' && THINGS_FIXED.has(surface) ? 3 : onMainMinimum(ink, surface, normal));
 
 test('category_and_flow_share_readable_solid_color_pairs', () => {
   for (const [mode, table] of Object.entries(tables)) {
@@ -179,12 +186,11 @@ test('tab_and_tag_states_keep_text_and_selection_contrast_in_both_themes', () =>
     assert.notEqual(value('color.tag-preview'), value('color.tag-hover'), mode + ' preview differs from selection');
     const selected = value('color.feature-tab-selected');
     const ink = value('color.feature-tab-ink');
-    assert.ok(contrast(ink, selected) >= onMainMinimum(ink, selected, 4.5), mode + ' selected tab text');
-    // 기본 탭은 투명 면 위 본문색 글자와 1px 선, 선택은 기본 글자색(무채색) 면이다. 주황은 포인트 색이라 탭 선택에 쓰지 않는다.
+    assert.ok(contrast(ink, selected) >= onThingsMinimum(ink, selected, 4.5), mode + ' selected tab text');
+    // 기본 탭은 Things 기본 단추(회청 면, 진한 글자), 선택은 accent-1 누름 면(#3c84f3)에 흰 글자다.
     assert.ok(contrast(value('color.body'), value('color.ui-card')) >= 4.5, mode + ' tab text');
-    // 라이트 선택 면은 사용자가 지정한 메인 #ff6900(흰 면 2.89:1)이라 3:1에 조금 못 미친다. 색은 바꾸지 않고 예외로 기록한다(docs/styles.md 색 체계).
-    // 선택 상태는 면 채움 유무(기본 탭은 투명 면과 1px 선)와 무채색 대 주황의 색상 차이로도 구분된다.
-    const selectedMinimum = mode === 'light' && selected === '#ff6900' ? 2.85 : 3;
+    // 선택 면 #3c84f3은 페이지 위 3.63:1(라이트)이다. 선택 상태는 회청 기본 면 대 파랑의 색상 차이로도 구분된다.
+    const selectedMinimum = 3;
     assert.ok(contrast(selected, value('color.ui-card')) >= selectedMinimum, mode + ' selected tab on page');
     for (const base of ['color.ui-card', 'color.prose-pre-background']) {
       const gallery = onSurface(value('color.gallery-selected'), value(base));
@@ -193,11 +199,11 @@ test('tab_and_tag_states_keep_text_and_selection_contrast_in_both_themes', () =>
       const channels = gallery.slice(1).match(/../g).map(channel => Number.parseInt(channel, 16));
       assert.ok(Math.max(...channels) - Math.min(...channels) <= 12, mode + ' selected numbers remain neutral');
       const track = onSurface(value('color.feature-tab-background'), value(base));
-      // 같은 예외: 묶음 탭 바탕(회색) 위 #ff6900은 2.35(페이지)·2.20(도표 면). 선택은 색상(주황 대 무채색)으로 구분된다.
-      assert.ok(contrast(selected, track) >= (selectedMinimum < 3 ? 2.15 : 3), mode + ' selected tab against ' + base);
-      for (const state of ['color.feature-tab-background', 'color.platform-hover', 'color.platform-active']) {
-        const surface = onSurface(value(state), track);
-        assert.ok(contrast(onSurface(value('color.platform-color'), surface), surface) >= 4.5, mode + ' unselected tab ' + state);
+      // 같은 예외: Things 묶음 탭 바탕 rgba(0,25,61,.1) 위 선택 면 #3c84f3은 페이지 2.96:1, 옅은 면 2.77:1이다. 선택은 색상(파랑 대 회색)과 그림자로도 구분된다.
+      assert.ok(contrast(selected, track) >= (THINGS_FIXED.has(selected) ? 2.75 : 3), mode + ' selected tab against ' + base);
+      for (const state of ['color.button.surface', 'color.button.hover', 'color.button.active']) {
+        const surface = onSurface(value(state), value(base));
+        assert.ok(contrast(onSurface(value('color.button.ink'), surface), surface) >= 4.5, mode + ' unselected tab ' + state);
       }
     }
   }
@@ -277,7 +283,10 @@ test('warning_callout_list_marker_and_input_stay_readable_in_both_themes', () =>
     // 그림 문서·목록의 작은 링크(13px)는 본문 대비 기준.
     for (const base of ['color.ui-card', 'color.prose-pre-background']) assert.ok(contrast(value('color.ui.link'), value(base)) >= mainMinimum(value('color.ui.link'), 4.5), `${mode} link on ${base}`);
     // 다크는 밝은 선택 면 위의 어두운 글자이므로 본문 수준 이상의 대비를 둔다.
-    assert.ok(contrast(value('color.feature-tab-ink'), value('color.feature-tab-selected')) >= onMainMinimum(value('color.feature-tab-ink'), value('color.feature-tab-selected'), mode === 'dark' ? 7 : 4.5), `${mode} selected tab text stays clearly legible`);
+    assert.ok(contrast(value('color.feature-tab-ink'), value('color.feature-tab-selected')) >= onThingsMinimum(value('color.feature-tab-ink'), value('color.feature-tab-selected'), mode === 'dark' ? 7 : 4.5), `${mode} selected tab text stays clearly legible`);
+    // 강한 단추(주요 단추)는 흰 굵은 글자다.
+    assert.ok(contrast(value('color.button-primary-ink'), value('color.button-primary')) >= onThingsMinimum(value('color.button-primary-ink'), value('color.button-primary'), 4.5), `${mode} primary button text`);
+    assert.ok(contrast(onSurface(value('color.button.ink'), onSurface(value('color.button.surface'), value('color.ui-card'))), onSurface(value('color.button.surface'), value('color.ui-card'))) >= 4.5, `${mode} default button text`);
   }
   // 사용자 결정: 주황은 포인트 색이라 형광펜 표시는 태그와 같은 무채색 면을 쓴다.
   for (const table of Object.values(tables)) assert.equal(resolveValue(table, 'color.prose-mark-background'), resolveValue(table, 'color.tag-background'), 'mark shares the neutral tag surface');
@@ -350,4 +359,12 @@ test('prose_images_open_in_one_viewer_and_close_on_click', () => {
   const css = readFileSync(root + 'styles/prose.css', 'utf8');
   assert.match(css, /\.app-prose img\[data-zoomable\] \{ cursor: zoom-in; \}/);
   assert.match(css, /\.app-image-viewer::backdrop \{ background: var\(--color-dialog-backdrop\); \}/);
+});
+
+// 사용자 결정: 본문 그림은 기본으로 모서리를 깎지 않고, rounded 옵션(img.is-rounded)만 코드 블록과 같은 곡률을 쓴다.
+test('prose_figures_are_square_by_default_and_rounded_like_code_blocks_on_request', () => {
+  const prose = readFileSync(root + 'styles/prose.css', 'utf8');
+  assert.match(prose, /:is\(\.app-prose, \.app-figure-grid-item\) \.app-figure > :is\(img, a > img\) \{ border-radius: 0; \}/);
+  assert.match(prose, /:is\(\.app-prose, \.app-figure-grid-item\) \.app-figure > :is\(img, a > img\)\.is-rounded \{ border-radius: var\(--radius-prose-block-radius\); \}/);
+  assert.match(prose, /\.app-code \{[^}]*border-radius: var\(--radius-prose-block-radius\)/);
 });

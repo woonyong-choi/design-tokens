@@ -1,6 +1,9 @@
 /* 여러 그림을 모은 목록 쪽. 시스템 테마에서는 루트가 라이트와 다크를 모두 허용해 iframe 그림도 OS 설정을 따른다. */
 
 body {
+  /* 도표는 글꼴 파일로 글 폭을 재서 배치하므로 사이트 글꼴(시스템 글꼴)이 아니라 도표 글꼴(Pretendard)을 쓴다. 안의 탭·도구 막대도 이 값을 읽는다. */
+  --font-sans: var(--font-diagram-sans);
+  --font-mono: var(--font-diagram-mono);
   margin: 0;
   padding: var(--spacing-12) var(--spacing-6);
   font-family: var(--font-sans);

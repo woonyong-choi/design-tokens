@@ -345,7 +345,10 @@ test('home_and_list_components_have_one_definition_with_escaped_text_and_checked
   assert.throws(() => ui.TextInput({ id: 'x', label: 'x', role: 'combobox' }), /combobox requires controls/);
   assert.throws(() => ui.TextInput({ id: 'x', label: 'x', icon: '<svg/>' }), /icon must be trusted/);
   const forms = read('../styles/forms.css');
-  for (const token of ['--color-input-background', '--radius-input-radius', '--spacing-input-height', '--color-input-placeholder', '--component-input-focus']) assert.match(forms, new RegExp(`var\\(${token}\\)`), token);
+  for (const token of ['--color-input-background', '--color-input-border', '--radius-input-radius', '--spacing-input-height', '--color-input-placeholder']) assert.match(forms, new RegExp(`var\\(${token}\\)`), token);
+  // 사용자 결정: 입력 칸은 초점에서 강조선(outline·box-shadow)을 두지 않는다.
+  assert.match(forms, /\.app-input:is\(:focus, :focus-visible\) \{ outline: 0; box-shadow: none; \}/);
+  assert.doesNotMatch(forms, /input-focus/);
   const intro = html(ui.SectionIntro({ id: 'a-title', icon, title: 'T<', description: trusted('<p>d</p>'), links: trusted('<a href="/x/">x</a>'), action: { href: '/more/', label: '더 보기' } }));
   assert.equal(intro, '<div class="app-landing-heading"><h2 id="a-title"><span class="app-landing-icon"><img alt=""></span> T&lt;</h2><p>d</p><p class="app-landing-social"><a href="/x/">x</a></p><p><a class="app-landing-action" href="/more/">더 보기</a></p></div>');
   assert.match(html(ui.SectionIntro({ level: 1, title: trusted('A<br>B') })), /^<div class="app-landing-heading"><h1>A<br>B<\/h1><\/div>$/);
@@ -447,14 +450,14 @@ test('tab_lists_share_one_selection_style_across_galleries_and_diagram_scenes', 
   assert.match(diagram, /aria-selected="true" aria-controls="scene-panel" tabindex="0"/);
   assert.match(diagram, /aria-selected="false" aria-controls="scene-panel" tabindex="-1">다음 <code>상태<\/code>/);
   const css = read('../styles/tabs.css');
-  // 기본 탭은 사이트 단추 모양: 작은 글 단계, 1px 선, 반경 8, 높이 32(안쪽 6·12에서 선 두께를 뺀 값)
-  assert.match(css, /\.app-tablist \{[^}]*font-size: var\(--text-small\)/);
+  // 기본 탭은 Things 기본 단추: 회청 면(color.button.surface), 진한 글자(color.button.ink), 600, 단추 글 크기
   const button = /\n\.app-tablist button \{([^}]*)\}/.exec(css)[1];
-  assert.match(button, /border: var\(--border-width-thin\) solid var\(--color-ui-line\)/);
-  assert.match(button, /border-radius: var\(--radius-lg\)/);
-  assert.match(button, /font-size: var\(--text-small\)/);
-  assert.match(button, /line-height: var\(--leading-caption\)/);
-  assert.match(button, /padding: calc\(var\(--spacing-1-5\) - var\(--border-width-thin\)\) calc\(var\(--spacing-3\) - var\(--border-width-thin\)\)/);
+  assert.match(button, /background: var\(--color-button-surface\)/);
+  assert.match(button, /color: var\(--color-button-ink\)/);
+  assert.match(button, /font-weight: var\(--font-weight-semibold\)/);
+  assert.match(button, /font-size: var\(--text-platform-text\)/);
+  assert.match(css, /\.app-tablist button:hover \{[^}]*var\(--color-button-hover\)/);
+  assert.match(css, /\.app-tablist button:active \{[^}]*var\(--color-button-active\)/);
   assert.match(css, /flex-wrap: wrap/);
   assert.match(css, /overflow-wrap: anywhere/);
   assert.match(css, /:focus-visible/);

@@ -1,6 +1,9 @@
 /* 문서 안 모습 미리보기. GitHub README처럼 문서 바탕 위에 제목, 문단, img로 넣은 SVG를 둔다. */
 
 body {
+  /* 도표는 글꼴 파일로 글 폭을 재서 배치하므로 사이트 글꼴(시스템 글꼴)이 아니라 도표 글꼴(Pretendard)을 쓴다. 안의 탭·도구 막대도 이 값을 읽는다. */
+  --font-sans: var(--font-diagram-sans);
+  --font-mono: var(--font-diagram-mono);
   margin: 0;
   padding: var(--spacing-12) var(--spacing-6);
   font-family: var(--font-sans);

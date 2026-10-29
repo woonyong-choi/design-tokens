@@ -102,7 +102,7 @@
     "assets/fonts/pretendard-variable/PretendardVariable.subset.9.woff2": "523e91cb7665f4a87767e3b0b5099753decba1bd33e3ce7733b92f71001da9a5",
     "assets/fonts/pretendard-variable/PretendardVariable.subset.90.woff2": "ed2d605d80cbe4f2c1df801852f7a1d8ad5e1a4972b26d8fee93427317f32f09",
     "assets/fonts/pretendard-variable/PretendardVariable.subset.91.woff2": "fc9fcd1bea9c8f43f97136a1e89bfa6e34db85f820f86538288647b4c24c5b06",
-    "assets/giscus.css": "4e5f5a103f8dd76778d048787166fcd4541835fc5232a18f161a019f0d696583",
+    "assets/giscus.css": "1cedae230b4a046499671db66dc7a98705392d718781646e89146a4ac987edfe",
     "assets/icons/actions/box-up.svg": "8e9542ac2abc8c5d60ce1b3c6d6e7f4a88f072fb26785d96a8566fc9f4dd428c",
     "assets/icons/actions/check.svg": "ce5dca46872c35ac2e6c80f32de84778bbc1b7cf370553b7c001d8daaf409e84",
     "assets/icons/actions/close.svg": "cc861e6fc088f1760dff5f421b94ace3f22d123857ca365b204e7093e4e46047",
@@ -210,11 +210,11 @@
     "styles/table.css": "2882fd6b014b4a62f79ba64c7a084489a3aba5b02e4b63f06b725fa28e1529fd",
     "styles/tabs.css": "da7a2ce99ddec85aaf643369633c178f900a41e1cef1ecbc90c59ac6b56de165",
     "styles/toolbar.css": "68d74a537a9ec1e8c3c95ce44cb87bf4f2768634ec3e42e3dfd94caff32fc0f2",
-    "tailwind.css": "d5df3a7cc836954fed45547ce70feee56feec2f53ca74ebb5d266eb9c866be71",
-    "tokens.css": "4323f46182cc0807091d47a823b770b5497d636f01acce2990e7142451580e1e",
-    "tokens.dark.json": "85d6616aa4c8db35fab3ab7b8d4313224f76f79c3fa19530cfbf23ab565ed864",
-    "tokens.js": "a6f18a80aaa38a0c4792c70477d1f394ab40978ddd971527ca0382d13f0b60ea",
-    "tokens.json": "724f16d90962555d7185e094cd3b0f683b89fb5b9eff2e00e68aeade51a38c19",
+    "tailwind.css": "235b15c7dfd2772dd5fecae8fd92e4bda764fdfef7cd5d383eca6ae05b6886e3",
+    "tokens.css": "f6c229ffd257d2201c52631bedcfc1462a03af4cf79f5fe2673e0ef7e96fb14d",
+    "tokens.dark.json": "9190822e3a6c032beb7b60f37fccb3dbca18eaf46e4090cba46a97c351ca4108",
+    "tokens.js": "cb0158afc1d815f50e3e0d9a265c4c6b734aae36cfb5e5093fe8b339d59714c6",
+    "tokens.json": "2bc0c5202336da9b8c6969f3f8363491c1cf004a0df050f5d522c37544e0ae6d",
     "ui/build/check-tokens.mjs": "c3281b894a72ce7289fd489dcea5b36cdfea60a531ae7b12389ee949b7c107c1",
     "ui/build/icons.mjs": "151587c8ae4d959154f76cd029307b4b345d2331ce91c161ef895050b4c3a34b",
     "ui/build/lib/find-hardcoded.mjs": "6ff3e5c3b249b36260a7c2ae2b46c22fdb2de0180f239f1bab09ba4cf401086e",
@@ -247,5 +247,5 @@
     "ui/toolbar.mjs": "40c19720e8018b6f8d9e5604ff5f076959f267565108b1d10183a2f9ca405dee",
     "ui/write.mjs": "e3de56e37109766624facf9da318fcc7402193b04ec31f0e1198f95c0a95d700"
   },
-  "contentHash": "9e513117fb0b8c77c7bc53d7ccff26a010bdd3ea28fde62731f2ade3cf3cb79a"
+  "contentHash": "a244f7b5dadbd511d24ced74f723cee9ff1a6c269ba11c9b09527f72285ec6c2"
 }

@@ -104,7 +104,7 @@
   --color-figure-outline: var(--color-category-gray-line);
   --color-figure-selection-fill: var(--color-main-light-tint-3);
   --color-figure-canvas: var(--color-ui-card);
-  --color-figure-flash: var(--primitive-search-hover);
+  --color-figure-flash: var(--color-main-light-tint-3);
   --color-figure-active-surface: var(--primitive-help-hover);
   --color-paint-blue-fill: var(--color-category-blue-tint);
   --color-paint-blue-outline: var(--color-category-blue-line);
@@ -118,7 +118,7 @@
   --color-paint-silver-fill: var(--color-category-silver-tint);
   --color-paint-silver-outline: var(--color-category-silver-line);
   --color-paint-silver-ink: var(--color-category-silver-ink);
-  --color-on-action: var(--color-main-on-solid);
+  --color-on-action: var(--color-ui-card);
   --color-syntax-property: var(--color-code-ink);
   --color-syntax-parameter: var(--color-code-ink);
   --color-syntax-constant: var(--color-code-ink);
@@ -134,7 +134,7 @@
   --color-ui-muted: var(--primitive-muted);
   --color-ui-line: var(--primitive-line);
   --color-soft: var(--primitive-soft);
-  --color-tag-hover: var(--color-main-anchor);
+  --color-tag-hover: var(--color-ink);
   --color-code: var(--primitive-code);
   --color-search-bg: var(--primitive-search-bg);
   --color-help-bg: var(--primitive-help-bg);
@@ -243,7 +243,7 @@
   --color-landing-newsletter-note-ink: var(--primitive-muted);
   --color-feature-tab-ink: var(--color-main-on-solid);
   --color-gallery-selected-ink: var(--color-control-paper);
-  --color-tag-background: var(--color-main-light-tint-1);
+  --color-tag-background: var(--color-prose-soft);
   --color-help-grouped-bg: var(--primitive-transparent);
   --color-document-nav-active-ink: var(--color-action-link);
   --color-workspace-sidebar: var(--color-gray-43);
@@ -251,9 +251,9 @@
   --color-workspace-toolbar: var(--color-gray-59);
   --color-workspace-hover: var(--color-gray-94);
   --color-workspace-selected: var(--color-gray-212);
-  --color-tag-ink: var(--color-main-light-ink);
-  --color-tag-preview: var(--color-main-light-tint-4);
-  --color-tag-preview-ink: var(--color-main-light-ink-strong);
+  --color-tag-ink: var(--color-body);
+  --color-tag-preview: var(--color-help-active);
+  --color-tag-preview-ink: var(--color-ink);
   --color-button-primary: var(--color-main-fill);
   --color-button-primary-ink: var(--color-main-on-solid);
   --color-button-primary-hover: var(--color-main-light-hover);
@@ -771,14 +771,14 @@
   --primitive-hero-logo-max: 75%;
   --primitive-gallery-gap: 18px;
   --primitive-article-search-space: 36px;
-  --primitive-search-hover: #d9e6ff;
-  --primitive-search-active: #cbdeff;
+  --primitive-search-hover: #eff0f2;
+  --primitive-search-active: #e6e8eb;
   --primitive-shell-width: 92%;
   --primitive-help-motion: 120ms;
   --primitive-help-lift: -1px;
-  --primitive-help-hover: #ebf1ff;
-  --primitive-help-active: #e2ebff;
-  --primitive-help-hover-border: #dde9ff;
+  --primitive-help-hover: #eff0f2;
+  --primitive-help-active: #e6e8eb;
+  --primitive-help-hover-border: #e3e5e8;
   --primitive-help-hover-shadow: 0 4px 8px rgba(0,0,0,.06), 0 8px 16px rgba(0,0,0,.06);
   --primitive-help-mobile-block: 14px;
   --primitive-help-mobile-left: 53px;
@@ -1004,8 +1004,8 @@
   --primitive-figure-heat-low: #eaf3c0;
   --primitive-figure-dark-heat-low: #1f3b3e;
   --primitive-figure-dark-separator: #454850;
-  --primitive-figure-dark-hover: #343e50;
-  --primitive-figure-dark-selection: #274174;
+  --primitive-figure-dark-hover: #3e3f44;
+  --primitive-figure-dark-selection: #513f2e;
   --primitive-figure-dark-muted: #a9adb6;
   --primitive-figure-dark-line: #7f8793;
   --primitive-figure-dark-outline: #868686;
@@ -1053,7 +1053,7 @@
   --primitive-newsletter-button-padding: 7.1232px 16.96px;
   --primitive-newsletter-button-margin: 4.24px;
   --primitive-newsletter-button-radius: 7.632px;
-  --primitive-primary-hover: #649fff;
+  --primitive-primary-hover: #ff6900;
   --primitive-action-shadow: 0 2px 4px rgba(0,0,0,.05);
   --primitive-action-focus: 0 0 0 2px rgba(255,105,0,.5);
   --primitive-icon-brand-nginx: #009639;
@@ -1303,7 +1303,7 @@
   --color-nav-color: var(--color-body);
   --color-control-hover: rgba(255, 255, 255, 0.1);
   --color-control-muted: var(--color-ui-muted);
-  --color-search-hover: var(--primitive-figure-dark-selection);
+  --color-search-hover: var(--primitive-figure-dark-hover);
   --color-help-hover: var(--primitive-figure-dark-hover);
   --color-help-active: var(--color-figure-active-surface);
   --color-feature-canvas: var(--color-ui-card);
@@ -1364,7 +1364,7 @@
   --color-landing-newsletter-note-ink: var(--color-ui-muted);
   --color-feature-tab-ink: var(--color-main-dark-on);
   --color-gallery-selected-ink: var(--primitive-ink);
-  --color-tag-background: var(--color-main-dark-tint-1);
+  --color-tag-background: var(--color-soft);
   --color-help-grouped-bg: var(--color-ui-card);
   --color-document-nav-active-ink: var(--color-main-light-tint-3);
   --color-workspace-sidebar: var(--color-gray-878);
@@ -1372,9 +1372,7 @@
   --color-workspace-toolbar: var(--color-gray-878);
   --color-workspace-hover: var(--color-gray-788);
   --color-workspace-selected: var(--color-gray-635);
-  --color-tag-ink: var(--color-main-dark-ink);
-  --color-tag-preview: var(--color-main-dark-tint-4);
-  --color-tag-preview-ink: var(--color-main-dark-ink-strong);
+  --color-tag-preview: var(--color-help-hover);
   --color-button-primary: var(--color-main-dark-border);
   --color-button-primary-ink: var(--color-main-dark-on);
   --color-button-primary-hover: var(--color-main-dark-ink-strong);
@@ -1430,7 +1428,7 @@
   --color-nav-color: var(--color-body);
   --color-control-hover: rgba(255, 255, 255, 0.1);
   --color-control-muted: var(--color-ui-muted);
-  --color-search-hover: var(--primitive-figure-dark-selection);
+  --color-search-hover: var(--primitive-figure-dark-hover);
   --color-help-hover: var(--primitive-figure-dark-hover);
   --color-help-active: var(--color-figure-active-surface);
   --color-feature-canvas: var(--color-ui-card);
@@ -1491,7 +1489,7 @@
   --color-landing-newsletter-note-ink: var(--color-ui-muted);
   --color-feature-tab-ink: var(--color-main-dark-on);
   --color-gallery-selected-ink: var(--primitive-ink);
-  --color-tag-background: var(--color-main-dark-tint-1);
+  --color-tag-background: var(--color-soft);
   --color-help-grouped-bg: var(--color-ui-card);
   --color-document-nav-active-ink: var(--color-main-light-tint-3);
   --color-workspace-sidebar: var(--color-gray-878);
@@ -1499,9 +1497,7 @@
   --color-workspace-toolbar: var(--color-gray-878);
   --color-workspace-hover: var(--color-gray-788);
   --color-workspace-selected: var(--color-gray-635);
-  --color-tag-ink: var(--color-main-dark-ink);
-  --color-tag-preview: var(--color-main-dark-tint-4);
-  --color-tag-preview-ink: var(--color-main-dark-ink-strong);
+  --color-tag-preview: var(--color-help-hover);
   --color-button-primary: var(--color-main-dark-border);
   --color-button-primary-ink: var(--color-main-dark-on);
   --color-button-primary-hover: var(--color-main-dark-ink-strong);
@@ -1541,7 +1537,7 @@
   --color-figure-number-fill: var(--primitive-figure-number-fill);
   --color-figure-number-ink: var(--primitive-figure-number-ink);
   --color-figure-selection-fill: var(--color-main-light-tint-3);
-  --color-figure-flash: var(--primitive-search-hover);
+  --color-figure-flash: var(--color-main-light-tint-3);
   --color-figure-active-surface: var(--primitive-help-hover);
   --color-canvas: var(--primitive-canvas);
   --color-ui-card: var(--color-gray-0);
@@ -1617,7 +1613,7 @@
   --color-landing-newsletter-note-ink: var(--primitive-muted);
   --color-feature-tab-ink: var(--color-main-on-solid);
   --color-gallery-selected-ink: var(--color-control-paper);
-  --color-tag-background: var(--color-main-light-tint-1);
+  --color-tag-background: var(--color-prose-soft);
   --color-help-grouped-bg: var(--primitive-transparent);
   --color-document-nav-active-ink: var(--color-action-link);
   --color-workspace-sidebar: var(--color-gray-43);
@@ -1625,9 +1621,7 @@
   --color-workspace-toolbar: var(--color-gray-59);
   --color-workspace-hover: var(--color-gray-94);
   --color-workspace-selected: var(--color-gray-212);
-  --color-tag-ink: var(--color-main-light-ink);
-  --color-tag-preview: var(--color-main-light-tint-4);
-  --color-tag-preview-ink: var(--color-main-light-ink-strong);
+  --color-tag-preview: var(--color-help-active);
   --color-button-primary: var(--color-main-fill);
   --color-button-primary-ink: var(--color-main-on-solid);
   --color-button-primary-hover: var(--color-main-light-hover);

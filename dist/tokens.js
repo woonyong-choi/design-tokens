@@ -1518,7 +1518,7 @@ export const values = freeze({
         "4": "#f8f8f9"
       },
       "category-on": {
-        "1": "#000000",
+        "1": "#ffffff",
         "2": "#000000",
         "3": "#000000",
         "4": "#000000"
@@ -1589,7 +1589,7 @@ export const values = freeze({
         "ink": "#62666c"
       }
     },
-    "on-action": "#1c1c1e",
+    "on-action": "#ffffff",
     "syntax-property": "#d8dde4",
     "syntax-parameter": "#d8dde4",
     "syntax-constant": "#a9c4ff",
@@ -1698,7 +1698,7 @@ export const values = freeze({
         "fill": "#ff6900",
         "line": "#f54900",
         "ink": "#ca3500",
-        "on": "#000000",
+        "on": "#ffffff",
         "tint": "#fff7ed",
         "effect": "#ff8904"
       },
@@ -1722,7 +1722,7 @@ export const values = freeze({
     "newsletter-button-color": "#ff6900",
     "primary-hover": "#649fff",
     "landing-newsletter-note-ink": "#55606e",
-    "feature-tab-ink": "#1c1c1e",
+    "feature-tab-ink": "#ffffff",
     "gallery-selected-ink": "#ffffff",
     "tag-background": "#fff7ed",
     "help-grouped-bg": "rgba(0,0,0,0)",
@@ -1738,13 +1738,13 @@ export const values = freeze({
     "tag-preview": "#ffd6a7",
     "tag-preview-ink": "#9f2d00",
     "button-primary": "#ff6900",
-    "button-primary-ink": "#1c1c1e",
+    "button-primary-ink": "#ffffff",
     "button-primary-hover": "#f54900",
     "dialog-backdrop": "rgba(15,18,24,.4)",
     "main": {
       "anchor": "#ff6900",
       "fill": "#ff6900",
-      "on": "#1c1c1e",
+      "on": "#ffffff",
       "light-border": "#ff6900",
       "light-ink": "#ca3500",
       "light-tint-1": "#fff7ed",
@@ -1756,12 +1756,12 @@ export const values = freeze({
       "light-effect": "#ff8904",
       "dark-effect": "#ffb86a",
       "solid": "#ff6900",
-      "on-solid": "#1c1c1e",
+      "on-solid": "#ffffff",
       "light-tint-4": "#ffd6a7",
       "light-ink-strong": "#9f2d00",
       "dark-tint-4": "#5e442b",
       "dark-ink-strong": "#ffb86a",
-      "dark-on": "#1c1c1e",
+      "dark-on": "#ffffff",
       "light-hover": "#f54900"
     },
     "status": {

@@ -223,7 +223,7 @@
   --color-category-orange-fill: #ff6900;
   --color-category-orange-line: #f54900;
   --color-category-orange-ink: #ca3500;
-  --color-category-orange-on: var(--color-gray-1000);
+  --color-category-orange-on: var(--color-gray-0);
   --color-category-orange-tint: #fff7ed;
   --color-category-orange-effect: #ff8904;
   --color-category-gray-fill: #8b8f95;
@@ -260,7 +260,7 @@
   --color-dialog-backdrop: var(--primitive-dialog-backdrop);
   --color-main-anchor: #ff6900;
   --color-main-fill: var(--color-main-anchor);
-  --color-main-on: var(--primitive-ink-deep);
+  --color-main-on: var(--color-gray-0);
   --color-main-light-border: #ff6900;
   --color-main-light-ink: #ca3500;
   --color-main-light-tint-1: #fff7ed;
@@ -272,12 +272,12 @@
   --color-main-light-effect: #ff8904;
   --color-main-dark-effect: #ffb86a;
   --color-main-solid: var(--color-main-fill);
-  --color-main-on-solid: var(--primitive-ink-deep);
+  --color-main-on-solid: var(--color-gray-0);
   --color-main-light-tint-4: #ffd6a7;
   --color-main-light-ink-strong: #9f2d00;
   --color-main-dark-tint-4: #5e442b;
   --color-main-dark-ink-strong: #ffb86a;
-  --color-main-dark-on: var(--primitive-ink-deep);
+  --color-main-dark-on: var(--color-gray-0);
   --color-main-light-hover: #f54900;
   --color-status-success-ink: var(--primitive-status-success-ink);
   --color-status-success-surface: var(--primitive-status-success-surface);

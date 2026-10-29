@@ -43,6 +43,10 @@ test('body_and_caption_text_are_readable_on_the_page_in_each_theme', () => {
 // 구분색 넷: 면 위 글자(on)는 본문 대비, 이름 있는 색의 글자(ink)는 페이지 위 본문 대비다.
 // 다크 연한 회색 글자(#94969b)는 사용자 확정값이라 페이지 위 4.38이고, 직접 라벨이 필요한 계열(label required)이며 이 예외 하나만 둔다.
 const INK_EXCEPTIONS = new Set(['dark silver']);
+// 사용자 결정: 메인 주황(#ff6900, 다크 #ff8904) 면 위 글자는 흰색이다. 흰 글자 대비는 2.89:1(라이트)·2.3:1(다크)로 4.5:1에 못 미치며 색은 바꾸지 않고 이 예외로 기록한다(docs/styles.md 색 체계).
+const MAIN_ORANGES = new Set(['#ff6900', '#ff8904']);
+const onMainMinimum = (ink, surface, normal) => (ink === '#ffffff' && MAIN_ORANGES.has(surface) ? 2.2 : normal);
+
 test('category_and_flow_share_readable_solid_color_pairs', () => {
   for (const [mode, table] of Object.entries(tables)) {
     for (const [index, family] of ['orange', 'blue', 'gray', 'silver'].entries()) {
@@ -51,7 +55,7 @@ test('category_and_flow_share_readable_solid_color_pairs', () => {
       assert.equal(resolveValue(table, `color.data.category-family.${index + 1}`), family);
       assert.equal(resolveValue(table, `color.data.category.${index + 1}`), fill);
       assert.equal(resolveValue(table, `color.data.category-on.${index + 1}`), on);
-      assert.ok(contrast(on, fill) >= 4.5, `${mode} ${family} text on fill`);
+      assert.ok(contrast(on, fill) >= onMainMinimum(on, fill, 4.5), `${mode} ${family} text on fill`);
       const ink = contrast(resolveValue(table, `color.category.${family}.ink`), resolveValue(table, 'color.ui-card'));
       if (!INK_EXCEPTIONS.has(`${mode} ${family}`)) assert.ok(ink >= 4.5, `${mode} ${family} ink on page`);
     }
@@ -157,18 +161,18 @@ test('tab_and_tag_states_keep_text_and_selection_contrast_in_both_themes', () =>
   for (const [mode, table] of Object.entries(tables)) {
     const value = name => resolveValue(table, name);
     assert.ok(contrast(value('color.tag-ink'), value('color.tag-background')) >= 4.5, mode + ' default tag text');
-    assert.ok(contrast(value('color.on-action'), value('color.tag-hover')) >= 4.5, mode + ' tag text and clear symbol');
+    assert.ok(contrast(value('color.on-action'), value('color.tag-hover')) >= onMainMinimum(value('color.on-action'), value('color.tag-hover'), 4.5), mode + ' tag text and clear symbol');
     assert.ok(contrast(value('color.tag-preview-ink'), value('color.tag-preview')) >= 4.5, mode + ' tag preview text');
     assert.ok(contrast(value('color.tag-preview'), value('color.ui-card')) > contrast(value('color.tag-background'), value('color.ui-card')), mode + ' hovered tags remain more visible than default tags');
     assert.ok(contrast(value('color.tag-ink'), value('color.ui-card')) >= 4.5, mode + ' reset link text');
     assert.notEqual(value('color.tag-preview'), value('color.tag-hover'), mode + ' preview differs from selection');
     const selected = value('color.feature-tab-selected');
     const ink = value('color.feature-tab-ink');
-    assert.ok(contrast(ink, selected) >= 4.5, mode + ' selected tab text');
+    assert.ok(contrast(ink, selected) >= onMainMinimum(ink, selected, 4.5), mode + ' selected tab text');
     // 기본 탭은 투명 면 위 본문색 글자와 1px 선, 선택은 메인 주황 면이다.
     assert.ok(contrast(value('color.body'), value('color.ui-card')) >= 4.5, mode + ' tab text');
     // 라이트 선택 면은 사용자가 지정한 메인 #ff6900(흰 면 2.89:1)이라 3:1에 조금 못 미친다. 색은 바꾸지 않고 예외로 기록한다(docs/styles.md 색 체계).
-    // 선택 상태는 면 채움 유무(기본 탭은 투명 면과 1px 선)와 선택 글자 대비(5.89:1)로도 구분된다.
+    // 선택 상태는 면 채움 유무(기본 탭은 투명 면과 1px 선)와 무채색 대 주황의 색상 차이로도 구분된다.
     const selectedMinimum = mode === 'light' && selected === '#ff6900' ? 2.85 : 3;
     assert.ok(contrast(selected, value('color.ui-card')) >= selectedMinimum, mode + ' selected tab on page');
     for (const base of ['color.ui-card', 'color.prose-pre-background']) {
@@ -178,7 +182,7 @@ test('tab_and_tag_states_keep_text_and_selection_contrast_in_both_themes', () =>
       const channels = gallery.slice(1).match(/../g).map(channel => Number.parseInt(channel, 16));
       assert.ok(Math.max(...channels) - Math.min(...channels) <= 12, mode + ' selected numbers remain neutral');
       const track = onSurface(value('color.feature-tab-background'), value(base));
-      // 같은 예외: 묶음 탭 바탕(회색) 위 #ff6900은 2.35(페이지)·2.20(도표 면). 선택은 색상(주황 대 무채색)과 어두운 선택 글자로 구분된다.
+      // 같은 예외: 묶음 탭 바탕(회색) 위 #ff6900은 2.35(페이지)·2.20(도표 면). 선택은 색상(주황 대 무채색)으로 구분된다.
       assert.ok(contrast(selected, track) >= (selectedMinimum < 3 ? 2.15 : 3), mode + ' selected tab against ' + base);
       for (const state of ['color.feature-tab-background', 'color.platform-hover', 'color.platform-active']) {
         const surface = onSurface(value(state), track);
@@ -262,7 +266,7 @@ test('warning_callout_list_marker_and_input_stay_readable_in_both_themes', () =>
     // 그림 문서·목록의 작은 링크(13px)는 본문 대비 기준.
     for (const base of ['color.ui-card', 'color.prose-pre-background']) assert.ok(contrast(value('color.ui.link'), value(base)) >= 4.5, `${mode} link on ${base}`);
     // 다크는 밝은 선택 면 위의 어두운 글자이므로 본문 수준 이상의 대비를 둔다.
-    assert.ok(contrast(value('color.feature-tab-ink'), value('color.feature-tab-selected')) >= (mode === 'dark' ? 7 : 4.5), `${mode} selected tab text stays clearly legible`);
+    assert.ok(contrast(value('color.feature-tab-ink'), value('color.feature-tab-selected')) >= onMainMinimum(value('color.feature-tab-ink'), value('color.feature-tab-selected'), mode === 'dark' ? 7 : 4.5), `${mode} selected tab text stays clearly legible`);
   }
   assert.equal(resolveValue(tables.dark, 'color.prose-mark-background'), resolveValue(tables.dark, 'color.callout-warning'), 'mark shares the warning surface');
 });

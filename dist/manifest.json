@@ -210,11 +210,11 @@
     "styles/table.css": "2882fd6b014b4a62f79ba64c7a084489a3aba5b02e4b63f06b725fa28e1529fd",
     "styles/tabs.css": "da7a2ce99ddec85aaf643369633c178f900a41e1cef1ecbc90c59ac6b56de165",
     "styles/toolbar.css": "68d74a537a9ec1e8c3c95ce44cb87bf4f2768634ec3e42e3dfd94caff32fc0f2",
-    "tailwind.css": "656269924e210aa679a79a9d02381165d1d468db42868d82e39993b58bf610f2",
-    "tokens.css": "d3875c9f7e547c750e428f38d9fe57b548332e8daefe401e25b2cc6a22fbf813",
+    "tailwind.css": "42543ca0276e36f57b32b13006e1e6c95defcb8ded537e8de0d1724a577042ea",
+    "tokens.css": "728eaedcddc511d39fb23ac8adb096db5ad3f57a7aec8bc279bd7efeeebc559b",
     "tokens.dark.json": "dd467bdc035d7f407518833b961246b383fbcb192dc39da2aa3920ee58eff004",
-    "tokens.js": "e7187b8ada8f9b1ed8148660c2857f88b88b4d395c6971fd9336751c1c801fbc",
-    "tokens.json": "e05f1aef7d66c2a387aff838fad2af859b93e9d100213fbca42673ccdf027914",
+    "tokens.js": "d490f682bc99c1a7c640c5113744993523588af84381a5a3bb6d7b5aa36706bf",
+    "tokens.json": "8faf96ba6f172c3b3a79194bd68dfa4e26f6b27da60194921365329045ed62ed",
     "ui/build/check-tokens.mjs": "c3281b894a72ce7289fd489dcea5b36cdfea60a531ae7b12389ee949b7c107c1",
     "ui/build/icons.mjs": "151587c8ae4d959154f76cd029307b4b345d2331ce91c161ef895050b4c3a34b",
     "ui/build/lib/find-hardcoded.mjs": "6ff3e5c3b249b36260a7c2ae2b46c22fdb2de0180f239f1bab09ba4cf401086e",
@@ -247,5 +247,5 @@
     "ui/toolbar.mjs": "40c19720e8018b6f8d9e5604ff5f076959f267565108b1d10183a2f9ca405dee",
     "ui/write.mjs": "e3de56e37109766624facf9da318fcc7402193b04ec31f0e1198f95c0a95d700"
   },
-  "contentHash": "c788bb5015189312a958a0758d4d6d3fa2cee878ef4202ef0dfd092883f011e6"
+  "contentHash": "8eebd4ec2be9ace0b44651219ca9349439a29adf4cc07aa00465691858302055"
 }

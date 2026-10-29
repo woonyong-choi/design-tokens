@@ -188,7 +188,7 @@
     },
     "feature-tab-selected": {
       "$type": "color",
-      "$value": "{color.main.dark-ink}"
+      "$value": "{color.ink}"
     },
     "callout-warning": {
       "$value": "{color.status.warning.surface}",
@@ -203,7 +203,7 @@
       "$value": "{primitive.callout-border-dark}"
     },
     "feature-tab-ink": {
-      "$value": "{color.main.dark-on}",
+      "$value": "{color.ui-card}",
       "$type": "color"
     },
     "input-placeholder": {
@@ -244,7 +244,7 @@
     },
     "document-nav-active-ink": {
       "$type": "color",
-      "$value": "{color.main.light-tint-3}"
+      "$value": "{color.ink}"
     },
     "search-bg": {
       "$type": "color",
@@ -306,7 +306,7 @@
     },
     "landing-review-link-ink": {
       "$type": "color",
-      "$value": "{color.action-link}"
+      "$value": "{primitive.landing-review-link-ink}"
     },
     "landing-newsletter-note-ink": {
       "$type": "color",
@@ -377,23 +377,23 @@
     "category": {
       "blue": {
         "fill": {
-          "$value": "#81a9fd",
+          "$value": "#51a2ff",
           "$type": "color"
         },
         "line": {
-          "$value": "#81a9fd",
+          "$value": "#51a2ff",
           "$type": "color"
         },
         "ink": {
-          "$value": "#81a9fd",
+          "$value": "#51a2ff",
           "$type": "color"
         },
         "tint": {
-          "$value": "#3d4456",
+          "$value": "#333c4a",
           "$type": "color"
         },
         "effect": {
-          "$value": "#a7c3fe",
+          "$value": "#51a2ff",
           "$type": "color"
         }
       },
@@ -551,6 +551,22 @@
     "code-control-hover": {
       "$type": "color",
       "$value": "{primitive.code-control-hover}"
+    },
+    "control-link": {
+      "$type": "color",
+      "$value": "{color.main.dark-ink}"
+    },
+    "prose-link-active": {
+      "$type": "color",
+      "$value": "{color.main.dark-ink}"
+    },
+    "newsletter-button-color": {
+      "$type": "color",
+      "$value": "{color.main.dark-ink}"
+    },
+    "primary-hover": {
+      "$type": "color",
+      "$value": "{color.main.dark-ink}"
     }
   },
   "icon": {
@@ -575,6 +591,16 @@
     "device-case": {
       "$type": "color",
       "$value": "{primitive.icon-device-case-dark}"
+    }
+  },
+  "component": {
+    "input-focus": {
+      "$type": "string",
+      "$value": "0 0 0 3px #ff8904"
+    },
+    "action-focus": {
+      "$type": "string",
+      "$value": "0 0 0 2px rgba(255,137,4,.5)"
     }
   }
 }

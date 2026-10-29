@@ -44,10 +44,12 @@ test('body_and_caption_text_are_readable_on_the_page_in_each_theme', () => {
 // 다크 연한 회색 글자(#94969b)는 사용자 확정값이라 페이지 위 4.38이고, 직접 라벨이 필요한 계열(label required)이며 이 예외 하나만 둔다.
 const INK_EXCEPTIONS = new Set(['dark silver']);
 // 사용자 결정: 메인 주황(#ff6900, 다크 #ff8904) 면 위 글자는 흰색이다. 흰 글자 대비는 2.89:1(라이트)·2.3:1(다크)로 4.5:1에 못 미치며 색은 바꾸지 않고 이 예외로 기록한다(docs/styles.md 색 체계).
-const MAIN_ORANGES = new Set(['#ff6900', '#ff8904']);
-const onMainMinimum = (ink, surface, normal) => (ink === '#ffffff' && MAIN_ORANGES.has(surface) ? 2.2 : normal);
+// 사용자 결정: 상태색과 보조 파랑은 메인 주황과 같은 Tailwind 단계(라이트 500, 다크 400)의 정해진 값이다. 오류 #fb2c36·#ff6467, 성공 #00c950·#05df72, 파랑 #2b7fff·#51a2ff도 같은 예외로 기록한다.
+const FIXED_PALETTE = new Set(['#ff6900', '#ff8904', '#fb2c36', '#ff6467', '#00c950', '#05df72', '#2b7fff', '#51a2ff']);
+const onMainMinimum = (ink, surface, normal) => (ink === '#ffffff' && FIXED_PALETTE.has(surface) ? 2.2 : normal);
 // 사용자 결정: 메인 주황은 글자·아이콘·선에도 정해진 값 그대로 쓴다. 라이트 #ff6900은 흰 면 2.89:1, 옅은 면·도구 면 위 2.0~2.6:1로 기준에 못 미치며 예외로 기록한다.
-const mainMinimum = (color, normal) => (MAIN_ORANGES.has(color) ? Math.min(normal, 1.9) : normal);
+// 라이트 성공 #00c950은 도표 면 위 도구 누름 면에서 약 1.7:1로 가장 낮다. 상태 아이콘 모양과 글자 라벨로 보완한다.
+const mainMinimum = (color, normal) => (FIXED_PALETTE.has(color) ? Math.min(normal, 1.65) : normal);
 
 test('category_and_flow_share_readable_solid_color_pairs', () => {
   for (const [mode, table] of Object.entries(tables)) {
@@ -178,7 +180,7 @@ test('tab_and_tag_states_keep_text_and_selection_contrast_in_both_themes', () =>
     const selected = value('color.feature-tab-selected');
     const ink = value('color.feature-tab-ink');
     assert.ok(contrast(ink, selected) >= onMainMinimum(ink, selected, 4.5), mode + ' selected tab text');
-    // 기본 탭은 투명 면 위 본문색 글자와 1px 선, 선택은 메인 주황 면이다.
+    // 기본 탭은 투명 면 위 본문색 글자와 1px 선, 선택은 기본 글자색(무채색) 면이다. 주황은 포인트 색이라 탭 선택에 쓰지 않는다.
     assert.ok(contrast(value('color.body'), value('color.ui-card')) >= 4.5, mode + ' tab text');
     // 라이트 선택 면은 사용자가 지정한 메인 #ff6900(흰 면 2.89:1)이라 3:1에 조금 못 미친다. 색은 바꾸지 않고 예외로 기록한다(docs/styles.md 색 체계).
     // 선택 상태는 면 채움 유무(기본 탭은 투명 면과 1px 선)와 무채색 대 주황의 색상 차이로도 구분된다.
@@ -277,12 +279,13 @@ test('warning_callout_list_marker_and_input_stay_readable_in_both_themes', () =>
     // 다크는 밝은 선택 면 위의 어두운 글자이므로 본문 수준 이상의 대비를 둔다.
     assert.ok(contrast(value('color.feature-tab-ink'), value('color.feature-tab-selected')) >= onMainMinimum(value('color.feature-tab-ink'), value('color.feature-tab-selected'), mode === 'dark' ? 7 : 4.5), `${mode} selected tab text stays clearly legible`);
   }
-  assert.equal(resolveValue(tables.dark, 'color.prose-mark-background'), resolveValue(tables.dark, 'color.callout-warning'), 'mark shares the warning surface');
+  // 사용자 결정: 주황은 포인트 색이라 형광펜 표시는 태그와 같은 무채색 면을 쓴다.
+  for (const table of Object.values(tables)) assert.equal(resolveValue(table, 'color.prose-mark-background'), resolveValue(table, 'color.tag-background'), 'mark shares the neutral tag surface');
 });
 
 // 상태 안내: 옅은 상태 면 위 본문색 글자, 같은 아이콘 묶음의 상태색 아이콘. 테두리와 색 줄은 없다.
 test('status_callouts_use_tinted_surfaces_body_text_and_colored_icons', () => {
-  const expected = { light: { success: '#1a7f45', warning: '#ff6900', error: '#c4383a' }, dark: { success: '#6cc189', warning: '#ff8904', error: '#ff8a82' } };
+  const expected = { light: { success: '#00c950', warning: '#ff6900', error: '#fb2c36' }, dark: { success: '#05df72', warning: '#ff8904', error: '#ff6467' } };
   for (const [mode, table] of Object.entries(tables)) {
     const value = name => resolveValue(table, name);
     for (const state of ['success', 'warning', 'error']) {

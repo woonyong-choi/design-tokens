@@ -399,23 +399,23 @@
       },
       "orange": {
         "fill": {
-          "$value": "#f2943c",
+          "$value": "#ff8904",
           "$type": "color"
         },
         "line": {
-          "$value": "#f2943c",
+          "$value": "#ff8904",
           "$type": "color"
         },
         "ink": {
-          "$value": "#f2943c",
+          "$value": "#ff8904",
           "$type": "color"
         },
         "tint": {
-          "$value": "#4f4137",
+          "$value": "#453a31",
           "$type": "color"
         },
         "effect": {
-          "$value": "#f6b477",
+          "$value": "#ffb86a",
           "$type": "color"
         }
       },

@@ -46,8 +46,8 @@
 }
 @media (prefers-reduced-motion: reduce) { .app-nav a:hover { transition: none; } }
 .app-landing-heading .app-landing-social { display: block; margin: var(--spacing-landing-description-margin) auto; }
-.app-landing-social a, .app-landing-social span { display: inline-block; padding: var(--spacing-landing-social-y) var(--spacing-landing-social-x); border-radius: var(--radius-md); color: var(--color-control-link); }
-.app-landing-social a:hover { background: var(--color-control-hover); }
+.app-landing-social a, .app-landing-social span { display: inline-block; padding: var(--spacing-landing-social-y) var(--spacing-landing-social-x); border-radius: var(--radius-md); color: var(--color-ui-muted); }
+.app-landing-social a:hover { color: var(--color-ink); background: var(--color-control-hover); }
 .app-landing-social svg { width: var(--spacing-landing-social-size); height: var(--spacing-landing-social-size); }
 .app-landing-heading :is(h1,h2) { color: var(--color-landing-title-color); }
 .app-landing-social a, .app-landing-social span { line-height: inherit; }

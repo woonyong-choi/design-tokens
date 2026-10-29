@@ -177,7 +177,7 @@ body > main { overflow-x: clip; }
 }
 /* 선택 줄: 갤러리와 도표 장면이 같은 부품을 사용한다. */
 .app-tablist, .app-tablist button { box-sizing: border-box; }
-/* 기본 탭은 사이트 단추 모양이다: 작은 글 15/600/20, 높이 32(안쪽 6·12), 반경 8, 1px 선. 선택은 메인 주황 면이다. 갤러리와 도표 장면이 같은 규칙을 쓴다. */
+/* 기본 탭은 사이트 단추 모양이다: 작은 글 15/600/20, 높이 32(안쪽 6·12), 반경 8, 1px 선. 선택은 기본 글자색 면(무채색)이다. 갤러리와 도표 장면이 같은 규칙을 쓴다. */
 .app-tablist.is-after-panel { margin-block: var(--spacing-3) 0; }
 .app-tablist { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--spacing-2); max-width: none; margin: 0; padding: 0; font-size: var(--text-small); background: transparent; }
 .app-tablist button { flex: none; max-width: 100%; cursor: pointer; margin: 0; border: var(--border-width-thin) solid var(--color-ui-line); word-break: keep-all; overflow-wrap: break-word; padding: calc(var(--spacing-1-5) - var(--border-width-thin)) calc(var(--spacing-3) - var(--border-width-thin)); font-family: var(--font-sans); font-size: var(--text-small); font-weight: var(--font-weight-semibold); line-height: var(--leading-caption); color: var(--color-body); border-radius: var(--radius-lg); background: transparent; transition: background-color var(--duration-platform-motion) var(--ease-reveal), color var(--duration-platform-motion) var(--ease-reveal), border-color var(--duration-platform-motion) var(--ease-reveal); }
@@ -911,7 +911,9 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 .app-blog-card-date { font-weight: var(--font-weight-normal); color: var(--color-post-date-color); }
 .app-blog-card-meta > [aria-hidden=true] { color: var(--color-prose-marker); }
 .app-blog-card-date, .app-blog-card-comments { flex: none; }
-.app-blog-card-comments { display: inline-flex; align-items: center; justify-content: center; gap: calc(var(--spacing-gap-xs) / 2); min-width: var(--spacing-icon); min-height: var(--spacing-icon); margin-inline-start: auto; }
+.app-blog-card-comments { display: inline-flex; align-items: center; justify-content: center; gap: calc(var(--spacing-gap-xs) / 2); min-width: var(--spacing-icon); min-height: var(--spacing-icon); margin-inline-start: auto; color: inherit; }
+/* 카드마다 반복되는 보조 동작이라 주황 대신 메타 글자색을 쓴다. */
+a.app-blog-card-comments:hover { color: var(--color-ink); }
 .app-blog-card-author { display: inline-flex; align-items: center; min-width: 0; gap: var(--spacing-2); font-weight: var(--font-weight-semibold); color: var(--color-ink); }
 .app-blog-card-author > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .app-blog-card-avatar { flex: none; width: var(--spacing-blog-card-avatar); height: var(--spacing-blog-card-avatar); border-radius: var(--radius-pill); object-fit: cover; background: var(--color-ui-card); }
@@ -998,8 +1000,8 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 }
 @media (prefers-reduced-motion: reduce) { .app-nav a:hover { transition: none; } }
 .app-landing-heading .app-landing-social { display: block; margin: var(--spacing-landing-description-margin) auto; }
-.app-landing-social a, .app-landing-social span { display: inline-block; padding: var(--spacing-landing-social-y) var(--spacing-landing-social-x); border-radius: var(--radius-md); color: var(--color-control-link); }
-.app-landing-social a:hover { background: var(--color-control-hover); }
+.app-landing-social a, .app-landing-social span { display: inline-block; padding: var(--spacing-landing-social-y) var(--spacing-landing-social-x); border-radius: var(--radius-md); color: var(--color-ui-muted); }
+.app-landing-social a:hover { color: var(--color-ink); background: var(--color-control-hover); }
 .app-landing-social svg { width: var(--spacing-landing-social-size); height: var(--spacing-landing-social-size); }
 .app-landing-heading :is(h1,h2) { color: var(--color-landing-title-color); }
 .app-landing-social a, .app-landing-social span { line-height: inherit; }

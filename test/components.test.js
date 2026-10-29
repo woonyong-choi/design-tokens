@@ -45,7 +45,7 @@ test('body_and_caption_text_are_readable_on_the_page_in_each_theme', () => {
 const INK_EXCEPTIONS = new Set(['dark silver']);
 test('category_and_flow_share_readable_solid_color_pairs', () => {
   for (const [mode, table] of Object.entries(tables)) {
-    for (const [index, family] of ['blue', 'orange', 'gray', 'silver'].entries()) {
+    for (const [index, family] of ['orange', 'blue', 'gray', 'silver'].entries()) {
       const fill = resolveValue(table, `color.category.${family}.fill`);
       const on = resolveValue(table, `color.category.${family}.on`);
       assert.equal(resolveValue(table, `color.data.category-family.${index + 1}`), family);
@@ -165,9 +165,12 @@ test('tab_and_tag_states_keep_text_and_selection_contrast_in_both_themes', () =>
     const selected = value('color.feature-tab-selected');
     const ink = value('color.feature-tab-ink');
     assert.ok(contrast(ink, selected) >= 4.5, mode + ' selected tab text');
-    // 기본 탭은 투명 면 위 본문색 글자와 1px 선, 선택은 메인 파랑 면이다.
+    // 기본 탭은 투명 면 위 본문색 글자와 1px 선, 선택은 메인 주황 면이다.
     assert.ok(contrast(value('color.body'), value('color.ui-card')) >= 4.5, mode + ' tab text');
-    assert.ok(contrast(selected, value('color.ui-card')) >= 3, mode + ' selected tab on page');
+    // 라이트 선택 면은 사용자가 지정한 메인 #ff6900(흰 면 2.89:1)이라 3:1에 조금 못 미친다. 색은 바꾸지 않고 예외로 기록한다(docs/styles.md 색 체계).
+    // 선택 상태는 면 채움 유무(기본 탭은 투명 면과 1px 선)와 선택 글자 대비(5.89:1)로도 구분된다.
+    const selectedMinimum = mode === 'light' && selected === '#ff6900' ? 2.85 : 3;
+    assert.ok(contrast(selected, value('color.ui-card')) >= selectedMinimum, mode + ' selected tab on page');
     for (const base of ['color.ui-card', 'color.prose-pre-background']) {
       const gallery = onSurface(value('color.gallery-selected'), value(base));
       assert.ok(contrast(value('color.gallery-selected-ink'), gallery) >= 4.5, mode + ' selected number text');
@@ -175,7 +178,8 @@ test('tab_and_tag_states_keep_text_and_selection_contrast_in_both_themes', () =>
       const channels = gallery.slice(1).match(/../g).map(channel => Number.parseInt(channel, 16));
       assert.ok(Math.max(...channels) - Math.min(...channels) <= 12, mode + ' selected numbers remain neutral');
       const track = onSurface(value('color.feature-tab-background'), value(base));
-      assert.ok(contrast(selected, track) >= 3, mode + ' selected tab against ' + base);
+      // 같은 예외: 묶음 탭 바탕(회색) 위 #ff6900은 2.35(페이지)·2.20(도표 면). 선택은 색상(주황 대 무채색)과 어두운 선택 글자로 구분된다.
+      assert.ok(contrast(selected, track) >= (selectedMinimum < 3 ? 2.15 : 3), mode + ' selected tab against ' + base);
       for (const state of ['color.feature-tab-background', 'color.platform-hover', 'color.platform-active']) {
         const surface = onSurface(value(state), track);
         assert.ok(contrast(onSurface(value('color.platform-color'), surface), surface) >= 4.5, mode + ' unselected tab ' + state);
@@ -265,7 +269,7 @@ test('warning_callout_list_marker_and_input_stay_readable_in_both_themes', () =>
 
 // 상태 안내: 옅은 상태 면 위 본문색 글자, 같은 아이콘 묶음의 상태색 아이콘. 테두리와 색 줄은 없다.
 test('status_callouts_use_tinted_surfaces_body_text_and_colored_icons', () => {
-  const expected = { light: { success: '#1a7f45', warning: '#9e5400', error: '#c4383a' }, dark: { success: '#6cc189', warning: '#f2943c', error: '#ff8a82' } };
+  const expected = { light: { success: '#1a7f45', warning: '#ca3500', error: '#c4383a' }, dark: { success: '#6cc189', warning: '#ff8904', error: '#ff8a82' } };
   for (const [mode, table] of Object.entries(tables)) {
     const value = name => resolveValue(table, name);
     for (const state of ['success', 'warning', 'error']) {

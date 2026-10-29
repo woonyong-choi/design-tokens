@@ -5,11 +5,11 @@
   --color-border-strong: var(--color-gray-282);
   --color-border: var(--color-ui-line);
   --color-surface-raised: var(--color-gray-43);
-  --color-syntax-string: var(--primitive-syntax-orange);
+  --color-syntax-string: var(--primitive-syntax-blue);
   --color-syntax-function: var(--color-code-ink);
-  --color-syntax-number: var(--primitive-code-number);
-  --color-syntax-keyword: var(--primitive-syntax-blue);
-  --color-syntax-type: var(--primitive-syntax-blue);
+  --color-syntax-number: var(--color-code-ink);
+  --color-syntax-keyword: var(--primitive-syntax-orange);
+  --color-syntax-type: var(--primitive-syntax-orange);
   --color-gray-0: #ffffff;
   --color-gray-43: #f4f4f4;
   --color-gray-59: #f0f0f0;
@@ -121,7 +121,7 @@
   --color-on-action: var(--color-main-on-solid);
   --color-syntax-property: var(--color-code-ink);
   --color-syntax-parameter: var(--color-code-ink);
-  --color-syntax-constant: var(--primitive-code-number);
+  --color-syntax-constant: var(--color-code-ink);
   --color-syntax-annotation: var(--color-code-ink);
   --color-syntax-variable: var(--color-code-ink);
   --color-syntax-comment: var(--primitive-syntax-gray);
@@ -1069,11 +1069,10 @@
   --primitive-icon-idea-soft: #f8e47c;
   --primitive-dialog-backdrop: rgba(15,18,24,.4);
   --primitive-admin-shadow: 0 4px 16px rgba(0,0,0,.12);
-  --primitive-code-surface: #2b3440;
+  --primitive-code-surface: var(--primitive-ink-deep);
   --primitive-ink-deep: #1c1c1e;
   --primitive-code-surface-dark: var(--primitive-ink-deep);
   --primitive-code-ink: #d8dde4;
-  --primitive-code-number: #a9c4ff;
   --primitive-syntax-blue: #81a9fd;
   --primitive-syntax-orange: #ff8904;
   --primitive-syntax-gray: #a0a2a7;

@@ -642,13 +642,13 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 .app-code .app-tool-button:is(:hover, :active, :focus-visible) { color: var(--color-code-ink); background: var(--color-code-control-hover); }
 .app-syntax-keyword { color: var(--color-syntax-keyword); }
 .app-syntax-string { color: var(--color-syntax-string); }
-.app-syntax-number { color: var(--color-syntax-number); font-weight: var(--font-weight-semibold); }
+.app-syntax-number { color: var(--color-syntax-number); font-weight: var(--font-weight-bold); }
 .app-syntax-function { color: var(--color-syntax-function); font-weight: var(--font-weight-bold); }
 .app-syntax-type { color: var(--color-syntax-type); }
 .app-syntax-property { color: var(--color-syntax-property); }
 .app-syntax-parameter { color: var(--color-syntax-parameter); }
 .app-syntax-variable { color: var(--color-syntax-variable); }
-.app-syntax-constant { color: var(--color-syntax-constant); }
+.app-syntax-constant { color: var(--color-syntax-constant); font-weight: var(--font-weight-bold); }
 .app-syntax-comment { color: var(--color-syntax-comment); }
 .app-syntax-operator { color: var(--color-syntax-operator); }
 .app-syntax-punctuation { color: var(--color-syntax-punctuation); }

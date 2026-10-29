@@ -6,11 +6,11 @@
   --color-border-strong: var(--color-gray-282);
   --color-border: var(--color-ui-line);
   --color-surface-raised: var(--color-gray-43);
-  --color-syntax-string: var(--primitive-syntax-orange);
+  --color-syntax-string: var(--primitive-syntax-blue);
   --color-syntax-function: var(--color-code-ink);
-  --color-syntax-number: var(--primitive-code-number);
-  --color-syntax-keyword: var(--primitive-syntax-blue);
-  --color-syntax-type: var(--primitive-syntax-blue);
+  --color-syntax-number: var(--color-code-ink);
+  --color-syntax-keyword: var(--primitive-syntax-orange);
+  --color-syntax-type: var(--primitive-syntax-orange);
   --color-gray-0: #ffffff;
   --color-gray-43: #f4f4f4;
   --color-gray-59: #f0f0f0;
@@ -122,7 +122,7 @@
   --color-on-action: var(--color-main-on-solid);
   --color-syntax-property: var(--color-code-ink);
   --color-syntax-parameter: var(--color-code-ink);
-  --color-syntax-constant: var(--primitive-code-number);
+  --color-syntax-constant: var(--color-code-ink);
   --color-syntax-annotation: var(--color-code-ink);
   --color-syntax-variable: var(--color-code-ink);
   --color-syntax-comment: var(--primitive-syntax-gray);

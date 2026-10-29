@@ -150,11 +150,16 @@ test('syntax_and_comment_colors_keep_text_contrast_on_the_code_surface', () => {
     for (const role of ['color.code-ink', ...SYNTAX_ROLES.map(role => `color.syntax-${role}`)]) {
       assert.ok(contrast(onSurface(hex(role), code), code) >= 4.5, `${mode}.${role} on code surface ${code}`);
     }
-    // 강조는 파랑(키워드·형식), 주황(문자열), 밝은 파랑(숫자), 회색(주석) 넷이고 나머지는 기본 글자색이다.
-    for (const role of ['keyword', 'string', 'number', 'comment']) assert.notEqual(hex(`color.syntax-${role}`), hex('color.code-ink'), role);
-    assert.notEqual(hex('color.syntax-number'), hex('color.syntax-keyword'), 'numbers differ from keywords');
-    for (const role of ['function', 'property', 'parameter', 'variable', 'operator', 'punctuation', 'annotation']) assert.equal(hex(`color.syntax-${role}`), hex('color.code-ink'), role);
+    // 강조 색은 정한 색만 쓴다: 메인 주황(키워드·형식), 파랑(문자열), 회색(주석). 숫자·상수·함수와 나머지는 기본 글자색이고 숫자·상수·함수는 굵기로 구분한다.
+    assert.equal(code, '#1c1c1e', `${mode} code surface is neutral`);
+    assert.equal(hex('color.syntax-keyword'), '#ff8904', 'keyword');
+    assert.equal(hex('color.syntax-type'), hex('color.syntax-keyword'), 'type');
+    assert.equal(hex('color.syntax-string'), '#81a9fd', 'string');
+    assert.notEqual(hex('color.syntax-comment'), hex('color.code-ink'), 'comment');
+    for (const role of ['number', 'constant', 'function', 'property', 'parameter', 'variable', 'operator', 'punctuation', 'annotation']) assert.equal(hex(`color.syntax-${role}`), hex('color.code-ink'), role);
   }
+  const prose = readFileSync(root + 'styles/prose.css', 'utf8');
+  for (const role of ['number', 'constant', 'function']) assert.match(prose, new RegExp(`\\.app-syntax-${role} \\{[^}]*font-weight: var\\(--font-weight-bold\\)`), role);
 });
 
 

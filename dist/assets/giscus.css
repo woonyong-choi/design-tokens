@@ -11,8 +11,8 @@ main {
   --color-border-default: #dfe3e8;
   --color-border-muted: #dfe3e8;
   --color-neutral-muted: #dfe3e8;
-  --color-accent-fg: #ca3500;
-  --color-accent-emphasis: #ca3500;
+  --color-accent-fg: #ff6900;
+  --color-accent-emphasis: #ff6900;
   --color-accent-muted: #dde9ff;
   --color-accent-subtle: #ebf1ff;
   --color-btn-text: #303336;
@@ -24,11 +24,11 @@ main {
   --color-btn-active-border: #dde9ff;
   --color-btn-selected-bg: #ebf1ff;
   --color-btn-primary-text: #ffffff;
-  --color-btn-primary-bg: #ca3500;
-  --color-btn-primary-border: #ca3500;
-  --color-btn-primary-hover-bg: #ca3500;
-  --color-btn-primary-hover-border: #ca3500;
-  --color-btn-primary-selected-bg: #ca3500;
+  --color-btn-primary-bg: #ff6900;
+  --color-btn-primary-border: #ff6900;
+  --color-btn-primary-hover-bg: #ff6900;
+  --color-btn-primary-hover-border: #ff6900;
+  --color-btn-primary-selected-bg: #ff6900;
   --color-btn-primary-disabled-text: #55606e;
   --color-btn-primary-disabled-bg: #e9edf2;
   --color-btn-primary-disabled-border: #dfe3e8;
@@ -61,20 +61,20 @@ main {
 .gsc-main .gsc-comment-box-tabs { background: transparent; border: 0; border-radius: 0; padding: 0; margin-bottom: 12px; }
 .gsc-main .gsc-comment-box-tabs > div { margin: 0; }
 .gsc-main .gsc-comment-box-tabs button { border: 0; border-radius: 8px; background: transparent; padding: 8px 12px; color: #55606e; font: inherit; }
-.gsc-main .gsc-comment-box-tabs button.color-bg-canvas { color: #ca3500; background: #ebf1ff; font-weight: 600; }
+.gsc-main .gsc-comment-box-tabs button.color-bg-canvas { color: #ff6900; background: #ebf1ff; font-weight: 600; }
 .gsc-main .gsc-comment-box-main { padding: 0; margin: 0; }
 .gsc-main .gsc-comment-box-write { border: 0; border-radius: 0; background: transparent; }
 .gsc-main .gsc-comment-box-write:focus-within { box-shadow: none; outline: 0; }
 .gsc-main .gsc-comment-box-preview { font-family: Pretendard, "Pretendard Variable", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif; font-size: 18px; line-height: 1.4; color: #595c5e; background: #f6f7fa; border: 0; border-radius: 12px; padding: 18px; }
 .gsc-main .gsc-comment-box-textarea { font-family: Pretendard, "Pretendard Variable", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif; font-size: 18px; line-height: 1.4; color: #595c5e; background: #edeef1; border: 1px solid transparent; border-radius: 12px; padding: 18px; box-shadow: none; resize: none; }
-.gsc-main .gsc-comment-box-textarea:focus { outline: 3px solid #ca3500; outline-offset: calc(-1 * 3px); border-color: transparent; box-shadow: none; }
+.gsc-main .gsc-comment-box-textarea:focus { outline: 3px solid #ff6900; outline-offset: calc(-1 * 3px); border-color: transparent; box-shadow: none; }
 /* iframe의 important 유틸리티보다 요청한 표시 상태를 우선한다. */
 .gsc-main .gsc-comment-box-md-toolbar, .gsc-main .gsc-comment-box-markdown-hint { display: none !important; }
 .gsc-main .gsc-comment-box-textarea::placeholder { color: #55606e; opacity: 1; }
 .gsc-main .gsc-comment-box-textarea-extras { background: transparent; border: 0; padding: 8px 0; }
 .gsc-main .gsc-comment-box-bottom { margin: 8px 0 0; padding: 0; gap: 12px; }
 .gsc-main .gsc-comment-box-buttons :is(button,a) { font-family: Pretendard, "Pretendard Variable", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif; font-size: 15px; font-weight: 600; padding: 8px 12px; border-radius: 8px; box-shadow: none; }
-.gsc-main .gsc-comment-box-buttons a.btn-primary { background: transparent; border-color: transparent; color: #ca3500; }
+.gsc-main .gsc-comment-box-buttons a.btn-primary { background: transparent; border-color: transparent; color: #ff6900; }
 .gsc-main .gsc-comment-box-buttons a.btn-primary:hover { background: #ebf1ff; text-decoration: none; }
 .gsc-main .gsc-comment { font-size: 18px; margin: 0; }
 /* 댓글은 본문의 연속으로 두고 서비스의 카드 외곽선을 제거한다. */
@@ -103,11 +103,11 @@ main {
 .gsc-main .gsc-reactions-popover { border-color: #ebecef; border-radius: 12px; }
 .gsc-main :is(.gsc-comment-reactions,.gsc-reply-reactions,.gsc-direct-reaction-buttons) { align-items: center; gap: 8px; }
 .gsc-main .gsc-social-reaction-summary-item { display: inline-flex; align-items: center; justify-content: center; gap: calc(8px / 2); min-width: calc(24px + 8px); height: calc(24px + 8px); margin: 0; padding: 0 8px; border: 1px solid transparent; border-radius: 8px; box-shadow: none; background: #e9edf2; color: #55606e; font-family: Pretendard, "Pretendard Variable", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif; font-size: 15px; line-height: 1.2; }
-.gsc-main .gsc-social-reaction-summary-item.has-reacted { border-color: transparent; background: #ebf1ff; color: #ca3500; }
-.gsc-main .gsc-social-reaction-summary-item:not(:disabled):hover, .gsc-main .gsc-reactions-menu[open] > summary { background: #ebf1ff; color: #ca3500; border-color: #dde9ff; }
+.gsc-main .gsc-social-reaction-summary-item.has-reacted { border-color: transparent; background: #ebf1ff; color: #ff6900; }
+.gsc-main .gsc-social-reaction-summary-item:not(:disabled):hover, .gsc-main .gsc-reactions-menu[open] > summary { background: #ebf1ff; color: #ff6900; border-color: #dde9ff; }
 .gsc-main .gsc-social-reaction-summary-item > :is(svg,span) { margin: 0; }
 .gsc-main .gsc-emoji-button { border-radius: 8px; }
-.gsc-main :is(.gsc-comment-box-tabs button,.gsc-right-header button):hover { background: #ebf1ff; color: #ca3500; }
-.gsc-main :is(button,a,summary):focus-visible { outline: 3px solid #ca3500; outline-offset: 3px; }
+.gsc-main :is(.gsc-comment-box-tabs button,.gsc-right-header button):hover { background: #ebf1ff; color: #ff6900; }
+.gsc-main :is(button,a,summary):focus-visible { outline: 3px solid #ff6900; outline-offset: 3px; }
 .gsc-main a { text-decoration: none; }
 .gsc-main a:hover { text-decoration: underline; }

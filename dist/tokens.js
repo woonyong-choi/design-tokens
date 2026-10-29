@@ -1425,8 +1425,8 @@ export const tokens = freeze({
 });
 export const values = freeze({
   "color": {
-    "accent": "#ca3500",
-    "link": "#ca3500",
+    "accent": "#ff6900",
+    "link": "#ff6900",
     "border-strong": "#b7b7b7",
     "border": "#dfe3e8",
     "surface-raised": "#f4f4f4",
@@ -1461,15 +1461,15 @@ export const values = freeze({
     "state": {
       "active": "#ff6900",
       "active-fill": "#ff6900",
-      "active-text": "#ca3500",
+      "active-text": "#ff6900",
       "on-active": "#ffffff",
       "error": "#c4383a",
       "success": "#1a7f45",
-      "warning": "#ca3500"
+      "warning": "#ff6900"
     },
     "ui": {
-      "link": "#ca3500",
-      "focus": "#ca3500"
+      "link": "#ff6900",
+      "focus": "#ff6900"
     },
     "data": {
       "main": "#ff6900",
@@ -1494,13 +1494,13 @@ export const values = freeze({
         "4": "#c4c8cd"
       },
       "category-outline": {
-        "1": "#f54900",
+        "1": "#ff6900",
         "2": "#6292eb",
         "3": "#8b8f95",
         "4": "#b4b8bd"
       },
       "category-ink": {
-        "1": "#ca3500",
+        "1": "#ff6900",
         "2": "#4068bb",
         "3": "#62666c",
         "4": "#62666c"
@@ -1575,8 +1575,8 @@ export const values = freeze({
       },
       "orange": {
         "fill": "#fff7ed",
-        "outline": "#f54900",
-        "ink": "#ca3500"
+        "outline": "#ff6900",
+        "ink": "#ff6900"
       },
       "gray": {
         "fill": "#f1f2f2",
@@ -1611,7 +1611,7 @@ export const values = freeze({
     "help-bg": "#f6f7fa",
     "help-border": "#ebecef",
     "nav-color": "#55606e",
-    "control-link": "#ca3500",
+    "control-link": "#ff6900",
     "control-hover": "rgba(255,105,0,.12)",
     "control-active": "rgba(38,52,74,.1)",
     "control-muted": "#9399a5",
@@ -1681,10 +1681,10 @@ export const values = freeze({
     "control-paper": "#ffffff",
     "prose-rule-color": "#dfe3e8",
     "prose-caption-color": "#595c5e",
-    "prose-link-active": "#9f2d00",
+    "prose-link-active": "#ff6900",
     "prose-mark-background": "#fff7ed",
     "prose-marker": "#8b8f95",
-    "action-link": "#ca3500",
+    "action-link": "#ff6900",
     "category": {
       "blue": {
         "fill": "#72a3fe",
@@ -1696,8 +1696,8 @@ export const values = freeze({
       },
       "orange": {
         "fill": "#ff6900",
-        "line": "#f54900",
-        "ink": "#ca3500",
+        "line": "#ff6900",
+        "ink": "#ff6900",
         "on": "#ffffff",
         "tint": "#fff7ed",
         "effect": "#ff8904"
@@ -1726,7 +1726,7 @@ export const values = freeze({
     "gallery-selected-ink": "#ffffff",
     "tag-background": "#fff7ed",
     "help-grouped-bg": "rgba(0,0,0,0)",
-    "document-nav-active-ink": "#ca3500",
+    "document-nav-active-ink": "#ff6900",
     "workspace": {
       "sidebar": "#f4f4f4",
       "document": "#ffffff",
@@ -1734,19 +1734,19 @@ export const values = freeze({
       "hover": "#e7e7e7",
       "selected": "#c9c9c9"
     },
-    "tag-ink": "#ca3500",
+    "tag-ink": "#ff6900",
     "tag-preview": "#ffd6a7",
-    "tag-preview-ink": "#9f2d00",
+    "tag-preview-ink": "#ff6900",
     "button-primary": "#ff6900",
     "button-primary-ink": "#ffffff",
-    "button-primary-hover": "#f54900",
+    "button-primary-hover": "#ff6900",
     "dialog-backdrop": "rgba(15,18,24,.4)",
     "main": {
       "anchor": "#ff6900",
       "fill": "#ff6900",
       "on": "#ffffff",
       "light-border": "#ff6900",
-      "light-ink": "#ca3500",
+      "light-ink": "#ff6900",
       "light-tint-1": "#fff7ed",
       "light-tint-3": "#ffedd4",
       "dark-border": "#ff8904",
@@ -1754,15 +1754,15 @@ export const values = freeze({
       "dark-tint-1": "#453a31",
       "dark-tint-3": "#513f2e",
       "light-effect": "#ff8904",
-      "dark-effect": "#ffb86a",
+      "dark-effect": "#ff8904",
       "solid": "#ff6900",
       "on-solid": "#ffffff",
       "light-tint-4": "#ffd6a7",
-      "light-ink-strong": "#9f2d00",
+      "light-ink-strong": "#ff6900",
       "dark-tint-4": "#5e442b",
-      "dark-ink-strong": "#ffb86a",
+      "dark-ink-strong": "#ff8904",
       "dark-on": "#ffffff",
-      "light-hover": "#f54900"
+      "light-hover": "#ff6900"
     },
     "status": {
       "success": {
@@ -1770,7 +1770,7 @@ export const values = freeze({
         "surface": "#edf3ec"
       },
       "warning": {
-        "ink": "#ca3500",
+        "ink": "#ff6900",
         "surface": "#fff7ed"
       },
       "error": {
@@ -1783,8 +1783,8 @@ export const values = freeze({
     "code-border": "#2b3440",
     "prose-soft": "#f3f5f7",
     "prose-quote-rule": "#c4c8cd",
-    "prose-link": "#ca3500",
-    "prose-link-underline": "rgba(202,53,0,.4)",
+    "prose-link": "#ff6900",
+    "prose-link-underline": "rgba(255,105,0,.4)",
     "code-control-hover": "rgba(255,255,255,.12)"
   },
   "font": {
@@ -2296,7 +2296,7 @@ export const values = freeze({
     "device-ratio": "500 / 889",
     "tab-inset": 4,
     "tab-button-inset": 6,
-    "control-link": "#ca3500",
+    "control-link": "#ff6900",
     "control-hover": "rgba(255,105,0,.12)",
     "control-active": "rgba(38,52,74,.1)",
     "control-muted": "#9399a5",
@@ -2531,7 +2531,7 @@ export const values = freeze({
     "navy-alpha-15": "rgba(4,15,26,.15)",
     "navy-alpha-6": "rgba(0,28,70,.06)",
     "prose-rule-color": "rgba(0,20,49,.18)",
-    "prose-link-active": "#9f2d00",
+    "prose-link-active": "#ff6900",
     "prose-script-weight": 440,
     "prose-definition-margin": "0 0 .7em 2em",
     "post-footer-margin": "4em 0 3em",
@@ -2626,14 +2626,14 @@ export const values = freeze({
     "body-ink-dark": "#cacacb",
     "prose-soft": "#f3f5f7",
     "soft-dark": "#3c3c41",
-    "link-underline": "rgba(202,53,0,.4)",
+    "link-underline": "rgba(255,105,0,.4)",
     "link-underline-dark": "rgba(255,137,4,.4)",
     "code-control-hover": "rgba(255,255,255,.12)",
     "status-success-ink": "#1a7f45",
     "status-success-ink-dark": "#6cc189",
     "status-success-surface": "#edf3ec",
     "status-success-surface-dark": "#242d29",
-    "status-warning-ink": "#ca3500",
+    "status-warning-ink": "#ff6900",
     "status-warning-ink-dark": "#ff8904",
     "status-warning-surface": "#fff7ed",
     "status-warning-surface-dark": "#312821",

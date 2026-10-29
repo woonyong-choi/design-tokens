@@ -145,16 +145,18 @@ test('syntax_and_comment_colors_keep_text_contrast_on_the_code_surface', () => {
     const inline = onSurface(hex('color.prose-code-background'), hex('color.ui-card'));
     // 코드 블록은 라이트·다크 모두 어두운 면이다.
     const code = hex('color.code-surface');
-    assert.ok(contrast(code, hex('color.code-ink')) >= 7, `${mode} code surface is dark`);
+    assert.ok(contrast(code, hex('color.code-ink')) >= 7, `${mode} code text on code surface`);
     assert.ok(contrast(onSurface(hex('color.prose-code-color'), inline), inline) >= 4.5, `${mode} inline code`);
     for (const role of ['color.code-ink', ...SYNTAX_ROLES.map(role => `color.syntax-${role}`)]) {
-      assert.ok(contrast(onSurface(hex(role), code), code) >= 4.5, `${mode}.${role} on code surface ${code}`);
+      assert.ok(contrast(onSurface(hex(role), code), code) >= mainMinimum(hex(role), 4.5), `${mode}.${role} on code surface ${code}`);
     }
-    // 강조 색은 정한 색만 쓴다: 메인 주황(키워드·형식), 파랑(문자열), 회색(주석). 숫자·상수·함수와 나머지는 기본 글자색이고 숫자·상수·함수는 굵기로 구분한다.
-    assert.equal(code, '#1c1c1e', `${mode} code surface is neutral`);
-    assert.equal(hex('color.syntax-keyword'), '#ff8904', 'keyword');
+    // 코드 블록은 테마를 따른다: 라이트는 옅은 회색 면·진한 글자, 다크는 #1c1c1e 면·밝은 글자.
+    // 강조 색은 정한 색만 쓴다: 메인 주황(키워드·형식), 구분색 파랑 글자(문자열), 구분색 회색 글자(주석). 숫자·상수·함수와 나머지는 기본 글자색이고 숫자·상수·함수는 굵기로 구분한다.
+    assert.equal(code, mode === 'light' ? hex('color.prose-soft') : '#1c1c1e', `${mode} code surface follows the theme`);
+    assert.equal(hex('color.syntax-keyword'), mode === 'light' ? '#ff6900' : '#ff8904', 'keyword');
     assert.equal(hex('color.syntax-type'), hex('color.syntax-keyword'), 'type');
-    assert.equal(hex('color.syntax-string'), '#81a9fd', 'string');
+    assert.equal(hex('color.syntax-string'), hex('color.category.blue.ink'), 'string');
+    assert.equal(hex('color.syntax-comment'), hex('color.category.gray.ink'), 'comment palette');
     assert.notEqual(hex('color.syntax-comment'), hex('color.code-ink'), 'comment');
     for (const role of ['number', 'constant', 'function', 'property', 'parameter', 'variable', 'operator', 'punctuation', 'annotation']) assert.equal(hex(`color.syntax-${role}`), hex('color.code-ink'), role);
   }
@@ -335,4 +337,14 @@ test('diagram_panels_stop_at_natural_size_and_the_readable_minimum', () => {
   assert.match(cue, /\.fl-figure\.full \.fl-canvas \{\s*animation: none;\s*mask-image: none;/);
   assert.match(rule('.fl-figure.full .dp-panel > svg'), /min-width:\s*0/);
   assert.match(rule('.fl-figure.full .dp-panels'), /min-width:\s*0/);
+});
+
+test('prose_images_open_in_one_viewer_and_close_on_click', () => {
+  const runtime = readFileSync(root + 'ui/runtime/document.js', 'utf8');
+  assert.match(runtime, /\.app-prose \.app-figure > img, \.app-prose p > img/);
+  assert.match(runtime, /viewer\.addEventListener\('click', \(\) => viewer\.close\(\)\)/);
+  assert.match(runtime, /showModal\(\)/);
+  const css = readFileSync(root + 'styles/prose.css', 'utf8');
+  assert.match(css, /\.app-prose img\[data-zoomable\] \{ cursor: zoom-in; \}/);
+  assert.match(css, /\.app-image-viewer::backdrop \{ background: var\(--color-dialog-backdrop\); \}/);
 });

@@ -135,7 +135,7 @@
       "$type": "color"
     },
     "search-hover": {
-      "$value": "{primitive.figure-dark-selection}",
+      "$value": "{primitive.figure-dark-hover}",
       "$type": "color"
     },
     "ink": {
@@ -220,7 +220,7 @@
     },
     "tag-background": {
       "$type": "color",
-      "$value": "{color.main.dark-tint-1}"
+      "$value": "{color.soft}"
     },
     "help-bg": {
       "$type": "color",
@@ -364,15 +364,15 @@
     },
     "tag-ink": {
       "$type": "color",
-      "$value": "{color.main.dark-ink}"
+      "$value": "{color.body}"
     },
     "tag-preview": {
       "$type": "color",
-      "$value": "{color.main.dark-tint-4}"
+      "$value": "{color.help-hover}"
     },
     "tag-preview-ink": {
       "$type": "color",
-      "$value": "{color.main.dark-ink-strong}"
+      "$value": "{color.ink}"
     },
     "category": {
       "blue": {
@@ -543,6 +543,14 @@
     "prose-link-underline": {
       "$value": "{primitive.link-underline-dark}",
       "$type": "color"
+    },
+    "code-ink": {
+      "$type": "color",
+      "$value": "{primitive.code-ink}"
+    },
+    "code-control-hover": {
+      "$type": "color",
+      "$value": "{primitive.code-control-hover}"
     }
   },
   "icon": {

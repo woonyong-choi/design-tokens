@@ -1,6 +1,8 @@
 /* 본문 문법: app-prose 아래 제목·문단·목록·인용·표·코드·콜아웃·각주·수식·도표. 새 Markdown 요소는 여기에 둔다. */
 /* 글 단계: 글 제목(display) 48, h2(title-2) 32, h3(title-3) 24, 리드 20, 본문 18, 작은 글 15, 설명 13. 좁은 화면은 같은 이름을 -compact 값으로 바꾼다. 간격은 4의 배수다. */
-.app-prose { word-break: keep-all; overflow-wrap: anywhere; font-size: var(--text-body); line-height: var(--leading-body); color: var(--color-body); }
+.app-prose { word-break: normal; overflow-wrap: anywhere; font-size: var(--text-body); line-height: var(--leading-body); color: var(--color-body); }
+/* 본문은 한국어도 음절 단위로 줄을 바꿔 줄 끝을 단 폭까지 채운다. 제목은 낱말 단위를 유지한다. */
+.app-prose :is(h1, h2, h3, h4, h5, h6) { word-break: keep-all; }
 .app-prose h1 { font-size: var(--text-section-title); line-height: var(--leading-prose-heading-line); margin: var(--component-prose-h1-margin); }
 .app-prose h1:first-child, .app-prose h2.app-heading-1:first-child { margin-top: 0; }
 .app-prose :is(h2, h3, h4, h5, h6, strong, dt, th, summary) { color: var(--color-ink); }
@@ -159,3 +161,9 @@
     --spacing-post-tags-after: var(--spacing-post-tags-after-compact);
   }
 }
+/* 본문 그림 확대: 누르면 화면 크기 창(.app-image-viewer)이 열리고 다시 누르면 닫힌다(ui/runtime/document.js). */
+.app-prose img[data-zoomable] { cursor: zoom-in; }
+.app-image-viewer { width: 100vw; max-width: none; height: 100dvh; max-height: none; margin: 0; padding: var(--spacing-gap); border: 0; background: transparent; cursor: zoom-out; }
+.app-image-viewer[open] { display: grid; place-items: center; }
+.app-image-viewer::backdrop { background: var(--color-dialog-backdrop); }
+.app-image-viewer img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: var(--radius-prose-block-radius); background: var(--color-ui-card); }

@@ -43,7 +43,7 @@ html.embedded .fl-figure.full {
   background: var(--color-ui-card);
 }
 
-/* 그림 틀은 코드·표·그림과 같은 블록 틀(1px 선, 반경 12)이고 면을 칠하지 않는다. 도구 단추는 틀 위쪽 자기 줄(.app-tool-header.is-row)에 있어 그림을 덮지 않는다. */
+/* 그림 틀은 코드·표·그림과 같은 블록 틀(1px 선, 반경 12)이고 면을 칠하지 않는다. 도구 단추는 틀 밖 바로 위의 자기 줄(.app-tool-header.is-row)에 있어 틀과 그림을 덮지 않는다. */
 .fl-surface {
   position: relative;
   display: flex;
@@ -55,8 +55,8 @@ html.embedded .fl-figure.full {
   background: transparent;
 }
 
-.fl-surface > .app-tool-header {
-  padding: var(--spacing-2) var(--spacing-2) 0;
+.fl-figure > .app-tool-header {
+  padding: 0 0 var(--spacing-2);
 }
 
 /* 문서 안에서는 자연 높이를 쓴다. 판이 최소 크기에서도 틀보다 넓으면 이 영역 안에서만 가로로 옮겨 보고 페이지 폭은 늘리지 않는다. 전체 화면에서는 양쪽 축으로 이동한다. */
@@ -166,6 +166,10 @@ html.embedded .fl-figure.full {
 .fl-figure.full .fl-surface {
   border: 0;
   border-radius: 0;
+}
+
+.fl-figure.full > .app-tool-header {
+  padding: var(--spacing-2) var(--spacing-2) 0;
 }
 
 .fl-figure.full .fl-canvas {

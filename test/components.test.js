@@ -297,6 +297,7 @@ test('code_table_diagram_and_details_share_one_block_frame', () => {
   assert.match(surface, /border: var\(--border-width-thin\) solid var\(--color-ui-line\)/);
   assert.match(surface, /border-radius: var\(--radius-prose-block-radius\)/);
   assert.match(surface, /background: transparent/);
+  assert.match(rule(read('diagram/player.css'), '.fl-figure > .app-tool-header'), /padding: 0 0 var\(--spacing-2\)/);
 });
 
 test('diagram_panels_stop_at_natural_size_and_the_readable_minimum', () => {

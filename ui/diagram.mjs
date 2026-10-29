@@ -35,7 +35,7 @@ function sourceScript(source) {
 // basis: estimate
 /**
  * 그림 틀(figure). 장면 탭은 빌드 때 만들고 재생기가 선택 동작을 연결한다. 재생 조작 단추와 글 설명은 없다.
- * 탭 줄(.fl-foot)은 그림(.fl-surface) 바로 아래 문서 흐름에 놓인 가운데 줄이다(CSS). 그림 위를 덮지 않는다. 그림 뒤에는 아무것도 오지 않는다.
+ * 도구 단추 줄(.app-tool-header.is-row)은 그림 틀(.fl-surface) 밖 바로 위의 자기 줄이고, 탭 줄(.fl-foot)은 틀 바로 아래 문서 흐름에 놓인 가운데 줄이다(CSS). 둘 다 그림 위를 덮지 않는다. 그림 뒤에는 아무것도 오지 않는다.
  * @param canvas 그림 영역 안쪽 마크업(판 묶음, html.js panelsMarkup)
  * @param className figure 요소에 더할 class(앞에 공백 포함, 없으면 빈 글)
  * @param style figure 요소에 더할 속성 글(앞에 공백 포함, 없으면 빈 글)
@@ -44,8 +44,8 @@ function sourceScript(source) {
  */
 export function DiagramFrame({ canvas, className = '', style = '', narrow = '', source, labels = [] }) {
   return `<figure class="fl-figure${className}" tabindex="0"${style}>
-<div class="fl-surface app-tool-surface">
 ${VIEW_BUTTONS}
+<div class="fl-surface">
 <div class="fl-canvas" id="scene-panel" role="tabpanel" aria-label="그림" tabindex="0">${canvas}</div>
 </div>
 ${narrow}

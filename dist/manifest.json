@@ -205,7 +205,7 @@
     "styles/diagram/document.css": "56c9498d06ad3d852cfa073f4b57333ea8e155d21dc65777da0dd735a88a6b3c",
     "styles/diagram/figure.css": "4a64e11710540998b462193b84283519c6f2823ba72bcc29046c63babb62d35e",
     "styles/diagram/gallery.css": "52fdacf8393164232a6aa92c81340412260b5c9968e7b19e61e97bf80a2d576b",
-    "styles/diagram/player.css": "4f58dd56de12b32baae8c8eeb6975c2ffacc44542ff92b18751482a9844d4540",
+    "styles/diagram/player.css": "b69238922fb9c3b2225026e750ead43a8a48ad9ea13febf0c06372075574bc12",
     "styles/diagram/status.css": "f7369565c6751a9d62b32147125b44c702c1d0064b33a39db579a1e49014f396",
     "styles/table.css": "2882fd6b014b4a62f79ba64c7a084489a3aba5b02e4b63f06b725fa28e1529fd",
     "styles/tabs.css": "b25105f173ab4acc6d01f9cce151eb7fc3f4f11cfc1c790430211b1b0ef6fd5d",
@@ -223,7 +223,7 @@
     "ui/build/prune-tokens.mjs": "2c543e3e4eb30f20136765d20c06142acb43059fe9f6022b91db8634ecb44a2f",
     "ui/build/styles.mjs": "079f62598d52a49167b001c7bd4257bc70ca6f9f2e9c571f230b42a52ecf789c",
     "ui/components.mjs": "54997913893e023b8207479457f38852723687c6d6bcb09ea11f4f81aebfc858",
-    "ui/diagram.mjs": "3fc1ff55e95cb9ad080c8e4973091dcb80a1e0aec5dffce6f4b56a746e7b7003",
+    "ui/diagram.mjs": "1640c79d344d1a1d7648ff0444d7161d011377eb79283150c4450fce25353ac7",
     "ui/document.mjs": "3c94b08bc4816862e439d2e20d874d0ef6b08e202bdb59d3c103a4160728307a",
     "ui/editor.mjs": "dd54dd5c0de6f502d55c5378cb5111466cea83a046a6c09e1121c355ca9964d0",
     "ui/html.mjs": "4bb51a5267c8d7d7e917b7434681695606408ddc887c40d1d37f6be6d193d044",
@@ -247,5 +247,5 @@
     "ui/toolbar.mjs": "40c19720e8018b6f8d9e5604ff5f076959f267565108b1d10183a2f9ca405dee",
     "ui/write.mjs": "e3de56e37109766624facf9da318fcc7402193b04ec31f0e1198f95c0a95d700"
   },
-  "contentHash": "5867e347cdbfd13429ef27d353d6e2b3e41d73c84f67d3ab612592f91cb462fd"
+  "contentHash": "3b0962210f45927ef1bb7770e3910b70eb66bf88efee7abc2f4e64e85bbbb2f3"
 }

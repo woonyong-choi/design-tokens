@@ -429,6 +429,12 @@ test('search_result_parts_escape_every_field_and_highlight_only_with_mark', () =
   assert.equal(html(ui.Tag({ href: '/tags/x/', label: 'X ×' })), '<a class="app-tag" href="/tags/x/">X ×</a>');
 });
 
+test('diagram_tool_row_sits_above_the_frame_not_inside_it', () => {
+  const diagram = DiagramFrame({ canvas: '<svg></svg>', labels: ['one'] });
+  // 틀 순서: 도구 단추 줄 → 그림 틀(.fl-surface) → 장면 탭 줄
+  assert.match(diagram, /<figure class="fl-figure"[^>]*>\s*<div class="app-tool-header is-row">[\s\S]*?<\/div><\/div>\s*<div class="fl-surface">\s*<div class="fl-canvas"/);
+});
+
 test('tab_lists_share_one_selection_style_across_galleries_and_diagram_scenes', () => {
   const labels = ['첫 장면', '다음 `상태`'];
   const list = html(ui.TabList({ id: 'list', labels, afterPanel: true }));

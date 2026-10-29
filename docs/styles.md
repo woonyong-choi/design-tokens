@@ -94,6 +94,8 @@
 
 `Card`·`DocumentArticle`·`PostArticle` 제목과 목록·안내 쪽 제목(`.app-page-heading`)은 `word-break: keep-all`로 한국어 어절을 지키고 가용 폭보다 긴 단어는 `overflow-wrap: anywhere`로 넘침을 막는다. 관련 글 제목은 기존 한 줄 말줄임을 유지한다. 문서 제목은 인라인 흐름에서 첫 줄에 아이콘을 놓고 `ContentIcon`의 기존 수직 정렬을 사용한다. 블로그 글 제목은 좌우 폭을 별도로 줄이지 않아 본문 폭을 모두 사용한다.
 
+본문(`.app-prose`)은 `word-break: normal`이라 한국어도 음절 단위로 줄을 바꿔 줄 끝이 단 폭까지 찬다. 본문 안 제목(h1~h6)만 `keep-all`로 낱말 단위를 지킨다.
+
 ### 강제하는 것
 
 토큰 검사기는 CSS·조작 SVG·UI 모듈·런타임의 직접 표현 값과 정의되지 않은 변수를 검사한다. `--anchor-x`, `--anchor-y`는 실제 요소 위치에서 계산하는 툴팁 좌표다. SVG 도형의 좌표나 원본 미디어 크기는 UI 토큰과 다른 콘텐츠 데이터다.

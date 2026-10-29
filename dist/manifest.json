@@ -198,8 +198,8 @@
     "assets/icons/programming/terminal.svg": "995bd48e1de12fcb906b19969d144133b3fbea09602995d9350b7c517fc4b21a",
     "assets/icons/security/security.svg": "3155befdc3524ddc87baacbcba5deb63333b43558a4420a7e4d020cca83950a4",
     "assets/sources.json": "8e6580783bf559aeb17189cddcc023fbd15198803d33c42f494cbbc083dde112",
-    "styles.css": "85b42b374f167caf95003a6f47ce2d0f22aefa7c5f3b907f172c3260fd2b4925",
-    "styles.source.css": "b6669e6560f51a1ea657d18dc3fa3c96e8ed6540ab992b9922da9b25828e5587",
+    "styles.css": "3873b55bdc54e12daecf5c82e7ce845e11c4680f32ef87f1b0f4c14242fce17f",
+    "styles.source.css": "175a7dc2d6a09cbf6281ce4e1e1908ca3674bb839177602cb5d5d2ebe220579e",
     "styles/diagram-embed.css": "5bd4ba4d5b2327824c76ba2be814de8c1c2f0018904af1df00a251bc2f593dc6",
     "styles/diagram/chart.css": "d1d068db7af5f2ad7924221c237392f87335d4b262bb60706e9aaea688d96b4b",
     "styles/diagram/document.css": "56c9498d06ad3d852cfa073f4b57333ea8e155d21dc65777da0dd735a88a6b3c",
@@ -247,5 +247,5 @@
     "ui/toolbar.mjs": "40c19720e8018b6f8d9e5604ff5f076959f267565108b1d10183a2f9ca405dee",
     "ui/write.mjs": "e3de56e37109766624facf9da318fcc7402193b04ec31f0e1198f95c0a95d700"
   },
-  "contentHash": "a244f7b5dadbd511d24ced74f723cee9ff1a6c269ba11c9b09527f72285ec6c2"
+  "contentHash": "81ec866ce739dd690ff836741202426d925ec07c2122fb717fff2d615bb570da"
 }

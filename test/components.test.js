@@ -46,6 +46,8 @@ const INK_EXCEPTIONS = new Set(['dark silver']);
 // 사용자 결정: 메인 주황(#ff6900, 다크 #ff8904) 면 위 글자는 흰색이다. 흰 글자 대비는 2.89:1(라이트)·2.3:1(다크)로 4.5:1에 못 미치며 색은 바꾸지 않고 이 예외로 기록한다(docs/styles.md 색 체계).
 const MAIN_ORANGES = new Set(['#ff6900', '#ff8904']);
 const onMainMinimum = (ink, surface, normal) => (ink === '#ffffff' && MAIN_ORANGES.has(surface) ? 2.2 : normal);
+// 사용자 결정: 메인 주황은 글자·아이콘·선에도 정해진 값 그대로 쓴다. 라이트 #ff6900은 흰 면 2.89:1, 옅은 면·도구 면 위 2.0~2.6:1로 기준에 못 미치며 예외로 기록한다.
+const mainMinimum = (color, normal) => (MAIN_ORANGES.has(color) ? Math.min(normal, 1.9) : normal);
 
 test('category_and_flow_share_readable_solid_color_pairs', () => {
   for (const [mode, table] of Object.entries(tables)) {
@@ -57,7 +59,7 @@ test('category_and_flow_share_readable_solid_color_pairs', () => {
       assert.equal(resolveValue(table, `color.data.category-on.${index + 1}`), on);
       assert.ok(contrast(on, fill) >= onMainMinimum(on, fill, 4.5), `${mode} ${family} text on fill`);
       const ink = contrast(resolveValue(table, `color.category.${family}.ink`), resolveValue(table, 'color.ui-card'));
-      if (!INK_EXCEPTIONS.has(`${mode} ${family}`)) assert.ok(ink >= 4.5, `${mode} ${family} ink on page`);
+      if (!INK_EXCEPTIONS.has(`${mode} ${family}`)) assert.ok(ink >= mainMinimum(resolveValue(table, `color.category.${family}.ink`), 4.5), `${mode} ${family} ink on page`);
     }
     assert.deepEqual(['1', '2', '3', '4'].map(key => resolveValue(table, `color.data.category-dash.${key}`)), ['solid', 'solid', 'dashed', 'dotted']);
     assert.deepEqual(['1', '2', '3', '4'].map(key => resolveValue(table, `color.data.category-label.${key}`)), ['optional', 'optional', 'required', 'required']);
@@ -89,10 +91,10 @@ test('icons_keep_contrast_on_page_paper_and_tool_surfaces_in_both_themes', () =>
     for (const background of ['color.prose-pre-background', 'color.control-hover', 'color.control-active']) {
       const fill = onSurface(hex(background), surface);
       for (const role of ['color.ui-muted', 'color.accent', 'color.state.success', 'color.state.error']) {
-        assert.ok(contrast(hex(role), fill) >= 3, `${mode}.${role} on ${background}`);
+        assert.ok(contrast(hex(role), fill) >= mainMinimum(hex(role), 3), `${mode}.${role} on ${background}`);
       }
     }
-    assert.ok(contrast(hex('color.ui.focus'), surface) >= 3, `${mode} tool focus ring`);
+    assert.ok(contrast(hex('color.ui.focus'), surface) >= mainMinimum(hex('color.ui.focus'), 3), `${mode} tool focus ring`);
   }
 });
 
@@ -160,11 +162,11 @@ test('syntax_and_comment_colors_keep_text_contrast_on_the_code_surface', () => {
 test('tab_and_tag_states_keep_text_and_selection_contrast_in_both_themes', () => {
   for (const [mode, table] of Object.entries(tables)) {
     const value = name => resolveValue(table, name);
-    assert.ok(contrast(value('color.tag-ink'), value('color.tag-background')) >= 4.5, mode + ' default tag text');
+    assert.ok(contrast(value('color.tag-ink'), value('color.tag-background')) >= mainMinimum(value('color.tag-ink'), 4.5), mode + ' default tag text');
     assert.ok(contrast(value('color.on-action'), value('color.tag-hover')) >= onMainMinimum(value('color.on-action'), value('color.tag-hover'), 4.5), mode + ' tag text and clear symbol');
-    assert.ok(contrast(value('color.tag-preview-ink'), value('color.tag-preview')) >= 4.5, mode + ' tag preview text');
+    assert.ok(contrast(value('color.tag-preview-ink'), value('color.tag-preview')) >= mainMinimum(value('color.tag-preview-ink'), 4.5), mode + ' tag preview text');
     assert.ok(contrast(value('color.tag-preview'), value('color.ui-card')) > contrast(value('color.tag-background'), value('color.ui-card')), mode + ' hovered tags remain more visible than default tags');
-    assert.ok(contrast(value('color.tag-ink'), value('color.ui-card')) >= 4.5, mode + ' reset link text');
+    assert.ok(contrast(value('color.tag-ink'), value('color.ui-card')) >= mainMinimum(value('color.tag-ink'), 4.5), mode + ' reset link text');
     assert.notEqual(value('color.tag-preview'), value('color.tag-hover'), mode + ' preview differs from selection');
     const selected = value('color.feature-tab-selected');
     const ink = value('color.feature-tab-ink');
@@ -264,7 +266,7 @@ test('warning_callout_list_marker_and_input_stay_readable_in_both_themes', () =>
     // 검색 입력(불투명 면)의 안내 문구. 라이트는 기존 화면 유지 조건(#9)이라 다크만 본문 수준 대비를 요구한다.
     if (mode === 'dark') assert.ok(contrast(value('color.input-field-placeholder'), value('color.search-bg')) >= 4.5, `${mode} search placeholder`);
     // 그림 문서·목록의 작은 링크(13px)는 본문 대비 기준.
-    for (const base of ['color.ui-card', 'color.prose-pre-background']) assert.ok(contrast(value('color.ui.link'), value(base)) >= 4.5, `${mode} link on ${base}`);
+    for (const base of ['color.ui-card', 'color.prose-pre-background']) assert.ok(contrast(value('color.ui.link'), value(base)) >= mainMinimum(value('color.ui.link'), 4.5), `${mode} link on ${base}`);
     // 다크는 밝은 선택 면 위의 어두운 글자이므로 본문 수준 이상의 대비를 둔다.
     assert.ok(contrast(value('color.feature-tab-ink'), value('color.feature-tab-selected')) >= onMainMinimum(value('color.feature-tab-ink'), value('color.feature-tab-selected'), mode === 'dark' ? 7 : 4.5), `${mode} selected tab text stays clearly legible`);
   }
@@ -273,7 +275,7 @@ test('warning_callout_list_marker_and_input_stay_readable_in_both_themes', () =>
 
 // 상태 안내: 옅은 상태 면 위 본문색 글자, 같은 아이콘 묶음의 상태색 아이콘. 테두리와 색 줄은 없다.
 test('status_callouts_use_tinted_surfaces_body_text_and_colored_icons', () => {
-  const expected = { light: { success: '#1a7f45', warning: '#ca3500', error: '#c4383a' }, dark: { success: '#6cc189', warning: '#ff8904', error: '#ff8a82' } };
+  const expected = { light: { success: '#1a7f45', warning: '#ff6900', error: '#c4383a' }, dark: { success: '#6cc189', warning: '#ff8904', error: '#ff8a82' } };
   for (const [mode, table] of Object.entries(tables)) {
     const value = name => resolveValue(table, name);
     for (const state of ['success', 'warning', 'error']) {
@@ -281,7 +283,7 @@ test('status_callouts_use_tinted_surfaces_body_text_and_colored_icons', () => {
       assert.equal(value(`color.status.${state}.ink`), expected[mode][state], `${mode} ${state} color`);
       assert.equal(value(`color.state.${state}`), expected[mode][state], `${mode} state role`);
       assert.ok(contrast(value('color.body'), surface) >= 4.5, `${mode} ${state} text`);
-      assert.ok(contrast(value(`color.status.${state}.ink`), surface) >= 3, `${mode} ${state} icon`);
+      assert.ok(contrast(value(`color.status.${state}.ink`), surface) >= mainMinimum(value(`color.status.${state}.ink`), 3), `${mode} ${state} icon`);
     }
   }
   assert.equal(resolveValue(tables.light, 'color.status.warning.ink'), resolveValue(tables.light, 'color.category.orange.ink'), 'warning shares the data orange family');

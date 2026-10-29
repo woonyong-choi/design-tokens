@@ -1429,7 +1429,7 @@ export const values = freeze({
     "border-strong": "#b7b7b7",
     "border": "#dfe3e8",
     "surface-raised": "#f4f4f4",
-    "syntax-string": "#4068bb",
+    "syntax-string": "#155dfc",
     "syntax-function": "#303336",
     "syntax-number": "#303336",
     "syntax-keyword": "#ff6900",
@@ -1462,8 +1462,8 @@ export const values = freeze({
       "active-fill": "#ff6900",
       "active-text": "#ff6900",
       "on-active": "#ffffff",
-      "error": "#c4383a",
-      "success": "#1a7f45",
+      "error": "#fb2c36",
+      "success": "#00c950",
       "warning": "#ff6900"
     },
     "ui": {
@@ -1472,14 +1472,14 @@ export const values = freeze({
     },
     "data": {
       "main": "#ff6900",
-      "compare": "#72a3fe",
+      "compare": "#2b7fff",
       "heat-low": "#ffedd4",
       "heat-high": "#ff6900",
       "heat-ink": "#000000",
       "heat-ink-on": "#ffffff",
       "grid": "#c9c9c9",
-      "compare-fill": "#eef4ff",
-      "compare-outline": "#6292eb",
+      "compare-fill": "#eff6ff",
+      "compare-outline": "#2b7fff",
       "category-family": {
         "1": "orange",
         "2": "blue",
@@ -1488,37 +1488,37 @@ export const values = freeze({
       },
       "category": {
         "1": "#ff6900",
-        "2": "#72a3fe",
+        "2": "#2b7fff",
         "3": "#8b8f95",
         "4": "#c4c8cd"
       },
       "category-outline": {
         "1": "#ff6900",
-        "2": "#6292eb",
+        "2": "#2b7fff",
         "3": "#8b8f95",
         "4": "#b4b8bd"
       },
       "category-ink": {
         "1": "#ff6900",
-        "2": "#4068bb",
+        "2": "#155dfc",
         "3": "#62666c",
         "4": "#62666c"
       },
       "category-effect": {
         "1": "#ff8904",
-        "2": "#72a3fe",
+        "2": "#2b7fff",
         "3": "#8b8f95",
         "4": "#c4c8cd"
       },
       "category-tint": {
         "1": "#fff7ed",
-        "2": "#eef4ff",
+        "2": "#eff6ff",
         "3": "#f1f2f2",
         "4": "#f8f8f9"
       },
       "category-on": {
         "1": "#ffffff",
-        "2": "#000000",
+        "2": "#ffffff",
         "3": "#000000",
         "4": "#000000"
       },
@@ -1568,9 +1568,9 @@ export const values = freeze({
     },
     "paint": {
       "blue": {
-        "fill": "#eef4ff",
-        "outline": "#6292eb",
-        "ink": "#4068bb"
+        "fill": "#eff6ff",
+        "outline": "#2b7fff",
+        "ink": "#155dfc"
       },
       "orange": {
         "fill": "#fff7ed",
@@ -1611,7 +1611,7 @@ export const values = freeze({
     "help-border": "#ebecef",
     "nav-color": "#55606e",
     "control-link": "#ff6900",
-    "control-hover": "rgba(255,105,0,.12)",
+    "control-hover": "#eff0f2",
     "control-active": "rgba(38,52,74,.1)",
     "control-muted": "#9399a5",
     "control-playing-ink": "#848484",
@@ -1635,7 +1635,7 @@ export const values = freeze({
     "input-ink": "#595c5e",
     "input-placeholder": "#55606e",
     "input-field-placeholder": "#757575",
-    "feature-tab-selected": "#ff6900",
+    "feature-tab-selected": "#303336",
     "help-title-color": "#3d4856",
     "help-copy-color": "rgba(0,1,2,.77)",
     "post-divider-color": "rgba(0,22,53,.07)",
@@ -1675,23 +1675,23 @@ export const values = freeze({
     "search-message-color": "#74777c",
     "search-clear-active": "rgba(0,0,0,.16)",
     "article-title-border": "rgba(4,15,26,.15)",
-    "related-background": "rgba(255,105,0,.04)",
+    "related-background": "#ffffff",
     "related-border": "rgba(0,28,70,.06)",
     "control-paper": "#ffffff",
     "prose-rule-color": "#dfe3e8",
     "prose-caption-color": "#595c5e",
     "prose-link-active": "#ff6900",
-    "prose-mark-background": "#fff7ed",
+    "prose-mark-background": "#f3f5f7",
     "prose-marker": "#8b8f95",
     "action-link": "#ff6900",
     "category": {
       "blue": {
-        "fill": "#72a3fe",
-        "line": "#6292eb",
-        "ink": "#4068bb",
-        "on": "#000000",
-        "tint": "#eef4ff",
-        "effect": "#72a3fe"
+        "fill": "#2b7fff",
+        "line": "#2b7fff",
+        "ink": "#155dfc",
+        "on": "#ffffff",
+        "tint": "#eff6ff",
+        "effect": "#2b7fff"
       },
       "orange": {
         "fill": "#ff6900",
@@ -1725,7 +1725,7 @@ export const values = freeze({
     "gallery-selected-ink": "#ffffff",
     "tag-background": "#f3f5f7",
     "help-grouped-bg": "rgba(0,0,0,0)",
-    "document-nav-active-ink": "#ff6900",
+    "document-nav-active-ink": "#303336",
     "workspace": {
       "sidebar": "#f4f4f4",
       "document": "#ffffff",
@@ -1765,16 +1765,16 @@ export const values = freeze({
     },
     "status": {
       "success": {
-        "ink": "#1a7f45",
-        "surface": "#edf3ec"
+        "ink": "#00c950",
+        "surface": "#f0fdf4"
       },
       "warning": {
         "ink": "#ff6900",
         "surface": "#fff7ed"
       },
       "error": {
-        "ink": "#c4383a",
-        "surface": "#fdebec"
+        "ink": "#fb2c36",
+        "surface": "#fef2f2"
       }
     },
     "code-surface": "#f3f5f7",
@@ -2296,7 +2296,7 @@ export const values = freeze({
     "tab-inset": 4,
     "tab-button-inset": 6,
     "control-link": "#ff6900",
-    "control-hover": "rgba(255,105,0,.12)",
+    "control-hover": "#eff0f2",
     "control-active": "rgba(38,52,74,.1)",
     "control-muted": "#9399a5",
     "control-radius": "0.4em",
@@ -2493,7 +2493,7 @@ export const values = freeze({
     "help-inline-chevron": "10px 15px",
     "help-inline-opacity": 0.3,
     "help-grouped-chevron": "12px 18px",
-    "search-focus": "0 0 0 3px rgb(255,137,4)",
+    "search-focus": "0 0 0 3px #ff6900",
     "input-field-placeholder": "#757575",
     "nav-hover-color": "rgba(38,52,74,.7)",
     "nav-active-color": "rgba(4,15,26,.7)",
@@ -2617,7 +2617,7 @@ export const values = freeze({
     "ink-deep": "#1c1c1e",
     "code-surface-dark": "#1c1c1e",
     "code-ink": "#d8dde4",
-    "syntax-blue": "#81a9fd",
+    "syntax-blue": "#51a2ff",
     "syntax-orange": "#ff8904",
     "syntax-gray": "#a0a2a7",
     "body-ink": "#595c5e",
@@ -2627,18 +2627,18 @@ export const values = freeze({
     "link-underline": "rgba(255,105,0,.4)",
     "link-underline-dark": "rgba(255,137,4,.4)",
     "code-control-hover": "rgba(255,255,255,.12)",
-    "status-success-ink": "#1a7f45",
-    "status-success-ink-dark": "#6cc189",
-    "status-success-surface": "#edf3ec",
-    "status-success-surface-dark": "#242d29",
+    "status-success-ink": "#00c950",
+    "status-success-ink-dark": "#05df72",
+    "status-success-surface": "#f0fdf4",
+    "status-success-surface-dark": "#2c423c",
     "status-warning-ink": "#ff6900",
     "status-warning-ink-dark": "#ff8904",
     "status-warning-surface": "#fff7ed",
-    "status-warning-surface-dark": "#312821",
-    "status-error-ink": "#c4383a",
-    "status-error-ink-dark": "#ff8a82",
-    "status-error-surface": "#fdebec",
-    "status-error-surface-dark": "#332728",
+    "status-warning-surface-dark": "#453a31",
+    "status-error-ink": "#fb2c36",
+    "status-error-ink-dark": "#ff6467",
+    "status-error-surface": "#fef2f2",
+    "status-error-surface-dark": "#45363b",
     "main-alpha-4": "rgba(255,105,0,.04)"
   },
   "breakpoint": {
@@ -2825,7 +2825,7 @@ export const values = freeze({
     "help-inline-margin": "-1px 2px -1px 0",
     "help-inline-chevron": "10px 15px",
     "help-grouped-chevron": "12px 18px",
-    "input-focus": "0 0 0 3px rgb(255,137,4)",
+    "input-focus": "0 0 0 3px #ff6900",
     "search-suggestion-padding": "0 .05em",
     "search-message-padding": "1em 2em",
     "prose-definition-margin": "0 0 .7em 2em",

@@ -27,8 +27,8 @@ test('unknown_references_cycles_css_collisions_and_invalid_dark_overrides_fail',
 // 색 체계: 메인 주황(단추·링크·켜진 경로), 구분색 넷(주황 → 파랑 → 진한 회색 → 연한 회색 순서 고정), 상태색 셋. 보라·노랑·청록은 어디에도 없고 빨강·초록은 상태 전용이다.
 test('one_palette_has_main_orange_four_distinctions_and_three_states_without_purple', () => {
   const distinctions = {
-    light: { blue: ['#72a3fe', '#6292eb', '#4068bb'], orange: ['#ff6900', '#ff6900', '#ff6900'], gray: ['#8b8f95', '#8b8f95', '#62666c'], silver: ['#c4c8cd', '#b4b8bd', '#62666c'] },
-    dark: { blue: ['#81a9fd', '#81a9fd', '#81a9fd'], orange: ['#ff8904', '#ff8904', '#ff8904'], gray: ['#a0a2a7', '#a0a2a7', '#a0a2a7'], silver: ['#6e7075', '#6e7075', '#94969b'] },
+    light: { blue: ['#2b7fff', '#2b7fff', '#155dfc'], orange: ['#ff6900', '#ff6900', '#ff6900'], gray: ['#8b8f95', '#8b8f95', '#62666c'], silver: ['#c4c8cd', '#b4b8bd', '#62666c'] },
+    dark: { blue: ['#51a2ff', '#51a2ff', '#51a2ff'], orange: ['#ff8904', '#ff8904', '#ff8904'], gray: ['#a0a2a7', '#a0a2a7', '#a0a2a7'], silver: ['#6e7075', '#6e7075', '#94969b'] },
   };
   for (const [mode, table] of Object.entries(tables)) {
     assert.deepEqual(Object.keys(distinctions[mode]).map((_, index) => resolveValue(table, `color.data.category-family.${index + 1}`)), ['orange', 'blue', 'gray', 'silver']);

@@ -336,3 +336,13 @@ test('diagram_panels_stop_at_natural_size_and_the_readable_minimum', () => {
   assert.match(rule('.fl-figure.full .dp-panel > svg'), /min-width:\s*0/);
   assert.match(rule('.fl-figure.full .dp-panels'), /min-width:\s*0/);
 });
+
+test('prose_images_open_in_one_viewer_and_close_on_click', () => {
+  const runtime = readFileSync(root + 'ui/runtime/document.js', 'utf8');
+  assert.match(runtime, /\.app-prose \.app-figure > img, \.app-prose p > img/);
+  assert.match(runtime, /viewer\.addEventListener\('click', \(\) => viewer\.close\(\)\)/);
+  assert.match(runtime, /showModal\(\)/);
+  const css = readFileSync(root + 'styles/prose.css', 'utf8');
+  assert.match(css, /\.app-prose img\[data-zoomable\] \{ cursor: zoom-in; \}/);
+  assert.match(css, /\.app-image-viewer::backdrop \{ background: var\(--color-dialog-backdrop\); \}/);
+});

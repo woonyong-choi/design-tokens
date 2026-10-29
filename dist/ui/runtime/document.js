@@ -17,6 +17,21 @@ function initContent(root) {
     initialized.add(block);
     bindToolbar(block, { source: () => block.querySelector('code').textContent });
   }
+  // 본문 그림: 누르면 화면 크기로 확대한 창이 열리고, 창 어디든 다시 누르거나 Esc를 누르면 닫힌다.
+  for (const image of root.querySelectorAll('.app-prose .app-figure > img, .app-prose p > img')) {
+    if (initialized.has(image) || image.closest('a, button')) continue;
+    initialized.add(image);
+    image.dataset.zoomable = '';
+    image.tabIndex = 0;
+    image.setAttribute('role', 'button');
+    image.setAttribute('aria-haspopup', 'dialog');
+    image.addEventListener('click', () => openImage(image));
+    image.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      event.preventDefault();
+      openImage(image);
+    });
+  }
   for (const button of root.querySelectorAll('[data-tooltip-trigger]')) {
     if (initialized.has(button)) continue;
     initialized.add(button);
@@ -35,6 +50,22 @@ function initContent(root) {
     bubble.addEventListener('toggle', event => { if (event.newState === 'open') position(); });
     tooltips.add({ bubble, position });
   }
+}
+// 확대 창은 문서에 하나만 두고 그림마다 원본 주소와 대체 글만 바꾼다.
+let viewer;
+function openImage(image) {
+  if (!viewer) {
+    viewer = document.createElement('dialog');
+    viewer.className = 'app-image-viewer';
+    viewer.append(document.createElement('img'));
+    viewer.addEventListener('click', () => viewer.close());
+    document.body.append(viewer);
+  }
+  const large = viewer.querySelector('img');
+  large.src = image.currentSrc || image.src;
+  large.alt = image.alt;
+  viewer.setAttribute('aria-label', image.alt || '확대한 그림');
+  viewer.showModal();
 }
 // 창 크기·스크롤 리스너는 툴팁마다 붙이지 않고 하나만 두며, 문서에서 빠진 툴팁은 함께 정리한다.
 const tooltips = new Set();

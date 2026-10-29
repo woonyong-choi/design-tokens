@@ -161,3 +161,9 @@
     --spacing-post-tags-after: var(--spacing-post-tags-after-compact);
   }
 }
+/* 본문 그림 확대: 누르면 화면 크기 창(.app-image-viewer)이 열리고 다시 누르면 닫힌다(ui/runtime/document.js). */
+.app-prose img[data-zoomable] { cursor: zoom-in; }
+.app-image-viewer { width: 100vw; max-width: none; height: 100dvh; max-height: none; margin: 0; padding: var(--spacing-gap); border: 0; background: transparent; cursor: zoom-out; }
+.app-image-viewer[open] { display: grid; place-items: center; }
+.app-image-viewer::backdrop { background: var(--color-dialog-backdrop); }
+.app-image-viewer img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: var(--radius-prose-block-radius); background: var(--color-ui-card); }

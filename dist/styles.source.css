@@ -622,7 +622,8 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 .app-prose dl:not(.app-definitions) dd { margin: 0 0 var(--spacing-prose-item) var(--spacing-6); }
 .app-prose .app-figure { margin-block: var(--spacing-prose-block); }
 /* 본문 그림은 기본으로 모서리를 깎지 않는다. 작성자가 rounded 옵션(img.is-rounded)을 고르면 코드 블록과 같은 곡률로 자른다. 기기 틀 안의 화면은 기기 곡률을 따른다. */
-:is(.app-prose, .app-figure-grid-item) .app-figure img.is-rounded { border-radius: var(--radius-prose-block-radius); }
+:is(.app-prose, .app-figure-grid-item) .app-figure > :is(img, a > img) { border-radius: 0; }
+:is(.app-prose, .app-figure-grid-item) .app-figure > :is(img, a > img).is-rounded { border-radius: var(--radius-prose-block-radius); }
 :is(.app-prose, .app-figure-grid-item) > .app-figure { display: flex; flex-direction: column; align-items: center; text-align: start; }
 :is(.app-prose, .app-figure-grid-item) > .app-figure > .app-player { align-self: stretch; }
 :is(.app-prose, .app-figure-grid-item) > .app-figure > a > img { display: block; }

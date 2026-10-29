@@ -360,3 +360,11 @@ test('prose_images_open_in_one_viewer_and_close_on_click', () => {
   assert.match(css, /\.app-prose img\[data-zoomable\] \{ cursor: zoom-in; \}/);
   assert.match(css, /\.app-image-viewer::backdrop \{ background: var\(--color-dialog-backdrop\); \}/);
 });
+
+// 사용자 결정: 본문 그림은 기본으로 모서리를 깎지 않고, rounded 옵션(img.is-rounded)만 코드 블록과 같은 곡률을 쓴다.
+test('prose_figures_are_square_by_default_and_rounded_like_code_blocks_on_request', () => {
+  const prose = readFileSync(root + 'styles/prose.css', 'utf8');
+  assert.match(prose, /:is\(\.app-prose, \.app-figure-grid-item\) \.app-figure > :is\(img, a > img\) \{ border-radius: 0; \}/);
+  assert.match(prose, /:is\(\.app-prose, \.app-figure-grid-item\) \.app-figure > :is\(img, a > img\)\.is-rounded \{ border-radius: var\(--radius-prose-block-radius\); \}/);
+  assert.match(prose, /\.app-code \{[^}]*border-radius: var\(--radius-prose-block-radius\)/);
+});

@@ -33,3 +33,11 @@ test('shared_design_exposes_tailwind_names_and_a_four_pixel_spacing_unit', () =>
   assert.doesNotMatch(css, /--(?:site|space)-/);
   assert.doesNotMatch(css, /(--[\w-]+): var\(\1\)/);
 });
+
+test('fixed_light_scheme_drops_other_theme_blocks_and_their_tokens', async () => {
+  const theme = ':root{--color-ink:var(--ink-light);--ink-light:#111111;--ink-dark:#eeeeee}@media (prefers-color-scheme: dark){:root:not([data-theme=light]){--color-ink:var(--ink-dark)}}[data-theme=\'dark\']{--color-ink:var(--ink-dark)}[data-theme=\'light\']{--color-ink:var(--ink-light)}';
+  const result = await compileStyles('.copy{color:var(--color-ink)}', new Map([['/', '<p class="copy">copy</p>']]), new Map(), theme, { scheme: 'light' });
+  assert.match(result.theme, /--color-ink:var\(--ink-light\)/);
+  assert.doesNotMatch(result.theme, /--ink-dark|prefers-color-scheme|data-theme/);
+  await assert.rejects(compileStyles('', new Map(), new Map(), theme, { scheme: 'dark' }), /unsupported fixed scheme/);
+});

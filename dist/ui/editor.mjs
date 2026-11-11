@@ -4,13 +4,18 @@ import { escape, id, out, safeUrl, slot } from './html.mjs';
 const BUTTON_VARIANTS = ['primary', 'secondary', 'quiet'];
 const ACTION = /^[a-z][a-z-]*$/;
 
-/** 동작 단추. `action`은 화면 스크립트가 찾는 이름(`data-action`)이다. `quiet`는 테두리 없는 글자 단추다. */
-export function Button({ label, variant = 'secondary', type = 'button', action, disabled = false, hidden = false, pressed }) {
+/**
+ * 동작 단추. `action`은 화면 스크립트가 찾는 이름(`data-action`)이다. `quiet`는 테두리 없는 글자 단추다.
+ * `controls`는 단추가 펼치는 영역의 id다(접힌 상태로 시작). `context`는 같은 이름의 단추가 여럿일 때 화면 읽기 프로그램에만 덧붙이는 대상 이름이다.
+ */
+export function Button({ label, variant = 'secondary', type = 'button', action, disabled = false, hidden = false, pressed, controls, context }) {
   if (!BUTTON_VARIANTS.includes(variant)) throw new Error(`Unknown button variant: ${variant}`);
   if (!['button', 'submit'].includes(type)) throw new Error(`Unknown button type: ${type}`);
   if (action !== undefined && !ACTION.test(action)) throw new Error(`Invalid button action: ${action}`);
   const variantClass = variant === 'secondary' ? '' : ` is-${variant}`;
-  return out(`<button type="${type}" class="app-button${variantClass}"${action ? ` data-action="${action}"` : ''}${pressed === undefined ? '' : ` aria-pressed="${pressed}"`}${disabled ? ' disabled' : ''}${hidden ? ' hidden' : ''}>${escape(label)}</button>`);
+  const expands = controls === undefined ? '' : ` aria-controls="${id(controls)}" aria-expanded="false"`;
+  const named = context === undefined ? '' : `<span class="app-sr"> · ${escape(context)}</span>`;
+  return out(`<button type="${type}" class="app-button${variantClass}"${action ? ` data-action="${action}"` : ''}${pressed === undefined ? '' : ` aria-pressed="${pressed}"`}${expands}${disabled ? ' disabled' : ''}${hidden ? ' hidden' : ''}>${escape(label)}${named}</button>`);
 }
 
 /** 단추 모양의 링크. 다른 사이트로 가는 링크는 새 창으로 연다. */

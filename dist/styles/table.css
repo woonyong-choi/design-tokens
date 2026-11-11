@@ -1,9 +1,11 @@
 /* 문서 표와 단축키 표가 공유하는 면·경계·읽기 규칙. */
+/* Things 표처럼 내용 폭만큼만 차지하고, 본문보다 넓으면 상자 안에서 가로로 넘긴다. */
 .app-table-scroll {
+  width: fit-content;
   max-width: 100%;
   overflow: auto;
   margin-block: var(--spacing-gap);
-  border: var(--border-width-thin) solid var(--color-ui-line);
+  border: var(--border-width-thin) solid var(--color-prose-block-line);
   border-radius: var(--radius-prose-block-radius);
 }
 
@@ -13,7 +15,6 @@
 }
 
 .app-table {
-  width: 100%;
   min-width: max-content;
   border-collapse: separate;
   border-spacing: 0;
@@ -26,17 +27,17 @@
 
 .app-table :is(th, td) {
   max-width: var(--container-body-width);
-  padding: var(--spacing-3) var(--spacing-4);
+  padding: var(--component-table-padding);
   vertical-align: baseline;
   border: 0;
-  border-bottom: var(--border-width-thin) solid var(--color-ui-line);
+  border-bottom: var(--border-width-thin) solid var(--color-prose-block-line);
   text-align: left;
   word-break: keep-all;
   overflow-wrap: break-word;
 }
 
 .app-table > :last-child > tr:last-child > :is(th, td) { border-bottom: 0; }
-.app-table th { font-weight: var(--font-weight-bold); background: var(--color-prose-soft); }
+.app-table th { font-weight: var(--font-weight-bold); }
 .app-table :is(th, td) code { white-space: pre-wrap; overflow-wrap: anywhere; }
 .app-table .is-center { text-align: center; }
 .app-table .is-right { text-align: right; }
@@ -47,6 +48,3 @@
   font-weight: var(--font-weight-semibold);
 }
 
-@media (max-width: breakpoint(feature-split)) {
-  .app-table :is(th, td) { padding: var(--spacing-2) var(--spacing-3); }
-}

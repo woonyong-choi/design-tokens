@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" color="#7d8794" role="img">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" color="#3f86f5" role="img">
 <title>checkbox-empty</title>
-<desc>빈 둥근 사각 체크 상자</desc>
-<g transform="scale(1.3333333333333333)" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="4"/></g>
+<desc>빈 작업 체크 상자: 옅은 파란 면과 파란 외곽</desc>
+<rect x="4" y="4" width="24" height="24" rx="7" fill="#0169fe17"/><rect x="5.125" y="5.125" width="21.75" height="21.75" rx="5.875" fill="none" stroke="currentColor" stroke-width="2.25"/>
 </svg>

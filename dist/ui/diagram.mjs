@@ -6,7 +6,7 @@ import { ToolButton, Toolbar, ToolHeader } from './toolbar.mjs';
 export function DiagramEmbed({ src, title, dimensions, width }) {
   if (!src.startsWith('/') || src.startsWith('//')) throw new TypeError('Diagram source must be local');
   if (![dimensions?.width, dimensions?.height].every(value => Number.isFinite(value) && value > 0)) throw new TypeError('Diagram dimensions must be positive');
-  return out(`<figure class="app-diagram${widthClass({ width })}"><iframe data-diagram src="${safeUrl(src)}" title="${escape(title)}" width="${Math.ceil(dimensions.width)}" height="${Math.ceil(dimensions.height)}" loading="lazy" allow="fullscreen; clipboard-write" allowfullscreen></iframe></figure>`);
+  return out(`<figure class="app-diagram${widthClass({ width })}"><iframe data-diagram src="${safeUrl(src)}" title="${escape(title)}" width="${Math.ceil(dimensions.width)}" height="${Math.ceil(dimensions.height)}" loading="lazy" allow="fullscreen; clipboard-write"></iframe></figure>`);
 }
 
 const zoomTools = trusted(`<div class="fl-zoom app-tool-group">${[

@@ -396,7 +396,7 @@ test('home_and_list_components_have_one_definition_with_escaped_text_and_checked
   assert.doesNotMatch(html(ui.TagList({ tags })), /details/);
 
   const outline = html(ui.DocumentOutline({ sections: [{ id: 's-1', title: 'A&', level: 2 }] }));
-  assert.match(outline, /^<details class="app-document-nav" data-document-panel open><summary aria-label="본문 목차"><span>목차<\/span><\/summary><nav aria-label="본문 목차"><ol>/);
+  assert.match(outline, /^<details class="app-document-nav" data-document-panel><summary aria-label="본문 목차"><span>목차<\/span><\/summary><nav aria-label="본문 목차"><ol>/);
   // 좁은 화면에서 본문 위를 차지하지 않도록 문서 탐색과 같은 접기 패널 하나만 쓴다.
   assert.equal((outline.match(/<details/g) ?? []).length, 1);
   assert.doesNotMatch(outline, /svg/);
@@ -599,5 +599,5 @@ test('logo_items_without_a_destination_are_disabled_and_not_keyboard_targets', (
   assert.match(disabled, /<span role="link" aria-disabled="true" aria-label="Python · 관련 글 없음">/);
   assert.doesNotMatch(disabled, /<a\b|href=|tabindex=|onclick=/);
   assert.match(html(ui.LogoItem({ ...props, href: '/search/?tag=Python' })), /<a href="\/search\/\?tag=Python"/);
-  assert.match(read('../styles/landing.css'), /\.app-technology > \[aria-disabled="true"\] \{ opacity: var\(--opacity-dim\); \}/);
+  assert.match(read('../styles/landing.css'), /\.app-technology > \[aria-disabled="true"\] \{ opacity: var\(--opacity-dim\); filter: grayscale\(1\); \}/);
 });

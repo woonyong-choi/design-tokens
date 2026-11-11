@@ -154,17 +154,9 @@
       "$value": "{primitive.figure-dark-node}",
       "$type": "color"
     },
-    "platform-color": {
-      "$type": "color",
-      "$value": "{color.ink}"
-    },
     "platform-hover": {
       "$type": "color",
       "$value": "{color.control-hover}"
-    },
-    "platform-active": {
-      "$type": "color",
-      "$value": "{color.feature-tab-background}"
     },
     "gallery-background": {
       "$type": "color",
@@ -182,21 +174,9 @@
       "$type": "color",
       "$value": "{color.ink}"
     },
-    "prose-code-color": {
-      "$value": "{primitive.prose-code-color-dark}",
+    "prose-mark-background": {
+      "$value": "{primitive.callout-warning-dark}",
       "$type": "color"
-    },
-    "callout-warning": {
-      "$value": "{color.status.warning.surface}",
-      "$type": "color"
-    },
-    "callout-background": {
-      "$type": "color",
-      "$value": "{primitive.callout-background-dark}"
-    },
-    "callout-border": {
-      "$type": "color",
-      "$value": "{primitive.callout-border-dark}"
     },
     "input-placeholder": {
       "$type": "color",
@@ -562,14 +542,6 @@
       "$type": "color",
       "$value": "{primitive.prose-rule-color-dark}"
     },
-    "prose-code-background": {
-      "$type": "color",
-      "$value": "{primitive.prose-code-background-dark}"
-    },
-    "prose-code-border": {
-      "$type": "color",
-      "$value": "{primitive.prose-code-border-dark}"
-    },
     "input-background": {
       "$type": "color",
       "$value": "{color.feature-tab-background}"
@@ -585,6 +557,22 @@
     "feature-tab-ink": {
       "$type": "color",
       "$value": "{color.gray.933}"
+    },
+    "prose-block-line": {
+      "$type": "color",
+      "$value": "{primitive.table-line-dark}"
+    },
+    "prose-code-background": {
+      "$type": "color",
+      "$value": "{primitive.code-soft-surface-dark}"
+    },
+    "prose-code-border": {
+      "$type": "color",
+      "$value": "{primitive.code-soft-line-dark}"
+    },
+    "prose-code-color": {
+      "$type": "color",
+      "$value": "{primitive.code-soft-ink-dark}"
     }
   },
   "icon": {

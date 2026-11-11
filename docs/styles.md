@@ -48,7 +48,7 @@
 
 빌드는 로컬 CSS import를 평탄화한다. 외부·절대 경로, 폴더 탈출, 순환·중복 import와 조건부 import는 거부한다. `url()`은 배포 CSS 기준 `./assets/...`를 사용한다. `breakpoint(이름)`은 토큰 값으로 바뀐다. 웹과 도표는 `styles/tabs.css`를 함께 읽어 탭을 다시 정의하지 않는다.
 
-소비자의 `compileStyles`는 전체 HTML·스크립트의 사용처, 동적 상태와 변수 참조를 보존한 뒤 축소한다. `:focus-visible`, 숨김 상태와 움직임 줄이기 규칙을 빠뜨리지 않는다. 배포물의 축소 결과를 정본 CSS에 역반영하지 않는다.
+소비자의 `compileStyles`는 전체 HTML·스크립트의 사용처, 동적 상태와 변수 참조를 보존한 뒤 축소한다. `:focus-visible`, 숨김 상태와 움직임 줄이기 규칙을 빠뜨리지 않는다. 배포물의 축소 결과를 정본 CSS에 역반영하지 않는다. 다섯째 인자 `{ scheme: 'light' }`를 넘기면 라이트로 고정한 사이트로 보고 다크 미디어 질의, `[data-theme=dark]`, `:root`를 되풀이하는 `[data-theme=light]` 토큰 블록과 그 블록만 쓰던 값을 뺀다(`fixThemeScheme`). 지원하는 고정 테마는 라이트 하나다.
 
 `package.json`의 개발 의존성 PurgeCSS 7.0.2와 루트 override가 선택한 `postcss-selector-parser` 7.1.6을 `npm run build`가 배포 모듈에 포함한다. `pruneTokens`는 기존 모듈을 공유하며 `compileStyles`의 입력과 반환값은 유지한다. 루트 override는 소비자 설치에 전파되지 않으므로 배포 모듈에서 이 조합을 고정한다. 설치 경계와 라이선스 고지, 번들 입력·소비자 설치 검사는 [공통 디자인 배포](distribution.md#패키지)를 따른다.
 
@@ -132,7 +132,7 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 | 역할 | 토큰 | 라이트 | 다크 | 쓰는 곳 |
 |---|---|---|---|---|
 | accent-1 링크 | `color.accent-1.link`, `color.ui.link`, `color.action-link`, `color.link`, `color.accent` | `#2576eb` | `#649fff` | 링크(밑줄 없음, 호버 밑줄), 초점 선(`component.action-focus` `0 0 0 2px rgba(37,118,235,.5)`), 도구 단추 호버 아이콘, 목차 현재 항목 글자 |
-| accent-1 누른 링크 | `color.accent-1.link-active`, `color.prose-link-active` | `#114691` | `#92bbfe` | 본문 링크 누름, 다크 목차 현재 항목 글자 |
+| accent-1 누른 링크 | `color.accent-1.link-active`, `color.prose-link-active` | `#114691` | `#92bbfe` | 본문 링크 누름, 다크 목차 현재 항목 글자(면 없이 글자만) |
 | accent-1 강한 단추 | `color.accent-1.strong`·`strong-hover`·`pressed`, `color.button-primary(-hover, -active)` | `#4f91fb`·`#649fff`·`#3c84f3`, 흰 글자 700 | 같음 | 주요 단추, 구독 단추, 댓글 로그인·등록 |
 | accent-1 선택 면 | `color.feature-tab-selected`, `color.feature-tab-ink` | `#3c84f3`, 흰 글자 | `#649fff`, `#111111` 글자 | 선택 탭, 분할 탭 선택 |
 | accent-1 메뉴 | `color.accent-1.menu`, `color.control-link` | `#5c9cf5` | 같음 | 재생 링크, 툴팁 단어, 로고 호버 아이콘 |
@@ -152,7 +152,7 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 - 라이트 상태 면은 Tailwind 50 단계, 다크 상태 면과 파랑 옅은 면은 해당 색 10%를 다크 카드 `#303136`에 섞은 값이다. 상태 상자는 옅은 면, 본문색 글자, 같은 아이콘 묶음(`actions/check`, `warning`, `close`)의 상태색 아이콘이고 테두리나 색 줄이 없다.
 - 보라 계열은 토큰, 이름 있는 색, 차트 계열, 코드 강조 어디에도 없다. 노랑·청록도 없고 빨강·초록은 상태 전용이다. 아이콘 고유색(`icon.*`)은 아이콘 검수 기준을 따른다.
 - 태그는 무채색이다: 옅은 회색 면(`color.prose-soft`, 다크 `color.soft`)에 본문색 글자, 호버는 한 단계 진한 회색 면에 진한 글자, 선택(검색 태그 필터)은 진한 글자색 면에 페이지 면 색 글자다.
-- 카드·검색 결과·관련 글의 호버와 누름 면, 형광펜 표시(`mark`)는 무채색(`#eff0f2`, `#e6e8eb`, 테두리 `#e3e5e8`, 다크 `#3e3f44`)이다. 카드의 댓글 링크와 홈 소셜 아이콘도 무채색이다. 도표의 강조 깜빡임(`color.figure.flash`)은 accent-2의 옅은 면이다.
+- 카드·검색 결과·관련 글의 호버와 누름 면은 무채색(`#eff0f2`, `#e6e8eb`, 테두리 `#e3e5e8`, 다크 `#3e3f44`)이다. 카드의 댓글 링크도 무채색이다. 홈 소셜 아이콘은 사이트 링크와 같은 accent-1 링크색이다. 도표의 강조 깜빡임(`color.figure.flash`)은 accent-2의 옅은 면이다.
 - accent-2 면 위 글자는 두 테마 모두 흰색(`color.accent-2.on-solid`)이다(사용자 결정). 흰 글자 대비는 `#ff6900` 위 2.89:1, `#ff8904` 위 2.3:1로 4.5:1에 못 미치며 시험 예외로 기록한다.
 - 대비: 구분색 면 위 글자(`on`)와 이름 있는 색 글자(`ink`)는 페이지 위 4.5:1 이상을 시험한다. 다크 연한 회색 글자 `#94969b`는 확정값이라 페이지 위 4.38:1이고 직접 라벨이 필요한 계열로만 쓴다(시험 예외).
 - Things 값은 대비를 맞추려고 바꾸지 않는다(사용자 결정). 링크 `#2576eb`는 흰 면 4.31:1·옅은 면 4.03:1, 그림 설명은 3.62:1(다크 4.15:1), 날짜 `#989fa8`는 흰 면 2.67:1, 선택 면 `#3c84f3`·강한 단추 `#4f91fb` 위 흰 굵은 글자는 3.63:1·3.10:1, 분할 탭 바탕 위 선택 면은 2.77~2.96:1이다. 시험 예외로 기록하며 접근성 기준 충족이라고 쓰지 않는다.
@@ -164,7 +164,7 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 카드 이미지·제목·설명은 글 링크에, 태그는 독립 링크에 둔다. 글 링크의 가상 요소가 카드 전체를 덮고 태그는 그 위에서 동작한다. 검색 결과도 태그 행과 여백까지 하나의 호버 영역이다. 수정키 클릭과 키보드 탐색은 일반 링크 동작을 유지한다.
 
-카드의 댓글 링크(`댓글 · N`, `댓글 보기`)와 홈 소셜 아이콘은 반복되는 보조 동작이라 메타 글자색이고 호버에서 기본 글자색이 된다. 태그는 카드·본문·검색에서 같은 알약(`text.tiny-text` 13, 줄 높이 1.4, 굵기 400, 안쪽 2·10, 끝까지 둥근 모서리)과 배경을 사용한다. `is-medium`은 같은 모양에 글자만 `text.small-text`(15)다. 외곽선이 없으며 hover와 focus는 `color.tag-hover`와 `color.on-action`을 사용한다. 카드 태그는 한 줄을 넘으면 말줄임하며 키보드 초점이 이동하면 해당 링크를 볼 수 있다. 날짜·작성자·댓글의 노출 여부는 소비자 데이터가 정한다.
+카드의 댓글 링크(`댓글 · N`, `댓글 보기`)는 반복되는 보조 동작이라 메타 글자색이고 호버에서 기본 글자색이 된다. 태그는 카드·본문·검색에서 같은 알약(`text.tiny-text` 13, 줄 높이 1.4, 굵기 400, 안쪽 2·10, 끝까지 둥근 모서리)과 배경을 사용한다. `is-medium`은 같은 모양에 글자만 `text.small-text`(15)다. 외곽선이 없으며 hover와 focus는 `color.tag-hover`와 `color.on-action`을 사용한다. 카드 태그는 한 줄을 넘으면 말줄임하며 키보드 초점이 이동하면 해당 링크를 볼 수 있다. 날짜·작성자·댓글의 노출 여부는 소비자 데이터가 정한다.
 
 태그의 hover·focus와 탭 글자는 실제 합성 배경에서 4.5:1 이상을 유지한다. 기본 탭은 Things 기본 단추다: 단추 글 크기(`text.platform-text`, .89em, 600, 줄 높이 1.3), 안쪽 .5em·1em, 반경 `radius.prose-pre-radius`(.5em), 선 없음, 회청 면(`color.button.surface`)과 진한 글자(`color.button.ink`), 호버 `color.button.hover`와 작은 그림자, 누름 `color.button.active`. 선택은 accent-1 선택 면(`color.feature-tab-selected`, 라이트 `#3c84f3`에 흰 글자, 다크 `#649fff`에 `#111111` 글자)이다. 선택 면 대비는 색 체계의 Things 예외를 따른다. 재생기의 장면 탭과 댓글의 정렬·작성 탭도 같은 규칙을 읽는다. 숫자 탭은 두 테마 모두 무채색의 `color.gallery-selected`와 `color.gallery-selected-ink`를 사용하며, 다크 모드에서 밝은 면과 어두운 숫자로 명암을 뒤집는다.
 
@@ -188,7 +188,7 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 ## 본문과 코드
 
-본문의 Markdown 표와 단축키 표는 `Table`과 `styles/table.css`를 공유한다. 표를 감싼 상자(`.app-table-scroll`)가 블록 틀(1px `color.ui-line`, 반경 12)을 갖고 표 자체에는 테두리가 없다. 글자는 본문 크기와 줄 높이를 그대로 물려받고(Things 표와 같음), 칸 안쪽은 12·16(좁은 화면 8·12), 머리줄은 굵기 700과 `color.prose-soft` 면, 줄 구분은 1px이다. 문서가 지정한 열 정렬은 유지한다.
+본문의 Markdown 표와 단축키 표는 `Table`과 `styles/table.css`를 공유한다. 표를 감싼 상자(`.app-table-scroll`)가 블록 틀(1px `color.prose-block-line`, 반경 8)을 갖고 표 자체에는 테두리가 없다. 상자는 Things 표처럼 내용 폭만큼만 차지하고, 본문보다 넓으면 상자 안에서 가로로 넘긴다. 글자는 본문 크기와 줄 높이를 그대로 물려받고, 칸 안쪽은 Things 표의 .3em·.5em, 머리줄은 굵기 700만 다르고 면이 없으며, 줄 구분은 같은 선 1px이다(모두 Things 표와 같음). 문서가 지정한 열 정렬은 유지한다.
 
 표는 내용의 고유 폭을 확보해 코드 옆의 짧은 설명이 한두 글자씩 세로로 눌리지 않게 한다. 긴 셀은 기존 본문 읽기 폭인 `container.body-width` 안에서 줄바꿈한다. 좁은 화면에서는 표 영역 안에서 가로로 이동하고 페이지 전체 폭은 늘리지 않는다.
 
@@ -213,15 +213,16 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 | 글 카드 제목·요약·메타 | `text.intro-text`·`text.compact-text`·`text.small-text` | 24 / 1.35 / 700, 17.1 / 1.5, 15 | 제목 `color.ink`, 요약 `color.body`, 날짜 `color.post-date-color` |
 
 - 굵기는 400 본문, 500 글쓴이 이름, 600 단추·탭·요약 제목, 700 제목·표 머리·굵게·강한 단추다.
-- 간격은 4의 배수다: 문단 아래 16(`spacing.prose-paragraph`), 블록(코드·표·그림·도표·인용·접기) 위아래 24(`spacing.prose-block`), 목록 항목 사이 8, h2 앞 80·뒤 16(좁은 화면 앞 48), h3 앞 40·뒤 8(좁은 화면 앞 32), h2 바로 뒤 h3은 앞 0, 구분선 위아래 48.
+- 간격은 Things의 em 값이다: 문단·목록·정의 목록 아래 1.4em(`spacing.prose-paragraph-gap`, 25.2), h2 앞 2.5625em·뒤 .854em(69·23), h3 앞 2.683em·뒤 .894em(54·18), 제목 바로 뒤의 아래 단계 제목은 앞 간격 0, 목록 들여쓰기 1.5em(`spacing.prose-list-inset`)이고 항목 사이 간격은 없다. 구분선은 본문 폭의 62%를 가운데 두고 위아래 2.8em이다. 블록(코드·표·그림·도표·접기) 위아래는 24(`spacing.prose-block`)다.
 - 글 머리: 위 48(좁은 화면 32), 제목 → 24 → 도입 → 24 → 글쓴이 줄(사진 28, 이름, 날짜) → 16 → 태그 → 48(좁은 화면 40) → 본문. 제목은 왼쪽 정렬이다(Things는 가운데 정렬, 사이트 배치 유지).
 - 글 카드: 카드 사이 32, 반경 16, 1px 선, 안쪽 32(좁은 화면 24, 제목 20.25), 태그 → 12 → 제목 → 8 → 요약 → 24 → 메타(사진 28, 이름, 가운뎃점, 날짜).
 
 ### 블록 요소
 
-- 블록 틀: 코드·표·도표·접기는 1px `color.ui-line`(코드는 아래 규칙)과 반경 `radius.prose-block-radius`(12)를 쓴다. 본문 그림은 기본으로 모서리를 깎지 않고, 작성자가 rounded 옵션(`img.is-rounded`)을 고르면 코드 블록과 같은 반경으로 자른다(사용자 결정). 링크로 감싼 그림과 그림 격자 안도 같다.
-- 인용은 Things처럼 기울이고 왼쪽 3px(`border-width.quote`) 연한 회색 줄(`color.prose-quote-rule`)과 16 들여쓰기다.
-- 인라인 코드는 Things 코드다: .85em, 안쪽 0·.25em, 반경 .25em, 1px `color.prose-code-border` 선, `color.prose-code-background` 면, `color.prose-code-color` 글자.
+- 블록 틀: 코드·표·도표·접기는 반경 `radius.prose-block-radius`(8, Things pre·표 .5em의 고정값)를 쓴다. 선이 있는 표·도표·접기는 Things 표 선 `color.prose-block-line`(라이트 `#eceef0`) 1px이고, 코드는 아래 코드 규칙의 면과 선을 쓴다. 본문 그림은 기본으로 모서리를 깎지 않고, 작성자가 rounded 옵션(`img.is-rounded`)을 고르면 코드 블록과 같은 반경으로 자른다(사용자 결정). 링크로 감싼 그림과 그림 격자 안도 같다.
+- 인용은 Things처럼 기울이고 양옆 2em(좁은 화면 .75em)을 들여 쓴다. 줄이나 면은 없다.
+- 인라인 코드와 코드 블록은 Things `shared.css`의 `code`·`pre` 값을 쓴다. 크기 .85em, 인라인 안쪽 0·.25em과 반경 .25em, 블록 안쪽 .4em·.8em(`component.prose-pre-padding`)이다. 면 `rgba(0,34,77,.05)`, 선 `rgba(0,48,111,.04)`, 글자 `rgba(0,4,10,.69)`(`color.code-*`, `color.prose-code-*`)라 본문보다 한 단계 옅다. 다크 인라인 코드는 Things 다크 값이고, 다크 코드 블록은 주석 대비를 지키려고 깊은 면(`#1c1c1e`)을 유지한다. 형광펜(`mark`)만 노란 면이다.
+- 표는 Things 표처럼 칸 안쪽 .3em·.5em(`component.table-padding`), 머리 칸은 굵기만 다르고 면을 칠하지 않는다.
 - 링크는 accent-1 링크색(`color.action-link`, 라이트 `#2576eb`, 다크 `#649fff`)이고 밑줄이 없으며 호버에서 밑줄이 생긴다. 누르는 동안은 `color.prose-link-active`다.
 - 접기(`.app-details`)는 블록 틀과 안쪽 12·16, 요약 600, 펼치면 요약 아래 8이다.
 - 각주는 15와 `color.ui-muted`, 위 구분선 48·16이다.
@@ -236,13 +237,13 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 제목의 원래 단계는 `app-heading-N`으로 유지한다.
 
-안내 상자(`Callout`)는 `tone`으로 `success`, `warning`, `error`를 받고 그 밖의 값은 오류다. 상태가 없는 안내 상자는 `color.prose-soft` 면이다. 본문 `mark` 배경 `color.prose-mark-background`는 경고 면(`color.callout-warning` = `color.status.warning.surface`)을 쓴다.
+안내 상자(`Callout`)는 `tone`으로 `success`, `warning`, `error`를 받고 그 밖의 값은 오류다. 상태가 없는 안내 상자는 `color.prose-soft` 면이다. 본문 `mark` 배경 `color.prose-mark-background`는 Things의 형광펜 값(라이트 `#fcf9cf`, 다크 `rgba(255,214,3,.32)`)이다.
 
 그림 격자 칸 안의 `.app-figure`는 바깥 여백이 없어 이미지가 칸 폭을 채우며 칸 사이는 격자의 `spacing.gap`만 둔다.
 
 코드 구문 역할은 `SYNTAX_ROLES`와 `SyntaxToken`으로 연결하며 분석기는 소비자가 선택한다.
 
-본문 그림은 기본으로 모서리를 깎지 않는다. `rounded` 옵션으로 붙는 `img.is-rounded`만 코드 블록(`.app-code`)과 같은 곡률 `radius.prose-block-radius`(12px)로 자른다. 글자 크기에 따라 바뀌는 em 값이 아닌 고정값이라 둘의 모서리가 같다. 대표 이미지(`.app-post-cover`)는 이 옵션과 상관없이 기존 곡률을 유지한다. 그림 상자(`.app-figure`)는 브라우저 기본 좌우 여백(40px)을 없애 본문 폭을 그대로 쓴다. 그래서 본문보다 큰 그림은 코드 블록과 같은 폭으로 줄고, 본문보다 작은 그림은 원래 크기로 가운데에 놓인다(늘려서 흐려지지 않게).
+본문 그림은 기본으로 모서리를 깎지 않는다. `rounded` 옵션으로 붙는 `img.is-rounded`만 코드 블록(`.app-code`)과 같은 곡률 `radius.prose-block-radius`(8px)로 자른다. 글자 크기에 따라 바뀌는 em 값이 아닌 고정값이라 둘의 모서리가 같다. 대표 이미지(`.app-post-cover`)는 이 옵션과 상관없이 기존 곡률을 유지한다. 그림 상자(`.app-figure`)는 브라우저 기본 좌우 여백(40px)을 없애 본문 폭을 그대로 쓴다. 그래서 본문보다 큰 그림은 코드 블록과 같은 폭으로 줄고, 본문보다 작은 그림은 원래 크기로 가운데에 놓인다(늘려서 흐려지지 않게).
 
 코드 블록과 도표는 `ToolHeader`, `Toolbar`, `ToolButton`을 조립한다. 이름표(`.app-tool-label`)가 있는 머리글은 버튼 높이를 차지해 콘텐츠와 겹치지 않는다. 이름표 없는 머리글(코드)은 자리를 차지하지 않고 면 오른쪽 위 8에 겹쳐 놓여, 숨은 도구 막대가 콘텐츠 위에 빈 띠를 만들지 않는다. `ToolHeader({ row: true })`(`.app-tool-header.is-row`, 도표)는 이름표 없이도 내용 위에 단추 줄을 차지해 어떤 폭에서도 그림을 덮지 않고, 자리가 늘 있으므로 단추도 늘 보인다.
 
@@ -270,7 +271,7 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 ## 도표 정보 역할
 
-도표 틀(`.fl-surface`)은 코드·표·그림과 같은 블록 틀(1px `color.ui-line`, 반경 12)이고 회색 면을 칠하지 않는다(`color.figure.canvas`는 페이지 면). 도구 단추 줄은 틀 밖 바로 위(틀과 8 간격)의 자기 줄이고 그림은 틀 안, 장면 탭은 틀 아래 12에 놓인다. 단추가 틀 안에 들어가 그림 자리를 줄이거나 그림을 덮지 않는다. 스키마와 격자의 경계는 상시 표시하며, 표 머리는 옅은 면으로 구분한다.
+도표 틀(`.fl-surface`)은 표·접기와 같은 블록 틀(1px `color.prose-block-line`, 반경 8)이고 회색 면을 칠하지 않는다(`color.figure.canvas`는 페이지 면). 도구 단추 줄은 틀 밖 바로 위(틀과 8 간격)의 자기 줄이고 그림은 틀 안, 장면 탭은 틀 아래 12에 놓인다. 단추가 틀 안에 들어가 그림 자리를 줄이거나 그림을 덮지 않는다. 스키마와 격자의 경계는 상시 표시하며, 표 머리는 옅은 면으로 구분한다.
 
 도표 글자는 본문 단계에 묶인다. 그림·그룹 제목과 차트 제목(`.frame`)은 작은 글 15/600, 그 밖의 모든 글(상자 이름, 부제, 선 라벨, 카드 줄, 번호, 태그, 표식, 키, 배지, 눈금, 상태 글자)은 설명 13이다. 11px와 22px 단계는 없고 도넛 가운데 합계는 title-3(24)이다. DiagramPlay의 측정(`measure/texts.js` STYLE, `measure/pills.js`, `chart/metrics.js`)이 같은 토큰으로 재므로 잰 값이 그린 값이다. 13px 글이 들어가도록 알약 높이(`spacing.figure.pill.height`)는 20, 태그 높이는 18이다.
 
@@ -304,4 +305,4 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 ## 글 읽기 간격
 
-블로그 본문(`.app-prose`)의 줄 높이는 Things와 같은 1.4(`leading.feature-body-line`, 18px에서 25.2)다. 글 머리의 날짜·제목은 왼쪽 정렬이고 도입 문단은 22.5/1.25다. 검색 위·아래 여백(`spacing.search-top`, `spacing.search-bottom`)과 글 위쪽 여백(`component.post-padding`)은 48px다.
+목록 카드(`BlogCard`)는 한 줄 3장에 맞춘 크기다: 표지 2:1, 안쪽 16, 제목 18/700 한 줄(넘치면 말줄임), 요약 15 두 줄, 글쓴이 줄 13 한 줄. 블로그 본문(`.app-prose`)의 줄 높이는 Things와 같은 1.4(`leading.feature-body-line`, 18px에서 25.2)다. 글 머리의 날짜·제목은 왼쪽 정렬이고 도입 문단은 22.5/1.25다. 검색 위·아래 여백(`spacing.search-top`, `spacing.search-bottom`)과 글 위쪽 여백(`component.post-padding`)은 48px다.

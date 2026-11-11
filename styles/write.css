@@ -64,11 +64,12 @@
 .app-publish-section { display: flex; flex-direction: column; gap: var(--spacing-gap-sm); }
 .app-publish-heading { margin: 0; font-size: var(--text-compact-text); font-weight: var(--font-weight-bold); color: var(--color-ink); }
 .app-publish-card > .app-blog-card { pointer-events: none; }
-.app-publish-section .app-textarea { background: var(--color-ui-card); border: var(--border-width-thin) solid var(--color-ui-line); }
+/* 출간 화면의 칸 이름은 모두 같은 제목 단계를 쓴다. 입력 칸은 공통 입력 면·테두리(Things 입력 값)를 그대로 쓴다. */
+.app-publish-section .app-field-label { font-size: var(--text-compact-text); font-weight: var(--font-weight-bold); color: var(--color-ink); }
 .app-publish-count { margin: 0; font-size: var(--text-tiny-text); text-align: end; color: var(--color-ui-muted); font-variant-numeric: tabular-nums; }
 .app-publish-visibility { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-gap-xs); }
 .app-publish-visibility .app-button[aria-pressed="true"], .app-publish-visibility .app-button[aria-pressed="true"]:hover { border-color: transparent; background: var(--color-button-primary); color: var(--color-button-primary-ink); font-weight: var(--font-weight-bold); }
-.app-publish-url { display: flex; align-items: center; height: var(--spacing-input-height); padding: 0 var(--spacing-gap-sm); border: var(--border-width-thin) solid var(--color-ui-line); border-radius: var(--radius-input-radius); background: var(--color-ui-card); font-size: var(--text-small-text); color: var(--color-ui-muted); }
+.app-publish-url { display: flex; align-items: center; height: var(--spacing-input-height); padding: 0 var(--spacing-gap-sm); border: var(--border-width-thin) solid var(--color-input-border); border-radius: var(--radius-input-radius); background: var(--color-input-background); font-size: var(--text-small-text); color: var(--color-ui-muted); }
 .app-publish-url .app-input { color: var(--color-ink); font-size: var(--text-small-text); }
 .app-publish-url .app-input:focus, .app-publish-url .app-input:focus-visible { outline: 0; box-shadow: none; }
 .app-publish-section .app-input.is-field { font-size: var(--text-small-text); }
@@ -98,6 +99,9 @@
   .app-write-preview { display: none; }
   .app-write-fields { padding: var(--spacing-gap) var(--spacing-gap) 0; }
   .app-write-toolbar { top: calc(-1 * var(--spacing-gap)); }
+  /* 좁은 화면의 아래 막대: 단추 안쪽 여백을 줄여 나가기·삭제·임시저장·출간하기가 한 줄에 모두 들어오게 한다. */
+  .app-write-footer { padding-inline: var(--spacing-gap-sm); }
+  .app-write-footer .app-button { padding-inline: var(--spacing-gap-sm); }
   .app-publish { align-items: flex-start; }
   .app-publish-wrapper { flex-direction: column; gap: var(--spacing-gap-lg); }
   .app-publish-divider { display: none; }

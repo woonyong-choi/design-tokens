@@ -10,7 +10,8 @@
 .app-hero-copy { width: var(--container-intro); max-width: var(--spacing-hero-max); margin: auto; padding-block: calc(var(--spacing-hero-top) + var(--spacing-gap-sm)) var(--spacing-hero-top); font-size: var(--text-intro-text); line-height: var(--leading-line-intro); text-align: center; }
 .app-hero-copy :is(.app-hero-logo, .app-hero-wordmark) { margin-bottom: calc(var(--text-intro-text) * 1.5); }
 .app-hero-copy .app-hero-logo { max-width: var(--spacing-hero-logo-max); }
-.app-hero-title { margin: 0 auto calc(var(--text-intro-text) * 1.5); font-size: var(--text-section-title); font-weight: var(--font-weight-bold); line-height: var(--leading-landing-title-line); color: var(--color-landing-title-color); }
+/* 한국어 제목·도입·카드 글은 낱말 중간에서 줄을 바꾸지 않는다(본문 문단은 prose.css 규칙). */
+.app-hero-title { margin: 0 auto calc(var(--text-intro-text) * 1.5); font-size: var(--text-section-title); font-weight: var(--font-weight-bold); line-height: var(--leading-landing-title-line); color: var(--color-landing-title-color); word-break: keep-all; overflow-wrap: anywhere; }
 .app-hero-description { color: var(--color-description-color); margin: var(--spacing-landing-description-margin) auto; }
 .app-hero-description, .app-landing-heading > p { word-break: keep-all; overflow-wrap: anywhere; }
 .app-landing .app-cinema { margin-top: 0; }
@@ -27,7 +28,8 @@
 .app-landing-action { display: inline-block; padding: var(--spacing-platform-button-gap) var(--spacing-platform-button-y); border-radius: var(--radius-md); font-weight: var(--font-weight-semibold); color: var(--color-control-link); }
 .app-landing-action::after { content: ''; display: inline-block; width: var(--spacing-help-mobile-block); height: var(--text-landing-review-font); margin-left: var(--spacing-landing-chevron-gap); margin-right: var(--spacing-landing-chevron-offset); vertical-align: var(--spacing-landing-chevron-align); background: url('./assets/icons/navigation/chevron-right.svg') 0 0 / 100% 100% no-repeat; }
 .app-landing-action:hover { text-decoration: none; background: var(--color-control-hover); }
-.app-landing-action:active, .app-landing-social a:active { color: var(--color-control-active-ink); background: var(--color-landing-action-pressed); }
+.app-landing-social a:active { color: var(--color-prose-link-active); }
+.app-landing-action:active { color: var(--color-control-active-ink); background: var(--color-landing-action-pressed); }
 .app-landing-features { padding-bottom: 0; background: var(--color-feature-canvas); }
 .app-landing-collage { width: var(--spacing-collage-crop); margin-left: var(--spacing-collage-outset); }
 .app-landing-collage img { display: block; width: 100%; }
@@ -46,8 +48,8 @@
 }
 @media (prefers-reduced-motion: reduce) { .app-nav a:hover { transition: none; } }
 .app-landing-heading .app-landing-social { display: block; margin: var(--spacing-landing-description-margin) auto; }
-.app-landing-social a, .app-landing-social span { display: inline-block; padding: var(--spacing-landing-social-y) var(--spacing-landing-social-x); border-radius: var(--radius-md); color: var(--color-ui-muted); }
-.app-landing-social a:hover { color: var(--color-ink); background: var(--color-control-hover); }
+.app-landing-social a, .app-landing-social span { display: inline-block; padding: var(--spacing-landing-social-y) var(--spacing-landing-social-x); border-radius: var(--radius-md); color: var(--color-action-link); }
+.app-landing-social a:hover { color: var(--color-action-link); background: var(--color-control-hover); }
 .app-landing-social svg { width: var(--spacing-landing-social-size); height: var(--spacing-landing-social-size); }
 .app-landing-heading :is(h1,h2) { color: var(--color-landing-title-color); }
 .app-landing-social a, .app-landing-social span { line-height: inherit; }
@@ -62,12 +64,12 @@
 .app-technologies .app-flow-track { margin-inline: auto; }
 .app-flow-group { display: flex; flex: none; gap: var(--spacing-gap); margin: 0; padding: 0; list-style: none; }
 .app-interview-card { display: flex; flex-direction: column; flex: none; box-sizing: border-box; width: calc((100cqw - var(--text-landing-review-font)) / 2); max-width: calc(100vw - var(--spacing-gap-lg)); padding: var(--spacing-landing-review-padding); border-radius: var(--radius-landing-review-radius); background: var(--color-ui-card); color: var(--color-ink); box-shadow: var(--shadow-landing-review-shadow); font-size: var(--text-landing-review-font); line-height: var(--leading-feature-line); }
-.app-interview-summary { margin: 0; padding-bottom: var(--spacing-landing-review-copy-bottom); font-size: var(--text-landing-review-copy); word-break: normal; overflow-wrap: anywhere; text-wrap: wrap; }
+.app-interview-summary { margin: 0; padding-bottom: var(--spacing-landing-review-copy-bottom); font-size: var(--text-landing-review-copy); word-break: keep-all; overflow-wrap: anywhere; text-wrap: wrap; }
 .app-interview-card-link { position: absolute; z-index: 1; inset: 0; border-radius: inherit; }
 .app-interview-summary a { position: relative; z-index: 1; color: var(--color-landing-review-link-ink); }
 .app-interview-summary a:hover { text-decoration: underline; }
 .app-interview-summary:last-child { padding-bottom: 0; }
-.app-interview-meta { display: flex; gap: var(--spacing-interview-meta-gap); margin: auto 0 0; font-size: var(--text-landing-review-meta); line-height: var(--leading-line-compact); color: var(--color-landing-review-meta-ink); text-align: left; }
+.app-interview-meta { word-break: keep-all; overflow-wrap: anywhere; display: flex; gap: var(--spacing-interview-meta-gap); margin: auto 0 0; font-size: var(--text-landing-review-meta); line-height: var(--leading-line-compact); color: var(--color-landing-review-meta-ink); text-align: left; }
 .app-interview-avatar { display: block; flex: none; width: var(--spacing-landing-review-avatar); height: var(--spacing-landing-review-avatar); }
 .app-interview-avatar img { display: block; width: 100%; height: 100%; object-fit: contain; border-radius: var(--radius-landing-review-avatar-radius); }
 .app-interview-lines { min-width: 0; }
@@ -77,6 +79,8 @@
 .app-interview-meta a { color: inherit; text-decoration: underline; }
 .app-landing-interviews .app-flow-viewport, .app-landing-interviews .app-flow-group { gap: var(--text-landing-review-font); align-items: flex-end; }
 .app-landing-section .app-flow-viewport { margin-top: calc(var(--spacing-gap-xs) * -1); padding-bottom: var(--spacing-landing-heading-space); }
+/* 흐르는 줄의 아래 여백은 카드 그림자 자리라 보이지 않는다. 그만큼 구역 아래 여백에서 빼 구역 사이 간격을 다른 구역과 같게 한다. */
+.app-landing-section:has(> .app-shell > :last-child .app-flow-viewport, > .app-shell > .app-flow-viewport:last-child) { padding-bottom: calc(var(--spacing-landing-section) - var(--spacing-landing-heading-space)); }
 .app-interview-rows { display: flex; flex-direction: column; }
 .app-landing-interviews .app-interview-rows > :first-child .app-flow-viewport { padding-bottom: var(--spacing-gap); }
 .app-landing-interviews .app-interview-rows > :last-child .app-flow-viewport { margin-top: 0; }
@@ -92,16 +96,20 @@
 .app-player-button.is-compact { width: calc(var(--spacing-flow-control-size) * 2); height: calc(var(--spacing-flow-control-size) * 2); min-width: 0; min-height: 0; }
 .app-technology { display: flex; flex-direction: column; align-items: center; flex: none; width: calc(var(--icon-size-card) + var(--spacing-gap)); gap: var(--spacing-gap-sm); color: var(--color-ui-muted); font-size: var(--text-small-text); }
 .app-technology > :is(a, span) { display: flex; align-items: center; justify-content: center; width: calc(var(--icon-size-medium) + 2 * var(--spacing-gap-xs)); aspect-ratio: 1; border-radius: var(--radius-help-radius); }
-.app-technology > [aria-disabled="true"] { opacity: var(--opacity-dim); }
+/* 글이 있는 기술은 원래 색 그대로, 글이 없는 기술은 무채색으로 흐리게 둔다. 색이 원래 옅은 로고(C 등)도 켜짐과 꺼짐이 구분된다. */
+.app-technology > [aria-disabled="true"] { opacity: var(--opacity-dim); filter: grayscale(1); }
 .app-technology img { display: block; width: var(--icon-size-medium); height: var(--icon-size-medium); object-fit: contain; }
-.app-technology > a, .app-interview-card { position: relative; transition: background-color var(--duration-help-motion) var(--ease-reveal), box-shadow var(--duration-help-motion) var(--ease-reveal), transform var(--duration-help-motion) var(--ease-reveal); }
-.app-technology > a:focus-visible, .app-interview-card:focus-within { background: var(--color-help-hover); box-shadow: var(--shadow-help-hover-shadow); }
+.app-technology > a { transition: background-color var(--duration-help-motion) var(--ease-reveal); }
+/* 기술 아이콘 링크의 호버·초점은 Things 메뉴처럼 옅은 면만 깐다. 테두리·그림자·떠오름은 카드에만 쓴다. */
+.app-technology > a:is(:hover, :focus-visible) { background: var(--color-control-hover); }
+.app-interview-card { position: relative; transition: background-color var(--duration-help-motion) var(--ease-reveal), box-shadow var(--duration-help-motion) var(--ease-reveal), transform var(--duration-help-motion) var(--ease-reveal); }
+.app-interview-card:focus-within { background: var(--color-help-hover); box-shadow: var(--shadow-help-hover-shadow); }
 @media (hover: hover) and (pointer: fine) {
-  .app-technology > a:hover, .app-interview-card:hover { z-index: 1; background: var(--color-help-hover); outline: var(--border-width-thin) solid var(--color-help-hover-border); outline-offset: calc(var(--border-width-thin) * -1); box-shadow: var(--shadow-help-hover-shadow); transform: translateY(var(--spacing-help-lift)) scale(var(--component-icon-scale)); }
+  .app-interview-card:hover { z-index: 1; background: var(--color-help-hover); outline: var(--border-width-thin) solid var(--color-help-hover-border); outline-offset: calc(var(--border-width-thin) * -1); box-shadow: var(--shadow-help-hover-shadow); transform: translateY(var(--spacing-help-lift)); }
 }
 @media (prefers-reduced-motion: reduce) {
   .app-technology > a, .app-interview-card { transition: none; }
-  .app-technology > a:hover, .app-interview-card:hover { transform: none; }
+  .app-interview-card:hover { transform: none; }
 }
 @media (max-width: breakpoint(mobile)) {
   .app-player-button.is-compact { width: var(--spacing-flow-control-size); height: var(--spacing-flow-control-size); }

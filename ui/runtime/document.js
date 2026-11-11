@@ -62,7 +62,7 @@ function openImage(image) {
     document.body.append(viewer);
   }
   const large = viewer.querySelector('img');
-  large.src = image.currentSrc || image.src;
+  large.src = image.dataset.full || image.currentSrc || image.src;
   large.alt = image.alt;
   viewer.setAttribute('aria-label', image.alt || '확대한 그림');
   viewer.showModal();

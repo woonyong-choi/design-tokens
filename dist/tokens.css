@@ -1054,6 +1054,8 @@
   --primitive-action-button-inset: 1em;
   --primitive-icon-task-soft: #0169fe17;
   --primitive-icon-task-edge: #3f86f5;
+  --primitive-disclosure-down: rotate(90deg);
+  --primitive-disclosure-up: rotate(-90deg);
   --breakpoint-mobile: 560px;
   --breakpoint-support-pair: 400px;
   --breakpoint-product-pair: 480px;
@@ -1217,6 +1219,8 @@
   --component-action-focus: var(--primitive-action-focus);
   --component-blog-card-summary-lines: 2;
   --component-prose-pre-padding: var(--primitive-prose-pre-padding);
+  --component-disclosure-down: var(--primitive-disclosure-down);
+  --component-disclosure-up: var(--primitive-disclosure-up);
   --outline-width-focus: 3px;
   --stroke-width-control: var(--spacing-0-5);
   color-scheme: light;

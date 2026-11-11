@@ -355,6 +355,11 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 .app-button.is-primary:active { background: var(--color-button-primary-active); }
 .app-button.is-quiet { border-color: transparent; background: transparent; color: var(--color-body); }
 .app-button.is-quiet:hover { background: var(--color-search-bg); color: var(--color-ink); box-shadow: none; }
+/* 링크 단추: 면·테두리 없이 링크색 글자와 화살표만 둔다. 펼치는 단추는 아래 화살표, 펼치면 위 화살표다. */
+.app-button.is-link { height: auto; padding: 0; border: 0; background: transparent; color: var(--color-action-link); font-size: inherit; box-shadow: none; }
+.app-button.is-link:hover { background: transparent; box-shadow: none; text-decoration: underline; }
+.app-button.is-link[aria-expanded]::after { content: ''; width: var(--spacing-gap-sm); height: var(--text-small-text); background: currentColor; mask: url('./assets/icons/navigation/chevron-right.svg') center / contain no-repeat; transform: var(--component-disclosure-down); }
+.app-button.is-link[aria-expanded=true]::after { transform: var(--component-disclosure-up); }
 .app-button:focus-visible { outline: var(--outline-width-focus) solid var(--color-ui-focus); outline-offset: var(--spacing-outline); }
 .app-button:disabled { cursor: default; opacity: var(--opacity-button-disabled); }
 /* 사이트 위에 얹는 글 관리: 오른쪽 아래 단추, 임시 글 목록, 글 수정·삭제 줄, 작성·출간 화면, 확인 창, 알림, 로그인 화면.
@@ -953,7 +958,8 @@ a.app-blog-card-comments:hover { color: var(--color-ink); }
 .app-comments-viewport { position: relative; }
 .app-comments-frame { display: block; width: 100%; min-height: var(--spacing-comments-preview-height); border: 0; }
 /* 피드는 댓글 창을 접어 두고 공통 단추(.app-button)만 보인다. 누르면 그 자리에서 펼친다. */
-.app-comments[data-expanded=false] .app-comments-viewport { display: none; }
+.app-comments[data-expanded=false] :is(.app-comments-viewport, .app-comments-status) { display: none; }
+.app-comments-viewport > .app-caption { margin: var(--spacing-gap-sm) 0 0; }
 .app-comments[data-expanded=true] .app-comments-expand { display: none; }
 .app-empty { padding-block: var(--spacing-gap-lg); color: var(--color-ui-muted); text-align: center; }
 .app-post-footer { margin: var(--component-post-footer-margin); }

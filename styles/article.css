@@ -48,6 +48,8 @@
   .app-document-layout:has(.app-document-outline) { grid-template-areas: "tree outline" "tree content"; }
   .app-document-sidebar { position: sticky; top: var(--spacing-gap-lg); max-height: calc(100vh - 2 * var(--spacing-gap-lg)); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
   .app-document-sidebar .app-document-nav > summary { display: none; }
+  /* 처음에는 닫힌 상태로 내려보내 좁은 화면에서 본문이 밀리지 않게 하고, 넓은 화면은 스크립트 전에도 내용을 보인다. */
+  .app-document-sidebar .app-document-nav::details-content { content-visibility: visible; block-size: auto; }
 }
 @media (min-width: breakpoint(document-outline)) {
   .app-document-shell:has(.app-document-outline) { max-width: none; }
@@ -57,5 +59,7 @@
   .app-document-layout:has(.app-document-outline) .app-width-wide { width: 100%; margin-inline: 0; }
   .app-document-sidebar > .app-document-nav, .app-document-outline > .app-document-nav { max-width: none; }
   .app-document-outline .app-document-nav > summary { display: none; }
+  /* 처음에는 닫힌 상태로 내려보내 좁은 화면에서 본문이 밀리지 않게 하고, 넓은 화면은 스크립트 전에도 내용을 보인다. */
+  .app-document-outline .app-document-nav::details-content { content-visibility: visible; block-size: auto; }
   .app-document-outline { position: sticky; top: var(--spacing-gap-lg); max-height: calc(100vh - 2 * var(--spacing-gap-lg)); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
 }

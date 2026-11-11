@@ -117,7 +117,7 @@ export function DocumentNavigation({ label, nodes }) {
     const title = node.href && !node.children?.length ? `<a href="${safeUrl(node.href)}"${current}>${escape(node.title)}</a>` : `<span${current}>${escape(node.title)}</span>`;
     return node.children?.length ? `<li><details${node.open ? ' open' : ''}><summary title="하위 문서 접기·펼치기">${title}</summary><ul>${node.children.map(item).join('')}</ul></details></li>` : `<li>${title}</li>`;
   }
-  return out(`<details class="app-document-nav" data-document-panel open><summary aria-label="${escape(label)} 하위 문서"><span>${escape(label)}</span></summary><nav aria-label="${escape(label)} 하위 문서"><ul>${nodes.map(item).join('')}</ul></nav></details>`);
+  return out(`<details class="app-document-nav" data-document-panel><summary aria-label="${escape(label)} 하위 문서"><span>${escape(label)}</span></summary><nav aria-label="${escape(label)} 하위 문서"><ul>${nodes.map(item).join('')}</ul></nav></details>`);
 }
 
 export function DocumentOutline({ sections }) {
@@ -126,7 +126,7 @@ export function DocumentOutline({ sections }) {
     if (!Number.isInteger(section.level) || section.level < 1 || section.level > 6) throw new TypeError('invalid outline heading level');
   }
   // 문서 탐색과 같은 접기 패널이다. 세 열 배치에서는 펼친 채 고정하고, 본문 위에 쌓이는 좁은 화면에서는 접는다.
-  return out(`<details class="app-document-nav" data-document-panel open><summary aria-label="본문 목차"><span>목차</span></summary><nav aria-label="본문 목차"><ol>${sections.map(section => `<li${section.level === 3 ? ' class="is-subsection"' : ''}><a href="#${escape(section.id)}" data-heading-level="${section.level}">${escape(section.title)}</a></li>`).join('')}</ol></nav></details>`);
+  return out(`<details class="app-document-nav" data-document-panel><summary aria-label="본문 목차"><span>목차</span></summary><nav aria-label="본문 목차"><ol>${sections.map(section => `<li${section.level === 3 ? ' class="is-subsection"' : ''}><a href="#${escape(section.id)}" data-heading-level="${section.level}">${escape(section.title)}</a></li>`).join('')}</ol></nav></details>`);
 }
 
 /** 같은 주제에서 이어 읽을 문서. 없는 방향은 빈 링크를 만들지 않는다. */

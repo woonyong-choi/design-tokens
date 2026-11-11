@@ -152,7 +152,7 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 - 라이트 상태 면은 Tailwind 50 단계, 다크 상태 면과 파랑 옅은 면은 해당 색 10%를 다크 카드 `#303136`에 섞은 값이다. 상태 상자는 옅은 면, 본문색 글자, 같은 아이콘 묶음(`actions/check`, `warning`, `close`)의 상태색 아이콘이고 테두리나 색 줄이 없다.
 - 보라 계열은 토큰, 이름 있는 색, 차트 계열, 코드 강조 어디에도 없다. 노랑·청록도 없고 빨강·초록은 상태 전용이다. 아이콘 고유색(`icon.*`)은 아이콘 검수 기준을 따른다.
 - 태그는 무채색이다: 옅은 회색 면(`color.prose-soft`, 다크 `color.soft`)에 본문색 글자, 호버는 한 단계 진한 회색 면에 진한 글자, 선택(검색 태그 필터)은 진한 글자색 면에 페이지 면 색 글자다.
-- 카드·검색 결과·관련 글의 호버와 누름 면, 형광펜 표시(`mark`)는 무채색(`#eff0f2`, `#e6e8eb`, 테두리 `#e3e5e8`, 다크 `#3e3f44`)이다. 카드의 댓글 링크와 홈 소셜 아이콘도 무채색이다. 도표의 강조 깜빡임(`color.figure.flash`)은 accent-2의 옅은 면이다.
+- 카드·검색 결과·관련 글의 호버와 누름 면은 무채색(`#eff0f2`, `#e6e8eb`, 테두리 `#e3e5e8`, 다크 `#3e3f44`)이다. 카드의 댓글 링크와 홈 소셜 아이콘도 무채색이다. 도표의 강조 깜빡임(`color.figure.flash`)은 accent-2의 옅은 면이다.
 - accent-2 면 위 글자는 두 테마 모두 흰색(`color.accent-2.on-solid`)이다(사용자 결정). 흰 글자 대비는 `#ff6900` 위 2.89:1, `#ff8904` 위 2.3:1로 4.5:1에 못 미치며 시험 예외로 기록한다.
 - 대비: 구분색 면 위 글자(`on`)와 이름 있는 색 글자(`ink`)는 페이지 위 4.5:1 이상을 시험한다. 다크 연한 회색 글자 `#94969b`는 확정값이라 페이지 위 4.38:1이고 직접 라벨이 필요한 계열로만 쓴다(시험 예외).
 - Things 값은 대비를 맞추려고 바꾸지 않는다(사용자 결정). 링크 `#2576eb`는 흰 면 4.31:1·옅은 면 4.03:1, 그림 설명은 3.62:1(다크 4.15:1), 날짜 `#989fa8`는 흰 면 2.67:1, 선택 면 `#3c84f3`·강한 단추 `#4f91fb` 위 흰 굵은 글자는 3.63:1·3.10:1, 분할 탭 바탕 위 선택 면은 2.77~2.96:1이다. 시험 예외로 기록하며 접근성 기준 충족이라고 쓰지 않는다.
@@ -213,15 +213,15 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 | 글 카드 제목·요약·메타 | `text.intro-text`·`text.compact-text`·`text.small-text` | 24 / 1.35 / 700, 17.1 / 1.5, 15 | 제목 `color.ink`, 요약 `color.body`, 날짜 `color.post-date-color` |
 
 - 굵기는 400 본문, 500 글쓴이 이름, 600 단추·탭·요약 제목, 700 제목·표 머리·굵게·강한 단추다.
-- 간격은 4의 배수다: 문단 아래 16(`spacing.prose-paragraph`), 블록(코드·표·그림·도표·인용·접기) 위아래 24(`spacing.prose-block`), 목록 항목 사이 8, h2 앞 80·뒤 16(좁은 화면 앞 48), h3 앞 40·뒤 8(좁은 화면 앞 32), h2 바로 뒤 h3은 앞 0, 구분선 위아래 48.
+- 간격은 Things의 em 값이다: 문단·목록·정의 목록 아래 1.4em(`spacing.prose-paragraph-gap`, 25.2), h2 앞 2.5625em·뒤 .854em(69·23), h3 앞 2.683em·뒤 .894em(54·18), 제목 바로 뒤의 아래 단계 제목은 앞 간격 0, 목록 들여쓰기 1.5em(`spacing.prose-list-inset`)이고 항목 사이 간격은 없다. 구분선은 본문 폭의 62%를 가운데 두고 위아래 2.8em이다. 블록(코드·표·그림·도표·접기) 위아래는 24(`spacing.prose-block`)다.
 - 글 머리: 위 48(좁은 화면 32), 제목 → 24 → 도입 → 24 → 글쓴이 줄(사진 28, 이름, 날짜) → 16 → 태그 → 48(좁은 화면 40) → 본문. 제목은 왼쪽 정렬이다(Things는 가운데 정렬, 사이트 배치 유지).
 - 글 카드: 카드 사이 32, 반경 16, 1px 선, 안쪽 32(좁은 화면 24, 제목 20.25), 태그 → 12 → 제목 → 8 → 요약 → 24 → 메타(사진 28, 이름, 가운뎃점, 날짜).
 
 ### 블록 요소
 
 - 블록 틀: 코드·표·도표·접기는 1px `color.ui-line`(코드는 아래 규칙)과 반경 `radius.prose-block-radius`(12)를 쓴다. 본문 그림은 기본으로 모서리를 깎지 않고, 작성자가 rounded 옵션(`img.is-rounded`)을 고르면 코드 블록과 같은 반경으로 자른다(사용자 결정). 링크로 감싼 그림과 그림 격자 안도 같다.
-- 인용은 Things처럼 기울이고 왼쪽 3px(`border-width.quote`) 연한 회색 줄(`color.prose-quote-rule`)과 16 들여쓰기다.
-- 인라인 코드는 Things 코드다: .85em, 안쪽 0·.25em, 반경 .25em, 1px `color.prose-code-border` 선, `color.prose-code-background` 면, `color.prose-code-color` 글자.
+- 인용은 Things처럼 기울이고 양옆 2em(좁은 화면 .75em)을 들여 쓴다. 줄이나 면은 없다.
+- 인라인 코드는 Things 코드다: .85em, 안쪽 0·.25em, 반경 .25em, 1px `color.prose-code-border` 선, `color.prose-code-background` 면. 글자(`color.prose-code-color`)만 코드 블록과 같은 잉크색(`color.code-ink`)을 써서 본문 안에서 흐려 보이지 않게 한다.
 - 링크는 accent-1 링크색(`color.action-link`, 라이트 `#2576eb`, 다크 `#649fff`)이고 밑줄이 없으며 호버에서 밑줄이 생긴다. 누르는 동안은 `color.prose-link-active`다.
 - 접기(`.app-details`)는 블록 틀과 안쪽 12·16, 요약 600, 펼치면 요약 아래 8이다.
 - 각주는 15와 `color.ui-muted`, 위 구분선 48·16이다.
@@ -236,7 +236,7 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 제목의 원래 단계는 `app-heading-N`으로 유지한다.
 
-안내 상자(`Callout`)는 `tone`으로 `success`, `warning`, `error`를 받고 그 밖의 값은 오류다. 상태가 없는 안내 상자는 `color.prose-soft` 면이다. 본문 `mark` 배경 `color.prose-mark-background`는 경고 면(`color.callout-warning` = `color.status.warning.surface`)을 쓴다.
+안내 상자(`Callout`)는 `tone`으로 `success`, `warning`, `error`를 받고 그 밖의 값은 오류다. 상태가 없는 안내 상자는 `color.prose-soft` 면이다. 본문 `mark` 배경 `color.prose-mark-background`는 Things의 형광펜 값(라이트 `#fcf9cf`, 다크 `rgba(255,214,3,.32)`)이다.
 
 그림 격자 칸 안의 `.app-figure`는 바깥 여백이 없어 이미지가 칸 폭을 채우며 칸 사이는 격자의 `spacing.gap`만 둔다.
 
@@ -304,4 +304,4 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 ## 글 읽기 간격
 
-블로그 본문(`.app-prose`)의 줄 높이는 Things와 같은 1.4(`leading.feature-body-line`, 18px에서 25.2)다. 글 머리의 날짜·제목은 왼쪽 정렬이고 도입 문단은 22.5/1.25다. 검색 위·아래 여백(`spacing.search-top`, `spacing.search-bottom`)과 글 위쪽 여백(`component.post-padding`)은 48px다.
+목록 카드(`BlogCard`)는 한 줄 3장에 맞춘 크기다: 표지 2:1, 안쪽 16, 제목 18/700 한 줄(넘치면 말줄임), 요약 15 두 줄, 글쓴이 줄 13 한 줄. 블로그 본문(`.app-prose`)의 줄 높이는 Things와 같은 1.4(`leading.feature-body-line`, 18px에서 25.2)다. 글 머리의 날짜·제목은 왼쪽 정렬이고 도입 문단은 22.5/1.25다. 검색 위·아래 여백(`spacing.search-top`, `spacing.search-bottom`)과 글 위쪽 여백(`component.post-padding`)은 48px다.

@@ -182,7 +182,7 @@
   --color-gallery-hover: var(--primitive-gallery-hover);
   --color-gallery-active: var(--primitive-gallery-active);
   --color-gallery-selected: var(--primitive-gallery-selected);
-  --color-prose-code-color: var(--primitive-prose-code-color);
+  --color-prose-code-color: var(--color-code-ink);
   --color-prose-code-border: var(--primitive-prose-code-border);
   --color-prose-code-background: var(--primitive-prose-code-background);
   --color-prose-pre-background: var(--primitive-help-bg);
@@ -212,7 +212,7 @@
   --color-prose-rule-color: var(--primitive-prose-rule-color);
   --color-prose-caption-color: var(--primitive-prose-caption-color);
   --color-prose-link-active: var(--color-accent-1-link-active);
-  --color-prose-mark-background: var(--color-tag-background);
+  --color-prose-mark-background: var(--primitive-callout-warning);
   --color-prose-marker: var(--primitive-landing-footer-ink);
   --color-action-link: var(--color-accent-1-link);
   --color-category-blue-fill: #2b7fff;

@@ -182,12 +182,12 @@
       "$type": "color",
       "$value": "{color.ink}"
     },
-    "prose-code-color": {
-      "$value": "{primitive.prose-code-color-dark}",
-      "$type": "color"
-    },
     "callout-warning": {
       "$value": "{color.status.warning.surface}",
+      "$type": "color"
+    },
+    "prose-mark-background": {
+      "$value": "{primitive.callout-warning-dark}",
       "$type": "color"
     },
     "callout-background": {

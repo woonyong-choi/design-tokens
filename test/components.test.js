@@ -288,8 +288,9 @@ test('warning_callout_list_marker_and_input_stay_readable_in_both_themes', () =>
     assert.ok(contrast(value('color.button-primary-ink'), value('color.button-primary')) >= onThingsMinimum(value('color.button-primary-ink'), value('color.button-primary'), 4.5), `${mode} primary button text`);
     assert.ok(contrast(onSurface(value('color.button.ink'), onSurface(value('color.button.surface'), value('color.ui-card'))), onSurface(value('color.button.surface'), value('color.ui-card'))) >= 4.5, `${mode} default button text`);
   }
-  // 사용자 결정: 주황은 포인트 색이라 형광펜 표시는 태그와 같은 무채색 면을 쓴다.
-  for (const table of Object.values(tables)) assert.equal(resolveValue(table, 'color.prose-mark-background'), resolveValue(table, 'color.tag-background'), 'mark shares the neutral tag surface');
+  // 형광펜 표시는 Things의 mark 값(라이트 #fcf9cf, 다크 rgba(255,214,3,.32))을 쓴다.
+  assert.equal(resolveValue(tables.light, 'color.prose-mark-background'), '#fcf9cf', 'mark uses the Things highlight');
+  assert.equal(resolveValue(tables.dark, 'color.prose-mark-background'), 'rgba(255,214,3,.32)', 'dark mark uses the Things highlight');
 });
 
 // 상태 안내: 옅은 상태 면 위 본문색 글자, 같은 아이콘 묶음의 상태색 아이콘. 테두리와 색 줄은 없다.

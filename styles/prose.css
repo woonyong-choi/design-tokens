@@ -1,5 +1,5 @@
 /* 본문 문법: app-prose 아래 제목·문단·목록·인용·표·코드·콜아웃·각주·수식·도표. 새 Markdown 요소는 여기에 둔다. */
-/* 글 위계는 Things 블로그 공통 CSS를 따른다: 본문 18/1.4, h1 36/1.1, h2 27/1.25, h3 20.25/1.4, 도입 22.5/1.25, 작은 글·그림 설명 16/1.36, 코드 .85em. 간격은 4의 배수다. */
+/* 글 위계는 Things 블로그 공통 CSS를 따른다: 본문 18/1.4, h1 36/1.1, h2 27/1.25, h3 20.25/1.4, 도입 22.5/1.25, 작은 글·그림 설명 16/1.36, 코드 .85em. 문단·제목·목록·인용·구분선 간격도 Things의 em 값이다. */
 .app-prose { word-break: normal; overflow-wrap: anywhere; font-size: var(--text-body-text); line-height: var(--leading-feature-body-line); color: var(--color-body); }
 /* 본문은 한국어도 음절 단위로 줄을 바꿔 줄 끝을 단 폭까지 채운다. 제목은 낱말 단위를 유지한다. */
 .app-prose :is(h1, h2, h3, h4, h5, h6) { word-break: keep-all; }
@@ -8,34 +8,34 @@
 .app-prose :is(h2, h3, h4, h5, h6, strong, dt, th, summary) { color: var(--color-ink); }
 .app-prose h2, .app-prose h2.app-heading-2, .app-blog-post .app-feed-body .app-heading-2 { margin: var(--spacing-prose-h2-before) 0 var(--spacing-prose-h2-after); font-size: var(--text-subtitle); font-weight: var(--font-weight-bold); line-height: var(--leading-line-intro); }
 .app-prose h3, .app-prose .app-heading-3, .app-blog-post .app-feed-body .app-heading-3 { margin: var(--spacing-prose-h3-before) 0 var(--spacing-prose-h3-after); font-size: var(--text-feature-intro); font-weight: var(--font-weight-bold); line-height: var(--leading-feature-body-line); }
-.app-prose h4 { font-size: inherit; line-height: inherit; margin: 0 0 var(--spacing-prose-paragraph); }
+.app-prose :is(h1 + h2, h2 + h3) { margin-top: 0; }
+.app-prose h4 { font-size: inherit; line-height: inherit; margin: 0 0 var(--spacing-prose-paragraph-gap); }
 .app-prose h5, .app-prose h6 { font-size: inherit; margin: 0; }
 .app-prose h6 { font-weight: var(--font-weight-normal); }
-.app-prose p { margin: 0 0 var(--spacing-prose-paragraph); }
+.app-prose p { margin: 0 0 var(--spacing-prose-paragraph-gap); }
 .app-prose a:active { color: var(--color-prose-link-active); }
 :where(.app-prose) strong { font-weight: var(--font-weight-bold); }
 :where(.app-prose) b { font-weight: var(--font-weight-semibold); }
-.app-prose ul, .app-prose ol { margin: 0 0 var(--spacing-prose-paragraph); padding-left: var(--spacing-6); }
+.app-prose ul, .app-prose ol { margin: 0 0 var(--spacing-prose-paragraph-gap); padding-left: var(--spacing-prose-list-inset); }
 .app-prose ul { list-style: disc; }
 .app-prose ol { list-style: decimal; }
 .app-prose li { margin: 0; }
-.app-prose li + li { margin-top: var(--spacing-prose-item); }
 .app-prose li::marker { color: var(--color-prose-marker); }
-.app-prose li > ul, .app-prose li > ol { margin: var(--spacing-prose-item) 0 0; }
-/* 인용은 Things처럼 기울이고 왼쪽 줄 하나로 구분한다. */
-.app-prose blockquote { margin: var(--spacing-prose-block) 0; padding: 0 0 0 var(--spacing-prose-quote-inset); border: 0; border-left: var(--border-width-quote) solid var(--color-prose-quote-rule); font-style: italic; }
-.app-prose blockquote p { margin: 0 0 var(--spacing-prose-item); }
+.app-prose li > ul, .app-prose li > ol { margin: 0; }
+.app-prose li > p:last-child { margin-bottom: 0; }
+/* 인용은 Things처럼 기울이고 양옆을 들여 쓴다. 줄이나 면을 더하지 않는다. */
+.app-prose blockquote { margin: var(--component-prose-quote-margin); padding: 0; border: 0; font-style: italic; }
 .app-prose blockquote > :last-child { margin-bottom: 0; }
-.app-prose blockquote blockquote { margin: var(--spacing-prose-item) 0 0; }
-.app-prose hr { width: 100%; margin: var(--spacing-prose-rule) 0; border: 0; border-top: var(--border-width-thin) solid var(--color-prose-rule-color); }
+.app-prose blockquote blockquote { margin-top: var(--spacing-prose-item); }
+.app-prose hr { width: var(--component-prose-rule-width); margin: var(--component-prose-rule-margin); border: 0; border-top: var(--border-width-thin) solid var(--color-prose-rule-color); }
 :where(.app-prose) small { font-size: var(--text-post-date-size); color: var(--color-prose-caption-color); }
 :where(.app-prose) mark { padding: var(--component-prose-code-padding); color: inherit; background: var(--color-prose-mark-background); border-radius: var(--radius-prose-code-radius); }
 :where(.app-prose) sub, :where(.app-prose) sup { font-size: var(--component-prose-script-size); font-weight: var(--font-weight-prose-script-weight); }
 :where(.app-prose) sub { line-height: 1; }
 :where(.app-prose) sup { line-height: var(--leading-prose-script-line); }
-.app-prose dl:not(.app-definitions) { margin: 0 0 var(--spacing-prose-paragraph); }
+.app-prose dl:not(.app-definitions) { margin: 0 0 var(--spacing-prose-paragraph-gap); }
 .app-prose dl:not(.app-definitions) dt { font-weight: var(--font-weight-bold); }
-.app-prose dl:not(.app-definitions) dd { margin: 0 0 var(--spacing-prose-item) var(--spacing-6); }
+.app-prose dl:not(.app-definitions) dd { margin: var(--component-prose-definition-margin); }
 .app-prose .app-figure { margin-block: var(--spacing-prose-block); }
 /* 본문 그림은 기본으로 모서리를 깎지 않는다. 작성자가 rounded 옵션(img.is-rounded)을 고르면 코드 블록과 같은 곡률로 자른다. 기기 틀 안의 화면은 기기 곡률을 따른다. */
 :is(.app-prose, .app-figure-grid-item) .app-figure > :is(img, a > img) { border-radius: 0; }
@@ -46,7 +46,8 @@
 :is(.app-prose, .app-figure-grid-item) > .app-figure:not(.app-width-wide):not(.app-width-narrow) > :is(img, a > img) { width: auto; }
 .app-prose .app-figure figcaption { margin: var(--spacing-prose-item) 0 0; font-size: var(--text-post-date-size); line-height: var(--leading-caption-line); text-align: center; color: var(--color-prose-caption-color); }
 .app-prose .app-figure figcaption:empty { display: none; }
-.app-prose code { padding: var(--component-prose-code-padding); border: var(--border-width-thin) solid var(--color-prose-code-border); border-radius: var(--radius-prose-code-radius); background: var(--color-prose-code-background); color: var(--color-prose-code-color); font-family: var(--font-mono); font-size: var(--text-prose-code-size); line-height: var(--leading-feature-body-line); white-space: pre-wrap; overflow-wrap: break-word; }
+/* 인라인 코드: 면과 테두리는 Things 값이고, 글자는 코드 블록과 같은 잉크색을 써서 본문 안에서 흐려 보이지 않게 한다. */
+.app-prose code { padding: var(--component-prose-code-padding); border: var(--border-width-thin) solid var(--color-prose-code-border); border-radius: var(--radius-prose-code-radius); background: var(--color-prose-code-background); color: var(--color-code-ink); font-family: var(--font-mono); font-size: var(--text-prose-code-size); line-height: var(--leading-feature-body-line); white-space: pre-wrap; overflow-wrap: break-word; }
 .app-prose kbd { display: inline-block; box-sizing: content-box; min-width: var(--text-key-size); padding: var(--component-key-padding); margin: var(--component-key-margin); border: 0; border-radius: var(--radius-key-radius); background: var(--color-key-background); color: var(--color-key-color); box-shadow: var(--shadow-key-shadow); font-family: var(--font-key-font); font-size: var(--text-key-size); font-weight: var(--font-weight-medium); font-style: normal; line-height: 1; text-align: center; vertical-align: var(--border-width-thin); }
 /* 코드 블록: 라이트·다크 모두 어두운 바탕이다. 이름 머리줄 없이 복사 단추만 오른쪽 위에 겹치고, 긴 줄은 줄을 바꾸지 않고 가로로 옮겨 본다. */
 .app-code { font-size: var(--text-prose-code-size); display: grid; grid-template-columns: minmax(0, 1fr); min-width: 0; margin-block: var(--spacing-prose-block); overflow: hidden; background: var(--color-code-surface); border: var(--border-width-thin) solid var(--color-code-border); border-radius: var(--radius-prose-block-radius); color: var(--color-code-ink); }
@@ -130,14 +131,14 @@
 /* Markdown 본문: 태그 단계가 문서 위치에 따라 옮겨져도 쓴 단계(app-heading-N)의 위계를 지킨다. 값은 Things 공통 CSS의 em 비율에서 가져온다. */
 .app-prose h2.app-heading-1 { font-size: var(--text-section-title); line-height: var(--leading-prose-heading-line); margin: var(--component-prose-h1-margin); }
 .app-prose .app-heading-1 + .app-heading-2, .app-prose .app-heading-2 + .app-heading-3 { margin-top: 0; }
-.app-prose .app-heading-4 { font-size: inherit; line-height: inherit; font-weight: var(--font-weight-bold); margin: 0 0 var(--spacing-prose-paragraph); }
+.app-prose .app-heading-4 { font-size: inherit; line-height: inherit; font-weight: var(--font-weight-bold); margin: 0 0 var(--spacing-prose-paragraph-gap); }
 .app-prose .app-heading-5 { font-size: inherit; font-weight: var(--font-weight-bold); margin: 0; }
 .app-prose .app-heading-6 { font-size: inherit; font-weight: var(--font-weight-normal); margin: 0; }
 .app-prose ul ul { list-style: circle; }
 .app-prose .app-details .app-code { margin: var(--spacing-prose-item) 0 0; }
 .app-prose .footnotes { font-size: var(--text-small-text); color: var(--color-ui-muted); }
 .app-prose .footnotes li + li { margin-top: var(--spacing-1); }
-.app-prose .footnotes-sep { margin: var(--spacing-prose-rule) 0 var(--spacing-4); }
+.app-prose .footnotes-sep { width: 100%; margin: var(--spacing-prose-rule) 0 var(--spacing-4); }
 .app-prose .footnote-item p { margin: 0; }
 .app-prose .footnote-ref a, .app-prose .footnote-backref { text-decoration: none; }
 /* 수식과 도표: KaTeX 글꼴·스타일과 도표 렌더러는 해당 글에서만 불러온다. 긴 수식과 넓은 도표는 안에서 스크롤한다. */
@@ -146,10 +147,10 @@
 .app-prose .katex-block, .app-prose .katex-display { overflow-x: auto; overflow-y: hidden; }
 .app-prose .katex-error { color: var(--color-ui-muted); text-decoration: underline dotted; }
 /* 좁은 화면: 글 크기는 Things처럼 그대로 두고 간격만 좁은 값을 쓴다. */
+/* 좁은 화면의 인용은 Things처럼 들여쓰기를 줄인다. */
 @media (max-width: breakpoint(feature-split)) {
+  .app-prose blockquote { margin-inline: var(--component-prose-quote-inset-compact); }
   :root {
-    --spacing-prose-h2-before: var(--spacing-prose-h2-before-compact);
-    --spacing-prose-h3-before: var(--spacing-prose-h3-before-compact);
     --spacing-code-inset: var(--spacing-code-inset-compact);
     --spacing-post-header-top: var(--spacing-post-header-top-compact);
     --spacing-post-tags-after: var(--spacing-post-tags-after-compact);

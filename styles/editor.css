@@ -18,5 +18,10 @@
 .app-button.is-primary:active { background: var(--color-button-primary-active); }
 .app-button.is-quiet { border-color: transparent; background: transparent; color: var(--color-body); }
 .app-button.is-quiet:hover { background: var(--color-search-bg); color: var(--color-ink); box-shadow: none; }
+/* 링크 단추: 면·테두리 없이 링크색 글자와 화살표만 둔다. 펼치는 단추는 아래 화살표, 펼치면 위 화살표다. */
+.app-button.is-link { height: auto; padding: 0; border: 0; background: transparent; color: var(--color-action-link); font-size: inherit; box-shadow: none; }
+.app-button.is-link:hover { background: transparent; box-shadow: none; text-decoration: underline; }
+.app-button.is-link[aria-expanded]::after { content: ''; width: var(--spacing-gap-sm); height: var(--text-small-text); background: currentColor; mask: url('./assets/icons/navigation/chevron-right.svg') center / contain no-repeat; transform: var(--component-disclosure-down); }
+.app-button.is-link[aria-expanded=true]::after { transform: var(--component-disclosure-up); }
 .app-button:focus-visible { outline: var(--outline-width-focus) solid var(--color-ui-focus); outline-offset: var(--spacing-outline); }
 .app-button:disabled { cursor: default; opacity: var(--opacity-button-disabled); }

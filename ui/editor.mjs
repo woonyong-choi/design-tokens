@@ -1,11 +1,11 @@
 // 글 작성 화면의 기본 조각: 단추, 여러 줄 입력, 입력 칸.
 import { escape, id, out, safeUrl, slot } from './html.mjs';
 
-const BUTTON_VARIANTS = ['primary', 'secondary', 'quiet'];
+const BUTTON_VARIANTS = ['primary', 'secondary', 'quiet', 'link'];
 const ACTION = /^[a-z][a-z-]*$/;
 
 /**
- * 동작 단추. `action`은 화면 스크립트가 찾는 이름(`data-action`)이다. `quiet`는 테두리 없는 글자 단추다.
+ * 동작 단추. `action`은 화면 스크립트가 찾는 이름(`data-action`)이다. `quiet`는 테두리 없는 글자 단추, `link`는 Things의 "더 보기" 링크처럼 면 없는 링크색 글자다.
  * `controls`는 단추가 펼치는 영역의 id다(접힌 상태로 시작). `context`는 같은 이름의 단추가 여럿일 때 화면 읽기 프로그램에만 덧붙이는 대상 이름이다.
  */
 export function Button({ label, variant = 'secondary', type = 'button', action, disabled = false, hidden = false, pressed, controls, context }) {

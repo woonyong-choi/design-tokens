@@ -1179,7 +1179,9 @@ export const tokens = freeze({
     "action-button-radius": "var(--primitive-action-button-radius)",
     "action-button-inset": "var(--primitive-action-button-inset)",
     "icon-task-soft": "var(--primitive-icon-task-soft)",
-    "icon-task-edge": "var(--primitive-icon-task-edge)"
+    "icon-task-edge": "var(--primitive-icon-task-edge)",
+    "disclosure-down": "var(--primitive-disclosure-down)",
+    "disclosure-up": "var(--primitive-disclosure-up)"
   },
   "breakpoint": {
     "mobile": "var(--breakpoint-mobile)",
@@ -1368,7 +1370,9 @@ export const tokens = freeze({
     "newsletter-button-padding": "var(--component-newsletter-button-padding)",
     "action-focus": "var(--component-action-focus)",
     "blog-card-summary-lines": "var(--component-blog-card-summary-lines)",
-    "prose-pre-padding": "var(--component-prose-pre-padding)"
+    "prose-pre-padding": "var(--component-prose-pre-padding)",
+    "disclosure-down": "var(--component-disclosure-down)",
+    "disclosure-up": "var(--component-disclosure-up)"
   },
   "outline-width": {
     "focus": "var(--outline-width-focus)"
@@ -2556,7 +2560,9 @@ export const values = freeze({
     "action-button-radius": ".45em",
     "action-button-inset": "1em",
     "icon-task-soft": "#0169fe17",
-    "icon-task-edge": "#3f86f5"
+    "icon-task-edge": "#3f86f5",
+    "disclosure-down": "rotate(90deg)",
+    "disclosure-up": "rotate(-90deg)"
   },
   "breakpoint": {
     "mobile": 560,
@@ -2745,7 +2751,9 @@ export const values = freeze({
     "newsletter-button-padding": "7.1232px 16.96px",
     "action-focus": "0 0 0 2px rgba(37,118,235,.5)",
     "blog-card-summary-lines": 2,
-    "prose-pre-padding": ".4em .8em"
+    "prose-pre-padding": ".4em .8em",
+    "disclosure-down": "rotate(90deg)",
+    "disclosure-up": "rotate(-90deg)"
   },
   "outline-width": {
     "focus": 3

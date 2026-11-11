@@ -4,8 +4,6 @@
   --color-accent: var(--color-accent-1-link);
   --color-link: var(--color-accent-1-link);
   --color-border-strong: var(--color-gray-282);
-  --color-border: var(--color-ui-line);
-  --color-surface-raised: var(--color-gray-43);
   --color-syntax-string: var(--color-category-blue-ink);
   --color-syntax-function: var(--color-code-ink);
   --color-syntax-number: var(--color-code-ink);
@@ -29,7 +27,6 @@
   --color-gray-910: #171717;
   --color-gray-933: #111111;
   --color-gray-1000: #000000;
-  --color-group-title: var(--color-help-title-color);
   --color-outline: var(--color-gray-529);
   --color-line: var(--color-category-gray-line);
   --color-state-active: var(--color-accent-2-light-border);
@@ -188,12 +185,7 @@
   --color-prose-pre-background: var(--primitive-help-bg);
   --color-key-color: var(--primitive-key-color);
   --color-key-background: var(--primitive-key-background);
-  --color-callout-warning: var(--color-status-warning-surface);
-  --color-callout-background: var(--color-syntax-example-background);
-  --color-callout-border: var(--color-syntax-example-border);
-  --color-platform-color: var(--color-ink);
   --color-platform-hover: var(--primitive-platform-hover);
-  --color-platform-active: var(--primitive-platform-active);
   --color-nav-hover-color: var(--primitive-nav-hover-color);
   --color-nav-active-color: var(--primitive-nav-active-color);
   --color-nav-active-background: var(--primitive-nav-active-background);
@@ -239,7 +231,6 @@
   --color-category-silver-on: var(--color-gray-1000);
   --color-category-silver-tint: #f8f8f9;
   --color-category-silver-effect: #c4c8cd;
-  --color-primary-hover: var(--color-button-primary-hover);
   --color-landing-newsletter-note-ink: var(--primitive-muted);
   --color-feature-tab-ink: var(--color-accent-1-on-strong);
   --color-gallery-selected-ink: var(--color-control-paper);
@@ -307,7 +298,6 @@
   --font-diagram-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   --spacing-unit: var(--primitive-spacing-unit);
   --spacing-header: var(--primitive-header);
-  --spacing-section: var(--primitive-section);
   --spacing-hero-top: var(--primitive-hero-top);
   --spacing-gap: var(--primitive-gap);
   --spacing-gap-lg: var(--spacing-12);
@@ -398,7 +388,6 @@
   --spacing-post-title-margin: var(--primitive-post-title-margin);
   --spacing-post-lead-margin: var(--primitive-post-lead-margin);
   --spacing-post-paragraph-margin: var(--primitive-post-paragraph-margin);
-  --spacing-post-caption-margin: var(--primitive-post-caption-margin);
   --spacing-article-search-top: var(--primitive-article-search-top);
   --spacing-article-search-bottom: var(--primitive-article-search-bottom);
   --spacing-article-title-padding: var(--primitive-article-title-padding);
@@ -503,7 +492,6 @@
   --spacing-admin-fab-icon: 20px;
   --spacing-admin-panel-max: 420px;
   --spacing-write-pad: var(--spacing-12);
-  --spacing-write-rule: 64px;
   --spacing-write-footer: 64px;
   --spacing-write-tag-min: 160px;
   --spacing-prose-block: var(--spacing-6);

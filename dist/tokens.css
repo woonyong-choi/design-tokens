@@ -3,8 +3,6 @@
   --color-accent: var(--color-accent-1-link);
   --color-link: var(--color-accent-1-link);
   --color-border-strong: var(--color-gray-282);
-  --color-border: var(--color-ui-line);
-  --color-surface-raised: var(--color-gray-43);
   --color-syntax-string: var(--color-category-blue-ink);
   --color-syntax-function: var(--color-code-ink);
   --color-syntax-number: var(--color-code-ink);
@@ -28,7 +26,6 @@
   --color-gray-910: #171717;
   --color-gray-933: #111111;
   --color-gray-1000: #000000;
-  --color-group-title: var(--color-help-title-color);
   --color-outline: var(--color-gray-529);
   --color-line: var(--color-category-gray-line);
   --color-state-active: var(--color-accent-2-light-border);
@@ -187,12 +184,7 @@
   --color-prose-pre-background: var(--primitive-help-bg);
   --color-key-color: var(--primitive-key-color);
   --color-key-background: var(--primitive-key-background);
-  --color-callout-warning: var(--color-status-warning-surface);
-  --color-callout-background: var(--color-syntax-example-background);
-  --color-callout-border: var(--color-syntax-example-border);
-  --color-platform-color: var(--color-ink);
   --color-platform-hover: var(--primitive-platform-hover);
-  --color-platform-active: var(--primitive-platform-active);
   --color-nav-hover-color: var(--primitive-nav-hover-color);
   --color-nav-active-color: var(--primitive-nav-active-color);
   --color-nav-active-background: var(--primitive-nav-active-background);
@@ -238,7 +230,6 @@
   --color-category-silver-on: var(--color-gray-1000);
   --color-category-silver-tint: #f8f8f9;
   --color-category-silver-effect: #c4c8cd;
-  --color-primary-hover: var(--color-button-primary-hover);
   --color-landing-newsletter-note-ink: var(--primitive-muted);
   --color-feature-tab-ink: var(--color-accent-1-on-strong);
   --color-gallery-selected-ink: var(--color-control-paper);
@@ -317,7 +308,6 @@
   --spacing-20: 80px;
   --spacing-unit: var(--primitive-spacing-unit);
   --spacing-header: var(--primitive-header);
-  --spacing-section: var(--primitive-section);
   --spacing-hero-top: var(--primitive-hero-top);
   --spacing-gap: var(--primitive-gap);
   --spacing-gap-lg: var(--spacing-12);
@@ -408,7 +398,6 @@
   --spacing-post-title-margin: var(--primitive-post-title-margin);
   --spacing-post-lead-margin: var(--primitive-post-lead-margin);
   --spacing-post-paragraph-margin: var(--primitive-post-paragraph-margin);
-  --spacing-post-caption-margin: var(--primitive-post-caption-margin);
   --spacing-article-search-top: var(--primitive-article-search-top);
   --spacing-article-search-bottom: var(--primitive-article-search-bottom);
   --spacing-article-title-padding: var(--primitive-article-title-padding);
@@ -522,7 +511,6 @@
   --spacing-admin-fab-icon: 20px;
   --spacing-admin-panel-max: 420px;
   --spacing-write-pad: var(--spacing-12);
-  --spacing-write-rule: 64px;
   --spacing-write-footer: 64px;
   --spacing-write-tag-min: 160px;
   --spacing-prose-block: var(--spacing-6);
@@ -667,10 +655,8 @@
   --primitive-header: 88px;
   --primitive-section-title: 36px;
   --primitive-intro-text: 23.994px;
-  --primitive-small-text: 15px;
   --primitive-tiny-text: 13px;
   --primitive-subtitle: 27px;
-  --primitive-section: 100px;
   --primitive-hero-top: 50px;
   --primitive-gutter: 24px;
   --primitive-gap: 24px;
@@ -827,9 +813,7 @@
   --primitive-post-lead-size: 22.5px;
   --primitive-post-lead-margin: 31.5px;
   --primitive-post-h2-margin: 69.1875px 0 23.0625px;
-  --primitive-post-h3-margin: 54.3375px 0 18.1125px;
   --primitive-post-paragraph-margin: 25.2px;
-  --primitive-post-caption-margin: 12.015px;
   --primitive-post-title-line: 1.15;
   --primitive-article-search-top: 35px;
   --primitive-article-search-font: 21.25px;
@@ -891,17 +875,13 @@
   --primitive-prose-heading-line: 1.1;
   --primitive-prose-paragraph-gap: 1.4em;
   --primitive-prose-list-inset: 1.5em;
-  --primitive-callout-padding: .5em .75em;
   --primitive-callout-title-gap: .7em;
   --primitive-callout-warning: #fcf9cf;
   --primitive-callout-warning-dark: rgba(255,214,3,.32);
-  --primitive-callout-background-dark: rgba(240,246,255,.09);
-  --primitive-callout-border-dark: rgba(236,244,255,.07);
   --primitive-task-size: 1.667cap;
   --primitive-task-align: -.3335cap;
   --primitive-platform-line: 1.3;
   --primitive-platform-hover: rgba(0,20,49,.18);
-  --primitive-platform-active: rgba(0,15,37,.23);
   --primitive-platform-hover-shadow: 0 1px 4px rgba(0,0,0,.16);
   --primitive-platform-active-shadow: inset 0 1px 2px rgba(0,0,0,.1);
   --primitive-help-centered-padding: 68px 36px 18px;
@@ -1029,7 +1009,6 @@
   --primitive-icon-idea-soft: #f8e47c;
   --primitive-dialog-backdrop: rgba(15,18,24,.4);
   --primitive-admin-shadow: 0 4px 16px rgba(0,0,0,.12);
-  --primitive-code-surface: var(--primitive-ink-deep);
   --primitive-ink-deep: #1c1c1e;
   --primitive-code-surface-dark: var(--primitive-ink-deep);
   --primitive-code-ink: #d8dde4;
@@ -1084,7 +1063,6 @@
   --border-width-tag: 1.5px;
   --border-width-edge: 1.5px;
   --border-width-casing: 4.5px;
-  --border-width-write-rule: 6px;
   --z-index-raised: 2;
   --z-index-overlay: 10;
   --z-index-layer-header: var(--z-index-overlay);
@@ -1193,7 +1171,6 @@
   --component-comments-fade: var(--primitive-comments-fade);
   --component-post-padding: var(--primitive-post-padding);
   --component-post-h2-margin: var(--primitive-post-h2-margin);
-  --component-post-h3-margin: var(--primitive-post-h3-margin);
   --component-article-search-padding: var(--primitive-article-search-padding);
   --component-width-wide: max(100%, min(var(--primitive-reference-width), calc(100vw - 2 * var(--primitive-gutter))));
   --component-syntax-example-padding: var(--primitive-syntax-example-padding);
@@ -1213,7 +1190,6 @@
   --component-key-padding: var(--primitive-key-padding);
   --component-key-margin: var(--primitive-key-margin);
   --component-prose-h1-margin: var(--primitive-prose-h1-margin);
-  --component-callout-padding: var(--primitive-callout-padding);
   --component-help-centered-padding: var(--primitive-help-centered-padding);
   --component-help-grouped-padding: var(--primitive-help-grouped-padding);
   --component-help-inline-padding: var(--primitive-help-inline-padding);
@@ -1297,10 +1273,7 @@
   --color-gallery-active: var(--color-feature-tab-background);
   --color-gallery-selected: var(--color-ink);
   --color-prose-pre-background: var(--primitive-figure-dark-bg);
-  --color-callout-background: var(--primitive-callout-background-dark);
-  --color-callout-border: var(--primitive-callout-border-dark);
   --color-platform-hover: var(--color-control-hover);
-  --color-platform-active: var(--color-feature-tab-background);
   --color-nav-hover-color: var(--color-ink);
   --color-nav-active-color: var(--color-ink);
   --color-nav-active-background: var(--color-control-hover);
@@ -1428,10 +1401,7 @@
   --color-gallery-active: var(--color-feature-tab-background);
   --color-gallery-selected: var(--color-ink);
   --color-prose-pre-background: var(--primitive-figure-dark-bg);
-  --color-callout-background: var(--primitive-callout-background-dark);
-  --color-callout-border: var(--primitive-callout-border-dark);
   --color-platform-hover: var(--color-control-hover);
-  --color-platform-active: var(--color-feature-tab-background);
   --color-nav-hover-color: var(--color-ink);
   --color-nav-active-color: var(--color-ink);
   --color-nav-active-background: var(--color-control-hover);
@@ -1558,10 +1528,7 @@
   --color-gallery-active: var(--primitive-gallery-active);
   --color-gallery-selected: var(--primitive-gallery-selected);
   --color-prose-pre-background: var(--primitive-help-bg);
-  --color-callout-background: var(--color-syntax-example-background);
-  --color-callout-border: var(--color-syntax-example-border);
   --color-platform-hover: var(--primitive-platform-hover);
-  --color-platform-active: var(--primitive-platform-active);
   --color-nav-hover-color: var(--primitive-nav-hover-color);
   --color-nav-active-color: var(--primitive-nav-active-color);
   --color-nav-active-background: var(--primitive-nav-active-background);

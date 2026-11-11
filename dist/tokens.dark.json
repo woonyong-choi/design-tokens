@@ -154,17 +154,9 @@
       "$value": "{primitive.figure-dark-node}",
       "$type": "color"
     },
-    "platform-color": {
-      "$type": "color",
-      "$value": "{color.ink}"
-    },
     "platform-hover": {
       "$type": "color",
       "$value": "{color.control-hover}"
-    },
-    "platform-active": {
-      "$type": "color",
-      "$value": "{color.feature-tab-background}"
     },
     "gallery-background": {
       "$type": "color",
@@ -182,21 +174,9 @@
       "$type": "color",
       "$value": "{color.ink}"
     },
-    "callout-warning": {
-      "$value": "{color.status.warning.surface}",
-      "$type": "color"
-    },
     "prose-mark-background": {
       "$value": "{primitive.callout-warning-dark}",
       "$type": "color"
-    },
-    "callout-background": {
-      "$type": "color",
-      "$value": "{primitive.callout-background-dark}"
-    },
-    "callout-border": {
-      "$type": "color",
-      "$value": "{primitive.callout-border-dark}"
     },
     "input-placeholder": {
       "$type": "color",

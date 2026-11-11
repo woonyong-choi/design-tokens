@@ -496,9 +496,9 @@
   --spacing-tool-icon: var(--spacing-4);
   --spacing-tool-target: var(--spacing-7);
   --spacing-toolbar: var(--spacing-10);
-  --spacing-blog-card-inset: var(--spacing-6);
+  --spacing-blog-card-inset: var(--spacing-4);
   --spacing-blog-card-gap: var(--spacing-6);
-  --spacing-blog-card-avatar: var(--spacing-7);
+  --spacing-blog-card-avatar: var(--spacing-6);
   --spacing-post-avatar: var(--spacing-7);
   --spacing-editor-body-min: 480px;
   --spacing-admin-fab: 56px;
@@ -620,8 +620,8 @@
   --leading-line-card: var(--primitive-line-card);
   --leading-line-compact: var(--primitive-line-compact);
   --leading-feature-line: var(--primitive-feature-line);
+  --leading-landing-title-line: var(--primitive-landing-title-line);
   --leading-feature-body-line: var(--leading-line-body);
-  --leading-post-body-line: 1.6;
   --leading-post-title-line: var(--primitive-post-title-line);
   --leading-article-title-line: var(--leading-line-compact);
   --leading-caption-line: var(--primitive-caption-line);
@@ -667,6 +667,6 @@
   --blur-blur: var(--primitive-blur);
   --aspect-ratio-video: var(--primitive-ratio-video);
   --aspect-device-ratio: var(--primitive-device-ratio);
-  --aspect-blog-cover-ratio: var(--primitive-ratio-video);
+  --aspect-blog-cover-ratio: 2 / 1;
   --spacing: var(--spacing-unit);
 }

@@ -1,6 +1,6 @@
 /* 본문 문법: app-prose 아래 제목·문단·목록·인용·표·코드·콜아웃·각주·수식·도표. 새 Markdown 요소는 여기에 둔다. */
 /* 글 위계는 Things 블로그 공통 CSS를 따른다: 본문 18/1.4, h1 36/1.1, h2 27/1.25, h3 20.25/1.4, 도입 22.5/1.25, 작은 글·그림 설명 16/1.36, 코드 .85em. 간격은 4의 배수다. */
-.app-prose { word-break: keep-all; overflow-wrap: anywhere; font-size: var(--text-body-text); line-height: var(--leading-post-body-line); color: var(--color-body); }
+.app-prose { word-break: normal; overflow-wrap: anywhere; font-size: var(--text-body-text); line-height: var(--leading-feature-body-line); color: var(--color-body); }
 /* 본문은 한국어도 음절 단위로 줄을 바꿔 줄 끝을 단 폭까지 채운다. 제목은 낱말 단위를 유지한다. */
 .app-prose :is(h1, h2, h3, h4, h5, h6) { word-break: keep-all; }
 .app-prose h1 { font-size: var(--text-section-title); line-height: var(--leading-prose-heading-line); margin: var(--component-prose-h1-margin); }

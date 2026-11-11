@@ -110,7 +110,9 @@
 .app-prose p.app-fineprint { margin: var(--component-prose-fineprint-margin); font-size: var(--text-post-date-size); line-height: var(--leading-caption-line); color: var(--color-prose-caption-color); }
 .app-prose p.app-article-lead { margin: 0 0 var(--spacing-post-lead-margin); font-size: var(--text-post-lead-size); line-height: var(--leading-line-intro); color: var(--color-body); word-break: keep-all; }
 .app-cancelled-task { display: inline-block; width: var(--spacing-task-size); height: var(--spacing-task-size); vertical-align: var(--spacing-task-align); background: url('./assets/icons/layout/checkbox-indeterminate.svg') center / contain no-repeat; }
-.task-list-item.is-cancelled { text-decoration: line-through; color: var(--color-ui-muted); list-style: none; }
+/* 취소선은 글에만 긋는다. flex가 아이콘 뒤 공백을 지우고 같은 폭의 간격으로 대신해, 선이 아이콘과 공백까지 이어지지 않는다. */
+.task-list-item.is-cancelled { display: flex; align-items: flex-start; gap: var(--spacing-task-gap); text-decoration: line-through; color: var(--color-ui-muted); list-style: none; }
+.task-list-item.is-cancelled > .app-cancelled-task { flex: none; margin-top: calc((1lh - var(--spacing-task-size)) / 2); }
 .app-callout.is-fineprint { font-size: var(--text-post-date-size); line-height: var(--leading-caption-line); }
 .app-prose .app-callout > strong { display: block; margin-bottom: var(--spacing-callout-title-gap); }
 .app-prose .app-callout p { margin: 0 0 var(--spacing-prose-item); }

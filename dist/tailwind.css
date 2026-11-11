@@ -507,6 +507,7 @@
   --spacing-post-tags-after: var(--spacing-12);
   --spacing-post-tags-after-compact: var(--spacing-10);
   --spacing-action-button-inset: var(--primitive-action-button-inset);
+  --spacing-task-gap: .25em;
   --radius-lg: 8px;
   --radius-full: 999px;
   --radius-sm: 4px;

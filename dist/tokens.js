@@ -635,7 +635,8 @@ export const tokens = freeze({
     "post-header-top-compact": "var(--spacing-post-header-top-compact)",
     "post-tags-after": "var(--spacing-post-tags-after)",
     "post-tags-after-compact": "var(--spacing-post-tags-after-compact)",
-    "action-button-inset": "var(--spacing-action-button-inset)"
+    "action-button-inset": "var(--spacing-action-button-inset)",
+    "task-gap": "var(--spacing-task-gap)"
   },
   "radius": {
     "lg": "var(--radius-lg)",
@@ -2007,7 +2008,8 @@ export const values = freeze({
     "post-header-top-compact": 32,
     "post-tags-after": 48,
     "post-tags-after-compact": 40,
-    "action-button-inset": "1em"
+    "action-button-inset": "1em",
+    "task-gap": ".25em"
   },
   "radius": {
     "lg": 8,

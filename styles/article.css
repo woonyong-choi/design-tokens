@@ -34,7 +34,8 @@
 .app-document-nav summary > a, .app-document-nav summary > span { flex: 1; min-width: 0; }
 .app-document-nav > nav > ul > li > details > summary { font-weight: var(--font-weight-bold); color: var(--color-ink); }
 .app-document-nav :is(a, li > details > summary):hover { background: var(--color-help-bg); color: var(--color-document-nav-active-ink); text-decoration: none; }
-.app-document-nav a[aria-current="location"], .app-document-nav .is-selected { background: var(--color-help-hover); color: var(--color-document-nav-active-ink); font-weight: var(--font-weight-semibold); }
+/* 현재 위치는 Things 메뉴 선택처럼 면 없이 파란 글자로만 표시한다. */
+.app-document-nav a[aria-current="location"], .app-document-nav .is-selected { color: var(--color-document-nav-active-ink); font-weight: var(--font-weight-semibold); }
 .app-document-nav a.is-parent { color: var(--color-action-link); }
 .app-document-nav .is-subsection { padding-left: var(--spacing-gap-sm); }
 .app-document-nav summary:focus-visible { outline: var(--outline-width-focus) solid var(--color-ui-focus); outline-offset: var(--spacing-focus-offset); }

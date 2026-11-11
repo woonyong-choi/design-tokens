@@ -60,7 +60,9 @@ main {
 .gsc-main .gsc-right-header > li { background: transparent; border: 0; box-shadow: none; }
 .gsc-main .gsc-comment-box { font-size: var(--text-small-text); border: 0; border-radius: 0; background: transparent; box-shadow: none; margin: 0; }
 .gsc-main .gsc-comment-box-tabs { background: transparent; border: 0; border-radius: 0; padding: 0; margin-bottom: var(--spacing-gap-sm); }
-.gsc-main .gsc-comment-box-tabs > div { display: flex; gap: var(--spacing-2); margin: 0; }
+.gsc-main .gsc-comment-box-tabs > div { display: flex; gap: var(--spacing-2); margin: 0 !important; }
+/* giscus의 유틸리티 클래스(px-4 py-2 ml-1)가 같은 우선순위로 덮으므로 탭 여백은 important로 정한다. 입력 칸과 왼쪽 끝을 맞춘다. */
+.gsc-main .gsc-comment-box-tabs button { margin: 0 !important; padding: calc(var(--spacing-1-5) - var(--border-width-thin)) calc(var(--spacing-3) - var(--border-width-thin)) !important; border-radius: var(--radius-lg) !important; }
 .gsc-main .gsc-comment-box-main { padding: 0; margin: 0; }
 .gsc-main .gsc-comment-box-write { border: 0; border-radius: 0; background: transparent; }
 .gsc-main .gsc-comment-box-write:focus-within { box-shadow: none; outline: 0; }

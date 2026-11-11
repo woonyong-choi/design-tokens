@@ -296,7 +296,6 @@ export const tokens = freeze({
         "effect": "var(--color-category-silver-effect)"
       }
     },
-    "newsletter-button-color": "var(--color-newsletter-button-color)",
     "primary-hover": "var(--color-primary-hover)",
     "landing-newsletter-note-ink": "var(--color-landing-newsletter-note-ink)",
     "feature-tab-ink": "var(--color-feature-tab-ink)",
@@ -1693,7 +1692,6 @@ export const values = freeze({
         "effect": "#c4c8cd"
       }
     },
-    "newsletter-button-color": "#4f91fb",
     "primary-hover": "#649fff",
     "landing-newsletter-note-ink": "#55606e",
     "feature-tab-ink": "#ffffff",

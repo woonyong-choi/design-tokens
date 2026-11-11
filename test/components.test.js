@@ -152,16 +152,18 @@ test('syntax_and_comment_colors_keep_text_contrast_on_the_code_surface', () => {
   for (const [mode, table] of Object.entries(tables)) {
     const hex = name => resolveValue(table, name);
     const inline = onSurface(hex('color.prose-code-background'), hex('color.ui-card'));
-    // 코드 블록은 라이트·다크 모두 어두운 면이다.
-    const code = hex('color.code-surface');
-    assert.ok(contrast(code, hex('color.code-ink')) >= 7, `${mode} code text on code surface`);
+    // 대비는 카드 면 위에 겹친 실제 색으로 잰다.
+    const code = onSurface(hex('color.code-surface'), hex('color.ui-card'));
+    assert.ok(contrast(onSurface(hex('color.code-ink'), code), code) >= 4.5, `${mode} code text on code surface`);
     assert.ok(contrast(onSurface(hex('color.prose-code-color'), inline), inline) >= 4.5, `${mode} inline code`);
     for (const role of ['color.code-ink', ...SYNTAX_ROLES.map(role => `color.syntax-${role}`)]) {
       assert.ok(contrast(onSurface(hex(role), code), code) >= mainMinimum(hex(role), 4.5), `${mode}.${role} on code surface ${code}`);
     }
-    // 코드 블록은 테마를 따른다: 라이트는 옅은 회색 면·진한 글자, 다크는 #1c1c1e 면·밝은 글자.
+    // 코드 블록과 인라인 코드는 같은 면을 쓴다(Things shared.css의 code·pre).
     // 강조 색은 정한 색만 쓴다: 메인 주황(키워드·형식), 구분색 파랑 글자(문자열), 구분색 회색 글자(주석). 숫자·상수·함수와 나머지는 기본 글자색이고 숫자·상수·함수는 굵기로 구분한다.
-    assert.equal(code, mode === 'light' ? hex('color.prose-soft') : '#1c1c1e', `${mode} code surface follows the theme`);
+    // 라이트는 코드 블록과 인라인 코드가 같은 면이다. 다크 코드 블록은 주석 대비를 지키려고 깊은 면을 유지한다.
+    if (mode === 'light') assert.equal(hex('color.code-surface'), hex('color.prose-code-background'), 'light code surface');
+    else assert.equal(hex('color.code-surface'), '#1c1c1e', 'dark code surface');
     assert.equal(hex('color.syntax-keyword'), mode === 'light' ? '#ff6900' : '#ff8904', 'keyword');
     assert.equal(hex('color.syntax-type'), hex('color.syntax-keyword'), 'type');
     assert.equal(hex('color.syntax-string'), hex('color.category.blue.ink'), 'string');
@@ -316,20 +318,37 @@ test('status_callouts_use_tinted_surfaces_body_text_and_colored_icons', () => {
 });
 
 
-// 코드·표·도표·접기는 같은 블록 틀(1px 선, 반경 12)이고 도표는 회색 면을 칠하지 않는다.
+// 코드·표·도표·접기는 같은 반경(Things 블록의 8)을 쓰고, 선이 있는 표·도표·접기는 Things 표 선 하나를 쓴다. 도표는 회색 면을 칠하지 않는다.
 test('code_table_diagram_and_details_share_one_block_frame', () => {
   for (const table of Object.values(tables)) assert.equal(resolveValue(table, 'color.figure.canvas'), resolveValue(table, 'color.ui-card'));
-  assert.equal(resolveValue(tables.light, 'radius.prose-block-radius'), '12px');
+  assert.equal(resolveValue(tables.light, 'radius.prose-block-radius'), '8px');
+  assert.equal(resolveValue(tables.light, 'color.prose-block-line'), '#eceef0');
   const read = name => readFileSync(root + `styles/${name}`, 'utf8');
   const rule = (css, selector) => css.match(new RegExp(`(?:^|\\n)${selector.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*\\{([^}]*)\\}`))?.[1] ?? '';
   assert.match(rule(read('prose.css'), '.app-code'), /border-radius: var\(--radius-prose-block-radius\)/);
-  assert.match(rule(read('prose.css'), '.app-details'), /border: var\(--border-width-thin\) solid var\(--color-ui-line\);[^}]*border-radius: var\(--radius-prose-block-radius\)/);
-  assert.match(rule(read('table.css'), '.app-table-scroll'), /border: var\(--border-width-thin\) solid var\(--color-ui-line\);\s*border-radius: var\(--radius-prose-block-radius\)/);
+  assert.match(rule(read('prose.css'), '.app-details'), /border: var\(--border-width-thin\) solid var\(--color-prose-block-line\);[^}]*border-radius: var\(--radius-prose-block-radius\)/);
+  assert.match(rule(read('table.css'), '.app-table-scroll'), /border: var\(--border-width-thin\) solid var\(--color-prose-block-line\);\s*border-radius: var\(--radius-prose-block-radius\)/);
   const surface = rule(read('diagram/player.css'), '.fl-surface');
-  assert.match(surface, /border: var\(--border-width-thin\) solid var\(--color-ui-line\)/);
+  assert.match(surface, /border: var\(--border-width-thin\) solid var\(--color-prose-block-line\)/);
   assert.match(surface, /border-radius: var\(--radius-prose-block-radius\)/);
   assert.match(surface, /background: transparent/);
   assert.match(rule(read('diagram/player.css'), '.fl-figure > .app-tool-header'), /padding: 0 0 var\(--spacing-2\)/);
+});
+
+// Things shared.css의 code·pre 값: 반투명 면·선·글자, pre 안쪽 .4em .8em, 표 칸 .3em .5em과 머리 칸 면 없음.
+test('inline_code_code_blocks_and_tables_use_things_source_values', () => {
+  const light = name => resolveValue(tables.light, name);
+  assert.equal(light('color.prose-code-background'), 'rgba(0,34,77,.05)');
+  assert.equal(light('color.prose-code-border'), 'rgba(0,48,111,.04)');
+  assert.equal(light('color.prose-code-color'), 'rgba(0,4,10,.69)');
+  assert.equal(light('color.code-surface'), light('color.prose-code-background'));
+  assert.equal(light('component.prose-pre-padding'), '.4em .8em');
+  assert.equal(light('component.table-padding'), '.3em .5em');
+  const prose = readFileSync(root + 'styles/prose.css', 'utf8');
+  const table = readFileSync(root + 'styles/table.css', 'utf8');
+  assert.match(prose, /\.app-code pre \{[^}]*padding: var\(--component-prose-pre-padding\)/);
+  assert.match(table, /\.app-table :is\(th, td\) \{[^}]*padding: var\(--component-table-padding\)/);
+  assert.match(table, /\.app-table th \{ font-weight: var\(--font-weight-bold\); \}/);
 });
 
 test('diagram_panels_stop_at_natural_size_and_the_readable_minimum', () => {

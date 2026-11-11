@@ -221,11 +221,13 @@ body > main { overflow-x: clip; }
 @media (hover: none), (pointer: coarse) { .app-toolbar { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .app-toolbar { transition: none; } }
 /* 문서 표와 단축키 표가 공유하는 면·경계·읽기 규칙. */
+/* Things 표처럼 내용 폭만큼만 차지하고, 본문보다 넓으면 상자 안에서 가로로 넘긴다. */
 .app-table-scroll {
+  width: fit-content;
   max-width: 100%;
   overflow: auto;
   margin-block: var(--spacing-gap);
-  border: var(--border-width-thin) solid var(--color-ui-line);
+  border: var(--border-width-thin) solid var(--color-prose-block-line);
   border-radius: var(--radius-prose-block-radius);
 }
 
@@ -235,7 +237,6 @@ body > main { overflow-x: clip; }
 }
 
 .app-table {
-  width: 100%;
   min-width: max-content;
   border-collapse: separate;
   border-spacing: 0;
@@ -248,17 +249,17 @@ body > main { overflow-x: clip; }
 
 .app-table :is(th, td) {
   max-width: var(--container-body-width);
-  padding: var(--spacing-3) var(--spacing-4);
+  padding: var(--component-table-padding);
   vertical-align: baseline;
   border: 0;
-  border-bottom: var(--border-width-thin) solid var(--color-ui-line);
+  border-bottom: var(--border-width-thin) solid var(--color-prose-block-line);
   text-align: left;
   word-break: keep-all;
   overflow-wrap: break-word;
 }
 
 .app-table > :last-child > tr:last-child > :is(th, td) { border-bottom: 0; }
-.app-table th { font-weight: var(--font-weight-bold); background: var(--color-prose-soft); }
+.app-table th { font-weight: var(--font-weight-bold); }
 .app-table :is(th, td) code { white-space: pre-wrap; overflow-wrap: anywhere; }
 .app-table .is-center { text-align: center; }
 .app-table .is-right { text-align: right; }
@@ -267,10 +268,6 @@ body > main { overflow-x: clip; }
   color: var(--color-ui-muted);
   text-align: left;
   font-weight: var(--font-weight-semibold);
-}
-
-@media (max-width: 600px) {
-  .app-table :is(th, td) { padding: var(--spacing-2) var(--spacing-3); }
 }
 /* 동일한 삽입 계약을 사용하는 본문과 갤러리의 대체 전체화면. */
 .app-diagram { margin-block: var(--spacing-prose-block); }
@@ -349,14 +346,15 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 .app-textarea.is-source { font-size: var(--text-compact-text); line-height: var(--leading-prose-body); color: var(--color-ink); tab-size: 2; word-break: keep-all; }
 
 /* 단추: 입력과 같은 높이·곡률. 기본은 Things 기본 단추(회청 면, 진한 글자, 600), 주 단추는 Things 강한 단추(accent-1 면, 흰 글자, 700), quiet는 테두리 없는 글자 단추다. */
-.app-button { display: inline-flex; align-items: center; justify-content: center; gap: var(--spacing-gap-xs); height: var(--spacing-input-height); padding: 0 var(--spacing-gap); border: var(--border-width-thin) solid transparent; border-radius: var(--radius-input-radius); background: var(--color-button-surface); color: var(--color-button-ink); font: inherit; font-size: var(--text-small-text); font-weight: var(--font-weight-semibold); white-space: nowrap; text-decoration: none; cursor: pointer; transition: background var(--duration-fast) var(--ease-reveal); }
-.app-button:hover { background: var(--color-button-hover); text-decoration: none; }
+.app-button { display: inline-flex; align-items: center; justify-content: center; gap: var(--spacing-gap-xs); height: var(--spacing-input-height); padding: 0 var(--spacing-action-button-inset); border: var(--border-width-thin) solid transparent; border-radius: var(--radius-action-button-radius); background: var(--color-button-surface); color: var(--color-button-ink); font: inherit; font-size: var(--text-small-text); font-weight: var(--font-weight-semibold); white-space: nowrap; text-decoration: none; cursor: pointer; transition: background var(--duration-fast) var(--ease-reveal); }
+/* Things .button: 호버에서 면이 한 단계 진해지고 아주 옅은 그림자가 생긴다. 글자 단추(quiet)는 그림자가 없다. */
+.app-button:hover { background: var(--color-button-hover); box-shadow: var(--shadow-action-shadow); text-decoration: none; }
 .app-button:active { background: var(--color-button-active); }
 .app-button.is-primary { border-color: transparent; background: var(--color-button-primary); color: var(--color-button-primary-ink); font-weight: var(--font-weight-bold); }
 .app-button.is-primary:hover { background: var(--color-button-primary-hover); }
 .app-button.is-primary:active { background: var(--color-button-primary-active); }
 .app-button.is-quiet { border-color: transparent; background: transparent; color: var(--color-body); }
-.app-button.is-quiet:hover { background: var(--color-search-bg); color: var(--color-ink); }
+.app-button.is-quiet:hover { background: var(--color-search-bg); color: var(--color-ink); box-shadow: none; }
 .app-button:focus-visible { outline: var(--outline-width-focus) solid var(--color-ui-focus); outline-offset: var(--spacing-outline); }
 .app-button:disabled { cursor: default; opacity: var(--opacity-button-disabled); }
 /* 사이트 위에 얹는 글 관리: 오른쪽 아래 단추, 임시 글 목록, 글 수정·삭제 줄, 작성·출간 화면, 확인 창, 알림, 로그인 화면.
@@ -640,7 +638,7 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 .app-prose kbd { display: inline-block; box-sizing: content-box; min-width: var(--text-key-size); padding: var(--component-key-padding); margin: var(--component-key-margin); border: 0; border-radius: var(--radius-key-radius); background: var(--color-key-background); color: var(--color-key-color); box-shadow: var(--shadow-key-shadow); font-family: var(--font-key-font); font-size: var(--text-key-size); font-weight: var(--font-weight-medium); font-style: normal; line-height: 1; text-align: center; vertical-align: var(--border-width-thin); }
 /* 코드 블록: 라이트·다크 모두 어두운 바탕이다. 이름 머리줄 없이 복사 단추만 오른쪽 위에 겹치고, 긴 줄은 줄을 바꾸지 않고 가로로 옮겨 본다. */
 .app-code { font-size: var(--text-prose-code-size); display: grid; grid-template-columns: minmax(0, 1fr); min-width: 0; margin-block: var(--spacing-prose-block); overflow: hidden; background: var(--color-code-surface); border: var(--border-width-thin) solid var(--color-code-border); border-radius: var(--radius-prose-block-radius); color: var(--color-code-ink); }
-.app-code pre { min-width: 0; margin: 0; padding: var(--spacing-code-inset); overflow-x: auto; background: transparent; color: inherit; font-family: var(--font-mono); font-size: inherit; line-height: var(--leading-feature-body-line); tab-size: var(--component-prose-tab-size); white-space: pre; overflow-wrap: normal; }
+.app-code pre { min-width: 0; margin: 0; padding: var(--component-prose-pre-padding); overflow-x: auto; background: transparent; color: inherit; font-family: var(--font-mono); font-size: inherit; line-height: var(--leading-feature-body-line); tab-size: var(--component-prose-tab-size); white-space: pre; overflow-wrap: normal; }
 .app-code code { padding: 0; border: 0; border-radius: 0; background: transparent; color: inherit; font: inherit; white-space: inherit; overflow-wrap: inherit; }
 /* 어두운 코드 면 위의 복사 단추는 같은 도구 단추이고 면에 맞는 색만 정한다. */
 .app-code .app-tool-header { padding: var(--spacing-2); }
@@ -683,7 +681,7 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 .app-callout.is-success::before { color: var(--color-status-success-ink); }
 .app-callout.is-warning::before { color: var(--color-status-warning-ink); }
 .app-callout.is-error::before { color: var(--color-status-error-ink); }
-.app-details { margin-block: var(--spacing-prose-block); padding: var(--spacing-3) var(--spacing-4); border: var(--border-width-thin) solid var(--color-ui-line); border-radius: var(--radius-prose-block-radius); }
+.app-details { margin-block: var(--spacing-prose-block); padding: var(--spacing-3) var(--spacing-4); border: var(--border-width-thin) solid var(--color-prose-block-line); border-radius: var(--radius-prose-block-radius); }
 .app-details summary { cursor: pointer; font-weight: var(--font-weight-semibold); }
 .app-details[open] > summary { margin-bottom: var(--spacing-prose-item); }
 .app-details > :last-child { margin-bottom: 0; }
@@ -697,7 +695,7 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 .app-syntax-row pre { margin: 0 0 var(--spacing-syntax-example-gap); padding: var(--component-syntax-example-padding); background: var(--color-syntax-example-background); border: var(--border-width-thin) solid var(--color-syntax-example-border); border-radius: var(--radius-syntax-example-radius); color: var(--color-body); white-space: pre-wrap; }
 /* 일반 페이지의 본문 간격은 앞선 구성 요소 규칙을 덮어쓴다. 블로그와 지원 문서 문맥은 위쪽 기본 본문 규칙에 함께 선언한다. */
 .app-prose p.app-fineprint { margin: var(--component-prose-fineprint-margin); font-size: var(--text-post-date-size); line-height: var(--leading-caption-line); color: var(--color-prose-caption-color); }
-.app-prose p.app-article-lead { margin: 0 0 var(--spacing-6); font-size: var(--text-post-lead-size); line-height: var(--leading-line-intro); color: var(--color-body); word-break: keep-all; }
+.app-prose p.app-article-lead { margin: 0 0 var(--spacing-post-lead-margin); font-size: var(--text-post-lead-size); line-height: var(--leading-line-intro); color: var(--color-body); word-break: keep-all; }
 .app-cancelled-task { display: inline-block; width: var(--spacing-task-size); height: var(--spacing-task-size); vertical-align: var(--spacing-task-align); background: url('./assets/icons/layout/checkbox-indeterminate.svg') center / contain no-repeat; }
 .task-list-item.is-cancelled { text-decoration: line-through; color: var(--color-ui-muted); list-style: none; }
 .app-callout.is-fineprint { font-size: var(--text-post-date-size); line-height: var(--leading-caption-line); }
@@ -740,7 +738,6 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 @media (max-width: 600px) {
   .app-prose blockquote { margin-inline: var(--component-prose-quote-inset-compact); }
   :root {
-    --spacing-code-inset: var(--spacing-code-inset-compact);
     --spacing-post-header-top: var(--spacing-post-header-top-compact);
     --spacing-post-tags-after: var(--spacing-post-tags-after-compact);
   }

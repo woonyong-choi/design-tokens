@@ -53,7 +53,7 @@ html.embedded .fl-figure.full {
   flex: 1 1 auto;
   flex-direction: column;
   min-height: 0;
-  border: var(--border-width-thin) solid var(--color-ui-line);
+  border: var(--border-width-thin) solid var(--color-prose-block-line);
   border-radius: var(--radius-prose-block-radius);
   background: transparent;
 }

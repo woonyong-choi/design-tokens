@@ -360,7 +360,8 @@ export const tokens = freeze({
       "active": "var(--color-button-active)",
       "ink": "var(--color-button-ink)"
     },
-    "input-border": "var(--color-input-border)"
+    "input-border": "var(--color-input-border)",
+    "prose-block-line": "var(--color-prose-block-line)"
   },
   "font": {
     "sans": "var(--font-sans)",
@@ -630,12 +631,11 @@ export const tokens = freeze({
     "prose-h3-before": "var(--spacing-prose-h3-before)",
     "prose-h3-after": "var(--spacing-prose-h3-after)",
     "prose-rule": "var(--spacing-prose-rule)",
-    "code-inset": "var(--spacing-code-inset)",
-    "code-inset-compact": "var(--spacing-code-inset-compact)",
     "post-header-top": "var(--spacing-post-header-top)",
     "post-header-top-compact": "var(--spacing-post-header-top-compact)",
     "post-tags-after": "var(--spacing-post-tags-after)",
-    "post-tags-after-compact": "var(--spacing-post-tags-after-compact)"
+    "post-tags-after-compact": "var(--spacing-post-tags-after-compact)",
+    "action-button-inset": "var(--spacing-action-button-inset)"
   },
   "radius": {
     "lg": "var(--radius-lg)",
@@ -672,7 +672,8 @@ export const tokens = freeze({
     "tooltip-radius": "var(--radius-tooltip-radius)",
     "prose-block-radius": "var(--radius-prose-block-radius)",
     "blog-card-radius": "var(--radius-blog-card-radius)",
-    "xl": "var(--radius-xl)"
+    "xl": "var(--radius-xl)",
+    "action-button-radius": "var(--radius-action-button-radius)"
   },
   "shadow": {
     "help-hover-shadow": "var(--shadow-help-hover-shadow)",
@@ -1166,7 +1167,17 @@ export const tokens = freeze({
     "prose-caption-color-dark": "var(--primitive-prose-caption-color-dark)",
     "prose-marker-dark": "var(--primitive-prose-marker-dark)",
     "prose-rule-color-dark": "var(--primitive-prose-rule-color-dark)",
-    "input-background": "var(--primitive-input-background)"
+    "input-background": "var(--primitive-input-background)",
+    "code-soft-surface": "var(--primitive-code-soft-surface)",
+    "code-soft-line": "var(--primitive-code-soft-line)",
+    "code-soft-ink": "var(--primitive-code-soft-ink)",
+    "code-soft-surface-dark": "var(--primitive-code-soft-surface-dark)",
+    "code-soft-line-dark": "var(--primitive-code-soft-line-dark)",
+    "code-soft-ink-dark": "var(--primitive-code-soft-ink-dark)",
+    "table-line-dark": "var(--primitive-table-line-dark)",
+    "prose-pre-padding": "var(--primitive-prose-pre-padding)",
+    "action-button-radius": "var(--primitive-action-button-radius)",
+    "action-button-inset": "var(--primitive-action-button-inset)"
   },
   "breakpoint": {
     "mobile": "var(--breakpoint-mobile)",
@@ -1353,7 +1364,8 @@ export const tokens = freeze({
     "table-padding": "var(--component-table-padding)",
     "newsletter-button-padding": "var(--component-newsletter-button-padding)",
     "action-focus": "var(--component-action-focus)",
-    "blog-card-summary-lines": "var(--component-blog-card-summary-lines)"
+    "blog-card-summary-lines": "var(--component-blog-card-summary-lines)",
+    "prose-pre-padding": "var(--component-prose-pre-padding)"
   },
   "outline-width": {
     "focus": "var(--outline-width-focus)"
@@ -1368,8 +1380,8 @@ export const values = freeze({
     "link": "#2576eb",
     "border-strong": "#b7b7b7",
     "syntax-string": "#155dfc",
-    "syntax-function": "#303336",
-    "syntax-number": "#303336",
+    "syntax-function": "rgba(0,4,10,.69)",
+    "syntax-number": "rgba(0,4,10,.69)",
     "syntax-keyword": "#ff6900",
     "syntax-type": "#ff6900",
     "gray": {
@@ -1526,14 +1538,14 @@ export const values = freeze({
       }
     },
     "on-action": "#ffffff",
-    "syntax-property": "#303336",
-    "syntax-parameter": "#303336",
-    "syntax-constant": "#303336",
-    "syntax-annotation": "#303336",
-    "syntax-variable": "#303336",
+    "syntax-property": "rgba(0,4,10,.69)",
+    "syntax-parameter": "rgba(0,4,10,.69)",
+    "syntax-constant": "rgba(0,4,10,.69)",
+    "syntax-annotation": "rgba(0,4,10,.69)",
+    "syntax-variable": "rgba(0,4,10,.69)",
     "syntax-comment": "#62666c",
-    "syntax-operator": "#303336",
-    "syntax-punctuation": "#303336",
+    "syntax-operator": "rgba(0,4,10,.69)",
+    "syntax-punctuation": "rgba(0,4,10,.69)",
     "canvas": "#f2f5f7",
     "ui-card": "#ffffff",
     "ink": "#303336",
@@ -1588,9 +1600,9 @@ export const values = freeze({
     "gallery-hover": "rgba(0,28,70,.12)",
     "gallery-active": "rgba(0,10,24,.34)",
     "gallery-selected": "rgba(0,3,7,.9)",
-    "prose-code-color": "#303336",
-    "prose-code-border": "#dfe3e8",
-    "prose-code-background": "#eceef0",
+    "prose-code-color": "rgba(0,4,10,.69)",
+    "prose-code-border": "rgba(0,48,111,.04)",
+    "prose-code-background": "rgba(0,34,77,.05)",
     "prose-pre-background": "#f6f7fa",
     "key-color": "rgba(0,1,2,.85)",
     "key-background": "#fcfcfd",
@@ -1684,9 +1696,9 @@ export const values = freeze({
         "surface": "#fef2f2"
       }
     },
-    "code-surface": "#f3f5f7",
-    "code-ink": "#303336",
-    "code-border": "#dfe3e8",
+    "code-surface": "rgba(0,34,77,.05)",
+    "code-ink": "rgba(0,4,10,.69)",
+    "code-border": "rgba(0,48,111,.04)",
     "prose-soft": "#f3f5f7",
     "code-control-hover": "#e6e8eb",
     "accent-2": {
@@ -1722,7 +1734,8 @@ export const values = freeze({
       "active": "#bec8d6",
       "ink": "rgba(0,8,19,.74)"
     },
-    "input-border": "#dfe3e8"
+    "input-border": "#dfe3e8",
+    "prose-block-line": "#eceef0"
   },
   "font": {
     "sans": "ui-sans-serif, -apple-system, BlinkMacSystemFont, Roboto, sans-serif",
@@ -1992,12 +2005,11 @@ export const values = freeze({
     "prose-h3-before": "2.68333333em",
     "prose-h3-after": ".89444444em",
     "prose-rule": 48,
-    "code-inset": 24,
-    "code-inset-compact": 16,
     "post-header-top": 48,
     "post-header-top-compact": 32,
     "post-tags-after": 48,
-    "post-tags-after-compact": 40
+    "post-tags-after-compact": 40,
+    "action-button-inset": "1em"
   },
   "radius": {
     "lg": 8,
@@ -2032,9 +2044,10 @@ export const values = freeze({
     "newsletter-button-radius": 7.632,
     "help-grouped-radius": 10,
     "tooltip-radius": 24,
-    "prose-block-radius": 12,
+    "prose-block-radius": 8,
     "blog-card-radius": 16,
-    "xl": 12
+    "xl": 12,
+    "action-button-radius": ".45em"
   },
   "shadow": {
     "help-hover-shadow": "0 4px 8px rgba(0,0,0,.06), 0 8px 16px rgba(0,0,0,.06)",
@@ -2528,7 +2541,17 @@ export const values = freeze({
     "prose-caption-color-dark": "rgba(239,246,255,.49)",
     "prose-marker-dark": "rgba(219,234,255,.51)",
     "prose-rule-color-dark": "rgba(227,239,255,.25)",
-    "input-background": "#eceef0"
+    "input-background": "#eceef0",
+    "code-soft-surface": "rgba(0,34,77,.05)",
+    "code-soft-line": "rgba(0,48,111,.04)",
+    "code-soft-ink": "rgba(0,4,10,.69)",
+    "code-soft-surface-dark": "rgba(240,246,255,.09)",
+    "code-soft-line-dark": "rgba(213,230,255,.04)",
+    "code-soft-ink-dark": "rgba(252,253,255,.73)",
+    "table-line-dark": "#3b3b3c",
+    "prose-pre-padding": ".4em .8em",
+    "action-button-radius": ".45em",
+    "action-button-inset": "1em"
   },
   "breakpoint": {
     "mobile": 560,
@@ -2715,7 +2738,8 @@ export const values = freeze({
     "table-padding": ".3em .5em",
     "newsletter-button-padding": "7.1232px 16.96px",
     "action-focus": "0 0 0 2px rgba(37,118,235,.5)",
-    "blog-card-summary-lines": 2
+    "blog-card-summary-lines": 2,
+    "prose-pre-padding": ".4em .8em"
   },
   "outline-width": {
     "focus": 3

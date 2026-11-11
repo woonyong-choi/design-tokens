@@ -181,7 +181,7 @@
   --color-gallery-selected: var(--primitive-gallery-selected);
   --color-prose-code-color: var(--color-code-ink);
   --color-prose-code-border: var(--color-code-border);
-  --color-prose-code-background: var(--color-input-background);
+  --color-prose-code-background: var(--color-code-surface);
   --color-prose-pre-background: var(--primitive-help-bg);
   --color-key-color: var(--primitive-key-color);
   --color-key-background: var(--primitive-key-background);
@@ -255,9 +255,9 @@
   --color-status-warning-surface: var(--primitive-status-warning-surface);
   --color-status-error-ink: var(--primitive-status-error-ink);
   --color-status-error-surface: var(--primitive-status-error-surface);
-  --color-code-surface: var(--color-prose-soft);
-  --color-code-ink: var(--color-ink);
-  --color-code-border: var(--color-ui-line);
+  --color-code-surface: var(--primitive-code-soft-surface);
+  --color-code-ink: var(--primitive-code-soft-ink);
+  --color-code-border: var(--primitive-code-soft-line);
   --color-prose-soft: var(--primitive-prose-soft);
   --color-code-control-hover: var(--color-help-active);
   --color-accent-2-anchor: #ff6900;
@@ -288,6 +288,7 @@
   --color-button-active: var(--primitive-button-active);
   --color-button-ink: var(--primitive-button-ink);
   --color-input-border: var(--color-ui-line);
+  --color-prose-block-line: var(--primitive-input-background);
   --font-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, "Andale Mono", Consolas, Monaco, monospace;
   --font-figure-sans: FigSans, FigSansSym, FigSansMath, ui-sans-serif, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
@@ -501,12 +502,11 @@
   --spacing-prose-h3-before: 2.68333333em;
   --spacing-prose-h3-after: .89444444em;
   --spacing-prose-rule: var(--spacing-12);
-  --spacing-code-inset: var(--spacing-6);
-  --spacing-code-inset-compact: var(--spacing-4);
   --spacing-post-header-top: var(--spacing-12);
   --spacing-post-header-top-compact: var(--spacing-8);
   --spacing-post-tags-after: var(--spacing-12);
   --spacing-post-tags-after-compact: var(--spacing-10);
+  --spacing-action-button-inset: var(--primitive-action-button-inset);
   --radius-lg: 8px;
   --radius-full: 999px;
   --radius-sm: 4px;
@@ -539,9 +539,10 @@
   --radius-newsletter-button-radius: var(--primitive-newsletter-button-radius);
   --radius-help-grouped-radius: var(--primitive-help-grouped-radius);
   --radius-tooltip-radius: var(--primitive-tooltip-radius);
-  --radius-prose-block-radius: var(--radius-xl);
+  --radius-prose-block-radius: var(--radius-lg);
   --radius-blog-card-radius: var(--spacing-4);
   --radius-xl: 12px;
+  --radius-action-button-radius: var(--primitive-action-button-radius);
   --shadow-help-hover-shadow: var(--primitive-help-hover-shadow);
   --shadow-landing-review-shadow: var(--primitive-landing-review-shadow);
   --shadow-feature-tab-shadow: var(--primitive-feature-tab-shadow);

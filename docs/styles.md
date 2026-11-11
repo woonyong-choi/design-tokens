@@ -188,7 +188,7 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 ## 본문과 코드
 
-본문의 Markdown 표와 단축키 표는 `Table`과 `styles/table.css`를 공유한다. 표를 감싼 상자(`.app-table-scroll`)가 블록 틀(1px `color.ui-line`, 반경 12)을 갖고 표 자체에는 테두리가 없다. 글자는 본문 크기와 줄 높이를 그대로 물려받고(Things 표와 같음), 칸 안쪽은 12·16(좁은 화면 8·12), 머리줄은 굵기 700과 `color.prose-soft` 면, 줄 구분은 1px이다. 문서가 지정한 열 정렬은 유지한다.
+본문의 Markdown 표와 단축키 표는 `Table`과 `styles/table.css`를 공유한다. 표를 감싼 상자(`.app-table-scroll`)가 블록 틀(1px `color.prose-block-line`, 반경 8)을 갖고 표 자체에는 테두리가 없다. 상자는 Things 표처럼 내용 폭만큼만 차지하고, 본문보다 넓으면 상자 안에서 가로로 넘긴다. 글자는 본문 크기와 줄 높이를 그대로 물려받고, 칸 안쪽은 Things 표의 .3em·.5em, 머리줄은 굵기 700만 다르고 면이 없으며, 줄 구분은 같은 선 1px이다(모두 Things 표와 같음). 문서가 지정한 열 정렬은 유지한다.
 
 표는 내용의 고유 폭을 확보해 코드 옆의 짧은 설명이 한두 글자씩 세로로 눌리지 않게 한다. 긴 셀은 기존 본문 읽기 폭인 `container.body-width` 안에서 줄바꿈한다. 좁은 화면에서는 표 영역 안에서 가로로 이동하고 페이지 전체 폭은 늘리지 않는다.
 
@@ -219,9 +219,10 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 ### 블록 요소
 
-- 블록 틀: 코드·표·도표·접기는 1px `color.ui-line`(코드는 아래 규칙)과 반경 `radius.prose-block-radius`(12)를 쓴다. 본문 그림은 기본으로 모서리를 깎지 않고, 작성자가 rounded 옵션(`img.is-rounded`)을 고르면 코드 블록과 같은 반경으로 자른다(사용자 결정). 링크로 감싼 그림과 그림 격자 안도 같다.
+- 블록 틀: 코드·표·도표·접기는 반경 `radius.prose-block-radius`(8, Things pre·표 .5em의 고정값)를 쓴다. 선이 있는 표·도표·접기는 Things 표 선 `color.prose-block-line`(라이트 `#eceef0`) 1px이고, 코드는 아래 코드 규칙의 면과 선을 쓴다. 본문 그림은 기본으로 모서리를 깎지 않고, 작성자가 rounded 옵션(`img.is-rounded`)을 고르면 코드 블록과 같은 반경으로 자른다(사용자 결정). 링크로 감싼 그림과 그림 격자 안도 같다.
 - 인용은 Things처럼 기울이고 양옆 2em(좁은 화면 .75em)을 들여 쓴다. 줄이나 면은 없다.
-- 인라인 코드는 Things 코드의 크기·여백·곡률(.85em, 안쪽 0·.25em, 반경 .25em)을 따른다. 면(`color.prose-code-background`)은 입력 칸 면(`color.input-background`), 1px 선(`color.prose-code-border`)은 코드 블록 테두리(`color.code-border`), 글자(`color.prose-code-color`)는 코드 블록 잉크색(`color.code-ink`)이라 Things 값보다 또렷하다.
+- 인라인 코드와 코드 블록은 Things `shared.css`의 `code`·`pre` 값을 쓴다. 크기 .85em, 인라인 안쪽 0·.25em과 반경 .25em, 블록 안쪽 .4em·.8em(`component.prose-pre-padding`)이다. 면 `rgba(0,34,77,.05)`, 선 `rgba(0,48,111,.04)`, 글자 `rgba(0,4,10,.69)`(`color.code-*`, `color.prose-code-*`)라 본문보다 한 단계 옅다. 다크 인라인 코드는 Things 다크 값이고, 다크 코드 블록은 주석 대비를 지키려고 깊은 면(`#1c1c1e`)을 유지한다. 형광펜(`mark`)만 노란 면이다.
+- 표는 Things 표처럼 칸 안쪽 .3em·.5em(`component.table-padding`), 머리 칸은 굵기만 다르고 면을 칠하지 않는다.
 - 링크는 accent-1 링크색(`color.action-link`, 라이트 `#2576eb`, 다크 `#649fff`)이고 밑줄이 없으며 호버에서 밑줄이 생긴다. 누르는 동안은 `color.prose-link-active`다.
 - 접기(`.app-details`)는 블록 틀과 안쪽 12·16, 요약 600, 펼치면 요약 아래 8이다.
 - 각주는 15와 `color.ui-muted`, 위 구분선 48·16이다.
@@ -242,7 +243,7 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 코드 구문 역할은 `SYNTAX_ROLES`와 `SyntaxToken`으로 연결하며 분석기는 소비자가 선택한다.
 
-본문 그림은 기본으로 모서리를 깎지 않는다. `rounded` 옵션으로 붙는 `img.is-rounded`만 코드 블록(`.app-code`)과 같은 곡률 `radius.prose-block-radius`(12px)로 자른다. 글자 크기에 따라 바뀌는 em 값이 아닌 고정값이라 둘의 모서리가 같다. 대표 이미지(`.app-post-cover`)는 이 옵션과 상관없이 기존 곡률을 유지한다. 그림 상자(`.app-figure`)는 브라우저 기본 좌우 여백(40px)을 없애 본문 폭을 그대로 쓴다. 그래서 본문보다 큰 그림은 코드 블록과 같은 폭으로 줄고, 본문보다 작은 그림은 원래 크기로 가운데에 놓인다(늘려서 흐려지지 않게).
+본문 그림은 기본으로 모서리를 깎지 않는다. `rounded` 옵션으로 붙는 `img.is-rounded`만 코드 블록(`.app-code`)과 같은 곡률 `radius.prose-block-radius`(8px)로 자른다. 글자 크기에 따라 바뀌는 em 값이 아닌 고정값이라 둘의 모서리가 같다. 대표 이미지(`.app-post-cover`)는 이 옵션과 상관없이 기존 곡률을 유지한다. 그림 상자(`.app-figure`)는 브라우저 기본 좌우 여백(40px)을 없애 본문 폭을 그대로 쓴다. 그래서 본문보다 큰 그림은 코드 블록과 같은 폭으로 줄고, 본문보다 작은 그림은 원래 크기로 가운데에 놓인다(늘려서 흐려지지 않게).
 
 코드 블록과 도표는 `ToolHeader`, `Toolbar`, `ToolButton`을 조립한다. 이름표(`.app-tool-label`)가 있는 머리글은 버튼 높이를 차지해 콘텐츠와 겹치지 않는다. 이름표 없는 머리글(코드)은 자리를 차지하지 않고 면 오른쪽 위 8에 겹쳐 놓여, 숨은 도구 막대가 콘텐츠 위에 빈 띠를 만들지 않는다. `ToolHeader({ row: true })`(`.app-tool-header.is-row`, 도표)는 이름표 없이도 내용 위에 단추 줄을 차지해 어떤 폭에서도 그림을 덮지 않고, 자리가 늘 있으므로 단추도 늘 보인다.
 
@@ -270,7 +271,7 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 ## 도표 정보 역할
 
-도표 틀(`.fl-surface`)은 코드·표·그림과 같은 블록 틀(1px `color.ui-line`, 반경 12)이고 회색 면을 칠하지 않는다(`color.figure.canvas`는 페이지 면). 도구 단추 줄은 틀 밖 바로 위(틀과 8 간격)의 자기 줄이고 그림은 틀 안, 장면 탭은 틀 아래 12에 놓인다. 단추가 틀 안에 들어가 그림 자리를 줄이거나 그림을 덮지 않는다. 스키마와 격자의 경계는 상시 표시하며, 표 머리는 옅은 면으로 구분한다.
+도표 틀(`.fl-surface`)은 표·접기와 같은 블록 틀(1px `color.prose-block-line`, 반경 8)이고 회색 면을 칠하지 않는다(`color.figure.canvas`는 페이지 면). 도구 단추 줄은 틀 밖 바로 위(틀과 8 간격)의 자기 줄이고 그림은 틀 안, 장면 탭은 틀 아래 12에 놓인다. 단추가 틀 안에 들어가 그림 자리를 줄이거나 그림을 덮지 않는다. 스키마와 격자의 경계는 상시 표시하며, 표 머리는 옅은 면으로 구분한다.
 
 도표 글자는 본문 단계에 묶인다. 그림·그룹 제목과 차트 제목(`.frame`)은 작은 글 15/600, 그 밖의 모든 글(상자 이름, 부제, 선 라벨, 카드 줄, 번호, 태그, 표식, 키, 배지, 눈금, 상태 글자)은 설명 13이다. 11px와 22px 단계는 없고 도넛 가운데 합계는 title-3(24)이다. DiagramPlay의 측정(`measure/texts.js` STYLE, `measure/pills.js`, `chart/metrics.js`)이 같은 토큰으로 재므로 잰 값이 그린 값이다. 13px 글이 들어가도록 알약 높이(`spacing.figure.pill.height`)는 20, 태그 높이는 18이다.
 

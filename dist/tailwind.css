@@ -132,7 +132,7 @@
   --color-ui-muted: var(--primitive-muted);
   --color-ui-line: var(--primitive-line);
   --color-soft: var(--primitive-soft);
-  --color-tag-hover: var(--color-ink);
+  --color-tag-hover: var(--color-feature-tab-selected);
   --color-code: var(--primitive-code);
   --color-search-bg: var(--primitive-search-bg);
   --color-help-bg: var(--primitive-help-bg);
@@ -234,7 +234,7 @@
   --color-landing-newsletter-note-ink: var(--primitive-muted);
   --color-feature-tab-ink: var(--color-accent-1-on-strong);
   --color-gallery-selected-ink: var(--color-control-paper);
-  --color-tag-background: var(--color-prose-soft);
+  --color-tag-background: var(--color-help-active);
   --color-help-grouped-bg: var(--primitive-transparent);
   --color-document-nav-active-ink: var(--color-action-link);
   --color-workspace-sidebar: var(--color-gray-43);
@@ -243,7 +243,7 @@
   --color-workspace-hover: var(--color-gray-94);
   --color-workspace-selected: var(--color-gray-212);
   --color-tag-ink: var(--color-body);
-  --color-tag-preview: var(--color-help-active);
+  --color-tag-preview: var(--color-ui-line);
   --color-tag-preview-ink: var(--color-ink);
   --color-button-primary: var(--color-accent-1-strong);
   --color-button-primary-ink: var(--color-accent-1-on-strong);
@@ -646,7 +646,6 @@
   --container-admin-panel: 340px;
   --container-publish: 768px;
   --container-admin-login: 320px;
-  --blur-blur: var(--primitive-blur);
   --aspect-ratio-video: var(--primitive-ratio-video);
   --aspect-device-ratio: var(--primitive-device-ratio);
   --aspect-blog-cover-ratio: 2 / 1;

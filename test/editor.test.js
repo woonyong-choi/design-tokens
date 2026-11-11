@@ -5,6 +5,7 @@ import { AdminDock, AdminDrafts, AdminLogin, Button, LinkButton, Dialog, Field, 
 test('editor_controls_escape_text_and_reject_unknown_values', () => {
   assert.equal(String(Button({ label: '<저장>', variant: 'primary', action: 'save' })), '<button type="button" class="app-button is-primary" data-action="save">&lt;저장&gt;</button>');
   assert.throws(() => Button({ label: 'x', variant: 'danger' }), /variant/);
+  assert.equal(String(Button({ label: '댓글 보기', action: 'comments-expand', controls: 'comments-a', context: '<글>', hidden: true })), '<button type="button" class="app-button" data-action="comments-expand" aria-controls="comments-a" aria-expanded="false" hidden>댓글 보기<span class="app-sr"> · &lt;글&gt;</span></button>');
   assert.equal(String(LinkButton({ label: '토큰 만들기', href: 'https://github.com/settings', variant: 'quiet', external: true })), '<a class="app-button is-quiet" href="https://github.com/settings" target="_blank" rel="noopener noreferrer">토큰 만들기</a>');
   assert.throws(() => LinkButton({ label: 'x', href: 'javascript:alert(1)' }), /Unsupported URL/);
   assert.equal(String(LinkButton({ label: '홈으로', href: '/', variant: 'quiet', hidden: true })), '<a class="app-button is-quiet" href="/" hidden>홈으로</a>');

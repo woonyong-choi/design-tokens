@@ -94,16 +94,20 @@
 .app-player-button.is-compact { width: calc(var(--spacing-flow-control-size) * 2); height: calc(var(--spacing-flow-control-size) * 2); min-width: 0; min-height: 0; }
 .app-technology { display: flex; flex-direction: column; align-items: center; flex: none; width: calc(var(--icon-size-card) + var(--spacing-gap)); gap: var(--spacing-gap-sm); color: var(--color-ui-muted); font-size: var(--text-small-text); }
 .app-technology > :is(a, span) { display: flex; align-items: center; justify-content: center; width: calc(var(--icon-size-medium) + 2 * var(--spacing-gap-xs)); aspect-ratio: 1; border-radius: var(--radius-help-radius); }
-.app-technology > [aria-disabled="true"] { opacity: var(--opacity-dim); }
+/* 글이 있는 기술은 원래 색 그대로, 글이 없는 기술은 무채색으로 흐리게 둔다. 색이 원래 옅은 로고(C 등)도 켜짐과 꺼짐이 구분된다. */
+.app-technology > [aria-disabled="true"] { opacity: var(--opacity-dim); filter: grayscale(1); }
 .app-technology img { display: block; width: var(--icon-size-medium); height: var(--icon-size-medium); object-fit: contain; }
-.app-technology > a, .app-interview-card { position: relative; transition: background-color var(--duration-help-motion) var(--ease-reveal), box-shadow var(--duration-help-motion) var(--ease-reveal), transform var(--duration-help-motion) var(--ease-reveal); }
-.app-technology > a:focus-visible, .app-interview-card:focus-within { background: var(--color-help-hover); box-shadow: var(--shadow-help-hover-shadow); }
+.app-technology > a { transition: background-color var(--duration-help-motion) var(--ease-reveal); }
+/* 기술 아이콘 링크의 호버·초점은 Things 메뉴처럼 옅은 면만 깐다. 테두리·그림자·떠오름은 카드에만 쓴다. */
+.app-technology > a:is(:hover, :focus-visible) { background: var(--color-control-hover); }
+.app-interview-card { position: relative; transition: background-color var(--duration-help-motion) var(--ease-reveal), box-shadow var(--duration-help-motion) var(--ease-reveal), transform var(--duration-help-motion) var(--ease-reveal); }
+.app-interview-card:focus-within { background: var(--color-help-hover); box-shadow: var(--shadow-help-hover-shadow); }
 @media (hover: hover) and (pointer: fine) {
-  .app-technology > a:hover, .app-interview-card:hover { z-index: 1; background: var(--color-help-hover); outline: var(--border-width-thin) solid var(--color-help-hover-border); outline-offset: calc(var(--border-width-thin) * -1); box-shadow: var(--shadow-help-hover-shadow); transform: translateY(var(--spacing-help-lift)) scale(var(--component-icon-scale)); }
+  .app-interview-card:hover { z-index: 1; background: var(--color-help-hover); outline: var(--border-width-thin) solid var(--color-help-hover-border); outline-offset: calc(var(--border-width-thin) * -1); box-shadow: var(--shadow-help-hover-shadow); transform: translateY(var(--spacing-help-lift)) scale(var(--component-icon-scale)); }
 }
 @media (prefers-reduced-motion: reduce) {
   .app-technology > a, .app-interview-card { transition: none; }
-  .app-technology > a:hover, .app-interview-card:hover { transform: none; }
+  .app-interview-card:hover { transform: none; }
 }
 @media (max-width: breakpoint(mobile)) {
   .app-player-button.is-compact { width: var(--spacing-flow-control-size); height: var(--spacing-flow-control-size); }

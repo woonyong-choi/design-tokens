@@ -179,7 +179,9 @@ test('tab_and_tag_states_keep_text_and_selection_contrast_in_both_themes', () =>
   for (const [mode, table] of Object.entries(tables)) {
     const value = name => resolveValue(table, name);
     assert.ok(contrast(value('color.tag-ink'), value('color.tag-background')) >= mainMinimum(value('color.tag-ink'), 4.5), mode + ' default tag text');
-    assert.ok(contrast(value('color.on-action'), value('color.tag-hover')) >= onMainMinimum(value('color.on-action'), value('color.tag-hover'), 4.5), mode + ' tag text and clear symbol');
+    // 고른 태그는 선택 탭과 같은 Things 선택 면(accent-1 누름)이라 선택 탭과 같은 Things 값 예외를 따른다.
+    assert.equal(value('color.tag-hover'), value('color.feature-tab-selected'), mode + ' selected tag matches selected tab');
+    assert.ok(contrast(value('color.on-action'), value('color.tag-hover')) >= onThingsMinimum(value('color.on-action'), value('color.tag-hover'), 4.5), mode + ' tag text and clear symbol');
     assert.ok(contrast(value('color.tag-preview-ink'), value('color.tag-preview')) >= mainMinimum(value('color.tag-preview-ink'), 4.5), mode + ' tag preview text');
     assert.ok(contrast(value('color.tag-preview'), value('color.ui-card')) > contrast(value('color.tag-background'), value('color.ui-card')), mode + ' hovered tags remain more visible than default tags');
     assert.ok(contrast(value('color.tag-ink'), value('color.ui-card')) >= mainMinimum(value('color.tag-ink'), 4.5), mode + ' reset link text');

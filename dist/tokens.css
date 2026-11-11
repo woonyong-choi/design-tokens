@@ -131,7 +131,7 @@
   --color-ui-muted: var(--primitive-muted);
   --color-ui-line: var(--primitive-line);
   --color-soft: var(--primitive-soft);
-  --color-tag-hover: var(--color-ink);
+  --color-tag-hover: var(--color-feature-tab-selected);
   --color-code: var(--primitive-code);
   --color-search-bg: var(--primitive-search-bg);
   --color-help-bg: var(--primitive-help-bg);
@@ -233,7 +233,7 @@
   --color-landing-newsletter-note-ink: var(--primitive-muted);
   --color-feature-tab-ink: var(--color-accent-1-on-strong);
   --color-gallery-selected-ink: var(--color-control-paper);
-  --color-tag-background: var(--color-prose-soft);
+  --color-tag-background: var(--color-help-active);
   --color-help-grouped-bg: var(--primitive-transparent);
   --color-document-nav-active-ink: var(--color-action-link);
   --color-workspace-sidebar: var(--color-gray-43);
@@ -242,7 +242,7 @@
   --color-workspace-hover: var(--color-gray-94);
   --color-workspace-selected: var(--color-gray-212);
   --color-tag-ink: var(--color-body);
-  --color-tag-preview: var(--color-help-active);
+  --color-tag-preview: var(--color-ui-line);
   --color-tag-preview-ink: var(--color-ink);
   --color-button-primary: var(--color-accent-1-strong);
   --color-button-primary-ink: var(--color-accent-1-on-strong);
@@ -804,7 +804,6 @@
   --primitive-help-copy-color: rgba(0,1,2,.77);
   --primitive-search-suggestion-width: 80%;
   --primitive-post-divider-color: rgba(0,22,53,.07);
-  --primitive-comments-fade: linear-gradient(to bottom, transparent, var(--color-gray-0));
   --primitive-post-padding: 48px 0 144px;
   --primitive-post-date-size: 16.02px;
   --primitive-post-date-color: #989fa8;
@@ -988,7 +987,6 @@
   --primitive-flow-control-size: 44px;
   --primitive-card-radius: 18px;
   --primitive-body-text: 18px;
-  --primitive-blur: 5px;
   --primitive-newsletter-input-radius: 6.4px;
   --primitive-newsletter-button-font: 16.96px;
   --primitive-newsletter-button-padding: 7.1232px 16.96px;
@@ -1159,7 +1157,6 @@
   --container-admin-panel: 340px;
   --container-publish: 768px;
   --container-admin-login: 320px;
-  --blur-blur: var(--primitive-blur);
   --aspect-ratio-video: var(--primitive-ratio-video);
   --aspect-device-ratio: var(--primitive-device-ratio);
   --aspect-blog-cover-ratio: 2 / 1;
@@ -1168,7 +1165,6 @@
   --component-icon-scale: var(--primitive-icon-scale);
   --component-landing-nav-scale: var(--primitive-player-hover-opacity);
   --component-search-input-padding: var(--primitive-search-input-padding);
-  --component-comments-fade: var(--primitive-comments-fade);
   --component-post-padding: var(--primitive-post-padding);
   --component-post-h2-margin: var(--primitive-post-h2-margin);
   --component-article-search-padding: var(--primitive-article-search-padding);
@@ -1563,7 +1559,7 @@
   --color-landing-newsletter-note-ink: var(--primitive-muted);
   --color-feature-tab-ink: var(--color-accent-1-on-strong);
   --color-gallery-selected-ink: var(--color-control-paper);
-  --color-tag-background: var(--color-prose-soft);
+  --color-tag-background: var(--color-help-active);
   --color-help-grouped-bg: var(--primitive-transparent);
   --color-document-nav-active-ink: var(--color-action-link);
   --color-workspace-sidebar: var(--color-gray-43);
@@ -1571,7 +1567,7 @@
   --color-workspace-toolbar: var(--color-gray-59);
   --color-workspace-hover: var(--color-gray-94);
   --color-workspace-selected: var(--color-gray-212);
-  --color-tag-preview: var(--color-help-active);
+  --color-tag-preview: var(--color-ui-line);
   --color-status-success-ink: var(--primitive-status-success-ink);
   --color-status-success-surface: var(--primitive-status-success-surface);
   --color-status-warning-ink: var(--primitive-status-warning-ink);

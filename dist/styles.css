@@ -518,8 +518,6 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 .app-tag-filter { justify-content: center; align-items: center; gap: var(--spacing-gap-sm); margin-top: var(--spacing-gap-lg); }
 .app-tag-filter .app-tag { max-width: 100%; padding-inline: var(--spacing-gap-sm); overflow-wrap: anywhere; }
 
-.app-tag-filter .app-tag:hover, .app-tag-filter .app-tag:focus-visible { color: var(--color-tag-preview-ink); background: var(--color-tag-preview); }
-.app-tag-filter .app-tag[aria-pressed=true] { color: var(--color-on-action); background: var(--color-tag-hover); }
 
 .app-tag-reset { padding: calc(var(--spacing-gap-xs) / 2) var(--spacing-gap-xs); font-size: var(--text-tiny-text); line-height: var(--leading-line-body); color: var(--color-tag-ink); text-decoration: underline; }
 /* 카드와 칩: 도움말 카드(변형 is-*), 지식 카드, 태그. 화면 모듈은 맥락 선택자로 배치만 바꾼다. */
@@ -578,7 +576,9 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 /* 태그는 글 머리, 글 카드, 검색 어디서나 같은 알약(13/1.4)이다. is-medium은 작은 글(15) 크기다. */
 .app-tag, .app-tags-more > summary { display: inline-block; padding: var(--spacing-0-5) var(--spacing-2-5); border: 0; border-radius: var(--radius-pill); color: var(--color-tag-ink); background: var(--color-tag-background); font-size: var(--text-tiny-text); line-height: var(--leading-line-body); text-decoration: none; }
 .app-tag.is-medium, .app-tags-more > summary.is-medium { font-size: var(--text-small-text); }
-.app-tag[aria-pressed=true], .app-tag:hover, .app-tag:focus-visible, .app-tags-more > summary:hover, .app-tags-more > summary:focus-visible { color: var(--color-on-action); background: var(--color-tag-hover); text-decoration: none; }
+/* 태그는 어디서나 같은 단계다: 기본 회색 알약, 호버·초점은 한 단계 진한 회색, 고른 태그(검색 필터)는 Things 선택 탭과 같은 파랑. */
+.app-tag:hover, .app-tag:focus-visible, .app-tags-more > summary:hover, .app-tags-more > summary:focus-visible { color: var(--color-tag-preview-ink); background: var(--color-tag-preview); text-decoration: none; }
+.app-tag[aria-pressed=true], .app-tag[aria-pressed=true]:hover { color: var(--color-on-action); background: var(--color-tag-hover); }
 .app-tag[aria-pressed], .app-tags-more > summary { cursor: pointer; }
 .app-tags-more > .app-tags { margin-top: var(--spacing-gap-xs); }
 
@@ -794,17 +794,25 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 .app-source-link { font-size: var(--text-small-text); }
 
 .app-document-shell { max-width: calc(var(--container-page) + 2 * var(--spacing-sidebar-width) + 2 * var(--spacing-gap-lg)); }
-.app-document-layout { display: grid; grid-template-areas: "tree" "content"; gap: var(--spacing-gap); margin-top: var(--spacing-article-search-bottom); align-items: start; }
-.app-document-layout:has(.app-document-outline) { grid-template-areas: "tree" "outline" "content"; }
+.app-document-layout { display: grid; grid-template-areas: "content"; gap: var(--spacing-gap); margin-top: var(--spacing-article-search-bottom); align-items: start; }
+.app-document-layout:has(.app-document-outline) { grid-template-areas: "outline" "content"; }
+.app-document-layout:has(.app-document-sidebar) { grid-template-areas: "tree" "content"; }
+.app-document-layout:has(.app-document-sidebar):has(.app-document-outline) { grid-template-areas: "tree" "outline" "content"; }
+/* 좁은 화면에서 목차가 글 위에 놓이면 글의 위 여백을 목차와의 간격으로 대신한다. 빈 행과 여백이 겹쳐 제목이 멀어지지 않게 한다. */
+@media (width < 1300px) {
+  .app-document-layout:has(.app-document-outline) .app-document-content > .app-blog-post { padding-top: 0; }
+}
 .app-document-sidebar { grid-area: tree; min-width: 0; }
 .app-document-outline { grid-area: outline; min-width: 0; }
 .app-document-content { grid-area: content; min-width: 0; container-type: inline-size; }
 .app-document-layout .app-document { width: 100%; margin-top: 0; --component-width-wide: min(var(--container-page), 100cqw); }
 .app-document-nav { max-width: var(--container-body-width); margin-inline: auto; font-size: var(--text-small-text); color: var(--color-ui-muted); }
-.app-document-nav > summary { padding: var(--spacing-gap-sm); border: var(--border-width-thin) solid var(--color-help-border); border-radius: var(--radius-button-radius); background: var(--color-help-bg); cursor: pointer; }
+/* 좁은 화면의 접는 목차: 요약 줄과 펼친 목록이 같은 상자 안에 있다. 넓은 화면에서는 상자 없이 목록만 보인다. */
+.app-document-nav { border: var(--border-width-thin) solid var(--color-help-border); border-radius: var(--radius-button-radius); background: var(--color-help-bg); }
+.app-document-nav > summary { padding: var(--spacing-gap-sm); cursor: pointer; }
 .app-document-nav summary { display: flex; align-items: center; list-style: none; }
 .app-document-nav summary::-webkit-details-marker { display: none; }
-.app-document-nav > nav { padding-block: var(--spacing-gap-sm); }
+.app-document-nav > nav { padding: 0 var(--spacing-gap-xs) var(--spacing-gap-sm); }
 .app-document-nav :is(ul, ol) { margin: 0; padding: 0; list-style: none; }
 .app-document-nav ul ul { padding-left: var(--spacing-gap-sm); border-left: var(--border-width-thin) solid var(--color-ui-line); margin-left: var(--spacing-gap-xs); }
 .app-document-nav li { margin: 0; min-width: 0; }
@@ -825,10 +833,13 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
   .app-document-pager > a[rel=next] { grid-column: auto; }
 }
 @media (min-width: 1040px) {
-  .app-document-layout { grid-template-columns: var(--spacing-sidebar-width) minmax(0, 1fr); grid-template-areas: "tree content"; column-gap: var(--spacing-gap-lg); }
-  .app-document-layout:has(.app-document-outline) { grid-template-areas: "tree outline" "tree content"; }
+  /* 문서 계층(사이드바)이 있을 때만 왼쪽 열을 둔다. 블로그 글처럼 계층이 없으면 빈 열 때문에 본문이 오른쪽으로 밀리지 않게 한 열로 둔다. */
+  .app-document-layout:has(.app-document-sidebar) { grid-template-columns: var(--spacing-sidebar-width) minmax(0, 1fr); grid-template-areas: "tree content"; column-gap: var(--spacing-gap-lg); }
+  .app-document-layout:has(.app-document-sidebar):has(.app-document-outline) { grid-template-areas: "tree outline" "tree content"; }
   .app-document-sidebar { position: sticky; top: var(--spacing-gap-lg); max-height: calc(100vh - 2 * var(--spacing-gap-lg)); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
   .app-document-sidebar .app-document-nav > summary { display: none; }
+  .app-document-sidebar > .app-document-nav { border: 0; background: transparent; }
+  .app-document-sidebar > .app-document-nav > nav { padding: 0; }
   /* 처음에는 닫힌 상태로 내려보내 좁은 화면에서 본문이 밀리지 않게 하고, 넓은 화면은 스크립트 전에도 내용을 보인다. */
   .app-document-sidebar .app-document-nav::details-content { content-visibility: visible; block-size: auto; }
 }
@@ -838,7 +849,8 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
   .app-document-layout:has(.app-document-outline) { grid-template-columns: minmax(var(--spacing-sidebar-width), 1fr) minmax(0, var(--container-body-width)) minmax(var(--spacing-sidebar-width), 1fr); grid-template-areas: "tree content outline"; }
   /* 목차가 있는 세 열 배치에서는 넓은 그림도 본문 열 폭까지만 쓴다. 넘치면 본문 열이 커져 목차 열이 좁아진다. */
   .app-document-layout:has(.app-document-outline) .app-width-wide { width: 100%; margin-inline: 0; }
-  .app-document-sidebar > .app-document-nav, .app-document-outline > .app-document-nav { max-width: none; }
+  .app-document-sidebar > .app-document-nav, .app-document-outline > .app-document-nav { max-width: none; border: 0; background: transparent; }
+  .app-document-outline > .app-document-nav > nav { padding: 0; }
   .app-document-outline .app-document-nav > summary { display: none; }
   /* 처음에는 닫힌 상태로 내려보내 좁은 화면에서 본문이 밀리지 않게 하고, 넓은 화면은 스크립트 전에도 내용을 보인다. */
   .app-document-outline .app-document-nav::details-content { content-visibility: visible; block-size: auto; }
@@ -894,7 +906,7 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 .app-post-byline .app-post-date { display: inline; }
 .app-post-date { font-size: var(--text-post-date-size); line-height: var(--leading-feature-body-line); color: var(--color-post-date-color); }
 .app-post-title { margin: 0; font-size: var(--text-post-title-size); font-weight: var(--font-weight-bold); line-height: var(--leading-post-title-line); word-break: keep-all; overflow-wrap: anywhere; }
-.app-blog-card { position: relative; display: flex; flex-direction: column; min-width: 0; overflow: hidden; border: var(--border-width-thin) solid var(--color-ui-line); border-radius: var(--radius-blog-card-radius); background: var(--color-help-bg); isolation: isolate; }
+.app-blog-card { position: relative; display: flex; flex-direction: column; min-width: 0; overflow: hidden; border: var(--border-width-thin) solid var(--color-help-border); border-radius: var(--radius-blog-card-radius); background: var(--color-ui-card); isolation: isolate; }
 /* 링크는 카드 전체를 덮는 하나의 대상이다. 상자를 풀어 표지·태그·본문·날짜 순서를 카드에서 정한다. */
 .app-blog-card-link { display: contents; color: inherit; }
 .app-blog-card-link::after { content: ""; position: absolute; inset: 0; }
@@ -941,10 +953,8 @@ a.app-blog-card-comments:hover { color: var(--color-ink); }
 .app-comments-status { font-size: var(--text-small-text); color: var(--color-ui-muted); }
 .app-comments-viewport { position: relative; }
 .app-comments-frame { display: block; width: 100%; min-height: var(--spacing-comments-preview-height); border: 0; }
-.app-comments[data-expanded=false] .app-comments-viewport { height: var(--spacing-comments-preview-height); overflow: hidden; }
-.app-comments-expand { position: absolute; inset: 0; width: 100%; border: 0; padding: 0; background: transparent; cursor: pointer; }
-.app-comments-expand::after { content: ""; position: absolute; inset: auto 0 0; height: calc(var(--spacing-comments-preview-height) * 2 / 3); background: var(--component-comments-fade); backdrop-filter: blur(var(--blur-blur)); mask-image: var(--component-comments-fade); }
-.app-comments-expand:focus-visible { outline: var(--outline-width-focus) solid var(--color-ui-focus); outline-offset: calc(-1 * var(--spacing-outline)); border-radius: var(--radius-button-radius); }
+/* 피드는 댓글 창을 접어 두고 공통 단추(.app-button)만 보인다. 누르면 그 자리에서 펼친다. */
+.app-comments[data-expanded=false] .app-comments-viewport { display: none; }
 .app-comments[data-expanded=true] .app-comments-expand { display: none; }
 .app-empty { padding-block: var(--spacing-gap-lg); color: var(--color-ui-muted); text-align: center; }
 .app-post-footer { margin: var(--component-post-footer-margin); }
@@ -1059,16 +1069,20 @@ a.app-blog-card-comments:hover { color: var(--color-ink); }
 .app-player-button.is-compact { width: calc(var(--spacing-flow-control-size) * 2); height: calc(var(--spacing-flow-control-size) * 2); min-width: 0; min-height: 0; }
 .app-technology { display: flex; flex-direction: column; align-items: center; flex: none; width: calc(var(--icon-size-card) + var(--spacing-gap)); gap: var(--spacing-gap-sm); color: var(--color-ui-muted); font-size: var(--text-small-text); }
 .app-technology > :is(a, span) { display: flex; align-items: center; justify-content: center; width: calc(var(--icon-size-medium) + 2 * var(--spacing-gap-xs)); aspect-ratio: 1; border-radius: var(--radius-help-radius); }
-.app-technology > [aria-disabled="true"] { opacity: var(--opacity-dim); }
+/* 글이 있는 기술은 원래 색 그대로, 글이 없는 기술은 무채색으로 흐리게 둔다. 색이 원래 옅은 로고(C 등)도 켜짐과 꺼짐이 구분된다. */
+.app-technology > [aria-disabled="true"] { opacity: var(--opacity-dim); filter: grayscale(1); }
 .app-technology img { display: block; width: var(--icon-size-medium); height: var(--icon-size-medium); object-fit: contain; }
-.app-technology > a, .app-interview-card { position: relative; transition: background-color var(--duration-help-motion) var(--ease-reveal), box-shadow var(--duration-help-motion) var(--ease-reveal), transform var(--duration-help-motion) var(--ease-reveal); }
-.app-technology > a:focus-visible, .app-interview-card:focus-within { background: var(--color-help-hover); box-shadow: var(--shadow-help-hover-shadow); }
+.app-technology > a { transition: background-color var(--duration-help-motion) var(--ease-reveal); }
+/* 기술 아이콘 링크의 호버·초점은 Things 메뉴처럼 옅은 면만 깐다. 테두리·그림자·떠오름은 카드에만 쓴다. */
+.app-technology > a:is(:hover, :focus-visible) { background: var(--color-control-hover); }
+.app-interview-card { position: relative; transition: background-color var(--duration-help-motion) var(--ease-reveal), box-shadow var(--duration-help-motion) var(--ease-reveal), transform var(--duration-help-motion) var(--ease-reveal); }
+.app-interview-card:focus-within { background: var(--color-help-hover); box-shadow: var(--shadow-help-hover-shadow); }
 @media (hover: hover) and (pointer: fine) {
-  .app-technology > a:hover, .app-interview-card:hover { z-index: 1; background: var(--color-help-hover); outline: var(--border-width-thin) solid var(--color-help-hover-border); outline-offset: calc(var(--border-width-thin) * -1); box-shadow: var(--shadow-help-hover-shadow); transform: translateY(var(--spacing-help-lift)) scale(var(--component-icon-scale)); }
+  .app-interview-card:hover { z-index: 1; background: var(--color-help-hover); outline: var(--border-width-thin) solid var(--color-help-hover-border); outline-offset: calc(var(--border-width-thin) * -1); box-shadow: var(--shadow-help-hover-shadow); transform: translateY(var(--spacing-help-lift)) scale(var(--component-icon-scale)); }
 }
 @media (prefers-reduced-motion: reduce) {
   .app-technology > a, .app-interview-card { transition: none; }
-  .app-technology > a:hover, .app-interview-card:hover { transform: none; }
+  .app-interview-card:hover { transform: none; }
 }
 @media (max-width: 560px) {
   .app-player-button.is-compact { width: var(--spacing-flow-control-size); height: var(--spacing-flow-control-size); }

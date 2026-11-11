@@ -930,7 +930,6 @@ export const tokens = freeze({
     "help-copy-color": "var(--primitive-help-copy-color)",
     "search-suggestion-width": "var(--primitive-search-suggestion-width)",
     "post-divider-color": "var(--primitive-post-divider-color)",
-    "comments-fade": "var(--primitive-comments-fade)",
     "post-padding": "var(--primitive-post-padding)",
     "post-date-size": "var(--primitive-post-date-size)",
     "post-date-color": "var(--primitive-post-date-color)",
@@ -1114,7 +1113,6 @@ export const tokens = freeze({
     "flow-control-size": "var(--primitive-flow-control-size)",
     "card-radius": "var(--primitive-card-radius)",
     "body-text": "var(--primitive-body-text)",
-    "blur": "var(--primitive-blur)",
     "newsletter-input-radius": "var(--primitive-newsletter-input-radius)",
     "newsletter-button-font": "var(--primitive-newsletter-button-font)",
     "newsletter-button-padding": "var(--primitive-newsletter-button-padding)",
@@ -1308,9 +1306,6 @@ export const tokens = freeze({
     "publish": "var(--container-publish)",
     "admin-login": "var(--container-admin-login)"
   },
-  "blur": {
-    "blur": "var(--blur-blur)"
-  },
   "aspect": {
     "ratio-video": "var(--aspect-ratio-video)",
     "device-ratio": "var(--aspect-device-ratio)",
@@ -1322,7 +1317,6 @@ export const tokens = freeze({
     "icon-scale": "var(--component-icon-scale)",
     "landing-nav-scale": "var(--component-landing-nav-scale)",
     "search-input-padding": "var(--component-search-input-padding)",
-    "comments-fade": "var(--component-comments-fade)",
     "post-padding": "var(--component-post-padding)",
     "post-h2-margin": "var(--component-post-h2-margin)",
     "article-search-padding": "var(--component-article-search-padding)",
@@ -1547,7 +1541,7 @@ export const values = freeze({
     "ui-muted": "#55606e",
     "ui-line": "#dfe3e8",
     "soft": "#e9edf2",
-    "tag-hover": "#303336",
+    "tag-hover": "#3c84f3",
     "code": "#17212d",
     "search-bg": "#edeef1",
     "help-bg": "#f6f7fa",
@@ -1659,7 +1653,7 @@ export const values = freeze({
     "landing-newsletter-note-ink": "#55606e",
     "feature-tab-ink": "#ffffff",
     "gallery-selected-ink": "#ffffff",
-    "tag-background": "#f3f5f7",
+    "tag-background": "#e6e8eb",
     "help-grouped-bg": "rgba(0,0,0,0)",
     "document-nav-active-ink": "#2576eb",
     "workspace": {
@@ -1670,7 +1664,7 @@ export const values = freeze({
       "selected": "#c9c9c9"
     },
     "tag-ink": "#303336",
-    "tag-preview": "#e6e8eb",
+    "tag-preview": "#dfe3e8",
     "tag-preview-ink": "#303336",
     "button-primary": "#4f91fb",
     "button-primary-ink": "#ffffff",
@@ -2298,7 +2292,6 @@ export const values = freeze({
     "help-copy-color": "rgba(0,1,2,.77)",
     "search-suggestion-width": "80%",
     "post-divider-color": "rgba(0,22,53,.07)",
-    "comments-fade": "linear-gradient(to bottom, transparent, #ffffff)",
     "post-padding": "48px 0 144px",
     "post-date-size": 16.02,
     "post-date-color": "#989fa8",
@@ -2482,7 +2475,6 @@ export const values = freeze({
     "flow-control-size": 44,
     "card-radius": 18,
     "body-text": 18,
-    "blur": 5,
     "newsletter-input-radius": 6.4,
     "newsletter-button-font": 16.96,
     "newsletter-button-padding": "7.1232px 16.96px",
@@ -2676,9 +2668,6 @@ export const values = freeze({
     "publish": 768,
     "admin-login": 320
   },
-  "blur": {
-    "blur": 5
-  },
   "aspect": {
     "ratio-video": "16 / 9",
     "device-ratio": "500 / 889",
@@ -2690,7 +2679,6 @@ export const values = freeze({
     "icon-scale": 1.05,
     "landing-nav-scale": 0.98,
     "search-input-padding": "0.5em 46px 0.5em 42px",
-    "comments-fade": "linear-gradient(to bottom, transparent, #ffffff)",
     "post-padding": "48px 0 144px",
     "post-h2-margin": "69.1875px 0 23.0625px",
     "article-search-padding": "10.625px 40px 10.625px 36px",

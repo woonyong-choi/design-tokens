@@ -599,5 +599,5 @@ test('logo_items_without_a_destination_are_disabled_and_not_keyboard_targets', (
   assert.match(disabled, /<span role="link" aria-disabled="true" aria-label="Python · 관련 글 없음">/);
   assert.doesNotMatch(disabled, /<a\b|href=|tabindex=|onclick=/);
   assert.match(html(ui.LogoItem({ ...props, href: '/search/?tag=Python' })), /<a href="\/search\/\?tag=Python"/);
-  assert.match(read('../styles/landing.css'), /\.app-technology > \[aria-disabled="true"\] \{ opacity: var\(--opacity-dim\); \}/);
+  assert.match(read('../styles/landing.css'), /\.app-technology > \[aria-disabled="true"\] \{ opacity: var\(--opacity-dim\); filter: grayscale\(1\); \}/);
 });

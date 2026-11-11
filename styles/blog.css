@@ -14,7 +14,7 @@
 .app-post-byline .app-post-date { display: inline; }
 .app-post-date { font-size: var(--text-post-date-size); line-height: var(--leading-feature-body-line); color: var(--color-post-date-color); }
 .app-post-title { margin: 0; font-size: var(--text-post-title-size); font-weight: var(--font-weight-bold); line-height: var(--leading-post-title-line); word-break: keep-all; overflow-wrap: anywhere; }
-.app-blog-card { position: relative; display: flex; flex-direction: column; min-width: 0; overflow: hidden; border: var(--border-width-thin) solid var(--color-ui-line); border-radius: var(--radius-blog-card-radius); background: var(--color-help-bg); isolation: isolate; }
+.app-blog-card { position: relative; display: flex; flex-direction: column; min-width: 0; overflow: hidden; border: var(--border-width-thin) solid var(--color-help-border); border-radius: var(--radius-blog-card-radius); background: var(--color-ui-card); isolation: isolate; }
 /* 링크는 카드 전체를 덮는 하나의 대상이다. 상자를 풀어 표지·태그·본문·날짜 순서를 카드에서 정한다. */
 .app-blog-card-link { display: contents; color: inherit; }
 .app-blog-card-link::after { content: ""; position: absolute; inset: 0; }
@@ -61,10 +61,8 @@ a.app-blog-card-comments:hover { color: var(--color-ink); }
 .app-comments-status { font-size: var(--text-small-text); color: var(--color-ui-muted); }
 .app-comments-viewport { position: relative; }
 .app-comments-frame { display: block; width: 100%; min-height: var(--spacing-comments-preview-height); border: 0; }
-.app-comments[data-expanded=false] .app-comments-viewport { height: var(--spacing-comments-preview-height); overflow: hidden; }
-.app-comments-expand { position: absolute; inset: 0; width: 100%; border: 0; padding: 0; background: transparent; cursor: pointer; }
-.app-comments-expand::after { content: ""; position: absolute; inset: auto 0 0; height: calc(var(--spacing-comments-preview-height) * 2 / 3); background: var(--component-comments-fade); backdrop-filter: blur(var(--blur-blur)); mask-image: var(--component-comments-fade); }
-.app-comments-expand:focus-visible { outline: var(--outline-width-focus) solid var(--color-ui-focus); outline-offset: calc(-1 * var(--spacing-outline)); border-radius: var(--radius-button-radius); }
+/* 피드는 댓글 창을 접어 두고 공통 단추(.app-button)만 보인다. 누르면 그 자리에서 펼친다. */
+.app-comments[data-expanded=false] .app-comments-viewport { display: none; }
 .app-comments[data-expanded=true] .app-comments-expand { display: none; }
 .app-empty { padding-block: var(--spacing-gap-lg); color: var(--color-ui-muted); text-align: center; }
 .app-post-footer { margin: var(--component-post-footer-margin); }

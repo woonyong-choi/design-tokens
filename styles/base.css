@@ -29,3 +29,11 @@ a:hover { text-decoration: underline; }
 html::-webkit-scrollbar { width: var(--spacing-scrollbar); height: var(--spacing-scrollbar); }
 body { overflow-x: clip; }
 body > main { overflow-x: clip; }
+
+/* 인쇄: 글 본문만 남긴다. 머리·꼬리말, 검색, 목차, 댓글, 쪽 이동, 코드 도구와 관리자 단추는 종이에서 쓸 수 없으므로 뺀다. */
+@media print {
+  .app-skip, .app-header, .app-footer, .app-public-search, .app-document-outline, .app-comments, .app-page-links, .app-tool-header, .app-admin-dock { display: none !important; }
+  body > main { overflow: visible; }
+  .app-figure, pre, table, blockquote { break-inside: avoid; }
+  h2, h3, h4 { break-after: avoid; }
+}

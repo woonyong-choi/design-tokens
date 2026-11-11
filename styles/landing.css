@@ -10,7 +10,7 @@
 .app-hero-copy { width: var(--container-intro); max-width: var(--spacing-hero-max); margin: auto; padding-block: calc(var(--spacing-hero-top) + var(--spacing-gap-sm)) var(--spacing-hero-top); font-size: var(--text-intro-text); line-height: var(--leading-line-intro); text-align: center; }
 .app-hero-copy :is(.app-hero-logo, .app-hero-wordmark) { margin-bottom: calc(var(--text-intro-text) * 1.5); }
 .app-hero-copy .app-hero-logo { max-width: var(--spacing-hero-logo-max); }
-.app-hero-title { margin: 0 auto calc(var(--text-intro-text) * 1.5); font-size: var(--text-section-title); font-weight: var(--font-weight-bold); line-height: var(--leading-landing-title-line); color: var(--color-landing-title-color); }
+.app-hero-title { margin: 0 auto calc(var(--text-intro-text) * 1.5); font-size: var(--text-section-title); font-weight: var(--font-weight-bold); line-height: var(--leading-heading); word-break: keep-all; color: var(--color-landing-title-color); }
 .app-hero-description { color: var(--color-description-color); margin: var(--spacing-landing-description-margin) auto; }
 .app-hero-description, .app-landing-heading > p { word-break: keep-all; overflow-wrap: anywhere; }
 .app-landing .app-cinema { margin-top: 0; }
@@ -19,7 +19,7 @@
 .app-hero-panorama-content > img { display: block; width: 100%; height: auto; }
 .app-landing-section { padding-block: var(--spacing-landing-section); background: var(--color-ui-card); }
 .app-landing-heading { width: var(--spacing-landing-heading-width); max-width: var(--spacing-landing-heading-max); margin: var(--spacing-landing-heading-space) auto; text-align: center; }
-.app-landing-heading :is(h1,h2) { margin: var(--spacing-landing-heading-margin) 0; font-size: var(--text-section-title); line-height: var(--leading-landing-title-line); font-weight: var(--font-weight-bold); word-break: keep-all; }
+.app-landing-heading :is(h1,h2) { margin: var(--spacing-landing-heading-margin) 0; font-size: var(--text-subtitle); line-height: var(--leading-heading); font-weight: var(--font-weight-bold); word-break: keep-all; }
 .app-landing-icon { position: relative; display: inline-block; width: var(--spacing-landing-icon); height: var(--spacing-landing-icon); margin-left: var(--spacing-landing-icon-left); margin-bottom: var(--spacing-landing-icon-bottom); margin-right: var(--spacing-landing-icon-right); vertical-align: baseline; }
 .app-landing-icon > * { position: absolute; inset: 0; margin: auto; }
 .app-landing-icon > img { width: 100%; height: auto; }

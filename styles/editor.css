@@ -2,9 +2,9 @@
 .app-field { display: flex; flex-direction: column; gap: var(--spacing-gap-xs); min-width: 0; }
 .app-field-label { font-size: var(--text-tiny-text); font-weight: var(--font-weight-medium); color: var(--color-ui-muted); }
 .app-field-hint { margin: 0; font-size: var(--text-tiny-text); color: var(--color-ui-muted); }
-.app-textarea { box-sizing: border-box; display: block; width: 100%; margin: 0; padding: var(--spacing-gap-xs) var(--spacing-gap-sm); border: 0; border-radius: var(--radius-input-radius); background: var(--color-search-bg); color: var(--color-input-ink); font: inherit; font-size: var(--text-small-text); line-height: var(--leading-normal); resize: none; }
+.app-textarea { box-sizing: border-box; display: block; width: 100%; margin: 0; padding: var(--spacing-gap-xs) var(--spacing-gap-sm); border: var(--border-width-thin) solid var(--color-input-border); border-radius: var(--radius-input-radius); background: var(--color-input-background); color: var(--color-input-ink); font: inherit; font-size: var(--text-small-text); line-height: var(--leading-normal); resize: none; }
 .app-textarea:is(:focus, :focus-visible) { outline: 0; }
-.app-textarea:is(.is-title, .is-source) { padding: 0; border-radius: 0; background: transparent; resize: none; }
+.app-textarea:is(.is-title, .is-source) { padding: 0; border: 0; border-radius: 0; background: transparent; resize: none; }
 .app-textarea.is-title { field-sizing: content; min-height: 1lh; font-size: var(--text-post-title-size); font-weight: var(--font-weight-bold); line-height: var(--leading-heading); color: var(--color-ink); word-break: keep-all; }
 .app-textarea.is-source { font-size: var(--text-compact-text); line-height: var(--leading-prose-body); color: var(--color-ink); tab-size: 2; word-break: keep-all; }
 

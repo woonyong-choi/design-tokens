@@ -11367,10 +11367,10 @@ var require_purgecss = __commonJS({
 
 // ui/build/styles.mjs
 var import_purgecss = __toESM(require_purgecss(), 1);
-import { pruneTokens } from "./prune-tokens.mjs";
-import { pruneTokens as pruneTokens2 } from "./prune-tokens.mjs";
+import { pruneTokens, fixThemeScheme } from "./prune-tokens.mjs";
+import { pruneTokens as pruneTokens2, fixThemeScheme as fixThemeScheme2 } from "./prune-tokens.mjs";
 import { transform } from "esbuild";
-async function compileStyles(css, pages, scripts, theme = "") {
+async function compileStyles(css, pages, scripts, theme = "", { scheme } = {}) {
   const html = [...pages.values()];
   const javascript = [...scripts.values()];
   const content = [...html.map((raw) => ({ raw, extension: "html" })), ...javascript.map((raw) => ({ raw, extension: "js" }))];
@@ -11384,11 +11384,12 @@ async function compileStyles(css, pages, scripts, theme = "") {
     safelist: [/^is-/, /^has-/, ":focus-visible"],
     dynamicAttributes: [...new Set([...css.matchAll(/\[([\w-]+)/g)].map((match) => match[1]))]
   });
-  const usedTheme = pruneTokens(theme, [result.css, ...html, ...javascript].join("\n"));
+  const usedTheme = pruneTokens(fixThemeScheme(theme, scheme), [result.css, ...html, ...javascript].join("\n"));
   const compact = async (source) => (await transform(source, { loader: "css", minify: true, target: "es2022", legalComments: "inline" })).code;
   return { css: await compact(result.css), theme: await compact(usedTheme), removed: result.rejected.length };
 }
 export {
   compileStyles,
+  fixThemeScheme2 as fixThemeScheme,
   pruneTokens2 as pruneTokens
 };

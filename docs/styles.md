@@ -48,7 +48,7 @@
 
 빌드는 로컬 CSS import를 평탄화한다. 외부·절대 경로, 폴더 탈출, 순환·중복 import와 조건부 import는 거부한다. `url()`은 배포 CSS 기준 `./assets/...`를 사용한다. `breakpoint(이름)`은 토큰 값으로 바뀐다. 웹과 도표는 `styles/tabs.css`를 함께 읽어 탭을 다시 정의하지 않는다.
 
-소비자의 `compileStyles`는 전체 HTML·스크립트의 사용처, 동적 상태와 변수 참조를 보존한 뒤 축소한다. `:focus-visible`, 숨김 상태와 움직임 줄이기 규칙을 빠뜨리지 않는다. 배포물의 축소 결과를 정본 CSS에 역반영하지 않는다.
+소비자의 `compileStyles`는 전체 HTML·스크립트의 사용처, 동적 상태와 변수 참조를 보존한 뒤 축소한다. `:focus-visible`, 숨김 상태와 움직임 줄이기 규칙을 빠뜨리지 않는다. 배포물의 축소 결과를 정본 CSS에 역반영하지 않는다. 다섯째 인자 `{ scheme: 'light' }`를 넘기면 라이트로 고정한 사이트로 보고 다크 미디어 질의, `[data-theme=dark]`, `:root`를 되풀이하는 `[data-theme=light]` 토큰 블록과 그 블록만 쓰던 값을 뺀다(`fixThemeScheme`). 지원하는 고정 테마는 라이트 하나다.
 
 `package.json`의 개발 의존성 PurgeCSS 7.0.2와 루트 override가 선택한 `postcss-selector-parser` 7.1.6을 `npm run build`가 배포 모듈에 포함한다. `pruneTokens`는 기존 모듈을 공유하며 `compileStyles`의 입력과 반환값은 유지한다. 루트 override는 소비자 설치에 전파되지 않으므로 배포 모듈에서 이 조합을 고정한다. 설치 경계와 라이선스 고지, 번들 입력·소비자 설치 검사는 [공통 디자인 배포](distribution.md#패키지)를 따른다.
 

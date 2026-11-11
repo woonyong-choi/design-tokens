@@ -61,10 +61,10 @@ a.app-blog-card-comments:hover { color: var(--color-ink); }
 .app-comments-status { font-size: var(--text-small-text); color: var(--color-ui-muted); }
 .app-comments-viewport { position: relative; }
 .app-comments-frame { display: block; width: 100%; min-height: var(--spacing-comments-preview-height); border: 0; }
-/* 피드는 댓글 창을 접어 두고 공통 단추(.app-button)만 보인다. 누르면 그 자리에서 펼친다. */
+/* 피드는 댓글 창을 접어 두고 공통 링크 단추(.app-button.is-link)만 "더 보기"처럼 가운데에 보인다. 누르면 그 자리에서 펼친다. */
 .app-comments[data-expanded=false] :is(.app-comments-viewport, .app-comments-status) { display: none; }
 .app-comments-viewport > .app-caption { margin: var(--spacing-gap-sm) 0 0; }
-.app-comments[data-expanded=true] .app-comments-expand { display: none; }
+.app-comments[data-expanded=false] { text-align: center; }
 .app-empty { padding-block: var(--spacing-gap-lg); color: var(--color-ui-muted); text-align: center; }
 .app-post-footer { margin: var(--component-post-footer-margin); }
 .app-post-footer .app-caption { text-align: center; }

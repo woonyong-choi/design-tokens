@@ -492,6 +492,7 @@
   --spacing-admin-fab: 56px;
   --spacing-admin-fab-icon: 20px;
   --spacing-admin-panel-max: 420px;
+  --spacing-search-suggestions-max: 360px;
   --spacing-write-pad: var(--spacing-12);
   --spacing-write-footer: 64px;
   --spacing-write-tag-min: 160px;

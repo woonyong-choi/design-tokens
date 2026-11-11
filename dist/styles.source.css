@@ -516,6 +516,9 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 .app-search-choice { display: inline-block; margin: var(--spacing-search-results-padding); padding: var(--spacing-gap-xs); border-radius: var(--radius-search-result-radius); color: var(--color-search-result-color); font-size: var(--text-small-text); text-decoration: none; }
 .app-suggestion-label { margin: var(--spacing-gap-sm) var(--spacing-search-results-padding) 0; color: var(--color-ui-muted); font-size: var(--text-small-text); }
 
+/* 입력하는 동안의 추천 목록은 아래 결과를 밀지 않고 입력 칸 바로 아래에 겹쳐 뜬다. 정해진 높이를 넘는 항목은 목록 안에서 스크롤한다. */
+.app-search > [role=listbox] { position: absolute; left: 0; right: 0; z-index: var(--z-index-overlay); max-height: min(var(--spacing-search-suggestions-max), 60dvh); margin-bottom: 0; overflow-y: auto; overscroll-behavior: contain; text-align: left; }
+
 .app-search-result-link:not(:has(> .app-content-icon)) { padding-left: var(--spacing-search-results-padding); }
 
 .app-tag-filter { justify-content: center; align-items: center; gap: var(--spacing-gap-sm); margin-top: var(--spacing-gap-lg); }
@@ -957,10 +960,10 @@ a.app-blog-card-comments:hover { color: var(--color-ink); }
 .app-comments-status { font-size: var(--text-small-text); color: var(--color-ui-muted); }
 .app-comments-viewport { position: relative; }
 .app-comments-frame { display: block; width: 100%; min-height: var(--spacing-comments-preview-height); border: 0; }
-/* 피드는 댓글 창을 접어 두고 공통 단추(.app-button)만 보인다. 누르면 그 자리에서 펼친다. */
+/* 피드는 댓글 창을 접어 두고 공통 링크 단추(.app-button.is-link)만 "더 보기"처럼 가운데에 보인다. 누르면 그 자리에서 펼친다. */
 .app-comments[data-expanded=false] :is(.app-comments-viewport, .app-comments-status) { display: none; }
 .app-comments-viewport > .app-caption { margin: var(--spacing-gap-sm) 0 0; }
-.app-comments[data-expanded=true] .app-comments-expand { display: none; }
+.app-comments[data-expanded=false] { text-align: center; }
 .app-empty { padding-block: var(--spacing-gap-lg); color: var(--color-ui-muted); text-align: center; }
 .app-post-footer { margin: var(--component-post-footer-margin); }
 .app-post-footer .app-caption { text-align: center; }

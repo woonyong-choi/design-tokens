@@ -164,7 +164,7 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 카드 이미지·제목·설명은 글 링크에, 태그는 독립 링크에 둔다. 글 링크의 가상 요소가 카드 전체를 덮고 태그는 그 위에서 동작한다. 검색 결과도 태그 행과 여백까지 하나의 호버 영역이다. 수정키 클릭과 키보드 탐색은 일반 링크 동작을 유지한다.
 
-카드의 댓글 링크(`댓글 · N`, `댓글 보기`)는 반복되는 보조 동작이라 메타 글자색이고 호버에서 기본 글자색이 된다. 태그는 카드·본문·검색에서 같은 알약(`text.tiny-text` 13, 줄 높이 1.4, 굵기 400, 안쪽 2·10, 끝까지 둥근 모서리)과 배경을 사용한다. `is-medium`은 같은 모양에 글자만 `text.small-text`(15)다. 외곽선이 없으며 hover와 focus는 `color.tag-hover`와 `color.on-action`을 사용한다. 카드 태그는 한 줄을 넘으면 말줄임하며 키보드 초점이 이동하면 해당 링크를 볼 수 있다. 날짜·작성자·댓글의 노출 여부는 소비자 데이터가 정한다.
+피드 글 끝의 댓글 펼침 링크 단추(`.app-button.is-link`)는 접혀 있을 때 "더 보기"처럼 가운데에 둔다. 카드의 댓글 링크(`댓글 · N`, `댓글 보기`)는 반복되는 보조 동작이라 메타 글자색이고 호버에서 기본 글자색이 된다. 태그는 카드·본문·검색에서 같은 알약(`text.tiny-text` 13, 줄 높이 1.4, 굵기 400, 안쪽 2·10, 끝까지 둥근 모서리)과 배경을 사용한다. `is-medium`은 같은 모양에 글자만 `text.small-text`(15)다. 외곽선이 없으며 hover와 focus는 `color.tag-hover`와 `color.on-action`을 사용한다. 카드 태그는 한 줄을 넘으면 말줄임하며 키보드 초점이 이동하면 해당 링크를 볼 수 있다. 날짜·작성자·댓글의 노출 여부는 소비자 데이터가 정한다.
 
 태그의 hover·focus와 탭 글자는 실제 합성 배경에서 4.5:1 이상을 유지한다. 기본 탭은 Things 기본 단추다: 단추 글 크기(`text.platform-text`, .89em, 600, 줄 높이 1.3), 안쪽 .5em·1em, 반경 `radius.prose-pre-radius`(.5em), 선 없음, 회청 면(`color.button.surface`)과 진한 글자(`color.button.ink`), 호버 `color.button.hover`와 작은 그림자, 누름 `color.button.active`. 선택은 accent-1 선택 면(`color.feature-tab-selected`, 라이트 `#3c84f3`에 흰 글자, 다크 `#649fff`에 `#111111` 글자)이다. 선택 면 대비는 색 체계의 Things 예외를 따른다. 재생기의 장면 탭과 댓글의 정렬·작성 탭도 같은 규칙을 읽는다. 숫자 탭은 두 테마 모두 무채색의 `color.gallery-selected`와 `color.gallery-selected-ink`를 사용하며, 다크 모드에서 밝은 면과 어두운 숫자로 명암을 뒤집는다.
 
@@ -172,7 +172,7 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 영상 재생·일시정지 제어는 버튼 색을 따르는 채운 원과 흰색 기호를 사용한다. `ControlIcon`은 두 제어의 배색을 보존하고 다른 제어의 단색 변환을 유지한다.
 
-검색 결과 페이지의 `SearchBox({ combobox: false })`는 처음 HTML부터 `searchbox` 역할을 사용하며 추천 목록 ARIA를 붙이지 않는다. 기본 추천 검색은 `combobox` 계약을 유지한다. `ContentGroup`의 `collection` 변형은 글 목록 절의 바깥 간격을 함께 소유한다.
+검색 결과 페이지도 기본 `combobox` 계약의 `SearchBox`를 쓴다. 입력하는 동안의 추천 목록(`role=listbox`)은 입력 칸 바로 아래에 겹쳐 떠서 아래 결과를 밀지 않고, `spacing.search-suggestions-max`(360, 화면 높이의 60%를 넘지 않음)를 넘는 항목은 목록 안에서 스크롤한다. `SearchBox({ combobox: false })`는 추천 목록 없이 `searchbox` 역할만 쓰는 입력이다. `ContentGroup`의 `collection` 변형은 글 목록 절의 바깥 간격을 함께 소유한다.
 
 카드 변형 목록은 `CARD_VARIANTS`, 선택 줄 모양 목록은 `TAB_SELECTORS`를 가져와 입력 검사에 사용한다. 페이지 이전·다음 링크는 공통 탐색 꺾쇠를 사용하므로 소비자가 라벨에 화살표 글자를 붙이지 않는다.
 

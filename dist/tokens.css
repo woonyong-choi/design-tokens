@@ -1052,6 +1052,8 @@
   --primitive-prose-pre-padding: .4em .8em;
   --primitive-action-button-radius: .45em;
   --primitive-action-button-inset: 1em;
+  --primitive-icon-task-soft: #0169fe17;
+  --primitive-icon-task-edge: #3f86f5;
   --breakpoint-mobile: 560px;
   --breakpoint-support-pair: 400px;
   --breakpoint-product-pair: 480px;
@@ -1159,6 +1161,8 @@
   --icon-key-surface: var(--primitive-icon-key-surface);
   --icon-sheet: var(--primitive-icon-sheet);
   --icon-idea-soft: var(--primitive-icon-idea-soft);
+  --icon-task-edge: var(--primitive-icon-task-edge);
+  --icon-task-soft: var(--primitive-icon-task-soft);
   --container-page: var(--primitive-page);
   --container-body-width: var(--primitive-body-width);
   --container-intro: var(--primitive-intro);

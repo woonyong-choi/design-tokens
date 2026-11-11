@@ -172,9 +172,9 @@
     "assets/icons/editing/minimize.svg": "81859eca6dd2f3163c28df50e79417a2e692b0343bc0f29ed20d95d111eba833",
     "assets/icons/files-io/download-bottom.svg": "67e0414da01d05b5540c1083e72f1ba3a71a40f7e30a6c9db571864db4e684cf",
     "assets/icons/files-io/file-copy.svg": "bff07f4397c9bfb7185709d86c01e93270155ca09a301ef23cb0b2f59d2d9cfa",
-    "assets/icons/layout/checkbox-check.svg": "46dcd1950a634b77b889251df67a016fb1ee54b380222834e39269f113e3579e",
-    "assets/icons/layout/checkbox-empty.svg": "dd7a70f40b8c351de6f09d3d86f2f6b0532b12d822e8cb5eb29707f82a78ef5c",
-    "assets/icons/layout/checkbox-indeterminate.svg": "20d03b700f4978cfcea02810adf55cdb47787fabf81b8df7bdc664cd8ccefd4a",
+    "assets/icons/layout/checkbox-check.svg": "e4dc81f2483ce5942435b0b89533a2e4181bf39823582b13f5736bdaf1007be7",
+    "assets/icons/layout/checkbox-empty.svg": "83dc4813014e51ab7e9d496275c64830ed6e049bcd857548e41103e6731747ec",
+    "assets/icons/layout/checkbox-indeterminate.svg": "f4271a317bb385f4e55fe75c827af742a27637f342763119a6fd8d27f1568eba",
     "assets/icons/layout/components.svg": "04d7fcf66284a215f34e19bc8f70b75df72a81b1b0cdd9f2fabf1c3aca131e49",
     "assets/icons/licenses/aws-architecture.txt": "9443b57ad1ec630994cd1e60f09c4e6372e0e230fbb0e08b7b42f8c1d5172fdf",
     "assets/icons/licenses/bootstrap.txt": "0fb3e11bd57e896c5a512afd64864d28a37de45d19835016c87ca1ad19ead969",
@@ -211,10 +211,10 @@
     "styles/tabs.css": "d1f515ee69e82c50417342277005c327642169377204905bec1a869b6691ddba",
     "styles/toolbar.css": "9e8ba097f10b94b527137c6fa1c9ef7bbfc5705e68d4855543da52c81c257d63",
     "tailwind.css": "a02cb1e231b0045b5da5bf4227f801994df73f5b042c9cdae447f268f4ac8a82",
-    "tokens.css": "3065f97890c899304ca88cc3c922749fe7c18952d3ce1430a72b4b9a518528e5",
+    "tokens.css": "235e7a2fb8663324d18afce9f76bd16ed51568e7c806f337827198c8a797fc8e",
     "tokens.dark.json": "55f80c2ea36e825e81eca6a40f4556c1d70261a0c046d06ee02246bf38eeaec2",
-    "tokens.js": "dd7c17f8e44254b34d077d1992578c581eeff33b0db80bfbb2ae1966f3c46d12",
-    "tokens.json": "a88b3fd7b9104caee3bdfcacac86c58f4f80d01b9a5ccd1c6a6a1fa68fb44fc3",
+    "tokens.js": "ad895ec18bb5d611426185d3cf157dc22595c41d871a7fcdfb568ebefe20cd60",
+    "tokens.json": "9772d644117588b514048773dbdd991501d4fa65b5972af21f21948fa89a21dd",
     "ui/build/check-tokens.mjs": "c3281b894a72ce7289fd489dcea5b36cdfea60a531ae7b12389ee949b7c107c1",
     "ui/build/icons.mjs": "151587c8ae4d959154f76cd029307b4b345d2331ce91c161ef895050b4c3a34b",
     "ui/build/lib/find-hardcoded.mjs": "6ff3e5c3b249b36260a7c2ae2b46c22fdb2de0180f239f1bab09ba4cf401086e",
@@ -227,7 +227,7 @@
     "ui/document.mjs": "3c94b08bc4816862e439d2e20d874d0ef6b08e202bdb59d3c103a4160728307a",
     "ui/editor.mjs": "31bb606e8d374629d6700819e53ca06b12e25d7d0b1851b6adcd5a2317244777",
     "ui/html.mjs": "4bb51a5267c8d7d7e917b7434681695606408ddc887c40d1d37f6be6d193d044",
-    "ui/icon-data.mjs": "5b831e5e031ffc3bfb4d267062fb95795c397b526cc743f10daba5c130a6a436",
+    "ui/icon-data.mjs": "dbf0c8b8aaf716a11862d773a1dd5edbe8b2c240bf4ea0ea5e76245362f5bfcb",
     "ui/icons.mjs": "6921da2b6de8e4661a8ee8745ee60cd8d3e58b31a58c87e46a758f00f94ebc86",
     "ui/index.mjs": "a2e407d42c36e5662e226900250aa577cccfd7503c05d6472983190082afde8b",
     "ui/layout.mjs": "e19def80c00a6d5ce97f19dd870daf12a7484cc1980bd7bd8aacd8509a01cd61",
@@ -247,5 +247,5 @@
     "ui/toolbar.mjs": "40c19720e8018b6f8d9e5604ff5f076959f267565108b1d10183a2f9ca405dee",
     "ui/write.mjs": "e3de56e37109766624facf9da318fcc7402193b04ec31f0e1198f95c0a95d700"
   },
-  "contentHash": "f91d0903e044f04880673ccf8512df14d029c45696d62cb43bf86dccc30c45e5"
+  "contentHash": "b0873f126dfec594e2f9016e923235a48551607e1b8bb861a7b32d31ff8476f9"
 }

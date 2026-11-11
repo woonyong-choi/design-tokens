@@ -1177,7 +1177,9 @@ export const tokens = freeze({
     "table-line-dark": "var(--primitive-table-line-dark)",
     "prose-pre-padding": "var(--primitive-prose-pre-padding)",
     "action-button-radius": "var(--primitive-action-button-radius)",
-    "action-button-inset": "var(--primitive-action-button-inset)"
+    "action-button-inset": "var(--primitive-action-button-inset)",
+    "icon-task-soft": "var(--primitive-icon-task-soft)",
+    "icon-task-edge": "var(--primitive-icon-task-edge)"
   },
   "breakpoint": {
     "mobile": "var(--breakpoint-mobile)",
@@ -1304,7 +1306,9 @@ export const tokens = freeze({
     "device-case": "var(--icon-device-case)",
     "key-surface": "var(--icon-key-surface)",
     "sheet": "var(--icon-sheet)",
-    "idea-soft": "var(--icon-idea-soft)"
+    "idea-soft": "var(--icon-idea-soft)",
+    "task-edge": "var(--icon-task-edge)",
+    "task-soft": "var(--icon-task-soft)"
   },
   "container": {
     "page": "var(--container-page)",
@@ -2550,7 +2554,9 @@ export const values = freeze({
     "table-line-dark": "#3b3b3c",
     "prose-pre-padding": ".4em .8em",
     "action-button-radius": ".45em",
-    "action-button-inset": "1em"
+    "action-button-inset": "1em",
+    "icon-task-soft": "#0169fe17",
+    "icon-task-edge": "#3f86f5"
   },
   "breakpoint": {
     "mobile": 560,
@@ -2677,7 +2683,9 @@ export const values = freeze({
     "device-case": "#23262a",
     "key-surface": "#3a4a63",
     "sheet": "#f4f6f9",
-    "idea-soft": "#f8e47c"
+    "idea-soft": "#f8e47c",
+    "task-edge": "#3f86f5",
+    "task-soft": "#0169fe17"
   },
   "container": {
     "page": 900,

@@ -562,14 +562,6 @@
       "$type": "color",
       "$value": "{primitive.prose-rule-color-dark}"
     },
-    "prose-code-background": {
-      "$type": "color",
-      "$value": "{primitive.prose-code-background-dark}"
-    },
-    "prose-code-border": {
-      "$type": "color",
-      "$value": "{primitive.prose-code-border-dark}"
-    },
     "input-background": {
       "$type": "color",
       "$value": "{color.feature-tab-background}"

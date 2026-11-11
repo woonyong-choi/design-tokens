@@ -221,7 +221,7 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 - 블록 틀: 코드·표·도표·접기는 1px `color.ui-line`(코드는 아래 규칙)과 반경 `radius.prose-block-radius`(12)를 쓴다. 본문 그림은 기본으로 모서리를 깎지 않고, 작성자가 rounded 옵션(`img.is-rounded`)을 고르면 코드 블록과 같은 반경으로 자른다(사용자 결정). 링크로 감싼 그림과 그림 격자 안도 같다.
 - 인용은 Things처럼 기울이고 양옆 2em(좁은 화면 .75em)을 들여 쓴다. 줄이나 면은 없다.
-- 인라인 코드는 Things 코드다: .85em, 안쪽 0·.25em, 반경 .25em, 1px `color.prose-code-border` 선, `color.prose-code-background` 면. 글자(`color.prose-code-color`)만 코드 블록과 같은 잉크색(`color.code-ink`)을 써서 본문 안에서 흐려 보이지 않게 한다.
+- 인라인 코드는 Things 코드의 크기·여백·곡률(.85em, 안쪽 0·.25em, 반경 .25em)을 따른다. 면(`color.prose-code-background`)은 입력 칸 면(`color.input-background`), 1px 선(`color.prose-code-border`)은 코드 블록 테두리(`color.code-border`), 글자(`color.prose-code-color`)는 코드 블록 잉크색(`color.code-ink`)이라 Things 값보다 또렷하다.
 - 링크는 accent-1 링크색(`color.action-link`, 라이트 `#2576eb`, 다크 `#649fff`)이고 밑줄이 없으며 호버에서 밑줄이 생긴다. 누르는 동안은 `color.prose-link-active`다.
 - 접기(`.app-details`)는 블록 틀과 안쪽 12·16, 요약 600, 펼치면 요약 아래 8이다.
 - 각주는 15와 `color.ui-muted`, 위 구분선 48·16이다.

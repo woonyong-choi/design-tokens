@@ -995,8 +995,6 @@ export const tokens = freeze({
     "prose-code-size": "var(--primitive-prose-code-size)",
     "prose-code-padding": "var(--primitive-prose-code-padding)",
     "prose-code-radius": "var(--primitive-prose-code-radius)",
-    "prose-code-border": "var(--primitive-prose-code-border)",
-    "prose-code-background": "var(--primitive-prose-code-background)",
     "prose-pre-radius": "var(--primitive-prose-pre-radius)",
     "prose-quote-margin": "var(--primitive-prose-quote-margin)",
     "prose-quote-inset-compact": "var(--primitive-prose-quote-inset-compact)",
@@ -1191,8 +1189,6 @@ export const tokens = freeze({
     "prose-caption-color-dark": "var(--primitive-prose-caption-color-dark)",
     "prose-marker-dark": "var(--primitive-prose-marker-dark)",
     "prose-rule-color-dark": "var(--primitive-prose-rule-color-dark)",
-    "prose-code-background-dark": "var(--primitive-prose-code-background-dark)",
-    "prose-code-border-dark": "var(--primitive-prose-code-border-dark)",
     "input-background": "var(--primitive-input-background)"
   },
   "breakpoint": {
@@ -1626,8 +1622,8 @@ export const values = freeze({
     "gallery-active": "rgba(0,10,24,.34)",
     "gallery-selected": "rgba(0,3,7,.9)",
     "prose-code-color": "#303336",
-    "prose-code-border": "rgba(0,48,111,.04)",
-    "prose-code-background": "rgba(0,34,77,.05)",
+    "prose-code-border": "#dfe3e8",
+    "prose-code-background": "#eceef0",
     "prose-pre-background": "#f6f7fa",
     "key-color": "rgba(0,1,2,.85)",
     "key-background": "#fcfcfd",
@@ -2391,8 +2387,6 @@ export const values = freeze({
     "prose-code-size": "0.85em",
     "prose-code-padding": "0 .25em",
     "prose-code-radius": ".25em",
-    "prose-code-border": "rgba(0,48,111,.04)",
-    "prose-code-background": "rgba(0,34,77,.05)",
     "prose-pre-radius": ".5em",
     "prose-quote-margin": "0 2em 1.4em",
     "prose-quote-inset-compact": ".75em",
@@ -2587,8 +2581,6 @@ export const values = freeze({
     "prose-caption-color-dark": "rgba(239,246,255,.49)",
     "prose-marker-dark": "rgba(219,234,255,.51)",
     "prose-rule-color-dark": "rgba(227,239,255,.25)",
-    "prose-code-background-dark": "rgba(240,246,255,.09)",
-    "prose-code-border-dark": "rgba(213,230,255,.04)",
     "input-background": "#eceef0"
   },
   "breakpoint": {

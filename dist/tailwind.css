@@ -183,8 +183,8 @@
   --color-gallery-active: var(--primitive-gallery-active);
   --color-gallery-selected: var(--primitive-gallery-selected);
   --color-prose-code-color: var(--color-code-ink);
-  --color-prose-code-border: var(--primitive-prose-code-border);
-  --color-prose-code-background: var(--primitive-prose-code-background);
+  --color-prose-code-border: var(--color-code-border);
+  --color-prose-code-background: var(--color-input-background);
   --color-prose-pre-background: var(--primitive-help-bg);
   --color-key-color: var(--primitive-key-color);
   --color-key-background: var(--primitive-key-background);

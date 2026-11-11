@@ -46,7 +46,7 @@
 :is(.app-prose, .app-figure-grid-item) > .app-figure:not(.app-width-wide):not(.app-width-narrow) > :is(img, a > img) { width: auto; }
 .app-prose .app-figure figcaption { margin: var(--spacing-prose-item) 0 0; font-size: var(--text-post-date-size); line-height: var(--leading-caption-line); text-align: center; color: var(--color-prose-caption-color); }
 .app-prose .app-figure figcaption:empty { display: none; }
-/* 인라인 코드: 면과 테두리는 Things 값이고, 글자는 코드 블록과 같은 잉크색을 써서 본문 안에서 흐려 보이지 않게 한다. */
+/* 인라인 코드: 크기·안쪽 여백·곡률은 Things 값이다. 면은 입력 칸 면, 테두리는 코드 블록 테두리, 글자는 코드 블록 잉크색을 써서 본문 안에서 또렷하게 구분한다. */
 .app-prose code { padding: var(--component-prose-code-padding); border: var(--border-width-thin) solid var(--color-prose-code-border); border-radius: var(--radius-prose-code-radius); background: var(--color-prose-code-background); color: var(--color-prose-code-color); font-family: var(--font-mono); font-size: var(--text-prose-code-size); line-height: var(--leading-feature-body-line); white-space: pre-wrap; overflow-wrap: break-word; }
 .app-prose kbd { display: inline-block; box-sizing: content-box; min-width: var(--text-key-size); padding: var(--component-key-padding); margin: var(--component-key-margin); border: 0; border-radius: var(--radius-key-radius); background: var(--color-key-background); color: var(--color-key-color); box-shadow: var(--shadow-key-shadow); font-family: var(--font-key-font); font-size: var(--text-key-size); font-weight: var(--font-weight-medium); font-style: normal; line-height: 1; text-align: center; vertical-align: var(--border-width-thin); }
 /* 코드 블록: 라이트·다크 모두 어두운 바탕이다. 이름 머리줄 없이 복사 단추만 오른쪽 위에 겹치고, 긴 줄은 줄을 바꾸지 않고 가로로 옮겨 본다. */

@@ -182,8 +182,8 @@
   --color-gallery-active: var(--primitive-gallery-active);
   --color-gallery-selected: var(--primitive-gallery-selected);
   --color-prose-code-color: var(--color-code-ink);
-  --color-prose-code-border: var(--primitive-prose-code-border);
-  --color-prose-code-background: var(--primitive-prose-code-background);
+  --color-prose-code-border: var(--color-code-border);
+  --color-prose-code-background: var(--color-input-background);
   --color-prose-pre-background: var(--primitive-help-bg);
   --color-key-color: var(--primitive-key-color);
   --color-key-background: var(--primitive-key-background);
@@ -869,8 +869,6 @@
   --primitive-prose-code-size: 0.85em;
   --primitive-prose-code-padding: 0 .25em;
   --primitive-prose-code-radius: .25em;
-  --primitive-prose-code-border: rgba(0,48,111,.04);
-  --primitive-prose-code-background: rgba(0,34,77,.05);
   --primitive-prose-pre-radius: .5em;
   --primitive-prose-quote-margin: 0 2em 1.4em;
   --primitive-prose-quote-inset-compact: .75em;
@@ -1065,8 +1063,6 @@
   --primitive-prose-caption-color-dark: rgba(239,246,255,.49);
   --primitive-prose-marker-dark: rgba(219,234,255,.51);
   --primitive-prose-rule-color-dark: rgba(227,239,255,.25);
-  --primitive-prose-code-background-dark: rgba(240,246,255,.09);
-  --primitive-prose-code-border-dark: rgba(213,230,255,.04);
   --primitive-input-background: #eceef0;
   --breakpoint-mobile: 560px;
   --breakpoint-support-pair: 400px;
@@ -1300,8 +1296,6 @@
   --color-gallery-hover: var(--color-control-hover);
   --color-gallery-active: var(--color-feature-tab-background);
   --color-gallery-selected: var(--color-ink);
-  --color-prose-code-border: var(--primitive-prose-code-border-dark);
-  --color-prose-code-background: var(--primitive-prose-code-background-dark);
   --color-prose-pre-background: var(--primitive-figure-dark-bg);
   --color-callout-background: var(--primitive-callout-background-dark);
   --color-callout-border: var(--primitive-callout-border-dark);
@@ -1433,8 +1427,6 @@
   --color-gallery-hover: var(--color-control-hover);
   --color-gallery-active: var(--color-feature-tab-background);
   --color-gallery-selected: var(--color-ink);
-  --color-prose-code-border: var(--primitive-prose-code-border-dark);
-  --color-prose-code-background: var(--primitive-prose-code-background-dark);
   --color-prose-pre-background: var(--primitive-figure-dark-bg);
   --color-callout-background: var(--primitive-callout-background-dark);
   --color-callout-border: var(--primitive-callout-border-dark);
@@ -1565,8 +1557,6 @@
   --color-gallery-hover: var(--primitive-gallery-hover);
   --color-gallery-active: var(--primitive-gallery-active);
   --color-gallery-selected: var(--primitive-gallery-selected);
-  --color-prose-code-border: var(--primitive-prose-code-border);
-  --color-prose-code-background: var(--primitive-prose-code-background);
   --color-prose-pre-background: var(--primitive-help-bg);
   --color-callout-background: var(--color-syntax-example-background);
   --color-callout-border: var(--color-syntax-example-border);

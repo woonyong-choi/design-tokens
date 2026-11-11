@@ -721,7 +721,6 @@
   --primitive-scroll-speed: 1600;
   --primitive-scroll-duration: 1000ms;
   --primitive-scroll-margin: 50px;
-  --primitive-icon-scale: 1.05;
   --primitive-hero-max: 90%;
   --primitive-hero-logo-max: 75%;
   --primitive-gallery-gap: 18px;
@@ -1173,7 +1172,6 @@
   --aspect-blog-cover-ratio: 2 / 1;
   --component-device-pad: var(--primitive-device-pad);
   --component-scroll-speed: var(--primitive-scroll-speed);
-  --component-icon-scale: var(--primitive-icon-scale);
   --component-landing-nav-scale: var(--primitive-player-hover-opacity);
   --component-search-input-padding: var(--primitive-search-input-padding);
   --component-post-padding: var(--primitive-post-padding);

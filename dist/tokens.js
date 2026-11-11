@@ -847,7 +847,6 @@ export const tokens = freeze({
     "scroll-speed": "var(--primitive-scroll-speed)",
     "scroll-duration": "var(--primitive-scroll-duration)",
     "scroll-margin": "var(--primitive-scroll-margin)",
-    "icon-scale": "var(--primitive-icon-scale)",
     "hero-max": "var(--primitive-hero-max)",
     "hero-logo-max": "var(--primitive-hero-logo-max)",
     "gallery-gap": "var(--primitive-gallery-gap)",
@@ -1325,7 +1324,6 @@ export const tokens = freeze({
   "component": {
     "device-pad": "var(--component-device-pad)",
     "scroll-speed": "var(--component-scroll-speed)",
-    "icon-scale": "var(--component-icon-scale)",
     "landing-nav-scale": "var(--component-landing-nav-scale)",
     "search-input-padding": "var(--component-search-input-padding)",
     "post-padding": "var(--component-post-padding)",
@@ -2221,7 +2219,6 @@ export const values = freeze({
     "scroll-speed": 1600,
     "scroll-duration": 1000,
     "scroll-margin": 50,
-    "icon-scale": 1.05,
     "hero-max": "90%",
     "hero-logo-max": "75%",
     "gallery-gap": 18,
@@ -2699,7 +2696,6 @@ export const values = freeze({
   "component": {
     "device-pad": "4.5%",
     "scroll-speed": 1600,
-    "icon-scale": 1.05,
     "landing-nav-scale": 0.98,
     "search-input-padding": "0.5em 46px 0.5em 42px",
     "post-padding": "48px 0 144px",

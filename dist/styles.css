@@ -1051,6 +1051,8 @@ a.app-blog-card-comments:hover { color: var(--color-ink); }
 .app-interview-meta a { color: inherit; text-decoration: underline; }
 .app-landing-interviews .app-flow-viewport, .app-landing-interviews .app-flow-group { gap: var(--text-landing-review-font); align-items: flex-end; }
 .app-landing-section .app-flow-viewport { margin-top: calc(var(--spacing-gap-xs) * -1); padding-bottom: var(--spacing-landing-heading-space); }
+/* 흐르는 줄의 아래 여백은 카드 그림자 자리라 보이지 않는다. 그만큼 구역 아래 여백에서 빼 구역 사이 간격을 다른 구역과 같게 한다. */
+.app-landing-section:has(> .app-shell > :last-child .app-flow-viewport, > .app-shell > .app-flow-viewport:last-child) { padding-bottom: calc(var(--spacing-landing-section) - var(--spacing-landing-heading-space)); }
 .app-interview-rows { display: flex; flex-direction: column; }
 .app-landing-interviews .app-interview-rows > :first-child .app-flow-viewport { padding-bottom: var(--spacing-gap); }
 .app-landing-interviews .app-interview-rows > :last-child .app-flow-viewport { margin-top: 0; }
@@ -1075,7 +1077,7 @@ a.app-blog-card-comments:hover { color: var(--color-ink); }
 .app-interview-card { position: relative; transition: background-color var(--duration-help-motion) var(--ease-reveal), box-shadow var(--duration-help-motion) var(--ease-reveal), transform var(--duration-help-motion) var(--ease-reveal); }
 .app-interview-card:focus-within { background: var(--color-help-hover); box-shadow: var(--shadow-help-hover-shadow); }
 @media (hover: hover) and (pointer: fine) {
-  .app-interview-card:hover { z-index: 1; background: var(--color-help-hover); outline: var(--border-width-thin) solid var(--color-help-hover-border); outline-offset: calc(var(--border-width-thin) * -1); box-shadow: var(--shadow-help-hover-shadow); transform: translateY(var(--spacing-help-lift)) scale(var(--component-icon-scale)); }
+  .app-interview-card:hover { z-index: 1; background: var(--color-help-hover); outline: var(--border-width-thin) solid var(--color-help-hover-border); outline-offset: calc(var(--border-width-thin) * -1); box-shadow: var(--shadow-help-hover-shadow); transform: translateY(var(--spacing-help-lift)); }
 }
 @media (prefers-reduced-motion: reduce) {
   .app-technology > a, .app-interview-card { transition: none; }

@@ -30,6 +30,9 @@
 .app-search-choice { display: inline-block; margin: var(--spacing-search-results-padding); padding: var(--spacing-gap-xs); border-radius: var(--radius-search-result-radius); color: var(--color-search-result-color); font-size: var(--text-small-text); text-decoration: none; }
 .app-suggestion-label { margin: var(--spacing-gap-sm) var(--spacing-search-results-padding) 0; color: var(--color-ui-muted); font-size: var(--text-small-text); }
 
+/* 입력하는 동안의 추천 목록은 아래 결과를 밀지 않고 입력 칸 바로 아래에 겹쳐 뜬다. 정해진 높이를 넘는 항목은 목록 안에서 스크롤한다. */
+.app-search > [role=listbox] { position: absolute; left: 0; right: 0; z-index: var(--z-index-overlay); max-height: min(var(--spacing-search-suggestions-max), 60dvh); margin-bottom: 0; overflow-y: auto; overscroll-behavior: contain; text-align: left; }
+
 .app-search-result-link:not(:has(> .app-content-icon)) { padding-left: var(--spacing-search-results-padding); }
 
 .app-tag-filter { justify-content: center; align-items: center; gap: var(--spacing-gap-sm); margin-top: var(--spacing-gap-lg); }

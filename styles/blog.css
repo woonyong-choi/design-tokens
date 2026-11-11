@@ -37,14 +37,15 @@
 .app-blog-card-title { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: var(--component-card-summary-lines); margin: 0 0 var(--spacing-1); overflow: hidden; font-size: var(--text-body-text); font-weight: var(--font-weight-bold); line-height: var(--leading-card-title); word-break: keep-all; overflow-wrap: anywhere; color: var(--color-ink); }
 .app-blog-card-body > p.app-card-summary { -webkit-line-clamp: var(--component-blog-card-summary-lines); margin: 0; font-size: var(--text-small-text); line-height: var(--leading-normal); word-break: keep-all; overflow-wrap: anywhere; color: var(--color-body); }
 /* 카드 메타는 글 머리의 글쓴이 줄과 같다: 사진 28, 이름 500, 가운뎃점, 날짜는 Things 날짜색. */
-.app-blog-card-meta { order: 3; display: flex; align-items: center; gap: var(--spacing-2); margin-top: auto; padding: var(--spacing-3) var(--spacing-blog-card-inset) var(--spacing-4); font-size: var(--text-tiny-text); color: var(--color-body); }
+.app-blog-card-meta { order: 3; display: flex; align-items: center; gap: var(--spacing-1); margin-top: auto; padding: var(--spacing-3) var(--spacing-blog-card-inset) var(--spacing-4); font-size: var(--text-tiny-text); color: var(--color-body); }
 .app-blog-card-date { font-weight: var(--font-weight-normal); color: var(--color-post-date-color); }
 .app-blog-card-meta > [aria-hidden=true] { color: var(--color-prose-marker); }
-.app-blog-card-date, .app-blog-card-comments { flex: none; }
+.app-blog-card-date { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.app-blog-card-comments { flex: none; }
 .app-blog-card-comments { display: inline-flex; align-items: center; justify-content: center; gap: calc(var(--spacing-gap-xs) / 2); min-width: var(--spacing-icon); min-height: var(--spacing-icon); margin-inline-start: auto; color: inherit; }
 /* 카드마다 반복되는 보조 동작이라 주황 대신 메타 글자색을 쓴다. */
 a.app-blog-card-comments:hover { color: var(--color-ink); }
-.app-blog-card-author { display: inline-flex; align-items: center; min-width: 0; gap: var(--spacing-2); font-weight: var(--font-weight-medium); color: var(--color-ink); }
+.app-blog-card-author { display: inline-flex; flex: none; align-items: center; min-width: 0; gap: var(--spacing-2); font-weight: var(--font-weight-medium); color: var(--color-ink); }
 .app-blog-card-author > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .app-blog-card-avatar { flex: none; width: var(--spacing-blog-card-avatar); height: var(--spacing-blog-card-avatar); border-radius: var(--radius-pill); object-fit: cover; background: var(--color-ui-card); }
 .app-support-grid:has(> .app-blog-card) { gap: var(--spacing-blog-card-gap); }

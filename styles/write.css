@@ -99,6 +99,9 @@
   .app-write-preview { display: none; }
   .app-write-fields { padding: var(--spacing-gap) var(--spacing-gap) 0; }
   .app-write-toolbar { top: calc(-1 * var(--spacing-gap)); }
+  /* 좁은 화면의 아래 막대: 단추 안쪽 여백을 줄여 나가기·삭제·임시저장·출간하기가 한 줄에 모두 들어오게 한다. */
+  .app-write-footer { padding-inline: var(--spacing-gap-sm); }
+  .app-write-footer .app-button { padding-inline: var(--spacing-gap-sm); }
   .app-publish { align-items: flex-start; }
   .app-publish-wrapper { flex-direction: column; gap: var(--spacing-gap-lg); }
   .app-publish-divider { display: none; }

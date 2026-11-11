@@ -1,7 +1,7 @@
 /* 문서 상세: 제목 줄, 목차, 문서 목록 접기, 함께 읽기, 날짜와 예시 안내. */
 .app-article-title { border-bottom: var(--spacing-underline) solid var(--color-ui-line); font-size: var(--text-section-title); word-break: keep-all; overflow-wrap: anywhere; color: var(--color-ink); }
 .app-article-title > .app-content-icon { margin-inline-end: var(--spacing-gap-xs); }
-.app-article-lead { font-size: var(--text-article-lead); line-height: var(--leading-line-intro); }
+.app-article-lead { font-size: var(--text-article-lead); line-height: var(--leading-line-intro); word-break: keep-all; overflow-wrap: anywhere; }
 .app-article-title { line-height: var(--leading-article-title-line); padding-bottom: var(--spacing-article-title-padding); margin-bottom: var(--spacing-article-title-gap); }
 .app-document-shell { line-height: var(--leading-feature-body-line); }
 .app-document { min-width: 0; max-width: var(--container-body-width); margin: var(--spacing-article-search-bottom) auto 0; overflow-wrap: anywhere; }
@@ -30,7 +30,7 @@
 .app-document-nav li { margin: 0; min-width: 0; }
 .app-document-nav li > details > summary { cursor: pointer; border-radius: var(--radius-button-radius); }
 .app-document-nav :is(a, li > span, summary > span) { padding: calc(var(--spacing-gap-xs) / 2) var(--spacing-gap-xs); color: inherit; border-radius: var(--radius-button-radius); overflow-wrap: anywhere; }
-.app-document-nav a { display: block; }
+.app-document-nav a { display: block; word-break: keep-all; overflow-wrap: anywhere; }
 .app-document-nav summary > a, .app-document-nav summary > span { flex: 1; min-width: 0; }
 .app-document-nav > nav > ul > li > details > summary { font-weight: var(--font-weight-bold); color: var(--color-ink); }
 .app-document-nav :is(a, li > details > summary):hover { background: var(--color-help-bg); color: var(--color-document-nav-active-ink); text-decoration: none; }

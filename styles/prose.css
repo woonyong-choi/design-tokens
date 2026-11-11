@@ -108,7 +108,7 @@
 .app-syntax-row pre { margin: 0 0 var(--spacing-syntax-example-gap); padding: var(--component-syntax-example-padding); background: var(--color-syntax-example-background); border: var(--border-width-thin) solid var(--color-syntax-example-border); border-radius: var(--radius-syntax-example-radius); color: var(--color-body); white-space: pre-wrap; }
 /* 일반 페이지의 본문 간격은 앞선 구성 요소 규칙을 덮어쓴다. 블로그와 지원 문서 문맥은 위쪽 기본 본문 규칙에 함께 선언한다. */
 .app-prose p.app-fineprint { margin: var(--component-prose-fineprint-margin); font-size: var(--text-post-date-size); line-height: var(--leading-caption-line); color: var(--color-prose-caption-color); }
-.app-prose p.app-article-lead { margin: 0 0 var(--spacing-6); font-size: var(--text-post-lead-size); line-height: var(--leading-line-intro); color: var(--color-body); }
+.app-prose p.app-article-lead { margin: 0 0 var(--spacing-6); font-size: var(--text-post-lead-size); line-height: var(--leading-line-intro); color: var(--color-body); word-break: keep-all; }
 .app-cancelled-task { display: inline-block; width: var(--spacing-task-size); height: var(--spacing-task-size); vertical-align: var(--spacing-task-align); background: url('./assets/icons/layout/checkbox-indeterminate.svg') center / contain no-repeat; }
 .task-list-item.is-cancelled { text-decoration: line-through; color: var(--color-ui-muted); list-style: none; }
 .app-callout.is-fineprint { font-size: var(--text-post-date-size); line-height: var(--leading-caption-line); }

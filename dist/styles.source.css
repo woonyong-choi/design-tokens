@@ -460,6 +460,9 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
   .app-write-preview { display: none; }
   .app-write-fields { padding: var(--spacing-gap) var(--spacing-gap) 0; }
   .app-write-toolbar { top: calc(-1 * var(--spacing-gap)); }
+  /* 좁은 화면의 아래 막대: 단추 안쪽 여백을 줄여 나가기·삭제·임시저장·출간하기가 한 줄에 모두 들어오게 한다. */
+  .app-write-footer { padding-inline: var(--spacing-gap-sm); }
+  .app-write-footer .app-button { padding-inline: var(--spacing-gap-sm); }
   .app-publish { align-items: flex-start; }
   .app-publish-wrapper { flex-direction: column; gap: var(--spacing-gap-lg); }
   .app-publish-divider { display: none; }
@@ -694,7 +697,7 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 .app-syntax-row pre { margin: 0 0 var(--spacing-syntax-example-gap); padding: var(--component-syntax-example-padding); background: var(--color-syntax-example-background); border: var(--border-width-thin) solid var(--color-syntax-example-border); border-radius: var(--radius-syntax-example-radius); color: var(--color-body); white-space: pre-wrap; }
 /* 일반 페이지의 본문 간격은 앞선 구성 요소 규칙을 덮어쓴다. 블로그와 지원 문서 문맥은 위쪽 기본 본문 규칙에 함께 선언한다. */
 .app-prose p.app-fineprint { margin: var(--component-prose-fineprint-margin); font-size: var(--text-post-date-size); line-height: var(--leading-caption-line); color: var(--color-prose-caption-color); }
-.app-prose p.app-article-lead { margin: 0 0 var(--spacing-6); font-size: var(--text-post-lead-size); line-height: var(--leading-line-intro); color: var(--color-body); }
+.app-prose p.app-article-lead { margin: 0 0 var(--spacing-6); font-size: var(--text-post-lead-size); line-height: var(--leading-line-intro); color: var(--color-body); word-break: keep-all; }
 .app-cancelled-task { display: inline-block; width: var(--spacing-task-size); height: var(--spacing-task-size); vertical-align: var(--spacing-task-align); background: url('./assets/icons/layout/checkbox-indeterminate.svg') center / contain no-repeat; }
 .task-list-item.is-cancelled { text-decoration: line-through; color: var(--color-ui-muted); list-style: none; }
 .app-callout.is-fineprint { font-size: var(--text-post-date-size); line-height: var(--leading-caption-line); }
@@ -778,7 +781,7 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 /* 문서 상세: 제목 줄, 목차, 문서 목록 접기, 함께 읽기, 날짜와 예시 안내. */
 .app-article-title { border-bottom: var(--spacing-underline) solid var(--color-ui-line); font-size: var(--text-section-title); word-break: keep-all; overflow-wrap: anywhere; color: var(--color-ink); }
 .app-article-title > .app-content-icon { margin-inline-end: var(--spacing-gap-xs); }
-.app-article-lead { font-size: var(--text-article-lead); line-height: var(--leading-line-intro); }
+.app-article-lead { font-size: var(--text-article-lead); line-height: var(--leading-line-intro); word-break: keep-all; overflow-wrap: anywhere; }
 .app-article-title { line-height: var(--leading-article-title-line); padding-bottom: var(--spacing-article-title-padding); margin-bottom: var(--spacing-article-title-gap); }
 .app-document-shell { line-height: var(--leading-feature-body-line); }
 .app-document { min-width: 0; max-width: var(--container-body-width); margin: var(--spacing-article-search-bottom) auto 0; overflow-wrap: anywhere; }
@@ -807,7 +810,7 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 .app-document-nav li { margin: 0; min-width: 0; }
 .app-document-nav li > details > summary { cursor: pointer; border-radius: var(--radius-button-radius); }
 .app-document-nav :is(a, li > span, summary > span) { padding: calc(var(--spacing-gap-xs) / 2) var(--spacing-gap-xs); color: inherit; border-radius: var(--radius-button-radius); overflow-wrap: anywhere; }
-.app-document-nav a { display: block; }
+.app-document-nav a { display: block; word-break: keep-all; overflow-wrap: anywhere; }
 .app-document-nav summary > a, .app-document-nav summary > span { flex: 1; min-width: 0; }
 .app-document-nav > nav > ul > li > details > summary { font-weight: var(--font-weight-bold); color: var(--color-ink); }
 .app-document-nav :is(a, li > details > summary):hover { background: var(--color-help-bg); color: var(--color-document-nav-active-ink); text-decoration: none; }
@@ -972,7 +975,8 @@ a.app-blog-card-comments:hover { color: var(--color-ink); }
 .app-hero-copy { width: var(--container-intro); max-width: var(--spacing-hero-max); margin: auto; padding-block: calc(var(--spacing-hero-top) + var(--spacing-gap-sm)) var(--spacing-hero-top); font-size: var(--text-intro-text); line-height: var(--leading-line-intro); text-align: center; }
 .app-hero-copy :is(.app-hero-logo, .app-hero-wordmark) { margin-bottom: calc(var(--text-intro-text) * 1.5); }
 .app-hero-copy .app-hero-logo { max-width: var(--spacing-hero-logo-max); }
-.app-hero-title { margin: 0 auto calc(var(--text-intro-text) * 1.5); font-size: var(--text-section-title); font-weight: var(--font-weight-bold); line-height: var(--leading-landing-title-line); color: var(--color-landing-title-color); }
+/* 한국어 제목·도입·카드 글은 낱말 중간에서 줄을 바꾸지 않는다(본문 문단은 prose.css 규칙). */
+.app-hero-title { margin: 0 auto calc(var(--text-intro-text) * 1.5); font-size: var(--text-section-title); font-weight: var(--font-weight-bold); line-height: var(--leading-landing-title-line); color: var(--color-landing-title-color); word-break: keep-all; overflow-wrap: anywhere; }
 .app-hero-description { color: var(--color-description-color); margin: var(--spacing-landing-description-margin) auto; }
 .app-hero-description, .app-landing-heading > p { word-break: keep-all; overflow-wrap: anywhere; }
 .app-landing .app-cinema { margin-top: 0; }
@@ -1025,12 +1029,12 @@ a.app-blog-card-comments:hover { color: var(--color-ink); }
 .app-technologies .app-flow-track { margin-inline: auto; }
 .app-flow-group { display: flex; flex: none; gap: var(--spacing-gap); margin: 0; padding: 0; list-style: none; }
 .app-interview-card { display: flex; flex-direction: column; flex: none; box-sizing: border-box; width: calc((100cqw - var(--text-landing-review-font)) / 2); max-width: calc(100vw - var(--spacing-gap-lg)); padding: var(--spacing-landing-review-padding); border-radius: var(--radius-landing-review-radius); background: var(--color-ui-card); color: var(--color-ink); box-shadow: var(--shadow-landing-review-shadow); font-size: var(--text-landing-review-font); line-height: var(--leading-feature-line); }
-.app-interview-summary { margin: 0; padding-bottom: var(--spacing-landing-review-copy-bottom); font-size: var(--text-landing-review-copy); word-break: normal; overflow-wrap: anywhere; text-wrap: wrap; }
+.app-interview-summary { margin: 0; padding-bottom: var(--spacing-landing-review-copy-bottom); font-size: var(--text-landing-review-copy); word-break: keep-all; overflow-wrap: anywhere; text-wrap: wrap; }
 .app-interview-card-link { position: absolute; z-index: 1; inset: 0; border-radius: inherit; }
 .app-interview-summary a { position: relative; z-index: 1; color: var(--color-landing-review-link-ink); }
 .app-interview-summary a:hover { text-decoration: underline; }
 .app-interview-summary:last-child { padding-bottom: 0; }
-.app-interview-meta { display: flex; gap: var(--spacing-interview-meta-gap); margin: auto 0 0; font-size: var(--text-landing-review-meta); line-height: var(--leading-line-compact); color: var(--color-landing-review-meta-ink); text-align: left; }
+.app-interview-meta { word-break: keep-all; overflow-wrap: anywhere; display: flex; gap: var(--spacing-interview-meta-gap); margin: auto 0 0; font-size: var(--text-landing-review-meta); line-height: var(--leading-line-compact); color: var(--color-landing-review-meta-ink); text-align: left; }
 .app-interview-avatar { display: block; flex: none; width: var(--spacing-landing-review-avatar); height: var(--spacing-landing-review-avatar); }
 .app-interview-avatar img { display: block; width: 100%; height: 100%; object-fit: contain; border-radius: var(--radius-landing-review-avatar-radius); }
 .app-interview-lines { min-width: 0; }

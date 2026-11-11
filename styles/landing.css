@@ -10,7 +10,8 @@
 .app-hero-copy { width: var(--container-intro); max-width: var(--spacing-hero-max); margin: auto; padding-block: calc(var(--spacing-hero-top) + var(--spacing-gap-sm)) var(--spacing-hero-top); font-size: var(--text-intro-text); line-height: var(--leading-line-intro); text-align: center; }
 .app-hero-copy :is(.app-hero-logo, .app-hero-wordmark) { margin-bottom: calc(var(--text-intro-text) * 1.5); }
 .app-hero-copy .app-hero-logo { max-width: var(--spacing-hero-logo-max); }
-.app-hero-title { margin: 0 auto calc(var(--text-intro-text) * 1.5); font-size: var(--text-section-title); font-weight: var(--font-weight-bold); line-height: var(--leading-landing-title-line); color: var(--color-landing-title-color); }
+/* 한국어 제목·도입·카드 글은 낱말 중간에서 줄을 바꾸지 않는다(본문 문단은 prose.css 규칙). */
+.app-hero-title { margin: 0 auto calc(var(--text-intro-text) * 1.5); font-size: var(--text-section-title); font-weight: var(--font-weight-bold); line-height: var(--leading-landing-title-line); color: var(--color-landing-title-color); word-break: keep-all; overflow-wrap: anywhere; }
 .app-hero-description { color: var(--color-description-color); margin: var(--spacing-landing-description-margin) auto; }
 .app-hero-description, .app-landing-heading > p { word-break: keep-all; overflow-wrap: anywhere; }
 .app-landing .app-cinema { margin-top: 0; }
@@ -63,12 +64,12 @@
 .app-technologies .app-flow-track { margin-inline: auto; }
 .app-flow-group { display: flex; flex: none; gap: var(--spacing-gap); margin: 0; padding: 0; list-style: none; }
 .app-interview-card { display: flex; flex-direction: column; flex: none; box-sizing: border-box; width: calc((100cqw - var(--text-landing-review-font)) / 2); max-width: calc(100vw - var(--spacing-gap-lg)); padding: var(--spacing-landing-review-padding); border-radius: var(--radius-landing-review-radius); background: var(--color-ui-card); color: var(--color-ink); box-shadow: var(--shadow-landing-review-shadow); font-size: var(--text-landing-review-font); line-height: var(--leading-feature-line); }
-.app-interview-summary { margin: 0; padding-bottom: var(--spacing-landing-review-copy-bottom); font-size: var(--text-landing-review-copy); word-break: normal; overflow-wrap: anywhere; text-wrap: wrap; }
+.app-interview-summary { margin: 0; padding-bottom: var(--spacing-landing-review-copy-bottom); font-size: var(--text-landing-review-copy); word-break: keep-all; overflow-wrap: anywhere; text-wrap: wrap; }
 .app-interview-card-link { position: absolute; z-index: 1; inset: 0; border-radius: inherit; }
 .app-interview-summary a { position: relative; z-index: 1; color: var(--color-landing-review-link-ink); }
 .app-interview-summary a:hover { text-decoration: underline; }
 .app-interview-summary:last-child { padding-bottom: 0; }
-.app-interview-meta { display: flex; gap: var(--spacing-interview-meta-gap); margin: auto 0 0; font-size: var(--text-landing-review-meta); line-height: var(--leading-line-compact); color: var(--color-landing-review-meta-ink); text-align: left; }
+.app-interview-meta { word-break: keep-all; overflow-wrap: anywhere; display: flex; gap: var(--spacing-interview-meta-gap); margin: auto 0 0; font-size: var(--text-landing-review-meta); line-height: var(--leading-line-compact); color: var(--color-landing-review-meta-ink); text-align: left; }
 .app-interview-avatar { display: block; flex: none; width: var(--spacing-landing-review-avatar); height: var(--spacing-landing-review-avatar); }
 .app-interview-avatar img { display: block; width: 100%; height: 100%; object-fit: contain; border-radius: var(--radius-landing-review-avatar-radius); }
 .app-interview-lines { min-width: 0; }

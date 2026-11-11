@@ -748,7 +748,7 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 /* 좁은 화면: 가로로 긴 그림은 화면 높이에 맞춰 키우고 옆으로 밀어 본다. */
 @media (max-width: breakpoint(feature-split)) {
   .app-image-viewer[open] { place-items: normal; overflow: auto; }
-  .app-image-viewer img { max-width: none; margin: auto; }
+  .app-image-viewer img { max-width: none; max-height: calc(100dvh - 2 * var(--spacing-gap)); margin: auto; }
 }
 /* 미디어: 그림, 영상 플레이어, 기기 틀(토큰으로 그린 둥근 몸체와 화면). 갤러리는 탭 구성 요소다. 본문 블록 폭(app-width-*)은 그림·도표·영상·탭(갤러리)·코드가 함께 쓰며 가로 여백(margin-inline)은 폭 규칙만 정한다. 블록 구성 요소는 세로 여백(margin-block)만 쓴다. */
 .app-figure { margin-block: var(--spacing-gap-lg); margin-inline: 0; text-align: center; }

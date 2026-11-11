@@ -186,6 +186,8 @@ HTML·SVG·Vue·Svelte에서는 `style` 요소·속성과 색·글꼴·획·불�
 
 머리글 메뉴(`color.nav-color`), 푸터 글자(`color.landing-footer-ink`), 구독 안내(`color.landing-newsletter-note-ink`)는 밝은 테마에서 `primitive.muted`를 사용해 흰 배경과 4.5:1 이상의 명도 대비를 유지한다.
 
+인쇄(`@media print`)는 `base.css`가 소유한다. 머리·꼬리말, 검색, 목차, 댓글, 쪽 이동, 코드 도구, 관리자 단추를 숨기고 그림·코드·표·인용이 쪽 사이에서 잘리지 않게 한다.
+
 ## 본문과 코드
 
 본문의 Markdown 표와 단축키 표는 `Table`과 `styles/table.css`를 공유한다. 표를 감싼 상자(`.app-table-scroll`)가 블록 틀(1px `color.prose-block-line`, 반경 8)을 갖고 표 자체에는 테두리가 없다. 상자는 Things 표처럼 내용 폭만큼만 차지하고, 본문보다 넓으면 상자 안에서 가로로 넘긴다. 글자는 본문 크기와 줄 높이를 그대로 물려받고, 칸 안쪽은 Things 표의 .3em·.5em, 머리줄은 굵기 700만 다르고 면이 없으며, 줄 구분은 같은 선 1px이다(모두 Things 표와 같음). 문서가 지정한 열 정렬은 유지한다.

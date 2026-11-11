@@ -743,6 +743,11 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 .app-prose img[data-zoomable] { cursor: zoom-in; }
 .app-image-viewer { width: 100vw; max-width: none; height: 100dvh; max-height: none; margin: 0; padding: var(--spacing-gap); border: 0; background: transparent; cursor: zoom-out; }
 .app-image-viewer[open] { display: grid; place-items: center; }
+/* 좁은 화면: 가로로 긴 그림은 화면 높이에 맞춰 키우고 옆으로 밀어 본다. */
+@media (max-width: 600px) {
+  .app-image-viewer[open] { place-items: normal; overflow: auto; }
+  .app-image-viewer img { max-width: none; margin: auto; }
+}
 .app-image-viewer::backdrop { background: var(--color-dialog-backdrop); }
 .app-image-viewer img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: var(--radius-prose-block-radius); background: var(--color-ui-card); }
 /* 미디어: 그림, 영상 플레이어, 기기 틀(토큰으로 그린 둥근 몸체와 화면). 갤러리는 탭 구성 요소다. 본문 블록 폭(app-width-*)은 그림·도표·영상·탭(갤러리)·코드가 함께 쓰며 가로 여백(margin-inline)은 폭 규칙만 정한다. 블록 구성 요소는 세로 여백(margin-block)만 쓴다. */
@@ -785,6 +790,9 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 .app-document-shell { max-width: calc(var(--container-page) + 2 * var(--spacing-sidebar-width) + 2 * var(--spacing-gap-lg)); }
 .app-document-layout { display: grid; grid-template-areas: "tree" "content"; gap: var(--spacing-gap); margin-top: var(--spacing-article-search-bottom); align-items: start; }
 .app-document-layout:has(.app-document-outline) { grid-template-areas: "tree" "outline" "content"; }
+/* 좁은 화면: 접힌 목차가 글 제목 위에 오므로 위아래 여백을 줄여 제목이 첫 화면에 들어오게 한다. */
+.app-document-layout:has(.app-document-outline) { margin-top: var(--spacing-gap); }
+.app-document-layout:has(.app-document-outline) .app-post-header { margin-top: var(--spacing-gap-sm); }
 .app-document-sidebar { grid-area: tree; min-width: 0; }
 .app-document-outline { grid-area: outline; min-width: 0; }
 .app-document-content { grid-area: content; min-width: 0; container-type: inline-size; }
@@ -820,6 +828,8 @@ button.app-tooltip { padding: 0; background: none; color: var(--color-control-li
 }
 @media (min-width: 1300px) {
   .app-document-shell:has(.app-document-outline) { max-width: none; }
+  .app-document-layout:has(.app-document-outline) { margin-top: var(--spacing-article-search-bottom); }
+  .app-document-layout:has(.app-document-outline) .app-post-header { margin-top: var(--spacing-post-header-top); }
   .app-document-layout { grid-template-columns: var(--spacing-sidebar-width) minmax(0, 1fr) var(--spacing-sidebar-width); grid-template-areas: "tree content outline"; }
   .app-document-layout:has(.app-document-outline) { grid-template-columns: minmax(var(--spacing-sidebar-width), 1fr) minmax(0, var(--container-body-width)) minmax(var(--spacing-sidebar-width), 1fr); grid-template-areas: "tree content outline"; }
   /* 목차가 있는 세 열 배치에서는 넓은 그림도 본문 열 폭까지만 쓴다. 넘치면 본문 열이 커져 목차 열이 좁아진다. */
